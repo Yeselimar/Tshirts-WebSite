@@ -949,7 +949,12 @@ var render = function() {
     "div",
     {
       staticClass: "parent",
-      staticStyle: { width: "500px", height: "500px", border: "solid 1px red" }
+      staticStyle: {
+        width: "500px",
+        height: "500px",
+        border: "1px solid red",
+        position: "relative"
+      }
     },
     [
       _c(
@@ -959,7 +964,7 @@ var render = function() {
           _c("p", [
             _vm._v("You can drag me around and resize me as you wish.")
           ]),
-          _vm._v("\n    " + _vm._s(_vm.url) + "\n")
+          _vm._v("\n          " + _vm._s(_vm.url) + "\n      ")
         ]
       )
     ],
