@@ -1,8 +1,8 @@
 
 
 <template>
-        <div class="parent" style="width:500px;height:500px;border:solid 1px red">
-        <vue-draggable-resizable :resizable="true" :parent="'parent'" >
+  <div class="parent" style="width:500px;height:500px;border: 1px solid red;position:absolute" >
+        <vue-draggable-resizable :resizable="true" :parent="'parent'">
             <p>You can drag me around and resize me as you wish.</p>
             {{url}}
         </vue-draggable-resizable>
