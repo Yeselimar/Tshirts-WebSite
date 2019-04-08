@@ -21,4 +21,8 @@ class FrontController extends Controller
         return view('front.index');
     }
     
+    public function rubros()
+    {
+        return view('front.rubros');
+    }
 }

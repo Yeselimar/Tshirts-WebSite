@@ -16,3 +16,4 @@
 });
 */
 Route::get('/','FrontController@index')->name('inicio');
+Route::get('/rubros','FrontController@rubros')->name('rubros');
