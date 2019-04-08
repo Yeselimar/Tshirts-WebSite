@@ -366,54 +366,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'footerComponent',
@@ -438,24 +390,10 @@ var render = function() {
   return _c("div", [
     _c("section", { staticClass: "footer-section" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "footer-logo text-center" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", {
-              attrs: { src: _vm.url + "/img/logo-light.png", alt: "" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-3 col-sm-6" }, [
+          _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
             _c("div", { staticClass: "footer-widget about-widget" }, [
-              _c("h2", [_vm._v("About")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam frin-gilla faucibus urna, id dapibus erat iaculis ut. Integer ac sem."
-                )
-              ]),
+              _c("h2", [_vm._v("Métodos de Pago:")]),
               _vm._v(" "),
               _c("img", { attrs: { src: _vm.url + "/img/cards.png", alt: "" } })
             ])
@@ -463,41 +401,15 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-3 col-sm-6" }, [
-            _c("div", { staticClass: "footer-widget about-widget" }, [
-              _c("h2", [_vm._v("Questions")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "fw-latest-post-widget" }, [
-                _c("div", { staticClass: "lp-item" }, [
-                  _c("img", {
-                    staticClass: "lp-thumb set-bg",
-                    attrs: { src: _vm.url + "/img/blog-thumbs/1.jpg" }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "lp-item" }, [
-                  _c("img", {
-                    staticClass: "lp-thumb set-bg",
-                    attrs: { src: _vm.url + "/img/blog-thumbs/2.jpg" }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
+          _vm._m(1)
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "social-links-warp" }, [
         _c("div", { staticClass: "container" }, [
-          _vm._m(4),
+          _vm._m(2),
           _vm._v(" "),
-          _c("p", { staticClass: "text-white text-center mt-5" }, [
+          _c("p", { staticClass: "text-white text-center mt-2" }, [
             _vm._v("Copyright ©"),
             _c("span", [_vm._v(_vm._s(new Date().getFullYear()))]),
             _vm._v(" All rights reserved | This template is made with "),
@@ -511,6 +423,25 @@ var render = function() {
               { attrs: { href: "https://colorlib.com", target: "_blank" } },
               [_vm._v("Colorlib")]
             )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "p",
+              {
+                staticClass: "text-center text-white mt-1",
+                staticStyle: { margin: "0px 0px" }
+              },
+              [
+                _vm._v("Desarrollado por: "),
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("img", {
+                    staticStyle: { height: "20px", width: "auto" },
+                    attrs: { src: _vm.url + "/img/afodi-logo.png" }
+                  })
+                ])
+              ]
+            )
           ])
         ])
       ])
@@ -522,102 +453,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-sm-6" }, [
+    return _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
       _c("div", { staticClass: "footer-widget about-widget" }, [
-        _c("h2", [_vm._v("Questions")]),
+        _c("h2", [_vm._v("Atención al cliente:")]),
         _vm._v(" "),
         _c("ul", [
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("About Us")])]),
-          _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "" } }, [_vm._v("Track Orders")])
+            _c("a", { attrs: { href: "" } }, [
+              _c("i", { staticClass: "fa fa-envelope" }),
+              _vm._v(" ventas@barna.com.ar")
+            ])
           ]),
           _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Returns")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Jobs")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Shipping")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Blog")])])
-        ]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Partners")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Bloggers")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Support")])]),
-          _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "" } }, [_vm._v("Terms of Use")])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Press")])])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lp-content" }, [
-      _c("h6", [_vm._v("what shoes to wear")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Oct 21, 2018")]),
-      _vm._v(" "),
-      _c("a", { staticClass: "readmore", attrs: { href: "#" } }, [
-        _vm._v("Read More")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lp-content" }, [
-      _c("h6", [_vm._v("trends this year")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Oct 21, 2018")]),
-      _vm._v(" "),
-      _c("a", { staticClass: "readmore", attrs: { href: "#" } }, [
-        _vm._v("Read More")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-sm-6" }, [
-      _c("div", { staticClass: "footer-widget contact-widget" }, [
-        _c("h2", [_vm._v("Questions")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "con-info" }, [
-          _c("span", [_vm._v("C.")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Your Company Ltd ")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "con-info" }, [
-          _c("span", [_vm._v("B.")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("1481 Creekside Lane  Avila Beach, CA 93424, P.O. BOX 68 ")
+            _c("a", { attrs: { href: "" } }, [
+              _c("i", { staticClass: "fa fa-phone" }),
+              _vm._v(" +54 677-11122233")
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "con-info" }, [
-          _c("span", [_vm._v("T.")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("+53 345 7953 32453")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "con-info" }, [
-          _c("span", [_vm._v("E.")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("office@youremail.com")])
         ])
       ])
     ])
@@ -626,20 +479,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "social-links" }, [
+    return _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
+      _c("div", { staticClass: "footer-widget about-widget" }, [
+        _c("h2", [_vm._v("Empresa:")]),
+        _vm._v(" "),
+        _c("ul", [
+          _c("li", [
+            _c("a", { attrs: { href: "" } }, [_vm._v("Acerca de Barna")])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "" } }, [_vm._v("Términos y Condiciones")])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "" } }, [
+              _vm._v("Políticas de Envío y Devolución")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "social-links text-center" }, [
       _c("a", { staticClass: "instagram", attrs: { href: "" } }, [
         _c("i", { staticClass: "fa fa-instagram" }),
         _c("span", [_vm._v("instagram")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "google-plus", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-google-plus" }),
-        _c("span", [_vm._v("g+plus")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "pinterest", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-pinterest" }),
-        _c("span", [_vm._v("pinterest")])
       ]),
       _vm._v(" "),
       _c("a", { staticClass: "facebook", attrs: { href: "" } }, [
@@ -650,16 +519,6 @@ var staticRenderFns = [
       _c("a", { staticClass: "twitter", attrs: { href: "" } }, [
         _c("i", { staticClass: "fa fa-twitter" }),
         _c("span", [_vm._v("twitter")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "youtube", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-youtube" }),
-        _c("span", [_vm._v("youtube")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "tumblr", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-tumblr-square" }),
-        _c("span", [_vm._v("tumblr")])
       ])
     ])
   }

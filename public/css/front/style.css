@@ -1005,7 +1005,7 @@ ol {
 
 .footer-section {
 	background: #282828;
-	padding-top: 60px;
+	padding-top: 45px;
 }
 
 .footer-logo {
@@ -1013,20 +1013,19 @@ ol {
 }
 
 .footer-widget {
-	margin-bottom: 70px;
+	margin-bottom: 5px;
 	overflow: hidden;
 }
 
 .footer-widget h2 {
 	font-size: 18px;
 	font-weight: 700;
-	text-transform: uppercase;
 	color: #fff;
-	margin-bottom: 45px;
+	margin-bottom: 15px;
 }
 
 .footer-widget p {
-	color: #8f8f8f;
+	color: red;
 }
 
 .footer-widget.about-widget p {
@@ -1126,7 +1125,7 @@ ol {
 
 .social-links-warp {
 	border-top: 2px solid #3b3535;
-	padding: 46px 0;
+	padding: 10px 0;
 }
 
 .social-links a {
