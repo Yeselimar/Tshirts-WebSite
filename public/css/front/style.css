@@ -383,8 +383,10 @@ ol {
 	color: #000;
 }
 
+
 .user-panel .up-item:first-child {
-	margin-right: 29px;
+	/*margin-right: 29px;*/
+
 }
 
 .shopping-card {
@@ -2417,3 +2419,113 @@ ol {
 		display: none;
 	}
 }
+
+/* Estilos Personalizados */
+.cursor {
+	cursor: pointer;
+}
+.header-cart {
+    display: inline-block;
+    position: relative;
+    display: inline-table;
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 9px;
+    color: #000;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+	text-align: center;
+}
+.header-cart span {
+    position: absolute;
+    top: -4px;
+    left: 100%;
+    height: 16px;
+    min-width: 16px;
+    color: #fff;
+    font-size: 13px;
+    background: #f51167;
+    text-align: center;
+    border-radius: 30px;
+    padding: 0 2px;
+    margin-left: -3px;
+}
+.input-group-search-barna{
+	height: 36px !important;
+	font-size: 16px !important;;
+	border-radius: 50px !important;;
+	border: none !important;;
+	background: transparent !important;
+}		
+.input-search-barna {
+	height: 27px !important;
+	font-size: 14px !important;;
+	border: none !important;;
+	padding: 0 19px !important;;
+	background: rgba(255,255,255,.6) !important;
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+	border-radius: 6px !important;
+}	
+.form-search-barna {
+	background: #cccccc;
+	border-radius: 50px;
+	padding: 0 3px !important;
+}
+	
+.sprd-header-barna {
+    display: inline;
+    list-style: none;
+}
+.sprd-li-barna {
+    border: 1px solid #ebebeb;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: #ebebeb;
+}
+.js-header-main-cyo {
+  color: black
+}
+
+.sprd-header-barna .title{
+    font-weight: bold;
+    line-height: normal;
+    font-size: 15px;
+}
+.sprd-header-barna .description {
+    color: grey;
+    font-size: 12px;
+}
+.header-top-barna {
+    padding: 8px 0 8px;
+}
+.header-barna-fixed {
+	position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 1024;
+}
+.flex-basis-logo {
+	flex-basis: 20%
+ }
+ 
+ .flex-basis-design{
+	flex-basis: 26%
+ }
+ 
+ .flex-basis-search{
+	flex-basis: 37%
+ }
+ 
+ .flex-basis-icons{
+	flex-basis: 17%
+ }
+ .h-171{
+	 height: 171px;
+ }
