@@ -1,36 +1,8 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Barna</title>
-
-        <!-- Fonts -->
-        <link href="{{asset('css/front/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/flaticon.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/slicknav/dist/slicknav.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/jquery-ui-css/jquery-ui.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/owl.carousel/dist/assets/owl.carousel.min.css')}}" rel="stylesheet"/>
-        <link href="{{asset('css/front/animate.css/animate.css')}}" rel="stylesheet"/>        
-        <link href="{{asset('css/front/style.css')}}" rel="stylesheet"/>
-
-       
-    </head>
-    <body>
-        <!--loading-->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
-        <!--end loading-->
-  
-        <div id="headerC">
-            <header-component url="{{url('/')}}"></header-component>
-        </div>
-        	<!-- Hero section -->
-            <section class="hero-section">
+@extends('front.layouts.main')
+@section('title','Inicio')
+@section('content')
+ <!-- Hero section -->
+          <section class="hero-section">
                 <div class="hero-slider owl-carousel">
                     <div class="hs-item set-bg" data-setbg="img/bg.jpg">
                         <div class="container">
@@ -314,21 +286,8 @@
 			</div>
 		</div>
 	</section>
-	<!-- Banner section end  -->
-    <div id="footerC">
-            <footer-component url="{{url('/')}}"></footer-component>
-     </div>
-
-        <script src="{{asset('js/app.js')}}"></script>
-        <script src="{{asset('js/header.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
-        <script src="{{asset('js/items.js')}}"></script>
-        <script src="{{asset('js/footer.js')}}"></script>
-
-
-
-
-
-
-    </body>
-</html>
+    <!-- Banner section end  -->
+@endsection
+@section('extrajs')
+<script src="{{asset('js/items.js')}}"></script>
+@endsection
