@@ -955,7 +955,8 @@ var render = function() {
         staticStyle: {
           width: "500px",
           height: "500px",
-          border: "1px solid red"
+          border: "1px solid red",
+          position: "absolute"
         }
       },
       [
