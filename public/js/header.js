@@ -378,6 +378,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'headerComponent',
@@ -399,24 +437,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "header-section" }, [
-    _c("div", { staticClass: "header-top" }, [
+  return _c("div", { staticClass: "header-section header-barna-fixed" }, [
+    _c("div", { staticClass: "header-top-barna" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-2 text-center text-lg-left" }, [
+        _c("div", { staticClass: "d-flex align-items-center" }, [
+          _c("div", { staticClass: "flex-basis-logo " }, [
             _c("a", { staticClass: "site-logo", attrs: { href: "#" } }, [
-              _c("img", { attrs: { src: _vm.url + "/img/logo.png", alt: "" } })
+              _c("img", {
+                attrs: {
+                  src: _vm.url + "/img/barna.jpg",
+                  width: "75",
+                  height: "105",
+                  alt: ""
+                }
+              })
             ])
           ]),
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2)
         ])
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -424,38 +471,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-6 col-lg-5" }, [
-      _c("form", { staticClass: "header-search-form" }, [
-        _c("input", {
-          attrs: { type: "text", placeholder: "Search on divisima ...." }
-        }),
-        _vm._v(" "),
-        _c("button", [_c("i", { staticClass: "flaticon-search" })])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xl-4 col-lg-5" }, [
-      _c("div", { staticClass: "user-panel" }, [
-        _c("div", { staticClass: "up-item" }, [
-          _c("i", { staticClass: "flaticon-profile" }),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Sign")]),
-          _vm._v(" In or "),
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Create Account")])
+    return _c("div", { staticClass: "flex-basis-design" }, [
+      _c("ul", { staticClass: "d-flex sprd-header-barna" }, [
+        _c("li", { staticClass: "mr-4 sprd-li-barna" }, [
+          _c("a", { staticClass: "js-header-main-cyo", attrs: { href: "#" } }, [
+            _c("div", { staticClass: "title" }, [
+              _vm._v("\n\t\t\t\t\t\t\t\t\tDiseñar\n\n\t\t\t\t\t\t\t\t")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "description" }, [
+              _vm._v("\n\t\t\t\t\t\t\t\t\tHecho por ti\n\t\t\t\t\t\t\t\t")
+            ])
+          ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "up-item" }, [
-          _c("div", { staticClass: "shopping-card" }, [
-            _c("i", { staticClass: "flaticon-bag" }),
+        _c("li", { staticClass: "mr-4 sprd-li-barna" }, [
+          _c("a", { staticClass: "js-header-main-cyo", attrs: { href: "#" } }, [
+            _c("div", { staticClass: "title" }, [
+              _vm._v(
+                "\n\t\t\t\t\t\t\t\t\t\tComprar\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t"
+              )
+            ]),
             _vm._v(" "),
-            _c("span", [_vm._v("0")])
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Shopping Cart")])
+            _c("div", { staticClass: "description" }, [
+              _vm._v("\n\t\t\t\t\t\t\t\t\t\tHecho para ti\n\t\t\t\t\t\t\t\t\t")
+            ])
+          ])
         ])
       ])
     ])
@@ -464,7 +505,86 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "main-navbar" }, [
+    return _c("div", { staticClass: "mr-4 flex-basis-search" }, [
+      _c(
+        "form",
+        {
+          staticClass:
+            "header-search-form input-group ml-2 mr-2 form-search-barna"
+        },
+        [
+          _c("div", { staticClass: "input-group-prepend cursor" }, [
+            _c(
+              "span",
+              {
+                staticClass: "input-group-text input-group-search-barna",
+                attrs: { id: "basic-addon1" }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-filter",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "input-search-barna form-control",
+            attrs: { type: "text", placeholder: "Buscar en Barna ...." }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-append cursor" }, [
+            _c(
+              "span",
+              { staticClass: "input-group-text input-group-search-barna" },
+              [
+                _c("i", {
+                  staticClass: "fa fa-search",
+                  attrs: { "aria-hidden": "true" }
+                })
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-basis-icons" }, [
+      _c("div", { staticClass: "user-panel" }, [
+        _c("div", { staticClass: "up-item pr-3" }, [
+          _c("div", { staticClass: "header-cart cursor" }, [
+            _c("i", { staticClass: "fa fa-shopping-bag" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("0")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "up-item pr-3" }, [
+          _c("div", { staticClass: "header-cart cursor" }, [
+            _c("i", { staticClass: "fa fa-shopping-cart" }),
+            _vm._v(" "),
+            _c("span", [_vm._v("0")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "up-item pr-3" }, [
+          _c("div", { staticClass: "header-cart cursor" }, [
+            _c("i", { staticClass: "fa fa-user" })
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "main-navbar text-center" }, [
       _c("div", { staticClass: "container" }, [
         _c("ul", { staticClass: "main-menu" }, [
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Home")])]),

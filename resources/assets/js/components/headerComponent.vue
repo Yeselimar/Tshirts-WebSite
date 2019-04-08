@@ -1,40 +1,78 @@
 <template>
 	<!-- Header section -->
-	<div class="header-section">
-		<div class="header-top">
+	<div class="header-section header-barna-fixed">
+		<div class="header-top-barna">
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-2 text-center text-lg-left">
+				<div class="d-flex align-items-center">
+					<div class="flex-basis-logo ">
 						<!-- logo -->
 						<a href="#" class="site-logo">
-							<img :src="url+'/img/logo.png'" alt="">
+							<img :src="url+'/img/barna.jpg'" width="75" height="105" alt="">
 						</a>
 					</div>
-					<div class="col-xl-6 col-lg-5">
-						<form class="header-search-form">
-							<input type="text" placeholder="Search on divisima ....">
-							<button><i class="flaticon-search"></i></button>
+					<div class="flex-basis-design">
+						<ul class="d-flex sprd-header-barna">
+							<li class="mr-4 sprd-li-barna">
+								<a class="js-header-main-cyo" href="#" >
+									<div class="title">
+										Diseñar
+
+									</div>
+									<div class="description">
+										Hecho por ti
+									</div>
+								</a>
+							</li>
+							<li class="mr-4 sprd-li-barna">
+									<a class="js-header-main-cyo" href="#" >
+										<div class="title">
+											Comprar
+							
+										</div>
+										<div class="description">
+											Hecho para ti
+										</div>
+									</a>
+								</li>
+						</ul>
+					</div>
+					<div class="mr-4 flex-basis-search">
+						<form class="header-search-form input-group ml-2 mr-2 form-search-barna">
+							<div class="input-group-prepend cursor">
+								<span class="input-group-text input-group-search-barna" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+							</div>
+							<input type="text" class="input-search-barna form-control" placeholder="Buscar en Barna ....">
+							<div class="input-group-append cursor">
+								<span class="input-group-text input-group-search-barna"><i class="fa fa-search" aria-hidden="true"></i></span>
+							</div>
+							<!--<button><i class="flaticon-search"></i></button>-->
 						</form>
 					</div>
-					<div class="col-xl-4 col-lg-5">
-						<div class="user-panel">
-							<div class="up-item">
-								<i class="flaticon-profile"></i>
-								<a href="#">Sign</a> In or <a href="#">Create Account</a>
-							</div>
-							<div class="up-item">
-								<div class="shopping-card">
-									<i class="flaticon-bag"></i>
-									<span>0</span>
+					<div class="flex-basis-icons">
+							<div class="user-panel">
+								<div class="up-item pr-3">
+									<div class="header-cart cursor">
+										<i class="fa fa-shopping-bag"></i> 
+										<span>0</span>
+									</div>
 								</div>
-								<a href="#">Shopping Cart</a>
+								<div class="up-item pr-3">
+									<div class="header-cart cursor">
+										<i class="fa fa-shopping-cart"></i>
+										<span>0</span> 
+									</div>
+								</div>
+								<div class="up-item pr-3">
+									<div class="header-cart cursor">
+										<i class="fa fa-user"></i>
+									</div>
+								</div> 
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<nav class="main-navbar">
+		<nav class="main-navbar text-center">
 			<div class="container">
 				<!-- menu -->
 				<ul class="main-menu">
