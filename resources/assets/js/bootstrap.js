@@ -1,4 +1,5 @@
 
+window.Vue = require('vue');
 window._ = require('lodash');
 
 /**
@@ -15,7 +16,6 @@ try {
     require('jquery.nicescroll');
     require('jquery-zoom');
     require('jquery-ui');
-    require('./main');
 
 } catch (e) {}
 
@@ -43,7 +43,6 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.Vue = require('vue');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -1,5 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/design.js": "/js/design.js",
-    "/js/header.js": "/js/header.js"
+    "/js/items.js": "/js/items.js",
+    "/js/header.js": "/js/header.js",
+    "/js/footer.js": "/js/footer.js",
+    "/js/main.js": "/js/main.js"
 }
