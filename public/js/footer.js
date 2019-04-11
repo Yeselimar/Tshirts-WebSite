@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 83);
+/******/ 	return __webpack_require__(__webpack_require__.s = 71);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -175,21 +175,21 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 83:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(84);
+module.exports = __webpack_require__(72);
 
 
 /***/ }),
 
-/***/ 84:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(85)
+var __vue_script__ = __webpack_require__(73)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -231,13 +231,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 85:
+/***/ 73:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_footerComponent_vue__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_footerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_footerComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__);
 
 
 
@@ -246,21 +246,21 @@ var app = new Vue({
   name: 'footerC',
   data: {},
   components: {
-    footerComponent: __WEBPACK_IMPORTED_MODULE_0__components_footerComponent_vue___default.a
+    footerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue___default.a
   }
 });
 
 /***/ }),
 
-/***/ 86:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(87)
+var __vue_script__ = __webpack_require__(75)
 /* template */
-var __vue_template__ = __webpack_require__(88)
+var __vue_template__ = __webpack_require__(76)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -277,7 +277,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/footerComponent.vue"
+Component.options.__file = "resources/assets/js/components/layouts/footerComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -286,9 +286,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-722347db", Component.options)
+    hotAPI.createRecord("data-v-514b8356", Component.options)
   } else {
-    hotAPI.reload("data-v-722347db", Component.options)
+    hotAPI.reload("data-v-514b8356", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -300,7 +300,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 87:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -380,7 +380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 88:
+/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -528,7 +528,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-722347db", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-514b8356", module.exports)
   }
 }
 

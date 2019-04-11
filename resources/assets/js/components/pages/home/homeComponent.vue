@@ -169,11 +169,11 @@
 </template>
 
 <script>
-import loading from "../../components/layouts/loading.vue";
-import headerComponent from "../../components/headerComponent.vue";
-import navComponent from "../../components/navComponent.vue"
-import itemsComponent from "../../components/itemsComponent.vue"
-import prodDestacadosComponent from "../../components/prodDestacadosComponent.vue"
+import loading from "../../../components/layouts/loading.vue";
+import headerComponent from "../../../components/layouts/headerComponent.vue";
+import navComponent from "../../../components/pages/home/navComponent.vue"
+import itemsComponent from "../../../components/pages/home/itemsComponent.vue"
+import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 
  
 export default {
