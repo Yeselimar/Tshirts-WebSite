@@ -1,8 +1,8 @@
 <template>
  <!-- Hero section -->
-          <section class="hero-section">
+          <section v-if="items.length" class="hero-section">
                 <div class="hero-slider owl-carousel">
-                    <div v-for="(item, i) in barner" :key="i"  class="hs-item set-bg" :data-setbg="url+item.url">
+                    <div v-for="(item, i) in items" :key="i"  class="hs-item" :style="'background-image:'+'url(' +item.url + ')'">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-7 text-white">
@@ -46,13 +46,20 @@
 </template>
 
 <script>
+    import 'owl.carousel'
+
     export default {
         name:'navComponent',
         props: {
             url: {
                 type: String,
                 required: true
-            }
+            },
+			isdesignp: {
+				type: Boolean,
+				required: false,
+				value: false,
+			}
         },
         data() {
             return {
@@ -73,15 +80,83 @@
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 89.5
                     },
-                ]
+                ],
+                barnerDesign: [
+                     {
+                        id: 2,
+                        url: '/img/bg-3.jpg',
+                        titulo: 'Toommy jackets',
+                        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                         +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                        precio: 19.2
+                    },
+                    {
+                        id: 3,
+                        url: '/img/bg-4.jpg',
+                        titulo: 'Tonts Static',
+                        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                         +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                        precio: 9.5
+                    },
+                ],
+               items: [],
+               isDesign: this.isdesignp
+
             }
         },
         mounted() {
+            this.llenarItems()
         },
         methods:{
             verDetalle(i){
                 console.log(i)
+            },
+            llenarItems(){
+                this.items = []
+                 setTimeout(e => { 
+					
+                    if(this.isDesign){
+                            this.items = this.barnerDesign
+                        } else {
+                            this.items = this.barner
+                        }
+                setTimeout(e => { 
+                                    
+                	$(".hero-slider").owlCarousel({
+                        loop: true,
+                        margin: 0,
+                        nav: true,
+                        items: 1,
+                        dots: true,
+                        animateOut: 'fadeOut',
+                        animateIn: 'fadeIn',
+                        navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+                        smartSpeed: 1200,
+                        autoHeight: false,
+                        autoplay: true,
+                        onInitialized: function() {
+                            var a = this.items().length;
+                            $("#snh-1").html("<span>1</span><span>" + a + "</span>");
+                        }
+                    }).on("changed.owl.carousel", function(a) {
+                        var b = --a.item.index, a = a.item.count;
+                        $("#snh-1").html("<span> "+ (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + a + "</span>");
+
+                    });
+
+                    $(".hero-slider").append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
+                    $(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo('.slider-nav');
+
+                },10)	
+               },10)	
+
             }
-        }
+        },
+        watch: {
+    		isdesignp: function() {
+                this.isDesign = this.isdesignp
+                this.llenarItems()
+			},
+		 }
     }
 </script>

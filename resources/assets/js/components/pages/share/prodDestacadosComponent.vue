@@ -139,7 +139,7 @@ import 'owl.carousel'
                     },
                 ],
                 items: [],
-                isDesign: false,
+                isDesign: this.isdesignp,
 
             }
         },
@@ -152,7 +152,6 @@ import 'owl.carousel'
             },
             llenarItems(){
                 this.items = []
-                console.log(this.items)
                 setTimeout(e => { 
 					
                 if(this.isDesign){
@@ -161,28 +160,28 @@ import 'owl.carousel'
                     this.items = this.products
                 }
                 setTimeout(e => { 
-                $('.product-slider').owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        margin : 30,
-                        autoplay: true,
-                        navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
-                        responsive : {
-                            0 : {
-                                items: 1,
-                            },
-                            480 : {
-                                items: 2,
-                            },
-                            768 : {
-                                items: 3,
-                            },
-                            1200 : {
-                                items: 4,
+                    $('.product-slider').owlCarousel({
+                            loop: true,
+                            nav: true,
+                            dots: false,
+                            margin : 30,
+                            autoplay: true,
+                            navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+                            responsive : {
+                                0 : {
+                                    items: 1,
+                                },
+                                480 : {
+                                    items: 2,
+                                },
+                                768 : {
+                                    items: 3,
+                                },
+                                1200 : {
+                                    items: 4,
+                                }
                             }
-                        }
-                    });
+                        });
                 },100)	
                },100)	
 

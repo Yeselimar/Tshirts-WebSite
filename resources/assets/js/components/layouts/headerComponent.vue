@@ -226,9 +226,18 @@
 						<div class="mr-4 flex-basis-search">
 							<form class="header-search-form input-group ml-2 mr-2 form-search-barna">
 								<div class="input-group-prepend cursor">
-									<span class="input-group-text input-group-search-barna" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+									<span class="input-group-text input-group-search-barna" data-toggle="dropdown" aria-expanded="false" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+									<ul class="dropdown-menu">
+										<input class="form-control" id="myInput"  @keyup="searchRubro" type="text" placeholder="Buscar..">
+										<li><a @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Hombre'}]">Hombre</a></li>
+										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Mujer'}]">Mujer</a></li>
+										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niña'}]">Niña</a></li>
+										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niño'}]">Niño</a></li>
+										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Taza'}]">Taza</a></li>
+										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Buzo'}]">Buzo</a></li>
+									</ul>
 								</div>
-								<input type="text" v-model="search" class="input-search-barna form-control" placeholder="Buscar en Barna ....">
+								<input type="text" v-model="search" class="input-search-barna form-control" @keyup="searchK" placeholder="Buscar en Barna ....">
 								<div class="input-group-append cursor" @click="searchM">
 									<span class="input-group-text input-group-search-barna"><i class="fa fa-search" aria-hidden="true"></i></span>
 								</div>
@@ -516,6 +525,9 @@
 			}
 		},
 		methods: {
+			seleted(event){
+				this.rubro = String(event.target.innerText)
+			},
 			login() {
 				console.log('esta entrando')
 			},
@@ -601,6 +613,19 @@
 					rubro: this.rubro
 				}
 				this.$emit('searchM',e)
+			},
+			searchK() {
+				var e = {
+					search: this.search,
+					rubro: this.rubro
+				}
+				this.$emit('searchK',e)
+			},
+			searchRubro (){
+				var value = $('#myInput').val();
+				$(".dropdown-menu li").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
 			}
 		},
         created() {
