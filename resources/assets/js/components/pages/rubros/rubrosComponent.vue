@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM"></header-component>
+            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
         <!--end header -->
         
 		<!-- Rubros section -->
@@ -81,6 +81,11 @@
                 
             },
             searchM(e)
+            {
+            	this.hola=e.search;
+                console.log(e.rubro);
+            },
+            searchK(e)
             {
             	this.hola=e.search;
                 console.log(e.rubro);

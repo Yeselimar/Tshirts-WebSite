@@ -1,6 +1,5 @@
 <template>
     <div class="row">
-        {{titulo}}
         <template v-for="(articulo,i) in busqueda">
             <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
         </template>
