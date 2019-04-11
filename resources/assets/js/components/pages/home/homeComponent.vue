@@ -3,10 +3,10 @@
 	<!-- home section -->
 	<div>
         <!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM"></header-component>
+            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM" @searchK="searchK" @searchM="searchM"></header-component>
         <!--end header -->
         <!--nav -->
-            <nav-component :url="url"></nav-component>
+            <nav-component v-if="showNav" :isdesignp="isDesign" :url="url"></nav-component>
         <!-- end nav -->
         <!-- items -->
             <items-component :url="url"></items-component>
@@ -195,6 +195,7 @@ export default {
 			return {
                 isLoading: false,
                 isDesign: false,
+                showNav: true,
                 numCart: 0,
                 numBag: 0,
                 isAuth: false,
@@ -203,6 +204,9 @@ export default {
 			}
 		},
 		methods: {
+            searchK(e){
+                console.log(e);
+            },
             loginM(e){
                 this.isLoading = true
                 window.name = e.name
@@ -218,8 +222,10 @@ export default {
                 if (e !== this.isDesign){
                     this.isDesign = e
                     window.isDesign = e
-					this.isLoading = true
+                    this.isLoading = true
+                    this.showNav = false
 					setTimeout(e => { 
+                        this.showNav = true
                         this.isLoading = false
 					},500)	
 				} 
