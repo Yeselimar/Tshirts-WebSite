@@ -16,6 +16,10 @@
 </style>
 @endsection
 @section('content')
+	<!-- header-->
+        <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM"></header-component>
+    <!--end header -->
+
 	<!-- Page info -->
 	<div class="page-top-info">
 		<div class="container">
@@ -144,4 +148,10 @@
 		</div>
 	</section>
 	<!-- checkout section end -->
+@endsection
+
+@section('extrajs')
+	<script>
+		import headerComponent from "../../components/headerComponent.vue";
+	</script>
 @endsection
