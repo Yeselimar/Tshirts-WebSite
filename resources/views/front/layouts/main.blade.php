@@ -31,20 +31,20 @@
         </div>
         <!--end loading-->
   
-        <div id="headerC" class="h-171">
-            <header-component url="{{url('/')}}"></header-component>
-        </div>
+       {{--<div id="headerC" class="h-171">
+            <header-component isdesignp="@if(isset($isDesign)){{true}}@else{{false}}@endif" url="{{url('/')}}"></header-component>
+        </div> --}}
   
 		@yield('content')
 		<div id="footerC">
 				<footer-component url="{{url('/')}}"></footer-component>
 		</div>
 
-        <script src="{{asset('js/app.js')}}"></script>
-        <script src="{{asset('js/header.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
+		<script src="{{asset('js/app.js')}}"></script>
+        {{--<script src="{{asset('js/header.js')}}"></script>--}}
 		<script src="{{asset('js/footer.js')}}"></script>
 		@yield('extrajs')
+		<script src="{{asset('js/main.js')}}"></script>
 
     </body>
 </html>

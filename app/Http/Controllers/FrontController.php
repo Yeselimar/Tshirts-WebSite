@@ -25,4 +25,8 @@ class FrontController extends Controller
     {
         return view('front.rubros');
     }
+    public function clickDesign()
+    {
+        return view('front.index')->with('isDesign',true);
+    }
 }

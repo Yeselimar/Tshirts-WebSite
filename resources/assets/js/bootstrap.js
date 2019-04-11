@@ -1,5 +1,5 @@
 
-window.Vue = require('vue');
+window.Vue = require('vue'); 
 window._ = require('lodash');
 
 /**

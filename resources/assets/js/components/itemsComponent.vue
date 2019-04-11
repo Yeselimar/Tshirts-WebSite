@@ -1,43 +1,36 @@
 <template>
-    <div>
 	<!-- Features section -->
-	<section class="features-section">
+	<section class="features-section mt-4 mb-3">
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-4 p-0 feature">
-					<div class="feature-inner">
-						<div class="feature-icon">
-							<img :src="url+'/img/icons/1.png'" alt="#">
+			<div class="row d-flex flex-direction-xs">
+				<div class="feature feature-barna">
+					<div class="feature-inner d-flex flex-column justify-content-start">
+						<div class="feature-icon feature-icon-barna mb-4">
+							<i class="fa fa-drivers-license font-24 center-element"></i>
 						</div>
-						<h2>Fast Secure Payments</h2>
+						<p class="font-18 mb-0">Fast Secure Payments: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla harum omnis officiis</p>
 					</div>
 				</div>
-				<div class="col-md-4 p-0 feature">
-					<div class="feature-inner">
-						<div class="feature-icon">
-							<img :src="url+'/img/icons/2.png'" alt="#">
+				<div class="feature feature-barna">
+					<div class="feature-inner d-flex flex-column justify-content-start">
+						<div class="feature-icon feature-icon-barna mb-4">
+							<i class="fa fa-check font-24 center-element"></i>
 						</div>
-						<h2>Premium Products</h2>
+						<p class="font-18 mb-0">Premium Products: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos harum eveniet </p>
 					</div>
 				</div>
-				<div class="col-md-4 p-0 feature">
-					<div class="feature-inner">
-						<div class="feature-icon">
-							<img :src="url+'/img/icons/3.png'" alt="#">
+				<div class="feature feature-barna">
+					<div class="feature-inner d-flex flex-column justify-content-start">
+						<div class="feature-icon feature-icon-barna mb-4">
+							<i class="fa fa-send font-24 center-element"></i>
 						</div>
-						<h2>Free & fast Delivery</h2>
+						<p class="font-18 mb-0">Free & fast Delivery: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloribus dolores eaque facilis at</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- Features section end -->
-
-
-
-	
-	<!-- Footer section end -->
-    </div>
 </template>
 
 <script>
