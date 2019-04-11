@@ -17,6 +17,7 @@ mix.js("resources/assets/js/vue/design.vue", "public/js");
 mix.js("resources/assets/js/vue/layouts/items.vue", "public/js");
 mix.js("resources/assets/js/vue/layouts/footer.vue", "public/js");
 mix.js("resources/assets/js/main.js", "public/js");
+mix.js("resources/assets/js/vue/layouts/misarticulos.vue", "public/js");
 
 
 

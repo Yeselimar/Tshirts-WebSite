@@ -65,7 +65,7 @@
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 0:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -187,7 +187,7 @@ module.exports = __webpack_require__(72);
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(73)
 /* template */
@@ -256,7 +256,7 @@ var app = new Vue({
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(75)
 /* template */
@@ -468,7 +468,7 @@ var staticRenderFns = [
           _c("li", [
             _c("a", { attrs: { href: "" } }, [
               _c("i", { staticClass: "fa fa-phone" }),
-              _vm._v(" +54 677-11122233")
+              _vm._v(" +54 677-1112233")
             ])
           ])
         ])

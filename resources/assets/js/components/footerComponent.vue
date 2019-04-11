@@ -17,7 +17,7 @@
 						<h2>Atención al cliente:</h2>
 						<ul>
 							<li><a href=""><i class="fa fa-envelope"></i> ventas@barna.com.ar</a></li>
-							<li><a href=""><i class="fa fa-phone"></i> +54 677-11122233</a></li>
+							<li><a href=""><i class="fa fa-phone"></i> +54 677-1112233</a></li>
 						</ul>
 						
 					</div>

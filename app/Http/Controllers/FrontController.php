@@ -25,4 +25,9 @@ class FrontController extends Controller
     {
         return view('front.rubros');
     }
+
+    public function procesarpedido()
+    {
+        return view('front.procesarpedido');
+    }
 }
