@@ -17,5 +17,5 @@
 */
 Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
-Route::get('/procesar-pedido','FrontController@procesarpedido')->name('procesar.pedido');
+Route::get('/procesar-carrito','FrontController@procesarcarrito')->name('procesar.carrito');
 

@@ -1,14 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/home.js": "/js/home.js",
+    "/js/procesarcarrito.js": "/js/procesarcarrito.js",
+    "/js/rubros.js": "/js/rubros.js",
     "/js/design.js": "/js/design.js",
     "/js/header.js": "/js/header.js",
-    "/js/misarticulos.js": "/js/misarticulos.js",
-<<<<<<< HEAD
-    "/js/nav.js": "/js/nav.js",
-    "/js/items.js": "/js/items.js",
-=======
->>>>>>> master
+    "/js/migajas.js": "/js/migajas.js",
     "/js/footer.js": "/js/footer.js",
     "/js/main.js": "/js/main.js"
 }

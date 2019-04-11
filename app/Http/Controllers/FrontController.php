@@ -26,8 +26,8 @@ class FrontController extends Controller
         return view('front.rubros');
     }
 
-    public function procesarpedido()
+    public function procesarcarrito()
     {
-        return view('front.procesarpedido');
+        return view('front.procesarcarrito');
     }
 }
