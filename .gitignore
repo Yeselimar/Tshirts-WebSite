@@ -14,4 +14,4 @@ yarn-error.log
 
 composer\.lock
 
-public/js/
+/public/js/
