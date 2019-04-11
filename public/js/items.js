@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 80);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -175,92 +175,15 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 65:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(66);
-
-
-/***/ }),
-
-/***/ 66:
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(67)
+var __vue_script__ = __webpack_require__(18)
 /* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/vue/layouts/items.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d4bca8a2", Component.options)
-  } else {
-    hotAPI.reload("data-v-d4bca8a2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 67:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue__);
-
-
-
-var app = new Vue({
-  el: "#itemsC",
-  name: 'itemsC',
-  data: {},
-  components: {
-    itemsComponent: __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue___default.a
-  }
-});
-
-/***/ }),
-
-/***/ 68:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(69)
-/* template */
-var __vue_template__ = __webpack_require__(70)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -300,18 +223,11 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 69:
+/***/ 18:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -361,58 +277,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 70:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("section", { staticClass: "features-section" }, [
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "features-section mt-4 mb-3" }, [
       _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-4 p-0 feature" }, [
-            _c("div", { staticClass: "feature-inner" }, [
-              _c("div", { staticClass: "feature-icon" }, [
-                _c("img", {
-                  attrs: { src: _vm.url + "/img/icons/1.png", alt: "#" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Fast Secure Payments")])
-            ])
+        _c("div", { staticClass: "row d-flex flex-direction-xs" }, [
+          _c("div", { staticClass: "feature feature-barna" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "feature-inner d-flex flex-column justify-content-start"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "feature-icon feature-icon-barna mb-4" },
+                  [
+                    _c("i", {
+                      staticClass:
+                        "fa fa-drivers-license font-24 center-element"
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-18 mb-0" }, [
+                  _vm._v(
+                    "Fast Secure Payments: Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla harum omnis officiis"
+                  )
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4 p-0 feature" }, [
-            _c("div", { staticClass: "feature-inner" }, [
-              _c("div", { staticClass: "feature-icon" }, [
-                _c("img", {
-                  attrs: { src: _vm.url + "/img/icons/2.png", alt: "#" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Premium Products")])
-            ])
+          _c("div", { staticClass: "feature feature-barna" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "feature-inner d-flex flex-column justify-content-start"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "feature-icon feature-icon-barna mb-4" },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-check font-24 center-element"
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-18 mb-0" }, [
+                  _vm._v(
+                    "Premium Products: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos harum eveniet "
+                  )
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-4 p-0 feature" }, [
-            _c("div", { staticClass: "feature-inner" }, [
-              _c("div", { staticClass: "feature-icon" }, [
-                _c("img", {
-                  attrs: { src: _vm.url + "/img/icons/3.png", alt: "#" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h2", [_vm._v("Free & fast Delivery")])
-            ])
+          _c("div", { staticClass: "feature feature-barna" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "feature-inner d-flex flex-column justify-content-start"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "feature-icon feature-icon-barna mb-4" },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-send font-24 center-element"
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-18 mb-0" }, [
+                  _vm._v(
+                    "Free & fast Delivery: Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloribus dolores eaque facilis at"
+                  )
+                ])
+              ]
+            )
           ])
         ])
       ])
     ])
-  ])
-}
-var staticRenderFns = []
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -421,6 +388,83 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-c2dd7f18", module.exports)
   }
 }
+
+/***/ }),
+
+/***/ 80:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(81);
+
+
+/***/ }),
+
+/***/ 81:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(82)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/layouts/items.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d4bca8a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-d4bca8a2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 82:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue__);
+
+
+
+var app = new Vue({
+  el: "#itemsC",
+  name: 'itemsC',
+  data: {},
+  components: {
+    itemsComponent: __WEBPACK_IMPORTED_MODULE_0__components_itemsComponent_vue___default.a
+  }
+});
 
 /***/ })
 
