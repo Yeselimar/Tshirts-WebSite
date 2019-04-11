@@ -1,5 +1,5 @@
 <script>
-import headerComponent from "../../components/headerComponent.vue";
+import headerComponent from "../../components/layouts/headerComponent.vue";
 
 const app = new Vue({
   el: "#headerC",

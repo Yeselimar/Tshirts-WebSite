@@ -1,5 +1,5 @@
 <script>
-import homeComponent from "../../components/pages/homeComponent.vue";
+import homeComponent from "../../components/pages/home/homeComponent.vue";
 
 const app = new Vue({
   el: "#homeC",
