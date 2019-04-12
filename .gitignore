@@ -1,4 +1,3 @@
-/public/js/*
 /node_modules
 /public/hot
 /public/storage
@@ -14,4 +13,3 @@ yarn-error.log
 
 composer\.lock
 
-/public/js/

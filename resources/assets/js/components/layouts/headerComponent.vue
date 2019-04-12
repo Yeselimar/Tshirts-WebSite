@@ -185,7 +185,7 @@
 						<div class="flex-basis-logo ">
 							<!-- logo -->
 							<a href="#" class="site-logo">
-								<img :src="url+'/img/barna.jpg'" width="75" height="105" alt="">
+								<img :src="url+'/img/barna.jpg'" id="logo-barna" width="75" height="105" alt="">
 							</a>
 						</div>
 						<div class="flex-basis-design">
@@ -445,9 +445,9 @@
 				</div>
 			</div>
 			<nav class="main-navbar text-center">
-				<div class="container">
+				<div class="container scroll-barna overflow-auto">
 					<!-- menu -->
-					<ul class="main-menu">
+					<ul class="main-menu d-flex justify-content-center align-items-center">
 						<li><a href="#">Hombre</a></li>
 						<li><a href="#">Mujer</a></li>
 						<li><a href="#">Niño</a></li>
@@ -459,7 +459,7 @@
 				</div>
 			</nav>
 		</div>
-    	<div class="h-171"></div>
+    	<div id="content-barna" class="h-171"></div>
     </div>
 </template>
 
@@ -628,6 +628,32 @@
 				});
 			}
 		},
+		 mounted: function(){
+
+			var logo = $('#logo-barna')
+			var content = $('#content-barna')
+
+			
+			document.addEventListener("scroll", function(event){
+				event.preventDefault()
+				if(document.documentElement.scrollTop > 100) {
+					$(content).css('transition','all 0.5s ease 0.4s');
+					$(logo).css('transition','all 0.5s ease 0.4s');
+					$(logo).css('width',50)
+					$(logo).css('height',65)
+					$(content).css('height',81)
+
+				} else {
+					$(content).css('transition','all 0.5s ease 0.4s');
+					$(logo).css('transition','all 0.5s ease 0.1s');
+					$(logo).css('width',75)
+					$(logo).css('height',105)
+					$(content).css('height',171)
+
+				}
+			});
+			
+		 },
         created() {
 			this.isDesign = this.isdesignp
 			this.isAuth = this.isauthp
@@ -635,6 +661,7 @@
 			this.search = this.searchp
 			this.rubro = this. rubrop
 			this.numBag = this.numbagp
+
 		},
 		 watch: {
     		isdesignp: function() {

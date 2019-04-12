@@ -1,7 +1,7 @@
 <template>
 
         <!-- letest product section -->
-            <section v-if="items.length " class="top-letest-product-section mb-5 mt-5 bg-gray">
+            <section v-if="items.length " class="top-letest-product-section bg-gray">
                 <div class="container">
                     <div class="section-title">
                         <h2>Productos Destacados</h2>
