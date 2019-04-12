@@ -2,7 +2,7 @@
  <!-- Hero section -->
           <section v-if="items.length" class="hero-section">
                 <div class="hero-slider owl-carousel">
-                    <div v-for="(item, i) in items" :key="i"  class="hs-item" :style="'background-image:'+'url(' +item.url + ')'">
+                    <div v-for="(item, i) in items" :key="i"  class="hs-item" :style="'background-image:'+'url(' +url+item.url + ')'">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-7 text-white">

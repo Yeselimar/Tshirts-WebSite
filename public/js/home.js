@@ -7052,7 +7052,7 @@ var render = function() {
               {
                 key: i,
                 staticClass: "hs-item",
-                style: "background-image:" + "url(" + item.url + ")"
+                style: "background-image:" + "url(" + _vm.url + item.url + ")"
               },
               [
                 _c("div", { staticClass: "container" }, [
