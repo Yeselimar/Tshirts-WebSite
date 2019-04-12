@@ -27,7 +27,7 @@
 		@yield('extracss')
        
     </head>
-    <body>
+    <body class="scroll-barna-body sl-solid">
         <!--loading-->
         <div id="preloder">
             <div class="loader"></div>

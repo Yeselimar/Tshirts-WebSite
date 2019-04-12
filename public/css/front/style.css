@@ -2695,3 +2695,13 @@ td, th, tr{
  .overflow-auto {
 	overflow: auto;
  }
+
+ .sl-solid::-webkit-scrollbar{
+	width: 15px !important;
+ 	cursor: pointer;
+ 	height: 15px !important;
+ }
+ 
+ .sl-solid::-webkit-scrollbar-track, .sl-solid::-webkit-scrollbar-thumb{
+	border-radius: 10px
+ }
