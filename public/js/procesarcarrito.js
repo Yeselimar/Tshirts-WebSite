@@ -175,6 +175,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 1:
 /***/ (function(module, exports) {
 
@@ -258,6 +259,8 @@ function toComment(sourceMap) {
 
 /***/ }),
 
+=======
+>>>>>>> master
 /***/ 114:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -397,7 +400,11 @@ var content = __webpack_require__(119);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
+<<<<<<< HEAD
 var update = __webpack_require__(2)("2d00fc7c", content, false, {});
+=======
+var update = __webpack_require__(3)("2d00fc7c", content, false, {});
+>>>>>>> master
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -417,7 +424,11 @@ if(false) {
 /***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 exports = module.exports = __webpack_require__(1)(false);
+=======
+exports = module.exports = __webpack_require__(2)(false);
+>>>>>>> master
 // imports
 
 
@@ -1272,6 +1283,92 @@ if (false) {
 /***/ }),
 
 /***/ 2:
+<<<<<<< HEAD
+=======
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ 3:
+>>>>>>> master
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1562,7 +1659,11 @@ var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
+<<<<<<< HEAD
 var update = __webpack_require__(2)("26943fae", content, false, {});
+=======
+var update = __webpack_require__(3)("26943fae", content, false, {});
+>>>>>>> master
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1582,7 +1683,11 @@ if(false) {
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 exports = module.exports = __webpack_require__(1)(false);
+=======
+exports = module.exports = __webpack_require__(2)(false);
+>>>>>>> master
 // imports
 
 
@@ -2268,6 +2373,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		}
 	},
+<<<<<<< HEAD
+=======
+	mounted: function mounted() {
+
+		var logo = $('#logo-barna');
+		var content = $('#content-barna');
+
+		document.addEventListener("scroll", function (event) {
+			event.preventDefault();
+			if (document.documentElement.scrollTop > 100) {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('width', 50);
+				$(logo).css('height', 65);
+				$(content).css('height', 81);
+			} else {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.1s');
+				$(logo).css('width', 75);
+				$(logo).css('height', 105);
+				$(content).css('height', 171);
+			}
+		});
+	},
+>>>>>>> master
 	created: function created() {
 		this.isDesign = this.isdesignp;
 		this.isAuth = this.isauthp;
@@ -2325,6 +2455,10 @@ var render = function() {
                   _c("img", {
                     attrs: {
                       src: _vm.url + "/img/barna.jpg",
+<<<<<<< HEAD
+=======
+                      id: "logo-barna",
+>>>>>>> master
                       width: "75",
                       height: "105",
                       alt: ""
@@ -3034,7 +3168,11 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+<<<<<<< HEAD
     _c("div", { staticClass: "h-171" })
+=======
+    _c("div", { staticClass: "h-171", attrs: { id: "content-barna" } })
+>>>>>>> master
   ])
 }
 var staticRenderFns = [
@@ -3369,6 +3507,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("nav", { staticClass: "main-navbar text-center" }, [
+<<<<<<< HEAD
       _c("div", { staticClass: "container" }, [
         _c("ul", { staticClass: "main-menu" }, [
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
@@ -3383,6 +3522,29 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
         ])
+=======
+      _c("div", { staticClass: "container scroll-barna overflow-auto" }, [
+        _c(
+          "ul",
+          {
+            staticClass:
+              "main-menu d-flex justify-content-center align-items-center"
+          },
+          [
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mujer")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niño")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niña")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tazas")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
+          ]
+        )
+>>>>>>> master
       ])
     ])
   }

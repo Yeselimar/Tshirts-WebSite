@@ -60,7 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
+<<<<<<< HEAD
 /******/ 	return __webpack_require__(__webpack_require__.s = 100);
+=======
+/******/ 	return __webpack_require__(__webpack_require__.s = 102);
+>>>>>>> master
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -175,6 +179,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 1:
 /***/ (function(module, exports) {
 
@@ -262,17 +267,31 @@ function toComment(sourceMap) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(101);
+=======
+/***/ 102:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(103);
+>>>>>>> master
 
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 101:
+=======
+/***/ 103:
+>>>>>>> master
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(102)
+=======
+var __vue_script__ = __webpack_require__(104)
+>>>>>>> master
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -314,12 +333,20 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 102:
+=======
+/***/ 104:
+>>>>>>> master
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue__ = __webpack_require__(103);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue__ = __webpack_require__(105);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue__);
 
 
@@ -335,13 +362,21 @@ var app = new Vue({
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 103:
+=======
+/***/ 105:
+>>>>>>> master
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(104)
+=======
+var __vue_script__ = __webpack_require__(106)
+>>>>>>> master
 /* template */
 var __vue_template__ = __webpack_require__(113)
 /* template functional */
@@ -383,14 +418,22 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 104:
+=======
+/***/ 106:
+>>>>>>> master
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(105);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(107);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
 //
 //
@@ -454,7 +497,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isAuth: false,
             search: '',
             rubro: '',
+<<<<<<< HEAD
             titulo: ''
+=======
+            hola: ''
+>>>>>>> master
         };
     },
     mounted: function mounted() {},
@@ -463,6 +510,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loginM: function loginM(e) {},
         designM: function designM(e) {},
         searchM: function searchM(e) {
+<<<<<<< HEAD
             this.titulo = e.search;
             this.rubro = e.rubro;
             console.log(e.rubro);
@@ -470,6 +518,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         searchK: function searchK(e) {
             this.titulo = e.search;
             this.rubro = e.rubro;
+=======
+            this.hola = e.search;
+            console.log(e.rubro);
+        },
+        searchK: function searchK(e) {
+            this.hola = e.search;
+>>>>>>> master
             console.log(e.rubro);
         }
     }
@@ -477,6 +532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 105:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -485,6 +541,12 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(106)
 }
+=======
+/***/ 107:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+>>>>>>> master
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(108)
@@ -493,7 +555,11 @@ var __vue_template__ = __webpack_require__(112)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
+<<<<<<< HEAD
 var __vue_styles__ = injectStyle
+=======
+var __vue_styles__ = null
+>>>>>>> master
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -529,6 +595,7 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 106:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -571,6 +638,8 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 
 /***/ }),
 
+=======
+>>>>>>> master
 /***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -590,6 +659,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -613,6 +683,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+=======
+>>>>>>> master
 
 
 
@@ -643,7 +715,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             titulo: this.titulop,
             isDesign: this.isdesignp,
+<<<<<<< HEAD
             rubrox: this.rubro,
+=======
+>>>>>>> master
             articulos: [{
                 "id": 1,
                 "nombre": 'Black and White Stripes Dress',
@@ -713,7 +788,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.isDesign = this.isdesignp;
         this.titulo = this.titulop;
+<<<<<<< HEAD
         this.rubrox = this.rubro;
+=======
+>>>>>>> master
     },
 
     computed: {
@@ -736,11 +814,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         titulop: function titulop() {
             this.titulo = this.titulop;
+<<<<<<< HEAD
         },
         rubro: function rubro() {
             this.rubrox = this.rubro;
             console.log("aqui va rubro");
             console.log(this.rubrox);
+=======
+>>>>>>> master
         }
     }
 });
@@ -912,6 +993,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+<<<<<<< HEAD
     [
       _vm.busqueda.length != 0
         ? [
@@ -939,6 +1021,25 @@ var render = function() {
             )
           ]
         : [_vm._m(1)]
+=======
+    { staticClass: "row" },
+    [
+      _vm._l(_vm.busqueda, function(articulo, i) {
+        return [
+          _c("articulo-component", {
+            attrs: {
+              title: articulo.nombre,
+              price: articulo.precio,
+              image: articulo.image,
+              url: _vm.url,
+              isDesign: articulo.isDesign
+            }
+          })
+        ]
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+>>>>>>> master
     ],
     2
   )
@@ -953,6 +1054,7 @@ var staticRenderFns = [
         _vm._v("VER MÁS...")
       ])
     ])
+<<<<<<< HEAD
   },
   function() {
     var _vm = this
@@ -979,6 +1081,8 @@ var staticRenderFns = [
         )
       ])
     ])
+=======
+>>>>>>> master
   }
 ]
 render._withStripped = true
@@ -1036,9 +1140,14 @@ var render = function() {
                     _c("misarticulos-component", {
                       attrs: {
                         url: _vm.url,
+<<<<<<< HEAD
                         titulop: _vm.titulo,
                         isDesign: _vm.isDesign,
                         rubro: _vm.rubro
+=======
+                        titulop: _vm.hola,
+                        isDesign: _vm.isDesign
+>>>>>>> master
                       }
                     })
                   ],
@@ -1091,6 +1200,92 @@ if (false) {
 /***/ }),
 
 /***/ 2:
+<<<<<<< HEAD
+=======
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ 3:
+>>>>>>> master
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -1381,7 +1576,11 @@ var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
+<<<<<<< HEAD
 var update = __webpack_require__(2)("26943fae", content, false, {});
+=======
+var update = __webpack_require__(3)("26943fae", content, false, {});
+>>>>>>> master
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1401,7 +1600,11 @@ if(false) {
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 exports = module.exports = __webpack_require__(1)(false);
+=======
+exports = module.exports = __webpack_require__(2)(false);
+>>>>>>> master
 // imports
 
 
@@ -2087,6 +2290,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		}
 	},
+<<<<<<< HEAD
+=======
+	mounted: function mounted() {
+
+		var logo = $('#logo-barna');
+		var content = $('#content-barna');
+
+		document.addEventListener("scroll", function (event) {
+			event.preventDefault();
+			if (document.documentElement.scrollTop > 100) {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('width', 50);
+				$(logo).css('height', 65);
+				$(content).css('height', 81);
+			} else {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.1s');
+				$(logo).css('width', 75);
+				$(logo).css('height', 105);
+				$(content).css('height', 171);
+			}
+		});
+	},
+>>>>>>> master
 	created: function created() {
 		this.isDesign = this.isdesignp;
 		this.isAuth = this.isauthp;
@@ -2144,6 +2372,10 @@ var render = function() {
                   _c("img", {
                     attrs: {
                       src: _vm.url + "/img/barna.jpg",
+<<<<<<< HEAD
+=======
+                      id: "logo-barna",
+>>>>>>> master
                       width: "75",
                       height: "105",
                       alt: ""
@@ -2853,7 +3085,11 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+<<<<<<< HEAD
     _c("div", { staticClass: "h-171" })
+=======
+    _c("div", { staticClass: "h-171", attrs: { id: "content-barna" } })
+>>>>>>> master
   ])
 }
 var staticRenderFns = [
@@ -3188,6 +3424,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("nav", { staticClass: "main-navbar text-center" }, [
+<<<<<<< HEAD
       _c("div", { staticClass: "container" }, [
         _c("ul", { staticClass: "main-menu" }, [
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
@@ -3202,6 +3439,29 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
         ])
+=======
+      _c("div", { staticClass: "container scroll-barna overflow-auto" }, [
+        _c(
+          "ul",
+          {
+            staticClass:
+              "main-menu d-flex justify-content-center align-items-center"
+          },
+          [
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mujer")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niño")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niña")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tazas")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
+          ]
+        )
+>>>>>>> master
       ])
     ])
   }

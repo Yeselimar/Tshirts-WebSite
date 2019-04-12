@@ -1332,6 +1332,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		}
 	},
+	mounted: function mounted() {
+
+		var logo = $('#logo-barna');
+		var content = $('#content-barna');
+
+		document.addEventListener("scroll", function (event) {
+			event.preventDefault();
+			if (document.documentElement.scrollTop > 100) {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('width', 50);
+				$(logo).css('height', 65);
+				$(content).css('height', 81);
+			} else {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.1s');
+				$(logo).css('width', 75);
+				$(logo).css('height', 105);
+				$(content).css('height', 171);
+			}
+		});
+	},
 	created: function created() {
 		this.isDesign = this.isdesignp;
 		this.isAuth = this.isauthp;
@@ -1389,6 +1411,7 @@ var render = function() {
                   _c("img", {
                     attrs: {
                       src: _vm.url + "/img/barna.jpg",
+                      id: "logo-barna",
                       width: "75",
                       height: "105",
                       alt: ""
@@ -2098,7 +2121,7 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "h-171" })
+    _c("div", { staticClass: "h-171", attrs: { id: "content-barna" } })
   ])
 }
 var staticRenderFns = [
@@ -2433,20 +2456,27 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("nav", { staticClass: "main-navbar text-center" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("ul", { staticClass: "main-menu" }, [
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mujer")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niño")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niña")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tazas")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
-        ])
+      _c("div", { staticClass: "container scroll-barna overflow-auto" }, [
+        _c(
+          "ul",
+          {
+            staticClass:
+              "main-menu d-flex justify-content-center align-items-center"
+          },
+          [
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mujer")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niño")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niña")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tazas")])]),
+            _vm._v(" "),
+            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
+          ]
+        )
       ])
     ])
   }
