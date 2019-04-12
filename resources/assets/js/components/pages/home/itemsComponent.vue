@@ -1,6 +1,6 @@
 <template>
 	<!-- Features section -->
-	<section class="features-section mt-4 mb-3">
+	<section class="features-section mt-4">
 		<div class="container-fluid">
 			<div class="row d-flex flex-direction-xs">
 				<div class="feature feature-barna">

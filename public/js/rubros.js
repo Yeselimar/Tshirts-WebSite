@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 60);
+/******/ 	return __webpack_require__(__webpack_require__.s = 100);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -255,6 +255,838 @@ function toComment(sourceMap) {
 	return '/*# ' + data + ' */';
 }
 
+
+/***/ }),
+
+/***/ 100:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(101);
+
+
+/***/ }),
+
+/***/ 101:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(102)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/pages/rubros.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a7f403d", Component.options)
+  } else {
+    hotAPI.reload("data-v-1a7f403d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 102:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue__);
+
+
+
+var app = new Vue({
+  el: "#rubros",
+  name: 'rubros',
+  data: {},
+  components: {
+    rubrosComponent: __WEBPACK_IMPORTED_MODULE_0__components_pages_rubros_rubrosComponent_vue___default.a
+  }
+});
+
+/***/ }),
+
+/***/ 103:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(113)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/rubros/rubrosComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4097e270", Component.options)
+  } else {
+    hotAPI.reload("data-v-4097e270", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 104:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'rubrosComponent',
+    components: {
+        headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a,
+        misarticulosComponent: __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default.a
+    },
+    props: {
+        url: {
+            type: String,
+            require: true
+        }
+    },
+    data: function data() {
+        return {
+            isLoading: false,
+            isDesign: false,
+            numCart: 0,
+            numBag: 0,
+            isAuth: false,
+            search: '',
+            rubro: '',
+            titulo: ''
+        };
+    },
+    mounted: function mounted() {},
+
+    methods: {
+        loginM: function loginM(e) {},
+        designM: function designM(e) {},
+        searchM: function searchM(e) {
+            this.titulo = e.search;
+            this.rubro = e.rubro;
+            console.log(e.rubro);
+        },
+        searchK: function searchK(e) {
+            this.titulo = e.search;
+            this.rubro = e.rubro;
+            console.log(e.rubro);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 105:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(106)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(108)
+/* template */
+var __vue_template__ = __webpack_require__(112)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/share/misarticulosComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-653dedfa", Component.options)
+  } else {
+    hotAPI.reload("data-v-653dedfa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 106:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(107);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4436b3eb", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-653dedfa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./misarticulosComponent.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-653dedfa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./misarticulosComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 107:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 108:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'misarticulosComponent',
+    components: {
+        articuloComponent: __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue___default.a
+    },
+    props: {
+        url: {
+            type: String,
+            require: true
+        },
+        rubro: {
+            type: String,
+            require: false
+        },
+        titulop: {
+            type: String,
+            require: false
+        },
+        isdesignp: {
+            type: Boolean,
+            require: false
+        }
+    },
+    data: function data() {
+        return {
+            titulo: this.titulop,
+            isDesign: this.isdesignp,
+            rubrox: this.rubro,
+            articulos: [{
+                "id": 1,
+                "nombre": 'Black and White Stripes Dress',
+                "precio": 35.00,
+                "image": '/img/product/1.jpg',
+                "isDesign": true,
+                "rubros": ["hombre", "mujer", "niño"]
+            }, {
+                "id": 2,
+                "nombre": 'Flamboyant Pink Top',
+                "precio": 30.50,
+                "image": '/img/product/2.jpg',
+                "isDesign": true,
+                "rubros": ["hombre", "niño"]
+            }, {
+                "id": 3,
+                "nombre": 'Black and White Stripes Dress',
+                "precio": 60.50,
+                "image": '/img/product/3.jpg',
+                "isDesign": true,
+                "rubros": ["hombre"]
+            }, {
+                "id": 4,
+                "nombre": 'Flamboyant Pink Top',
+                "precio": 66.568,
+                "image": '/img/product/4.jpg',
+                "isDesign": true,
+                "rubros": ["mujer"]
+            }, {
+                "id": 5,
+                "nombre": 'Black and White Stripes Dress',
+                "precio": 10.50,
+                "image": '/img/product/5.jpg',
+                "isDesign": true,
+                "rubros": ["mujer", "niña"]
+            }, {
+                "id": 6,
+                "nombre": 'Flamboyant Pink Top',
+                "precio": 60.50,
+                "image": '/img/product/6.jpg',
+                "isDesign": true,
+                "rubros": ["niño"]
+            }, {
+                "id": 7,
+                "nombre": 'Black and White Stripes',
+                "precio": 20.50,
+                "image": '/img/product/7.jpg',
+                "isDesign": true,
+                "rubros": ["niño"]
+            }, {
+                "id": 8,
+                "nombre": 'Flamboyant Pink Top',
+                "precio": 60.50,
+                "image": '/img/product/8.jpg',
+                "isDesign": true,
+                "rubros": ["niña"]
+            }, {
+                "id": 9,
+                "nombre": 'Black and White Stripes Dress',
+                "precio": 30.50,
+                "image": '/img/product/9.jpg',
+                "isDesign": true,
+                "rubros": ["hombre"]
+            }]
+        };
+    },
+    mounted: function mounted() {
+        this.isDesign = this.isdesignp;
+        this.titulo = this.titulop;
+        this.rubrox = this.rubro;
+    },
+
+    computed: {
+        busqueda: function busqueda() {
+            var auxiliar = [];
+            if (this.articulos && this.articulos.length) {
+                this.articulos.forEach(function (articulo, index) {
+                    if (!this.titulo || articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0) {
+                        auxiliar.push(articulo);
+                    }
+                }, this);
+            }
+            //this.totalRowsMovil = auxiliar.length;
+            return auxiliar;
+        }
+    },
+    watch: {
+        isdesignp: function isdesignp() {
+            this.isDesign = this.isdesignp;
+        },
+        titulop: function titulop() {
+            this.titulo = this.titulop;
+        },
+        rubro: function rubro() {
+            this.rubrox = this.rubro;
+            console.log("aqui va rubro");
+            console.log(this.rubrox);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 109:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(110)
+/* template */
+var __vue_template__ = __webpack_require__(111)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/share/articuloComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61dc30e0", Component.options)
+  } else {
+    hotAPI.reload("data-v-61dc30e0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'articuloComponent',
+    props: {
+        url: {
+            type: String,
+            require: true
+        },
+        title: {
+            type: String,
+            require: true
+        },
+        price: {
+            type: Number,
+            require: true
+        },
+        image: {
+            type: String,
+            require: true
+        },
+        isDesign: {
+            type: Boolean,
+            require: true
+        }
+    },
+    mounted: function mounted() {},
+
+    methods: {
+        formatearmoneda: function formatearmoneda(monto) {
+            return monto.toFixed(2);
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-lg-4 col-sm-6" }, [
+    _c("div", { staticClass: "product-item" }, [
+      _c("div", { staticClass: "pi-pic" }, [
+        _c("img", { attrs: { src: _vm.url + _vm.image, alt: "" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "pi-links" }, [
+          _vm.isDesign
+            ? _c("a", { staticClass: "add-card" }, [
+                _c("i", { staticClass: "fa fa-shopping-bag" }),
+                _c("span", [_vm._v("Agregar a la Cesta")])
+              ])
+            : _c("a", { staticClass: "add-card" }, [
+                _c("i", { staticClass: "fa fa-shopping-cart" }),
+                _c("span", [_vm._v("Agregar al carrito")])
+              ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "pi-text" }, [
+        _c("h6", [_vm._v("$" + _vm._s(_vm.formatearmoneda(_vm.price)))]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.title))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-61dc30e0", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.busqueda.length != 0
+        ? [
+            _c(
+              "div",
+              { staticClass: "row" },
+              [
+                _vm._l(_vm.busqueda, function(articulo, i) {
+                  return [
+                    _c("articulo-component", {
+                      attrs: {
+                        title: articulo.nombre,
+                        price: articulo.precio,
+                        image: articulo.image,
+                        url: _vm.url,
+                        isDesign: articulo.isDesign
+                      }
+                    })
+                  ]
+                }),
+                _vm._v(" "),
+                _vm._m(0)
+              ],
+              2
+            )
+          ]
+        : [_vm._m(1)]
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center w-100 pt-3" }, [
+      _c("button", { staticClass: "site-btn sb-line sb-dark" }, [
+        _vm._v("VER MÁS...")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-l2" }, [
+      _c("span", { staticClass: "clearfix" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass: "center-block col-md-3",
+            staticStyle: {
+              "background-color": "#ef7a6e",
+              color: "#FFF",
+              "border-radius": "50px",
+              "padding-left": "10px",
+              "padding-right": "10px",
+              "text-align": "center"
+            }
+          },
+          [_c("strong", [_vm._v("No hay resultados")])]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-653dedfa", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 113:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("header-component", {
+        attrs: {
+          isdesignp: _vm.isDesign,
+          url: _vm.url,
+          rubrop: _vm.rubro,
+          numcartp: _vm.numCart,
+          numbagp: _vm.numBag,
+          isauthp: _vm.isAuth,
+          searchp: _vm.search
+        },
+        on: {
+          loginM: _vm.loginM,
+          designM: _vm.designM,
+          searchM: _vm.searchM,
+          searchK: _vm.searchK
+        }
+      }),
+      _vm._v(" "),
+      _c("section", { staticClass: "category-section spad" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0" },
+              [
+                _c(
+                  "div",
+                  { attrs: { id: "misarticulos" } },
+                  [
+                    _c("misarticulos-component", {
+                      attrs: {
+                        url: _vm.url,
+                        titulop: _vm.titulo,
+                        isDesign: _vm.isDesign,
+                        rubro: _vm.rubro
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 order-2 order-lg-1" }, [
+      _c("div", { staticClass: "filter-widget" }, [
+        _c("h2", { staticClass: "fw-title" }, [_vm._v("Rubros")]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "category-menu" }, [
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Hombre")])]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mujer")])]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niño")])]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Niña")])]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tazas")])]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Buzo")])])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4097e270", module.exports)
+  }
+}
 
 /***/ }),
 
@@ -578,83 +1410,6 @@ exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;
 
 // exports
 
-
-/***/ }),
-
-/***/ 60:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(61);
-
-
-/***/ }),
-
-/***/ 61:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(62)
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/vue/layouts/header.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b367fa4", Component.options)
-  } else {
-    hotAPI.reload("data-v-2b367fa4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 62:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
-
-
-
-var app = new Vue({
-  el: "#headerC",
-  name: 'headerC',
-  data: {},
-  components: {
-    headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a
-  }
-});
 
 /***/ }),
 

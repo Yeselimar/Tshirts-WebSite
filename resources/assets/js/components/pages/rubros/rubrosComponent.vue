@@ -24,7 +24,7 @@
 
 					<div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
 						<div id="misarticulos">
-							<misarticulos-component :url="url" :titulop="hola" :isDesign="isDesign"></misarticulos-component>
+							<misarticulos-component :url="url" :titulop="titulo" :isDesign="isDesign" :rubro="rubro"></misarticulos-component>
 						</div>			
 					</div>
 
@@ -63,7 +63,7 @@
                 isAuth: false,
                 search: '',
                 rubro: '',
-                hola: ''
+                titulo: ''
 			}
 		},
         mounted()
@@ -82,12 +82,14 @@
             },
             searchM(e)
             {
-            	this.hola=e.search;
+            	this.titulo=e.search;
+                this.rubro=e.rubro;
                 console.log(e.rubro);
             },
             searchK(e)
             {
-            	this.hola=e.search;
+            	this.titulo=e.search;
+                this.rubro=e.rubro;
                 console.log(e.rubro);
             }
 		},

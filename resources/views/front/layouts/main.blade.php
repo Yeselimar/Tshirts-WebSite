@@ -10,7 +10,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<title>Barna - @yield('title')</title>
-		<!--<link href="{{asset('img/favicon.png')}}" type="image/x-icon" rel="shortcut icon" /> -->
+		<link href="{{asset('img/barna.jpg')}}" type="image/x-icon" rel="shortcut icon" />
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300" rel='stylesheet' type='text/css'>
@@ -27,7 +27,7 @@
 		@yield('extracss')
        
     </head>
-    <body>
+    <body class="scroll-barna-body sl-solid">
         <!--loading-->
         <div id="preloder">
             <div class="loader"></div>

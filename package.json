@@ -32,6 +32,7 @@
         "jquery-ui-css": "^1.11.5",
         "popper.js": "^1.14.7",
         "v-money": "^0.8.1",
+        "vee-validate": "^2.2.2",
         "vue-draggable-resizable": "^2.0.0-rc1"
     }
 }

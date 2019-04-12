@@ -30,4 +30,9 @@ class FrontController extends Controller
     {
         return view('front.procesarcarrito');
     }
+
+    public function pedidogenerado()
+    {
+        return view('front.pedidogenerado');
+    }
 }

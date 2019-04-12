@@ -1,12 +1,35 @@
-<template>
-    <div class="row">
-        <template v-for="(articulo,i) in busqueda">
-            <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
-        </template>
+<style lang="scss" scope>
+    .col-center
+    {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 
-        <div class="text-center w-100 pt-3">
-            <button class="site-btn sb-line sb-dark">VER MÁS...</button>
-        </div>
+<template>
+    <div>
+            <template v-if="busqueda.length!=0">
+                <div class="row">
+                    <template v-for="(articulo,i) in busqueda">
+                        <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
+                    </template>
+                    <div class="text-center w-100 pt-3">
+                        <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="col-lg-l2">
+                    <span class="clearfix"></span>
+                    <div class="row">
+                        <div class="center-block col-md-3" style="background-color: #ef7a6e;color:#FFF;border-radius: 50px; padding-left: 10px; padding-right: 10px;text-align: center">
+                            <strong>No hay resultados</strong>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        
     </div>
 </template>
 
@@ -48,87 +71,89 @@
             return {
                 titulo: this.titulop,
                 isDesign: this.isdesignp,
-            articulos:
-            [
-                {
-                    "id": 1,
-                    "nombre": 'Black and White Stripes Dress',
-                    "precio": 35.00,
-                    "image":'/img/product/1.jpg',
-                    "isDesign": true,
-                    "rubros": ["hombre","mujer","niño"],
-                },
-                {
-                    "id": 2,
-                    "nombre": 'Flamboyant Pink Top',
-                    "precio": 30.50,
-                    "image":'/img/product/2.jpg',
-                    "isDesign": true,
-                    "rubros": ["hombre","niño"],
-                },
-                {
-                    "id": 3,
-                    "nombre": 'Black and White Stripes Dress',
-                    "precio": 60.50,
-                    "image":'/img/product/3.jpg',
-                    "isDesign": true,
-                    "rubros": ["hombre"],
-                },
-                {
-                    "id": 4,
-                    "nombre": 'Flamboyant Pink Top',
-                    "precio": 66.568,
-                    "image":'/img/product/4.jpg',
-                    "isDesign": true,
-                    "rubros": ["mujer"],
-                },
-                {
-                    "id": 5,
-                    "nombre": 'Black and White Stripes Dress',
-                    "precio": 10.50,
-                    "image":'/img/product/5.jpg',
-                    "isDesign": true,
-                    "rubros": ["mujer","niña"],
-                },
-                {
-                    "id": 6,
-                    "nombre": 'Flamboyant Pink Top',
-                    "precio": 60.50,
-                    "image":'/img/product/6.jpg',
-                    "isDesign": true,
-                    "rubros": ["niño"],
-                },
-                {
-                    "id": 7,
-                    "nombre": 'Black and White Stripes',
-                    "precio": 20.50,
-                    "image":'/img/product/7.jpg',
-                    "isDesign": true,
-                    "rubros": ["niño"],
-                },
-                {
-                    "id": 8,
-                    "nombre": 'Flamboyant Pink Top',
-                    "precio": 60.50,
-                    "image":'/img/product/8.jpg',
-                    "isDesign": true,
-                    "rubros": ["niña"],
-                },
-                {
-                    "id": 9,
-                    "nombre": 'Black and White Stripes Dress',
-                    "precio": 30.50,
-                    "image":'/img/product/9.jpg',
-                    "isDesign": true,
-                    "rubros": ["hombre"],
-                }
-            ]
+                rubrox: this.rubro,
+                articulos:
+                [
+                    {
+                        "id": 1,
+                        "nombre": 'Black and White Stripes Dress',
+                        "precio": 35.00,
+                        "image":'/img/product/1.jpg',
+                        "isDesign": true,
+                        "rubros": ["hombre","mujer","niño"],
+                    },
+                    {
+                        "id": 2,
+                        "nombre": 'Flamboyant Pink Top',
+                        "precio": 30.50,
+                        "image":'/img/product/2.jpg',
+                        "isDesign": true,
+                        "rubros": ["hombre","niño"],
+                    },
+                    {
+                        "id": 3,
+                        "nombre": 'Black and White Stripes Dress',
+                        "precio": 60.50,
+                        "image":'/img/product/3.jpg',
+                        "isDesign": true,
+                        "rubros": ["hombre"],
+                    },
+                    {
+                        "id": 4,
+                        "nombre": 'Flamboyant Pink Top',
+                        "precio": 66.568,
+                        "image":'/img/product/4.jpg',
+                        "isDesign": true,
+                        "rubros": ["mujer"],
+                    },
+                    {
+                        "id": 5,
+                        "nombre": 'Black and White Stripes Dress',
+                        "precio": 10.50,
+                        "image":'/img/product/5.jpg',
+                        "isDesign": true,
+                        "rubros": ["mujer","niña"],
+                    },
+                    {
+                        "id": 6,
+                        "nombre": 'Flamboyant Pink Top',
+                        "precio": 60.50,
+                        "image":'/img/product/6.jpg',
+                        "isDesign": true,
+                        "rubros": ["niño"],
+                    },
+                    {
+                        "id": 7,
+                        "nombre": 'Black and White Stripes',
+                        "precio": 20.50,
+                        "image":'/img/product/7.jpg',
+                        "isDesign": true,
+                        "rubros": ["niño"],
+                    },
+                    {
+                        "id": 8,
+                        "nombre": 'Flamboyant Pink Top',
+                        "precio": 60.50,
+                        "image":'/img/product/8.jpg',
+                        "isDesign": true,
+                        "rubros": ["niña"],
+                    },
+                    {
+                        "id": 9,
+                        "nombre": 'Black and White Stripes Dress',
+                        "precio": 30.50,
+                        "image":'/img/product/9.jpg',
+                        "isDesign": true,
+                        "rubros": ["hombre"],
+                    }
+                ]
             }
         },
         mounted()
         {
             this.isDesign = this.isdesignp
             this.titulo = this.titulop
+            this.rubrox = this.rubro
         },
         computed: 
         {
@@ -149,13 +174,22 @@
                 return auxiliar;
             }
         },
-        watch: {
-            isdesignp: function() {
+        watch:
+        {
+            isdesignp: function()
+            {
                 this.isDesign = this.isdesignp
             },
-            titulop: function() {
+            titulop: function()
+            {
                 this.titulo = this.titulop
             },
+            rubro: function()
+            {
+                this.rubrox = this.rubro
+                console.log("aqui va rubro")
+                console.log(this.rubrox);
+            }
         }
     }
 </script>
