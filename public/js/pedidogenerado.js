@@ -283,6 +283,9 @@ if(false) {
  module.hot.dispose(function() { update(); });
 }
 
+module.exports = Component.exports
+
+
 /***/ }),
 
 /***/ 11:
@@ -537,7 +540,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n.table td, .table th {\n  border-top: 3px solid #E1E1E1;\n  padding-right: 0px;\n  padding-top: 0.80rem;\n  padding-bottom: 0.80rem;\n  padding-left: 0px;\n}\n#sin-linea th {\n  border-top: 3px solid #fff;\n}\n#con-linea td {\n  border-bottom: 3px solid #E1E1E1;\n}\n.badge-pill {\n  text-align: center;\n  padding-right: 1.4em;\n  padding-left: 1.6em;\n  border-radius: 10rem;\n}\n", ""]);
+exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n.table td, .table th {\n  border-top: 3px solid #E1E1E1;\n  padding-right: 0px;\n  padding-top: 0.80rem;\n  padding-bottom: 0.80rem;\n  padding-left: 0px;\n}\n#sin-linea th {\n  border-top: 3px solid #fff;\n}\n#con-linea td {\n  border-bottom: 3px solid #E1E1E1;\n}\n.badge-pill {\n  text-align: center;\n  padding-right: 1.4em;\n  padding-left: 1.6em;\n  border-radius: 10rem;\n}\n.aviso {\n  padding-bottom: 20px;\n  padding-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -551,6 +554,8 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__);
 //
 //
 //
@@ -629,19 +634,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'pedidogeneradoComponent',
     components: {
-        headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a
+        headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a,
+        migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a
     },
-    props: {}
+    props: {},
+    data: function data() {
+        return {
+            isLoading: false,
+            isDesign: false,
+            numCart: 0,
+            numBag: 0,
+            isAuth: false,
+            search: '',
+            rubro: '',
+            titulo: ''
+        };
+    },
+
+    methods: {
+        loginM: function loginM(e) {},
+        designM: function designM(e) {},
+        searchM: function searchM(e) {
+            this.titulo = e.search;
+            this.rubro = e.rubro;
+            console.log(e.rubro);
+        },
+        searchK: function searchK(e) {
+            this.titulo = e.search;
+            this.rubro = e.rubro;
+            console.log(e.rubro);
+        }
+    }
 });
 
 /***/ }),
 
 /***/ 14:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "page-top-info" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", [_vm._v(_vm._s(_vm.titulo))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-41c87fd8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1990,12 +2071,40 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _vm._m(0)
+      _c("migajas-component", {
+        attrs: { titulo: "¡Tu pedido ha sido envíado!" }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br")
     ],
     1
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "aviso" }, [
+      _c("p", { staticClass: "h5 text-center" }, [
+        _vm._v(
+          "Gracias por confiar en Barna, le notificaremos cuando su pedido haya sido aprobado."
+        )
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
