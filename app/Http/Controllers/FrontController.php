@@ -17,10 +17,10 @@ class FrontController extends Controller
         $banners = Banner::where('tipo', '=', "banner")->get();
         return view('index')->with('route',"home")->with(compact('noticias','cantidad','organizaciones','instituciones','empresas','banners'));
         */
-        
+
         return view('front.index');
     }
-    
+
     public function rubros()
     {
         return view('front.rubros');
@@ -34,5 +34,9 @@ class FrontController extends Controller
     public function pedidogenerado()
     {
         return view('front.pedidogenerado');
+    }
+    public function disenarproducto()
+    {
+        return view('front.disenar');
     }
 }

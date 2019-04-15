@@ -19,4 +19,4 @@ Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
 Route::get('/procesar-carrito','FrontController@procesarcarrito')->name('procesar.carrito');
 Route::get('/pedido-generado','FrontController@pedidogenerado')->name('pedido.generado');
-
+Route::get('/disenar','FrontController@disenarproducto')->name('disenar');

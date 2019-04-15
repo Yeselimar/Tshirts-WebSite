@@ -21,6 +21,7 @@ mix.js("resources/assets/js/vue/pages/rubros.vue", "public/js");
 mix.js("resources/assets/js/vue/pages/procesarcarrito.vue", "public/js");
 mix.js("resources/assets/js/vue/layouts/migajas.vue", "public/js");
 mix.js("resources/assets/js/vue/pages/pedidogenerado.vue", "public/js");
+mix.js("resources/assets/js/vue/pages/disenar.vue", "public/js");
 
 
 
