@@ -164,14 +164,20 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if(this.titulo.trim()=="" )
+                        if( this.titulo.trim()!="" || (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                         {
                             auxiliar.push(articulo);
                         }
+                        else
+                        {
+                            if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) && this.buscarcategoria(articulo,this.rubrox) )
+                            {
+                                auxiliar.push(articulo);
+                            }
+                        }
                         //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
                         //this.buscarcategoria(articulo,this.rubrox)
-                        auxiliar.push(articulo);
-                        }
+                        
                     },this);
                 }
                 //this.totalRowsMovil = auxiliar.length;
@@ -207,7 +213,6 @@
                     {
                         encontrado = true;
                     }
-                    
                 }
                 if(encontrado)
                 {

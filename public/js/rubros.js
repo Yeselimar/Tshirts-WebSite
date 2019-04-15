@@ -779,8 +779,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var auxiliar = [];
             if (this.articulos && this.articulos.length) {
                 this.articulos.forEach(function (articulo, index) {
-                    if (this.titulo.trim() == "") {
+                    if (this.titulo.trim() === "" && this.rubrox.trim() == "" || articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0) {
                         auxiliar.push(articulo);
+                    } else {
+                        if (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0 && this.buscarcategoria(articulo, this.rubrox)) {
+                            auxiliar.push(articulo);
+                        }
                     }
                     //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
                     //this.buscarcategoria(articulo,this.rubrox)
