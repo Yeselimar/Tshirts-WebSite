@@ -22,11 +22,11 @@ $(window).on('load', function() {
 	/*------------------
 		Navigation
 	--------------------*/
-	$('.main-menu').slicknav({
+	/*$('.main-menu').slicknav({
 		prependTo:'.main-navbar .container',
 		closedSymbol: '<i class="flaticon-right-arrow"></i>',
 		openedSymbol: '<i class="flaticon-down-arrow"></i>'
-	});
+	}); */
 
 
 	/*------------------

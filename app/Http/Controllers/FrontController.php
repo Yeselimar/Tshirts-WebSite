@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
@@ -17,8 +18,13 @@ class FrontController extends Controller
         $banners = Banner::where('tipo', '=', "banner")->get();
         return view('index')->with('route',"home")->with(compact('noticias','cantidad','organizaciones','instituciones','empresas','banners'));
         */
-        
-        return view('front.index');
+        if(Auth::check()){
+            $auth = "1";
+        } else {
+            $auth = "0";
+        }
+        //dd($auth);
+        return view('front.index')->with('auth',$auth);
     }
     
     public function rubros()
@@ -34,5 +40,13 @@ class FrontController extends Controller
     public function pedidogenerado()
     {
         return view('front.pedidogenerado');
+    }
+
+    public function register()
+    {
+        if(Auth::check()){
+            return redirect()->route('inicio');
+        }
+        return view('front.register');
     }
 }

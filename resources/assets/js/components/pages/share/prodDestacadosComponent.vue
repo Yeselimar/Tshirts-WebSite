@@ -7,7 +7,7 @@
                         <h2>Productos Destacados</h2>
                     </div>
                     <div  class="product-slider owl-carousel">
-                        <div  v-for="(item, i) in items" :key="i"  class="product-item">
+                        <div  v-for="(item, i) in items" :key="i"  class="product-item border-items">
                             <div class="pi-pic">
                                 <img :src="url+item.url" alt="">
                                 <div class="pi-links">

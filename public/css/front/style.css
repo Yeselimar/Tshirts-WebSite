@@ -2227,7 +2227,7 @@ ol {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.site-logo {
-		margin-bottom: 20px;
+		/*margin-bottom: 20px;*/
 	}
 	.header-search-form {
 		/*margin-bottom: 15px;*/
@@ -2286,7 +2286,7 @@ ol {
 
 @media only screen and (max-width: 767px) {
 	.site-logo {
-		margin-bottom: 20px;
+		/*margin-bottom: 20px;*/
 	}
 	.header-search-form {
 		/*margin-bottom: 15px*/
@@ -2301,8 +2301,11 @@ ol {
 		background-color: #565656;
 	}
 	.slicknav_menu {
-		background: #282828;
-		display: block;
+		/*background: #282828; display: block;*/
+		display: contents
+	}
+	.slicknav_menu .slicknav_icon {
+    margin: 0px !important
 	}
 	.slicknav_menu .new {
 		font-size: 10px;
@@ -2470,7 +2473,7 @@ ol {
 	height: 27px !important;
 	font-size: 14px !important;;
 	border: none !important;;
-	padding: 0 19px !important;;
+	padding: 0 6px !important;;
 	background: rgba(255,255,255,.6) !important;
 	margin-top: 5px !important;
 	margin-bottom: 5px !important;
@@ -2530,7 +2533,7 @@ ol {
 	flex-basis: 17%
  }
  .h-171{
-	 height: 171px;
+	 height: 170px;
  }
  .font-16 {
 	 font-size: 16px;
@@ -2586,12 +2589,84 @@ ol {
 		display:none
 	}
 }
+@media (max-width: 473px) {
+	.sm-none-barna {
+		display: none !important
+	}
+	.flex-basis-logo {
+    flex-basis: 23% !important;
+	}
+	.flex-basis-design {
+    flex-basis: 30% !important;
+	}
+	.flex-basis-47{
+		flex-basis: 100% !important;
+	}
+	.site-btn {
+		padding: 15px !important;
+	}
+
+}
 @media (max-width: 768px) {
+	.md-d-flex-barna {
+		display: flex
+	}
+  .main-menu li a{
+		font-size: 15px;
+    margin-right: 30px;
+    padding: 8px 0;
+	}
 	.flex-direction-xs {
 		flex-direction: column
 	}
+	.flex-wrap-mw {
+		flex-wrap: wrap
+	}
+	.sm-none-barna {
+		display: inline
+	}
+	.js-header-main-cyo .title {
+		font-size: 12px
+	}
+	.js-header-main-cyo .description {
+		font-size: 10px
+	}
+	.site-logo img{
+		width: 45px !important;
+		height: 85px !important
+	}
+	.flex-basis-logo {
+    flex-basis: 20%;
+	}
+	.flex-basis-design {
+    flex-basis: 65%;
+	}
+	.h-171{
+		max-height: 131px !important
+	}
+	.flex-basis-search{
+		flex-basis: 100%;
+
+	}
+	.flex-basis-icons{
+		flex-basis: 100%;
+
+	}
+	.dropcart,.droplogin,.dropbag {
+		top: 6rem !important;
+	}
+	.dropcart::after,.droplogin::after,.dropbag::after {
+		right: 52px !important	}
+
+	.bagform, .logiform, .cartform {
+		position: static !important
+	}
 }
 
+.site-logo img {
+	width: 75px ;
+	height: 105px
+}
 input:focus {
 	outline: none !important;
 	box-shadow: none !important;
@@ -2693,7 +2768,7 @@ td, th, tr{
  }
 
  .overflow-auto {
-	overflow: auto;
+	overflow: auto !important;
  }
 
  .sl-solid::-webkit-scrollbar{
@@ -2704,4 +2779,58 @@ td, th, tr{
  
  .sl-solid::-webkit-scrollbar-track, .sl-solid::-webkit-scrollbar-thumb{
 	border-radius: 10px
+ }
+
+ .no-found-search {
+		background-color: rgb(239, 122, 110);
+		color: rgb(255, 255, 255);
+		border-radius: 50px;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-size: 17px;
+		font-weight: bold;
+		text-align: center;
+ }
+
+ .border-items {
+	margin: 10px 0px;
+	padding: 10px !important;
+	box-shadow: 0px 2px 8px lightgrey !important;
+ }
+
+ .d-contents {
+	 display: contents
+ }
+
+ .flex-basis-50 {
+	 flex-basis: 50%
+ }
+
+ .flex-basis-33 {
+	 flex-basis: 33.3333%
+ }
+
+ .flex-basis-47{
+	 flex-basis: 47%
+ }
+ .input-barna {
+	width: 100%;
+	height: 44px;
+	border: none;
+	padding: 0 18px;
+	background: #f0f0f0;
+	border-radius: 40px;
+	margin-bottom: 17px;
+	font-size: 14px;
+ }
+ .w-80 {
+	 width: 80%
+ }
+
+ .w-70 {
+	 width: 70%
+ }
+ .site-btn-default {
+	 background: #f0f0f0 !important;
+	 color: black !important
  }
