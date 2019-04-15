@@ -893,10 +893,12 @@ ol {
 }
 
 .product-item .pi-links a.add-card:hover {
-	/*width: 148px;*/
-	width: 200px; /*agregado por darwin */
+	width: 148px;
 	padding: 8px 18px 0;
 	text-align: left;
+}
+.product-item .pi-links a.add-bag:hover {
+	width: 118px !important;
 }
 
 .product-item .pi-links a.add-card:hover span {
@@ -2596,11 +2598,14 @@ ol {
 	}
 }
 @media (max-width: 473px) {
+	.sprd-li-barna {
+		padding: 10px 15px !important;
+	}
 	.sm-none-barna {
 		display: none !important
 	}
 	.flex-basis-logo {
-    flex-basis: 23% !important;
+		flex-basis: 25% !important
 	}
 	.flex-basis-design {
     flex-basis: 30% !important;

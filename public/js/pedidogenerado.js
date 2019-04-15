@@ -721,7 +721,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "d-flex align-items-center flex-wrap-mw justify-content-center"
+                      "d-flex align-items-center flex-wrap-mw justify-content-around"
                   },
                   [
                     _c("div", { staticClass: "flex-basis-logo " }, [
@@ -741,115 +741,130 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex-basis-design" }, [
-                      _c("ul", { staticClass: "d-flex sprd-header-barna" }, [
-                        _c(
-                          "li",
-                          {
-                            staticClass: "mr-2 sprd-li-barna",
-                            class: [{ "border-li-barna-active": _vm.isDesign }]
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "align-items-center d-flex js-header-main-cyo cursor",
-                                class: [{ "color-barna": _vm.isDesign }],
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    $event.preventDefault()
-                                    return _vm.designM(true)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._m(0),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "pl-2 sm-none-barna" },
-                                  [
-                                    _c("div", { staticClass: "title" }, [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\t\tDiseñar\n\n\t\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "description",
-                                        class: [{ "color-black": _vm.isDesign }]
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\t\t\tHecho por ti\n\t\t\t\t\t\t\t\t\t\t\t"
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
+                      _c(
+                        "ul",
+                        {
+                          staticClass:
+                            "d-flex align-items-center sprd-header-barna"
+                        },
+                        [
+                          _c(
+                            "li",
+                            {
+                              staticClass:
+                                "mr-2 sprd-li-barna d-flex align-items-center",
+                              class: [
+                                { "border-li-barna-active": _vm.isDesign }
                               ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass: "mr-4 sprd-li-barna",
-                            class: [{ "border-li-barna-active": !_vm.isDesign }]
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "align-items-center d-flex js-header-main-cyo cursor",
-                                class: [{ "color-barna": !_vm.isDesign }],
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    $event.preventDefault()
-                                    return _vm.designM(false)
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "align-items-center d-flex js-header-main-cyo cursor",
+                                  class: [{ "color-barna": _vm.isDesign }],
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.designM(true)
+                                    }
                                   }
-                                }
-                              },
-                              [
-                                _vm._m(1),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "pl-2 sm-none-barna" },
-                                  [
-                                    _c("div", { staticClass: "title" }, [
-                                      _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\tComprar\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "description",
-                                        class: [
-                                          { "color-black": !_vm.isDesign }
+                                },
+                                [
+                                  _vm._m(0),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "pl-2 sm-none-barna" },
+                                    [
+                                      _c("div", { staticClass: "title" }, [
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\tDiseñar\n\n\t\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "description",
+                                          class: [
+                                            { "color-black": _vm.isDesign }
+                                          ]
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t\tHecho por ti\n\t\t\t\t\t\t\t\t\t\t\t"
+                                          )
                                         ]
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\tHecho para ti\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass:
+                                "mr-4 sprd-li-barna d-flex align-items-center",
+                              class: [
+                                { "border-li-barna-active": !_vm.isDesign }
                               ]
-                            )
-                          ]
-                        )
-                      ])
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "align-items-center d-flex js-header-main-cyo cursor",
+                                  class: [{ "color-barna": !_vm.isDesign }],
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.designM(false)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._m(1),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "pl-2 sm-none-barna" },
+                                    [
+                                      _c("div", { staticClass: "title" }, [
+                                        _vm._v(
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\tComprar\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "description",
+                                          class: [
+                                            { "color-black": !_vm.isDesign }
+                                          ]
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\tHecho para ti\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
                     _vm._m(2),
@@ -1148,7 +1163,7 @@ var render = function() {
                                                 staticClass: "scroll-barna",
                                                 staticStyle: {
                                                   overflow: "auto",
-                                                  "max-height": "65vh",
+                                                  "max-height": "85vh",
                                                   padding: "17px"
                                                 }
                                               },
@@ -1299,7 +1314,7 @@ var render = function() {
                                                 staticClass: "scroll-barna",
                                                 staticStyle: {
                                                   overflow: "auto",
-                                                  "max-height": "65vh",
+                                                  "max-height": "85vh",
                                                   padding: "17px"
                                                 }
                                               },
@@ -1438,155 +1453,208 @@ var render = function() {
                                             }
                                           },
                                           [
-                                            _vm._m(29),
-                                            _vm._v(" "),
                                             _c(
                                               "div",
-                                              { staticClass: "ingresar" },
+                                              {
+                                                staticClass: "scroll-barna",
+                                                staticStyle: {
+                                                  overflow: "auto",
+                                                  "max-height": "85vh"
+                                                }
+                                              },
                                               [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      " form-email input-group"
-                                                  },
-                                                  [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value: _vm.user.email,
-                                                          expression:
-                                                            "user.email"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-control",
-                                                      attrs: {
-                                                        type: "email",
-                                                        name: "email",
-                                                        placeholder:
-                                                          "Ingrese su email"
-                                                      },
-                                                      domProps: {
-                                                        value: _vm.user.email
-                                                      },
-                                                      on: {
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.user,
-                                                            "email",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  ]
-                                                ),
+                                                _vm._m(29),
                                                 _vm._v(" "),
                                                 _c(
                                                   "div",
-                                                  {
-                                                    staticClass:
-                                                      " form-password input-group"
-                                                  },
-                                                  [
-                                                    _c("input", {
-                                                      directives: [
-                                                        {
-                                                          name: "model",
-                                                          rawName: "v-model",
-                                                          value:
-                                                            _vm.user.password,
-                                                          expression:
-                                                            "user.password"
-                                                        }
-                                                      ],
-                                                      staticClass:
-                                                        "form-control",
-                                                      attrs: {
-                                                        type: "password",
-                                                        name: "password",
-                                                        placeholder:
-                                                          "Ingrese su contraseña"
-                                                      },
-                                                      domProps: {
-                                                        value: _vm.user.password
-                                                      },
-                                                      on: {
-                                                        input: function(
-                                                          $event
-                                                        ) {
-                                                          if (
-                                                            $event.target
-                                                              .composing
-                                                          ) {
-                                                            return
-                                                          }
-                                                          _vm.$set(
-                                                            _vm.user,
-                                                            "password",
-                                                            $event.target.value
-                                                          )
-                                                        }
-                                                      }
-                                                    })
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "d-flex justify-content-end"
-                                                  },
-                                                  [
-                                                    _c("input", {
-                                                      staticClass:
-                                                        "site-btn-login float-right",
-                                                      attrs: {
-                                                        type: "button",
-                                                        value: "Ingresar"
-                                                      },
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.loginM()
-                                                        }
-                                                      }
-                                                    })
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm._m(30),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "justify-content-start text-left"
-                                                  },
+                                                  { staticClass: "ingresar" },
                                                   [
                                                     _c(
-                                                      "a",
+                                                      "div",
                                                       {
                                                         staticClass:
-                                                          "link-login",
-                                                        on: {
-                                                          click: _vm.registrarse
-                                                        }
+                                                          " form-email input-group"
                                                       },
-                                                      [_vm._v("Registrarse")]
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.user.email,
+                                                              expression:
+                                                                "user.email"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "email",
+                                                            name: "email",
+                                                            placeholder:
+                                                              "Ingrese su email"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.user.email
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.user,
+                                                                "email",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          " form-password input-group"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value:
+                                                                _vm.user
+                                                                  .password,
+                                                              expression:
+                                                                "user.password"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "password",
+                                                            name: "password",
+                                                            placeholder:
+                                                              "Ingrese su contraseña"
+                                                          },
+                                                          domProps: {
+                                                            value:
+                                                              _vm.user.password
+                                                          },
+                                                          on: {
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                _vm.user,
+                                                                "password",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "d-flex justify-content-end"
+                                                      },
+                                                      [
+                                                        _c("input", {
+                                                          staticClass:
+                                                            "site-btn-login float-right",
+                                                          attrs: {
+                                                            type: "button",
+                                                            value: "Ingresar"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.loginM()
+                                                            }
+                                                          }
+                                                        })
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "input-group remember justify-content-start text-left"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            staticClass:
+                                                              "link-login cursor",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                $event.stopPropagation()
+                                                                $event.preventDefault()
+                                                              }
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Recuperar contraseña"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "justify-content-start text-left"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "a",
+                                                          {
+                                                            staticClass:
+                                                              "link-login cursor",
+                                                            on: {
+                                                              click:
+                                                                _vm.registrarse
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Registrarse"
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
                                                     )
                                                   ]
                                                 )
@@ -1609,7 +1677,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(31)
+          _vm._m(30)
         ]
       ),
       _vm._v(" "),
@@ -1625,13 +1693,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("i", { staticClass: "fa fa-magic font-20" })])
+    return _c("div", { staticClass: "d-flex align-items-center" }, [
+      _c("i", { staticClass: "fa fa-magic font-20" })
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("i", { staticClass: "fa fa-money font-20" })])
+    return _c("div", { staticClass: "d-flex align-items-center" }, [
+      _c("i", { staticClass: "fa fa-money font-20" })
+    ])
   },
   function() {
     var _vm = this
@@ -1952,20 +2024,6 @@ var staticRenderFns = [
         staticStyle: { "border-bottom": "1px solid #cccccc" }
       },
       [_c("i", { staticClass: "fa fa-user pr-2" }), _vm._v("Iniciar Sesion")]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "input-group remember justify-content-start text-left" },
-      [
-        _c("a", { staticClass: "link-login", attrs: { href: "#" } }, [
-          _vm._v("Recuperar contraseña")
-        ])
-      ]
     )
   },
   function() {
@@ -2669,6 +2727,9 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__);
+//
+//
+//
 //
 //
 //

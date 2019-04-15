@@ -181,7 +181,7 @@
 		<div class="header-section header-barna-fixed"  @click="closeAll">
 			<div class="header-top-barna">
 				<div class="container" :class="{'position-relative': collapse}">
-					<div class="d-flex align-items-center flex-wrap-mw justify-content-center">
+					<div class="d-flex align-items-center flex-wrap-mw justify-content-around">
 						<div class="flex-basis-logo ">
 							<!-- logo -->
 							<a href="#" class="site-logo">
@@ -189,10 +189,10 @@
 							</a>
 						</div>
 						<div class="flex-basis-design">
-							<ul class="d-flex sprd-header-barna">
-								<li class="mr-2 sprd-li-barna" :class="[{'border-li-barna-active': isDesign}]">
+							<ul class="d-flex align-items-center sprd-header-barna">
+								<li class="mr-2 sprd-li-barna d-flex align-items-center" :class="[{'border-li-barna-active': isDesign}]">
 									<a class="align-items-center d-flex js-header-main-cyo cursor" :class="[{'color-barna': isDesign}]"  @click.stop.prevent="designM(true)" >
-										<div>
+										<div class="d-flex align-items-center">
 											<i class="fa fa-magic font-20" ></i>
 										</div>
 										<div class="pl-2 sm-none-barna">
@@ -206,9 +206,9 @@
 										</div>
 									</a>
 								</li>
-								<li class="mr-4 sprd-li-barna" :class="[{'border-li-barna-active': !isDesign}]">
+								<li class="mr-4 sprd-li-barna d-flex align-items-center" :class="[{'border-li-barna-active': !isDesign}]">
 										<a class="align-items-center d-flex js-header-main-cyo cursor"  :class="[{'color-barna': !isDesign}]" @click.stop.prevent="designM(false)" >
-											<div>
+											<div class="d-flex align-items-center">
 												<i class="fa fa-money font-20" ></i>
 											</div>
 											<div class="pl-2 sm-none-barna">
@@ -275,7 +275,7 @@
 													<!-- drop bag -->
 													<div class="dropbag " @click.stop.prevent="" v-if="showBag" :class="[{'zoomIn animated': showBag},{'zoomOut animated': showBagOut}]"
 			>
-														<div class="scroll-barna" style="overflow: auto;max-height: 65vh;padding:17px">
+														<div class="scroll-barna" style="overflow: auto;max-height: 85vh;padding:17px">
 															<h5 class="pb-2"><i class="fa fa-shopping-bag pr-2"></i>Cesta de Pedidos</h5>
 															<table class="table table-hover">
 																<thead>
@@ -349,7 +349,7 @@
 													</div>
 													<div class="dropcart " @click.stop.prevent="" v-if="showCart" :class="[{'zoomIn animated': showCart},{'zoomOut animated': showCartOut}]">
 														<!-- drop cart-->
-														<div class="scroll-barna" style="overflow: auto;max-height: 65vh;padding:17px">
+														<div class="scroll-barna" style="overflow: auto;max-height: 85vh;padding:17px">
 															<h5 class="pb-2"><i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra</h5>
 															<table class="table table-hover">
 																<thead>
@@ -420,6 +420,8 @@
 														</div>
 													</div>
 													<div class="droplogin " @click.stop.prevent="" v-if="showLogin" :class="[{'zoomIn animated': showLogin},{'zoomOut animated': showLoginOut}]">
+													  <div class="scroll-barna" style="overflow: auto;max-height: 85vh">
+
 														<h5 class="pb-2" style="border-bottom: 1px solid #cccccc;"><i class="fa fa-user pr-2"></i>Iniciar Sesion</h5>
 														<div class="ingresar">
 																<div class=" form-email input-group">
@@ -446,11 +448,12 @@
 																		class="site-btn-login float-right">
 																</div>
 																<div class="input-group remember justify-content-start text-left">
-																		<a href="#" class="link-login">Recuperar contraseña</a>
+																		<a @click.stop.prevent="" class="link-login cursor">Recuperar contraseña</a>
 																</div>
 																<div class="justify-content-start text-left">
-																		<a @click="registrarse" class="link-login">Registrarse</a>
+																		<a @click="registrarse" class="link-login cursor">Registrarse</a>
 																</div>
+														</div>
 														</div>
 													</div> 
 												</li>
