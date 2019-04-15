@@ -1394,7 +1394,11 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+<<<<<<< HEAD
           _vm._m(29)
+=======
+          _vm._m(30)
+>>>>>>> master
         ]
       ),
       _vm._v(" "),
@@ -1456,6 +1460,31 @@ var staticRenderFns = [
         )
       ]
     )
+<<<<<<< HEAD
+=======
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text input-group-search-barna",
+        attrs: {
+          "data-toggle": "dropdown",
+          "aria-expanded": "false",
+          id: "basic-addon1"
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "fa fa-filter",
+          attrs: { "aria-hidden": "true" }
+        })
+      ]
+    )
+>>>>>>> master
   },
   function() {
     var _vm = this
@@ -2053,7 +2082,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a,
         migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a
     },
+<<<<<<< HEAD
     props: {},
+=======
+    props: {
+        url: {
+            type: String,
+            require: true
+        }
+    },
+>>>>>>> master
     data: function data() {
         return {
             isLoading: false,

@@ -622,6 +622,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'isLoading'
@@ -629,6 +630,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+=======
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'isLoading'
+});
+
+/***/ }),
+
+>>>>>>> master
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -779,9 +789,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var auxiliar = [];
             if (this.articulos && this.articulos.length) {
                 this.articulos.forEach(function (articulo, index) {
-                    if (!this.titulo || articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0) {
+                    if (this.titulo.trim() === "" && this.rubrox.trim() == "" || articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0) {
                         auxiliar.push(articulo);
+                    } else {
+                        if (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0 && this.buscarcategoria(articulo, this.rubrox)) {
+                            auxiliar.push(articulo);
+                        }
                     }
+                    //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
+                    //this.buscarcategoria(articulo,this.rubrox)
                 }, this);
             }
             //this.totalRowsMovil = auxiliar.length;
@@ -799,6 +815,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.rubrox = this.rubro;
             console.log("aqui va rubro");
             console.log(this.rubrox);
+        }
+    },
+    methods: {
+        buscarcategoria: function buscarcategoria(articulo, rubro) {
+            var encontrado = false;
+            var i = 0;
+            for (var i = 0; i < articulo.rubros.length; i++) {
+                if (articulo.rubros[i].toLowerCase() == rubro.toLowerCase()) {
+                    encontrado = true;
+                }
+            }
+            if (encontrado) {
+                return true;
+                //console.log(articulo.id);
+            }
+            return false;
+            //console.log(articulo.rubros.length);
         }
     }
 });
@@ -971,6 +1004,7 @@ var render = function() {
   return _c(
     "div",
     [
+      _vm._v("\n    " + _vm._s(_vm.rubrox) + "\n        "),
       _vm.busqueda.length != 0
         ? [
             _c(
@@ -1017,25 +1051,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-lg-l2" }, [
-      _c("span", { staticClass: "clearfix" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          {
-            staticClass: "center-block col-md-3",
-            staticStyle: {
-              "background-color": "#ef7a6e",
-              color: "#FFF",
-              "border-radius": "50px",
-              "padding-left": "10px",
-              "padding-right": "10px",
-              "text-align": "center"
-            }
-          },
-          [_c("strong", [_vm._v("No hay resultados")])]
-        )
-      ])
+      _c(
+        "div",
+        { staticStyle: { "min-height": "50vh", position: "relative" } },
+        [
+          _c("div", { staticClass: "center-element no-found-search" }, [
+            _c("strong", [_vm._v("No hay resultados")])
+          ])
+        ]
+      )
     ])
   }
 ]
@@ -2966,7 +2990,11 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
+<<<<<<< HEAD
 exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /*left: 190px;*/\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.droplogin .ingresar .input-group {\n  margin-top: 20px;\n}\n.droplogin .ingresar .input-group input {\n  width: 100%;\n  height: 44px;\n  border: none;\n  padding: 0 18px;\n  background: #f0f0f0;\n  border-radius: 40px;\n  font-size: 14px;\n}\n.droplogin .ingresar .input-group .form-control:focus {\n  color: #777777;\n  outline: none;\n  box-shadow: none;\n}\n.droplogin {\n  padding: 17px 17px 17px 17px;\n  min-width: 330px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  /*left: -10.6rem;*/\n  right: 0;\n  border: solid 1px #ebebeb;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n@media (max-width: 768px) {\n.dropcart, .dropbag {\n    min-width: 450px !important;\n}\n}\n@media (max-width: 490px) {\n.dropcart, .dropbag {\n    min-width: 350px !important;\n}\n}\n@media (max-width: 400px) {\n.dropcart, .dropbag {\n    min-width: 334px !important;\n}\n}\n\n/*\n\t\t\t\t@media only screen and (min-width: 1200px) and (max-width: 1315px) {\n\t\t\t\t\t.droplogin {\n\t\t\t\t\t\tmin-width: 275px;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t*/\n.site-btn-login {\n  display: inline-block;\n  border: none;\n  font-size: 14px;\n  font-weight: 600;\n  min-width: 119px;\n  padding: 12px 20px 12px;\n  border-radius: 50px;\n  margin-top: 17px;\n  background: #ef7a6e;\n  color: #fff;\n  line-height: normal;\n  cursor: pointer;\n  text-align: center;\n}\na.link-login {\n  display: block;\n  position: relative;\n  font-size: 14px;\n  color: #8f8f8f;\n  margin-bottom: 6px;\n  cursor: pointer;\n}\na.link-login:hover {\n  font-weight: bold;\n}\nli.cartform .dropcart:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropcart {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\nli.bagform .dropbag:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropbag {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n.js-header-main-cyo:hover {\n  color: #ef7a6e !important;\n}\n.border-li-barna-active {\n  border: 2px solid black;\n}\n.rubro-selected {\n  color: #ef7a6e;\n  font-weight: bold;\n}\n", ""]);
+=======
+exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /*left: 190px;*/\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.droplogin .ingresar .input-group {\n  margin-top: 20px;\n}\n.droplogin .ingresar .input-group input {\n  width: 100%;\n  height: 44px;\n  border: none;\n  padding: 0 18px;\n  background: #f0f0f0;\n  border-radius: 40px;\n  font-size: 14px;\n}\n.droplogin .ingresar .input-group .form-control:focus {\n  color: #777777;\n  outline: none;\n  box-shadow: none;\n}\n.droplogin {\n  padding: 17px 17px 17px 17px;\n  min-width: 330px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  /*left: -10.6rem;*/\n  right: 0;\n  border: solid 1px #ebebeb;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n@media (max-width: 768px) {\n.dropcart, .dropbag {\n    min-width: 450px !important;\n}\n}\n@media (max-width: 490px) {\n.dropcart, .dropbag {\n    min-width: 350px !important;\n}\n}\n@media (max-width: 400px) {\n.dropcart, .dropbag {\n    min-width: 334px !important;\n}\n}\n\n/*\n\t\t\t\t@media only screen and (min-width: 1200px) and (max-width: 1315px) {\n\t\t\t\t\t.droplogin {\n\t\t\t\t\t\tmin-width: 275px;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t*/\n.site-btn-login {\n  display: inline-block;\n  border: none;\n  font-size: 14px;\n  font-weight: 600;\n  min-width: 119px;\n  padding: 12px 20px 12px;\n  border-radius: 50px;\n  margin-top: 17px;\n  background: #ef7a6e;\n  color: #fff;\n  line-height: normal;\n  cursor: pointer;\n  text-align: center;\n}\na.link-login {\n  display: block;\n  position: relative;\n  font-size: 14px;\n  color: #8f8f8f;\n  margin-bottom: 6px;\n  cursor: pointer;\n}\na.link-login:hover {\n  font-weight: bold;\n}\nli.cartform .dropcart:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropcart {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\nli.bagform .dropbag:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropbag {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n.js-header-main-cyo:hover {\n  color: #ef7a6e !important;\n}\n.border-li-barna-active {\n  border: 2px solid black;\n}\n", ""]);
+>>>>>>> master
 
 // exports
 
@@ -3430,12 +3458,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
 //
 //
 //
+=======
+>>>>>>> master
 //
 //
 //
@@ -3581,11 +3612,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		seleted: function seleted(event) {
 			this.rubro = String(event.target.innerText);
+<<<<<<< HEAD
 			$("#rubrosCat").dropdown('toggle');
 		},
 		seletedAll: function seletedAll() {
 			this.rubro = '';
 			$("#rubrosCat").dropdown('toggle');
+=======
+>>>>>>> master
 		},
 		login: function login() {
 			console.log('esta entrando');
@@ -3612,6 +3646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		showCartM: function showCartM() {
 			var _this2 = this;
+<<<<<<< HEAD
 
 			if (!this.showCart) {
 				this.showCartOut = false;
@@ -3772,6 +3807,168 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.numBag = this.numbagp;
 	},
 
+=======
+
+			if (!this.showCart) {
+				this.showCartOut = false;
+				this.showCart = true;
+				this.showLoginOut = true;
+				this.showBagOut = true;
+				setTimeout(function (e) {
+					_this2.showLogin = false;
+					_this2.showBag = false;
+				}, 500);
+			} else {
+				this.showCartOut = true;
+				setTimeout(function (e) {
+					_this2.showCartOut = false;
+					_this2.showCart = false;
+				}, 500);
+			}
+		},
+		showLoginM: function showLoginM() {
+			var _this3 = this;
+
+			if (!this.showLogin) {
+				this.showLoginOut = false;
+				this.showLogin = true;
+				this.showBagOut = true;
+				this.showCartOut = true;
+				setTimeout(function (e) {
+					_this3.showBag = false;
+					_this3.showCart = false;
+				}, 500);
+			} else {
+				this.showLoginOut = true;
+				setTimeout(function (e) {
+					_this3.showLoginOut = false;
+					_this3.showLogin = false;
+				}, 500);
+			}
+		},
+		closeAll: function closeAll() {
+			var _this4 = this;
+
+			this.showLoginOut = true;
+			this.showCartOut = true;
+			this.showBagOut = true;
+			setTimeout(function (e) {
+				_this4.showLoginOut = false;
+				_this4.showCartOut = false;
+				_this4.showBagOut = false;
+				_this4.showLogin = false;
+				_this4.showCart = false;
+				_this4.showBag = false;
+			}, 500);
+		},
+		designM: function designM(cent) {
+			this.$emit('designM', cent);
+		},
+		loginM: function loginM() {
+			var _this5 = this;
+
+			this.isLoading = true;
+			var dataform = new FormData();
+			dataform.append('password', this.user.password);
+			dataform.append('email', this.user.email);
+			var urli = this.url + '/login/post';
+			axios.post(urli, dataform).then(function (response) {
+				if (response.data.res) {
+					console.log(response.data.msg);
+					_this5.isLoading = false;
+					//$('#modalRegister').modal('show');
+				} else {
+					console.log(response.data.msg);
+					_this5.isLoading = false;
+				}
+			}).catch(function (error) {
+				console.log('Ha ocurrido un error inesperado');
+				_this5.isLoading = false;
+			});
+			this.$emit('loginM', this.user);
+		},
+		searchM: function searchM() {
+			var e = {
+				search: this.search,
+				rubro: this.rubro
+			};
+			this.$emit('searchM', e);
+		},
+		searchK: function searchK() {
+			var e = {
+				search: this.search,
+				rubro: this.rubro
+			};
+			this.$emit('searchK', e);
+		},
+		searchRubro: function searchRubro() {
+			var value = $('#myInput').val();
+			$(".dropdown-menu li").filter(function () {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+			});
+		}
+	},
+	mounted: function mounted() {
+		var _this6 = this;
+
+		var logo = $('#logo-barna');
+		var content = $('#content-barna');
+		$(window).resize(function (event) {
+			event.preventDefault();
+			if (document.body.clientWidth <= 768) {
+				_this6.collapse = true;
+			} else {
+				_this6.collapse = false;
+			}
+		});
+
+		document.addEventListener("scroll", function (event) {
+			event.preventDefault();
+			var menu = $('.main-menu li a');
+			if (document.documentElement.scrollTop > 10) {
+				$(content).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('transition', 'all 0.5s ease 0.4s');
+				$(logo).css('width', 50);
+				$(logo).css('height', 65);
+				$(content).css('height', 81);
+				if (menu.length) {
+					for (var i = 0; i < menu.length; i++) {
+						$(menu[i]).css('transition', 'all 0.5s ease 0.4s');
+						$(menu[i]).css('padding', '8px 0');
+					}
+				}
+			} else {
+				$(content).css('transition', 'all 0.5s ease 0.1s');
+				$(logo).css('transition', 'all 0.5s ease 0.1s');
+				$(logo).css('width', 75);
+				$(logo).css('height', 105);
+
+				if (menu.length) {
+					for (var i = 0; i < menu.length; i++) {
+						$(menu[i]).css('transition', 'all 0.5s ease 0.1s');
+						$(menu[i]).css('padding', '17px 0');
+					}
+				}
+
+				$(content).css('height', 170);
+			}
+		});
+	},
+	created: function created() {
+		if (document.body.clientWidth <= 768) {
+			this.collapse = true;
+		} else {
+			this.collapse = false;
+		}
+		this.isDesign = this.isdesignp;
+		this.isAuth = this.isauthp;
+		this.numCart = this.numcartp;
+		this.search = this.searchp;
+		this.rubro = this.rubrop;
+		this.numBag = this.numbagp;
+	},
+
+>>>>>>> master
 	watch: {
 		isdesignp: function isdesignp() {
 			this.isDesign = this.isdesignp;

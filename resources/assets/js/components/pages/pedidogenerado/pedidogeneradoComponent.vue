@@ -109,7 +109,11 @@
 		},
         props:
         {
-
+        	url:
+            {
+	            type: String,
+	            require:true
+        	}
         },
         data() {
 			return {
