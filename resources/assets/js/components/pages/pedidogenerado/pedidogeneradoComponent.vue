@@ -28,12 +28,26 @@
 	    padding-left: 1.6em;
 	    border-radius: 10rem;
 	}
+	.aviso
+	{
+		padding-bottom: 20px;
+		padding-top: 20px
+	}
 </style>
 <template>
 	<div>
 		<!-- header-->
             <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
         <!--end header -->
+
+        <migajas-component titulo="¡Tu pedido ha sido envíado!"></migajas-component>
+
+        <div class="aviso">
+        	<p class="h5 text-center">Gracias por confiar en Barna, le notificaremos cuando su pedido haya sido aprobado.</p>
+        </div>
+       
+
+        <br>
 
         <!-- pedido generado -->
 		<div class="col-md-5 col-xs-12 col-center">
@@ -73,21 +87,64 @@
 			</div>
 		</div>
 		<!-- end pedido generado -->
+
+		<br>	
+		<br>	
+		<br>	
+		<br>	
 	</div>
 </template>
 
 <script>
 	import headerComponent from "../../../components/layouts/headerComponent.vue";
+	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
+
 	export default
     {
         name:'pedidogeneradoComponent',
         components:
         {
-		    headerComponent
+		    headerComponent,
+		    migajasComponent
 		},
         props:
         {
 
-        }
+        },
+        data() {
+			return {
+                isLoading: false,
+                isDesign: false,
+                numCart: 0,
+                numBag: 0,
+                isAuth: false,
+                search: '',
+                rubro: '',
+                titulo: ''
+			}
+		},
+        methods:
+        {
+            loginM(e)
+            {
+                
+            },
+            designM(e)
+            {
+                
+            },
+            searchM(e)
+            {
+            	this.titulo=e.search;
+                this.rubro=e.rubro;
+                console.log(e.rubro);
+            },
+            searchK(e)
+            {
+            	this.titulo=e.search;
+                this.rubro=e.rubro;
+                console.log(e.rubro);
+            }
+		}
     }
 </script>
