@@ -26,7 +26,7 @@ class FrontController extends Controller
         //dd($auth);
         return view('front.index')->with('auth',$auth);
     }
-    
+
     public function rubros()
     {
         return view('front.rubros');
@@ -40,6 +40,10 @@ class FrontController extends Controller
     public function pedidogenerado()
     {
         return view('front.pedidogenerado');
+    }
+    public function disenarproducto()
+    {
+        return view('front.disenar');
     }
 
     public function register()
