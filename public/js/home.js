@@ -7400,9 +7400,13 @@ var render = function() {
                         "align-items-center d-flex justify-content-center offer-card text-white"
                     },
                     [
-                      _c("h4", { staticClass: "pb-3 pr-1" }, [_vm._v("$")]),
+                      _c(
+                        "span",
+                        { staticClass: "pb-3 pr-1 font-nav-current" },
+                        [_vm._v("$")]
+                      ),
                       _vm._v(" "),
-                      _c("h3", { staticClass: "pb-3" }, [
+                      _c("span", { staticClass: "pb-3 font-nav-price" }, [
                         _vm._v(_vm._s(item.precio))
                       ])
                     ]

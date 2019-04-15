@@ -12,8 +12,8 @@
                                 </div>
                             </div>
                             <div class="align-items-center d-flex justify-content-center offer-card text-white">
-                                <h4 class="pb-3 pr-1">$</h4>
-                                <h3 class="pb-3">{{item.precio}}</h3>
+                                <span class="pb-3 pr-1 font-nav-current">$</span>
+                                <span class="pb-3 font-nav-price">{{item.precio}}</span>
                             </div>
                         </div>
                     </div>

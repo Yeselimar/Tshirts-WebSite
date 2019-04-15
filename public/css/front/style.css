@@ -2427,6 +2427,12 @@ ol {
 }
 
 /* Estilos Personalizados */
+.font-nav-price {
+	font-size: 30px !important
+}
+.font-nav-current {
+	font-size: 24px  !important
+}
 .cursor {
 	cursor: pointer;
 }
@@ -2608,6 +2614,19 @@ ol {
 
 }
 @media (max-width: 768px) {
+	.hero-slider .hs-item .offer-card {
+    right: 0;
+    top: inherit !important;
+    bottom: -60px !important;
+    width: 120px !important;
+    height: 120px !important;
+	}
+	.font-nav-current{
+		font-size: 18px !important
+	}
+	.font-nav-price {
+		font-size: 20px !important
+	}
 	.md-d-flex-barna {
 		display: flex
 	}
