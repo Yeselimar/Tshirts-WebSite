@@ -174,6 +174,11 @@
 				.border-li-barna-active {
 					border: 2px solid black
 				}
+				.rubro-selected{
+					color: #ef7a6e;
+    				font-weight: bold;
+				}
+				
     
 </style>
 <template>
@@ -244,15 +249,16 @@
 								<div class="mr-4 flex-basis-search collapseOne" :class="[{'mt-2': collapse},{'collapse': collapse}]"  aria-labelledby="heading" data-parent="#accordionExample">
 									<form class="header-search-form input-group ml-2 mr-2 form-search-barna">
 										<div class="input-group-prepend cursor">
-											<span class="input-group-text input-group-search-barna" data-toggle="dropdown" aria-expanded="false" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
-											<ul class="dropdown-menu">
-												<input class="form-control" id="myInput"  @keyup="searchRubro" type="text" placeholder="Buscar..">
-												<li><a @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Hombre'}]">Hombre</a></li>
-												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Mujer'}]">Mujer</a></li>
-												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niña'}]">Niña</a></li>
-												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niño'}]">Niño</a></li>
-												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Taza'}]">Taza</a></li>
-												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Buzo'}]">Buzo</a></li>
+											<span class="input-group-text input-group-search-barna" data-toggle="dropdown" aria-expanded="false" id="basic-addon1"><i class="fa fa-filter" :class="{'rubro-selected': rubro !== ''}" aria-hidden="true"></i></span>
+											<ul class="dropdown-menu" id="rubrosCat">
+												<input class="form-control" id="myInput" @click.stop.prevent=""  @keyup.stop.prevent="searchRubro" type="text" placeholder="Buscar..">
+												<li><a @click.stop.prevent="seletedAll" :class="[{'bg-barna font-weight-bold': rubro === ''}]">Todas las categorias</a></li>
+												<li><a @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Hombre'}]">Hombre</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Mujer'}]">Mujer</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Niña'}]">Niña</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Niño'}]">Niño</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Taza'}]">Taza</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna font-weight-bold': rubro === 'Buzo'}]">Buzo</a></li>
 											</ul>
 										</div>
 										<input type="text" v-model="search" class="input-search-barna form-control" @keyup="searchK" placeholder="Buscar en Barna ....">
@@ -558,6 +564,11 @@
 			},
 			seleted(event){
 				this.rubro = String(event.target.innerText)
+				$("#rubrosCat").dropdown('toggle');
+			},
+			seletedAll(){
+				this.rubro = ''
+				$("#rubrosCat").dropdown('toggle');
 			},
 			login() {
 				console.log('esta entrando')

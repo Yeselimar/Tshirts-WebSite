@@ -261,33 +261,6 @@ function toComment(sourceMap) {
 /***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(11);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("7a849bbd", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e0973022\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./loading.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e0973022\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./loading.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports, __webpack_require__) {
-
 exports = module.exports = __webpack_require__(1)(false);
 // imports
 
@@ -300,7 +273,7 @@ exports.push([module.i, "\n#preloader {\n  position: fixed;\n  width: 100%;\n  h
 
 /***/ }),
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -343,7 +316,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 13:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -373,7 +346,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -586,147 +559,210 @@ var render = function() {
                                   "div",
                                   { staticClass: "input-group-prepend cursor" },
                                   [
-                                    _vm._m(3),
-                                    _vm._v(" "),
-                                    _c("ul", { staticClass: "dropdown-menu" }, [
-                                      _c("input", {
-                                        staticClass: "form-control",
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "input-group-text input-group-search-barna",
                                         attrs: {
-                                          id: "myInput",
-                                          type: "text",
-                                          placeholder: "Buscar.."
-                                        },
-                                        on: { keyup: _vm.searchRubro }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna":
-                                                  _vm.rubro === "Hombre"
-                                              }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
-                                              }
-                                            }
+                                          "data-toggle": "dropdown",
+                                          "aria-expanded": "false",
+                                          id: "basic-addon1"
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-filter",
+                                          class: {
+                                            "rubro-selected": _vm.rubro !== ""
                                           },
-                                          [_vm._v("Hombre")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna":
-                                                  _vm.rubro === "Mujer"
-                                              }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
-                                              }
-                                            }
+                                          attrs: { "aria-hidden": "true" }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "ul",
+                                      {
+                                        staticClass: "dropdown-menu",
+                                        attrs: { id: "rubrosCat" }
+                                      },
+                                      [
+                                        _c("input", {
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            id: "myInput",
+                                            type: "text",
+                                            placeholder: "Buscar.."
                                           },
-                                          [_vm._v("Mujer")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna": _vm.rubro === "Niña"
-                                              }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
-                                              }
+                                          on: {
+                                            click: function($event) {
+                                              $event.stopPropagation()
+                                              $event.preventDefault()
+                                            },
+                                            keyup: function($event) {
+                                              $event.stopPropagation()
+                                              $event.preventDefault()
+                                              return _vm.searchRubro($event)
                                             }
-                                          },
-                                          [_vm._v("Niña")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna": _vm.rubro === "Niño"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === ""
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seletedAll($event)
+                                                }
                                               }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
+                                            },
+                                            [_vm._v("Todas las categorias")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Hombre"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [_vm._v("Niño")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna": _vm.rubro === "Taza"
+                                            },
+                                            [_vm._v("Hombre")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Mujer"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
                                               }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
+                                            },
+                                            [_vm._v("Mujer")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Niña"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [_vm._v("Taza")]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("li", [
-                                        _c(
-                                          "a",
-                                          {
-                                            class: [
-                                              {
-                                                "bg-barna": _vm.rubro === "Buzo"
+                                            },
+                                            [_vm._v("Niña")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Niño"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
                                               }
-                                            ],
-                                            on: {
-                                              click: function($event) {
-                                                $event.stopPropagation()
-                                                $event.preventDefault()
-                                                return _vm.seleted($event)
+                                            },
+                                            [_vm._v("Niño")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Taza"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [_vm._v("Buzo")]
-                                        )
-                                      ])
-                                    ])
+                                            },
+                                            [_vm._v("Taza")]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              class: [
+                                                {
+                                                  "bg-barna font-weight-bold":
+                                                    _vm.rubro === "Buzo"
+                                                }
+                                              ],
+                                              on: {
+                                                click: function($event) {
+                                                  $event.stopPropagation()
+                                                  $event.preventDefault()
+                                                  return _vm.seleted($event)
+                                                }
+                                              }
+                                            },
+                                            [_vm._v("Buzo")]
+                                          )
+                                        ])
+                                      ]
+                                    )
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -763,7 +799,7 @@ var render = function() {
                                     staticClass: "input-group-append cursor",
                                     on: { click: _vm.searchM }
                                   },
-                                  [_vm._m(4)]
+                                  [_vm._m(3)]
                                 )
                               ]
                             )
@@ -849,7 +885,7 @@ var render = function() {
                                                 }
                                               },
                                               [
-                                                _vm._m(5),
+                                                _vm._m(4),
                                                 _vm._v(" "),
                                                 _c(
                                                   "table",
@@ -858,9 +894,9 @@ var render = function() {
                                                       "table table-hover"
                                                   },
                                                   [
-                                                    _vm._m(6),
+                                                    _vm._m(5),
                                                     _vm._v(" "),
-                                                    _vm._m(7),
+                                                    _vm._m(6),
                                                     _vm._v(" "),
                                                     _c("tbody", [
                                                       _c("tr", [
@@ -882,15 +918,15 @@ var render = function() {
                                                               }
                                                             }),
                                                             _vm._v(" "),
-                                                            _vm._m(8)
+                                                            _vm._m(7)
                                                           ]
                                                         ),
                                                         _vm._v(" "),
+                                                        _vm._m(8),
+                                                        _vm._v(" "),
                                                         _vm._m(9),
                                                         _vm._v(" "),
-                                                        _vm._m(10),
-                                                        _vm._v(" "),
-                                                        _vm._m(11)
+                                                        _vm._m(10)
                                                       ]),
                                                       _vm._v(" "),
                                                       _c("tr", [
@@ -912,21 +948,21 @@ var render = function() {
                                                               }
                                                             }),
                                                             _vm._v(" "),
-                                                            _vm._m(12)
+                                                            _vm._m(11)
                                                           ]
                                                         ),
                                                         _vm._v(" "),
+                                                        _vm._m(12),
+                                                        _vm._v(" "),
                                                         _vm._m(13),
                                                         _vm._v(" "),
-                                                        _vm._m(14),
-                                                        _vm._v(" "),
-                                                        _vm._m(15)
+                                                        _vm._m(14)
                                                       ])
                                                     ])
                                                   ]
                                                 ),
                                                 _vm._v(" "),
-                                                _vm._m(16)
+                                                _vm._m(15)
                                               ]
                                             )
                                           ]
@@ -1000,7 +1036,7 @@ var render = function() {
                                                 }
                                               },
                                               [
-                                                _vm._m(17),
+                                                _vm._m(16),
                                                 _vm._v(" "),
                                                 _c(
                                                   "table",
@@ -1009,9 +1045,9 @@ var render = function() {
                                                       "table table-hover"
                                                   },
                                                   [
-                                                    _vm._m(18),
+                                                    _vm._m(17),
                                                     _vm._v(" "),
-                                                    _vm._m(19),
+                                                    _vm._m(18),
                                                     _vm._v(" "),
                                                     _c("tbody", [
                                                       _c("tr", [
@@ -1033,15 +1069,15 @@ var render = function() {
                                                               }
                                                             }),
                                                             _vm._v(" "),
-                                                            _vm._m(20)
+                                                            _vm._m(19)
                                                           ]
                                                         ),
                                                         _vm._v(" "),
+                                                        _vm._m(20),
+                                                        _vm._v(" "),
                                                         _vm._m(21),
                                                         _vm._v(" "),
-                                                        _vm._m(22),
-                                                        _vm._v(" "),
-                                                        _vm._m(23)
+                                                        _vm._m(22)
                                                       ]),
                                                       _vm._v(" "),
                                                       _c("tr", [
@@ -1063,21 +1099,21 @@ var render = function() {
                                                               }
                                                             }),
                                                             _vm._v(" "),
-                                                            _vm._m(24)
+                                                            _vm._m(23)
                                                           ]
                                                         ),
                                                         _vm._v(" "),
+                                                        _vm._m(24),
+                                                        _vm._v(" "),
                                                         _vm._m(25),
                                                         _vm._v(" "),
-                                                        _vm._m(26),
-                                                        _vm._v(" "),
-                                                        _vm._m(27)
+                                                        _vm._m(26)
                                                       ])
                                                     ])
                                                   ]
                                                 ),
                                                 _vm._v(" "),
-                                                _vm._m(28)
+                                                _vm._m(27)
                                               ]
                                             )
                                           ]
@@ -1144,7 +1180,7 @@ var render = function() {
                                                 }
                                               },
                                               [
-                                                _vm._m(29),
+                                                _vm._m(28),
                                                 _vm._v(" "),
                                                 _c(
                                                   "div",
@@ -1358,7 +1394,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(30)
+          _vm._m(29)
         ]
       ),
       _vm._v(" "),
@@ -1418,28 +1454,6 @@ var staticRenderFns = [
             ])
           ]
         )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      {
-        staticClass: "input-group-text input-group-search-barna",
-        attrs: {
-          "data-toggle": "dropdown",
-          "aria-expanded": "false",
-          id: "basic-addon1"
-        }
-      },
-      [
-        _c("i", {
-          staticClass: "fa fa-filter",
-          attrs: { "aria-hidden": "true" }
-        })
       ]
     )
   },
@@ -1882,7 +1896,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__);
@@ -2544,7 +2558,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(8)
+var listToStyles = __webpack_require__(7)
 
 /*
 type StyleObject = {
@@ -2760,13 +2774,13 @@ function applyToTag (styleElement, obj) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(10)
+  __webpack_require__(9)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(12)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(13)
+var __vue_template__ = __webpack_require__(12)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2806,19 +2820,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(6)
+  __webpack_require__(5)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(8)
 /* template */
-var __vue_template__ = __webpack_require__(14)
+var __vue_template__ = __webpack_require__(13)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2858,13 +2872,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(7);
+var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2885,7 +2899,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -2893,14 +2907,14 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /*left: 190px;*/\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.droplogin .ingresar .input-group {\n  margin-top: 20px;\n}\n.droplogin .ingresar .input-group input {\n  width: 100%;\n  height: 44px;\n  border: none;\n  padding: 0 18px;\n  background: #f0f0f0;\n  border-radius: 40px;\n  font-size: 14px;\n}\n.droplogin .ingresar .input-group .form-control:focus {\n  color: #777777;\n  outline: none;\n  box-shadow: none;\n}\n.droplogin {\n  padding: 17px 17px 17px 17px;\n  min-width: 330px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  /*left: -10.6rem;*/\n  right: 0;\n  border: solid 1px #ebebeb;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n@media (max-width: 768px) {\n.dropcart, .dropbag {\n    min-width: 450px !important;\n}\n}\n@media (max-width: 490px) {\n.dropcart, .dropbag {\n    min-width: 350px !important;\n}\n}\n@media (max-width: 400px) {\n.dropcart, .dropbag {\n    min-width: 334px !important;\n}\n}\n\n/*\n\t\t\t\t@media only screen and (min-width: 1200px) and (max-width: 1315px) {\n\t\t\t\t\t.droplogin {\n\t\t\t\t\t\tmin-width: 275px;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t*/\n.site-btn-login {\n  display: inline-block;\n  border: none;\n  font-size: 14px;\n  font-weight: 600;\n  min-width: 119px;\n  padding: 12px 20px 12px;\n  border-radius: 50px;\n  margin-top: 17px;\n  background: #ef7a6e;\n  color: #fff;\n  line-height: normal;\n  cursor: pointer;\n  text-align: center;\n}\na.link-login {\n  display: block;\n  position: relative;\n  font-size: 14px;\n  color: #8f8f8f;\n  margin-bottom: 6px;\n  cursor: pointer;\n}\na.link-login:hover {\n  font-weight: bold;\n}\nli.cartform .dropcart:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropcart {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\nli.bagform .dropbag:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropbag {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n.js-header-main-cyo:hover {\n  color: #ef7a6e !important;\n}\n.border-li-barna-active {\n  border: 2px solid black;\n}\n", ""]);
+exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /*left: 190px;*/\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.droplogin .ingresar .input-group {\n  margin-top: 20px;\n}\n.droplogin .ingresar .input-group input {\n  width: 100%;\n  height: 44px;\n  border: none;\n  padding: 0 18px;\n  background: #f0f0f0;\n  border-radius: 40px;\n  font-size: 14px;\n}\n.droplogin .ingresar .input-group .form-control:focus {\n  color: #777777;\n  outline: none;\n  box-shadow: none;\n}\n.droplogin {\n  padding: 17px 17px 17px 17px;\n  min-width: 330px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  /*left: -10.6rem;*/\n  right: 0;\n  border: solid 1px #ebebeb;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n@media (max-width: 768px) {\n.dropcart, .dropbag {\n    min-width: 450px !important;\n}\n}\n@media (max-width: 490px) {\n.dropcart, .dropbag {\n    min-width: 350px !important;\n}\n}\n@media (max-width: 400px) {\n.dropcart, .dropbag {\n    min-width: 334px !important;\n}\n}\n\n/*\n\t\t\t\t@media only screen and (min-width: 1200px) and (max-width: 1315px) {\n\t\t\t\t\t.droplogin {\n\t\t\t\t\t\tmin-width: 275px;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t*/\n.site-btn-login {\n  display: inline-block;\n  border: none;\n  font-size: 14px;\n  font-weight: 600;\n  min-width: 119px;\n  padding: 12px 20px 12px;\n  border-radius: 50px;\n  margin-top: 17px;\n  background: #ef7a6e;\n  color: #fff;\n  line-height: normal;\n  cursor: pointer;\n  text-align: center;\n}\na.link-login {\n  display: block;\n  position: relative;\n  font-size: 14px;\n  color: #8f8f8f;\n  margin-bottom: 6px;\n  cursor: pointer;\n}\na.link-login:hover {\n  font-weight: bold;\n}\nli.cartform .dropcart:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropcart {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\nli.bagform .dropbag:after {\n  position: absolute;\n  display: block;\n  content: \"\";\n  top: -15px;\n  right: 20px;\n  /* left: 190px; */\n  width: 0;\n  height: 0;\n  margin-left: 0px;\n  overflow: hidden !important;\n  border: 7px solid transparent;\n  border-bottom-color: #ccc;\n}\n.dropbag {\n  min-width: 550px;\n  border-radius: .5em;\n  background: #fff;\n  border-color: #ebebeb;\n  z-index: 99999 !important;\n  position: absolute;\n  top: 2rem;\n  right: 0;\n  /* left: -20.6rem; */\n  border: solid 1px #ebebeb;\n  max-height: 70vh !important;\n  -webkit-transition: all 0.4s;\n  -o-transition: all 0.4s;\n  transition: all 0.4s;\n  -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n  box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.05);\n}\n.js-header-main-cyo:hover {\n  color: #ef7a6e !important;\n}\n.border-li-barna-active {\n  border: 2px solid black;\n}\n.rubro-selected {\n  color: #ef7a6e;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports) {
 
 /**
@@ -2934,13 +2948,19 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3502,6 +3522,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		seleted: function seleted(event) {
 			this.rubro = String(event.target.innerText);
+			$("#rubrosCat").dropdown('toggle');
+		},
+		seletedAll: function seletedAll() {
+			this.rubro = '';
+			$("#rubrosCat").dropdown('toggle');
 		},
 		login: function login() {
 			console.log('esta entrando');
@@ -3710,6 +3735,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	}
 });
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(10);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("7a849bbd", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e0973022\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./loading.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e0973022\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./loading.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 
