@@ -18,7 +18,7 @@
 	    <!--end header -->
 
 		<migajas-component titulo="Tu Carrito > Procesar Carrito"></migajas-component>
-
+		
 		<!-- checkout section  -->
 		<section class="checkout-section spad">
 			<div class="container">

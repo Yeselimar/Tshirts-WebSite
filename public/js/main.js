@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 58);
+/******/ 	return __webpack_require__(__webpack_require__.s = 63);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 58:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(59);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
 
-/***/ 59:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -98,11 +98,11 @@ $(window).on('load', function () {
 	/*------------------
  	Navigation
  --------------------*/
-	$('.main-menu').slicknav({
-		prependTo: '.main-navbar .container',
-		closedSymbol: '<i class="flaticon-right-arrow"></i>',
-		openedSymbol: '<i class="flaticon-down-arrow"></i>'
-	});
+	/*$('.main-menu').slicknav({
+ 	prependTo:'.main-navbar .container',
+ 	closedSymbol: '<i class="flaticon-right-arrow"></i>',
+ 	openedSymbol: '<i class="flaticon-down-arrow"></i>'
+ }); */
 
 	/*------------------
  	ScrollBar

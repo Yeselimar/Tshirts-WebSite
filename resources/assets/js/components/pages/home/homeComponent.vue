@@ -84,7 +84,7 @@
                     <div class="section-title">
                         <h2>Productos para <span v-if="isDesign">diseñar</span><span v-else>comprar</span></h2>
                     </div>
-                    <ul class="product-filter-menu">
+                    <ul class="product-filter-menu md-d-flex-barna scroll-barna overflow-auto">
                         <li><a class="filter" v-bind:class="{ active: currentFilter === 'ALL' }" v-on:click="setFilter('ALL')">TODAS</a></li>
                         <li><a class="filter" v-bind:class="{ active: currentFilter === 'Hombre' }" v-on:click="setFilter('Hombre')">Hombre</a></li>
                         <li><a class="filter" v-bind:class="{ active: currentFilter === 'Mujer' }" v-on:click="setFilter('Mujer')">Mujer</a></li>
@@ -115,6 +115,8 @@
                                 </div>
                             </div>
                         </transition-group>
+                        <p class="center-element no-found-search"  v-if="totalI === 0">
+                          No hay resultados</p>
                         
                     </div>
                     <div class="text-center pt-5" v-if="isMax">
@@ -585,8 +587,27 @@ export default {
                     this.isLoading = false
                 },500)	
             }
-		},
+        },
+        mounted: function(){
+
+            $(window).resize(event=>{
+                            event.preventDefault()
+                            if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)
+                                this.max = 6
+                            else if(document.body.clientWidth < 460)
+                                    this.max = 3
+                                else 
+                                     this.max = 12
+            });
+        },
         created() {
+            if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)
+				this.max = 6
+			else if(document.body.clientWidth < 460)
+                    this.max = 3
+                else 
+                    this.max = 12
+			
             this.isLoading = true  
             if (typeof window.isDesign === 'undefined') {
                 this.isDesign = false

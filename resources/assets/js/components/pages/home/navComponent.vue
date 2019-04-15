@@ -2,7 +2,7 @@
  <!-- Hero section -->
           <section v-if="items.length" class="hero-section">
                 <div class="hero-slider owl-carousel">
-                    <div v-for="(item, i) in items" :key="i"  class="hs-item" :style="'background-image:'+'url(' +url+item.url + ')'">
+                    <div v-for="(item, i) in items" :key="i"  class="hs-item" :style="'background-position:center center;background-size:container;background-image:'+'url(' +url+item.url + ')'">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-7 text-white">
@@ -12,8 +12,8 @@
                                 </div>
                             </div>
                             <div class="align-items-center d-flex justify-content-center offer-card text-white">
-                                <h4 class="pb-3 pr-1">$</h4>
-                                <h3 class="pb-3">{{item.precio}}</h3>
+                                <span class="pb-3 pr-1 font-nav-current">$</span>
+                                <span class="pb-3 font-nav-price">{{item.precio}}</span>
                             </div>
                         </div>
                     </div>

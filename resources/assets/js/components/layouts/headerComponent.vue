@@ -180,22 +180,22 @@
 	<div>
 		<div class="header-section header-barna-fixed"  @click="closeAll">
 			<div class="header-top-barna">
-				<div class="container">
-					<div class="d-flex align-items-center">
+				<div class="container" :class="{'position-relative': collapse}">
+					<div class="d-flex align-items-center flex-wrap-mw justify-content-center">
 						<div class="flex-basis-logo ">
 							<!-- logo -->
 							<a href="#" class="site-logo">
-								<img :src="url+'/img/barna.jpg'" id="logo-barna" width="75" height="105" alt="">
+								<img :src="url+'/img/barna.jpg'" id="logo-barna" alt="">
 							</a>
 						</div>
 						<div class="flex-basis-design">
 							<ul class="d-flex sprd-header-barna">
 								<li class="mr-2 sprd-li-barna" :class="[{'border-li-barna-active': isDesign}]">
 									<a class="align-items-center d-flex js-header-main-cyo cursor" :class="[{'color-barna': isDesign}]"  @click.stop.prevent="designM(true)" >
-										<div class="pr-2">
+										<div>
 											<i class="fa fa-magic font-20" ></i>
 										</div>
-										<div class="sm-none-barna">
+										<div class="pl-2 sm-none-barna">
 											<div class="title">
 												Diseñar
 
@@ -208,10 +208,10 @@
 								</li>
 								<li class="mr-4 sprd-li-barna" :class="[{'border-li-barna-active': !isDesign}]">
 										<a class="align-items-center d-flex js-header-main-cyo cursor"  :class="[{'color-barna': !isDesign}]" @click.stop.prevent="designM(false)" >
-											<div class="pr-2">
+											<div>
 												<i class="fa fa-money font-20" ></i>
 											</div>
-											<div class="sm-none-barna">
+											<div class="pl-2 sm-none-barna">
 												<div class="title">
 													Comprar
 												</div>
@@ -223,231 +223,249 @@
 									</li>
 							</ul>
 						</div>
-						<div class="mr-4 flex-basis-search">
-							<form class="header-search-form input-group ml-2 mr-2 form-search-barna">
-								<div class="input-group-prepend cursor">
-									<span class="input-group-text input-group-search-barna" data-toggle="dropdown" aria-expanded="false" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
-									<ul class="dropdown-menu">
-										<input class="form-control" id="myInput"  @keyup="searchRubro" type="text" placeholder="Buscar..">
-										<li><a @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Hombre'}]">Hombre</a></li>
-										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Mujer'}]">Mujer</a></li>
-										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niña'}]">Niña</a></li>
-										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niño'}]">Niño</a></li>
-										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Taza'}]">Taza</a></li>
-										<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Buzo'}]">Buzo</a></li>
-									</ul>
-								</div>
-								<input type="text" v-model="search" class="input-search-barna form-control" @keyup="searchK" placeholder="Buscar en Barna ....">
-								<div class="input-group-append cursor" @click="searchM">
-									<span class="input-group-text input-group-search-barna"><i class="fa fa-search" aria-hidden="true"></i></span>
-								</div>
-								<!--<button><i class="flaticon-search"></i></button>-->
-							</form>
+						<div class="slicknav_menu" id="accordionExample">
+								<a
+									href="#"
+									aria-haspopup="true"
+									tabindex="0"
+									class="slicknav_btn slicknav_collapsed"
+									style="outline: none;"
+									id="heading"
+									data-toggle="collapse"
+									 data-target=".collapseOne" aria-expanded="1" aria-controls="collapseOne1"
+									><span class="slicknav_icon"
+									><span class="slicknav_icon-bar"></span
+									><span class="slicknav_icon-bar"></span
+									><span class="slicknav_icon-bar"></span></span
+								></a>
+								 
 						</div>
-						<div class="flex-basis-icons">
-								<div class="user-panel">
-									<ul class="navbar-nav d-inline">
-										<li class="nav-item d-inline dropdown bagform position-relative">
-											<div class="up-item pr-3">
-												<div class="header-cart cursor"  @click.stop.prevent="showBagM">
-													<i class="fa fa-shopping-bag"></i> 
-													<span>0</span>
-												</div>
-											</div>
-											<!-- drop bag -->
-											<div class="dropbag " @click.stop.prevent="" v-if="showBag" :class="[{'zoomIn animated': showBag},{'zoomOut animated': showBagOut}]"
-	>
-												<div style="overflow: auto;max-height: 65vh;padding:17px">
-													<h5 class="pb-2"><i class="fa fa-shopping-bag pr-2"></i>Cesta de Pedidos</h5>
-													<table class="table table-hover">
-														<thead>
-															<tr>
-																<th class="product-th text-center">Producto</th>
-																<th class="quy-th text-center">Cant</th>
-																<th class="total-th text-right">Precio</th>
-																<th class="text-center"></th>
-
-															</tr>
-														</thead>
-														<tfoot>
-															<tr class="bg-gray">
-																<td colspan="2"></td>
-																<td class="total-col text-right">
-																	<h5> TOTAL: $883</h5>
-																</td>
-																<td></td>
-															</tr>
-														</tfoot>
-														<tbody>
-															<tr>
-																<td class="text-center">
-																	<img :src="url+'/img/cart/2.jpg'" class="w-30" alt="">
-																	<div class="pc-title">
-																		<h6>Nev Print Absol</h6>
-																	</div>
-																</td>
-																<td class="text-center">
-																	<h6 class="inc qtybtn">x 1</h6>
-																</td>
-																<td class="text-right"><h6>$145.90</h6></td>
-																<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
-
-															</tr>
-															<tr>
-																<td class="text-center">
-																	<img :src="url+'/img/cart/3.jpg'" class="w-30" alt="">
-																	<div class="pc-title">
-																		<h6>Swutter Print Dress</h6>
-																	</div>
-																</td>
-																<td class="text-center">
-																	<h6 class="inc qtybtn">x 1</h6>
-																</td>
-																<td class="text-right"><h6>$25.90</h6></td>
-																<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
-
-															</tr>
-															
-														</tbody>
-													</table>
-														<div class="d-flex justify-content-end">
-															<input type="button"
-																value="Procesar Pedido"
-																class="site-btn-login float-right">
+						<span class="d-contents collapseOne" :class="[{'collapse': collapse}]"  aria-labelledby="heading" data-parent="#accordionExample">
+								<div class="mr-4 flex-basis-search collapseOne" :class="[{'mt-2': collapse},{'collapse': collapse}]"  aria-labelledby="heading" data-parent="#accordionExample">
+									<form class="header-search-form input-group ml-2 mr-2 form-search-barna">
+										<div class="input-group-prepend cursor">
+											<span class="input-group-text input-group-search-barna" data-toggle="dropdown" aria-expanded="false" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+											<ul class="dropdown-menu">
+												<input class="form-control" id="myInput"  @keyup="searchRubro" type="text" placeholder="Buscar..">
+												<li><a @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Hombre'}]">Hombre</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Mujer'}]">Mujer</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niña'}]">Niña</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Niño'}]">Niño</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Taza'}]">Taza</a></li>
+												<li><a  @click.stop.prevent="seleted" :class="[{'bg-barna': rubro === 'Buzo'}]">Buzo</a></li>
+											</ul>
+										</div>
+										<input type="text" v-model="search" class="input-search-barna form-control" @keyup="searchK" placeholder="Buscar en Barna ....">
+										<div class="input-group-append cursor" @click="searchM">
+											<span class="input-group-text input-group-search-barna"><i class="fa fa-search" aria-hidden="true"></i></span>
+										</div>
+										<!--<button><i class="flaticon-search"></i></button>-->
+									</form>
+								</div>
+								<div class="flex-basis-icons  collapseOne" :class="[{'mt-2': collapse},{'collapse': collapse}]"  aria-labelledby="heading" data-parent="#accordionExample">
+										<div class="user-panel">
+											<ul class="navbar-nav d-inline">
+												<li class="nav-item d-inline dropdown bagform">
+													<div class="up-item pr-3">
+														<div class="header-cart cursor"  @click.stop.prevent="showBagM">
+															<i class="fa fa-shopping-bag"></i> 
+															<span>0</span>
 														</div>
 													</div>
-											</div> 
-											<!-- end dropBag-->
-										</li>
-									</ul>
+													<!-- drop bag -->
+													<div class="dropbag " @click.stop.prevent="" v-if="showBag" :class="[{'zoomIn animated': showBag},{'zoomOut animated': showBagOut}]"
+			>
+														<div class="scroll-barna" style="overflow: auto;max-height: 65vh;padding:17px">
+															<h5 class="pb-2"><i class="fa fa-shopping-bag pr-2"></i>Cesta de Pedidos</h5>
+															<table class="table table-hover">
+																<thead>
+																	<tr>
+																		<th class="product-th text-center">Producto</th>
+																		<th class="quy-th text-center">Cant</th>
+																		<th class="total-th text-right">Precio</th>
+																		<th class="text-center"></th>
 
-									<ul class="navbar-nav d-inline">
-										<li class="nav-item d-inline dropdown cartform position-relative">
-											<div class="up-item pr-3">
-												<div class="header-cart cursor"  @click.stop.prevent="showCartM">
-													<i class="fa fa-shopping-cart"></i>
-													<span>0</span> 
-												</div>
-											</div>
-											<div class="dropcart " @click.stop.prevent="" v-if="showCart" :class="[{'zoomIn animated': showCart},{'zoomOut animated': showCartOut}]">
-												<!-- drop cart-->
-												<div style="overflow: auto;max-height: 65vh;padding:17px">
-													<h5 class="pb-2"><i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra</h5>
-													<table class="table table-hover">
-														<thead>
-															<tr>
-																<th class="product-th text-center">Producto</th>
-																<th class="quy-th text-center">Cant</th>
-																<th class="total-th text-right">Precio</th>
-																<th class="text-center"></th>
+																	</tr>
+																</thead>
+																<tfoot>
+																	<tr class="bg-gray">
+																		<td colspan="2"></td>
+																		<td class="total-col text-right">
+																			<h5> TOTAL: $883</h5>
+																		</td>
+																		<td></td>
+																	</tr>
+																</tfoot>
+																<tbody>
+																	<tr>
+																		<td class="text-center">
+																			<img :src="url+'/img/cart/2.jpg'" class="w-30" alt="">
+																			<div class="pc-title">
+																				<h6>Nev Print Absol</h6>
+																			</div>
+																		</td>
+																		<td class="text-center">
+																			<h6 class="inc qtybtn">x 1</h6>
+																		</td>
+																		<td class="text-right"><h6>$145.90</h6></td>
+																		<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
 
-															</tr>
-														</thead>
-														<tfoot>
-															<tr class="bg-gray">
-																<td colspan="2"></td>
-																<td class="total-col text-right">
-																	<h5> TOTAL: $83</h5>
-																</td>
-																<td></td>
-															</tr>
-														</tfoot>
-														<tbody>
-															<tr>
-																<td class="text-center">
-																	<img :src="url+'/img/cart/1.jpg'" class="w-30" alt="">
-																	<div class="pc-title">
-																		<h6>Animal Print Dress</h6>
-																	</div>
-																</td>
-																<td class="text-center">
-																	<h6 class="inc qtybtn">x 1</h6>
-																</td>
-																<td class="text-right"><h6>$75.90</h6></td>
-																<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
+																	</tr>
+																	<tr>
+																		<td class="text-center">
+																			<img :src="url+'/img/cart/3.jpg'" class="w-30" alt="">
+																			<div class="pc-title">
+																				<h6>Swutter Print Dress</h6>
+																			</div>
+																		</td>
+																		<td class="text-center">
+																			<h6 class="inc qtybtn">x 1</h6>
+																		</td>
+																		<td class="text-right"><h6>$25.90</h6></td>
+																		<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
 
-															</tr>
-															<tr>
-																<td class="text-center">
-																	<img :src="url+'/img/cart/2.jpg'" class="w-30" alt="">
-																	<div class="pc-title">
-																		<h6>Text Print Dress</h6>
-																	</div>
-																</td>
-																<td class="text-center">
-																	<h6 class="inc qtybtn">x 1</h6>
-																</td>
-																<td class="text-right"><h6>$5.90</h6></td>
-																<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
+																	</tr>
+																	
+																</tbody>
+															</table>
+																<div class="d-flex justify-content-end">
+																	<input type="button"
+																		value="Procesar Pedido"
+																		class="site-btn-login float-right">
+																</div>
+															</div>
+													</div> 
+													<!-- end dropBag-->
+												</li>
+											</ul>
 
-															</tr>
-															
-														</tbody>
-													</table>
-														<div class="d-flex justify-content-end">
-															<input type="button"
-																value="Comprar"
-																class="site-btn-login float-right">
+											<ul class="navbar-nav d-inline">
+												<li class="nav-item d-inline dropdown cartform">
+													<div class="up-item pr-3">
+														<div class="header-cart cursor"  @click.stop.prevent="showCartM">
+															<i class="fa fa-shopping-cart"></i>
+															<span>0</span> 
 														</div>
 													</div>
-												<!--end dropcart -->
-											</div> 
-										</li>
-									</ul>
-									<ul class="navbar-nav d-inline">
-										<li class="nav-item d-inline position-relative dropdown logiform">
-											<div class="up-item pr-3">
-												<div class="header-cart cursor"  @click.stop.prevent="showLoginM">
-													<i class="fa fa-user"></i>
-												</div>
-											</div>
-											<div class="droplogin " @click.stop.prevent="" v-if="showLogin" :class="[{'zoomIn animated': showLogin},{'zoomOut animated': showLoginOut}]">
-												<h5 class="pb-2" style="border-bottom: 1px solid #cccccc;"><i class="fa fa-user pr-2"></i>Iniciar Sesion</h5>
-												<div class="ingresar">
-													<form>
-														<div class=" form-email input-group">
-															<input type="email"
-																v-model="user.email"
-																name="email"
-																class="form-control"
-																:placeholder="'Ingrese su email'"
-															>
-														</div>
-														<div class=" form-password input-group">
-															<input type="password"
-																v-model="user.password"
-																name="password"
-																class="form-control"
-																:placeholder="'Ingrese su contraseña'"
-															>
-														</div>
+													<div class="dropcart " @click.stop.prevent="" v-if="showCart" :class="[{'zoomIn animated': showCart},{'zoomOut animated': showCartOut}]">
+														<!-- drop cart-->
+														<div class="scroll-barna" style="overflow: auto;max-height: 65vh;padding:17px">
+															<h5 class="pb-2"><i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra</h5>
+															<table class="table table-hover">
+																<thead>
+																	<tr>
+																		<th class="product-th text-center">Producto</th>
+																		<th class="quy-th text-center">Cant</th>
+																		<th class="total-th text-right">Precio</th>
+																		<th class="text-center"></th>
 
-														<div class="d-flex justify-content-end">
-															<input type="button"
-																value="Ingresar"
-																v-on:click="loginM()"
-																class="site-btn-login float-right">
+																	</tr>
+																</thead>
+																<tfoot>
+																	<tr class="bg-gray">
+																		<td colspan="2"></td>
+																		<td class="total-col text-right">
+																			<h5> TOTAL: $83</h5>
+																		</td>
+																		<td></td>
+																	</tr>
+																</tfoot>
+																<tbody>
+																	<tr>
+																		<td class="text-center">
+																			<img :src="url+'/img/cart/1.jpg'" class="w-30" alt="">
+																			<div class="pc-title">
+																				<h6>Animal Print Dress</h6>
+																			</div>
+																		</td>
+																		<td class="text-center">
+																			<h6 class="inc qtybtn">x 1</h6>
+																		</td>
+																		<td class="text-right"><h6>$75.90</h6></td>
+																		<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
+
+																	</tr>
+																	<tr>
+																		<td class="text-center">
+																			<img :src="url+'/img/cart/2.jpg'" class="w-30" alt="">
+																			<div class="pc-title">
+																				<h6>Text Print Dress</h6>
+																			</div>
+																		</td>
+																		<td class="text-center">
+																			<h6 class="inc qtybtn">x 1</h6>
+																		</td>
+																		<td class="text-right"><h6>$5.90</h6></td>
+																		<td class="text-center"><h5><i class="fa fa-trash cursor"></i></h5></td>
+
+																	</tr>
+																	
+																</tbody>
+															</table>
+																<div class="d-flex justify-content-end">
+																	<input type="button"
+																		value="Comprar"
+																		class="site-btn-login float-right">
+																</div>
+															</div>
+														<!--end dropcart -->
+													</div> 
+												</li>
+											</ul>
+											<ul class="navbar-nav d-inline">
+												<li class="nav-item d-inline dropdown logiform">
+													<div class="up-item pr-3">
+														<div class="header-cart cursor"  @click.stop.prevent="showLoginM">
+															<i class="fa fa-user"></i>
 														</div>
-														<div class="input-group remember justify-content-start text-left">
-																<a href="#" class="link-login">Recuperar contraseña</a>
+													</div>
+													<div class="droplogin " @click.stop.prevent="" v-if="showLogin" :class="[{'zoomIn animated': showLogin},{'zoomOut animated': showLoginOut}]">
+														<h5 class="pb-2" style="border-bottom: 1px solid #cccccc;"><i class="fa fa-user pr-2"></i>Iniciar Sesion</h5>
+														<div class="ingresar">
+																<div class=" form-email input-group">
+																	<input type="email"
+																		v-model="user.email"
+																		name="email"
+																		class="form-control"
+																		:placeholder="'Ingrese su email'"
+																	>
+																</div>
+																<div class=" form-password input-group">
+																	<input type="password"
+																		v-model="user.password"
+																		name="password"
+																		class="form-control"
+																		:placeholder="'Ingrese su contraseña'"
+																	>
+																</div>
+
+																<div class="d-flex justify-content-end">
+																	<input type="button"
+																		value="Ingresar"
+																		v-on:click="loginM()"
+																		class="site-btn-login float-right">
+																</div>
+																<div class="input-group remember justify-content-start text-left">
+																		<a href="#" class="link-login">Recuperar contraseña</a>
+																</div>
+																<div class="justify-content-start text-left">
+																		<a @click="registrarse" class="link-login">Registrarse</a>
+																</div>
 														</div>
-														<div class="justify-content-start text-left">
-																<a href="#" class="link-login">Registrarse</a>
-														</div>
-													</form>
-												</div>
-											</div> 
-										</li>
-									</ul>
+													</div> 
+												</li>
+											</ul>
+										</div>
 								</div>
-						</div>
+							</span>
+							
 					</div>
 				</div>
 			</div>
 			<nav class="main-navbar text-center">
-				<div class="container scroll-barna overflow-auto">
+				<div class="container-fluid d-flex justify-content-center">
 					<!-- menu -->
-					<ul class="main-menu d-flex justify-content-center align-items-center">
+					<ul class="container scroll-barna overflow-auto main-menu d-flex align-items-center w-auto">
 						<li><a href="#">Hombre</a></li>
 						<li><a href="#">Mujer</a></li>
 						<li><a href="#">Niño</a></li>
@@ -460,10 +478,13 @@
 			</nav>
 		</div>
     	<div id="content-barna" class="h-171"></div>
+		 <loading v-if="isLoading"></loading>
+
     </div>
 </template>
 
 <script>
+    import loading from "../../components/layouts/loading.vue";
     export default {
         name:'headerComponent',
         props: {
@@ -503,6 +524,7 @@
 			}
 		},
 		components: {
+			loading
 		},
 		data() {
 			return {
@@ -510,6 +532,7 @@
 					name: '',
 					last_name: ''
 				},
+				collapse: false,
 				search: this.searchp,
 				rubro: this.rubrop,
 				showLogin: false,
@@ -521,10 +544,15 @@
 				showBag: false,
 				showLoginOut: false,
 				showCartOut: false,
-				showBagOut: false
+				showBagOut: false,
+				isLoading: false,
 			}
 		},
 		methods: {
+			registrarse(){
+				this.isLoading = true
+				location.replace(this.url+'/register')
+			},
 			seleted(event){
 				this.rubro = String(event.target.innerText)
 			},
@@ -605,6 +633,28 @@
 				 this.$emit('designM',cent)
 			},
 			loginM (){
+				this.isLoading = true
+                var dataform = new FormData();
+                dataform.append('password', this.user.password);
+                dataform.append('email',this.user.email);
+                var urli = this.url+'/login/post';
+                axios.post(urli,dataform).then(response => 
+                {
+                    if(response.data.res){
+                        console.log(response.data.msg)
+                        this.isLoading= false
+                        //$('#modalRegister').modal('show');
+
+                    } else {
+						console.log(response.data.msg)
+                        this.isLoading= false
+                        
+                    }
+                }).catch( error =>
+                {
+                    console.log('Ha ocurrido un error inesperado')
+                    this.isLoading= false
+                });
 				this.$emit('loginM',this.user)
 			},
 			searchM () {
@@ -632,29 +682,57 @@
 
 			var logo = $('#logo-barna')
 			var content = $('#content-barna')
-
+				$(window).resize(event=>{
+								event.preventDefault()
+								if(document.body.clientWidth<=768){
+									this.collapse =true
+								} else {
+									this.collapse =false
+								}
+				});
 			
 			document.addEventListener("scroll", function(event){
 				event.preventDefault()
-				if(document.documentElement.scrollTop > 100) {
+				 var menu = $('.main-menu li a')
+				if(document.documentElement.scrollTop > 10) {
 					$(content).css('transition','all 0.5s ease 0.4s');
 					$(logo).css('transition','all 0.5s ease 0.4s');
 					$(logo).css('width',50)
 					$(logo).css('height',65)
 					$(content).css('height',81)
+					if(menu.length) {
+						for(var i=0; i< menu.length;i++){
+							$(menu[i]).css('transition','all 0.5s ease 0.4s');
+							$(menu[i]).css('padding','8px 0')
+						}
+					}
 
 				} else {
-					$(content).css('transition','all 0.5s ease 0.4s');
+					$(content).css('transition','all 0.5s ease 0.1s');
 					$(logo).css('transition','all 0.5s ease 0.1s');
 					$(logo).css('width',75)
 					$(logo).css('height',105)
-					$(content).css('height',171)
+
+					if(menu.length) {
+						for(var i=0; i< menu.length;i++){
+							$(menu[i]).css('transition','all 0.5s ease 0.1s');
+							$(menu[i]).css('padding','17px 0')
+						}
+					}
+					
+					$(content).css('height',170)
 
 				}
 			});
 			
 		 },
         created() {
+			if(document.body.clientWidth<=768){
+				this.collapse =true
+			} else {
+				this.collapse =false
+
+			}
 			this.isDesign = this.isdesignp
 			this.isAuth = this.isauthp
 			this.numCart = this.numcartp
