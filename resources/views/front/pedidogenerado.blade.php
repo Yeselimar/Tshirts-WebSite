@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 	<div id="pedidogenerado">
-		<pedidogenerado-component><pedidogenerado-component>
+		<pedidogenerado-component url="{{url('/')}}"><pedidogenerado-component>
 	</div>
 @endsection
 

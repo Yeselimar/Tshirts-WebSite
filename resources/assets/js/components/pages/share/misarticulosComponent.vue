@@ -9,6 +9,7 @@
 
 <template>
     <div>
+        {{rubrox}}
             <template v-if="busqueda.length!=0">
                 <div class="row">
                     <template v-for="(articulo,i) in busqueda">
@@ -21,9 +22,8 @@
             </template>
             <template v-else>
                 <div class="col-lg-l2">
-                    <span class="clearfix"></span>
-                    <div class="row">
-                        <div class="center-block col-md-3" style="background-color: #ef7a6e;color:#FFF;border-radius: 50px; padding-left: 10px; padding-right: 10px;text-align: center">
+                     <div style="min-height: 50vh; position: relative;">
+                        <div class="center-element no-found-search" >
                             <strong>No hay resultados</strong>
                         </div>
                     </div>
@@ -164,9 +164,13 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if(!this.titulo || (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0))
+                        if(this.titulo.trim()=="" )
                         {
                             auxiliar.push(articulo);
+                        }
+                        //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
+                        //this.buscarcategoria(articulo,this.rubrox)
+                        auxiliar.push(articulo);
                         }
                     },this);
                 }
@@ -189,6 +193,29 @@
                 this.rubrox = this.rubro
                 console.log("aqui va rubro")
                 console.log(this.rubrox);
+            }
+        },
+        methods:
+        {
+            buscarcategoria(articulo, rubro)
+            {
+                var encontrado = false;
+                var i = 0;
+                for (var i = 0; i < articulo.rubros.length; i++)
+                {
+                    if(articulo.rubros[i].toLowerCase()==rubro.toLowerCase())
+                    {
+                        encontrado = true;
+                    }
+                    
+                }
+                if(encontrado)
+                {
+                    return true;
+                    //console.log(articulo.id);
+                }
+                return false;
+                //console.log(articulo.rubros.length);
             }
         }
     }
