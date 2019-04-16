@@ -391,7 +391,7 @@ var render = function() {
     _c("section", { staticClass: "footer-section" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
+          _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
             _c("div", { staticClass: "footer-widget about-widget" }, [
               _c("h2", [_vm._v("Métodos de Pago:")]),
               _vm._v(" "),
@@ -453,7 +453,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
+    return _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
       _c("div", { staticClass: "footer-widget about-widget" }, [
         _c("h2", [_vm._v("Atención al cliente:")]),
         _vm._v(" "),
@@ -479,7 +479,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-sm-4" }, [
+    return _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
       _c("div", { staticClass: "footer-widget about-widget" }, [
         _c("h2", [_vm._v("Empresa:")]),
         _vm._v(" "),

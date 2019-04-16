@@ -2619,6 +2619,7 @@ ol {
 	.font-xs-12{
 		font-size: 12px !important
 	}
+	
 
 }
 @media (max-width: 768px) {
@@ -2688,7 +2689,40 @@ ol {
 	.bagform, .logiform, .cartform {
 		position: static !important
 	}
+	.filter-widget {
+		margin-bottom: 40px!important;
+	}
+	.filter-widget .fw-title{
+		margin-bottom: 20px!important;
+	}
+	.spad {
+	    padding-top: 30px !important;
+	    padding-bottom: 0px !important;
+	}
+	.footer-widget
+	{
+		margin-bottom: 15px !important;
+		padding-bottom: 10px !important;
+		text-align: center !important;
+
+	}
+	.footer-widget ul
+	{
+		float: none !important;
+	}
+	.footer-section {
+		padding-top: 15px !important;
+
+	}
 }
+@media (min-width: 581px)
+{
+	.footer-widget
+	{
+		text-align: left !important
+	}
+}
+
 .border-b-barna {
 	border-bottom: 1px solid #ef7a6e
 

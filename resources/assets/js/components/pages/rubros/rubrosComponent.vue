@@ -1,7 +1,25 @@
+<style lang="scss" scope>
+    #texto-rosa-barna
+    {
+        color: #ef7a6e;
+    }
+    #lista-activa a:after
+    {
+        position: absolute;
+        content: "";
+        width: 9px;
+        height: 9px;
+        left: 0;
+        top: 13px;
+        border: 1px solid #ef7a6e;
+        border-radius: 50%;
+        background: #ef7a6e;
+    }
+</style>
 <template>
 	<div>
 		<!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
+            <header-component :isdesignp="isDesign" :isRouteRubro="true" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
         <!--end header -->
         
 		<!-- Rubros section -->
@@ -10,14 +28,20 @@
 				<div class="row">
 					<div class="col-lg-3 order-2 order-lg-1">
 						<div class="filter-widget">
-							<h2 class="fw-title">Rubros {{rubro}}</h2>
+							<h2 class="fw-title">Rubros </h2>
 							<ul class="category-menu">
-								<li><a href="#">Hombre</a></li>
-								<li><a href="#">Mujer</a></li>
-								<li><a href="#">Niño</a></li>
-								<li><a href="#">Niña</a></li>
-								<li><a href="#">Tazas</a></li>
-								<li><a href="#">Buzo</a></li>
+                                <template v-for="rubro in tipos_rubros">
+                                    <template v-if="rubro.seleccionable">
+                                        <li id="lista-activa">
+                                            <a id="texto-rosa-barna" @click.prevent="cambialo(rubro)"><strong>{{rubro.nombre}}</strong></a>
+                                        </li>
+                                    </template>
+                                    <template v-else>
+                                        <li>
+                                            <a @click.prevent="cambialo(rubro)">{{rubro.nombre}}</a>
+                                        </li>
+                                    </template>
+                                </template>
 							</ul>
 						</div>
 					</div>
@@ -63,7 +87,45 @@
                 isAuth: false,
                 search: '',
                 rubro: '',
-                titulo: ''
+                titulo: '',
+                tipos_rubros:
+                [
+                    {
+                        "id": 1,
+                        "nombre": 'Todas las categorías',
+                        "seleccionable": true,
+                    },
+                    {
+                        "id": 1,
+                        "nombre": 'Hombre',
+                        "seleccionable": false,
+                    },
+                    {
+                        "id": 2,
+                        "nombre": 'Mujer',
+                        "seleccionable": false,
+                    },
+                    {
+                        "id": 3,
+                        "nombre": 'Niño',
+                        "seleccionable": false,
+                    },
+                    {
+                        "id": 4,
+                        "nombre": 'Niña',
+                        "seleccionable": false,
+                    },
+                    {
+                        "id": 5,
+                        "nombre": 'Taza',
+                        "seleccionable": false,
+                    },
+                    {
+                        "id": 6,
+                        "nombre": 'Buzo',
+                        "seleccionable": false,
+                    }
+                ]
 			}
 		},
         mounted()
@@ -84,14 +146,72 @@
             {
             	this.titulo=e.search;
                 this.rubro=e.rubro;
-                console.log(e.rubro);
             },
             searchK(e)
             {
             	this.titulo=e.search;
                 this.rubro=e.rubro;
-                console.log(e.rubro);
+            },
+            cambialo(rubro)
+            {
+                if(rubro.nombre.toLowerCase()=="Todas las categorías".toLowerCase())
+                {
+                    this.rubro = '';//reasigno para actualizar el componente header
+                }
+                else
+                {
+                    this.rubro = rubro.nombre;//reasigno para actualizar el componente header
+                }
+                /*esto es codigo repetido*/
+                for (var i in this.tipos_rubros)
+                {
+                    this.tipos_rubros[i].seleccionable = false;
+                }
+                if(this.rubro.toLowerCase()==''.toLowerCase())
+                {
+                    this.tipos_rubros[0].seleccionable = true;
+                }
+                else
+                {
+                    for (var i in this.tipos_rubros)
+                    {
+                        if (this.tipos_rubros[i].nombre.toLowerCase() == this.rubro.toLowerCase())
+                        {
+                            this.tipos_rubros[i].seleccionable = true;
+                            break; 
+                        }
+                    }
+                }
+                /*esto es codigo repetido*/
             }
 		},
+        watch:
+        {
+            rubro: function()
+            {
+                /*esto es codigo repetido*/
+                for (var i in this.tipos_rubros)
+                {
+                    this.tipos_rubros[i].seleccionable = false;
+                }
+                if(this.rubro.toLowerCase()==''.toLowerCase())
+                {
+                    this.tipos_rubros[0].seleccionable = true;
+                }
+                else
+                {
+                    for (var i in this.tipos_rubros)
+                    {
+                        if (this.tipos_rubros[i].nombre.toLowerCase() == this.rubro.toLowerCase())
+                        {
+                            this.tipos_rubros[i].seleccionable = true;
+                            break; 
+                        }
+                    }
+                }
+                /*esto es codigo repetido*/
+            },
+
+        }
     }
 </script>

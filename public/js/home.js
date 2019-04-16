@@ -1350,6 +1350,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: false,
       value: ""
+    },
+    isRouteRubro: {
+      type: Boolean,
+      required: false,
+      value: false
     }
   },
   components: {
@@ -1379,6 +1384,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    toHome: function toHome() {
+      location.replace(this.url);
+    },
     initComponent: function initComponent() {
       var _this = this;
 
@@ -1417,6 +1425,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: "success",
             title: response.data.msg
           });
+          location.replace(_this2.url);
         } else {
           _this2.isLoading = false;
           _this2.$swal.mixin({
@@ -1449,10 +1458,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     seleted: function seleted(event) {
       this.rubro = String(event.target.innerText);
       $("#rubrosCat").dropdown("toggle");
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     seletedAll: function seletedAll() {
       this.rubro = "";
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
       $("#rubrosCat").dropdown("toggle");
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     login: function login() {
       console.log("esta entrando");
@@ -1590,14 +1613,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchM", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     searchK: function searchK() {
       var e = {
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchK", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchK", e);
+      }
     },
     searchRubro: function searchRubro() {
       var value = $("#myInput").val();
@@ -1649,7 +1676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
 
-        $(content).css("height", 170);
+        $(content).css("min-height", 170);
       }
     });
   },
@@ -1840,7 +1867,7 @@ var render = function() {
                     _c("div", { staticClass: "flex-basis-logo" }, [
                       _c(
                         "a",
-                        { staticClass: "site-logo", attrs: { href: "#" } },
+                        { staticClass: "site-logo", on: { click: _vm.toHome } },
                         [
                           _c("img", {
                             attrs: {

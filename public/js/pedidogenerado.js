@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 137);
+/******/ 	return __webpack_require__(__webpack_require__.s = 139);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -385,7 +385,7 @@ var render = function() {
                     _c("div", { staticClass: "flex-basis-logo" }, [
                       _c(
                         "a",
-                        { staticClass: "site-logo", attrs: { href: "#" } },
+                        { staticClass: "site-logo", on: { click: _vm.toHome } },
                         [
                           _c("img", {
                             attrs: {
@@ -1881,21 +1881,21 @@ if (false) {
 
 /***/ }),
 
-/***/ 137:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(138);
+module.exports = __webpack_require__(140);
 
 
 /***/ }),
 
-/***/ 138:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(139)
+var __vue_script__ = __webpack_require__(141)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -1937,12 +1937,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 139:
+/***/ 141:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_pedidogenerado_pedidogeneradoComponent_vue__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_pedidogenerado_pedidogeneradoComponent_vue__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_pedidogenerado_pedidogeneradoComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_pedidogenerado_pedidogeneradoComponent_vue__);
 
 
@@ -1958,19 +1958,19 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 140:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(141)
+  __webpack_require__(143)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(143)
+var __vue_script__ = __webpack_require__(145)
 /* template */
-var __vue_template__ = __webpack_require__(144)
+var __vue_template__ = __webpack_require__(146)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2010,13 +2010,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 141:
+/***/ 143:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(142);
+var content = __webpack_require__(144);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2037,7 +2037,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 142:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -2052,7 +2052,7 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 
 /***/ }),
 
-/***/ 143:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2205,7 +2205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 144:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2428,7 +2428,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "page-top-info" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h2", [_vm._v(_vm._s(_vm.titulo))])
+        _c("p", { staticClass: "h2" }, [_vm._v(_vm._s(_vm.titulo))])
       ])
     ])
   ])
@@ -3546,6 +3546,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: false,
       value: ""
+    },
+    isRouteRubro: {
+      type: Boolean,
+      required: false,
+      value: false
     }
   },
   components: {
@@ -3575,6 +3580,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    toHome: function toHome() {
+      location.replace(this.url);
+    },
     initComponent: function initComponent() {
       var _this = this;
 
@@ -3613,6 +3621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: "success",
             title: response.data.msg
           });
+          location.replace(_this2.url);
         } else {
           _this2.isLoading = false;
           _this2.$swal.mixin({
@@ -3645,10 +3654,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     seleted: function seleted(event) {
       this.rubro = String(event.target.innerText);
       $("#rubrosCat").dropdown("toggle");
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     seletedAll: function seletedAll() {
       this.rubro = "";
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
       $("#rubrosCat").dropdown("toggle");
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     login: function login() {
       console.log("esta entrando");
@@ -3786,14 +3809,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchM", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     searchK: function searchK() {
       var e = {
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchK", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchK", e);
+      }
     },
     searchRubro: function searchRubro() {
       var value = $("#myInput").val();
@@ -3845,7 +3872,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
 
-        $(content).css("height", 170);
+        $(content).css("min-height", 170);
       }
     });
   },

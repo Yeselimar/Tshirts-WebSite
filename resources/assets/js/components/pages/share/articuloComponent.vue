@@ -1,14 +1,18 @@
 <template>
 
     <div class="col-lg-4 col-sm-6">
-    	<div class="product-item">
+    	<div class="product-item border-items">
     		<div class="pi-pic">
                 <!---->
     			<!--<div class="tag-sale">ON SALE</div>---><!--Fue comentado por si llegara a utilizar-->
     			<img :src="url+image" alt="">
     			<div class="pi-links">
-                    <a  v-if="isDesign" class="add-card"><i class="fa fa-shopping-bag"></i><span>Agregar a la Cesta</span></a>
-                    <a  v-else class="add-card"><i class="fa fa-shopping-cart"></i><span>Agregar al carrito</span></a>
+                    <a  v-if="isDesign" class="add-card add-bag">
+                        <i class="fa fa-magic"></i><span>Diseñar</span>
+                    </a>
+                    <a  v-else class="add-card">
+                        <i class="fa fa-eye"></i><span>Ver Detalle</span>
+                    </a>
     			</div>
     		</div>
     		<div class="pi-text">

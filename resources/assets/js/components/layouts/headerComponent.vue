@@ -809,7 +809,14 @@ export default {
     },
     seletedAll() {
       this.rubro = "";
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
       $("#rubrosCat").dropdown("toggle");
+      if(this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     login() {
       console.log("esta entrando");
@@ -1012,7 +1019,7 @@ export default {
           }
         }
 
-        $(content).css("height", 170);
+        $(content).css("min-height", 170);
       }
     });
   },

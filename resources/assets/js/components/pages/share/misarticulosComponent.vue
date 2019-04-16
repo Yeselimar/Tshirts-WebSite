@@ -9,7 +9,7 @@
 
 <template>
     <div>
-        {{rubrox}}
+        <!--{{rubrox}}-->
             <template v-if="busqueda.length!=0">
                 <div class="row">
                     <template v-for="(articulo,i) in busqueda">
@@ -171,7 +171,6 @@
                             {
                                 if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                                 {
-                                    console.log("todas las categorias y con algo en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
@@ -180,18 +179,15 @@
                                 //selecciona una categoria y con algo en el buscador
                                 if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                                 {
-                                    console.log("selecciona una categoria y con algo en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
-
                         }
                         else
                         {
                             if(this.rubrox.trim()=='')
                             {
                                 //todas las categorias y sin nada en el buscador
-                                console.log("todas las categorias y sin nada en el buscador");
                                 auxiliar.push(articulo);
                             }
                             else
@@ -199,15 +195,10 @@
                                 //selecciona una categoria y sin nada en el buscador
                                 if(this.buscarcategoria(articulo,this.rubrox) )
                                 {
-                                    console.log("selecciona una categoria y sin nada en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
-                            
                         }
-                        //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
-                        //this.buscarcategoria(articulo,this.rubrox)
-                        
                     },this);
                 }
                 //this.totalRowsMovil = auxiliar.length;
@@ -227,8 +218,6 @@
             rubro: function()
             {
                 this.rubrox = this.rubro
-                //console.log("aqui va rubro")
-                //console.log(this.rubrox);
             }
         },
         methods:
@@ -247,10 +236,8 @@
                 if(encontrado)
                 {
                     return true;
-                    //console.log(articulo.id);
                 }
                 return false;
-                //console.log(articulo.rubros.length);
             }
         }
     }

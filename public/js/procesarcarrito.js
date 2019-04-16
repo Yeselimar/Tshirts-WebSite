@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 120);
+/******/ 	return __webpack_require__(__webpack_require__.s = 122);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -346,21 +346,21 @@ if (false) {
 
 /***/ }),
 
-/***/ 120:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(121);
+module.exports = __webpack_require__(123);
 
 
 /***/ }),
 
-/***/ 121:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(122)
+var __vue_script__ = __webpack_require__(124)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -402,12 +402,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 122:
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_procesarCarrito_procesarcarritoComponent_vue__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_procesarCarrito_procesarcarritoComponent_vue__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_procesarCarrito_procesarcarritoComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_procesarCarrito_procesarcarritoComponent_vue__);
 
 
@@ -423,19 +423,19 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 123:
+/***/ 125:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(124)
+  __webpack_require__(126)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(126)
+var __vue_script__ = __webpack_require__(128)
 /* template */
-var __vue_template__ = __webpack_require__(133)
+var __vue_template__ = __webpack_require__(135)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -475,13 +475,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 124:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(125);
+var content = __webpack_require__(127);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -502,7 +502,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 125:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -517,7 +517,7 @@ exports.push([module.i, "\n.checkout-form h4 {\n  color: #3b3b3b !important;\n  
 
 /***/ }),
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -526,9 +526,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_procesarcarrito_formularioComponent_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_procesarcarrito_formularioComponent_vue__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_procesarcarrito_formularioComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_procesarcarrito_formularioComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_detallescarritoComponent_vue__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_detallescarritoComponent_vue__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_detallescarritoComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_detallescarritoComponent_vue__);
 //
 //
@@ -611,15 +611,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 127:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(128)
+var __vue_script__ = __webpack_require__(130)
 /* template */
-var __vue_template__ = __webpack_require__(129)
+var __vue_template__ = __webpack_require__(131)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -656,339 +656,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-
-/***/ }),
-
-/***/ 128:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'formularioComponent',
-    mounted: function mounted() {}
-});
-
-/***/ }),
-
-/***/ 129:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("form", { staticClass: "checkout-form" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("h4", [_vm._v("Dirección de Envío")]),
-            _vm._v(" "),
-            _c("br")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row address-inputs" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Dirección Línea 1")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Dirección Línea 2")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Ciudad")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Código Postal")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Teléfono")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("h4", [_vm._v("Dirección de Facturación")]),
-            _vm._v(" "),
-            _c("br")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row address-inputs" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Dirección Línea 1")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Dirección Línea 2")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Ciudad")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Código Postal")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Dirección completa")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("h4", [_vm._v("Información de Pago")]),
-            _vm._v(" "),
-            _c("br")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row address-inputs" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Titular")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Tarjeta")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "cf-radio-btns address-rb" }, [
-              _c("div", { staticClass: "cfr-item" }, [
-                _c("input", {
-                  attrs: { type: "radio", name: "pm", id: "one" }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "one" } }, [_vm._v("Visa")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cfr-item" }, [
-                _c("input", {
-                  attrs: { type: "radio", name: "pm", id: "two" }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "two" } }, [_vm._v("Master Card")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cfr-item" }, [
-                _c("input", {
-                  attrs: { type: "radio", name: "pm", id: "three" }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "three" } }, [
-                  _vm._v("America Express")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Nro de tarjeta ")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Fecha de Expiración")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("label", { staticClass: "control-label" }, [
-              _c("strong", [_vm._v("Código de Seguridad")])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "text" } })
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f8cd008a", module.exports)
-  }
-}
 
 /***/ }),
 
@@ -1031,7 +698,7 @@ var render = function() {
                     _c("div", { staticClass: "flex-basis-logo" }, [
                       _c(
                         "a",
-                        { staticClass: "site-logo", attrs: { href: "#" } },
+                        { staticClass: "site-logo", on: { click: _vm.toHome } },
                         [
                           _c("img", {
                             attrs: {
@@ -2528,14 +2195,347 @@ if (false) {
 /***/ }),
 
 /***/ 130:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'formularioComponent',
+    mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ 131:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("form", { staticClass: "checkout-form" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h4", [_vm._v("Dirección de Envío")]),
+            _vm._v(" "),
+            _c("br")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row address-inputs" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Dirección Línea 1")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Dirección Línea 2")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Ciudad")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Código Postal")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Teléfono")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h4", [_vm._v("Dirección de Facturación")]),
+            _vm._v(" "),
+            _c("br")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row address-inputs" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Dirección Línea 1")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Dirección Línea 2")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Ciudad")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Código Postal")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Dirección completa")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h4", [_vm._v("Información de Pago")]),
+            _vm._v(" "),
+            _c("br")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row address-inputs" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Titular")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Tarjeta")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "cf-radio-btns address-rb" }, [
+              _c("div", { staticClass: "cfr-item" }, [
+                _c("input", {
+                  attrs: { type: "radio", name: "pm", id: "one" }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Visa")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "cfr-item" }, [
+                _c("input", {
+                  attrs: { type: "radio", name: "pm", id: "two" }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "two" } }, [_vm._v("Master Card")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "cfr-item" }, [
+                _c("input", {
+                  attrs: { type: "radio", name: "pm", id: "three" }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "three" } }, [
+                  _vm._v("America Express")
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Nro de tarjeta ")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Fecha de Expiración")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("label", { staticClass: "control-label" }, [
+              _c("strong", [_vm._v("Código de Seguridad")])
+            ]),
+            _vm._v(" "),
+            _c("input", { attrs: { type: "text" } })
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f8cd008a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(131)
+var __vue_script__ = __webpack_require__(133)
 /* template */
-var __vue_template__ = __webpack_require__(132)
+var __vue_template__ = __webpack_require__(134)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2575,7 +2575,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 131:
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2650,7 +2650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 132:
+/***/ 134:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2728,7 +2728,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 133:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2877,7 +2877,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "page-top-info" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h2", [_vm._v(_vm._s(_vm.titulo))])
+        _c("p", { staticClass: "h2" }, [_vm._v(_vm._s(_vm.titulo))])
       ])
     ])
   ])
@@ -3995,6 +3995,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       required: false,
       value: ""
+    },
+    isRouteRubro: {
+      type: Boolean,
+      required: false,
+      value: false
     }
   },
   components: {
@@ -4024,6 +4029,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    toHome: function toHome() {
+      location.replace(this.url);
+    },
     initComponent: function initComponent() {
       var _this = this;
 
@@ -4062,6 +4070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: "success",
             title: response.data.msg
           });
+          location.replace(_this2.url);
         } else {
           _this2.isLoading = false;
           _this2.$swal.mixin({
@@ -4094,10 +4103,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     seleted: function seleted(event) {
       this.rubro = String(event.target.innerText);
       $("#rubrosCat").dropdown("toggle");
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     seletedAll: function seletedAll() {
       this.rubro = "";
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
       $("#rubrosCat").dropdown("toggle");
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     login: function login() {
       console.log("esta entrando");
@@ -4235,14 +4258,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchM", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     searchK: function searchK() {
       var e = {
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchK", e);
+      if (this.isRouteRubro) {
+        this.$emit("searchK", e);
+      }
     },
     searchRubro: function searchRubro() {
       var value = $("#myInput").val();
@@ -4294,7 +4321,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         }
 
-        $(content).css("height", 170);
+        $(content).css("min-height", 170);
       }
     });
   },
