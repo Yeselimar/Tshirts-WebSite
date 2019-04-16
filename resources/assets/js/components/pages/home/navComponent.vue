@@ -14,10 +14,10 @@
               <h2>{{item.titulo}}</h2>
               <p>{{item.descripcion}}</p>
               <a @click.stop.prevent="verDetalle(item.id)" class="site-btn sb-line cursor">
-                <span v-if="item.isDesign">
+                <span class="font-xs-12" v-if="item.isDesign">
                   <i class="fa fa-magic mr-2"></i>DISEÑAR
                 </span>
-                <span v-else>
+                <span class="font-xs-12" v-else>
                   <i class="fa fa-eye mr-2"></i>VER DETALLE
                 </span>
               </a>
