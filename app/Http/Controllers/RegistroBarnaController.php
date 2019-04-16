@@ -11,6 +11,7 @@ class RegistroBarnaController extends Controller
     //
     public function registerPost(Request $request)
     {
+        //dd($request);
         $email_existe = User::where('email','=',$request->email)->first();
         if(empty($email_existe))
         {  

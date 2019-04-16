@@ -77,7 +77,7 @@
                     {
                         "id": 1,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 35.00,
+                        "precio": 1.00,
                         "image":'/img/product/1.jpg',
                         "isDesign": true,
                         "rubros": ["hombre","mujer","niño"],
@@ -85,7 +85,7 @@
                     {
                         "id": 2,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 30.50,
+                        "precio": 2.00,
                         "image":'/img/product/2.jpg',
                         "isDesign": true,
                         "rubros": ["hombre","niño"],
@@ -93,7 +93,7 @@
                     {
                         "id": 3,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 60.50,
+                        "precio": 3.00,
                         "image":'/img/product/3.jpg',
                         "isDesign": true,
                         "rubros": ["hombre"],
@@ -101,7 +101,7 @@
                     {
                         "id": 4,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 66.568,
+                        "precio": 4.00,
                         "image":'/img/product/4.jpg',
                         "isDesign": true,
                         "rubros": ["mujer"],
@@ -109,7 +109,7 @@
                     {
                         "id": 5,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 10.50,
+                        "precio": 5.00,
                         "image":'/img/product/5.jpg',
                         "isDesign": true,
                         "rubros": ["mujer","niña"],
@@ -117,7 +117,7 @@
                     {
                         "id": 6,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 60.50,
+                        "precio": 6.00,
                         "image":'/img/product/6.jpg',
                         "isDesign": true,
                         "rubros": ["niño"],
@@ -125,7 +125,7 @@
                     {
                         "id": 7,
                         "nombre": 'Black and White Stripes',
-                        "precio": 20.50,
+                        "precio": 7.00,
                         "image":'/img/product/7.jpg',
                         "isDesign": true,
                         "rubros": ["niño"],
@@ -133,7 +133,7 @@
                     {
                         "id": 8,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 60.50,
+                        "precio": 8.00,
                         "image":'/img/product/8.jpg',
                         "isDesign": true,
                         "rubros": ["niña"],
@@ -141,7 +141,7 @@
                     {
                         "id": 9,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 30.50,
+                        "precio": 9.00,
                         "image":'/img/product/9.jpg',
                         "isDesign": true,
                         "rubros": ["hombre"],
@@ -164,16 +164,46 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if( this.titulo.trim()!="" || (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                        if( this.titulo.trim()!="" )
                         {
-                            auxiliar.push(articulo);
+                            //todas las categorias y con algo en el buscador
+                            if(this.rubrox.trim()=='')
+                            {
+                                if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                {
+                                    console.log("todas las categorias y con algo en el buscador");
+                                    auxiliar.push(articulo);
+                                }
+                            }
+                            else
+                            {
+                                //selecciona una categoria y con algo en el buscador
+                                if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                {
+                                    console.log("selecciona una categoria y con algo en el buscador");
+                                    auxiliar.push(articulo);
+                                }
+                            }
+
                         }
                         else
                         {
-                            if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) && this.buscarcategoria(articulo,this.rubrox) )
+                            if(this.rubrox.trim()=='')
                             {
+                                //todas las categorias y sin nada en el buscador
+                                console.log("todas las categorias y sin nada en el buscador");
                                 auxiliar.push(articulo);
                             }
+                            else
+                            {
+                                //selecciona una categoria y sin nada en el buscador
+                                if(this.buscarcategoria(articulo,this.rubrox) )
+                                {
+                                    console.log("selecciona una categoria y sin nada en el buscador");
+                                    auxiliar.push(articulo);
+                                }
+                            }
+                            
                         }
                         //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
                         //this.buscarcategoria(articulo,this.rubrox)
@@ -197,8 +227,8 @@
             rubro: function()
             {
                 this.rubrox = this.rubro
-                console.log("aqui va rubro")
-                console.log(this.rubrox);
+                //console.log("aqui va rubro")
+                //console.log(this.rubrox);
             }
         },
         methods:

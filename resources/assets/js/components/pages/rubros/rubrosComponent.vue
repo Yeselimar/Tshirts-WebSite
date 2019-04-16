@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-lg-3 order-2 order-lg-1">
 						<div class="filter-widget">
-							<h2 class="fw-title">Rubros</h2>
+							<h2 class="fw-title">Rubros {{rubro}}</h2>
 							<ul class="category-menu">
 								<li><a href="#">Hombre</a></li>
 								<li><a href="#">Mujer</a></li>
