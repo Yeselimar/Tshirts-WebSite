@@ -2365,31 +2365,6 @@ var staticRenderFns = [
         )
       ]
     )
-<<<<<<< HEAD
-=======
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      {
-        staticClass: "input-group-text input-group-search-barna",
-        attrs: {
-          "data-toggle": "dropdown",
-          "aria-expanded": "false",
-          id: "basic-addon1"
-        }
-      },
-      [
-        _c("i", {
-          staticClass: "fa fa-filter",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
->>>>>>> master
   },
   function() {
     var _vm = this
