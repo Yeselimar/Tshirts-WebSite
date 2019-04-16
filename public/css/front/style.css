@@ -2616,6 +2616,9 @@ ol {
 	.site-btn {
 		padding: 15px !important;
 	}
+	.font-xs-12{
+		font-size: 12px !important
+	}
 
 }
 @media (max-width: 768px) {
@@ -2686,7 +2689,26 @@ ol {
 		position: static !important
 	}
 }
+.border-b-barna {
+	border-bottom: 1px solid #ef7a6e
 
+}
+.bg-blue-barna {
+	background-color: #94c3d366;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.link-barna {
+	cursor: pointer;
+	padding-bottom: 0.2rem;
+	font-size: 18px !important;
+	color: black !important
+}
+.link-barna:hover {
+	color:black !important;
+	font-weight: bold !important;
+}
 .site-logo img {
 	width: 75px ;
 	height: 105px
@@ -2694,7 +2716,7 @@ ol {
 input:focus {
 	outline: none !important;
 	box-shadow: none !important;
-	color: #777777 !important;
+	/*color: #777777 !important;*/
 
 }
 .w-30 {

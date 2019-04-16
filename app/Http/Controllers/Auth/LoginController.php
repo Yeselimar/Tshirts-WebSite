@@ -38,54 +38,64 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
     }
     public function postlogin(Request $request)
     {
-        $request->validate([
-            'email' 			 	=> 'required|email',
-            'password'				 	=> 'required',
-        ]);
-        $user = User::where('email','=',$request->email)->first();
-        
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
-        {
-            //return redirect()->route('dalepaso');
-        }
-        else
-        {
-            if($user){
-                
-                $msg = "Disculpe, correo y/o contraseña incorrecta.";
-                return response()->json(['res' => 0,'msg'=>$msg]);
-
-            } else {
-                $msg = "Disculpe, el usuario no existe.";
-                return response()->json(['res' => 0,'msg'=>$msg]);
-
-            }
-            $msg = 'autentificación exitosa';
-            return response()->json(['res' => 1,'msg'=>$msg]);
+        if(Auth::check()){
             
-            /*
-            if($user)
+            $msg = 'Disculpe, su sesión actualmente se encuentra activa';
+            return response()->json(['res' => 0,'msg'=>$msg]);
+            
+        } else {
+            $request->validate([
+                'email' 			 	=> 'required|email',
+                'password'				 	=> 'required',
+            ]);
+            $user = User::where('email','=',$request->email)->first();
+            
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
             {
-                if($user->estatus==0)
-                {
-                    flash("Disculpe, el usuario está inactivo.","danger");
-                }
-                else
-                {
-                    flash("Disculpe, correo y/o contraseña incorrecta.","danger");
-                }
+                $user=Auth::user();
+                $msg = 'Hola '.$user->name.' '.$user->last_name.',<br/>Has iniciado sesión exitosamente';
+                return response()->json(['res' => 1,'msg'=>$msg,'user'=>$user]);
             }
             else
             {
-                flash("Disculpe, el usuario no existe.","danger");
-            }
-            return redirect()->back();   
-            */
-        }
+                if($user){
+                    
+                    $msg = "Disculpe, correo y/o contraseña incorrecta.";
+                    return response()->json(['res' => 0,'msg'=>$msg]);
+    
+                } else {
+                    $msg = "Disculpe, el usuario no existe.";
+                    return response()->json(['res' => 0,'msg'=>$msg]);
+    
+                }
 
+              
+            }
+        }
+        
+
+    }
+    public function logout()
+    {
+        if(!(Auth::check())){
+            
+            $msg = 'Actualmente no tiene sesión activa';
+            return response()->json(['res' => 0,'msg'=>$msg]);
+        }
+        Auth::logout();
+        $msg = "Su sesión fue cerrada exitosamente.";
+        return response()->json(['res' => 1,'msg'=>$msg]);
+    }
+    public function isLoged(){
+        if(Auth::check()){
+            $user=Auth::user();
+            return response()->json(['res' => 1,'user'=> $user]);
+        } else {
+            return response()->json(['res' => 0]);
+        }
     }
 }
