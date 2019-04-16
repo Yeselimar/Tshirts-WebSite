@@ -2653,7 +2653,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "mb-1 mt-3" }, [
+    return _c("p", { staticClass: "mb-1 mt-3 text-left" }, [
       _c("a", { staticClass: "mt-1 link-barna" }, [
         _c("i", { staticClass: "fa fa-cogs pl-1 pr-2" }),
         _vm._v("Perfil\n                            ")
@@ -2664,7 +2664,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "mt-1 mb-1" }, [
+    return _c("p", { staticClass: "text-left mt-1 mb-1" }, [
       _c("a", { staticClass: "link-barna" }, [
         _c("i", { staticClass: "fa fa-product-hunt pl-1 pr-2" }),
         _vm._v("Mis Pedidos")
@@ -2675,7 +2675,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
+    return _c("p", { staticClass: "text-left" }, [
       _c("a", { staticClass: "link-barna" }, [
         _c("i", { staticClass: "fa fa-cart-arrow-down pl-1 pr-2" }),
         _vm._v("Mis Compras\n                            ")

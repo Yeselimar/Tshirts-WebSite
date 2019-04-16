@@ -185,7 +185,7 @@ li.bagform .dropbag:after {
           <div class="d-flex align-items-center flex-wrap-mw justify-content-around">
             <div class="flex-basis-logo">
               <!-- logo -->
-              <a href="#" class="site-logo">
+              <a @click="toHome" class="site-logo">
                 <img :src="url+'/img/barna.jpg'" id="logo-barna" alt>
               </a>
             </div>
@@ -551,21 +551,21 @@ li.bagform .dropbag:after {
                             <i class="fa fa-user pr-2"></i><span v-if="isAuth">{{user.name}} {{user.last_name}}</span><span v-else> Iniciar Sesion </span>
                           </h5>
                           <div v-if="isAuth">
-                            <p class="mb-1 mt-3"><a class="mt-1 link-barna">
+                            <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
                               <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
                             </a></p>
-							<p class="mt-1 mb-1">
-                            <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
-							</p>
-							<p>
+                            <p class="text-left mt-1 mb-1">
+                                          <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
+                            </p>
+							              <p class="text-left">
                             <a class="link-barna">
                               <i class="fa fa-cart-arrow-down pl-1 pr-2"></i>Mis Compras
                             </a></p>
-							<p class="mt-1 text-right">
+							              <p class="mt-1 text-right">
                             <a class="link-barna text-right" @click.stop.prevent="logout">
                               <i class="fa fa-external-link pr-2"></i>Cerrar Sesión
                             </a>
-							</p>
+							              </p>
                           </div>
                           <div v-else class="ingresar">
                             <div class="form-email input-group">
@@ -683,6 +683,11 @@ export default {
       type: String,
       required: false,
       value: ""
+    },
+    isRouteRubro: {
+      type: Boolean,
+      required: false,
+      value: false
     }
   },
   components: {
@@ -711,6 +716,9 @@ export default {
     };
   },
   methods: {
+    toHome() {
+      location.replace(this.url);
+    },
     initComponent() {
       this.isLoading = true;
       var urli = this.url + "/login/auth";
@@ -752,6 +760,7 @@ export default {
                 type: "success",
                 title: response.data.msg
               });
+              location.replace(this.url);
           } else {
 			  this.isLoading = false;
 			  this.$swal
@@ -789,6 +798,14 @@ export default {
     seleted(event) {
       this.rubro = String(event.target.innerText);
       $("#rubrosCat").dropdown("toggle");
+      var e = {
+        search: this.search,
+        rubro: this.rubro
+      };
+      if(this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
+
     },
     seletedAll() {
       this.rubro = "";
@@ -929,14 +946,18 @@ export default {
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchM", e);
+      if(this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     searchK() {
       var e = {
         search: this.search,
         rubro: this.rubro
       };
-      this.$emit("searchK", e);
+      if(this.isRouteRubro){
+        this.$emit("searchK", e);
+      }
     },
     searchRubro() {
       var value = $("#myInput").val();
