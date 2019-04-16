@@ -15365,6 +15365,8 @@ var options = {
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_sweetalert2__["a" /* default */], options);
 
+// This is a global mixin, it is applied to every vue instance
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -14,6 +14,8 @@ const options = {
  
 Vue.use(VueSweetalert2, options)
 
+// This is a global mixin, it is applied to every vue instance
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

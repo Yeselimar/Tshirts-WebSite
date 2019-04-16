@@ -955,7 +955,9 @@ export default {
       };
       if(this.isRouteRubro) {
         this.$emit("searchM", e);
-      } else {}
+      } else {
+          location.replace(this.url+'/rubros');
+      }
     },
     searchK() {
       var e = {
