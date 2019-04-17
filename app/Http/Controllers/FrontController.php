@@ -36,9 +36,15 @@ class FrontController extends Controller
     {
         return view('front.pedidogenerado');
     }
+    
     public function disenarproducto()
     {
         return view('front.disenar');
+    }
+
+    public function comprarproducto()
+    {
+        return view('front.comprar');
     }
 
     public function register()

@@ -3364,9 +3364,107 @@ if (false) {
 }
 
 /***/ }),
-/* 14 */,
-/* 15 */,
-/* 16 */,
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(15)
+/* template */
+var __vue_template__ = __webpack_require__(16)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/layouts/migajasComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-41c87fd8", Component.options)
+  } else {
+    hotAPI.reload("data-v-41c87fd8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'migajasComponent',
+    props: {
+        titulo: {
+            type: String,
+            require: true
+        }
+    },
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "page-top-info" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("p", { staticClass: "h2" }, [_vm._v(_vm._s(_vm.titulo))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-41c87fd8", module.exports)
+  }
+}
+
+/***/ }),
 /* 17 */,
 /* 18 */,
 /* 19 */,
@@ -3628,8 +3726,10 @@ exports.push([module.i, "\n#texto-rosa-barna {\n  color: #ef7a6e;\n}\n#lista-act
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_share_misarticulosComponent_vue__);
 //
 //
 //
@@ -3691,6 +3791,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -3699,7 +3802,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'rubrosComponent',
     components: {
         headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a,
-        misarticulosComponent: __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default.a
+        migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a,
+        misarticulosComponent: __WEBPACK_IMPORTED_MODULE_2__components_pages_share_misarticulosComponent_vue___default.a
     },
     props: {
         url: {
@@ -3938,8 +4042,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -4090,6 +4192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         buscarcategoria: function buscarcategoria(articulo, rubro) {
+            //función para determinar si un artículo pertenece a una determinada categoría
             var encontrado = false;
             var i = 0;
             for (var i = 0; i < articulo.rubros.length; i++) {
@@ -4369,6 +4472,8 @@ var render = function() {
           searchK: _vm.searchK
         }
       }),
+      _vm._v(" "),
+      _c("migajas-component", { attrs: { titulo: "Rubros" } }),
       _vm._v(" "),
       _c("section", { staticClass: "category-section spad" }, [
         _c("div", { staticClass: "container" }, [

@@ -23,6 +23,8 @@ Route::get('/rubros','FrontController@rubros')->name('rubros');
 Route::get('/procesar-carrito','FrontController@procesarcarrito')->name('procesar.carrito');
 Route::get('/pedido-generado','FrontController@pedidogenerado')->name('pedido.generado');
 Route::get('/disenar','FrontController@disenarproducto')->name('disenar');
+Route::get('/comprar','FrontController@comprarproducto')->name('comprar');
+
 Route::get('/register','FrontController@register')->name('register');
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');

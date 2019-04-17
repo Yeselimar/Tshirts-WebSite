@@ -22,6 +22,8 @@
             <header-component :isdesignp="isDesign" :isRouteRubro="true" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
         <!--end header -->
         
+        <migajas-component titulo="Rubros"></migajas-component>
+
 		<!-- Rubros section -->
 		<section class="category-section spad">
 			<div class="container">
@@ -61,6 +63,7 @@
 
 <script>
 	import headerComponent from "../../../components/layouts/headerComponent.vue";
+    import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 	import misarticulosComponent from "../../../components/pages/share/misarticulosComponent.vue";
 
     export default {
@@ -68,6 +71,7 @@
         components:
         {
         	headerComponent,
+            migajasComponent,
 		    misarticulosComponent
 		},
         props:

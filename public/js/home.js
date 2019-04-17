@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 89);
+/******/ 	return __webpack_require__(__webpack_require__.s = 92);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3368,9 +3368,7 @@ if (false) {
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -6824,12 +6822,313 @@ if (false) {
 
 
 /***/ }),
+/* 19 */,
+/* 20 */,
 /* 21 */,
 /* 22 */,
 /* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(25)
+/* template */
+var __vue_template__ = __webpack_require__(26)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/share/prodDestacadosComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-67f69c59", Component.options)
+  } else {
+    hotAPI.reload("data-v-67f69c59", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_owl_carousel__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'prodDestacadosComponent',
+    props: {
+        url: {
+            type: String,
+            required: true
+        },
+        isdesignp: {
+            type: Boolean,
+            required: false,
+            value: false
+        }
+    },
+    data: function data() {
+        return {
+            productDesigns: [{
+                id: 0,
+                url: '/img/product/1.jpg',
+                titulo: 'Blusa jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 29.2,
+                isDesign: true
+            }, {
+                id: 1,
+                url: '/img/product/2.jpg',
+                titulo: 'Pantalon jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 12.2,
+                isDesign: true
+            }, {
+                id: 2,
+                url: '/img/product/3.jpg',
+                titulo: 'Franella jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 129.2,
+                isDesign: true
+            }, {
+                id: 3,
+                url: '/img/product/4.jpg',
+                titulo: 'Carniut jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 99.2,
+                isDesign: true
+            }, {
+                id: 4,
+                url: '/img/product/5.jpg',
+                titulo: 'Tienza jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 19.2,
+                isDesign: true
+            }],
+            products: [{
+                id: 0,
+                url: '/img/product/6.jpg',
+                titulo: 'Changes jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 2.2,
+                isDesign: false
+            }, {
+                id: 1,
+                url: '/img/product/7.jpg',
+                titulo: 'Pages jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 2.2,
+                isDesign: false
+            }, {
+                id: 2,
+                url: '/img/product/8.jpg',
+                titulo: 'Nenella jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 19.2,
+                isDesign: false
+            }, {
+                id: 3,
+                url: '/img/product/9.jpg',
+                titulo: 'Vitorius jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 9.2,
+                isDesign: false
+            }, {
+                id: 4,
+                url: '/img/product/10.jpg',
+                titulo: 'Lorem jackets',
+                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                precio: 129.2,
+                isDesign: false
+            }],
+            items: [],
+            isDesign: this.isdesignp
+
+        };
+    },
+    mounted: function mounted() {
+        this.llenarItems();
+    },
+
+    methods: {
+        verDetalle: function verDetalle(i) {
+            console.log(i);
+        },
+        llenarItems: function llenarItems() {
+            var _this = this;
+
+            this.items = [];
+            setTimeout(function (e) {
+
+                if (_this.isDesign) {
+                    _this.items = _this.productDesigns;
+                } else {
+                    _this.items = _this.products;
+                }
+                setTimeout(function (e) {
+                    $('.product-slider').owlCarousel({
+                        loop: true,
+                        nav: true,
+                        dots: false,
+                        margin: 30,
+                        autoplay: true,
+                        navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            480: {
+                                items: 2
+                            },
+                            768: {
+                                items: 3
+                            },
+                            1200: {
+                                items: 4
+                            }
+                        }
+                    });
+                }, 100);
+            }, 100);
+        }
+    },
+    watch: {
+        isdesignp: function isdesignp() {
+            this.isDesign = this.isdesignp;
+            this.llenarItems();
+        }
+    }
+});
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.items.length
+    ? _c("section", { staticClass: "top-letest-product-section bg-gray" }, [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "product-slider owl-carousel" },
+            _vm._l(_vm.items, function(item, i) {
+              return _c(
+                "div",
+                { key: i, staticClass: "product-item border-items" },
+                [
+                  _c("div", { staticClass: "pi-pic" }, [
+                    _c("img", { attrs: { src: _vm.url + item.url, alt: "" } }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "pi-links" }, [
+                      item.isDesign
+                        ? _c("a", { staticClass: "add-card add-bag" }, [
+                            _c("i", { staticClass: "fa fa-magic" }),
+                            _c("span", [_vm._v("Diseñar")])
+                          ])
+                        : _c("a", { staticClass: "add-card" }, [
+                            _c("i", { staticClass: "fa fa-eye" }),
+                            _c("span", [_vm._v("Ver Detalle")])
+                          ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "pi-text" }, [
+                    _c("h6", [_vm._v("$" + _vm._s(item.precio))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(item.titulo))])
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("h2", [_vm._v("Productos Destacados")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-67f69c59", module.exports)
+  }
+}
+
+/***/ }),
 /* 27 */,
 /* 28 */,
 /* 29 */,
@@ -6892,20 +7191,23 @@ if (false) {
 /* 86 */,
 /* 87 */,
 /* 88 */,
-/* 89 */
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(90);
+module.exports = __webpack_require__(93);
 
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(91)
+var __vue_script__ = __webpack_require__(94)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -6946,12 +7248,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_home_homeComponent_vue__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_home_homeComponent_vue__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_home_homeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_home_homeComponent_vue__);
 
 
@@ -6966,17 +7268,17 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(93)
+  __webpack_require__(96)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(95)
+var __vue_script__ = __webpack_require__(98)
 /* template */
 var __vue_template__ = __webpack_require__(105)
 /* template functional */
@@ -7017,13 +7319,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(94);
+var content = __webpack_require__(97);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7043,7 +7345,7 @@ if(false) {
 }
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -7057,7 +7359,7 @@ exports.push([module.i, "\n.filter {\n  font-family: arial;\n  padding: 6px 6px;
 
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7066,11 +7368,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_headerComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_headerComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_navComponent_vue__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_navComponent_vue__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_navComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_navComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_home_itemsComponent_vue__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_home_itemsComponent_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_home_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_home_itemsComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_share_prodDestacadosComponent_vue__);
 //
 //
@@ -7639,15 +7941,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(97)
+var __vue_script__ = __webpack_require__(100)
 /* template */
-var __vue_template__ = __webpack_require__(98)
+var __vue_template__ = __webpack_require__(101)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -7686,12 +7988,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_owl_carousel__);
 //
 //
@@ -7860,7 +8162,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -7969,15 +8271,15 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(100)
+var __vue_script__ = __webpack_require__(103)
 /* template */
-var __vue_template__ = __webpack_require__(101)
+var __vue_template__ = __webpack_require__(104)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -8016,7 +8318,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8069,7 +8371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -8178,308 +8480,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1f173e7b", module.exports)
-  }
-}
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(103)
-/* template */
-var __vue_template__ = __webpack_require__(104)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/pages/share/prodDestacadosComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-67f69c59", Component.options)
-  } else {
-    hotAPI.reload("data-v-67f69c59", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 103 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_owl_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_owl_carousel__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'prodDestacadosComponent',
-    props: {
-        url: {
-            type: String,
-            required: true
-        },
-        isdesignp: {
-            type: Boolean,
-            required: false,
-            value: false
-        }
-    },
-    data: function data() {
-        return {
-            productDesigns: [{
-                id: 0,
-                url: '/img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1,
-                url: '/img/product/2.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 2,
-                url: '/img/product/3.jpg',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 3,
-                url: '/img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 4,
-                url: '/img/product/5.jpg',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }],
-            products: [{
-                id: 0,
-                url: '/img/product/6.jpg',
-                titulo: 'Changes jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 2.2,
-                isDesign: false
-            }, {
-                id: 1,
-                url: '/img/product/7.jpg',
-                titulo: 'Pages jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 2.2,
-                isDesign: false
-            }, {
-                id: 2,
-                url: '/img/product/8.jpg',
-                titulo: 'Nenella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: false
-            }, {
-                id: 3,
-                url: '/img/product/9.jpg',
-                titulo: 'Vitorius jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 9.2,
-                isDesign: false
-            }, {
-                id: 4,
-                url: '/img/product/10.jpg',
-                titulo: 'Lorem jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }],
-            items: [],
-            isDesign: this.isdesignp
-
-        };
-    },
-    mounted: function mounted() {
-        this.llenarItems();
-    },
-
-    methods: {
-        verDetalle: function verDetalle(i) {
-            console.log(i);
-        },
-        llenarItems: function llenarItems() {
-            var _this = this;
-
-            this.items = [];
-            setTimeout(function (e) {
-
-                if (_this.isDesign) {
-                    _this.items = _this.productDesigns;
-                } else {
-                    _this.items = _this.products;
-                }
-                setTimeout(function (e) {
-                    $('.product-slider').owlCarousel({
-                        loop: true,
-                        nav: true,
-                        dots: false,
-                        margin: 30,
-                        autoplay: true,
-                        navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            480: {
-                                items: 2
-                            },
-                            768: {
-                                items: 3
-                            },
-                            1200: {
-                                items: 4
-                            }
-                        }
-                    });
-                }, 100);
-            }, 100);
-        }
-    },
-    watch: {
-        isdesignp: function isdesignp() {
-            this.isDesign = this.isdesignp;
-            this.llenarItems();
-        }
-    }
-});
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.items.length
-    ? _c("section", { staticClass: "top-letest-product-section bg-gray" }, [
-        _c("div", { staticClass: "container" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "product-slider owl-carousel" },
-            _vm._l(_vm.items, function(item, i) {
-              return _c(
-                "div",
-                { key: i, staticClass: "product-item border-items" },
-                [
-                  _c("div", { staticClass: "pi-pic" }, [
-                    _c("img", { attrs: { src: _vm.url + item.url, alt: "" } }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "pi-links" }, [
-                      item.isDesign
-                        ? _c("a", { staticClass: "add-card add-bag" }, [
-                            _c("i", { staticClass: "fa fa-magic" }),
-                            _c("span", [_vm._v("Diseñar")])
-                          ])
-                        : _c("a", { staticClass: "add-card" }, [
-                            _c("i", { staticClass: "fa fa-eye" }),
-                            _c("span", [_vm._v("Ver Detalle")])
-                          ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "pi-text" }, [
-                    _c("h6", [_vm._v("$" + _vm._s(item.precio))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(item.titulo))])
-                  ])
-                ]
-              )
-            }),
-            0
-          )
-        ])
-      ])
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "section-title" }, [
-      _c("h2", [_vm._v("Productos Destacados")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-67f69c59", module.exports)
   }
 }
 
