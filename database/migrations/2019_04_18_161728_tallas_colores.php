@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TallaColor extends Migration
+class TallasColores extends Migration
 {
     public function up()
     {
-        Schema::create('talla_color', function (Blueprint $table)
+        Schema::create('tallas_colores', function (Blueprint $table)
         {
             $table->increments('id');
 
@@ -24,6 +24,6 @@ class TallaColor extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('talla_color');
+        Schema::dropIfExists('tallas_colores');
     }
 }
