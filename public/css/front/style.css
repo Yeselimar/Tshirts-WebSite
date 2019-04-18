@@ -4,8 +4,95 @@
   Version: 1.0
  ------------------------------------
  ====================================*/
+/*----------------------------------------*/
+/* Personal CSS
+/*----------------------------------------*/
+.container-disenar-l2{
+	border: 3px dashed rgb(75, 75, 75);
+	margin-bottom: 1rem;
+	max-width: 400px;
+	max-height: 400px;
+	position:relative;
+	margin:3rem 15px 15px 15px;
+}
+.product-item .pd-text p {
+	font-size: 16px;
+	color: #111111;
+	margin-bottom: 0;
+}
+.container-disenar{
+	padding-top: 3rem;
+	padding-bottom: 1rem;
+	height: -webkit-fill-available;
+	overflow: auto;
+}
+.productos-disenar {
 
+	transition: all .35s ease-in-out;
+	padding: 10px;
+	margin: 10px 10px 10px 10px;
+	flex-basis: 29%;
+	box-shadow: 0px 2px 8px lightgrey;
+	max-width: 350px;
+	border: 1px solid lightgray;
+	display: flex;
+	flex-wrap: wrap;
 
+}
+.icon-color{
+	width: 15px !important;
+	height: 15px !important;
+}
+.panel-diseno-l1{
+
+	height: 400px;
+	margin: 15px;
+	border-radius: 5px;
+	flex-basis: 47%;
+	border: 1px solid #919191;
+	position: relative;
+	min-width: 290px;
+}
+.title-panel-diseno{
+	background: white;
+	border: 1px solid #919191;
+	z-index: 999;
+	border-radius: 3px;
+	position: absolute;
+	transform: translateY(-50%) translateX(-50%);
+	top: 2%;
+	left: 50%;
+	width:96%;
+	padding: 3px;
+
+}
+.panel-diseno-l2{
+
+	margin: 15px;
+	border-radius: 5px;
+	flex-basis: 47%;
+	border: 1px solid #919191;
+	position: relative;
+	min-width: 290px;
+}
+.panel-btn{
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 4px;
+	margin: 10px;
+	border-radius: 6px;
+	color: #000000;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+	background-color: #f3f3f3;
+	border: 1px solid #ddd
+}
+.letras-panel{
+	font-size: 15px !important;
+
+}
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
@@ -1654,7 +1741,7 @@ ol {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	margin-bottom: 40px;
+
 }
 
 .quantity p {
@@ -1668,12 +1755,13 @@ ol {
 }
 
 .quantity .pro-qty {
-	width: 94px;
-	height: 36px;
+	width: 90px;
+	height: 32px;
 	border: 1px solid #ddd;
 	padding: 0 15px;
 	border-radius: 40px;
 	float: left;
+	background: #ddd;
 }
 
 .quantity .pro-qty .qtybtn {
@@ -2190,6 +2278,7 @@ ol {
 	.container {
 		max-width: 1175px;
 	}
+
 }
 
 @media (max-width: 1350px) {
@@ -2474,7 +2563,7 @@ ol {
 	border-radius: 50px !important;;
 	border: none !important;;
 	background: transparent !important;
-}		
+}
 .input-search-barna {
 	height: 27px !important;
 	font-size: 14px !important;;
@@ -2484,13 +2573,13 @@ ol {
 	margin-top: 5px !important;
 	margin-bottom: 5px !important;
 	border-radius: 6px !important;
-}	
+}
 .form-search-barna {
 	background: #cccccc;
 	border-radius: 50px;
 	padding: 0 3px !important;
 }
-	
+
 .sprd-header-barna {
     display: inline;
     list-style: none;
@@ -2526,15 +2615,15 @@ ol {
 .flex-basis-logo {
 	flex-basis: 20%
  }
- 
+
  .flex-basis-design{
 	flex-basis: 30%
  }
- 
+
  .flex-basis-search{
 	flex-basis: 33%
  }
- 
+
  .flex-basis-icons{
 	flex-basis: 17%
  }
@@ -2563,30 +2652,43 @@ ol {
 	font-size: 14px;
 }
 @media (max-width: 1200px) {
-	 
+
+	.panel-diseno-l1{
+			flex-basis: 45%;
+	}
+	.panel-diseno-l2{
+		flex-basis: 45%;
+}
+
 	 .flex-basis-design{
 		flex-basis: 40%
 	 }
-	 
+
 	 .flex-basis-search{
 		flex-basis: 30%
 	 }
-	 
+
 	 .flex-basis-icons{
 		flex-basis: 25%
 	 }
 }
 
 @media (max-width: 992px) {
-	 
+
+	.panel-diseno-l1{
+		flex-basis: 100%;
+	}
+	.panel-diseno-l2{
+		flex-basis: 100%;
+	}
 	.flex-basis-design{
 	   flex-basis: 20%
 	}
-	
+
 	.flex-basis-search{
 	   flex-basis: 31%
 	}
-	
+
 	.flex-basis-icons{
 	   flex-basis: 26%
 	}
@@ -2596,6 +2698,12 @@ ol {
 	}
 }
 @media (max-width: 473px) {
+	.panel-diseno-l1{
+		margin-bottom: 15px;
+	}
+	.panel-diseno-l2{
+		margin-bottom: 15px;
+	}
 	.sm-none-barna {
 		display: none !important
 	}
@@ -2614,6 +2722,11 @@ ol {
 
 }
 @media (max-width: 768px) {
+
+	.letras-panel{
+		font-size: 12px !important;
+
+	}
 	.hero-slider .hs-item .offer-card {
     right: 0;
     top: inherit !important;
@@ -2772,7 +2885,7 @@ td, th, tr{
 	 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	 background-color: #575151;
  }
- 
+
  .scroll-barna::-webkit-scrollbar
  {
 	 width: 6px;
@@ -2780,7 +2893,7 @@ td, th, tr{
 	 height: 6px;
 	 background-color: #F5F5F5;
  }
- 
+
  ::-webkit-scrollbar-thumb
  {
 	 background-color: #94c3d3;
@@ -2795,7 +2908,7 @@ td, th, tr{
  	cursor: pointer;
  	height: 15px !important;
  }
- 
+
  .sl-solid::-webkit-scrollbar-track, .sl-solid::-webkit-scrollbar-thumb{
 	border-radius: 10px
  }
