@@ -9,27 +9,25 @@
 
 <template>
     <div>
-            <template v-if="busqueda.length!=0">
-                <div class="row">
-                    <template v-for="(articulo,i) in busqueda">
-                        <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
-                    </template>
-                    <div class="text-center w-100 pt-3">
-                        <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+        <template v-if="busqueda.length!=0">
+            <div class="row">
+                <template v-for="(articulo,i) in busqueda">
+                    <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
+                </template>
+                <div class="text-center w-100 pt-3">
+                    <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="col-lg-l2">
+                 <div style="min-height: 50vh; position: relative;">
+                    <div class="center-element no-found-search" >
+                        <strong>No hay resultados</strong>
                     </div>
                 </div>
-            </template>
-            <template v-else>
-                <div class="col-lg-l2">
-                    <span class="clearfix"></span>
-                    <div class="row">
-                        <div class="center-block col-md-3" style="background-color: #ef7a6e;color:#FFF;border-radius: 50px; padding-left: 10px; padding-right: 10px;text-align: center">
-                            <strong>No hay resultados</strong>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        
+            </div>
+        </template>
     </div>
 </template>
 
@@ -77,7 +75,7 @@
                     {
                         "id": 1,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 35.00,
+                        "precio": 1.00,
                         "image":'/img/product/1.jpg',
                         "isDesign": true,
                         "rubros": ["hombre","mujer","niño"],
@@ -85,7 +83,7 @@
                     {
                         "id": 2,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 30.50,
+                        "precio": 2.00,
                         "image":'/img/product/2.jpg',
                         "isDesign": true,
                         "rubros": ["hombre","niño"],
@@ -93,7 +91,7 @@
                     {
                         "id": 3,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 60.50,
+                        "precio": 3.00,
                         "image":'/img/product/3.jpg',
                         "isDesign": true,
                         "rubros": ["hombre"],
@@ -101,7 +99,7 @@
                     {
                         "id": 4,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 66.568,
+                        "precio": 4.00,
                         "image":'/img/product/4.jpg',
                         "isDesign": true,
                         "rubros": ["mujer"],
@@ -109,7 +107,7 @@
                     {
                         "id": 5,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 10.50,
+                        "precio": 5.00,
                         "image":'/img/product/5.jpg',
                         "isDesign": true,
                         "rubros": ["mujer","niña"],
@@ -117,7 +115,7 @@
                     {
                         "id": 6,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 60.50,
+                        "precio": 6.00,
                         "image":'/img/product/6.jpg',
                         "isDesign": true,
                         "rubros": ["niño"],
@@ -125,7 +123,7 @@
                     {
                         "id": 7,
                         "nombre": 'Black and White Stripes',
-                        "precio": 20.50,
+                        "precio": 7.00,
                         "image":'/img/product/7.jpg',
                         "isDesign": true,
                         "rubros": ["niño"],
@@ -133,7 +131,7 @@
                     {
                         "id": 8,
                         "nombre": 'Flamboyant Pink Top',
-                        "precio": 60.50,
+                        "precio": 8.00,
                         "image":'/img/product/8.jpg',
                         "isDesign": true,
                         "rubros": ["niña"],
@@ -141,7 +139,7 @@
                     {
                         "id": 9,
                         "nombre": 'Black and White Stripes Dress',
-                        "precio": 30.50,
+                        "precio": 9.00,
                         "image":'/img/product/9.jpg',
                         "isDesign": true,
                         "rubros": ["hombre"],
@@ -164,9 +162,40 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if(!this.titulo || (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0))
+                        if( this.titulo.trim()!="" )
                         {
-                            auxiliar.push(articulo);
+                            //todas las categorias y con algo en el buscador
+                            if(this.rubrox.trim()=='')
+                            {
+                                if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                {
+                                    auxiliar.push(articulo);
+                                }
+                            }
+                            else
+                            {
+                                //selecciona una categoria y con algo en el buscador
+                                if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                {
+                                    auxiliar.push(articulo);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if(this.rubrox.trim()=='')
+                            {
+                                //todas las categorias y sin nada en el buscador
+                                auxiliar.push(articulo);
+                            }
+                            else
+                            {
+                                //selecciona una categoria y sin nada en el buscador
+                                if(this.buscarcategoria(articulo,this.rubrox) )
+                                {
+                                    auxiliar.push(articulo);
+                                }
+                            }
                         }
                     },this);
                 }
@@ -187,8 +216,27 @@
             rubro: function()
             {
                 this.rubrox = this.rubro
-                console.log("aqui va rubro")
-                console.log(this.rubrox);
+            }
+        },
+        methods:
+        {
+            buscarcategoria(articulo, rubro)
+            {
+                //función para determinar si un artículo pertenece a una determinada categoría
+                var encontrado = false;
+                var i = 0;
+                for (var i = 0; i < articulo.rubros.length; i++)
+                {
+                    if(articulo.rubros[i].toLowerCase()==rubro.toLowerCase())
+                    {
+                        encontrado = true;
+                    }
+                }
+                if(encontrado)
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }

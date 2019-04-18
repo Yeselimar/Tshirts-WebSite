@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 147);
+/******/ 	return __webpack_require__(__webpack_require__.s = 153);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1929,83 +1929,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 147:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(148);
-
-
-/***/ }),
-
-/***/ 148:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(149)
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/vue/pages/register.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b4d2b2e", Component.options)
-  } else {
-    hotAPI.reload("data-v-2b4d2b2e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 149:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_register_registerComponent_vue__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_register_registerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_register_registerComponent_vue__);
-
-
-
-var app = new Vue({
-  el: "#registerC",
-  name: 'registerC',
-  data: {},
-  components: {
-    registerComponent: __WEBPACK_IMPORTED_MODULE_0__components_pages_register_registerComponent_vue___default.a
-  }
-});
-
-/***/ }),
-
 /***/ 15:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2035,15 +1958,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 150:
+/***/ 153:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(154);
+
+
+/***/ }),
+
+/***/ 154:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(151)
+var __vue_script__ = __webpack_require__(155)
 /* template */
-var __vue_template__ = __webpack_require__(152)
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2060,7 +1991,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/pages/register/registerComponent.vue"
+Component.options.__file = "resources/assets/js/vue/pages/disenar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -2069,9 +2000,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-200431f0", Component.options)
+    hotAPI.createRecord("data-v-40dc435c", Component.options)
   } else {
-    hotAPI.reload("data-v-200431f0", Component.options)
+    hotAPI.reload("data-v-40dc435c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2083,7 +2014,76 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 151:
+/***/ 155:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_disenar_disenarComponent_vue__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_disenar_disenarComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_disenar_disenarComponent_vue__);
+
+
+
+var app = new Vue({
+    el: "#disenarProducto",
+    name: 'disenar',
+    data: {},
+    components: {
+        disenarComponent: __WEBPACK_IMPORTED_MODULE_0__components_pages_disenar_disenarComponent_vue___default.a
+    }
+});
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(157)
+/* template */
+var __vue_template__ = __webpack_require__(158)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/pages/disenar/disenarComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-127278fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-127278fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2092,8 +2092,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layouts_loading_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_layouts_loading_vue__);
 //
 //
 //
@@ -2106,72 +2104,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'registerComponent',
+    name: 'disenarComponent',
     components: {
         headerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_headerComponent_vue___default.a,
-        migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a,
-        loading: __WEBPACK_IMPORTED_MODULE_2__components_layouts_loading_vue___default.a
+        migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a
     },
     props: {
         url: {
@@ -2183,52 +2123,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             isLoading: false,
             isDesign: false,
-            name: '',
-            email: '',
-            last_name: '',
-            phone: '',
-            password: '',
-            confirm_password: '',
             numCart: 0,
             numBag: 0,
             isAuth: false,
             search: '',
-            rubro: '',
-            titulo: '',
-            msg: ''
+            rubro: ''
         };
     },
-    mounted: function mounted() {},
 
     methods: {
-        inicio: function inicio() {
-            location.replace(this.url);
-        },
-        register: function register() {
-            var _this = this;
-
-            this.isLoading = true;
-            var dataform = new FormData();
-            dataform.append('name', this.name);
-            dataform.append('last_name', this.last_name);
-            dataform.append('phone', this.phone);
-            dataform.append('password', this.password);
-            dataform.append('email', this.email);
-            var urli = this.url + '/register/post';
-            axios.post(urli, dataform).then(function (response) {
-                if (response.data.res) {
-                    _this.msg = response.data.msg;
-                    _this.isLoading = false;
-                    $('#modalRegister').modal('show');
-                } else {}
-            }).catch(function (error) {
-                _this.msg = 'Ha ocurrido un error inesperado';
-                _this.isLoading = false;
-            });
-        },
-        loginM: function loginM(e) {
-            console.log(e);
-        },
+        loginM: function loginM(e) {},
         designM: function designM(e) {},
         searchM: function searchM(e) {},
         searchK: function searchK(e) {}
@@ -2237,7 +2141,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 152:
+/***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2260,368 +2164,23 @@ var render = function() {
         on: {
           loginM: _vm.loginM,
           designM: _vm.designM,
-          searchK: _vm.searchK,
-          searchM: _vm.searchM
+          searchM: _vm.searchM,
+          searchK: _vm.searchK
         }
       }),
       _vm._v(" "),
-      _c("migajas-component", { attrs: { titulo: "Registrar" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12 contact-info mt-3 mb-5" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "contact-form d-flex flex-wrap justify-content-around"
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "text",
-                    name: "name",
-                    id: "name",
-                    autocomplete: "off",
-                    placeholder: "Ingresa tu nombre"
-                  },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.last_name,
-                      expression: "last_name"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "text",
-                    name: "last_name",
-                    id: "last_name",
-                    autocomplete: "off",
-                    placeholder: "Ingresa tu apellido"
-                  },
-                  domProps: { value: _vm.last_name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.last_name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "text",
-                    name: "email",
-                    id: "email",
-                    autocomplete: "off",
-                    placeholder: "Ingresa tu email"
-                  },
-                  domProps: { value: _vm.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.phone,
-                      expression: "phone"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "text",
-                    name: "phone",
-                    id: "phone",
-                    autocomplete: "off",
-                    placeholder: "Ingresa tu número telefonico"
-                  },
-                  domProps: { value: _vm.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.phone = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "password",
-                    name: "password",
-                    id: "password",
-                    autocomplete: "off",
-                    placeholder: "Ingresa tu Contraseña"
-                  },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.confirm_password,
-                      expression: "confirm_password"
-                    }
-                  ],
-                  staticClass: "flex-basis-47",
-                  attrs: {
-                    type: "password",
-                    name: "confirm_password",
-                    id: "confirm_password",
-                    autocomplete: "off",
-                    placeholder: "Confirmar contraseña"
-                  },
-                  domProps: { value: _vm.confirm_password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.confirm_password = $event.target.value
-                    }
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: " mr-md-3 pull-right site-btn",
-                on: { click: _vm.register }
-              },
-              [_vm._v("REGISTRARSE AHORA")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade",
-            attrs: { id: "modalRegister" },
-            on: { click: _vm.inicio }
-          },
-          [
-            _c("div", { staticClass: "modal-dialog" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "modal-content",
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                      $event.preventDefault()
-                    }
-                  }
-                },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "d-flex flex-wrap ingresar justify-content-center"
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "w-70 form-email input-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.name,
-                                  expression: "name"
-                                }
-                              ],
-                              staticClass: "input-barna",
-                              attrs: {
-                                type: "email",
-                                name: "email",
-                                placeholder: "Ingrese su email"
-                              },
-                              domProps: { value: _vm.name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.name = $event.target.value
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "w-70 form-password input-group" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.password,
-                                  expression: "password"
-                                }
-                              ],
-                              staticClass: "input-barna",
-                              attrs: {
-                                type: "password",
-                                name: "password",
-                                placeholder: "Ingrese su contraseña"
-                              },
-                              domProps: { value: _vm.password },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.password = $event.target.value
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          " site-btn-login site-btn-default pull-right",
-                        attrs: { type: "button", "data-dismiss": "modal" },
-                        on: { click: _vm.inicio }
-                      },
-                      [_vm._v("Atrás")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "site-btn-login pull-right",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            $event.stopPropagation()
-                            $event.preventDefault()
-                          }
-                        }
-                      },
-                      [_vm._v("Ingresar")]
-                    )
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.isLoading ? _c("loading") : _vm._e()
+      _c("migajas-component", { attrs: { titulo: "Diseñar > Personalizar" } })
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title pull-left" }, [
-        _c("strong", [_vm._v("Registro Exitoso. Ya puedes Iniciar Sesión")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "pull-right mr-1",
-          attrs: { href: "javascript(0)", "data-dismiss": "modal" }
-        },
-        [_c("i", { staticClass: "fa fa-remove" })]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-200431f0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-127278fe", module.exports)
   }
 }
 

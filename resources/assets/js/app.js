@@ -5,7 +5,16 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 require('./bootstrap');
+import VueSweetalert2 from 'vue-sweetalert2';
+ 
+const options = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674'
+}
+ 
+Vue.use(VueSweetalert2, options)
 
+// This is a global mixin, it is applied to every vue instance
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

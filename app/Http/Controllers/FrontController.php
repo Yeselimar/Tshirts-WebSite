@@ -18,13 +18,8 @@ class FrontController extends Controller
         $banners = Banner::where('tipo', '=', "banner")->get();
         return view('index')->with('route',"home")->with(compact('noticias','cantidad','organizaciones','instituciones','empresas','banners'));
         */
-        if(Auth::check()){
-            $auth = "1";
-        } else {
-            $auth = "0";
-        }
-        //dd($auth);
-        return view('front.index')->with('auth',$auth);
+ 
+        return view('front.index');
     }
 
     public function rubros()
@@ -41,9 +36,15 @@ class FrontController extends Controller
     {
         return view('front.pedidogenerado');
     }
+    
     public function disenarproducto()
     {
         return view('front.disenar');
+    }
+
+    public function comprarproducto()
+    {
+        return view('front.comprar');
     }
 
     public function register()

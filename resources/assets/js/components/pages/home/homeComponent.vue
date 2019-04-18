@@ -104,8 +104,8 @@
                                     <div class="pi-pic">
                                         <img :src="url+project.url" alt="">
                                         <div class="pi-links">
-                                            <a  v-if="project.isDesign" class="add-card"><i class="fa fa-shopping-bag"></i><span>Agregar a la Cesta</span></a>
-                                    <a  v-else class="add-card"><i class="fa fa-shopping-cart"></i><span>Agregar al carrito</span></a>
+                                            <a  v-if="project.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                    <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
@@ -565,7 +565,7 @@ export default {
                     
                     window.isDesign = e
                     this.isLoading = true
-                    this.showNav = false
+                    //this.showNav = false
                     if(this.isDesign){
                         this.projects = this.productDesigns
                     }else {

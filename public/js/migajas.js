@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 86);
+/******/ 	return __webpack_require__(__webpack_require__.s = 136);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -175,21 +175,21 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 86:
+/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(87);
+module.exports = __webpack_require__(137);
 
 
 /***/ }),
 
-/***/ 87:
+/***/ 137:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(88)
+var __vue_script__ = __webpack_require__(138)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -208,7 +208,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/vue/layouts/footer.vue"
+Component.options.__file = "resources/assets/js/vue/layouts/migajas.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -217,9 +217,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6d9b4788", Component.options)
+    hotAPI.createRecord("data-v-4cf00215", Component.options)
   } else {
-    hotAPI.reload("data-v-6d9b4788", Component.options)
+    hotAPI.reload("data-v-4cf00215", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -231,36 +231,36 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 88:
+/***/ 138:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 
 
 
 var app = new Vue({
-  el: "#footerC",
-  name: 'footerC',
+  el: "#migajas",
+  name: 'migajas',
   data: {},
   components: {
-    footerComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue___default.a
+    migajasComponent: __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default.a
   }
 });
 
 /***/ }),
 
-/***/ 89:
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(90)
+var __vue_script__ = __webpack_require__(15)
 /* template */
-var __vue_template__ = __webpack_require__(91)
+var __vue_template__ = __webpack_require__(16)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -277,7 +277,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/layouts/footerComponent.vue"
+Component.options.__file = "resources/assets/js/components/layouts/migajasComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -286,9 +286,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-514b8356", Component.options)
+    hotAPI.createRecord("data-v-41c87fd8", Component.options)
   } else {
-    hotAPI.reload("data-v-514b8356", Component.options)
+    hotAPI.reload("data-v-41c87fd8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -300,7 +300,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 90:
+/***/ 15:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -315,64 +315,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'footerComponent',
+    name: 'migajasComponent',
     props: {
-        url: {
+        titulo: {
             type: String,
-            required: true
+            require: true
         }
     },
     mounted: function mounted() {}
@@ -380,7 +329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 91:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -388,147 +337,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("section", { staticClass: "footer-section" }, [
+    _c("div", { staticClass: "page-top-info" }, [
       _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
-            _c("div", { staticClass: "footer-widget about-widget" }, [
-              _c("h2", [_vm._v("Métodos de Pago:")]),
-              _vm._v(" "),
-              _c("img", { attrs: { src: _vm.url + "/img/cards.png", alt: "" } })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1)
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "social-links-warp" }, [
-        _c("div", { staticClass: "container" }, [
-          _vm._m(2),
-          _vm._v(" "),
-          _c("p", { staticClass: "text-white text-center mt-2" }, [
-            _vm._v("Copyright ©"),
-            _c("span", [_vm._v(_vm._s(new Date().getFullYear()))]),
-            _vm._v(" All rights reserved | This template is made with "),
-            _c("i", {
-              staticClass: "fa fa-heart-o",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v(" by "),
-            _c(
-              "a",
-              { attrs: { href: "https://colorlib.com", target: "_blank" } },
-              [_vm._v("Colorlib")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c(
-              "p",
-              {
-                staticClass: "text-center text-white mt-1",
-                staticStyle: { margin: "0px 0px" }
-              },
-              [
-                _vm._v("Desarrollado por: "),
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("img", {
-                    staticStyle: { height: "20px", width: "auto" },
-                    attrs: { src: _vm.url + "/img/afodi-logo.png" }
-                  })
-                ])
-              ]
-            )
-          ])
-        ])
+        _c("p", { staticClass: "h2" }, [_vm._v(_vm._s(_vm.titulo))])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
-      _c("div", { staticClass: "footer-widget about-widget" }, [
-        _c("h2", [_vm._v("Atención al cliente:")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [
-            _c("a", { attrs: { href: "" } }, [
-              _c("i", { staticClass: "fa fa-envelope" }),
-              _vm._v(" ventas@barna.com.ar")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "" } }, [
-              _c("i", { staticClass: "fa fa-phone" }),
-              _vm._v(" +54 677-1112233")
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-sm-4 col-xs-12" }, [
-      _c("div", { staticClass: "footer-widget about-widget" }, [
-        _c("h2", [_vm._v("Empresa:")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [
-            _c("a", { attrs: { href: "" } }, [_vm._v("Acerca de Barna")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "" } }, [_vm._v("Términos y Condiciones")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "" } }, [
-              _vm._v("Políticas de Envío y Devolución")
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "social-links text-center" }, [
-      _c("a", { staticClass: "instagram", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-instagram" }),
-        _c("span", [_vm._v("instagram")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "facebook", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-facebook" }),
-        _c("span", [_vm._v("facebook")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "twitter", attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-twitter" }),
-        _c("span", [_vm._v("twitter")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-514b8356", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-41c87fd8", module.exports)
   }
 }
 

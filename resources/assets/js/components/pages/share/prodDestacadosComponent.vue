@@ -11,8 +11,8 @@
                             <div class="pi-pic">
                                 <img :src="url+item.url" alt="">
                                 <div class="pi-links">
-                                    <a  v-if="item.isDesign" class="add-card"><i class="fa fa-shopping-bag"></i><span>Agregar a la Cesta</span></a>
-                                    <a  v-else class="add-card"><i class="fa fa-shopping-cart"></i><span>Agregar al carrito</span></a>
+                                    <a  v-if="item.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                    <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
 
                                 </div>
                             </div>
