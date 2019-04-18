@@ -21,6 +21,9 @@ class DetallesRecibos extends Migration
             $table->unsignedInteger('diseno_id');
             $table->foreign('diseno_id')->references('id')->on('disenos')->onDelete('cascade');
 
+            $table->unsignedInteger('recibo_id');             
+            $table->foreign('recibo_id')->references('id')->on('recibos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

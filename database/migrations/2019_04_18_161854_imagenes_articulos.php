@@ -17,10 +17,10 @@ class ImagenesArticulos extends Migration
             $table->unsignedInteger('articulo_id');
             $table->foreign('articulo_id')->references('id')->on('articulos')->onDelete('cascade');
 
-            $table->unsignedInteger('coordenada_id');
+            $table->unsignedInteger('coordenada_id')->nullable();
             $table->foreign('coordenada_id')->references('id')->on('coordenadas')->onDelete('cascade');
 
-            $table->unsignedInteger('caracteristica_id');
+            $table->unsignedInteger('caracteristica_id')->nullable();
             $table->foreign('caracteristica_id')->references('id')->on('caracteristicas')->onDelete('cascade');
 
             $table->enum('posicion', ['frontal']);

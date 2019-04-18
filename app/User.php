@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function recibos()
+    {
+        return $this->hasMany('App\Recibo','user_id');
+    }
+
+    public function notificaciones()
+    {
+        return $this->hasMany('App\Notificacion','user_id');
+    }
 }

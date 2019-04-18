@@ -12,8 +12,8 @@ class ImpuestosDescuentosRecibos extends Migration
         {
             $table->increments('id');
 
-            $table->unsignedInteger('impuestos_descuentos_id');
-            $table->foreign('impuestos_descuentos_id')->references('id')->on('impuestos_descuentos')->onDelete('cascade');
+            $table->unsignedInteger('impuesto_descuento_id');
+            $table->foreign('impuesto_descuento_id')->references('id')->on('impuestos_descuentos')->onDelete('cascade');
 
             $table->unsignedInteger('recibo_id');
             $table->foreign('recibo_id')->references('id')->on('recibos')->onDelete('cascade');
