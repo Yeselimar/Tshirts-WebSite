@@ -17,6 +17,9 @@ use App\Notificacion;
 use App\DetalleRecibo;
 use App\Diseno;
 use App\ImagenDiseno;
+use App\Categoria;
+use App\ImpuestoDescuento;
+use App\Carrito;
 
 class FrontController extends Controller
 {
@@ -80,6 +83,7 @@ class FrontController extends Controller
         //return $grupo->caracteristicas;
 
         $caracteristica = Caracteristica::find(1);
+        //return $caracteristica->articulos;
         //return $caracteristica->grupo;
 
         $imagenarticulo = ImagenArticulo::find(1);
@@ -101,11 +105,19 @@ class FrontController extends Controller
         $user = User::find(1);
         //return $user->recibos;
         //return $user->notificaciones;
+        //return $user->carritos;
+
+        $carrito = Carrito::find(1);
+        //return $carrito->articulo;
+        //return $carrito->usuario;
 
         $recibo = Recibo::find(1);
         //return $recibo->usuario;
         //return $recibo->detalles;
         //return $recibo->impuestosdescuentos;
+
+        $impuestosdescuentos = ImpuestoDescuento::find(1);
+        //return $impuestosdescuentos->recibos;
 
         $notificacion = Notificacion::find(1);
         //return $notificacion->usuario;
@@ -118,5 +130,13 @@ class FrontController extends Controller
         $diseno = Diseno::find(1);
         //return $diseno->imagendiseno;
         //return $diseno->imagenarticulo;
+
+        $imagendiseno = ImagenDiseno::find(1);
+        //return $imagendiseno->usuario;
+        //return $imagendiseno->categoria;
+
+        $categoria = Categoria::find(1);
+        //return $categoria->imagenesdisenadas;
+
     }
 }

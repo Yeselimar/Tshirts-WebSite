@@ -12,4 +12,9 @@ class Caracteristica extends Model
     {
         return $this->belongsTo('App\Grupo');
     }
+
+    public function articulos()
+    {
+    	return $this->belongsToMany('App\Articulo','articulos_caracteristicas','articulo_id','caracteristica_id'); 
+    }
 }

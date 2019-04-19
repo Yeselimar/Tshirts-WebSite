@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Notificacion','user_id');
     }
+
+    public function carritos()
+    {
+        return $this->hasMany('App\Carrito','user_id');
+    }
 }
