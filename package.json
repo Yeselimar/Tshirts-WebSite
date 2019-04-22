@@ -27,13 +27,21 @@
         "vuex": "^3.1.0"
     },
     "dependencies": {
+        "@websanova/vue-auth": "^2.21.14-beta",
         "animate.css": "^3.6.0",
+        "es6-promise": "^4.2.6",
         "font-awesome": "^4.7.0",
         "jquery-ui-css": "^1.11.5",
         "popper.js": "^1.14.7",
         "v-money": "^0.8.1",
         "vee-validate": "^2.2.2",
         "vue-draggable-resizable": "^2.0.0-rc1",
-        "vue-sweetalert2": "^1.6.4"
+        "vue-sweetalert2": "^1.6.4",
+        "vuetify": "^1.5.12",
+        "vue-chartist": "^2.1.2",
+        "chartist": "0.11.0",
+        "material-design-icons-iconfont": "^3.0.3",
+        "@mdi/font": "^2.5.94"
+
     }
 }

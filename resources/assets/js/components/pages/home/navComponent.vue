@@ -6,7 +6,7 @@
         v-for="(item, i) in items"
         :key="i"
         class="hs-item"
-        :style="'background-position:center center;background-size:container;background-image:'+'url(' +url+item.url + ')'"
+        :style="'background-position:center center;background-size:container;background-image:'+'url(' +item.url + ')'"
       >
         <div class="container">
           <div class="row">
@@ -58,20 +58,13 @@
 </template>
 
 <script>
-import "owl.carousel";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "navComponent",
-  props: {
-    url: {
-      type: String,
-      required: true
-    },
-    isdesignp: {
-      type: Boolean,
-      required: false,
-      value: false
-    }
+  computed: {
+            
+      ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
   },
   data() {
     return {
@@ -120,7 +113,6 @@ export default {
         }
       ],
       items: [],
-      isDesign: this.isdesignp
     };
   },
   mounted() {
@@ -133,7 +125,7 @@ export default {
     llenarItems() {
       this.items = [];
       setTimeout(e => {
-        if (this.isDesign) {
+        if (this.getIsDesign) {
           this.items = this.barnerDesign;
         } else {
           this.items = this.barner;
@@ -183,8 +175,7 @@ export default {
     }
   },
   watch: {
-    isdesignp: function() {
-      this.isDesign = this.isdesignp;
+    getIsDesign: function(){
       this.llenarItems();
     }
   }

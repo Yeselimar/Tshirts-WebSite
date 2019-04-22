@@ -9,7 +9,7 @@
                     <div  class="product-slider owl-carousel">
                         <div  v-for="(item, i) in items" :key="i"  class="product-item border-items">
                             <div class="pi-pic">
-                                <img :src="url+item.url" alt="">
+                                <img :src="item.url" alt="">
                                 <div class="pi-links">
                                     <a  v-if="item.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
@@ -28,20 +28,10 @@
 </template>
 
 <script>
-import 'owl.carousel'
+import { mapGetters } from 'vuex'
+
     export default {
         name:'prodDestacadosComponent',
-        props: {
-            url: {
-                type: String,
-                required: true
-            },
-			isdesignp: {
-				type: Boolean,
-				required: false,
-				value: false,
-			},
-        },
         data() {
             return {
                 productDesigns: [
@@ -139,9 +129,11 @@ import 'owl.carousel'
                     },
                 ],
                 items: [],
-                isDesign: this.isdesignp,
-
             }
+        },
+        computed: {
+            
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
         },
         mounted() {
             this.llenarItems()
@@ -154,7 +146,7 @@ import 'owl.carousel'
                 this.items = []
                 setTimeout(e => { 
 					
-                if(this.isDesign){
+                if(this.getIsDesign){
                     this.items = this.productDesigns
                 } else {
                     this.items = this.products
@@ -182,14 +174,13 @@ import 'owl.carousel'
                                 }
                             }
                         });
-                },100)	
-               },100)	
+                },10)	
+               },10)	
 
             }
         },
         watch: {
-    		isdesignp: function() {
-                this.isDesign = this.isdesignp
+    		getIsDesign: function() {
                 this.llenarItems()
 			},
 		 }

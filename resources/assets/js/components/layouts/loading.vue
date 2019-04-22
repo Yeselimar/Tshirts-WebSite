@@ -1,26 +1,3 @@
-<style lang="scss" scope>
-#preloader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 999999;
-    background: rgba(0,0,0,.8);
-}
-.loading {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -13px;
-    margin-left: -13px;
-    border-radius: 60px;
-    animation: loader 0.8s linear infinite;
-    -webkit-animation: loader 0.8s linear infinite;
-}
-</style>
 <template>
 	 <!--loading-->
         <div id="preloader">

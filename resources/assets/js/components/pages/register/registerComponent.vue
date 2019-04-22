@@ -1,12 +1,9 @@
 <template>
 	<div>
-		<!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM" @searchK="searchK" @searchM="searchM"></header-component>
-        <!--end header -->
             <migajas-component titulo="Registrar"></migajas-component>
 		<!-- Registro section -->
 		
-			<div class="container">
+			<div class="container min-50">
 				<div class="row">
 					<div class="col-lg-12 contact-info mt-3 mb-5">
 						<div class="contact-form d-flex flex-wrap justify-content-around">
@@ -66,7 +63,6 @@
 </template>
 
 <script>
-	import headerComponent from "../../../components/layouts/headerComponent.vue";
     import migajasComponent from "../../../components/layouts/migajasComponent.vue";
     import loading from "../../../components/layouts/loading.vue";
 
@@ -74,20 +70,13 @@
         name:'registerComponent',
         components:
         {
-            headerComponent,
             migajasComponent,
             loading
 		},
-        props:
-        {
-            url:
-            {
-	            type: String,
-	            require:true
-        	}
-        },
+
         data() {
 			return {
+                url: '',
                 isLoading: false,
                 isDesign: false,
                 name: '',
@@ -104,10 +93,14 @@
                 titulo: '',
                 msg: ''
 			}
-		},
-        mounted()
+        },
+        created(){
+            $('.drop').toggle()
+            this.isLoading = true
+        },
+        beforeMount()
         {
-
+            this.isLoading = false
         },
         methods:
         {   

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Request;
+
 
 class FrontController extends Controller
 {
@@ -18,8 +19,18 @@ class FrontController extends Controller
         $banners = Banner::where('tipo', '=', "banner")->get();
         return view('index')->with('route',"home")->with(compact('noticias','cantidad','organizaciones','instituciones','empresas','banners'));
         */
- 
-        return view('front.index');
+         /*
+			If the request has a ref variable, redirect to the
+			homepage. This is so the SPA doesn't break.
+		*/
+		if( Request::has('ref') ){
+			return redirect('/');
+		}
+
+		/*
+			Return the view
+		*/
+        return view('vue.index');
     }
 
     public function rubros()

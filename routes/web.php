@@ -15,7 +15,29 @@
     return view('index');
 });
 */
-Route::get('/','FrontController@index')->name('inicio');
+Route::get('/admin/{vue_capture?}', function () {
+    return view('back.index');
+})->where('vue_capture', '[\/\w\.-]*');
+
+Route::get('/{vue_capture?}', function () {
+    return view('vue.index');
+})->where('vue_capture', '[\/\w\.-]*');
+
+
+//Login User
+Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
+Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
+
+
+//Login Admin
+Route::post('/logout/admin', 'Auth\LoginController@logoutAdmin')->name('logout.admin');
+Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('login.admin.auth');
+Route::post('/login/admin/post', 'Auth\LoginController@postloginAdmin')->name('post.admin.login');
+
+//comente esto por el vue-router
+/*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
 Route::get('/procesar-carrito','FrontController@procesarcarrito')->name('procesar.carrito');
 Route::get('/pedido-generado','FrontController@pedidogenerado')->name('pedido.generado');
@@ -25,7 +47,7 @@ Route::post('/register/post','RegistroBarnaController@registerPost')->name('regi
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
-
+*/
 
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');

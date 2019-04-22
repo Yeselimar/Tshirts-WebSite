@@ -12,7 +12,9 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js');
-mix.js("resources/assets/js/main.js", "public/js");
+mix.js('resources/assets/js/back/back.js', 'public/js');
+
+/*mix.js("resources/assets/js/main.js", "public/js");
 mix.js("resources/assets/js/vue/layouts/header.vue", "public/js");
 mix.js("resources/assets/js/vue/design.vue", "public/js");
 mix.js("resources/assets/js/vue/layouts/footer.vue", "public/js");
@@ -23,7 +25,7 @@ mix.js("resources/assets/js/vue/layouts/migajas.vue", "public/js");
 mix.js("resources/assets/js/vue/pages/pedidogenerado.vue", "public/js");
 mix.js("resources/assets/js/vue/pages/register.vue", "public/js");
 mix.js("resources/assets/js/vue/pages/disenar.vue", "public/js");
-
+*/
 
 
 
