@@ -27,7 +27,9 @@
         "vuex": "^3.1.0"
     },
     "dependencies": {
+        "@websanova/vue-auth": "^2.21.14-beta",
         "animate.css": "^3.6.0",
+        "es6-promise": "^4.2.6",
         "font-awesome": "^4.7.0",
         "jquery-ui-css": "^1.11.5",
         "popper.js": "^1.14.7",
@@ -38,5 +40,10 @@
         "vue-konva": "^2.0.4",
         "konva": "^3.2.5",
         "ajv": "^6.10.0"
+        "vuetify": "^1.5.12",
+        "vue-chartist": "^2.1.2",
+        "chartist": "0.11.0",
+        "material-design-icons-iconfont": "^3.0.3",
+        "@mdi/font": "^2.5.94"
     }
 }
