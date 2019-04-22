@@ -360,7 +360,13 @@
 </template>
 
 <script>
+import { materialChartCard } from 'vuetify';
+
 export default {
+  name:'login',
+  components: {
+    materialChartCard
+  },
   data () {
     return {
       dailySalesChart: {

@@ -125,17 +125,39 @@ router.beforeEach((to, from, next) => {
 					}
 					store.dispatch('logout')
 				});
+
 		} else {
-			if(String(to.name) == 'register' &&  store.getters.getIsAuth){
-				next({
-					path: '/',
-					params: { nextUrl: to.fullPath }
+			// para rutas que se visualizan estrictamente si no se esta autentificado
+			if(String(to.name) == 'register' ){
+				CerService.post('/login/auth')
+					.then(function (response) {
+					if(response.res !== 0){
+						next({
+							path: '/',
+							params: { nextUrl: to.fullPath }
+						})
+					}else {
+						next()
+					}
+					$(".loading").fadeOut();
+					$("#preloader").delay(400).fadeOut("slow");
 				})
-			}else {
+				.catch(function () {
+					next({
+						path: '/',
+						params: { nextUrl: to.fullPath }
+					})
+						
+					$(".loading").fadeOut();
+					$("#preloader").delay(400).fadeOut("slow");
+				});
+				
+			} else {
 				next()
+				$(".loading").fadeOut();
+				$("#preloader").delay(400).fadeOut("slow");
 			}
-			$(".loading").fadeOut();
-			$("#preloader").delay(400).fadeOut("slow");
+			
 		}
 
   })

@@ -642,7 +642,6 @@ li.bagform .dropbag:after {
     </div>
     <div id="content-barna" class="h-171" 
     style="background-position: center center;
-    background-image: url('/img/barna.jpg');
     background-size: contain;
     background-color: #282828;
     background-repeat: no-repeat;
