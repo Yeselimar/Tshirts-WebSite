@@ -37,6 +37,9 @@
         "vee-validate": "^2.2.2",
         "vue-draggable-resizable": "^2.0.0-rc1",
         "vue-sweetalert2": "^1.6.4",
+        "vue-konva": "^2.0.4",
+        "konva": "^3.2.5",
+        "ajv": "^6.10.0"
         "vuetify": "^1.5.12",
         "vue-chartist": "^2.1.2",
         "chartist": "0.11.0",
