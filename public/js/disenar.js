@@ -2100,7 +2100,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_draggable_resizable_dist_VueDraggableResizable_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_draggable_resizable_dist_VueDraggableResizable_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_swatches_dist_vue_swatches_min_css__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_swatches_dist_vue_swatches_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_swatches_dist_vue_swatches_min_css__);
-<<<<<<< HEAD
 //
 //
 //
@@ -2113,95 +2112,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> master
 //
 //
 //
@@ -2307,11 +2217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-<<<<<<< HEAD
 
-=======
-// Import the styles too, globally
->>>>>>> master
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'disenarComponent',
@@ -2320,10 +2226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         migajasComponent: __WEBPACK_IMPORTED_MODULE_1__components_layouts_migajasComponent_vue___default.a,
         Swatches: __WEBPACK_IMPORTED_MODULE_2_vue_swatches___default.a,
         VueDraggableResizable: __WEBPACK_IMPORTED_MODULE_3_vue_draggable_resizable___default.a
-<<<<<<< HEAD
 
-=======
->>>>>>> master
     },
 
     props: {
@@ -2350,7 +2253,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             width: 0,
             height: 0,
             x: 0,
-<<<<<<< HEAD
             y: 0,
             h_contenedor: 0,
             //Productos
@@ -2367,9 +2269,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //Borrar
             color_btn_borde: '#ddd',
             isActive: true
-=======
-            y: 0
->>>>>>> master
 
         };
     },
@@ -2558,7 +2457,6 @@ var render = function() {
           staticClass: "container mt-5 d-flex flex-wrap justify-content-center"
         },
         [
-<<<<<<< HEAD
           _c("div", { staticClass: "panel-diseno-l1 justify-content-center" }, [
             _c(
               "div",
@@ -2726,9 +2624,6 @@ var render = function() {
                 )
               : _vm._e()
           ]),
-=======
-          _vm._m(0),
->>>>>>> master
           _vm._v(" "),
           _c("div", { staticClass: "panel-diseno-l2 justify-content-center" }, [
             _c(
@@ -2738,11 +2633,7 @@ var render = function() {
                   "scroll-barna d-flex justify-content-center title-panel-diseno"
               },
               [
-<<<<<<< HEAD
                 _vm._m(6),
-=======
-                _vm._m(1),
->>>>>>> master
                 _vm._v(" "),
                 _c(
                   "div",
@@ -2797,7 +2688,6 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-<<<<<<< HEAD
             _c(
               "div",
               {
@@ -2830,45 +2720,6 @@ var render = function() {
                 )
               ]
             )
-=======
-            _c("div", { staticClass: "container-disenar-l2" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "parent",
-                  staticStyle: {
-                    "background-image":
-                      "url('http://localhost:8000/img/product/12.jpg')",
-                    "background-position": "center",
-                    "background-repeat": "no-repeat",
-                    "background-size": "cover",
-                    width: "-webkit-fill-available",
-                    height: "-webkit-fill-available",
-                    position: "relative"
-                  }
-                },
-                [
-                  _c(
-                    "vue-draggable-resizable",
-                    { attrs: { resizable: true, parent: "parent" } },
-                    [
-                      _c("p", [
-                        _vm._v(
-                          "You can drag me around and resize me as you wish."
-                        )
-                      ]),
-                      _vm._v(
-                        "\r\n                        " +
-                          _vm._s(_vm.url) +
-                          "\r\n                    "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ])
->>>>>>> master
           ])
         ]
       )
@@ -2881,7 +2732,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-<<<<<<< HEAD
     return _c("div", { staticClass: "productos-disenar" }, [
       _c("div", { staticClass: "product-item" }, [
         _c("div", { staticClass: "pi-pic" }, [
@@ -2985,169 +2835,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-=======
-    return _c(
-      "div",
-      { staticClass: "panel-diseno-l1 justify-content-center" },
-      [
-        _c(
-          "div",
-          {
-            staticClass:
-              "scroll-barna d-flex justify-content-center title-panel-diseno"
-          },
-          [
-            _c("div", { staticClass: "panel-btn d-flex" }, [
-              _c("i", { staticClass: "fa fa-check-circle-o" }),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "sm-none-barna align-content-center d-flex flex-wrap letras-panel"
-                },
-                [_vm._v(" Producto")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-btn d-flex" }, [
-              _c("i", { staticClass: "fa fa-file-image-o" }),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "sm-none-barna align-content-center d-flex flex-wrap letras-panel"
-                },
-                [_vm._v(" Imagen")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-btn d-flex" }, [
-              _c("i", { staticClass: "fa fa-info-circle" }),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "sm-none-barna align-content-center d-flex flex-wrap letras-panel"
-                },
-                [_vm._v(" Instrucciones")]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "container-disenar justify-content-center d-flex flex-wrap scroll-barna"
-          },
-          [
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "productos-disenar" }, [
-              _c("div", { staticClass: "product-item" }, [
-                _c("div", { staticClass: "pi-pic" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "http://localhost:8000/img/product/12.jpg",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "pd-text" }, [
-                  _c("p", [_vm._v("Blusa jackets ")])
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    )
->>>>>>> master
   },
   function() {
     var _vm = this
@@ -3502,7 +3189,6 @@ function applyToTag (style, obj) {
 
 		style.appendChild(document.createTextNode(css));
 	}
-<<<<<<< HEAD
 }
 
 function updateLink (link, options, obj) {
@@ -3535,40 +3221,6 @@ function updateLink (link, options, obj) {
 	if(oldSrc) URL.revokeObjectURL(oldSrc);
 }
 
-=======
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
->>>>>>> master
 
 /***/ }),
 
