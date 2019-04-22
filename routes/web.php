@@ -18,30 +18,26 @@
 Route::get('/admin/{vue_capture?}', function () {
     return view('back.index');
 })->where('vue_capture', '[\/\w\.-]*');
-
 Route::get('/{vue_capture?}', function () {
     return view('vue.index');
 })->where('vue_capture', '[\/\w\.-]*');
-
-
 //Login User
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
-
-
 //Login Admin
 Route::post('/logout/admin', 'Auth\LoginController@logoutAdmin')->name('logout.admin');
 Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('login.admin.auth');
 Route::post('/login/admin/post', 'Auth\LoginController@postloginAdmin')->name('post.admin.login');
-
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
 Route::get('/procesar-carrito','FrontController@procesarcarrito')->name('procesar.carrito');
 Route::get('/pedido-generado','FrontController@pedidogenerado')->name('pedido.generado');
 Route::get('/disenar','FrontController@disenarproducto')->name('disenar');
+Route::get('/comprar','FrontController@comprarproducto')->name('comprar');
+
 Route::get('/register','FrontController@register')->name('register');
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');

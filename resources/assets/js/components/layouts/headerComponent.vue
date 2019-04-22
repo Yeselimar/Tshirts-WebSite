@@ -767,6 +767,9 @@ export default {
     seletedAll() {
       this.$store.dispatch('cambiarRubro',"")
       $("#rubrosCat").dropdown("toggle");
+      if(this.isRouteRubro) {
+        this.$emit("searchM", e);
+      } else {}
     },
     showBagM() {
       if (!this.showBag) {

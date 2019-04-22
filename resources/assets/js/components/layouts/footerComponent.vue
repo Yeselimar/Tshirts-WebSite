@@ -6,13 +6,13 @@
 	<section class="footer-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 col-sm-4">
+				<div class="col-lg-4 col-sm-4 col-xs-12">
 					<div class="footer-widget about-widget">
 						<h2>Métodos de Pago:</h2>
 						<img :src="'/img/cards.png'" alt="">
 					</div>
 				</div>
-				<div class="col-lg-4 col-sm-4">
+				<div class="col-lg-4 col-sm-4 col-xs-12">
 					<div class="footer-widget about-widget">
 						<h2>Atención al cliente:</h2>
 						<ul>
@@ -22,7 +22,7 @@
 						
 					</div>
 				</div>
-				<div class="col-lg-4 col-sm-4">
+				<div class="col-lg-4 col-sm-4 col-xs-12">
 					<div class="footer-widget about-widget">
 						<h2>Empresa:</h2>
 						<ul>

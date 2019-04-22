@@ -6,6 +6,105 @@
     <!-- title --->
     <migajas-component titulo="Diseñar > Personalizar"></migajas-component>
     <!-- end title --->
+    <!-- section disenar --->
+    <div class="container mt-5 d-flex flex-wrap justify-content-center">
+    <!-- Lado 1 --->
+    <div class="panel-diseno-l1 justify-content-center">
+        <div class="scroll-barna d-flex justify-content-center title-panel-diseno">
+            <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Productos'}]" @click.stop.prevent="showProductsPanel('Productos')"> <i class="fa fa-check-circle-o">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Productos</div></div>
+
+            <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Imagen'}]" @click.stop.prevent="showImagePanel('Imagen')"> <i class="fa fa-file-image-o">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Imágen</div></div>
+
+            <div class="panel-btn d-flex":class="[{'panel-btn-active pulse animated': activo === 'Info'}]" @click.stop.prevent="showInfoPanel('Info')"> <i class="fa fa-info-circle">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Instrucciones</div></div>
+        </div>
+        <!--Contenedor Imagen del Lado 1 -->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-if="showImage">
+            HOLA MUNDO
+        </div>
+        <!--Contenedor Info del Lado 1 -->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-else-if="showInfo">
+            HOLA INFO
+        </div>
+        <!--contenedor Productos del lado 1-->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-else-if="showProducts">
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
+                        </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- Lado 2 --->
+    <div class="panel-diseno-l2 justify-content-center">
+        <div class="scroll-barna d-flex justify-content-center title-panel-diseno">
+            <div class="panel-btn d-flex"> <i class="fa fa-eye"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Vista previa</div></div>
+            <div class="d-flex align-items-center panel-btn letras-panel">Frontal</div>
+            <div class="d-flex align-items-center panel-btn letras-panel">Reverso</div>
+    <!--   <div class="quantity"><div class="pro-qty mb-1"><input class="pb-1" type="text" value="2"></div></div> -->
+            <div class="align-items-center d-flex form__field">
+                <div class="align-items-center d-flex">Color:</div><swatches  :swatch-style="{width: '22px', height: '22px'}" :trigger-style="{width: '22px', height: '22px', marginTop:'20%'}" v-model="color" :colors="colors" row-length="4" shapes="circles"
+                show-border popover-to="left"></swatches>
+            </div>
+        </div>
+        <div class="container-imagen-a-disenar" id="content">
+            <img src="http://localhost:8000/img/product/remera.png">
+            <div class="container-area-de-diseno">
+
+                        <vue-draggable-resizable  :w="50" :h="50" :resizable="true" :parent="'.container-area-de-diseno'">
+                            <p>Hola</p>
+                        </vue-draggable-resizable>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <!-- end section disenar --->
 </div>
 
 </template>
@@ -13,20 +112,34 @@
 <script>
 import headerComponent from "../../../components/layouts/headerComponent.vue";
 import migajasComponent from "../../../components/layouts/migajasComponent.vue";
+import Swatches from 'vue-swatches'
+import VueDraggableResizable from 'vue-draggable-resizable'
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+import "vue-swatches/dist/vue-swatches.min.css"
+
+
     export default
     {
         name:'disenarComponent',
         components:
         {
             headerComponent,
-            migajasComponent
+            migajasComponent,
+            Swatches,
+            VueDraggableResizable,
+
         },
+
         props:
         {
             url:{
                 type:String,
                 require:true
                 }
+        },
+        mounted(){
+            //this.w_contenedor=document.getElementById('contenedor').clientWidth
+
         },
         data() {
             return {
@@ -36,8 +149,31 @@ import migajasComponent from "../../../components/layouts/migajasComponent.vue";
                 numBag: 0,
                 isAuth: false,
                 search: '',
-                rubro: ''
+                rubro: '',
+                color: '#1CA085',
+                colors: ['#F64272', '#F6648B', '#F493A7', '#F891A6', '#FFCCD5', ''],
+                width: 0,
+                height: 0,
+                x: 0,
+                y: 0,
+                h_contenedor:0,
+                //Productos
+                showProductsOut:false,
+                showProducts: true,
+                activo:'Productos',
+                w_contenedor:0,
+                //Imagen
+                showImageOut: true,
+                showImage: false,
+                //Imagen
+                showInfoOut: true,
+                showInfo: false,
+                //Borrar
+                color_btn_borde: '#ddd',
+                isActive: true,
+
             }
+
         },
         methods:
         {
@@ -56,6 +192,69 @@ import migajasComponent from "../../../components/layouts/migajasComponent.vue";
             searchK(e){
 
             },
+
+            showProductsPanel(activo) {
+                if (this.showProducts) {
+                    this.showProductsOut = false;
+                    this.showProducts = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.activo = activo;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+
+                } else {
+                    this.showProductsOut = false;
+                    this.showProducts = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+                }
+
+            },
+            showImagePanel(activo) {
+                if (this.showImage) {
+                    this.showImageOut = false;
+                    this.showImage = true;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+
+                } else {
+                    this.showImageOut = false;
+                    this.showImage = true;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+                }
+            },
+            showInfoPanel(activo) {
+                if (this.showInfo) {
+                    this.showInfoOut = false;
+                    this.showInfo = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.activo = activo;
+                } else {
+                    this.showInfoOut = false;
+                    this.showInfo = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.activo = activo;
+                }
+            },
+
+
         },
     }
 </script>

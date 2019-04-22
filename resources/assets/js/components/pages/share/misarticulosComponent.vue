@@ -9,27 +9,25 @@
 
 <template>
     <div>
-        {{rubrox}}
-            <template v-if="busqueda.length!=0">
-                <div class="row">
-                    <template v-for="(articulo,i) in busqueda">
-                        <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
-                    </template>
-                    <div class="text-center w-100 pt-3">
-                        <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+        <template v-if="busqueda.length!=0">
+            <div class="row">
+                <template v-for="(articulo,i) in busqueda">
+                    <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
+                </template>
+                <div class="text-center w-100 pt-3">
+                    <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="col-lg-l2">
+                 <div style="min-height: 50vh; position: relative;">
+                    <div class="center-element no-found-search" >
+                        <strong>No hay resultados</strong>
                     </div>
                 </div>
-            </template>
-            <template v-else>
-                <div class="col-lg-l2">
-                     <div style="min-height: 50vh; position: relative;">
-                        <div class="center-element no-found-search" >
-                            <strong>No hay resultados</strong>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        
+            </div>
+        </template>
     </div>
 </template>
 
@@ -171,7 +169,6 @@
                             {
                                 if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                                 {
-                                    console.log("todas las categorias y con algo en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
@@ -180,18 +177,15 @@
                                 //selecciona una categoria y con algo en el buscador
                                 if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                                 {
-                                    console.log("selecciona una categoria y con algo en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
-
                         }
                         else
                         {
                             if(this.rubrox.trim()=='')
                             {
                                 //todas las categorias y sin nada en el buscador
-                                console.log("todas las categorias y sin nada en el buscador");
                                 auxiliar.push(articulo);
                             }
                             else
@@ -199,15 +193,10 @@
                                 //selecciona una categoria y sin nada en el buscador
                                 if(this.buscarcategoria(articulo,this.rubrox) )
                                 {
-                                    console.log("selecciona una categoria y sin nada en el buscador");
                                     auxiliar.push(articulo);
                                 }
                             }
-                            
                         }
-                        //((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0)  )
-                        //this.buscarcategoria(articulo,this.rubrox)
-                        
                     },this);
                 }
                 //this.totalRowsMovil = auxiliar.length;
@@ -227,14 +216,13 @@
             rubro: function()
             {
                 this.rubrox = this.rubro
-                //console.log("aqui va rubro")
-                //console.log(this.rubrox);
             }
         },
         methods:
         {
             buscarcategoria(articulo, rubro)
             {
+                //función para determinar si un artículo pertenece a una determinada categoría
                 var encontrado = false;
                 var i = 0;
                 for (var i = 0; i < articulo.rubros.length; i++)
@@ -247,10 +235,8 @@
                 if(encontrado)
                 {
                     return true;
-                    //console.log(articulo.id);
                 }
                 return false;
-                //console.log(articulo.rubros.length);
             }
         }
     }
