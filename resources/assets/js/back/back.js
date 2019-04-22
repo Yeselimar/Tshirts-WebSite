@@ -49,7 +49,7 @@ if (token) {
 }
 
 import Vue            from 'vue';
-/*import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2';
 
  
 const options = {
@@ -58,7 +58,7 @@ const options = {
 }
  
 Vue.use(VueSweetalert2, options)
-*/
+
 
 
 /*
@@ -77,7 +77,7 @@ const app = new Vue({
   el: "#main-wrapper",
   store,
   router : router,
-  //VueSweetalert2
+  VueSweetalert2
 });
 
 export default app;

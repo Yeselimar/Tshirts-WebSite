@@ -5,30 +5,28 @@
               <div class="col-lg-4">
                   <div class="login-content card">
                       <div class="login-form">
-                          <h4>Login</h4>
-                          <form>
+                          <h4>Iniciar Sesión</h4>
                               <div class="form-group">
-                                  <label>Email address</label>
-                                  <input type="email" class="form-control" placeholder="Email">
+                                  <label>Correo Electrónico</label>
+                                  <input type="email" class="form-control" placeholder="Email" v-model="user.email">
                               </div>
                               <div class="form-group">
-                                  <label>Password</label>
-                                  <input type="password" class="form-control" placeholder="Password">
+                                  <label>Contraseña</label>
+                                  <input type="password" class="form-control" placeholder="Password" v-model="user.password">
                               </div>
                               <div class="checkbox">
-                                  <label>
-                      <input type="checkbox"> Remember Me
-                    </label>
-                                  <label class="pull-right">
-                      <a href="#">Forgotten Password?</a>
-                    </label>
+                              <label>
+                                <input type="checkbox"> Recuerdame
+                              </label>
+                            <label class="pull-right">
+                              <a href="#">¿Olvidates tu contraseña?</a>
+                            </label>
 
                               </div>
-                              <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+                              <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" @click="login">Ingresar</button>
                               <div class="register-link m-t-15 text-center">
-                                  <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                                  <p>No tienes cuenta ? <a href="#"> Registrate</a></p>
                               </div>
-                          </form>
                       </div>
                   </div>
               </div>
@@ -38,7 +36,7 @@
 </template>
 
 <script>
-import { materialChartCard } from 'vuetify';
+import CerService from "../../../plugins/CerService";
 
 export default {
   name:'login',
@@ -47,10 +45,64 @@ export default {
   },
   data () {
     return {
-  
+      user:{
+        email:'',
+        password:''
+      }
+     
     }
   },
   methods: {
+    login() {
+      var dataform = new FormData();
+      dataform.append("password", this.user.password);
+      dataform.append("email", this.user.email);      
+        CerService.post("/login/admin/post", dataform)
+        .then(response => {
+          if (response.res) {
+            //this.user = response.user;
+            this.$store.dispatch( 'loadUserAdmin' );
+            this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "success",
+                title: response.msg
+              });
+              this.$router.push({ name: 'index' })
+          } else {
+            this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "warning",
+                title: response.msg
+              });
+          }
+        })
+        .catch(error => {
+          this.$store.dispatch( 'loadUser' );
+          this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "error",
+              title: "Ha ocurrido un error inesperado"
+            });
+        });
+    },
   }
 }
 </script>
