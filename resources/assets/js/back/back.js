@@ -13,14 +13,8 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
-    require('bootstrap');
-    require('slicknav/dist/jquery.slicknav');
-    require('owl.carousel');
-    require('jquery.nicescroll');
-    require('jquery-zoom');
-    require('jquery-ui');
-    require('./main')
+    //window.$ = window.jQuery = require('jquery');
+ 
 
 } catch (e) {}
 
@@ -49,7 +43,7 @@ if (token) {
 }
 
 import Vue            from 'vue';
-import VueSweetalert2 from 'vue-sweetalert2';
+/*import VueSweetalert2 from 'vue-sweetalert2';
 
  
 const options = {
@@ -58,27 +52,37 @@ const options = {
 }
  
 Vue.use(VueSweetalert2, options)
+*/
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+import '@mdi/font/css/materialdesignicons.css'
 
+Vue.use(Vuetify, {
+  iconfont: 'mdi',
+})
 
+import 'chartist/dist/chartist.min.css'
 
+Vue.use(require('vue-chartist'))
 
 /*
 	Imports all of the modules used in the application to build the data store.
 */
-import store from './indexStore';
+import store from './indexStoreBack.js';
 /*
   Imports the routes and store and vue to use with the Vue module.
 */
-import router from './routes'
+import router from './routesBack'
 
 /*
   Create a new Vue instance and mount the app element.
 */
 const app = new Vue({
-  el: "#app",
+  el: "#back",
+  Vuetify,
   store,
   router : router,
-  VueSweetalert2
+  //VueSweetalert2
 });
 
 export default app;

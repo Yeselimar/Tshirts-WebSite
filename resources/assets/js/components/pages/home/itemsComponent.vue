@@ -36,12 +36,6 @@
 <script>
     export default {
         name:'itemsComponent',
-        props: {
-            url: {
-                type: String,
-                required: true
-            }
-        },
         mounted() {
         }
     }

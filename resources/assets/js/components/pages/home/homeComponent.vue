@@ -66,23 +66,20 @@
 <template>
 	<!-- home section -->
 	<div>
-        <!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM" @searchK="searchK" @searchM="searchM"></header-component>
-        <!--end header -->
         <!--nav -->
-            <nav-component v-if="showNav" :isdesignp="isDesign" :url="url"></nav-component>
+            <nav-component></nav-component>
         <!-- end nav -->
         <!-- items -->
-            <items-component :url="url"></items-component>
+            <items-component></items-component>
         <!-- end items -->
-            <prod-destacados-component :isdesignp="isDesign" :url="url"></prod-destacados-component >
+            <prod-destacados-component></prod-destacados-component >
 
 
             <!-- Product filter section -->
             <section class="product-filter-section">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Productos para <span v-if="isDesign">diseñar</span><span v-else>comprar</span></h2>
+                        <h2>Productos para <span v-if="getIsDesign">diseñar</span><span v-else>comprar</span></h2>
                     </div>
                     <ul class="product-filter-menu md-d-flex-barna scroll-barna overflow-auto">
                         <li><a class="filter" v-bind:class="{ active: currentFilter === 'ALL' }" v-on:click="setFilter('ALL')">TODAS</a></li>
@@ -136,28 +133,23 @@
 
 <script>
 import loading from "../../../components/layouts/loading.vue";
-import headerComponent from "../../../components/layouts/headerComponent.vue";
 import navComponent from "../../../components/pages/home/navComponent.vue"
 import itemsComponent from "../../../components/pages/home/itemsComponent.vue"
 import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
+import { mapGetters } from 'vuex'
+
 
  
 export default {
         name:'homeComponent',
-        props: {
-            url: {
-                type: String,
-                required: true
-			}
-		},
 		components: {
-            headerComponent,
-            navComponent,
+             navComponent,
             loading,
             itemsComponent,
             prodDestacadosComponent
         },
         computed: {
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
              projectsC: function() {
                 let projectAux = []
                 if(this.projects  && this.projects.length)
@@ -530,63 +522,15 @@ export default {
                         isDesign: false
                     },
                 ],
+                url: '',
                 isLoading: false,
-                isDesign: false,
                 showNav: true,
-                numCart: 0,
-                numBag: 0,
-                isAuth: false,
-                search: '',
-                rubro: ''
 			}
 		},
 		methods: {
             setFilter: function(filter) {
 			    this.currentFilter = filter;
 		    },
-            searchK(e){
-                console.log(e);
-                this.search = e.search 
-            },
-            loginM(e){
-                this.isLoading = true
-                window.name = e.name
-                window.last_name = e.last_name
-                window.isAuth = true
-                this.isAuth = true;
-                setTimeout(e => { 
-                    console.log('inicio de sesion exitoso')
-                    this.isLoading = false
-                },500)	
-            },
-            designM(e){
-                if (e !== this.isDesign){
-                    this.isDesign = e
-                    
-                    window.isDesign = e
-                    this.isLoading = true
-                    //this.showNav = false
-                    if(this.isDesign){
-                        this.projects = this.productDesigns
-                    }else {
-                          this.projects = this.products
-                    }
-					setTimeout(e => { 
-                        this.showNav = true
-                        this.isLoading = false
-					},500)	
-				} 
-            },
-            searchM(e){
-                this.search = e.search
-                this.rubro = e.rubro
-                window.search = e.search
-                window.rubro = e.rubro
-                this.isLoading = true
-                setTimeout(e => { 
-                    this.isLoading = false
-                },500)	
-            }
         },
         mounted: function(){
 
@@ -601,6 +545,11 @@ export default {
             });
         },
         created() {
+            if(this.getIsDesign){
+                this.projects = this.productDesigns
+            }else {
+                this.projects = this.products
+            }
             if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)
 				this.max = 6
 			else if(document.body.clientWidth < 460)
@@ -609,32 +558,20 @@ export default {
                     this.max = 12
 			
             this.isLoading = true  
-            if (typeof window.isDesign === 'undefined') {
-                this.isDesign = false
-            }
-            if (typeof window.isAuth === 'undefined') {
-                this.isAuth = false
-            }
-            if (typeof window.numBag  === 'undefined') {
-               this.numBag = 0
-            }
-            if (typeof window.numCart  === 'undefined') {
-                this.numCart = 0
-            }
-            if (typeof window.search  === 'undefined') {
-                this.search = ''
-            }
-            if (typeof window.rubro  === 'undefined') {
-                this.rubro = ''
-            }
-            if(this.isDesign){
-                this.projects = this.productDesigns
-            }else {
-                this.projects = this.products
-            }
 		},
 		beforeMount() {
 			this.isLoading = false	
-		},
+        },
+          watch: {
+            getIsDesign: function(){
+                if(this.getIsDesign){
+                    this.projects = this.productDesigns
+                }else {
+                    this.projects = this.products
+                }
+            //console.log('esto esta cambiando a ',this.getIsDesign)
+            //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
+            }
     }
+}
 </script>

@@ -9,7 +9,7 @@
 				<div class="col-lg-4 col-sm-4 col-xs-12">
 					<div class="footer-widget about-widget">
 						<h2>Métodos de Pago:</h2>
-						<img :src="url+'/img/cards.png'" alt="">
+						<img :src="'/img/cards.png'" alt="">
 					</div>
 				</div>
 				<div class="col-lg-4 col-sm-4 col-xs-12">
@@ -48,7 +48,7 @@
 	            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 	            <div>
-	            	<p class="text-center text-white mt-1" style="margin: 0px 0px;">Desarrollado por: <a href="#"><img :src="url+'/img/afodi-logo.png'" style="height: 20px;width: auto;"></a></p>
+	            	<p class="text-center text-white mt-1" style="margin: 0px 0px;">Desarrollado por: <a href="#"><img :src="'/img/afodi-logo.png'" style="height: 20px;width: auto;"></a></p>
 	            </div>
 			</div>
 		</div>
@@ -62,12 +62,6 @@
 <script>
     export default {
         name:'footerComponent',
-        props: {
-            url: {
-                type: String,
-                required: true
-            }
-        },
         mounted() {
         }
     }

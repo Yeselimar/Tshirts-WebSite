@@ -94,7 +94,7 @@ a.link-login {
   display: block;
   position: relative;
   font-size: 14px;
-  color: #8f8f8f;
+  color: black;
   margin-bottom: 6px;
   cursor: pointer;
 }
@@ -185,19 +185,19 @@ li.bagform .dropbag:after {
           <div class="d-flex align-items-center flex-wrap-mw justify-content-around">
             <div class="flex-basis-logo">
               <!-- logo -->
-              <a @click="toHome" class="site-logo">
-                <img :src="url+'/img/barna.jpg'" id="logo-barna" alt>
-              </a>
+              <router-link class="site-logo cursor" to="/">
+                <img :src="'/img/barna.jpg'" id="logo-barna" alt>
+              </router-link>
             </div>
             <div class="flex-basis-design">
               <ul class="d-flex align-items-center sprd-header-barna">
                 <li
                   class="mr-2 sprd-li-barna d-flex align-items-center"
-                  :class="[{'border-li-barna-active': isDesign}]"
+                  :class="[{'border-li-barna-active': getIsDesign}]"
                 >
                   <a
                     class="align-items-center d-flex js-header-main-cyo cursor"
-                    :class="[{'color-barna': isDesign}]"
+                    :class="[{'color-barna': getIsDesign}]"
                     @click.stop.prevent="designM(true)"
                   >
                     <div class="d-flex align-items-center">
@@ -205,17 +205,17 @@ li.bagform .dropbag:after {
                     </div>
                     <div class="pl-2 sm-none-barna">
                       <div class="title">Diseñar</div>
-                      <div class="description" :class="[{'color-black': isDesign}]">Hecho por ti</div>
+                      <div class="description" :class="[{'color-black': getIsDesign}]">Hecho por ti</div>
                     </div>
                   </a>
                 </li>
                 <li
                   class="mr-4 sprd-li-barna d-flex align-items-center"
-                  :class="[{'border-li-barna-active': !isDesign}]"
+                  :class="[{'border-li-barna-active': !getIsDesign}]"
                 >
                   <a
                     class="align-items-center d-flex js-header-main-cyo cursor"
-                    :class="[{'color-barna': !isDesign}]"
+                    :class="[{'color-barna': !getIsDesign}]"
                     @click.stop.prevent="designM(false)"
                   >
                     <div class="d-flex align-items-center">
@@ -223,7 +223,7 @@ li.bagform .dropbag:after {
                     </div>
                     <div class="pl-2 sm-none-barna">
                       <div class="title">Comprar</div>
-                      <div class="description" :class="[{'color-black': !isDesign}]">Hecho para ti</div>
+                      <div class="description" :class="[{'color-black': !getIsDesign}]">Hecho para ti</div>
                     </div>
                   </a>
                 </li>
@@ -231,12 +231,12 @@ li.bagform .dropbag:after {
             </div>
             <div class="slicknav_menu" id="accordionExample">
               <a
-                href="#"
                 aria-haspopup="true"
                 tabindex="0"
                 class="slicknav_btn slicknav_collapsed"
                 style="outline: none;"
                 id="heading"
+                @click="cambCollapse"
                 data-toggle="collapse"
                 data-target=".collapseOne"
                 aria-expanded="1"
@@ -271,7 +271,7 @@ li.bagform .dropbag:after {
                     >
                       <i
                         class="fa fa-filter"
-                        :class="{'rubro-selected': rubro !== ''}"
+                        :class="{'rubro-selected': getRubro !== ''}"
                         aria-hidden="true"
                       ></i>
                     </span>
@@ -287,43 +287,43 @@ li.bagform .dropbag:after {
                       <li>
                         <a
                           @click.stop.prevent="seletedAll"
-                          :class="[{'bg-barna font-weight-bold': rubro === ''}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === ''}]"
                         >Todas las categorias</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Hombre'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Hombre'}]"
                         >Hombre</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Mujer'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Mujer'}]"
                         >Mujer</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Niña'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niña'}]"
                         >Niña</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Niño'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niño'}]"
                         >Niño</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Taza'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Taza'}]"
                         >Taza</a>
                       </li>
                       <li>
                         <a
                           @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': rubro === 'Buzo'}]"
+                          :class="[{'bg-barna font-weight-bold': getRubro === 'Buzo'}]"
                         >Buzo</a>
                       </li>
                     </ul>
@@ -360,7 +360,7 @@ li.bagform .dropbag:after {
                       </div>
                       <!-- drop bag -->
                       <div
-                        class="dropbag"
+                        class="dropbag drop"
                         @click.stop.prevent
                         v-if="showBag"
                         :class="[{'zoomIn animated': showBag},{'zoomOut animated': showBagOut}]"
@@ -393,7 +393,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="url+'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Nev Print Absol</h6>
                                   </div>
@@ -412,7 +412,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="url+'/img/cart/3.jpg'" class="w-30" alt>
+                                  <img :src="'/img/cart/3.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Swutter Print Dress</h6>
                                   </div>
@@ -453,7 +453,7 @@ li.bagform .dropbag:after {
                         </div>
                       </div>
                       <div
-                        class="dropcart"
+                        class="dropcart drop"
                         @click.stop.prevent
                         v-if="showCart"
                         :class="[{'zoomIn animated': showCart},{'zoomOut animated': showCartOut}]"
@@ -487,7 +487,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="url+'/img/cart/1.jpg'" class="w-30" alt>
+                                  <img :src="'/img/cart/1.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Animal Print Dress</h6>
                                   </div>
@@ -506,7 +506,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="url+'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Text Print Dress</h6>
                                   </div>
@@ -537,20 +537,20 @@ li.bagform .dropbag:after {
                     <li class="nav-item d-inline dropdown logiform">
                       <div class="up-item pr-3">
                         <div class="header-cart cursor" @click.stop.prevent="showLoginM">
-                          <i class="fa fa-user" :class="{'color-barna':isAuth}"></i>
+                          <i class="fa fa-user" :class="{'color-barna':getIsAuth}"></i>
                         </div>
                       </div>
                       <div
-                        class="droplogin"
+                        class="droplogin drop"
                         @click.stop.prevent
                         v-if="showLogin"
                         :class="[{'zoomIn animated': showLogin},{'zoomOut animated': showLoginOut}]"
                       >
-                        <div class="scroll-barna" style="overflow: auto;max-height: 65vh" :class="{'border-b-barna': isAuth}">
-                          <h5 class="pb-2" style="border-bottom: 1px solid #cccccc;" :class="{'bg-blue-barna': isAuth}">
-                            <i class="fa fa-user pr-2"></i><span v-if="isAuth">{{user.name}} {{user.last_name}}</span><span v-else> Iniciar Sesion </span>
+                        <div class="scroll-barna" style="overflow: auto;max-height: 65vh" :class="{'border-b-barna': getIsAuth}">
+                          <h5 class="pb-2 text-left" style="border-bottom: 1px solid #cccccc;" :class="{'bg-blue-barna': getIsAuth}">
+                            <i class="fa fa-user pr-2"></i><span v-if="getIsAuth">{{user.name}} {{user.last_name}}</span><span v-else> Iniciar Sesion </span>
                           </h5>
-                          <div v-if="isAuth">
+                          <div v-if="getIsAuth">
                             <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
                               <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
                             </a></p>
@@ -599,7 +599,7 @@ li.bagform .dropbag:after {
                               <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
-                              <a @click="registrarse" class="link-login cursor">Registrarse</a>
+                                <router-link to="/register" @click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
                             </div>
                           </div>
                         </div>
@@ -640,56 +640,24 @@ li.bagform .dropbag:after {
         </div>
       </nav>
     </div>
-    <div id="content-barna" class="h-171"></div>
+    <div id="content-barna" class="h-171" 
+    style="background-position: center center;
+    background-image: url('/img/barna.jpg');
+    background-size: contain;
+    background-color: #282828;
+    background-repeat: no-repeat;
+    "></div>
     <loading v-if="isLoading"></loading>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import loading from "../../components/layouts/loading.vue";
+import CerService from "../../plugins/CerService";
+
 export default {
   name: "headerComponent",
-  props: {
-    url: {
-      type: String,
-      required: true
-    },
-    isdesignp: {
-      type: Boolean,
-      required: false,
-      value: false
-    },
-    isauthp: {
-      type: Boolean,
-      required: false,
-      value: false
-    },
-    numcartp: {
-      type: Number,
-      required: false,
-      value: 0
-    },
-    numbagp: {
-      type: Number,
-      required: false,
-      value: 0
-    },
-    searchp: {
-      type: String,
-      required: false,
-      value: ""
-    },
-    rubrop: {
-      type: String,
-      required: false,
-      value: ""
-    },
-    isRouteRubro: {
-      type: Boolean,
-      required: false,
-      value: false
-    }
-  },
   components: {
     loading
   },
@@ -700,15 +668,10 @@ export default {
         last_name: ""
       },
       collapse: false,
-      search: this.searchp,
-      rubro: this.rubrop,
       showLogin: false,
-      isDesign: this.isdesignp,
-      numBag: this.numbagp,
-      numCart: this.numcartp,
-      isAuth: this.isauthp,
       showCart: false,
       showBag: false,
+      search: this.getSearch,
       showLoginOut: false,
       showCartOut: false,
       showBagOut: false,
@@ -716,110 +679,97 @@ export default {
     };
   },
   methods: {
-    toHome() {
-      location.replace(this.url);
-    },
-    initComponent() {
+  /*  initComponent() {
       this.isLoading = true;
-      var urli = this.url + "/login/auth";
-      axios
-        .get(urli)
-        .then(response => {
-          if (response.data.res) {
-			this.isAuth = true;
-			this.user.name = response.data.user.name;
-			this.user.last_name = response.data.user.last_name;
-            this.isLoading = false;
-          } else {
-            this.isLoading = false;
-          }
-        })
-        .catch(error => {
-          console.log("Ha ocurrido un error inesperado");
-          this.isLoading = false;
-        });
-	},
+        CerService.get("/login/auth")
+          .then(response => {
+            if (response.res) {
+              this.$store.dispatch('cambiarUser',{...response.user})
+              this.$store.dispatch('cambiarIsAuth',true)
+              this.user.name = response.user.name;
+              this.user.last_name = response.user.last_name;
+              this.isLoading = false;
+            } else {
+              this.isLoading = false;
+            }
+          })
+          .catch(err => {
+            console.log("Ha ocurrido un error inesperado");
+             this.isLoading = false;
+          });
+  },*/
+  cambCollapse(){
+    //var content = $("#content-barna");
+    //console.log('holaa')
+      setTimeout(e => { 
+            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+        },600)  },
 	logout(){
 	  this.closeAll(10)
 	  this.isLoading = true;
-      var urli = this.url + "/logout";
-      axios
-        .get(urli)
-        .then(response => {
-          if (response.data.res) {
-            this.isAuth = false;
-			this.isLoading = false;
-			this.$swal
+      CerService.post("/logout")
+          .then(response => {
+            if (response.res) {
+              this.$store.dispatch('cambiarIsAuth',false)
+              this.$store.dispatch('cambiarUser',{})
+              this.$swal
               .mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 6000
+                timer: 4000
               })
               .fire({
                 type: "success",
-                title: response.data.msg
+                title: response.msg
               });
-              location.replace(this.url);
-          } else {
-			  this.isLoading = false;
-			  this.$swal
+              this.$router.push({ name: 'home' })
+              this.isLoading = false;
+            } else {
+              this.$swal
               .mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 6000
+                timer: 4000
               })
               .fire({
                 type: "warning",
-                title: response.data.msg
+                title: response.msg
               });
-          }
-        })
-        .catch(error => {
-			this.isLoading = false;
-			this.$swal
+              this.isLoading = false;
+            }
+          })
+          .catch(err => {
+            this.$swal
               .mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 6000
+                timer: 4000
               })
               .fire({
                 type: "success",
                 title: "Ha ocurrido un error inesperado"
               });
-        });
+             this.isLoading = false;
+          });
 	},
-    registrarse() {
-      this.isLoading = true;
-      location.replace(this.url + "/register");
-    },
     seleted(event) {
-      this.rubro = String(event.target.innerText);
-      $("#rubrosCat").dropdown("toggle");
-      var e = {
-        search: this.search,
-        rubro: this.rubro
-      };
-      if(this.isRouteRubro) {
+      this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+      $("#rubrosCat").dropdown("toggle");      
+      /*if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {}
+      */
 
     },
     seletedAll() {
-      this.rubro = "";
-      var e = {
-        search: this.search,
-        rubro: this.rubro
-      };
+      this.$store.dispatch('cambiarRubro',"")
       $("#rubrosCat").dropdown("toggle");
       if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {}
-    },
-    login() {
-      console.log("esta entrando");
     },
     showBagM() {
       if (!this.showBag) {
@@ -889,58 +839,57 @@ export default {
       }, val);
     },
     designM(cent) {
-      this.$emit("designM", cent);
+      //this.$emit("designM", cent);
+      this.$store.dispatch('cambiarIsDesign',cent)
+
     },
     loginM() {
-	  this.isLoading = true;
+	    this.isLoading = true;
       var dataform = new FormData();
       dataform.append("password", this.user.password);
-      dataform.append("email", this.user.email);
-      var urli = this.url + "/login/post";
-      axios
-        .post(urli, dataform)
+      dataform.append("email", this.user.email);      
+        CerService.post("/login/post", dataform)
         .then(response => {
-          if (response.data.res) {
-			this.closeAll(1)
-			this.isAuth = true;
-			this.user.name = response.data.user.name;
-			this.user.last_name = response.data.user.last_name;
-            this.$emit("loginM", this.user);
+          if (response.res) {
+            this.closeAll(1)
+            this.user = response.user;
+            this.$store.dispatch( 'loadUser' );
             this.isLoading = false;
             this.$swal
               .mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 6000
+                timer: 4000
               })
               .fire({
                 type: "success",
-                title: response.data.msg
+                title: response.msg
               });
           } else {
-			this.isLoading = false;
+			      this.isLoading = false;
             this.$swal
               .mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 6000
+                timer: 4000
               })
               .fire({
                 type: "warning",
-                title: response.data.msg
+                title: response.msg
               });
           }
         })
         .catch(error => {
-		  this.isLoading = false;
+          this.$store.dispatch( 'loadUser' );
+		      this.isLoading = false;
           this.$swal
             .mixin({
               toast: true,
               position: "top-end",
               showConfirmButton: false,
-              timer: 6000
+              timer: 4000
             })
             .fire({
               type: "error",
@@ -949,24 +898,15 @@ export default {
         });
     },
     searchM() {
-      var e = {
-        search: this.search,
-        rubro: this.rubro
-      };
-      if(this.isRouteRubro) {
+      this.$store.dispatch('cambiarSearch',this.search)
+      /*if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {
           location.replace(this.url+'/rubros');
-      }
+      }*/
     },
     searchK() {
-      var e = {
-        search: this.search,
-        rubro: this.rubro
-      };
-      if(this.isRouteRubro){
-        this.$emit("searchK", e);
-      }
+      this.$store.dispatch('cambiarSearch',this.search)
     },
     searchRubro() {
       var value = $("#myInput").val();
@@ -980,12 +920,19 @@ export default {
       });
     }
   },
+  computed: {
+    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+  },
   mounted: function() {
-	this.initComponent()
+  //this.initComponent()
+    if (this.getIsAuth){
+      this.user = this.getUser
+    }
     var logo = $("#logo-barna");
     var content = $("#content-barna");
     $(window).resize(event => {
       event.preventDefault();
+      $(content).css("min-height", parseInt(($('.header-barna-fixed').css('height')).split('px')[0]));
       if (document.body.clientWidth <= 768) {
         this.collapse = true;
       } else {
@@ -993,10 +940,14 @@ export default {
       }
     });
 
-    document.addEventListener("scroll", function(event) {
+    document.addEventListener("scroll", event => {
       event.preventDefault();
       var menu = $(".main-menu li a");
-      if (document.documentElement.scrollTop > 10) {
+      var t = 150;
+      if(this.collapse){
+        t = 50
+      }
+      if (document.documentElement.scrollTop > t) {
         $(content).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("width", 50);
@@ -1009,19 +960,20 @@ export default {
           }
         }
       } else {
-        $(content).css("transition", "all 0.5s ease 0.1s");
-        $(logo).css("transition", "all 0.5s ease 0.1s");
+        $(content).css("transition", "all 0.3s ease 0.2s");
+        $(logo).css("transition", "all 0.3s ease 0.2s");
         $(logo).css("width", 75);
         $(logo).css("height", 105);
 
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.5s ease 0.1s");
+            $(menu[i]).css("transition", "all 0.3s ease 0.2s");
             $(menu[i]).css("padding", "17px 0");
           }
         }
-
-        $(content).css("min-height", 170);
+        setTimeout(e => { 
+            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+        },300)
       }
     });
   },
@@ -1031,31 +983,14 @@ export default {
     } else {
       this.collapse = false;
     }
-    this.isDesign = this.isdesignp;
-    this.isAuth = this.isauthp;
-    this.numCart = this.numcartp;
-    this.search = this.searchp;
-    this.rubro = this.rubrop;
-    this.numBag = this.numbagp;
   },
   watch: {
-    isdesignp: function() {
-      this.isDesign = this.isdesignp;
+    getIsDesign: function(){
+      //console.log('esto esta cambiando a ',this.getIsDesign)
+      //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
     },
-    isauthp: function() {
-      this.isAuth = this.isauthp;
-    },
-    numcartp: function() {
-      this.numCart = this.numcartp;
-    },
-    numbagp: function() {
-      this.numBag = this.numbagp;
-    },
-    searchp: function() {
-      this.search = this.searchp;
-    },
-    rubrop: function() {
-      this.rubro = this.rubrop;
+    getUser: function(){
+      this.user = this.$store.getters.getUser
     }
   }
 };
