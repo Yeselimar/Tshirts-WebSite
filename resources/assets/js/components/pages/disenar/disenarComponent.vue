@@ -11,11 +11,22 @@
     <!-- Lado 1 --->
     <div class="panel-diseno-l1 justify-content-center">
         <div class="scroll-barna d-flex justify-content-center title-panel-diseno">
-            <div class="panel-btn d-flex"> <i class="fa fa-check-circle-o"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Producto</div></div>
-            <div class="panel-btn d-flex"> <i class="fa fa-file-image-o"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Imagen</div></div>
-            <div class="panel-btn d-flex"> <i class="fa fa-info-circle"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Instrucciones</div></div>
+            <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Productos'}]" @click.stop.prevent="showProductsPanel('Productos')"> <i class="fa fa-check-circle-o">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Productos</div></div>
+
+            <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Imagen'}]" @click.stop.prevent="showImagePanel('Imagen')"> <i class="fa fa-file-image-o">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Imágen</div></div>
+
+            <div class="panel-btn d-flex":class="[{'panel-btn-active pulse animated': activo === 'Info'}]" @click.stop.prevent="showInfoPanel('Info')"> <i class="fa fa-info-circle">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Instrucciones</div></div>
         </div>
-        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna">
+        <!--Contenedor Imagen del Lado 1 -->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-if="showImage">
+            HOLA MUNDO
+        </div>
+        <!--Contenedor Info del Lado 1 -->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-else-if="showInfo">
+            HOLA INFO
+        </div>
+        <!--contenedor Productos del lado 1-->
+        <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" @click.stop.prevent v-else-if="showProducts">
                 <div class="productos-disenar">
                     <div class="product-item">
                         <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
@@ -78,15 +89,16 @@
                 show-border popover-to="left"></swatches>
             </div>
         </div>
-        <div class="container-disenar-l2">
-            <div class="parent" style="background-image: url('http://localhost:8000/img/product/12.jpg');background-position: center;background-repeat: no-repeat; background-size: cover; /* Resize the background image to cover the entire container */; width:-webkit-fill-available;height:-webkit-fill-available; position:relative" >
-                    <vue-draggable-resizable :resizable="true" :parent="'parent'">
-                        <p>You can drag me around and resize me as you wish.</p>
-                        {{url}}
-                    </vue-draggable-resizable>
+        <div class="container-imagen-a-disenar" id="content">
+            <img src="http://localhost:8000/img/product/remera.png">
+            <div class="container-area-de-diseno">
+
+                        <vue-draggable-resizable  :w="50" :h="50" :resizable="true" :parent="'.container-area-de-diseno'">
+                            <p>Hola</p>
+                        </vue-draggable-resizable>
+
             </div>
         </div>
-
     </div>
 
     </div>
@@ -103,8 +115,9 @@ import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 import Swatches from 'vue-swatches'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
-    // Import the styles too, globally
-    import "vue-swatches/dist/vue-swatches.min.css"
+import "vue-swatches/dist/vue-swatches.min.css"
+
+
     export default
     {
         name:'disenarComponent',
@@ -113,14 +126,20 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
             headerComponent,
             migajasComponent,
             Swatches,
-            VueDraggableResizable
+            VueDraggableResizable,
+
         },
+
         props:
         {
             url:{
                 type:String,
                 require:true
                 }
+        },
+        mounted(){
+            //this.w_contenedor=document.getElementById('contenedor').clientWidth
+
         },
         data() {
             return {
@@ -137,8 +156,24 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
                 height: 0,
                 x: 0,
                 y: 0,
-              
+                h_contenedor:0,
+                //Productos
+                showProductsOut:false,
+                showProducts: true,
+                activo:'Productos',
+                w_contenedor:0,
+                //Imagen
+                showImageOut: true,
+                showImage: false,
+                //Imagen
+                showInfoOut: true,
+                showInfo: false,
+                //Borrar
+                color_btn_borde: '#ddd',
+                isActive: true,
+
             }
+
         },
         methods:
         {
@@ -157,6 +192,69 @@ import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
             searchK(e){
 
             },
+
+            showProductsPanel(activo) {
+                if (this.showProducts) {
+                    this.showProductsOut = false;
+                    this.showProducts = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.activo = activo;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+
+                } else {
+                    this.showProductsOut = false;
+                    this.showProducts = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+                }
+
+            },
+            showImagePanel(activo) {
+                if (this.showImage) {
+                    this.showImageOut = false;
+                    this.showImage = true;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+
+                } else {
+                    this.showImageOut = false;
+                    this.showImage = true;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.showInfoOut = true;
+                    this.showInfo = false;
+                    this.activo = activo;
+                }
+            },
+            showInfoPanel(activo) {
+                if (this.showInfo) {
+                    this.showInfoOut = false;
+                    this.showInfo = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.activo = activo;
+                } else {
+                    this.showInfoOut = false;
+                    this.showInfo = true;
+                    this.showImageOut = true;
+                    this.showImage = false;
+                    this.showProductsOut = true;
+                    this.showProducts = false;
+                    this.activo = activo;
+                }
+            },
+
+
         },
     }
 </script>
