@@ -31,6 +31,8 @@ Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login')
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
 
+Route::get('/prueba','FrontController@prueba')->name('prueba');
+
 
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');

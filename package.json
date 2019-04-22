@@ -37,5 +37,6 @@
     "vue-draggable-resizable": "^2.0.0-rc1",
     "vue-konva": "^2.0.4",
     "vue-sweetalert2": "^1.6.4"
+        "ajv": "^6.10.0",
   }
 }
