@@ -12,16 +12,31 @@
 		<title>Barna-Admin</title>
 		<link href="{{asset('img/barna.jpg')}}" type="image/x-icon" rel="shortcut icon" />
 
+        <link href="{{asset('css/back/css/lib/chartist/chartist.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('css/back/css/lib/owl.carousel.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('css/back/css/lib/owl.theme.default.min.css')}}" rel="stylesheet"/>
+        <!-- Bootstrap Core CSS -->
+        <link href="{{asset('css/back/css/lib/bootstrap/bootstrap.min.css')}}" rel="stylesheet"/>
+        <!-- Custom CSS -->
+        <link href="{{asset('css/back/css/helper.css')}}" rel="stylesheet"/>
+        <link href="{{asset('css/back/css/style.css')}}" rel="stylesheet"/>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300" rel='stylesheet' type='text/css'>
 
         <!-- Style-->
        
     </head>
-    <body>
+    <body class="fix-header fix-sidebar">
+        <!-- Preloader - style you can find in spinners.css -->
+    
         <!--loading-->
         <!--end loading-->
-        <div id="back">
+        <div id="main-wrapper">
+            <div class="preloader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            </div>
             <router-view></router-view>
         </div>
         <script src="{{ mix('js/back.js')}}"></script>

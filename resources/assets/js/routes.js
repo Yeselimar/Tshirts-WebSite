@@ -45,6 +45,20 @@ const router = new VueRouter({
 					meta: { requiresAuth: false } 
 
 				},
+				{
+					path: 'rubros',
+					name: 'rubros',
+					component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
+					meta: { requiresAuth: false } 
+
+				},
+				{
+					path: 'procesar-carrito',
+					name: 'procesar-carrito',
+					component: Vue.component( 'Procesarcarrito', require( './components/pages/procesarcarrito/procesarcarritoComponent.vue' ) ),
+					meta: { requiresAuth: false } 
+
+				},
 				/*
 					Catch Alls
                 */

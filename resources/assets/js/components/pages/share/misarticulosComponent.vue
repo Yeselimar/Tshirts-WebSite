@@ -12,7 +12,7 @@
         <template v-if="busqueda.length!=0">
             <div class="row">
                 <template v-for="(articulo,i) in busqueda">
-                    <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image" :url="url" :isDesign="articulo.isDesign"></articulo-component>
+                    <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image"></articulo-component>
                 </template>
                 <div class="text-center w-100 pt-3">
                     <button class="site-btn sb-line sb-dark">VER MÁS...</button>
@@ -33,6 +33,7 @@
 
 <script>
 	import articuloComponent from "../../../components/pages/share/articuloComponent.vue";
+    import { mapGetters } from 'vuex'
 
     export default
     {
@@ -41,29 +42,6 @@
         {
 		    articuloComponent
 		},
-        props:
-        {
-            url:
-            {
-                type: String,
-                require: true
-            },
-            rubro:
-            {
-                type: String,
-                require: false
-            },
-            titulop:
-            {
-                type: String,
-                require: false
-            },
-            isdesignp:
-            {
-                type: Boolean,
-                require: false
-            }
-        },
         data()
         {
             return {
@@ -77,7 +55,7 @@
                         "nombre": 'Black and White Stripes Dress',
                         "precio": 1.00,
                         "image":'/img/product/1.jpg',
-                        "isDesign": true,
+                        "isDesign": false,
                         "rubros": ["hombre","mujer","niño"],
                     },
                     {
@@ -147,14 +125,15 @@
                 ]
             }
         },
-        mounted()
+        created()
         {
-            this.isDesign = this.isdesignp
-            this.titulo = this.titulop
-            this.rubrox = this.rubro
+            this.isDesign = this.getIsDesign
+            this.titulo = this.getSearch
+            this.rubrox = this.getRubro
         },
         computed: 
         {
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
             busqueda: function() 
             {
                 let auxiliar = [];
@@ -162,38 +141,41 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if( this.titulo.trim()!="" )
+                        if(this.isDesign==articulo.isDesign)//Si es diseñable
                         {
-                            //todas las categorias y con algo en el buscador
-                            if(this.rubrox.trim()=='')
+                            if(this.titulo.trim()!="" )
                             {
-                                if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                //todas las categorias y con algo en el buscador
+                                if(this.rubrox.trim()=='')
                                 {
-                                    auxiliar.push(articulo);
+                                    if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                    {
+                                        auxiliar.push(articulo);
+                                    }
+                                }
+                                else
+                                {
+                                    //selecciona una categoria y con algo en el buscador
+                                    if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                    {
+                                        auxiliar.push(articulo);
+                                    }
                                 }
                             }
                             else
                             {
-                                //selecciona una categoria y con algo en el buscador
-                                if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                if(this.rubrox.trim()=='')
                                 {
+                                    //todas las categorias y sin nada en el buscador
                                     auxiliar.push(articulo);
                                 }
-                            }
-                        }
-                        else
-                        {
-                            if(this.rubrox.trim()=='')
-                            {
-                                //todas las categorias y sin nada en el buscador
-                                auxiliar.push(articulo);
-                            }
-                            else
-                            {
-                                //selecciona una categoria y sin nada en el buscador
-                                if(this.buscarcategoria(articulo,this.rubrox) )
+                                else
                                 {
-                                    auxiliar.push(articulo);
+                                    //selecciona una categoria y sin nada en el buscador
+                                    if(this.buscarcategoria(articulo,this.rubrox) )
+                                    {
+                                        auxiliar.push(articulo);
+                                    }
                                 }
                             }
                         }
@@ -205,17 +187,15 @@
         },
         watch:
         {
-            isdesignp: function()
-            {
-                this.isDesign = this.isdesignp
+            getIsDesign: function(){
+                console.log("es diseñable: "+this.isDesign );
+              this.isDesign = this.$store.getters.getIsDesign
             },
-            titulop: function()
-            {
-                this.titulo = this.titulop
+            getRubro: function(){
+              this.rubrox = this.$store.getters.getRubro
             },
-            rubro: function()
-            {
-                this.rubrox = this.rubro
+            getSearch: function(){
+              this.titulo = this.$store.getters.getSearch
             }
         },
         methods:

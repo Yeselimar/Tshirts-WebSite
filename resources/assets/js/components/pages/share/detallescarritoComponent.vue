@@ -6,7 +6,7 @@
 				<ul class="product-list">
 					<template v-for="articulo in articulos">
 						<li>
-							<div class="pl-thumb"><img :src="url+articulo.imagen" alt=""></div>
+							<div class="pl-thumb"><img :src="articulo.imagen" alt=""></div>
 							<h6>{{articulo.nombre}}</h6>
 							<p>${{formatearmoneda(articulo.precio)}}</p>
 						</li>
@@ -29,11 +29,6 @@
         name:'detallescarritoComponent',
         props:
         {
-            url:
-            {
-                type: String,
-                require:true
-            }
         },
         data()
         {

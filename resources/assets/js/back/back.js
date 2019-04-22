@@ -14,7 +14,13 @@ window._ = require('lodash');
 
 try {
     //window.$ = window.jQuery = require('jquery');
- 
+    window.$ = window.jQuery = require('jquery');
+    require('popper.js');
+    require('bootstrap');
+    require('jquery-slimscroll');
+    require('./sidebarmenu');
+    require('./sticky-kit');
+    require('./custom')
 
 } catch (e) {}
 
@@ -53,17 +59,7 @@ const options = {
  
 Vue.use(VueSweetalert2, options)
 */
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-import '@mdi/font/css/materialdesignicons.css'
 
-Vue.use(Vuetify, {
-  iconfont: 'mdi',
-})
-
-import 'chartist/dist/chartist.min.css'
-
-Vue.use(require('vue-chartist'))
 
 /*
 	Imports all of the modules used in the application to build the data store.
@@ -78,8 +74,7 @@ import router from './routesBack'
   Create a new Vue instance and mount the app element.
 */
 const app = new Vue({
-  el: "#back",
-  Vuetify,
+  el: "#main-wrapper",
   store,
   router : router,
   //VueSweetalert2
