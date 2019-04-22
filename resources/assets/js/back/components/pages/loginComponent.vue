@@ -40,9 +40,6 @@ import CerService from "../../../plugins/CerService";
 
 export default {
   name:'login',
-  components: {
-    materialChartCard
-  },
   data () {
     return {
       user:{

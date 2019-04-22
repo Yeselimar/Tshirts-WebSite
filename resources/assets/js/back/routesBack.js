@@ -57,33 +57,24 @@ router.beforeEach((to, from, next) => {
             } 
             // check route meta if it requires auth or not
             if(to.matched.some(record => record.meta.requiresAuth)) {
-                        if (!isAuthenticated) {
-                            if(from.name != null)
-                            {
-                                next({
-                                    path: to.fullPath+'login',
-                                    params: { nextUrl: to.fullPath }
-                                })
-                            } else {
-                                next({
-                                    path: '/admin',
-                                    params: { nextUrl: to.fullPath }
-                                })
-                            }
-
-                        } else {
-                            next()
-                        }
+                    if (!isAuthenticated) {
+                        next({
+                            path: to.fullPath+'login',
+                            params: { nextUrl: to.fullPath }
+                        })
                     } else {
-                        if(String(to.name) == 'login' &&  isAuthenticated){
-                            next({
-                                path: '/admin',
-                                params: { nextUrl: to.fullPath }
-                            })
-                        }else {
-                            next()
-                        }
+                        next()
                     }
+            } else {
+                if(String(to.name) == 'login' &&  isAuthenticated){
+                    next({
+                        path: '/admin',
+                        params: { nextUrl: to.fullPath }
+                    })
+                }else {
+                    next()
+                }
+            }
 
         })
         .catch(function () {
@@ -105,7 +96,30 @@ router.beforeEach((to, from, next) => {
             store.dispatch('logoutUserAdmin')
         });
     }else {
-        next()
+        // para rutas que se visualizan estrictamente si no se esta autentificado
+            if(String(to.name) == 'login' ){
+                CerService.post('/login/admin/auth')
+                    .then(function (response) {
+                    if(response.res !== 0){
+                        next({
+                            path: '/admin',
+                            params: { nextUrl: to.fullPath }
+                        })
+                    }else {
+                        next()
+                    }
+                })
+                .catch(function () {
+                    next({
+                        path: '/admin',
+                        params: { nextUrl: to.fullPath }
+                    })
+                        
+                });
+                
+            } else {
+                next()
+            }
     
     }
 
