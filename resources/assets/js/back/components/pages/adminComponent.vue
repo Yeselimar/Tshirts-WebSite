@@ -7,10 +7,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img :src="'/img/barna3.png'" style="width: 150px;height: auto;text-align:center" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        <!--<span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>-->
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -156,7 +156,7 @@
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                <div class="user-img"> <img :src="'images/users/2.jpg'" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
                                                 </div>
@@ -186,14 +186,14 @@
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img :src="'/img/users/masculino.png'" alt="user" class="profile-pic" />
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
-                                    <li><a href="#" @click="logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="#"><i class="ti-user"></i> Perfil</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Configuraciones</a></li>
+                                    <li><a href="#" @click="logout"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -410,17 +410,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Sales</h4>
-                            </div>
-                            <div class="sales-chart">
-                                <div class="ct-bar-chart" style="height:350px"></div>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
+                    
                     <!-- /# column -->
                     <div class="col-lg-6">
                         <div class="card">
@@ -634,7 +624,7 @@
                                 <div class="recent-meaasge">
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
+                                            <a href="#"><img alt="..." :src="'images/avatar/1.jpg'" class="media-object"></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading">john doe</h4>
@@ -730,15 +720,150 @@
         <!-- End Page wrapper  -->
     </div>
 </template>
+
 <script>
 import CerService from "../../../plugins/CerService";
-
 export default {
   data () {
     return {
       message: 'Hoera!!!!'
     }
-  },methods: {
+  },
+  mounted()
+  {
+     $(function() {
+    "use strict";
+    $(function() {
+            $(".preloader").fadeOut();
+        }),
+
+        jQuery(document).on("click", ".mega-dropdown", function(i) {
+            i.stopPropagation();
+        });
+
+
+    var i = function() {
+        (window.innerWidth > 0 ? window.innerWidth : this.screen.width) < 1170 ? ($("body").addClass("mini-sidebar"),
+            $(".navbar-brand span").hide(), $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
+            $(".sidebartoggler i").addClass("ti-menu")) : ($("body").removeClass("mini-sidebar"),
+            $(".navbar-brand span").show());
+        var i = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+        (i -= 70) < 1 && (i = 1), i > 70 && $(".page-wrapper").css("min-height", i + "px");
+    };
+
+
+    $(window).ready(i), $(window).on("resize", i), $(".sidebartoggler").on("click", function() {
+            $("body").hasClass("mini-sidebar") ? ($("body").trigger("resize"), $(".scroll-sidebar, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"),
+                $("body").removeClass("mini-sidebar"), $(".navbar-brand span").show()) : ($("body").trigger("resize"),
+                $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
+                $("body").addClass("mini-sidebar"), $(".navbar-brand span").hide());
+        }),
+
+
+
+        $(".fix-header .header").stick_in_parent({}), $(".nav-toggler").click(function() {
+            $("body").toggleClass("show-sidebar"), $(".nav-toggler i").toggleClass("mdi mdi-menu"),
+                $(".nav-toggler i").addClass("mdi mdi-close");
+        }),
+
+
+
+        $(".search-box a, .search-box .app-search .srh-btn").on("click", function() {
+            $(".app-search").slideToggle(200);
+        }),
+
+
+
+        $(".floating-labels .form-control").on("focus blur", function(i) {
+            $(this).parents(".form-group").toggleClass("focused", "focus" === i.type || this.value.length > 0);
+        }).trigger("blur"), $(function() {
+            for (var i = window.location, o = $("ul#sidebarnav a").filter(function() {
+                    return this.href == i;
+                }).addClass("active").parent().addClass("active");;) {
+                if (!o.is("li")) break;
+                o = o.parent().addClass("in").parent().addClass("active");
+            }
+        }),
+
+        $(function() {
+            $("#sidebarnav").metisMenu();
+        }),
+
+        $(".scroll-sidebar").slimScroll({
+            position: "left",
+            size: "5px",
+            height: "100%",
+            color: "#dcdcdc"
+        }),
+
+        $(".message-center").slimScroll({
+            position: "right",
+            size: "5px",
+            color: "#dcdcdc"
+        }),
+
+        $(".aboutscroll").slimScroll({
+            position: "right",
+            size: "5px",
+            height: "80",
+            color: "#dcdcdc"
+        }),
+
+        $(".message-scroll").slimScroll({
+            position: "right",
+            size: "5px",
+            height: "570",
+            color: "#dcdcdc"
+        }),
+
+        $(".chat-box").slimScroll({
+            position: "right",
+            size: "5px",
+            height: "470",
+            color: "#dcdcdc"
+        }),
+
+        $(".slimscrollright").slimScroll({
+            height: "100%",
+            position: "right",
+            size: "5px",
+            color: "#dcdcdc"
+        }),
+
+
+
+        $("body").trigger("resize"), $(".list-task li label").click(function() {
+            $(this).toggleClass("task-done");
+        }),
+
+
+
+        $("#to-recover").on("click", function() {
+            $("#loginform").slideUp(), $("#recoverform").fadeIn();
+        }),
+
+
+
+        $('a[data-action="collapse"]').on("click", function(i) {
+            i.preventDefault(), $(this).closest(".card").find('[data-action="collapse"] i').toggleClass("ti-minus ti-plus"),
+                $(this).closest(".card").children(".card-body").collapse("toggle");
+        }),
+
+
+
+        $('a[data-action="expand"]').on("click", function(i) {
+            i.preventDefault(), $(this).closest(".card").find('[data-action="expand"] i').toggleClass("mdi-arrow-expand mdi-arrow-compress"),
+                $(this).closest(".card").toggleClass("card-fullscreen");
+        }),
+
+
+
+        $('a[data-action="close"]').on("click", function() {
+            $(this).closest(".card").removeClass().slideUp("fast");
+        });
+});
+  },
+  methods: {
   	logout (){
 	  	CerService.post("/logout/admin")
 	          .then(response => {
@@ -788,3 +913,5 @@ export default {
   }
 };
 </script>
+
+

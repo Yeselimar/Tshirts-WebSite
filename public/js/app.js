@@ -81464,9 +81464,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 this.articulos.forEach(function (articulo, index) {
                     if (this.isDesign == articulo.isDesign) //Si es diseñable
                         {
-                            if (this.titulo.trim() != "") {
+                            if (typeof this.titulo === 'string' && this.titulo.trim() != "") {
                                 //todas las categorias y con algo en el buscador
-                                if (this.rubrox.trim() == '') {
+                                if (typeof this.rubrox === 'string' && this.rubrox.trim() == '') {
                                     if (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase()) >= 0) {
                                         auxiliar.push(articulo);
                                     }
@@ -81477,7 +81477,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                     }
                                 }
                             } else {
-                                if (this.rubrox.trim() == '') {
+                                if (typeof this.rubrox === 'string' && this.rubrox.trim() == '') {
                                     //todas las categorias y sin nada en el buscador
                                     auxiliar.push(articulo);
                                 } else {
