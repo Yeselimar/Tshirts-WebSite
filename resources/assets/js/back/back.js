@@ -74,7 +74,7 @@ import router from './routesBack'
   Create a new Vue instance and mount the app element.
 */
 const app = new Vue({
-  el: "#main-wrapper",
+  el: "#back",
   store,
   router : router,
   VueSweetalert2

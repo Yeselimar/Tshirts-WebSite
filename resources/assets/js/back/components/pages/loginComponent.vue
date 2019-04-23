@@ -26,7 +26,7 @@
                               </div>
                               <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" @click="login">Ingresar</button>
                               <div class="register-link m-t-15 text-center">
-                                  <p>No tienes cuenta ? <a href="#"> Registrate</a></p>
+                                  <p>¿No tienes cuenta? <a href="#"> Registrate</a></p>
                               </div>
                       </div>
                   </div>

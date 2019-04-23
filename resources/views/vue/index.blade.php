@@ -12,8 +12,6 @@
 		<title>Barna</title>
 		<link href="{{asset('img/barna.jpg')}}" type="image/x-icon" rel="shortcut icon" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300" rel='stylesheet' type='text/css'>
 
         <!-- Style-->
         <link href="{{asset('css/front/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet"/>

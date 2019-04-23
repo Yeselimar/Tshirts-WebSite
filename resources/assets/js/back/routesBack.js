@@ -7,10 +7,14 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     mode: 'history',
 	routes: [
+       
         {
-            path: '*',
-            redirect: { name: 'index' },
+                path: 'admin/login',
+                name: 'login',
+                component: Vue.component( 'Login', require( './components/pages/loginComponent.vue' ) ),
+                meta: { requiresAuth: false } 
         },
+
 		{
 			path: '/admin/',
 			component: Vue.component( 'Back', require( './components/Back.vue' ) ),
@@ -26,25 +30,36 @@ const router = new VueRouter({
 					default: true,
 					meta: { requiresAuth: true } 
                 },
-				{
-					path: 'login',
-					name: 'login',
-					component: Vue.component( 'Login', require( './components/pages/loginComponent.vue' ) ),
-				},
+				
+                {
+                    path: 'rubros',
+                    name: 'rubros',
+                    component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
+                    meta: { requiresAuth: false } 
+                },
 				/*	Catch Alls
                 */
-                { path: '_=_', redirect: '/admin/' }
 
 			]
 		},
+         {
+            path: '*',
+            redirect: { name: 'login' },
+        },
+
 	]
 });
 
 /* Para la autentificación se utiliza esta sección */
 router.beforeEach((to, from, next) => {
 	// you could define your own authentication logic with token
-
+    console.log(to)
+    console.log(from)
+    console.log(next)
+    $(".preloader").show();
+    console.log('algo pasa')
     if(to.matched.some(record => record.meta.requiresAuth)) {
+        console.log('por aqui pasooo')
         CerService.post('/login/admin/auth')
         .then(function (response) {
         
@@ -59,7 +74,7 @@ router.beforeEach((to, from, next) => {
             if(to.matched.some(record => record.meta.requiresAuth)) {
                     if (!isAuthenticated) {
                         next({
-                            path: to.fullPath+'login',
+                            path: '/admin/login',
                             params: { nextUrl: to.fullPath }
                         })
                     } else {
@@ -71,10 +86,12 @@ router.beforeEach((to, from, next) => {
                         path: '/admin',
                         params: { nextUrl: to.fullPath }
                     })
+
                 }else {
                     next()
                 }
             }
+            $(".preloader").fadeOut();
 
         })
         .catch(function () {
@@ -82,7 +99,7 @@ router.beforeEach((to, from, next) => {
                     if(from.name != null)
                         {
                             next({
-                                path: from.path+'login',
+                                path: '/admin/login',
                                 params: { nextUrl: to.fullPath }
                             })
                         } else {
@@ -94,6 +111,8 @@ router.beforeEach((to, from, next) => {
                 }
                
             store.dispatch('logoutUserAdmin')
+            $(".preloader").fadeOut();
+
         });
     }else {
         // para rutas que se visualizan estrictamente si no se esta autentificado
@@ -108,23 +127,23 @@ router.beforeEach((to, from, next) => {
                     }else {
                         next()
                     }
+                    $(".preloader").fadeOut();
                 })
                 .catch(function () {
                     next({
                         path: '/admin',
                         params: { nextUrl: to.fullPath }
                     })
-                        
+                    $(".preloader").fadeOut();
                 });
                 
             } else {
                 next()
+                $(".preloader").fadeOut();
             }
     
     }
-
   })
-  
 export default router;
 
 /*export const routes = [
