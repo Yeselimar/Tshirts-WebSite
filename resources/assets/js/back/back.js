@@ -20,8 +20,8 @@ try {
     require('jquery-slimscroll');
     require('./sidebarmenu');
     require('./sticky-kit');
-    require('./custom')
-
+    //require('./custom');
+    
 } catch (e) {}
 
 /**

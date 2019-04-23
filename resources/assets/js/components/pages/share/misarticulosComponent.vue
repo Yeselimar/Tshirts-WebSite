@@ -143,10 +143,10 @@
                     {
                         if(this.isDesign==articulo.isDesign)//Si es diseñable
                         {
-                            if(this.titulo.trim()!="" )
+                            if((typeof(this.titulo) === 'string') && this.titulo.trim()!="" )
                             {
                                 //todas las categorias y con algo en el buscador
-                                if(this.rubrox.trim()=='')
+                                if((typeof(this.rubrox) === 'string') && this.rubrox.trim()=='')
                                 {
                                     if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
                                     {
@@ -164,7 +164,7 @@
                             }
                             else
                             {
-                                if(this.rubrox.trim()=='')
+                                if((typeof(this.rubrox) === 'string') && this.rubrox.trim()=='')
                                 {
                                     //todas las categorias y sin nada en el buscador
                                     auxiliar.push(articulo);
