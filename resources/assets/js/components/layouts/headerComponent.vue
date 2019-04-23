@@ -14,6 +14,9 @@ li.logiform .droplogin:after {
   border-bottom-color: #ccc;
 }
 .droplogin .ingresar .input-group {
+  padding-bottom: 25px;
+}
+.ingresar {
   margin-top: 20px;
 }
 .droplogin .ingresar .input-group input {
@@ -186,7 +189,7 @@ li.bagform .dropbag:after {
             <div class="flex-basis-logo">
               <!-- logo -->
               <router-link class="site-logo cursor" to="/">
-                <img :src="'/img/barna.jpg'" id="logo-barna" alt>
+                <img src="../../vendor/images/jpg/barna.jpg" id="logo-barna" alt>
               </router-link>
             </div>
             <div class="flex-basis-design">
@@ -332,6 +335,7 @@ li.bagform .dropbag:after {
                     type="text"
                     v-model="search"
                     class="input-search-barna form-control"
+                    v-on:keyup.13="searchM"
                     @keyup="searchK"
                     placeholder="Buscar en Barna ...."
                   >
@@ -568,23 +572,47 @@ li.bagform .dropbag:after {
 							              </p>
                           </div>
                           <div v-else class="ingresar">
-                            <div class="form-email input-group">
+                            <div class="form-email input-group" :class="{'position-relative': errors.first('form-email','form-login')}">
                               <input
                                 type="email"
                                 v-model="user.email"
-                                name="email"
+                                name="form-email"
                                 class="form-control"
+                                :class="{'error-input': errors.first('form-email','form-login')}"
                                 :placeholder="'Ingrese su email'"
+                                data-vv-scope="form-login"
+                                v-validate
+                                data-vv-rules="required:true|email"
                               >
+                                <span
+                                class="error-text"
+                                v-if="errors.firstByRule('form-email', 'required','form-login')"
+                              >Campo requerido.</span>
+                                <span
+                                  class="error-text"
+                                  v-else-if="errors.firstByRule('form-email','email','form-login')"
+                                >Formato no válido.</span>
                             </div>
-                            <div class="form-password input-group">
+                            <div class="form-password input-group" :class="{'position-relative': errors.first('form-password','form-login')}">
                               <input
                                 type="password"
                                 v-model="user.password"
-                                name="password"
+                                name="form-password"
                                 class="form-control"
+                                :class="{'error-input': errors.first('form-password','form-login')}"
+                                data-vv-scope="form-login"
+                                v-validate
+                                data-vv-rules="required:true|min:6"
                                 :placeholder="'Ingrese su contraseña'"
                               >
+                                  <span
+                                  class="error-text"
+                                  v-if="errors.firstByRule('form-password', 'required','form-login')"
+                                >Campo requerido.</span>
+                                <span
+                                  class="error-text"
+                                  v-else-if="errors.firstByRule('form-password','min','form-login')"
+                                >Minimo 6 caracteres.</span>
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -595,7 +623,7 @@ li.bagform .dropbag:after {
                                 class="site-btn-login float-right"
                               >
                             </div>
-                            <div class="input-group remember justify-content-start text-left">
+                            <div class="remember justify-content-start text-left">
                               <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
@@ -700,9 +728,11 @@ export default {
   cambCollapse(){
     //var content = $("#content-barna");
     //console.log('holaa')
+      $('#content-barna').css("transition", "all 0.2s ease 0.1s");
       setTimeout(e => { 
             $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },600)  },
+        },400)  
+  },
 	logout(){
 	  this.closeAll(10)
 	  this.isLoading = true;
@@ -756,7 +786,7 @@ export default {
 	},
     seleted(event) {
       this.$store.dispatch('cambiarRubro',String(event.target.innerText))
-      $("#rubrosCat").dropdown("toggle");      
+      $("#rubrosCat").dropdown("toggle");   
       /*if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {}
@@ -766,9 +796,6 @@ export default {
     seletedAll() {
       this.$store.dispatch('cambiarRubro',"")
       $("#rubrosCat").dropdown("toggle");
-      if(this.isRouteRubro) {
-        this.$emit("searchM", e);
-      } else {}
     },
     showBagM() {
       if (!this.showBag) {
@@ -843,46 +870,61 @@ export default {
 
     },
     loginM() {
-	    this.isLoading = true;
-      var dataform = new FormData();
-      dataform.append("password", this.user.password);
-      dataform.append("email", this.user.email);      
-        CerService.post("/login/post", dataform)
-        .then(response => {
-          if (response.res) {
-            this.closeAll(1)
-            this.user = response.user;
-            this.$store.dispatch( 'loadUser' );
-            this.isLoading = false;
-            this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
+      this.$validator.validateAll("form-login").then(resp => {
+        if (resp) {
+            this.isLoading = true;
+            var dataform = new FormData();
+            dataform.append("password", this.user.password);
+            dataform.append("email", this.user.email);      
+              CerService.post("/login/post", dataform)
+              .then(response => {
+                if (response.res) {
+                  this.closeAll(1)
+                  this.user = response.user;
+                  this.$store.dispatch( 'loadUser' );
+                  this.isLoading = false;
+                  this.$swal
+                    .mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 4000
+                    })
+                    .fire({
+                      type: "success",
+                      title: response.msg
+                    });
+                } else {
+                  this.isLoading = false;
+                  this.$swal
+                    .mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 4000
+                    })
+                    .fire({
+                      type: "warning",
+                      title: response.msg
+                    });
+                }
               })
-              .fire({
-                type: "success",
-                title: response.msg
+              .catch(error => {
+                this.$store.dispatch( 'loadUser' );
+                this.isLoading = false;
+                this.$swal
+                  .mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000
+                  })
+                  .fire({
+                    type: "error",
+                    title: "Ha ocurrido un error inesperado"
+                  });
               });
-          } else {
-			      this.isLoading = false;
-            this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "warning",
-                title: response.msg
-              });
-          }
-        })
-        .catch(error => {
-          this.$store.dispatch( 'loadUser' );
-		      this.isLoading = false;
+        } else {
           this.$swal
             .mixin({
               toast: true,
@@ -891,13 +933,16 @@ export default {
               timer: 4000
             })
             .fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
+              type: "warning",
+              title: "Por favor valide los campos"
             });
-        });
+        }
+      });
+
     },
     searchM() {
       this.$store.dispatch('cambiarSearch',this.search)
+      this.$router.push({ name: 'rubros' })
       /*if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {
@@ -931,7 +976,10 @@ export default {
     var content = $("#content-barna");
     $(window).resize(event => {
       event.preventDefault();
-      $(content).css("min-height", parseInt(($('.header-barna-fixed').css('height')).split('px')[0]));
+       $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+      setTimeout(e => { 
+            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+        },400)  
       if (document.body.clientWidth <= 768) {
         this.collapse = true;
       } else {
@@ -970,9 +1018,10 @@ export default {
             $(menu[i]).css("padding", "17px 0");
           }
         }
-        setTimeout(e => { 
-            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },300)
+            $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+             setTimeout(e => { 
+              $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
+            },300)            
       }
     });
   },

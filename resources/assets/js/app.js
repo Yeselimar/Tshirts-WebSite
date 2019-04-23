@@ -58,7 +58,8 @@ const options = {
 }
  
 Vue.use(VueSweetalert2, options)
-
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate, { fieldsBagName: 'veeFields' });
 
 
 
@@ -78,7 +79,8 @@ const app = new Vue({
   el: "#app",
   store,
   router : router,
-  VueSweetalert2
+  VueSweetalert2,
+  VeeValidate
 });
 
 export default app;
