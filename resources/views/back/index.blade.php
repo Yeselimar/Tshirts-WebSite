@@ -22,7 +22,6 @@
         <link href="{{asset('css/back/css/style.css')}}" rel="stylesheet"/>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300" rel='stylesheet' type='text/css'>
 
         <!-- Style-->
        
@@ -38,16 +37,11 @@
         </div>
         <!--end loading-->
 
-        <div id="main-wrapper">
+        <div id="back">
             <router-view></router-view>
         </div>
 
         <script src="{{ mix('js/back.js')}}"></script>
-
-        
-
-        
-
 
     </body>
 </html>
