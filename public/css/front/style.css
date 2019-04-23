@@ -2924,10 +2924,15 @@ td, th, tr{
 	background-color: #ef7a6e !important
 
 }
+.hover-barna:hover {
+	color: #ef7a6e !important
+}
 .color-black {
 	color: black !important;
 }
-
+.color-white {
+	color: white !important
+}
 .bg-white {
 	background-color: white
 }
@@ -3083,4 +3088,13 @@ td, th, tr{
 	color: red;
 	right: 6px;
 	bottom: 6px;
+}
+
+.modal-header-barna {
+	background-color: #94c3d3;
+  border-top-right-radius: .6rem;
+  border-top-left-radius: .6rem;
+}
+.modal-content-barna {
+	border-radius: 1rem;
 }

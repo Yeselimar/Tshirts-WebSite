@@ -1,9 +1,9 @@
 <style lang="scss" scope>
-    #texto-rosa-barna
+    .texto-rosa-barna
     {
-        color: #ef7a6e;
+        color: #ef7a6e !important;
     }
-    #lista-activa a:after
+    .lista-activa a:after
     {
         position: absolute;
         content: "";
@@ -29,10 +29,14 @@
                         <div class="filter-widget">
                             <h2 class="fw-title">Rubros </h2>
                             <ul class="category-menu">
-                                <template v-for="rubro in tipos_rubros">
-                                    <template v-if="rubro.seleccionable">
-                                        <li id="lista-activa">
-                                            <a id="texto-rosa-barna" @click.prevent="cambialo(rubro)"><strong>{{rubro.nombre}}</strong></a>
+                                <li :class="[{'lista-activa': (getRubro === '')}]"><a @click.prevent="cambialo('')" :class="[{'texto-rosa-barna': (getRubro === '')}]"><strong>Todas las categorías</strong></a></li>
+                                <li v-for="(rubro,i) in tipos_rubros" :key="i" :class="[{'lista-activa': (getRubro === rubro.nombre)}]">
+                                    <a @click.prevent="cambialo(rubro)" :class="[{'texto-rosa-barna': getRubro === rubro.nombre}]"><strong>{{rubro.nombre}}</strong></a>
+                                </li>
+                               <!-- <template >
+                                    <template v-if="rubro.nombre == getRubro">
+                                        <li class="lista-activa">
+                                            <a class="texto-rosa-barna" @click.prevent="cambialo(rubro)"><strong>{{rubro.nombre}}</strong></a>
                                         </li>
                                     </template>
                                     <template v-else>
@@ -41,6 +45,7 @@
                                         </li>
                                     </template>
                                 </template>
+                                -->
                             </ul>
                         </div>
                     </div>
@@ -82,41 +87,38 @@
                 [
                     {
                         "id": 1,
-                        "nombre": 'Todas las categorías',
-                        "seleccionable": true,
-                    },
-                    {
-                        "id": 1,
                         "nombre": 'Hombre',
-                        "seleccionable": false,
                     },
                     {
                         "id": 2,
                         "nombre": 'Mujer',
-                        "seleccionable": false,
                     },
                     {
                         "id": 3,
                         "nombre": 'Niño',
-                        "seleccionable": false,
                     },
                     {
                         "id": 4,
                         "nombre": 'Niña',
-                        "seleccionable": false,
                     },
                     {
                         "id": 5,
                         "nombre": 'Taza',
-                        "seleccionable": false,
                     },
                     {
                         "id": 6,
                         "nombre": 'Buzo',
-                        "seleccionable": false,
                     }
                 ]
             }
+        },
+        mounted(){
+             let element = document.getElementById("formulario");
+              var options = {
+                offset: 0,
+                force: true
+              };
+              this.$scrollTo(element, 500, options);
         },
         created()
         {
@@ -132,7 +134,7 @@
         {
             cambialo(rubro)
             {
-                if(rubro.nombre.toLowerCase()=="Todas las categorías".toLowerCase())
+                if(rubro === '')
                 {
                     this.rubro = '';//reasigno para actualizar el componente header
                     this.$store.dispatch('cambiarRubro',this.rubro)
@@ -144,7 +146,7 @@
                     this.$store.dispatch('cambiarRubro',this.rubro)
 
                 }
-                /*esto es codigo repetido*/
+                /*esto es codigo repetido
                 for (var i in this.tipos_rubros)
                 {
                     this.tipos_rubros[i].seleccionable = false;

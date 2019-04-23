@@ -183,7 +183,7 @@ li.bagform .dropbag:after {
 <template>
   <div>
     <div class="header-section header-barna-fixed" @click="closeAll(500)">
-      <div class="header-top-barna">
+      <div class="header-top-barna" id="header-top">
         <div class="container" :class="{'position-relative': collapse}">
           <div class="d-flex align-items-center flex-wrap-mw justify-content-around">
             <div class="flex-basis-logo">
@@ -289,46 +289,17 @@ li.bagform .dropbag:after {
                       >
                       <li>
                         <a
-                          @click.stop.prevent="seletedAll"
-                          :class="[{'bg-barna font-weight-bold': getRubro === ''}]"
+                          @click.stop.prevent="seleted('')"
+                          :class="[{'bg-barna color-white': getRubro === ''}]"
                         >Todas las categorias</a>
                       </li>
-                      <li>
+                      <li  v-for="(rubro,i) in tipos_rubros" :key="i">
                         <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Hombre'}]"
-                        >Hombre</a>
+                          @click.stop.prevent="seleted(rubro.nombre)"
+                          :class="[{'bg-barna color-white': getRubro === rubro.nombre}]"
+                        >{{rubro.nombre}}</a>
                       </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Mujer'}]"
-                        >Mujer</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niña'}]"
-                        >Niña</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niño'}]"
-                        >Niño</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Taza'}]"
-                        >Taza</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Buzo'}]"
-                        >Buzo</a>
-                      </li>
+                      
                     </ul>
                   </div>
                   <input
@@ -646,23 +617,10 @@ li.bagform .dropbag:after {
           <ul
             class="container scroll-barna overflow-auto main-menu d-flex align-items-center w-auto"
           >
-            <li>
-              <a href="#">Hombre</a>
-            </li>
-            <li>
-              <a href="#">Mujer</a>
-            </li>
-            <li>
-              <a href="#">Niño</a>
-            </li>
-            <li>
-              <a href="#">Niña</a>
-            </li>
-            <li>
-              <a href="#">Tazas</a>
-            </li>
-            <li>
-              <a href="#">Buzo</a>
+            <li  v-for="(rubro,i) in tipos_rubros_fav" :key="i">
+                <a class="color-white cursor hover-barna"
+                  @click.stop.prevent="seletedRoute(rubro.nombre)"
+                >{{rubro.nombre}}</a>
             </li>
           </ul>
         </div>
@@ -690,6 +648,52 @@ export default {
   },
   data() {
     return {
+      tipos_rubros:
+      [
+          {
+              "id": 1,
+              "nombre": 'Hombre',
+          },
+          {
+              "id": 2,
+              "nombre": 'Mujer',
+          },
+          {
+              "id": 3,
+              "nombre": 'Niño',
+          },
+          {
+              "id": 4,
+              "nombre": 'Niña',
+          },
+          {
+              "id": 5,
+              "nombre": 'Taza',
+          },
+          {
+              "id": 6,
+              "nombre": 'Buzo',
+          }
+      ],
+      tipos_rubros_fav:
+      [
+          {
+              "id": 1,
+              "nombre": 'Hombre',
+          },
+          {
+              "id": 2,
+              "nombre": 'Mujer',
+          },
+          {
+              "id": 3,
+              "nombre": 'Niño',
+          },
+          {
+              "id": 4,
+              "nombre": 'Niña',
+          }
+      ],
       user: {
         name: "",
         last_name: ""
@@ -784,18 +788,20 @@ export default {
              this.isLoading = false;
           });
 	},
-    seleted(event) {
-      this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+    seleted(rubro) {
+      //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+      this.$store.dispatch('cambiarRubro',rubro)
       $("#rubrosCat").dropdown("toggle");   
-      /*if(this.isRouteRubro) {
-        this.$emit("searchM", e);
-      } else {}
-      */
 
     },
-    seletedAll() {
-      this.$store.dispatch('cambiarRubro',"")
-      $("#rubrosCat").dropdown("toggle");
+    seletedRoute(rubro) {
+      //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+      this.$store.dispatch('cambiarRubro',rubro)
+      this.search = ""
+      this.$store.dispatch('cambiarSearch',this.search)
+      this.$router.push({ name: 'rubros' })
+
+
     },
     showBagM() {
       if (!this.showBag) {

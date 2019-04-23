@@ -22,8 +22,8 @@
 				</div>
                         <div @click="inicio" class="modal fade" id="modalRegister">
                             <div class="modal-dialog">
-                                <div class="modal-content" @click.stop.prevent="">
-                                    <div class="modal-header">
+                                <div class="modal-content modal-content-barna" @click.stop.prevent="">
+                                    <div class="modal-header modal-header-barna">
                                         <h5 class="modal-title pull-left"><strong>Registro Exitoso. Ya puedes Iniciar Sesión</strong></h5>
                                         <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
                                     </div>
@@ -36,6 +36,7 @@
                                                             class="input-barna"
                                                             :placeholder="'Ingrese su email'"
                                                         >
+
                                                     </div>
                                                     <div class="w-70 form-password input-group">
                                                         <input type="password"
@@ -98,6 +99,14 @@
             $('.drop').toggle()
             this.isLoading = true
         },
+        mounted(){
+             let element = document.getElementById("header-top");
+              var options = {
+                offset: 0,
+                force: true
+              };
+              this.$scrollTo(element, 500, options);
+        },
         beforeMount()
         {
             this.isLoading = false
@@ -105,8 +114,8 @@
         methods:
         {   
             inicio(){
-                location.replace(this.url)
-
+                this.$router.push({ name: 'home' })
+                //$route.name
             },
             register(){
                 this.isLoading = true
@@ -132,22 +141,6 @@
                     this.msg= 'Ha ocurrido un error inesperado'
                     this.isLoading= false
                 });
-            },
-            loginM(e)
-            {
-                console.log(e)
-            },
-            designM(e)
-            {
-                
-            },
-            searchM(e)
-            {
-            	
-            },
-            searchK(e)
-            {
-            	
             }
 		},
     }

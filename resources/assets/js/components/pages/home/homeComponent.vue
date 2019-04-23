@@ -533,7 +533,12 @@ export default {
 		    },
         },
         mounted: function(){
-
+             let element = document.getElementById("header-top");
+              var options = {
+                offset: 0,
+                force: true
+              };
+              this.$scrollTo(element, 500, options);
             $(window).resize(event=>{
                             event.preventDefault()
                             if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)

@@ -60,7 +60,8 @@ const options = {
 Vue.use(VueSweetalert2, options)
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate, { fieldsBagName: 'veeFields' });
-
+import VueScrollTo from 'vue-scrollto';
+Vue.use(VueScrollTo);
 
 
 /*
@@ -80,7 +81,8 @@ const app = new Vue({
   store,
   router : router,
   VueSweetalert2,
-  VeeValidate
+  VeeValidate,
+  VueScrollTo
 });
 
 export default app;
