@@ -16,7 +16,7 @@ CerService.get = function(endpoint) {
             return res.data;
         }).catch(err => {
             console.log(err);
-            console.log('Error CER API');
+            console.log('Error API');
 
             if (err.response && err.response.status === 403) {
                 // location.reload()
@@ -44,7 +44,7 @@ CerService.post = function(endpoint, json) {
         .then(res => res.data)
         .catch(err => {
             console.log(err);
-            console.log('Error CER API');
+            console.log('Error API');
             
             if (err.response && err.response.status === 403) {
                 // location.reload()

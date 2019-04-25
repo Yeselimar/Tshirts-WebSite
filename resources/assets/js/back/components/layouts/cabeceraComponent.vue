@@ -188,7 +188,13 @@ export default{
     },
     mounted()
     {
-        setTimeout(e => {
+        this.montar()
+       
+    },
+    methods:
+    {
+        montar() {
+                    setTimeout(e => {
            $(function() {
             "use strict";
             $(function() {
@@ -322,12 +328,10 @@ export default{
         });
         
         }, 500);
-       
-    },
-    methods:
-    {
+        },
         logout()
         {
+            $(".preloader").show();
             CerService.post("/logout/admin")
                 .then(response => {
                     if (response.res) {
@@ -345,6 +349,7 @@ export default{
                         title: response.msg
                       });
                       this.$router.push({ name: 'login' })
+                      $(".preloader").fadeOut();
                     } else {
                       this.$swal
                       .mixin({
@@ -357,6 +362,8 @@ export default{
                         type: "warning",
                         title: response.msg
                       });
+                        $(".preloader").fadeOut();
+
                     }
                 })
                 .catch(err => {
@@ -371,6 +378,8 @@ export default{
                         type: "success",
                         title: "Ha ocurrido un error inesperado"
                       });
+                     $(".preloader").fadeOut();
+
                 });
 
         }

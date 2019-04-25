@@ -64,6 +64,9 @@ li.logiform .droplogin:after {
   .dropbag {
     min-width: 350px !important;
   }
+  .w-60 {
+  width: 90% !important
+  }
 }
 @media (max-width: 400px) {
   .dropcart,
@@ -178,6 +181,13 @@ li.bagform .dropbag:after {
 .rubro-selected {
   color: #ef7a6e;
   font-weight: bold;
+}
+.content-no-found {
+     min-height: 100px;
+     position: relative;
+}
+.w-60 {
+  width: 60%
 }
 </style>
 <template>
@@ -330,7 +340,7 @@ li.bagform .dropbag:after {
                       <div class="up-item pr-3">
                         <div class="header-cart cursor" @click.stop.prevent="showBagM">
                           <i class="fa fa-shopping-bag"></i>
-                          <span>0</span>
+                          <span>{{getBag.length}}</span>
                         </div>
                       </div>
                       <!-- drop bag -->
@@ -347,7 +357,11 @@ li.bagform .dropbag:after {
                           <h5 class="pb-2">
                             <i class="fa fa-shopping-bag pr-2"></i>Cesta de Pedidos
                           </h5>
-                          <table class="table table-hover">
+                          <div v-if="getBag.length == 0" class="content-no-found">
+                          <p class="center-element no-found-search w-60">
+                              Cesta de pedidos vacía</p>
+                          </div>
+                          <table v-else class="table table-hover">
                             <thead>
                               <tr>
                                 <th class="product-th text-center">Producto</th>
@@ -406,7 +420,7 @@ li.bagform .dropbag:after {
                               </tr>
                             </tbody>
                           </table>
-                          <div class="d-flex justify-content-end">
+                          <div class="d-flex justify-content-end" v-if="getBag.length > 0">
                             <input
                               type="button"
                               value="Procesar Pedido"
@@ -424,7 +438,7 @@ li.bagform .dropbag:after {
                       <div class="up-item pr-3">
                         <div class="header-cart cursor" @click.stop.prevent="showCartM">
                           <i class="fa fa-shopping-cart"></i>
-                          <span>0</span>
+                          <span>{{getCart.length}}</span>
                         </div>
                       </div>
                       <div
@@ -441,7 +455,12 @@ li.bagform .dropbag:after {
                           <h5 class="pb-2">
                             <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra
                           </h5>
-                          <table class="table table-hover">
+                          
+                          <div v-if="getCart.length == 0" class="content-no-found">
+                            <p class="center-element no-found-search w-60">
+                                Carrito de compras vacío</p>
+                          </div>
+                          <table v-else class="table table-hover">
                             <thead>
                               <tr>
                                 <th class="product-th text-center">Producto</th>
@@ -500,7 +519,7 @@ li.bagform .dropbag:after {
                               </tr>
                             </tbody>
                           </table>
-                          <div class="d-flex justify-content-end">
+                          <div class="d-flex justify-content-end" v-if="getCart.length > 0">
                             <input type="button" value="Comprar" class="site-btn-login float-right">
                           </div>
                         </div>
@@ -740,11 +759,9 @@ export default {
 	logout(){
 	  this.closeAll(10)
 	  this.isLoading = true;
-      CerService.post("/logout")
-          .then(response => {
-            if (response.res) {
-              this.$store.dispatch('cambiarIsAuth',false)
-              this.$store.dispatch('cambiarUser',{})
+        this.$store.dispatch('logout').then((res)=>{
+
+            if (res.res) {
               this.$swal
               .mixin({
                 toast: true,
@@ -754,7 +771,7 @@ export default {
               })
               .fire({
                 type: "success",
-                title: response.msg
+                title: res.msg
               });
               this.$router.push({ name: 'home' })
               this.isLoading = false;
@@ -768,7 +785,7 @@ export default {
               })
               .fire({
                 type: "warning",
-                title: response.msg
+                title: res.msg
               });
               this.isLoading = false;
             }
@@ -886,8 +903,10 @@ export default {
               .then(response => {
                 if (response.res) {
                   this.closeAll(1)
-                  this.user = response.user;
-                  this.$store.dispatch( 'loadUser' );
+                  this.$store.dispatch( 'loadUser');
+                  if (this.$route.name == 'register'){
+                    this.$router.push({ name: 'home' })
+                  }
                   this.isLoading = false;
                   this.$swal
                     .mixin({
@@ -971,7 +990,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart']),
   },
   mounted: function() {
   //this.initComponent()
@@ -1045,6 +1064,9 @@ export default {
     },
     getUser: function(){
       this.user = this.$store.getters.getUser
+    },
+    getSearch: function(){
+      this.search= this.$store.getters.getSearch
     }
   }
 };

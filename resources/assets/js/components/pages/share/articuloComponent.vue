@@ -49,7 +49,7 @@
         },
          computed: 
         {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
         },
         mounted()
         {

@@ -206,9 +206,8 @@ export default {
     methods:
     {
         montar(){
-            if(true){
-                         setTimeout(e => {
-                            console.log('aja qsdf')
+            if(this.getIsAuth){
+                    setTimeout(e => {
                        $(function() {
                         "use strict";
                         $(function() {
@@ -340,12 +339,12 @@ export default {
                                 $(this).closest(".card").removeClass().slideUp("fast");
                             });
                     });
-                    //console.log("aquii");
-                    }, 100);
+                    }, 10);
             }
         },
         logout()
         {
+            $(".preloader").show();
             CerService.post("/logout/admin")
                 .then(response => {
                     if (response.res) {
@@ -375,6 +374,7 @@ export default {
                         type: "warning",
                         title: response.msg
                       });
+                      $(".preloader").fadeOut();
                     }
                 })
                 .catch(err => {
@@ -389,6 +389,8 @@ export default {
                         type: "success",
                         title: "Ha ocurrido un error inesperado"
                       });
+                      $(".preloader").fadeOut();
+
                 });
 
         }

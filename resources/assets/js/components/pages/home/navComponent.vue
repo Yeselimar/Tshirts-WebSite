@@ -64,7 +64,7 @@ export default {
   name: "navComponent",
   computed: {
             
-      ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+      ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
   },
   data() {
     return {
