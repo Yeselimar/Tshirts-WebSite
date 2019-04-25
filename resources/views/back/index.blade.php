@@ -31,10 +31,10 @@
         <!-- Preloader - style you can find in spinners.css -->
         
         <!--loading-->
-        <div class="preloader">
+        <!--<div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-        </div>
+        </div>-->
         <!--end loading-->
 
         <div id="back">
@@ -42,6 +42,8 @@
         </div>
 
         <script src="{{ mix('js/back.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
 
     </body>
 </html>

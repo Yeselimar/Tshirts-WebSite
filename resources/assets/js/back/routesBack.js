@@ -28,7 +28,7 @@ const router = new VueRouter({
 					name: 'index',
 					component: Vue.component( 'Admin', require( './components/pages/adminComponent.vue' ) ),
 					default: true,
-					meta: { requiresAuth: true } 
+					meta: { requiresAuth: false } 
                 },
 				
                 {
@@ -37,9 +37,21 @@ const router = new VueRouter({
                     component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
                     meta: { requiresAuth: false } 
                 },
+                {
+                    path: 'grupos',
+                    name: 'grupos',
+                    component: Vue.component( 'Grupos', require( './components/pages/grupos/gruposComponent.vue' ) ),
+                    meta: { requiresAuth: false } 
+                },
+                {
+                    path: 'caracteristicas',
+                    name: 'caracteristicas',
+                    component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
+                    meta: { requiresAuth: false } 
+                },
 				/*	Catch Alls
                 */
-
+                { path: '_=_', redirect: '/' }
 			]
 		},
          {
@@ -51,7 +63,7 @@ const router = new VueRouter({
 });
 
 /* Para la autentificación se utiliza esta sección */
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
 	// you could define your own authentication logic with token
     console.log(to)
     console.log(from)
@@ -143,8 +155,9 @@ router.beforeEach((to, from, next) => {
             }
     
     }
-  })
+  })*/
 export default router;
+
 
 /*export const routes = [
     { path: '/vue', component: Home, name: 'Home' },

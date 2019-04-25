@@ -206,7 +206,7 @@ export default {
     methods:
     {
         montar(){
-            if(this.getIsAuth){
+            if(true){
                          setTimeout(e => {
                             console.log('aja qsdf')
                        $(function() {
@@ -340,7 +340,7 @@ export default {
                                 $(this).closest(".card").removeClass().slideUp("fast");
                             });
                     });
-                    
+                    //console.log("aquii");
                     }, 100);
             }
         },

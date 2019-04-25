@@ -30,6 +30,22 @@ Route::post('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
 Route::post('/logout/admin', 'Auth\LoginController@logoutAdmin')->name('logout.admin');
 Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('login.admin.auth');
 Route::post('/login/admin/post', 'Auth\LoginController@postloginAdmin')->name('post.admin.login');
+//Rubros
+Route::post('/rubros/todos','RubrosController@index')->name('rubros.todos');
+Route::post('/rubros/guardar','RubrosController@store')->name('rubros.guardar');
+Route::post('/rubros/{id}/actualizar','RubrosController@update')->name('rubros.actualizar');
+Route::post('/rubros/{id}/eliminar','RubrosController@destroy')->name('rubros.eliminar');
+Route::post('/rubros/{id}/detalles','RubrosController@show')->name('rubros.detalles');
+//Grupos
+Route::post('/grupos/todos','GruposController@index')->name('grupos.todos');
+Route::post('/grupos/guardar','GruposController@store')->name('grupos.guardar');
+Route::post('/grupos/{id}/actualizar','GruposController@update')->name('grupos.actualizar');
+Route::post('/grupos/{id}/eliminar','GruposController@destroy')->name('grupos.eliminar');
+Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detalles');
+//Caracteristicas
+Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
+
+
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
