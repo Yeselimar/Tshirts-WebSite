@@ -10,6 +10,7 @@
 
 .filter.active {
 	box-shadow:0px 1px 3px 0px #00000026;
+    background: lightgray !important;
 }
 
 .filter:hover {
@@ -81,15 +82,10 @@
                     <div class="section-title">
                         <h2>Productos para <span v-if="getIsDesign">diseñar</span><span v-else>comprar</span></h2>
                     </div>
-                    <ul class="product-filter-menu md-d-flex-barna scroll-barna overflow-auto">
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'ALL' }" v-on:click="setFilter('ALL')">TODAS</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Hombre' }" v-on:click="setFilter('Hombre')">Hombre</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Mujer' }" v-on:click="setFilter('Mujer')">Mujer</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Nino' }" v-on:click="setFilter('Nino')">Niño</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Nina' }" v-on:click="setFilter('Nina')">Niña</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Tazas' }" v-on:click="setFilter('Tazas')">Tazas</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Buzo' }" v-on:click="setFilter('Buzo')">Buzo</a></li>
-                        <li><a class="filter" v-bind:class="{ active: currentFilter === 'Otras' }" v-on:click="setFilter('Otras')">Otras</a></li>
+                    <ul class="product-filter-menu md-d-flex-barna scroll-barna overflow-auto text-center">
+                        <li><a class="filter" v-bind:class="{ active: currentFilter === '' }" v-on:click="setFilter('')">TODAS</a></li>
+                        <li v-for="(rubro,i) in tipos_rubros" :key="i"><a class="filter" v-bind:class="{ active: currentFilter === rubro.nombre }" v-on:click="setFilter(rubro.nombre)">{{rubro.nombre}}</a></li>
+
                     </ul>
                     <div class="" style="
                             min-height: 50vh;
@@ -101,8 +97,8 @@
                                     <div class="pi-pic">
                                         <img :src="url+project.url" alt="">
                                         <div class="pi-links">
-                                            <a  v-if="project.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
-                                    <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
+                                            <a  v-if="project.isDesign" @click="addBag(project)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                    <a  v-else class="add-card cursor" @click="addCart(project)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
@@ -117,7 +113,7 @@
                         
                     </div>
                     <div class="text-center pt-5" v-if="isMax">
-                        <button class="site-btn sb-line sb-dark">VER MÁS</button>
+                        <button @click="verMas" class="site-btn sb-line sb-dark">VER MÁS</button>
                     </div>
                 </div>
             </section>
@@ -127,6 +123,10 @@
           
     		<loading v-if="isLoading"></loading>
 
+            <!--modals-->
+
+            
+            <!--end modals -->
     </div>
 
 </template>
@@ -149,13 +149,13 @@ export default {
             prodDestacadosComponent
         },
         computed: {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag']),
              projectsC: function() {
                 let projectAux = []
                 if(this.projects  && this.projects.length)
                 {
                 this.projects.forEach(function(project,index){
-                        if((this.currentFilter === project.categoria || this.currentFilter === 'ALL') && projectAux.length < this.max){
+                        if((this.currentFilter === project.categoria || this.currentFilter === '') && projectAux.length < this.max){
                             projectAux.push(project)
                         }
                 },this);
@@ -165,7 +165,6 @@ export default {
             },
             isMax: function() {
                 let m = true;
-                console.log(this.totalI)
                 if(this.projects.length < this.max || this.totalI < this.max) {
                     m = false
                 }
@@ -176,7 +175,34 @@ export default {
 			return {
                 totalI : 0,
                 max : 12,
-                currentFilter: 'ALL',
+                currentFilter: '',
+                tipos_rubros:
+                    [
+                        {
+                            "id": 1,
+                            "nombre": 'Hombre',
+                        },
+                        {
+                            "id": 2,
+                            "nombre": 'Mujer',
+                        },
+                        {
+                            "id": 3,
+                            "nombre": 'Niño',
+                        },
+                        {
+                            "id": 4,
+                            "nombre": 'Niña',
+                        },
+                        {
+                            "id": 5,
+                            "nombre": 'Taza',
+                        },
+                        {
+                            "id": 6,
+                            "nombre": 'Buzo',
+                        }
+                ],
                 projects: [],
                  productDesigns: [
                     {
@@ -232,7 +258,7 @@ export default {
                     {
                         id: 2,
                         url: '/img/product/8.jpg',
-                        categoria: 'Nino',
+                        categoria: 'Niño',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -242,7 +268,7 @@ export default {
                     {
                         id: 31245,
                         url: '/img/product/7.jpg',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         titulo: 'Carniut jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -263,7 +289,7 @@ export default {
                         id: 10748,
                         url: '/img/product/1.jpg',
                         titulo: 'Blusa jackets',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 29.2,
@@ -272,7 +298,7 @@ export default {
                     {
                         id: 1999,
                         url: '/img/product/2.jpg',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -282,7 +308,7 @@ export default {
                     {
                         id: 102,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -293,7 +319,7 @@ export default {
                         id: 513,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -302,7 +328,7 @@ export default {
                     {
                         id: 45582,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -313,7 +339,7 @@ export default {
                         id: 321,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -322,7 +348,7 @@ export default {
                     {
                         id: 21112,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -333,7 +359,7 @@ export default {
                         id: 22273,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -385,7 +411,7 @@ export default {
                         id: 105633,
                         url: '/img/product/7.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Nino',
+                        categoria: 'Niño',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -393,7 +419,7 @@ export default {
                     },
                     {
                         id: 555451,
-                        categoria: 'Nino',
+                        categoria: 'Niño',
                         url: '/img/product/9.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -404,7 +430,7 @@ export default {
                     {
                         id: 5552,
                         url: '/img/product/8.jpg',
-                        categoria: 'Nino',
+                        categoria: 'Niño',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -414,7 +440,7 @@ export default {
                     {
                         id: 5553,
                         url: '/img/product/7.jpg',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         titulo: 'Carniut jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -444,7 +470,7 @@ export default {
                     {
                         id: 5661,
                         url: '/img/product/2.jpg',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -454,7 +480,7 @@ export default {
                     {
                         id: 542,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -465,7 +491,7 @@ export default {
                         id: 45543,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Nina',
+                        categoria: 'Niña',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -474,7 +500,7 @@ export default {
                     {
                         id: 2222,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -485,7 +511,7 @@ export default {
                         id: 3,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
@@ -494,7 +520,7 @@ export default {
                     {
                         id: 1111,
                         url: '/img/product/3.jpg',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -505,22 +531,12 @@ export default {
                         id: 223,
                         url: '/img/product/4.jpg',
                         titulo: 'Carniut jackets',
-                        categoria: 'Tazas',
+                        categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 99.2,
                         isDesign: false
-                    },
-                    {
-                        id: 14,
-                        url: '/img/product/11.jpg',
-                        titulo: 'Tienza jackets',
-                        categoria: 'Buzo',
-                        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
-                         +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                        precio: 19.2,
-                        isDesign: false
-                    },
+                    }
                 ],
                 url: '',
                 isLoading: false,
@@ -528,9 +544,108 @@ export default {
 			}
 		},
 		methods: {
+            addCart (product){
+                if(this.getIsAuth){
+                    this.isLoading = true
+                        this.$store.dispatch('actionAddCart',{...product}).then((res)=>{
+                          this.isLoading = false
+                            if (res === 1) {
+                                this.$swal
+                                .mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 4000
+                                })
+                                .fire({
+                                type: "success",
+                                title: "El Producto fue agregado a su carrito exitosamente"
+                                });
+                            } else {
+                               this.$swal
+                                .mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 4000
+                                })
+                                .fire({
+                                type: "error",
+                                title: "Ha ocurrido un error al añadir al carrito"
+                                });
+                            }
+                        })
+                } else {
+                        this.$swal
+                        .mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 4000
+                        })
+                        .fire({
+                        type: "warning",
+                        title: "Debe estar autentificado para agregar al carrito"
+                        });
+                }
+            },
+            addBag (product){
+                if(this.getIsAuth){
+                    this.isLoading = true
+                        this.$store.dispatch('actionAddBag',{...product}).then((res)=>{
+                            this.isLoading = false
+                            if (res === 1) {
+                                this.$swal
+                                .mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 4000
+                                })
+                                .fire({
+                                type: "success",
+                                title: "El Producto fue agregado a su cesta exitosamente"
+                                });
+                            } else {
+                               this.$swal
+                                .mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 4000
+                                })
+                                .fire({
+                                type: "error",
+                                title: "Ha ocurrido un error al añadir a la cesta"
+                                });
+                            }
+                        })
+                } else {
+                        this.$swal
+                        .mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 4000
+                        })
+                        .fire({
+                        type: "warning",
+                        title: "Debe estar autentificado para agregar a la cesta"
+                        });
+                }
+            },
             setFilter: function(filter) {
 			    this.currentFilter = filter;
-		    },
+            },
+            verMas() {
+            //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+            this.$store.dispatch('cambiarRubro',this.currentFilter)
+            let search = ""
+            this.$store.dispatch('cambiarSearch',search)
+            this.$router.push({ name: 'rubros' })
+
+
+            },
         },
         mounted: function(){
              let element = document.getElementById("header-top");
@@ -538,7 +653,7 @@ export default {
                 offset: 0,
                 force: true
               };
-              this.$scrollTo(element, 500, options);
+              this.$scrollTo(element, 0, options);
             $(window).resize(event=>{
                             event.preventDefault()
                             if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)

@@ -207,8 +207,7 @@ export default {
     {
         montar(){
             if(this.getIsAuth){
-                         setTimeout(e => {
-                            console.log('aja qsdf')
+                    setTimeout(e => {
                        $(function() {
                         "use strict";
                         $(function() {
@@ -341,11 +340,12 @@ export default {
                             });
                     });
                     
-                    }, 100);
+                    }, 10);
             }
         },
         logout()
         {
+            $(".preloader").show();
             CerService.post("/logout/admin")
                 .then(response => {
                     if (response.res) {
@@ -375,6 +375,7 @@ export default {
                         type: "warning",
                         title: response.msg
                       });
+                      $(".preloader").fadeOut();
                     }
                 })
                 .catch(err => {
@@ -389,6 +390,8 @@ export default {
                         type: "success",
                         title: "Ha ocurrido un error inesperado"
                       });
+                      $(".preloader").fadeOut();
+
                 });
 
         }

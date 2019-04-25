@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     login() {
+       $(".preloader").show();
       var dataform = new FormData();
       dataform.append("password", this.user.password);
       dataform.append("email", this.user.email);      
@@ -59,7 +60,8 @@ export default {
         .then(response => {
           if (response.res) {
             //this.user = response.user;
-            this.$store.dispatch( 'loadUserAdmin' );
+            this.$store.dispatch( 'cambiarIsAuth',true );
+            this.$store.dispatch( 'cambiarUser',response.user);
             this.$swal
               .mixin({
                 toast: true,
@@ -72,18 +74,22 @@ export default {
                 title: response.msg
               });
               this.$router.push({ name: 'index' })
+
           } else {
-            this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "warning",
-                title: response.msg
-              });
+             this.$store.dispatch( 'cambiarIsAuth',false );
+             this.$store.dispatch( 'cambiarUser',{} );
+              $(".preloader").fadeOut();
+              this.$swal
+                .mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 4000
+                })
+                .fire({
+                  type: "warning",
+                  title: response.msg
+                });
           }
         })
         .catch(error => {
@@ -99,6 +105,8 @@ export default {
               type: "error",
               title: "Ha ocurrido un error inesperado"
             });
+            $(".preloader").fadeOut();
+
         });
     },
   }

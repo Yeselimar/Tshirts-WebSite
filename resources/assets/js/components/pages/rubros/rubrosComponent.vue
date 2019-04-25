@@ -113,12 +113,12 @@
             }
         },
         mounted(){
-             let element = document.getElementById("formulario");
+             let element = document.getElementById("header-top");
               var options = {
                 offset: 0,
                 force: true
               };
-              this.$scrollTo(element, 500, options);
+              this.$scrollTo(element, 0, options);
         },
         created()
         {
@@ -128,7 +128,7 @@
         },
         computed: 
         {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
         },
         methods:
         {

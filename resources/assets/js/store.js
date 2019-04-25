@@ -11,9 +11,9 @@ const state = {
   rubro: '',
   isDesign: false,
   user: {},
-  numCart: 0,
-  numBag: 0,
   isAuth: false,
+  cart: [],
+  bag: [],
   userLoadStatus: 0,
   userUpdateStatus: 0
 }
@@ -41,12 +41,6 @@ const mutations = {
   setUserUpdateStatus(state, status) {
     state.userUpdateStatus = status;
   },
-  setNumCart(state, val) {
-    state.numCart = val
-  },
-  setNumBag(state, val) {
-    state.numBag = val
-  },
   setIsAuth(state, val) {
     state.isAuth = val
   },
@@ -68,6 +62,18 @@ const mutations = {
  */
   setIsDesign(state, val) {
     state.isDesign = val;
+  },
+  setBag(state, val) {
+    state.bag = val;
+  },
+  setCart(state, val) {
+    state.cart = val;
+  },
+  addCart(state,val){
+    state.cart.push({...val})
+  },
+  addBag(state,val){
+    state.bag.push({...val})
   }
 }
 /*
@@ -78,23 +84,35 @@ const actions = {
       Loads all of the search methods.
     */
   loadUser({ commit }) {
+    $("#preloader").show()
+    $(".loading").show()
     CerService.post('/login/auth')
       .then(function (response) {
-        commit('setIsAuth', false);
-        commit('setUser', {});
-
+       
         if (response.res != 0) {
           commit('setUser', response.user);
           commit('setUserLoadStatus', 1);
           commit('setIsAuth', true);
+          commit('setCart',response.cart);;
+          commit('setBag',response.bag);
 
+        } else {
+          commit('setIsAuth', false);
+          commit('setUser', {});
+          commit('setCart',[]);;
+          commit('setBag',[]);
         }
-
+        $(".loading").fadeOut();
+        $("#preloader").delay(400).fadeOut("slow");
       })
       .catch(function () {
         commit('setUser', {});
         commit('setUserLoadStatus', 0);
         commit('setIsAuth', false);
+        commit('setCart',[]);
+        commit('setBag',[]);
+        $(".loading").fadeOut();
+				$("#preloader").delay(400).fadeOut("slow");
 
       });
   },
@@ -102,16 +120,62 @@ const actions = {
     commit('setUserLoadStatus', 0);
     commit('setIsAuth', false);
     commit('setUser', {});
+    commit('setCart',[]);
+    commit('setBag',[]);
+  },
+  actionAddCart({commit},cart){
+    
+      return new Promise((resolve, reject) => {
+
+        CerService.post('/add/cart', cart)
+            .then(resp => {
+
+                if (resp.res===1) {
+                  commit('addCart', cart);
+                } 
+                resolve(resp.res)
+            })
+            .catch(err => {
+                reject(err)
+            })
+    })
+  },
+  actionAddBag({commit},bag){
+    return new Promise((resolve, reject) => {
+
+      CerService.post('/add/bag', bag)
+          .then(resp => {
+
+              if (resp.res===1) {
+                commit('addBag', bag);
+              } 
+              resolve(resp.res)
+          })
+          .catch(err => {
+              reject(err)
+          })
+    })
   },
   logout({ commit }) {
-    CerService.post('/logout')
-    .then(function (response) {
+    
+    return new Promise((resolve, reject) => {
+      CerService.post('/logout')
+      .then(function (response) {
 
-        commit('setUser', {});
         commit('setUserLoadStatus', 0);
         commit('setIsAuth', false);
+        commit('setUser', {});
+        commit('setCart',[]);
+        commit('setBag',[]);
+        resolve(response)
 
+
+      })
+      .catch(err => {
+          reject(err)
+      })
     })
+
   },
   cambiarSearch({ commit }, valor) {
     commit('setSearch', valor);
@@ -125,14 +189,14 @@ const actions = {
   cambiarUser({ commit }, valor) {
     commit('setUser', valor);
   },
-  cambiarNumCart({ commit }, valor) {
-    commit('setNumCart', valor);
-  },
-  cambiarNumBag({ commit }, valor) {
-    commit('setNumBag', valor);
-  },
   cambiarIsAuth({ commit }, valor) {
     commit('setIsAuth', valor);
+  },
+  cambiarBag({ commit }, valor) {
+    commit('setBag', valor);
+  },
+  cambiarCart({ commit }, valor) {
+    commit('setCart', valor);
   },
 }
 /*
@@ -155,18 +219,18 @@ const getters = {
   getUser(state) {
     return state.user;
   },
+  getCart(state) {
+    return state.cart;
+  },
+  getBag(state) {
+    return state.bag;
+  },
 
   /*
     Gets the user update status
   */
   getUserUpdateStatus(state, status) {
     return state.userUpdateStatus;
-  },
-  getNumCart(state) {
-    return state.numCart
-  },
-  getNumBag(state) {
-    return state.numBag
   },
   getIsAuth(state) {
     return state.isAuth

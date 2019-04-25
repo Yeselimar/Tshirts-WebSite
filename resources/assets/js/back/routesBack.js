@@ -9,7 +9,7 @@ const router = new VueRouter({
 	routes: [
        
         {
-                path: 'admin/login',
+                path: 'login',
                 name: 'login',
                 component: Vue.component( 'Login', require( './components/pages/loginComponent.vue' ) ),
                 meta: { requiresAuth: false } 
@@ -17,7 +17,8 @@ const router = new VueRouter({
 
 		{
 			path: '/admin/',
-			component: Vue.component( 'Back', require( './components/Back.vue' ) ),
+            component: Vue.component( 'Back', require( './components/Back.vue' ) ),
+            meta: { requiresAuth: true },
 			children: [
                 {
                     path: '',
@@ -35,7 +36,7 @@ const router = new VueRouter({
                     path: 'rubros',
                     name: 'rubros',
                     component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },
 				/*	Catch Alls
                 */
@@ -44,8 +45,9 @@ const router = new VueRouter({
 		},
          {
             path: '*',
-            redirect: { name: 'login' },
+            redirect: { name: 'index' },
         },
+        
 
 	]
 });
@@ -53,32 +55,32 @@ const router = new VueRouter({
 /* Para la autentificación se utiliza esta sección */
 router.beforeEach((to, from, next) => {
 	// you could define your own authentication logic with token
-    console.log(to)
-    console.log(from)
-    console.log(next)
-    $(".preloader").show();
-    console.log('algo pasa')
+
     if(to.matched.some(record => record.meta.requiresAuth)) {
-        console.log('por aqui pasooo')
         CerService.post('/login/admin/auth')
         .then(function (response) {
         
             let isAuthenticated
             if (response.res !== 0) {
                     isAuthenticated = true
+                    store.dispatch('cambiarUser',response.user)
+
             } else {
                 isAuthenticated = false
                 store.dispatch('logoutUserAdmin')
             } 
             // check route meta if it requires auth or not
+            store.dispatch('cambiarIsAuth',isAuthenticated)
+
             if(to.matched.some(record => record.meta.requiresAuth)) {
                     if (!isAuthenticated) {
-                        next({
-                            path: '/admin/login',
-                            params: { nextUrl: to.fullPath }
-                        })
+                        router.push({ name: 'login' })
+                        $(".preloader").fadeOut();
+
                     } else {
                         next()
+                        $(".preloader").fadeOut();
+
                     }
             } else {
                 if(String(to.name) == 'login' &&  isAuthenticated){
@@ -86,32 +88,33 @@ router.beforeEach((to, from, next) => {
                         path: '/admin',
                         params: { nextUrl: to.fullPath }
                     })
+                    $(".preloader").fadeOut();
 
                 }else {
                     next()
+                    $(".preloader").fadeOut();
+
                 }
             }
-            $(".preloader").fadeOut();
 
         })
         .catch(function () {
             if(to.matched.some(record => record.meta.requiresAuth)) { 
                     if(from.name != null)
                         {
-                            next({
-                                path: '/admin/login',
-                                params: { nextUrl: to.fullPath }
-                            })
+                            router.push({ name: 'login' })
+                            $(".preloader").fadeOut();
+
+
                         } else {
                             next({
                                 path: '/admin',
                                 params: { nextUrl: to.fullPath }
                             })
+                            $(".preloader").fadeOut();
                         }
                 }
-               
             store.dispatch('logoutUserAdmin')
-            $(".preloader").fadeOut();
 
         });
     }else {
@@ -124,10 +127,12 @@ router.beforeEach((to, from, next) => {
                             path: '/admin',
                             params: { nextUrl: to.fullPath }
                         })
+                        $(".preloader").fadeOut();
+
                     }else {
                         next()
+                        $(".preloader").fadeOut();
                     }
-                    $(".preloader").fadeOut();
                 })
                 .catch(function () {
                     next({

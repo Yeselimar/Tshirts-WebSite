@@ -133,7 +133,7 @@
         },
         computed: 
         {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
             busqueda: function() 
             {
                 let auxiliar = [];

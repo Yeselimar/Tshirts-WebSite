@@ -18,6 +18,9 @@
 Route::get('/admin/{vue_capture?}', function () {
     return view('back.index');
 })->where('vue_capture', '[\/\w\.-]*');
+Route::get('/login/{vue_capture?}', function () {
+    return view('back.index');
+})->where('vue_capture', '[\/\w\.-]*');
 Route::get('/{vue_capture?}', function () {
     return view('vue.index');
 })->where('vue_capture', '[\/\w\.-]*');
@@ -26,6 +29,12 @@ Route::post('/register/post','RegistroBarnaController@registerPost')->name('regi
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/login/auth', 'Auth\LoginController@isLoged')->name('login.auth');
+
+
+//autentificados
+Route::middleware('auth')->post('/add/cart','CartController@addCart')->name('add.cart');
+Route::middleware('auth')->post('/add/bag','BagController@addBag')->name('add.bag');
+
 //Login Admin
 Route::post('/logout/admin', 'Auth\LoginController@logoutAdmin')->name('logout.admin');
 Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('login.admin.auth');
