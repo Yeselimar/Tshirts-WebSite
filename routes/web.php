@@ -44,7 +44,7 @@ Route::post('/grupos/{id}/eliminar','GruposController@destroy')->name('grupos.el
 Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detalles');
 //Caracteristicas
 Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
-
+Route::post('/caracteristicas/guardar','CaracteristicasController@store')->name('caracteristicas.guardar');
 
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');

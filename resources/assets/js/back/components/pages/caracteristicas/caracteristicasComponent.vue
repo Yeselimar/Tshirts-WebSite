@@ -69,13 +69,18 @@
                       	<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <label class="control-label h6" for="nombre">Grupo</label>
-	                                <select class="form-control input-sm ">
-			                            <option v-for="grupo in grupos" :value="grupo.id">@{{ grupo.nombre}}</option>
-			                        </select>
+                                <select v-model="caracteristica.grupo.id" class="form-control">
+		                            <option v-for="grupo in grupos" :value="grupo.id">{{ grupo.nombre}}</option>
+		                        </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre">
+                                <label class="control-label h6" for="nombre">Valor</label>
+                                <input type="text" name="nombre" class="form-control" v-model="caracteristica.valor">
+                            </div>
+                            <!--El grupo color debe ser con id igual a 1 -->
+                            <div v-if="caracteristica.grupo.id==1" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label class="control-label h6" for="nombre">Color Hexadecimal</label>
+                                <input type="text" name="nombre" class="form-control" v-model="caracteristica.color">
                             </div>
                       	</div>
                     </div>
@@ -118,14 +123,45 @@ export default {
    	},
    	methods:
    	{
-   		obtenergrupos()
+   		//El grupo color debe ser con id igual a 1
+   		crear()
    		{
-   			CerService.post("/grupos/todos")
-            .then(response => {
-                if(response.grupos)
-                {
-                    this.grupos = response.grupos;
-                }
+   			this.caracteristica.grupo.id=1;//para seleccionar siempre la primera opción
+   			this.caracteristica.valor = '';
+   			this.caracteristica.color = '';
+            $('#crear').modal('show');
+   		},
+   		editar()
+   		{
+
+   		},
+   		eliminarCaracteristica()
+   		{
+
+   		},
+   		guardar()
+   		{
+   			$('#crear').modal('hide');
+   			var dataform = new FormData();
+   			dataform.append("valor", this.caracteristica.valor);
+   			dataform.append("color", this.caracteristica.color);
+   			dataform.append("grupo_id", this.caracteristica.grupo.id);
+            $('#crear').modal('hide');
+            CerService.post("/caracteristicas/guardar",dataform)
+            .then(response => 
+            {
+                this.todos();
+                this.$swal
+                .mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000
+                })
+                .fire({
+                    type: "success",
+                    title: response.msg
+                });
             })
             .catch(error => {
                 this.$swal
@@ -139,18 +175,13 @@ export default {
                     type: "error",
                     title: "Ha ocurrido un error inesperado"
                 });
-            }); 
+            });
    		},
-   		crear()
-   		{
-   			this.grupo.nombre = '';
-            $('#crear').modal('show');
-   		},
-   		editar()
+   		actualizar()
    		{
 
    		},
-   		eliminarCaracteristica()
+   		eliminar()
    		{
 
    		},
@@ -177,6 +208,29 @@ export default {
                 });
             }); 
         }
+        ,obtenergrupos()
+   		{
+   			CerService.post("/grupos/todos")
+            .then(response => {
+                if(response.grupos)
+                {
+                    this.grupos = response.grupos;
+                }
+            })
+            .catch(error => {
+                this.$swal
+                .mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000
+                })
+                .fire({
+                    type: "error",
+                    title: "Ha ocurrido un error inesperado"
+                });
+            }); 
+   		}
    	}
 }
 </script>
