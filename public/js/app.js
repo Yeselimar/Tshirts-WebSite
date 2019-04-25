@@ -514,6 +514,73 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(50);
+
+
+var CerService = {};
+
+CerService.setToken = function (token) {
+    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
+};
+
+CerService.get = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error CER API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.delete = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error al Eliminar');
+    });
+};
+
+CerService.post = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error CER API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.put = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
+        return res.data;
+    });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (CerService);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
 /* unused harmony export mapState */
@@ -1523,6 +1590,7 @@ var index_esm = {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1590,6 +1658,8 @@ CerService.put = function (endpoint, json) {
 /* harmony default export */ __webpack_exports__["a"] = (CerService);
 
 /***/ }),
+=======
+>>>>>>> master
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12233,6 +12303,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12244,6 +12315,8 @@ if (false) {
 
 
 /***/ }),
+=======
+>>>>>>> master
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54649,7 +54722,7 @@ module.exports = Component.exports
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(71);
 /*
 	Initializes Vuex on Vue.
@@ -75274,9 +75347,13 @@ VeeValidate$1.withValidation = withValidation;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(3);
+>>>>>>> master
 /*
 |-------------------------------------------------------------------------------
 | VUEX modules/index.js
@@ -75567,10 +75644,17 @@ var getters = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(4);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(3);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(55);
 
 
@@ -75973,10 +76057,10 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(3);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -79188,7 +79272,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -79760,7 +79844,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             offset: 0,
             force: true
         };
+<<<<<<< HEAD
         this.$scrollTo(element, 0, options);
+=======
+        this.$scrollTo(element, 500, options);
+>>>>>>> master
         $(window).resize(function (event) {
             event.preventDefault();
             if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this3.max = 6;else if (document.body.clientWidth < 460) _this3.max = 3;else _this3.max = 12;
@@ -79846,7 +79934,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -80371,7 +80459,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -81191,6 +81279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -81277,6 +81366,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+=======
+>>>>>>> master
 
 
 
@@ -81329,7 +81420,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+<<<<<<< HEAD
         ingresar: function ingresar() {
+=======
+        inicio: function inicio() {
+            this.$router.push({ name: 'home' });
+            //$route.name
+        },
+        register: function register() {
+>>>>>>> master
             var _this = this;
 
             this.$validator.validateAll("form-login-register").then(function (resp) {
@@ -81391,6 +81490,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     });
                 }
             });
+<<<<<<< HEAD
         },
         inicio: function inicio() {
             $('#modalRegister').modal('hide');
@@ -81461,6 +81561,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     });
                 }
             });
+=======
+>>>>>>> master
         }
     }
 });
@@ -82173,7 +82275,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -82282,7 +82384,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
     mounted: function mounted() {
-        var element = document.getElementById("header-top");
+        var element = document.getElementById("formulario");
         var options = {
             offset: 0,
             force: true
@@ -82466,7 +82568,7 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -82708,7 +82810,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //

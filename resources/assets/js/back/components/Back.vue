@@ -339,7 +339,6 @@ export default {
                                 $(this).closest(".card").removeClass().slideUp("fast");
                             });
                     });
-                    
                     }, 10);
             }
         },
