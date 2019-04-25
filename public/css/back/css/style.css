@@ -6920,3 +6920,12 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+
+/*clases personales */
+
+.cursor {
+  cursor: pointer !important;
+}
+
+
+

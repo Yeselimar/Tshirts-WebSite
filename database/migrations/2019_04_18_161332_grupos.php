@@ -13,6 +13,7 @@ class Grupos extends Migration
             $table->increments('id');
 
             $table->string('nombre');
+            $table->boolean('color');
 
             $table->timestamps();
         });

@@ -50,6 +50,8 @@ if (token) {
 
 import Vue            from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
+import BootstrapVue from 'bootstrap-vue';
+
 
  
 const options = {
@@ -58,7 +60,7 @@ const options = {
 }
  
 Vue.use(VueSweetalert2, options)
-
+Vue.use(BootstrapVue)
 
 
 /*
@@ -77,7 +79,8 @@ const app = new Vue({
   el: "#back",
   store,
   router : router,
-  VueSweetalert2
+  VueSweetalert2,
+  BootstrapVue
 });
 
 export default app;
