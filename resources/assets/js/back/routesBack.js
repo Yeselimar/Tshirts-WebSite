@@ -29,9 +29,9 @@ const router = new VueRouter({
 					name: 'index',
 					component: Vue.component( 'Admin', require( './components/pages/adminComponent.vue' ) ),
 					default: true,
-					meta: { requiresAuth: false } 
+					meta: { requiresAuth: true } 
                 },
-				
+							
                 {
                     path: 'rubros',
                     name: 'rubros',
@@ -52,7 +52,7 @@ const router = new VueRouter({
                 },
 				/*	Catch Alls
                 */
-                { path: '_=_', redirect: '/' }
+
 			]
 		},
          {
@@ -65,7 +65,7 @@ const router = new VueRouter({
 });
 
 /* Para la autentificación se utiliza esta sección */
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 	// you could define your own authentication logic with token
 
     if(to.matched.some(record => record.meta.requiresAuth)) {
@@ -160,9 +160,8 @@ const router = new VueRouter({
             }
     
     }
-  })*/
+  })
 export default router;
-
 
 /*export const routes = [
     { path: '/vue', component: Home, name: 'Home' },
