@@ -30,13 +30,6 @@
                                 <!-- User profile and search -->
                                 <ul class="navbar-nav my-lg-0">
 
-
-                                    <!-- Search -->
-                                    <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
-                                        <form class="app-search">
-                                            <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                                    </li>
-
                                     <!-- Comment -->
                                     <li class="nav-item dropdown">
 
@@ -101,6 +94,7 @@
                                         </div>
                                     </li>
                                     <!-- End Messages -->
+
                                     <!-- Profile -->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -110,7 +104,7 @@
                                             <ul class="dropdown-user">
                                                 <li><a href="#"><i class="ti-user"></i> Perfil</a></li>
                                                 <li><a href="#"><i class="ti-settings"></i> Configuraciones</a></li>
-                                                <li><a href="#" @click="logout"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+                                                <li><a @click="logout" class="cursor"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -141,13 +135,13 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a @click=" $router.push({ name: 'rubros' })" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Rubros</span></a>
+                                        <a @click=" $router.push({ name: 'rubros' })" class="has-arrow cursor" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Rubros</span></a>
                                     </li>
 
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Grupos</span>
+                                    <li> <a class="has-arrow  cursor" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Grupos</span>
                                     </a>
 
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Imágenes Diseño</span></a>
+                                    <li> <a class="has-arrow  " aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Imágenes Diseño</span></a>
                                     </li>
 
                                     <li class="nav-label">Ventas y Pedidos</li>

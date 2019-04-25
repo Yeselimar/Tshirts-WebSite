@@ -18,6 +18,7 @@ class GruposController extends Controller
     {
     	$grupo = new Grupo;
     	$grupo->nombre = $request->nombre;
+        $grupo->es_color = ($request->es_color=='true' ? true : false);
     	$grupo->save();
     	return response()->json(['msg'=>'El grupo fue creado exitosamente','grupo' => $grupo]);
     }
@@ -28,6 +29,7 @@ class GruposController extends Controller
     	if($grupo)
     	{
     		$grupo->nombre = $request->nombre;
+            $grupo->es_color = ($request->es_color=='true' ? true : false);
 	    	$grupo->save();
 	    	return response()->json(['msg'=>'El grupo fue actualizado exitosamente','grupo' => $grupo]);
     	}

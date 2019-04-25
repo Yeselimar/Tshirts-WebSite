@@ -21,9 +21,9 @@ class ImagenesArticulos extends Migration
             $table->foreign('coordenada_id')->references('id')->on('coordenadas')->onDelete('cascade');
 
             $table->unsignedInteger('caracteristica_id')->nullable();
-            $table->foreign('caracteristica_id')->references('id')->on('caracteristicas')->onDelete('cascade');
+            $table->foreign('caracteristica_id')->references('id')->on('caracteristicas')->onDelete('cascade');//color
 
-            $table->enum('posicion', ['frontal']);
+            $table->enum('posicion', ['frontal','reverso'])->default('frontal');
 
             $table->timestamps();
         });

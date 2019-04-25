@@ -8,7 +8,8 @@ class TallasColores extends Migration
 {
     public function up()
     {
-        Schema::create('tallas_colores', function (Blueprint $table)
+        //para cualquier tipo de artículo
+        Schema::create('talles_colores', function (Blueprint $table)
         {
             $table->increments('id');
 
@@ -16,10 +17,12 @@ class TallasColores extends Migration
             $table->foreign('articulo_id')->references('id')->on('articulos')->onDelete('cascade');//artículo
 
             $table->unsignedInteger('color_id');
-            $table->foreign('color_id')->references('id')->on('caracteristicas')->onDelete('cascade');//color
+            $table->foreign('color_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo color
 
-            $table->unsignedInteger('talla_id');
-            $table->foreign('talla_id')->references('id')->on('caracteristicas')->onDelete('cascade');//talla
+            $table->unsignedInteger('talla_id')->nullable(); //es opcional en caso de que  el tipo sea una taza
+            $table->foreign('talla_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo talla
+
+            $table->integer('cantidad');//cantidad de una combinación: talla y color 
 
             $table->timestamps();
         });
@@ -27,6 +30,6 @@ class TallasColores extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('tallas_colores');
+        Schema::dropIfExists('talles_colores');
     }
 }

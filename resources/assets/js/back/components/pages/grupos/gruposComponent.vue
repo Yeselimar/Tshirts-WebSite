@@ -72,7 +72,25 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre">
+                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre" :class="{'error-input': errors.first('name','form-register')}"
+                                data-vv-scope="form-register"
+                                v-validate
+                                data-vv-rules="required:true|min:3"
+                              >
+                                <span
+                                class="error-text"
+                                v-if="errors.firstByRule('name', 'required','form-register')"
+                              >Campo requerido.</span>
+                                 <span
+                                  class="error-text"
+                                  v-else-if="errors.firstByRule('name','min','form-register')"
+                                >Minimo 3 caracteres.</span>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:15px">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="principal" v-model="grupo.es_color">
+                                    <label class="control-label" for="principal">Es un color</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,6 +116,12 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label class="control-label h6" for="nombre">Nombre</label>
                                 <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre">
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:15px">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="principal" v-model="grupo.es_color">
+                                    <label class="control-label" for="principal">Es un color</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -144,7 +168,8 @@ export default {
             grupo:
             {
                 id:'',
-                nombre:''
+                nombre:'',
+                es_color:'',
             }
         }
     },
@@ -156,13 +181,16 @@ export default {
     {
         crear()
         {
+            this.grupo.id = null;
             this.grupo.nombre = '';
+            this.grupo.es_color = false;
             $('#crear').modal('show');
         },
         editar(grupo)
         {
             this.grupo.id = grupo.id;
             this.grupo.nombre = grupo.nombre;
+            this.grupo.es_color = grupo.es_color;
             $('#editar').modal('show');
         },
         eliminarGrupo(grupo)
@@ -175,6 +203,7 @@ export default {
         {
             var dataform = new FormData();
             dataform.append("nombre", this.grupo.nombre);
+            dataform.append("es_color", this.grupo.es_color);
             $('#crear').modal('hide');
             CerService.post("/grupos/guardar",dataform)
             .then(response => 
@@ -211,6 +240,7 @@ export default {
             $('#editar').modal('hide');
             var dataform = new FormData();
             dataform.append("nombre", this.grupo.nombre);
+            dataform.append("es_color", this.grupo.es_color);
             var url = '/grupos/:id/actualizar';
             url = url.replace(':id', this.grupo.id);
             CerService.post(url,dataform)
