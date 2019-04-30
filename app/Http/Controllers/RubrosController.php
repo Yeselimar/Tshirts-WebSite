@@ -16,6 +16,9 @@ class RubrosController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre'    => 'required',
+        ]);
     	$rubro = new Rubro;
     	$rubro->nombre = $request->nombre;
     	$rubro->principal = ($request->principal=='true' ? true : false);
@@ -25,6 +28,9 @@ class RubrosController extends Controller
 
     public function update(Request $request,$id)
     {
+        $request->validate([
+            'nombre'    => 'required',
+        ]);
     	$rubro = Rubro::find($id);
     	if($rubro)
     	{

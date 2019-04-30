@@ -53,8 +53,11 @@ Route::post('/grupos/{id}/eliminar','GruposController@destroy')->name('grupos.el
 Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detalles');
 //Caracteristicas
 Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
+Route::post('/grupo/{grupo_id}/caracteristicas','CaracteristicasController@caracteristicaporgrupo')->name('caracteristicas.porgrupo');
 Route::post('/caracteristicas/guardar','CaracteristicasController@store')->name('caracteristicas.guardar');
-
+Route::post('/caracteristicas/{id}/actualizar','CaracteristicasController@update')->name('caracteristicas.actualizar');
+Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy')->name('caracteristicas.eliminar');
+Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');

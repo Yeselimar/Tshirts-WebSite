@@ -45,11 +45,17 @@ const router = new VueRouter({
                     meta: { requiresAuth: false } 
                 },
                 {
+                    path: 'grupo/:id/caracteristicas',
+                    name: 'grupo.caracteristicas',
+                    component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
+                    meta: { requiresAuth: false } 
+                },
+                /*{
                     path: 'caracteristicas',
                     name: 'caracteristicas',
                     component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
                     meta: { requiresAuth: false } 
-                },
+                },*/
 				/*	Catch Alls
                 */
 

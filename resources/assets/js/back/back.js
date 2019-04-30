@@ -20,6 +20,8 @@ try {
     require('jquery-slimscroll');
     require('./sidebarmenu');
     require('./sticky-kit');
+    //require('./jscolor');
+    //require('./bootstrap-colorpicker');
     //require('./custom');
     
 } catch (e) {}
@@ -51,17 +53,18 @@ if (token) {
 import Vue            from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import BootstrapVue from 'bootstrap-vue';
-
+import VeeValidate from 'vee-validate';
 
  
 const options = {
   confirmButtonColor: '#41b882',
   cancelButtonColor: '#ff7674'
 }
- 
+
+
 Vue.use(VueSweetalert2, options)
 Vue.use(BootstrapVue)
-
+Vue.use(VeeValidate, { fieldsBagName: 'veeFields' })
 
 /*
 	Imports all of the modules used in the application to build the data store.
@@ -80,6 +83,7 @@ const app = new Vue({
   store,
   router : router,
   VueSweetalert2,
+  VeeValidate,
   BootstrapVue
 });
 

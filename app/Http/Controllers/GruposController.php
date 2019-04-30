@@ -16,6 +16,9 @@ class GruposController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre'    => 'required',
+        ]);
     	$grupo = new Grupo;
     	$grupo->nombre = $request->nombre;
         $grupo->es_color = ($request->es_color=='true' ? true : false);
@@ -25,6 +28,9 @@ class GruposController extends Controller
 
     public function update(Request $request,$id)
     {
+        $request->validate([
+            'nombre'    => 'required',
+        ]);
     	$grupo = Grupo::find($id);
     	if($grupo)
     	{

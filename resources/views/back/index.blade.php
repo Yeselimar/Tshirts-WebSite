@@ -15,6 +15,7 @@
         <link href="{{asset('css/back/css/lib/chartist/chartist.min.css')}}" rel="stylesheet"/>
         <link href="{{asset('css/back/css/lib/owl.carousel.min.css')}}" rel="stylesheet"/>
         <link href="{{asset('css/back/css/lib/owl.theme.default.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('css/back/css/lib/bootstrap-colorpicker/bootstrap-colorpicker.min.css')}}" rel="stylesheet"/>
         <!-- Bootstrap Core CSS -->
         <link href="{{asset('css/back/css/lib/bootstrap/bootstrap.min.css')}}" rel="stylesheet"/>
         <!-- Custom CSS -->
