@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CerService from './plugins/CerService';
 import store from './indexStore';
+import Config from './config';
+
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,7 @@ const router = new VueRouter({
             redirect: { name: 'home' },
         },
 		{
-			path: '/',
+			path: Config.env.base,
 			component: Vue.component( 'App', require( './components/App.vue' ) ),
 			children: [
 				{
@@ -45,10 +47,24 @@ const router = new VueRouter({
 					meta: { requiresAuth: false } 
 
 				},
+				{
+					path: 'rubros',
+					name: 'rubros',
+					component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
+					meta: { requiresAuth: false } 
+
+				},
+				{
+					path: 'procesar-carrito',
+					name: 'procesar-carrito',
+					component: Vue.component( 'Procesarcarrito', require( './components/pages/procesarcarrito/procesarcarritoComponent.vue' ) ),
+					meta: { requiresAuth: false } 
+
+				},
 				/*
 					Catch Alls
                 */
-                { path: '_=_', redirect: '/' }
+                { path: '_=_', redirect: Config.env.base }
 
 			]
 		},
@@ -86,18 +102,34 @@ router.beforeEach((to, from, next) => {
 								})
 							} else {
 								next({
-									path: '/',
+									path: Config.env.base,
 									params: { nextUrl: to.fullPath }
 								})
 							}
 
 						} else {
-							next()
+							if(store.getters.getUser.rol === 'user'){ // si esta autentificado y además es un usuario
+							   next()
+							} else { // sino ir a rutas bases
+								if(from.name != null)
+								{
+									next({
+										path: from.path,
+										params: { nextUrl: to.fullPath }
+									})
+								} else {
+									next({
+										path: Config.env.base,
+										params: { nextUrl: to.fullPath }
+								})
+							}
+
+							}
 						}
 					} else {
 						if(String(to.name) == 'register' &&  isAuthenticated){
 							next({
-								path: '/',
+								path: Config.env.base,
 								params: { nextUrl: to.fullPath }
 							})
 						}else {
@@ -118,24 +150,46 @@ router.beforeEach((to, from, next) => {
 								})
 							} else {
 								next({
-									path: '/',
+									path: Config.env.base,
 									params: { nextUrl: to.fullPath }
 								})
 							}
 					}
 					store.dispatch('logout')
 				});
+
 		} else {
-			if(String(to.name) == 'register' &&  store.getters.getIsAuth){
-				next({
-					path: '/',
-					params: { nextUrl: to.fullPath }
+			// para rutas que se visualizan estrictamente si no se esta autentificado
+			if(String(to.name) == 'register' ){
+				CerService.post('/login/auth')
+					.then(function (response) {
+					if(response.res !== 0){
+						next({
+							path: Config.env.base,
+							params: { nextUrl: to.fullPath }
+						})
+					}else {
+						next()
+					}
+					$(".loading").fadeOut();
+					$("#preloader").delay(400).fadeOut("slow");
 				})
-			}else {
+				.catch(function () {
+					next({
+						path: Config.env.base,
+						params: { nextUrl: to.fullPath }
+					})
+						
+					$(".loading").fadeOut();
+					$("#preloader").delay(400).fadeOut("slow");
+				});
+				
+			} else {
 				next()
+				$(".loading").fadeOut();
+				$("#preloader").delay(400).fadeOut("slow");
 			}
-			$(".loading").fadeOut();
-			$("#preloader").delay(400).fadeOut("slow");
+			
 		}
 
   })

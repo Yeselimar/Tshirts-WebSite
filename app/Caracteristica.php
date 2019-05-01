@@ -15,6 +15,11 @@ class Caracteristica extends Model
 
     public function articulos()
     {
-    	return $this->belongsToMany('App\Articulo','articulos_caracteristicas','articulo_id','caracteristica_id'); 
+    	return $this->belongsToMany('App\Articulo','articulos_caracteristicas'); 
+    }
+
+    public function scopeParaGrupo($query,$id)
+    {
+        return $query->where('grupo_id','=',$id);
     }
 }

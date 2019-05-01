@@ -13,10 +13,6 @@
 </style>
 <template>
 	<div>
-		<!-- header-->
-	        <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM"></header-component>
-	    <!--end header -->
-
 		<migajas-component titulo="Tu Carrito > Procesar Carrito"></migajas-component>
 		
 		<!-- checkout section  -->
@@ -28,7 +24,7 @@
 					</div>
 
 					<div class="col-lg-4 order-1 order-lg-2">
-						<detallescarrito-component :url="url"></detallescarrito-component>
+						<detallescarrito-component></detallescarrito-component>
 					</div>
 				</div>
 			</div>
@@ -38,7 +34,6 @@
 </template>
 
 <script>
-	import headerComponent from "../../../components/layouts/headerComponent.vue";
 	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 	import formularioComponent from "../../../components/pages/procesarcarrito/formularioComponent.vue";
 	import detallescarritoComponent from "../../../components/pages/share/detallescarritoComponent.vue";
@@ -47,48 +42,17 @@
         name:'procesarcarritoComponent',
         components:
         {
-        	headerComponent,
         	migajasComponent,
         	formularioComponent,
         	detallescarritoComponent
 		},
         props:
         {
-            url:
-            {
-	            type: String,
-	            require:true
-        	}
         },
-        data() {
-			return {
-                isLoading: false,
-                isDesign: false,
-                numCart: 0,
-                numBag: 0,
-                isAuth: false,
-                search: '',
-                rubro: ''
-			}
-		},
         mounted()
         {
 
-        },
-        methods:
-        {
-            loginM(e)
-            {
-                
-            },
-            designM(e)
-            {
-                
-            },
-            searchM(e)
-            {
-                
-            }
-		},
+        }
+        
     }
 </script>

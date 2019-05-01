@@ -60,7 +60,10 @@ class LoginController extends Controller
                 $user=Auth::user();
                 $msg = 'Hola '.$user->name.' '.$user->last_name.',<br/>Has iniciado sesión exitosamente';
                 Auth::login( $user );
-                return response()->json(['res' => 1,'msg'=>$msg,'user'=>$user]);
+                $cart = [];
+                $bag = [];
+
+                return response()->json(['res' => 1,'msg'=>$msg,'user'=>$user,'cart'=>$cart,'bag' => $bag]);
             }
             else
             {
@@ -95,7 +98,9 @@ class LoginController extends Controller
     public function isLoged(){
         if(Auth::check()){
             $user=Auth::user();
-            return response()->json(['res' => 1,'user'=> $user]);
+            $cart = [];
+            $bag = [];
+            return response()->json(['res' => 1,'user'=> $user,'cart'=>$cart,'bag'=>$bag]);
         } else {
             return response()->json(['res' => 0]);
         }

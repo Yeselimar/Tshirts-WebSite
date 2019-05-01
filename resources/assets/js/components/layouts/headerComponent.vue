@@ -14,6 +14,9 @@ li.logiform .droplogin:after {
   border-bottom-color: #ccc;
 }
 .droplogin .ingresar .input-group {
+  padding-bottom: 25px;
+}
+.ingresar {
   margin-top: 20px;
 }
 .droplogin .ingresar .input-group input {
@@ -60,6 +63,9 @@ li.logiform .droplogin:after {
   .dropcart,
   .dropbag {
     min-width: 350px !important;
+  }
+  .w-60 {
+  width: 90% !important
   }
 }
 @media (max-width: 400px) {
@@ -176,17 +182,24 @@ li.bagform .dropbag:after {
   color: #ef7a6e;
   font-weight: bold;
 }
+.content-no-found {
+     min-height: 100px;
+     position: relative;
+}
+.w-60 {
+  width: 60%
+}
 </style>
 <template>
   <div>
     <div class="header-section header-barna-fixed" @click="closeAll(500)">
-      <div class="header-top-barna">
+      <div class="header-top-barna" id="header-top">
         <div class="container" :class="{'position-relative': collapse}">
           <div class="d-flex align-items-center flex-wrap-mw justify-content-around">
             <div class="flex-basis-logo">
               <!-- logo -->
-              <router-link class="site-logo cursor" to="/">
-                <img :src="'/img/barna.jpg'" id="logo-barna" alt>
+              <router-link class="site-logo cursor" :to="{ name: 'home'}">
+                <img :src="getUrl+'img/barna.jpg'" id="logo-barna" alt>
               </router-link>
             </div>
             <div class="flex-basis-design">
@@ -286,52 +299,24 @@ li.bagform .dropbag:after {
                       >
                       <li>
                         <a
-                          @click.stop.prevent="seletedAll"
-                          :class="[{'bg-barna font-weight-bold': getRubro === ''}]"
+                          @click.stop.prevent="seleted('')"
+                          :class="[{'bg-barna color-white': getRubro === ''}]"
                         >Todas las categorias</a>
                       </li>
-                      <li>
+                      <li  v-for="(rubro,i) in tipos_rubros" :key="i">
                         <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Hombre'}]"
-                        >Hombre</a>
+                          @click.stop.prevent="seleted(rubro.nombre)"
+                          :class="[{'bg-barna color-white': getRubro === rubro.nombre}]"
+                        >{{rubro.nombre}}</a>
                       </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Mujer'}]"
-                        >Mujer</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niña'}]"
-                        >Niña</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Niño'}]"
-                        >Niño</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Taza'}]"
-                        >Taza</a>
-                      </li>
-                      <li>
-                        <a
-                          @click.stop.prevent="seleted"
-                          :class="[{'bg-barna font-weight-bold': getRubro === 'Buzo'}]"
-                        >Buzo</a>
-                      </li>
+                      
                     </ul>
                   </div>
                   <input
                     type="text"
                     v-model="search"
                     class="input-search-barna form-control"
+                    v-on:keyup.13="searchM"
                     @keyup="searchK"
                     placeholder="Buscar en Barna ...."
                   >
@@ -355,7 +340,7 @@ li.bagform .dropbag:after {
                       <div class="up-item pr-3">
                         <div class="header-cart cursor" @click.stop.prevent="showBagM">
                           <i class="fa fa-shopping-bag"></i>
-                          <span>0</span>
+                          <span>{{getBag.length}}</span>
                         </div>
                       </div>
                       <!-- drop bag -->
@@ -372,7 +357,11 @@ li.bagform .dropbag:after {
                           <h5 class="pb-2">
                             <i class="fa fa-shopping-bag pr-2"></i>Cesta de Pedidos
                           </h5>
-                          <table class="table table-hover">
+                          <div v-if="getBag.length == 0" class="content-no-found">
+                          <p class="center-element no-found-search w-60">
+                              Cesta de pedidos vacía</p>
+                          </div>
+                          <table v-else class="table table-hover">
                             <thead>
                               <tr>
                                 <th class="product-th text-center">Producto</th>
@@ -393,7 +382,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Nev Print Absol</h6>
                                   </div>
@@ -412,7 +401,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/3.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/3.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Swutter Print Dress</h6>
                                   </div>
@@ -431,7 +420,7 @@ li.bagform .dropbag:after {
                               </tr>
                             </tbody>
                           </table>
-                          <div class="d-flex justify-content-end">
+                          <div class="d-flex justify-content-end" v-if="getBag.length > 0">
                             <input
                               type="button"
                               value="Procesar Pedido"
@@ -449,7 +438,7 @@ li.bagform .dropbag:after {
                       <div class="up-item pr-3">
                         <div class="header-cart cursor" @click.stop.prevent="showCartM">
                           <i class="fa fa-shopping-cart"></i>
-                          <span>0</span>
+                          <span>{{getCart.length}}</span>
                         </div>
                       </div>
                       <div
@@ -466,7 +455,12 @@ li.bagform .dropbag:after {
                           <h5 class="pb-2">
                             <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra
                           </h5>
-                          <table class="table table-hover">
+                          
+                          <div v-if="getCart.length == 0" class="content-no-found">
+                            <p class="center-element no-found-search w-60">
+                                Carrito de compras vacío</p>
+                          </div>
+                          <table v-else class="table table-hover">
                             <thead>
                               <tr>
                                 <th class="product-th text-center">Producto</th>
@@ -487,7 +481,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/1.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/1.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Animal Print Dress</h6>
                                   </div>
@@ -506,7 +500,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Text Print Dress</h6>
                                   </div>
@@ -525,7 +519,7 @@ li.bagform .dropbag:after {
                               </tr>
                             </tbody>
                           </table>
-                          <div class="d-flex justify-content-end">
+                          <div class="d-flex justify-content-end" v-if="getCart.length > 0">
                             <input type="button" value="Comprar" class="site-btn-login float-right">
                           </div>
                         </div>
@@ -551,16 +545,24 @@ li.bagform .dropbag:after {
                             <i class="fa fa-user pr-2"></i><span v-if="getIsAuth">{{user.name}} {{user.last_name}}</span><span v-else> Iniciar Sesion </span>
                           </h5>
                           <div v-if="getIsAuth">
-                            <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
-                              <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
-                            </a></p>
-                            <p class="text-left mt-1 mb-1">
-                                          <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
-                            </p>
-							              <p class="text-left">
-                            <a class="link-barna">
-                              <i class="fa fa-cart-arrow-down pl-1 pr-2"></i>Mis Compras
-                            </a></p>
+                            <div v-if="getUser.rol=='user'">
+                              <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
+                                <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
+                              </a></p>
+                              <p class="text-left mt-1 mb-1">
+                                            <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
+                              </p>
+  							              <p class="text-left">
+                              <a class="link-barna">
+                                <i class="fa fa-cart-arrow-down pl-1 pr-2"></i>Mis Compras
+                              </a></p>
+                            </div>
+                            <div v-else>
+                              <p class="text-left pt-3">
+                              <a class="link-barna cursor" @click="panelAdmin">
+                                <i class="fa fa-user-secret pl-1 pr-2"></i>Ir a Panel de Administración
+                              </a></p>
+                            </div>
 							              <p class="mt-1 text-right">
                             <a class="link-barna text-right" @click.stop.prevent="logout">
                               <i class="fa fa-external-link pr-2"></i>Cerrar Sesión
@@ -568,23 +570,47 @@ li.bagform .dropbag:after {
 							              </p>
                           </div>
                           <div v-else class="ingresar">
-                            <div class="form-email input-group">
+                            <div class="form-email input-group" :class="{'position-relative': errors.first('form-email','form-login')}">
                               <input
                                 type="email"
                                 v-model="user.email"
-                                name="email"
+                                name="form-email"
                                 class="form-control"
+                                :class="{'error-input': errors.first('form-email','form-login')}"
                                 :placeholder="'Ingrese su email'"
+                                data-vv-scope="form-login"
+                                v-validate
+                                data-vv-rules="required:true|email"
                               >
+                                <span
+                                class="error-text"
+                                v-if="errors.firstByRule('form-email', 'required','form-login')"
+                              >Campo requerido.</span>
+                                <span
+                                  class="error-text"
+                                  v-else-if="errors.firstByRule('form-email','email','form-login')"
+                                >Formato no válido.</span>
                             </div>
-                            <div class="form-password input-group">
+                            <div class="form-password input-group" :class="{'position-relative': errors.first('form-password','form-login')}">
                               <input
                                 type="password"
                                 v-model="user.password"
-                                name="password"
+                                name="form-password"
                                 class="form-control"
+                                :class="{'error-input': errors.first('form-password','form-login')}"
+                                data-vv-scope="form-login"
+                                v-validate
+                                data-vv-rules="required:true|min:6"
                                 :placeholder="'Ingrese su contraseña'"
                               >
+                                  <span
+                                  class="error-text"
+                                  v-if="errors.firstByRule('form-password', 'required','form-login')"
+                                >Campo requerido.</span>
+                                <span
+                                  class="error-text"
+                                  v-else-if="errors.firstByRule('form-password','min','form-login')"
+                                >Minimo 6 caracteres.</span>
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -595,11 +621,11 @@ li.bagform .dropbag:after {
                                 class="site-btn-login float-right"
                               >
                             </div>
-                            <div class="input-group remember justify-content-start text-left">
+                            <div class="remember justify-content-start text-left">
                               <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
-                                <router-link to="/register" @click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
+                                <router-link :to="{ name: 'register'} "@click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
                             </div>
                           </div>
                         </div>
@@ -618,23 +644,10 @@ li.bagform .dropbag:after {
           <ul
             class="container scroll-barna overflow-auto main-menu d-flex align-items-center w-auto"
           >
-            <li>
-              <a href="#">Hombre</a>
-            </li>
-            <li>
-              <a href="#">Mujer</a>
-            </li>
-            <li>
-              <a href="#">Niño</a>
-            </li>
-            <li>
-              <a href="#">Niña</a>
-            </li>
-            <li>
-              <a href="#">Tazas</a>
-            </li>
-            <li>
-              <a href="#">Buzo</a>
+            <li  v-for="(rubro,i) in tipos_rubros_fav" :key="i">
+                <a class="color-white cursor hover-barna"
+                  @click.stop.prevent="seletedRoute(rubro.nombre)"
+                >{{rubro.nombre}}</a>
             </li>
           </ul>
         </div>
@@ -642,7 +655,6 @@ li.bagform .dropbag:after {
     </div>
     <div id="content-barna" class="h-171" 
     style="background-position: center center;
-    background-image: url('/img/barna.jpg');
     background-size: contain;
     background-color: #282828;
     background-repeat: no-repeat;
@@ -663,6 +675,53 @@ export default {
   },
   data() {
     return {
+      collVal: false,
+      tipos_rubros:
+      [
+          {
+              "id": 1,
+              "nombre": 'Hombre',
+          },
+          {
+              "id": 2,
+              "nombre": 'Mujer',
+          },
+          {
+              "id": 3,
+              "nombre": 'Niño',
+          },
+          {
+              "id": 4,
+              "nombre": 'Niña',
+          },
+          {
+              "id": 5,
+              "nombre": 'Taza',
+          },
+          {
+              "id": 6,
+              "nombre": 'Buzo',
+          }
+      ],
+      tipos_rubros_fav:
+      [
+          {
+              "id": 1,
+              "nombre": 'Hombre',
+          },
+          {
+              "id": 2,
+              "nombre": 'Mujer',
+          },
+          {
+              "id": 3,
+              "nombre": 'Niño',
+          },
+          {
+              "id": 4,
+              "nombre": 'Niña',
+          }
+      ],
       user: {
         name: "",
         last_name: ""
@@ -679,6 +738,12 @@ export default {
     };
   },
   methods: {
+    panelAdmin(){
+        window.open(
+            this.getUrl+'admin',
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    },
   /*  initComponent() {
       this.isLoading = true;
         CerService.get("/login/auth")
@@ -701,17 +766,21 @@ export default {
   cambCollapse(){
     //var content = $("#content-barna");
     //console.log('holaa')
-      setTimeout(e => { 
-            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },600)  },
+      //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
+      this.collVal = !this.collVal
+      if(this.collVal){
+        $('#content-barna').css('min-height',220)
+      } else {
+        $('#content-barna').css('min-height',131)
+      }
+
+  },
 	logout(){
 	  this.closeAll(10)
 	  this.isLoading = true;
-      CerService.post("/logout")
-          .then(response => {
-            if (response.res) {
-              this.$store.dispatch('cambiarIsAuth',false)
-              this.$store.dispatch('cambiarUser',{})
+        this.$store.dispatch('logout').then((res)=>{
+
+            if (res.res) {
               this.$swal
               .mixin({
                 toast: true,
@@ -721,7 +790,7 @@ export default {
               })
               .fire({
                 type: "success",
-                title: response.msg
+                title: res.msg
               });
               this.$router.push({ name: 'home' })
               this.isLoading = false;
@@ -735,7 +804,7 @@ export default {
               })
               .fire({
                 type: "warning",
-                title: response.msg
+                title: res.msg
               });
               this.isLoading = false;
             }
@@ -755,21 +824,20 @@ export default {
              this.isLoading = false;
           });
 	},
-    seleted(event) {
-      this.$store.dispatch('cambiarRubro',String(event.target.innerText))
-      $("#rubrosCat").dropdown("toggle");      
-      /*if(this.isRouteRubro) {
-        this.$emit("searchM", e);
-      } else {}
-      */
+    seleted(rubro) {
+      //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+      this.$store.dispatch('cambiarRubro',rubro)
+      $("#rubrosCat").dropdown("toggle");   
 
     },
-    seletedAll() {
-      this.$store.dispatch('cambiarRubro',"")
-      $("#rubrosCat").dropdown("toggle");
-      if(this.isRouteRubro) {
-        this.$emit("searchM", e);
-      } else {}
+    seletedRoute(rubro) {
+      //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
+      this.$store.dispatch('cambiarRubro',rubro)
+      this.search = ""
+      this.$store.dispatch('cambiarSearch',this.search)
+      this.$router.push({ name: 'rubros' })
+
+
     },
     showBagM() {
       if (!this.showBag) {
@@ -840,50 +908,79 @@ export default {
     },
     designM(cent) {
       //this.$emit("designM", cent);
+      let element = document.getElementById("header-top");
+       var options = {
+        offset: 0,
+        force: true
+       };  
+      this.$scrollTo(element, 0, options);
       this.$store.dispatch('cambiarIsDesign',cent)
 
     },
     loginM() {
-	    this.isLoading = true;
-      var dataform = new FormData();
-      dataform.append("password", this.user.password);
-      dataform.append("email", this.user.email);      
-        CerService.post("/login/post", dataform)
-        .then(response => {
-          if (response.res) {
-            this.closeAll(1)
-            this.user = response.user;
-            this.$store.dispatch( 'loadUser' );
-            this.isLoading = false;
-            this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
+      this.$validator.validateAll("form-login").then(resp => {
+        if (resp) {
+            this.isLoading = true;
+            var dataform = new FormData();
+            dataform.append("password", this.user.password);
+            dataform.append("email", this.user.email);      
+              CerService.post("/login/post", dataform)
+              .then(response => {
+                if (response.res) {
+                  this.closeAll(1)
+                  this.$store.dispatch( 'loadUser');
+                  if (this.$route.name == 'register'){
+                    this.$router.push({ name: 'home' })
+                  }
+                   let element = document.getElementById("header-top");
+                   var options = {
+                    offset: 0,
+                    force: true
+                   };  
+                  this.$scrollTo(element, 0, options);
+                  this.isLoading = false;
+                  this.$swal
+                    .mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 4000
+                    })
+                    .fire({
+                      type: "success",
+                      title: response.msg
+                    });
+                } else {
+                  this.isLoading = false;
+                  this.$swal
+                    .mixin({
+                      toast: true,
+                      position: "top-end",
+                      showConfirmButton: false,
+                      timer: 4000
+                    })
+                    .fire({
+                      type: "warning",
+                      title: response.msg
+                    });
+                }
               })
-              .fire({
-                type: "success",
-                title: response.msg
+              .catch(error => {
+                this.$store.dispatch( 'loadUser' );
+                this.isLoading = false;
+                this.$swal
+                  .mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000
+                  })
+                  .fire({
+                    type: "error",
+                    title: "Ha ocurrido un error inesperado"
+                  });
               });
-          } else {
-			      this.isLoading = false;
-            this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "warning",
-                title: response.msg
-              });
-          }
-        })
-        .catch(error => {
-          this.$store.dispatch( 'loadUser' );
-		      this.isLoading = false;
+        } else {
           this.$swal
             .mixin({
               toast: true,
@@ -892,13 +989,16 @@ export default {
               timer: 4000
             })
             .fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
+              type: "warning",
+              title: "Por favor valide los campos"
             });
-        });
+        }
+      });
+
     },
     searchM() {
       this.$store.dispatch('cambiarSearch',this.search)
+      this.$router.push({ name: 'rubros' })
       /*if(this.isRouteRubro) {
         this.$emit("searchM", e);
       } else {
@@ -921,59 +1021,92 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getNumCart','getNumBag']),
+    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart', 'getUrl']),
   },
   mounted: function() {
   //this.initComponent()
-    if (this.getIsAuth){
-      this.user = this.getUser
+    if (document.body.clientWidth <= 768) {
+      this.collapse = true;
+      $('#content-barna').css('min-height',131)
+    } else {
+      this.collapse = false;
+      this.collVal = false;
+      $('#content-barna').css('min-height',170)
     }
-    var logo = $("#logo-barna");
-    var content = $("#content-barna");
+      if(this.collapse){
+           $("#logo-barna").css("width", 45);
+           $("#logo-barna").css("height", 85);
+      } else {
+         $("#logo-barna").css("width", 75);
+         $("#logo-barna").css("height", 105);
+      }
+
     $(window).resize(event => {
       event.preventDefault();
-      $(content).css("min-height", parseInt(($('.header-barna-fixed').css('height')).split('px')[0]));
+       //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
+      setTimeout(e => { 
+           // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+        },400)  
       if (document.body.clientWidth <= 768) {
         this.collapse = true;
+        $('#content-barna').css('min-height',131)
       } else {
         this.collapse = false;
+        this.collVal = false;
+        $('#content-barna').css('min-height',170)
       }
+        if(this.collapse){
+             $("#logo-barna").css("width", 45);
+             $("#logo-barna").css("height", 85);
+        } else {
+           $("#logo-barna").css("width", 75);
+           $("#logo-barna").css("height", 105);
+        }
     });
 
     document.addEventListener("scroll", event => {
       event.preventDefault();
       var menu = $(".main-menu li a");
-      var t = 150;
-      if(this.collapse){
-        t = 50
-      }
+      var t = 10;
       if (document.documentElement.scrollTop > t) {
-        $(content).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("width", 50);
-        $(logo).css("height", 65);
-        $(content).css("height", 81);
+        //$(content).css("transition", "all 0.5s ease 0.4s");
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if(this.collapse){
+          $("#logo-barna").css("width", 40);
+          $("#logo-barna").css("height", 60);
+        } else {
+          $("#logo-barna").css("width", 60);
+          $("#logo-barna").css("height", 75);
+        }
+        //$(content).css("height", 81);
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.5s ease 0.4s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "8px 0");
           }
         }
       } else {
-        $(content).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("width", 75);
-        $(logo).css("height", 105);
+        $("#content-barna").css("transition", "all 0.2s ease 0.1s");
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if(this.collapse){
+           $("#logo-barna").css("width", 45);
+           $("#logo-barna").css("height", 85);
+        } else {
+           $("#logo-barna").css("width", 75);
+           $("#logo-barna").css("height", 105);
+        }
+
 
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.3s ease 0.2s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "17px 0");
           }
         }
-        setTimeout(e => { 
-            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },300)
+            //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
+             setTimeout(e => { 
+              //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
+            },300)            
       }
     });
   },
@@ -991,6 +1124,9 @@ export default {
     },
     getUser: function(){
       this.user = this.$store.getters.getUser
+    },
+    getSearch: function(){
+      this.search= this.$store.getters.getSearch
     }
   }
 };

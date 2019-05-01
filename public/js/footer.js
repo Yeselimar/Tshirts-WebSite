@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 86);
+/******/ 	return __webpack_require__(__webpack_require__.s = 85);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -175,21 +175,21 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 86:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(87);
+module.exports = __webpack_require__(86);
 
 
 /***/ }),
 
-/***/ 87:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(88)
+var __vue_script__ = __webpack_require__(87)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -231,12 +231,12 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 88:
+/***/ 87:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_footerComponent_vue__);
 
 
@@ -252,15 +252,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 89:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(90)
+var __vue_script__ = __webpack_require__(89)
 /* template */
-var __vue_template__ = __webpack_require__(91)
+var __vue_template__ = __webpack_require__(90)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -300,7 +300,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 90:
+/***/ 89:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -380,7 +380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 91:
+/***/ 90:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

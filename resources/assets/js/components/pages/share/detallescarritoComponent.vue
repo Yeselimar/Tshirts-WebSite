@@ -6,7 +6,7 @@
 				<ul class="product-list">
 					<template v-for="articulo in articulos">
 						<li>
-							<div class="pl-thumb"><img :src="url+articulo.imagen" alt=""></div>
+							<div class="pl-thumb"><img :src="getUrl+articulo.imagen" alt=""></div>
 							<h6>{{articulo.nombre}}</h6>
 							<p>${{formatearmoneda(articulo.precio)}}</p>
 						</li>
@@ -24,16 +24,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
     export default
     {
         name:'detallescarritoComponent',
         props:
         {
-            url:
-            {
-                type: String,
-                require:true
-            }
         },
         data()
         {
@@ -44,14 +41,14 @@
                     "id": 1,
                     "nombre": 'Black and White Stripes Dress',
                     "precio": 25.05,
-                    "imagen":'/img/cart/1.jpg',
+                    "imagen":'img/cart/1.jpg',
                     "isDesign": true,
                 },
                 {
                     "id": 2,
                     "nombre": 'Flamboyant Pink Top',
                     "precio": 30.50,
-                    "imagen":'/img/cart/2.jpg',
+                    "imagen":'img/cart/2.jpg',
                     "isDesign": true,
                 }
             ]
@@ -60,6 +57,10 @@
         mounted()
         {
 
+        },
+         computed: 
+        {
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
         },
         methods: 
         {

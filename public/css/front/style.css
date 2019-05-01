@@ -2866,8 +2866,8 @@ ol {
 		font-size: 10px
 	}
 	.site-logo img{
-		width: 45px !important;
-		height: 85px !important
+		width: 45px;
+		height: 85px 
 	}
 	.flex-basis-logo {
     flex-basis: 20%;
@@ -2999,10 +2999,15 @@ td, th, tr{
 	background-color: #ef7a6e !important
 
 }
+.hover-barna:hover {
+	color: #ef7a6e !important
+}
 .color-black {
 	color: black !important;
 }
-
+.color-white {
+	color: white !important
+}
 .bg-white {
 	background-color: white
 }
@@ -3146,4 +3151,25 @@ td, th, tr{
 	animation: loader 0.8s linear infinite;
 	-webkit-animation: loader 0.8s linear infinite;
 }
-/*end loading *
+/*end loading */
+
+/*error */
+.error-input {
+	border: 1px solid red !important;
+}
+.error-text {
+	position: absolute;
+	font-size: 12px;
+	color: red;
+	right: 6px;
+	bottom: 6px;
+}
+
+.modal-header-barna {
+	background-color: #94c3d3;
+  border-top-right-radius: .6rem;
+  border-top-left-radius: .6rem;
+}
+.modal-content-barna {
+	border-radius: 1rem;
+}

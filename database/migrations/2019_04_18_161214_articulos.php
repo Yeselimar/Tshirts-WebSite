@@ -14,12 +14,15 @@ class Articulos extends Migration
 
             $table->string('nombre');
             $table->float('precio');
-            $table->integer('cantidad');
+            $table->integer('cantidad');//esta muy genérico
             $table->boolean('personalizable')->default(1);
             $table->string('marca');
             $table->text('descripcion');
             $table->float('descuento')->nullable();
             $table->boolean('destacado')->default(0);
+
+            $table->boolean('ropa');//ropa: remera y buzo
+            $table->string('otros')->nullable();
 
             $table->timestamps();
         });

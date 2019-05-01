@@ -14,8 +14,16 @@ window._ = require('lodash');
 
 try {
     //window.$ = window.jQuery = require('jquery');
- 
-
+    window.$ = window.jQuery = require('jquery');
+    require('popper.js');
+    require('bootstrap');
+    require('jquery-slimscroll');
+    require('./sidebarmenu');
+    require('./sticky-kit');
+    //require('./jscolor');
+    //require('./bootstrap-colorpicker');
+    //require('./custom');
+    
 } catch (e) {}
 
 /**
@@ -43,27 +51,20 @@ if (token) {
 }
 
 import Vue            from 'vue';
-/*import VueSweetalert2 from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2';
+import BootstrapVue from 'bootstrap-vue';
+import VeeValidate from 'vee-validate';
 
  
 const options = {
   confirmButtonColor: '#41b882',
   cancelButtonColor: '#ff7674'
 }
- 
+
+
 Vue.use(VueSweetalert2, options)
-*/
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-import '@mdi/font/css/materialdesignicons.css'
-
-Vue.use(Vuetify, {
-  iconfont: 'mdi',
-})
-
-import 'chartist/dist/chartist.min.css'
-
-Vue.use(require('vue-chartist'))
+Vue.use(BootstrapVue)
+Vue.use(VeeValidate, { fieldsBagName: 'veeFields' })
 
 /*
 	Imports all of the modules used in the application to build the data store.
@@ -79,10 +80,11 @@ import router from './routesBack'
 */
 const app = new Vue({
   el: "#back",
-  Vuetify,
   store,
   router : router,
-  //VueSweetalert2
+  VueSweetalert2,
+  VeeValidate,
+  BootstrapVue
 });
 
 export default app;

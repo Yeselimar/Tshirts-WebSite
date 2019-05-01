@@ -5,9 +5,9 @@
     		<div class="pi-pic">
                 <!---->
     			<!--<div class="tag-sale">ON SALE</div>---><!--Fue comentado por si llegara a utilizar-->
-    			<img :src="url+image" alt="">
+    			<img :src="getUrl+image" alt="">
     			<div class="pi-links">
-                    <a  v-if="isDesign" class="add-card add-bag">
+                    <a  v-if="getIsDesign" class="add-card add-bag">
                         <i class="fa fa-magic"></i><span>Diseñar</span>
                     </a>
                     <a  v-else class="add-card">
@@ -25,15 +25,12 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
         name:'articuloComponent',
         props:
         {
-            url:
-            {
-                type: String,
-                require:true
-            },
+            
             title:
             {
 	            type: String,
@@ -48,12 +45,11 @@
             {
                 type: String,
                 require:true
-            },
-            isDesign:
-            {
-                type: Boolean,
-                require:true
             }
+        },
+         computed: 
+        {
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
         },
         mounted()
         {

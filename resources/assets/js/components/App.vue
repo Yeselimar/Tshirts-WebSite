@@ -19,6 +19,7 @@
 export default {
     created(){
         this.$store.dispatch('loadUser')
+        this.$store.dispatch('cambiarUrl',this.$attrs.url)
     },
     components:
     {

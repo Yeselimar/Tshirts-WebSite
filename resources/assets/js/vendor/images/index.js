@@ -1,0 +1,2 @@
+import './jpg/barna.jpg'
+

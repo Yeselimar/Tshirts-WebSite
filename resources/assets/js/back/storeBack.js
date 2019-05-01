@@ -8,7 +8,9 @@ import CerService from '../plugins/CerService';
 
 const state = {
   user: {},
-  isAuth: false
+  isAuth: false,
+  url: '' // ruta relativa del servidor
+
 }
 /*
   Defines the mutations used by the module.
@@ -23,6 +25,9 @@ const mutations = {
   },
   setIsAuth(state, val) {
     state.isAuth = val
+  },
+  setUrl(state, url) {
+    state.url = url;
   },
 }
 /*
@@ -67,6 +72,9 @@ const actions = {
   cambiarIsAuth({ commit }, valor) {
     commit('setIsAuth', valor);
   },
+  cambiarUrl({ commit }, valor) {
+    commit('setUrl', valor);
+  },
 }
 /*
   Defines the getters used by the module.
@@ -82,6 +90,9 @@ const getters = {
 
   getIsAuth(state) {
     return state.isAuth
+  },
+  getUrl(state) {
+    return state.url;
   },
 
 }

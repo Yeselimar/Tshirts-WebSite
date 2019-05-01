@@ -10,7 +10,7 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.js('resources/assets/js/vendor/index.js', 'public/js/dist');
 mix.js('resources/assets/js/app.js', 'public/js');
 mix.js('resources/assets/js/back/back.js', 'public/js');
 
