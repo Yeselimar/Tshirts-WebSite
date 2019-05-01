@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './indexStoreBack';
 import CerService from '../plugins/CerService';
+import Config from '../config';
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -9,14 +11,14 @@ const router = new VueRouter({
 	routes: [
        
         {
-                path: 'login',
+                path: Config.env.base+'login',
                 name: 'login',
                 component: Vue.component( 'Login', require( './components/pages/loginComponent.vue' ) ),
                 meta: { requiresAuth: false } 
         },
 
 		{
-			path: '/admin/',
+			path: Config.env.base+'admin/',
             component: Vue.component( 'Back', require( './components/Back.vue' ) ),
             meta: { requiresAuth: true },
 			children: [
@@ -103,7 +105,7 @@ router.beforeEach((to, from, next) => {
             } else {
                 if(String(to.name) == 'login' &&  isAuthenticated){
                     next({
-                        path: '/admin',
+                        path: Config.env.base+'admin',
                         params: { nextUrl: to.fullPath }
                     })
                     $(".preloader").fadeOut();
@@ -126,7 +128,7 @@ router.beforeEach((to, from, next) => {
 
                         } else {
                             next({
-                                path: '/admin',
+                                path: Config.env.base+'admin',
                                 params: { nextUrl: to.fullPath }
                             })
                             $(".preloader").fadeOut();
@@ -142,7 +144,7 @@ router.beforeEach((to, from, next) => {
                     .then(function (response) {
                     if(response.res !== 0){
                         next({
-                            path: '/admin',
+                            path: Config.env.base+'admin',
                             params: { nextUrl: to.fullPath }
                         })
                         $(".preloader").fadeOut();
@@ -154,7 +156,7 @@ router.beforeEach((to, from, next) => {
                 })
                 .catch(function () {
                     next({
-                        path: '/admin',
+                        path: Config.env.base+'admin',
                         params: { nextUrl: to.fullPath }
                     })
                     $(".preloader").fadeOut();

@@ -9,10 +9,10 @@
                             <div class="navbar-header">
                                 <a class="navbar-brand" href="index.html">
                                     <!-- Logo icon -->
-                                    <b><img :src="'/img/barna3.png'" style="width: 40px" alt="Barna" class="dark-logo" /></b>
+                                    <b><img :src="getUrl+'img/barna3.png'" style="width: 40px" alt="Barna" class="dark-logo" /></b>
                                     <!--End Logo icon -->
                                     <!-- Logo text -->
-                                    <span><img :src="'/img/barna4.png'" style="width: 125px" alt="Barna" class="dark-logo" /></span>
+                                    <span><img :src="getUrl+'img/barna4.png'" style="width: 125px" alt="Barna" class="dark-logo" /></span>
                                 </a>
                             </div>
                             <!-- End Logo -->
@@ -78,7 +78,7 @@
                                                     <div class="message-center">
                                                         <!-- Message -->
                                                         <a href="#">
-                                                            <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                            <div class="user-img"> <img :src="getUrl+'images/users/5.jpg'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                             <div class="mail-contnet">
                                                                 <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                                                             </div>
@@ -98,7 +98,7 @@
                                     <!-- Profile -->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img :src="'/img/users/masculino.png'" alt="user" class="profile-pic" />
+                                            <img :src="getUrl+'img/users/masculino.png'" alt="user" class="profile-pic" />
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                             <ul class="dropdown-user">
@@ -184,6 +184,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     created(){
+        this.$store.dispatch('cambiarUrl',this.$attrs.url)
     },
     components:
     {
@@ -392,7 +393,7 @@ export default {
     },
     
     computed: {
-        ...mapGetters(['getIsAuth']),
+        ...mapGetters(['getIsAuth','getUrl']),
       },
     watch: {
         getIsAuth: function(){

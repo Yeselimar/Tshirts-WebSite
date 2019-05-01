@@ -39,7 +39,7 @@
         <!--end loading-->
 
         <div id="back">
-            <router-view></router-view>
+            <router-view url="{{asset('/')}}"></router-view>
         </div>
 
         <script src="{{ asset('js/back.js')}}"></script>

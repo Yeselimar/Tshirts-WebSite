@@ -198,7 +198,7 @@ li.bagform .dropbag:after {
           <div class="d-flex align-items-center flex-wrap-mw justify-content-around">
             <div class="flex-basis-logo">
               <!-- logo -->
-              <router-link class="site-logo cursor" to="/">
+              <router-link class="site-logo cursor" :to="{ name: 'home'}">
                 <img :src="getUrl+'img/barna.jpg'" id="logo-barna" alt>
               </router-link>
             </div>
@@ -617,7 +617,7 @@ li.bagform .dropbag:after {
                               <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
-                                <router-link to="/register" @click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
+                                <router-link :to="{ name: 'register'} "@click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
                             </div>
                           </div>
                         </div>
