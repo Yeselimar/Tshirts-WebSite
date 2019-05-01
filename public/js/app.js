@@ -526,73 +526,6 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(88);
-
-
-var CerService = {};
-
-CerService.setToken = function (token) {
-    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
-};
-
-CerService.get = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.delete = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error al Eliminar');
-    });
-};
-
-CerService.post = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.put = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
-        return res.data;
-    });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (CerService);
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* unused harmony export Store */
 /* unused harmony export install */
 /* unused harmony export mapState */
@@ -1600,6 +1533,73 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(88);
+
+
+var CerService = {};
+
+CerService.setToken = function (token) {
+    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
+};
+
+CerService.get = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.delete = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error al Eliminar');
+    });
+};
+
+CerService.post = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.put = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
+        return res.data;
+    });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (CerService);
 
 /***/ }),
 /* 17 */,
@@ -15486,7 +15486,21 @@ module.exports = Cancel;
 /* 42 */,
 /* 43 */,
 /* 44 */,
-/* 45 */,
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    api: {
+        base: 'http://localhost:8000/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
+    },
+    env: {
+        base: '/'
+    }
+});
+
+/***/ }),
 /* 46 */,
 /* 47 */,
 /* 48 */,
@@ -15497,12 +15511,7 @@ module.exports = Cancel;
 /* 53 */,
 /* 54 */,
 /* 55 */,
-/* 56 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/barna.jpg?8d90a7d7f3f18b481eb62accd4383bac";
-
-/***/ }),
+/* 56 */,
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51929,7 +51938,7 @@ return Promise$1;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(45);
 
 
 //import config from '/config.json'
@@ -51951,18 +51960,6 @@ var RestService = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 
 /***/ }),
 /* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    api: {
-        base: 'http://localhost:8000/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    }
-});
-
-/***/ }),
-/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54587,7 +54584,7 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -54634,7 +54631,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -54681,6 +54678,7 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 92 */,
 /* 93 */,
 /* 94 */,
 /* 95 */,
@@ -54703,14 +54701,13 @@ module.exports = Component.exports
 /* 112 */,
 /* 113 */,
 /* 114 */,
-/* 115 */,
-/* 116 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(193);
 /*
 	Initializes Vuex on Vue.
@@ -54738,6 +54735,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 /* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
+/* 116 */,
 /* 117 */,
 /* 118 */,
 /* 119 */,
@@ -54821,7 +54819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_scrollto__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_scrollto___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_scrollto__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__indexStore__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__indexStore__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(194);
 
 /**
@@ -75396,7 +75394,7 @@ VeeValidate$1.withValidation = withValidation;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /*
@@ -75416,7 +75414,9 @@ var state = {
   cart: [],
   bag: [],
   userLoadStatus: 0,
-  userUpdateStatus: 0
+  userUpdateStatus: 0,
+  url: '' // ruta relativa del servidor
+
   /*
     Defines the mutations used by the module.
   */
@@ -75426,6 +75426,9 @@ var state = {
       */
   setUserLoadStatus: function setUserLoadStatus(state, status) {
     state.userLoadStatus = status;
+  },
+  setUrl: function setUrl(state, url) {
+    state.url = url;
   },
 
 
@@ -75579,38 +75582,43 @@ var actions = {
       });
     });
   },
-  cambiarSearch: function cambiarSearch(_ref6, valor) {
+  cambiarUrl: function cambiarUrl(_ref6, valor) {
     var commit = _ref6.commit;
+
+    commit('setUrl', valor);
+  },
+  cambiarSearch: function cambiarSearch(_ref7, valor) {
+    var commit = _ref7.commit;
 
     commit('setSearch', valor);
   },
-  cambiarIsDesign: function cambiarIsDesign(_ref7, valor) {
-    var commit = _ref7.commit;
+  cambiarIsDesign: function cambiarIsDesign(_ref8, valor) {
+    var commit = _ref8.commit;
 
     commit('setIsDesign', valor);
   },
-  cambiarRubro: function cambiarRubro(_ref8, valor) {
-    var commit = _ref8.commit;
+  cambiarRubro: function cambiarRubro(_ref9, valor) {
+    var commit = _ref9.commit;
 
     commit('setRubro', valor);
   },
-  cambiarUser: function cambiarUser(_ref9, valor) {
-    var commit = _ref9.commit;
+  cambiarUser: function cambiarUser(_ref10, valor) {
+    var commit = _ref10.commit;
 
     commit('setUser', valor);
   },
-  cambiarIsAuth: function cambiarIsAuth(_ref10, valor) {
-    var commit = _ref10.commit;
+  cambiarIsAuth: function cambiarIsAuth(_ref11, valor) {
+    var commit = _ref11.commit;
 
     commit('setIsAuth', valor);
   },
-  cambiarBag: function cambiarBag(_ref11, valor) {
-    var commit = _ref11.commit;
+  cambiarBag: function cambiarBag(_ref12, valor) {
+    var commit = _ref12.commit;
 
     commit('setBag', valor);
   },
-  cambiarCart: function cambiarCart(_ref12, valor) {
-    var commit = _ref12.commit;
+  cambiarCart: function cambiarCart(_ref13, valor) {
+    var commit = _ref13.commit;
 
     commit('setCart', valor);
   }
@@ -75635,6 +75643,9 @@ var getters = {
   */
   getUser: function getUser(state) {
     return state.user;
+  },
+  getUrl: function getUrl(state) {
+    return state.url;
   },
   getCart: function getCart(state) {
     return state.cart;
@@ -75691,9 +75702,11 @@ var getters = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(45);
+
 
 
 
@@ -75707,7 +75720,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 		path: '*',
 		redirect: { name: 'home' }
 	}, {
-		path: '/',
+		path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 		component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('App', __webpack_require__(195)),
 		children: [{
 			path: '',
@@ -75749,7 +75762,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 		/*
   	Catch Alls
               */
-		{ path: '_=_', redirect: '/' }]
+		{ path: '_=_', redirect: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base }]
 	}]
 });
 
@@ -75786,7 +75799,7 @@ router.beforeEach(function (to, from, next) {
 						});
 					} else {
 						next({
-							path: '/',
+							path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 							params: { nextUrl: to.fullPath }
 						});
 					}
@@ -75796,7 +75809,7 @@ router.beforeEach(function (to, from, next) {
 			} else {
 				if (String(to.name) == 'register' && isAuthenticated) {
 					next({
-						path: '/',
+						path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 						params: { nextUrl: to.fullPath }
 					});
 				} else {
@@ -75816,7 +75829,7 @@ router.beforeEach(function (to, from, next) {
 					});
 				} else {
 					next({
-						path: '/',
+						path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 						params: { nextUrl: to.fullPath }
 					});
 				}
@@ -75829,7 +75842,7 @@ router.beforeEach(function (to, from, next) {
 			__WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post('/login/auth').then(function (response) {
 				if (response.res !== 0) {
 					next({
-						path: '/',
+						path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 						params: { nextUrl: to.fullPath }
 					});
 				} else {
@@ -75839,7 +75852,7 @@ router.beforeEach(function (to, from, next) {
 				$("#preloader").delay(400).fadeOut("slow");
 			}).catch(function () {
 				next({
-					path: '/',
+					path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
 					params: { nextUrl: to.fullPath }
 				});
 
@@ -75940,6 +75953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
         this.$store.dispatch('loadUser');
+        this.$store.dispatch('cambiarUrl', this.$attrs.url);
     },
 
     components: {
@@ -76095,10 +76109,10 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -76770,6 +76784,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   data: function data() {
     return {
+      collVal: false,
       tipos_rubros: [{
         "id": 1,
         "nombre": 'Hombre'
@@ -76841,10 +76856,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     cambCollapse: function cambCollapse() {
       //var content = $("#content-barna");
       //console.log('holaa')
-      $('#content-barna').css("transition", "all 0.2s ease 0.1s");
-      setTimeout(function (e) {
-        $('#content-barna').css('min-height', parseInt($('.header-barna-fixed').css('height').split('px')[0]));
-      }, 400);
+      //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
+      this.collVal = !this.collVal;
+      if (this.collVal) {
+        $('#content-barna').css('min-height', 220);
+      } else {
+        $('#content-barna').css('min-height', 131);
+      }
     },
     logout: function logout() {
       var _this = this;
@@ -76979,6 +76997,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     designM: function designM(cent) {
       //this.$emit("designM", cent);
+      var element = document.getElementById("header-top");
+      var options = {
+        offset: 0,
+        force: true
+      };
+      this.$scrollTo(element, 0, options);
       this.$store.dispatch('cambiarIsDesign', cent);
     },
     loginM: function loginM() {
@@ -76997,6 +77021,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
               if (_this6.$route.name == 'register') {
                 _this6.$router.push({ name: 'home' });
               }
+              var element = document.getElementById("header-top");
+              var options = {
+                offset: 0,
+                force: true
+              };
+              _this6.$scrollTo(element, 0, options);
               _this6.isLoading = false;
               _this6.$swal.mixin({
                 toast: true,
@@ -77064,7 +77094,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       });
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getBag', 'getCart'])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getBag', 'getCart', 'getUrl'])),
   mounted: function mounted() {
     var _this7 = this;
 
@@ -77076,14 +77106,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     var content = $("#content-barna");
     $(window).resize(function (event) {
       event.preventDefault();
-      $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+      //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
       setTimeout(function (e) {
-        $('#content-barna').css('min-height', parseInt($('.header-barna-fixed').css('height').split('px')[0]));
+        // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
       }, 400);
       if (document.body.clientWidth <= 768) {
         _this7.collapse = true;
+        $('#content-barna').css('min-height', 131);
       } else {
         _this7.collapse = false;
+        _this7.collVal = false;
+        $('#content-barna').css('min-height', 170);
       }
     });
 
@@ -77095,11 +77128,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         t = 50;
       }
       if (document.documentElement.scrollTop > t) {
-        $(content).css("transition", "all 0.5s ease 0.4s");
+        //$(content).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("width", 50);
         $(logo).css("height", 65);
-        $(content).css("height", 81);
+        //$(content).css("height", 81);
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
             $(menu[i]).css("transition", "all 0.5s ease 0.4s");
@@ -77118,9 +77151,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             $(menu[i]).css("padding", "17px 0");
           }
         }
-        $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+        //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
         setTimeout(function (e) {
-          $('#content-barna').css('min-height', parseInt($('.header-barna-fixed').css('height').split('px')[0]));
+          //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
         }, 300);
       }
     });
@@ -77248,7 +77281,7 @@ var render = function() {
                             [
                               _c("img", {
                                 attrs: {
-                                  src: __webpack_require__(56),
+                                  src: _vm.getUrl + "img/barna.jpg",
                                   id: "logo-barna",
                                   alt: ""
                                 }
@@ -77744,7 +77777,8 @@ var render = function() {
                                                                         "w-30",
                                                                       attrs: {
                                                                         src:
-                                                                          "/img/cart/2.jpg",
+                                                                          _vm.getUrl +
+                                                                          "img/cart/2.jpg",
                                                                         alt: ""
                                                                       }
                                                                     }),
@@ -77773,7 +77807,8 @@ var render = function() {
                                                                         "w-30",
                                                                       attrs: {
                                                                         src:
-                                                                          "/img/cart/3.jpg",
+                                                                          _vm.getUrl +
+                                                                          "img/cart/3.jpg",
                                                                         alt: ""
                                                                       }
                                                                     }),
@@ -77949,7 +77984,8 @@ var render = function() {
                                                                         "w-30",
                                                                       attrs: {
                                                                         src:
-                                                                          "/img/cart/1.jpg",
+                                                                          _vm.getUrl +
+                                                                          "img/cart/1.jpg",
                                                                         alt: ""
                                                                       }
                                                                     }),
@@ -77978,7 +78014,8 @@ var render = function() {
                                                                         "w-30",
                                                                       attrs: {
                                                                         src:
-                                                                          "/img/cart/2.jpg",
+                                                                          _vm.getUrl +
+                                                                          "img/cart/2.jpg",
                                                                         alt: ""
                                                                       }
                                                                     }),
@@ -78955,6 +78992,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -79017,9 +79057,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'footerComponent',
-    mounted: function mounted() {}
+    mounted: function mounted() {},
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getBag', 'getCart', 'getUrl']))
 });
 
 /***/ }),
@@ -79038,7 +79082,9 @@ var render = function() {
             _c("div", { staticClass: "footer-widget about-widget" }, [
               _c("h2", [_vm._v("Métodos de Pago:")]),
               _vm._v(" "),
-              _c("img", { attrs: { src: "/img/cards.png", alt: "" } })
+              _c("img", {
+                attrs: { src: _vm.getUrl + "img/cards.png", alt: "" }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -79080,7 +79126,7 @@ var render = function() {
                 _c("a", { attrs: { href: "#" } }, [
                   _c("img", {
                     staticStyle: { height: "20px", width: "auto" },
-                    attrs: { src: "/img/afodi-logo.png" }
+                    attrs: { src: _vm.getUrl + "img/afodi-logo.png" }
                   })
                 ])
               ]
@@ -79302,7 +79348,7 @@ exports.push([module.i, "\n.filter {\n  font-family: arial;\n  padding: 6px 6px;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue__);
@@ -79310,7 +79356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -79461,7 +79507,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         itemsComponent: __WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue___default.a,
         prodDestacadosComponent: __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default.a
     },
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getCart', 'getBag']), {
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getCart', 'getBag', 'getUrl']), {
         projectsC: function projectsC() {
             var projectAux = [];
             if (this.projects && this.projects.length) {
@@ -79509,7 +79555,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             projects: [],
             productDesigns: [{
                 id: 10020,
-                url: '/img/product/12.jpg',
+                url: 'img/product/12.jpg',
                 titulo: 'Blusa jackets',
                 categoria: 'Hombre',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79518,14 +79564,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }, {
                 id: 1589,
                 categoria: 'Hombre',
-                url: '/img/product/9.jpg',
+                url: 'img/product/9.jpg',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 12.2,
                 isDesign: true
             }, {
                 id: 54632,
-                url: '/img/product/8.jpg',
+                url: 'img/product/8.jpg',
                 categoria: 'Mujer',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79533,7 +79579,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 345645,
-                url: '/img/product/7.jpg',
+                url: 'img/product/7.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Mujer',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79542,14 +79588,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }, {
                 id: 14562,
                 categoria: 'Hombre',
-                url: '/img/product/9.jpg',
+                url: 'img/product/9.jpg',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 12.2,
                 isDesign: true
             }, {
                 id: 2,
-                url: '/img/product/8.jpg',
+                url: 'img/product/8.jpg',
                 categoria: 'Niño',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79557,7 +79603,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 31245,
-                url: '/img/product/7.jpg',
+                url: 'img/product/7.jpg',
                 categoria: 'Niña',
                 titulo: 'Carniut jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79565,7 +79611,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 400,
-                url: '/img/product/6.jpg',
+                url: 'img/product/6.jpg',
                 categoria: 'Hombre',
                 titulo: 'Tienza jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79573,7 +79619,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 10748,
-                url: '/img/product/1.jpg',
+                url: 'img/product/1.jpg',
                 titulo: 'Blusa jackets',
                 categoria: 'Niña',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79581,7 +79627,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 1999,
-                url: '/img/product/2.jpg',
+                url: 'img/product/2.jpg',
                 categoria: 'Niña',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79589,7 +79635,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 102,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79597,7 +79643,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 513,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Taza',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79605,7 +79651,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 45582,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79613,7 +79659,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 321,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Taza',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79621,7 +79667,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 21112,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79629,7 +79675,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 22273,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Taza',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79637,7 +79683,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: true
             }, {
                 id: 5564,
-                url: '/img/product/11.jpg',
+                url: 'img/product/11.jpg',
                 titulo: 'Tienza jackets',
                 categoria: 'Buzo',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79646,7 +79692,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }],
             products: [{
                 id: 4440,
-                url: '/img/product/12.jpg',
+                url: 'img/product/12.jpg',
                 titulo: 'Blusa jackets',
                 categoria: 'Hombre',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79655,14 +79701,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }, {
                 id: 555411,
                 categoria: 'Hombre',
-                url: '/img/product/9.jpg',
+                url: 'img/product/9.jpg',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 12.2,
                 isDesign: false
             }, {
                 id: 2665,
-                url: '/img/product/8.jpg',
+                url: 'img/product/8.jpg',
                 categoria: 'Mujer',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79670,7 +79716,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 105633,
-                url: '/img/product/7.jpg',
+                url: 'img/product/7.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Niño',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79679,14 +79725,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }, {
                 id: 555451,
                 categoria: 'Niño',
-                url: '/img/product/9.jpg',
+                url: 'img/product/9.jpg',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 12.2,
                 isDesign: false
             }, {
                 id: 5552,
-                url: '/img/product/8.jpg',
+                url: 'img/product/8.jpg',
                 categoria: 'Niño',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79694,7 +79740,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 5553,
-                url: '/img/product/7.jpg',
+                url: 'img/product/7.jpg',
                 categoria: 'Niña',
                 titulo: 'Carniut jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79702,7 +79748,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 4454,
-                url: '/img/product/6.jpg',
+                url: 'img/product/6.jpg',
                 categoria: 'Hombre',
                 titulo: 'Tienza jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79710,7 +79756,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 5550,
-                url: '/img/product/1.jpg',
+                url: 'img/product/1.jpg',
                 titulo: 'Blusa jackets',
                 categoria: 'Mujer',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79718,7 +79764,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 5661,
-                url: '/img/product/2.jpg',
+                url: 'img/product/2.jpg',
                 categoria: 'Niña',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79726,7 +79772,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 542,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79734,7 +79780,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 45543,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Niña',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79742,7 +79788,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 2222,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79750,7 +79796,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 3,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Taza',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79758,7 +79804,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 1111,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 categoria: 'Taza',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79766,7 +79812,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 isDesign: false
             }, {
                 id: 223,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 categoria: 'Taza',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -79968,7 +80014,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -80035,19 +80081,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navComponent",
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth'])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getUrl'])),
   data: function data() {
     return {
       barner: [{
         id: 0,
-        url: "/img/bg.jpg",
+        url: "img/bg.jpg",
         titulo: "Denim jackets",
         isDesign: false,
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
         precio: 1229.2
       }, {
         id: 1,
-        url: "/img/bg-2.jpg",
+        url: "img/bg-2.jpg",
         titulo: "Content Static",
         isDesign: false,
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
@@ -80055,14 +80101,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }],
       barnerDesign: [{
         id: 2,
-        url: "/img/bg-3.jpg",
+        url: "img/bg-3.jpg",
         titulo: "Toommy jackets",
         isDesign: true,
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
         precio: 19.2
       }, {
         id: 3,
-        url: "/img/bg-4.jpg",
+        url: "img/bg-4.jpg",
         titulo: "Tonts Static",
         isDesign: true,
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
@@ -80147,6 +80193,7 @@ var render = function() {
                 style:
                   "background-position:center center;background-size:container;background-image:" +
                   "url(" +
+                  _vm.getUrl +
                   item.url +
                   ")"
               },
@@ -80493,7 +80540,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -80534,35 +80581,35 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         return {
             productDesigns: [{
                 id: 0,
-                url: '/img/product/1.jpg',
+                url: 'img/product/1.jpg',
                 titulo: 'Blusa jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 29.2,
                 isDesign: true
             }, {
                 id: 1,
-                url: '/img/product/2.jpg',
+                url: 'img/product/2.jpg',
                 titulo: 'Pantalon jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 12.2,
                 isDesign: true
             }, {
                 id: 2,
-                url: '/img/product/3.jpg',
+                url: 'img/product/3.jpg',
                 titulo: 'Franella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 129.2,
                 isDesign: true
             }, {
                 id: 3,
-                url: '/img/product/4.jpg',
+                url: 'img/product/4.jpg',
                 titulo: 'Carniut jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 99.2,
                 isDesign: true
             }, {
                 id: 4,
-                url: '/img/product/5.jpg',
+                url: 'img/product/5.jpg',
                 titulo: 'Tienza jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 19.2,
@@ -80570,35 +80617,35 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }],
             products: [{
                 id: 0,
-                url: '/img/product/6.jpg',
+                url: 'img/product/6.jpg',
                 titulo: 'Changes jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 2.2,
                 isDesign: false
             }, {
                 id: 1,
-                url: '/img/product/7.jpg',
+                url: 'img/product/7.jpg',
                 titulo: 'Pages jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 2.2,
                 isDesign: false
             }, {
                 id: 2,
-                url: '/img/product/8.jpg',
+                url: 'img/product/8.jpg',
                 titulo: 'Nenella jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 19.2,
                 isDesign: false
             }, {
                 id: 3,
-                url: '/img/product/9.jpg',
+                url: 'img/product/9.jpg',
                 titulo: 'Vitorius jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 9.2,
                 isDesign: false
             }, {
                 id: 4,
-                url: '/img/product/10.jpg',
+                url: 'img/product/10.jpg',
                 titulo: 'Lorem jackets',
                 descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                 precio: 129.2,
@@ -80608,7 +80655,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getUrl'])),
     mounted: function mounted() {
         this.llenarItems();
     },
@@ -80684,7 +80731,9 @@ var render = function() {
                 { key: i, staticClass: "product-item border-items" },
                 [
                   _c("div", { staticClass: "pi-pic" }, [
-                    _c("img", { attrs: { src: item.url, alt: "" } }),
+                    _c("img", {
+                      attrs: { src: _vm.getUrl + item.url, alt: "" }
+                    }),
                     _vm._v(" "),
                     _c("div", { staticClass: "pi-links" }, [
                       item.isDesign
@@ -80819,7 +80868,7 @@ var render = function() {
                       _c("div", { staticClass: "product-item" }, [
                         _c("div", { staticClass: "pi-pic" }, [
                           _c("img", {
-                            attrs: { src: _vm.url + project.url, alt: "" }
+                            attrs: { src: _vm.getUrl + project.url, alt: "" }
                           }),
                           _vm._v(" "),
                           _c("div", { staticClass: "pi-links" }, [
@@ -81203,11 +81252,11 @@ exports.push([module.i, "\n.modal-body .ingresar .input-group {\n  position: rel
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 //
 //
 //
@@ -82291,11 +82340,11 @@ exports.push([module.i, "\n.texto-rosa-barna {\n  color: #ef7a6e !important;\n}\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -82588,7 +82637,7 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -82642,63 +82691,63 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 "id": 1,
                 "nombre": 'Black and White Stripes Dress',
                 "precio": 1.00,
-                "image": '/img/product/1.jpg',
+                "image": 'img/product/1.jpg',
                 "isDesign": false,
                 "rubros": ["hombre", "mujer", "niño"]
             }, {
                 "id": 2,
                 "nombre": 'Flamboyant Pink Top',
                 "precio": 2.00,
-                "image": '/img/product/2.jpg',
+                "image": 'img/product/2.jpg',
                 "isDesign": true,
                 "rubros": ["hombre", "niño"]
             }, {
                 "id": 3,
                 "nombre": 'Black and White Stripes Dress',
                 "precio": 3.00,
-                "image": '/img/product/3.jpg',
+                "image": 'img/product/3.jpg',
                 "isDesign": true,
                 "rubros": ["hombre"]
             }, {
                 "id": 4,
                 "nombre": 'Flamboyant Pink Top',
                 "precio": 4.00,
-                "image": '/img/product/4.jpg',
+                "image": 'img/product/4.jpg',
                 "isDesign": true,
                 "rubros": ["mujer"]
             }, {
                 "id": 5,
                 "nombre": 'Black and White Stripes Dress',
                 "precio": 5.00,
-                "image": '/img/product/5.jpg',
+                "image": 'img/product/5.jpg',
                 "isDesign": true,
                 "rubros": ["mujer", "niña"]
             }, {
                 "id": 6,
                 "nombre": 'Flamboyant Pink Top',
                 "precio": 6.00,
-                "image": '/img/product/6.jpg',
+                "image": 'img/product/6.jpg',
                 "isDesign": true,
                 "rubros": ["niño"]
             }, {
                 "id": 7,
                 "nombre": 'Black and White Stripes',
                 "precio": 7.00,
-                "image": '/img/product/7.jpg',
+                "image": 'img/product/7.jpg',
                 "isDesign": true,
                 "rubros": ["niño"]
             }, {
                 "id": 8,
                 "nombre": 'Flamboyant Pink Top',
                 "precio": 8.00,
-                "image": '/img/product/8.jpg',
+                "image": 'img/product/8.jpg',
                 "isDesign": true,
                 "rubros": ["niña"]
             }, {
                 "id": 9,
                 "nombre": 'Black and White Stripes Dress',
                 "precio": 9.00,
-                "image": '/img/product/9.jpg',
+                "image": 'img/product/9.jpg',
                 "isDesign": true,
                 "rubros": ["hombre"]
             }]
@@ -82830,7 +82879,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -82878,7 +82927,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             require: true
         }
     },
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getUrl'])),
     mounted: function mounted() {},
 
     methods: {
@@ -82899,7 +82948,7 @@ var render = function() {
   return _c("div", { staticClass: "col-lg-4 col-sm-6" }, [
     _c("div", { staticClass: "product-item border-items" }, [
       _c("div", { staticClass: "pi-pic" }, [
-        _c("img", { attrs: { src: _vm.image, alt: "" } }),
+        _c("img", { attrs: { src: _vm.getUrl + _vm.image, alt: "" } }),
         _vm._v(" "),
         _c("div", { staticClass: "pi-links" }, [
           _vm.getIsDesign
@@ -83217,7 +83266,7 @@ exports.push([module.i, "\n.checkout-form h4 {\n  color: #3b3b3b !important;\n  
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue__);
@@ -83705,6 +83754,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -83730,6 +83782,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'detallescarritoComponent',
@@ -83740,19 +83794,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 "id": 1,
                 "nombre": 'Black and White Stripes Dress',
                 "precio": 25.05,
-                "imagen": '/img/cart/1.jpg',
+                "imagen": 'img/cart/1.jpg',
                 "isDesign": true
             }, {
                 "id": 2,
                 "nombre": 'Flamboyant Pink Top',
                 "precio": 30.50,
-                "imagen": '/img/cart/2.jpg',
+                "imagen": 'img/cart/2.jpg',
                 "isDesign": true
             }]
         };
     },
     mounted: function mounted() {},
 
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getUrl'])),
     methods: {
         sumar: function sumar(articulos) {
             var i;
@@ -83788,7 +83843,9 @@ var render = function() {
             return [
               _c("li", [
                 _c("div", { staticClass: "pl-thumb" }, [
-                  _c("img", { attrs: { src: articulo.imagen, alt: "" } })
+                  _c("img", {
+                    attrs: { src: _vm.getUrl + articulo.imagen, alt: "" }
+                  })
                 ]),
                 _vm._v(" "),
                 _c("h6", [_vm._v(_vm._s(articulo.nombre))]),

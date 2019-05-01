@@ -199,7 +199,7 @@ li.bagform .dropbag:after {
             <div class="flex-basis-logo">
               <!-- logo -->
               <router-link class="site-logo cursor" to="/">
-                <img src="../../vendor/images/jpg/barna.jpg" id="logo-barna" alt>
+                <img :src="getUrl+'img/barna.jpg'" id="logo-barna" alt>
               </router-link>
             </div>
             <div class="flex-basis-design">
@@ -382,7 +382,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Nev Print Absol</h6>
                                   </div>
@@ -401,7 +401,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/3.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/3.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Swutter Print Dress</h6>
                                   </div>
@@ -481,7 +481,7 @@ li.bagform .dropbag:after {
                             <tbody>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/1.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/1.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Animal Print Dress</h6>
                                   </div>
@@ -500,7 +500,7 @@ li.bagform .dropbag:after {
                               </tr>
                               <tr>
                                 <td class="text-center">
-                                  <img :src="'/img/cart/2.jpg'" class="w-30" alt>
+                                  <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
                                   <div class="pc-title">
                                     <h6>Text Print Dress</h6>
                                   </div>
@@ -667,6 +667,7 @@ export default {
   },
   data() {
     return {
+      collVal: false,
       tipos_rubros:
       [
           {
@@ -751,10 +752,14 @@ export default {
   cambCollapse(){
     //var content = $("#content-barna");
     //console.log('holaa')
-      $('#content-barna').css("transition", "all 0.2s ease 0.1s");
-      setTimeout(e => { 
-            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },400)  
+      //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
+      this.collVal = !this.collVal
+      if(this.collVal){
+        $('#content-barna').css('min-height',220)
+      } else {
+        $('#content-barna').css('min-height',131)
+      }
+
   },
 	logout(){
 	  this.closeAll(10)
@@ -889,6 +894,12 @@ export default {
     },
     designM(cent) {
       //this.$emit("designM", cent);
+      let element = document.getElementById("header-top");
+       var options = {
+        offset: 0,
+        force: true
+       };  
+      this.$scrollTo(element, 0, options);
       this.$store.dispatch('cambiarIsDesign',cent)
 
     },
@@ -907,6 +918,12 @@ export default {
                   if (this.$route.name == 'register'){
                     this.$router.push({ name: 'home' })
                   }
+                   let element = document.getElementById("header-top");
+                   var options = {
+                    offset: 0,
+                    force: true
+                   };  
+                  this.$scrollTo(element, 0, options);
                   this.isLoading = false;
                   this.$swal
                     .mixin({
@@ -990,7 +1007,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart']),
+    ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart', 'getUrl']),
   },
   mounted: function() {
   //this.initComponent()
@@ -1001,14 +1018,18 @@ export default {
     var content = $("#content-barna");
     $(window).resize(event => {
       event.preventDefault();
-       $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+       //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
       setTimeout(e => { 
-            $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+           // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
         },400)  
       if (document.body.clientWidth <= 768) {
         this.collapse = true;
+        $('#content-barna').css('min-height',131)
       } else {
         this.collapse = false;
+        this.collVal = false;
+        $('#content-barna').css('min-height',170)
+
       }
     });
 
@@ -1020,11 +1041,11 @@ export default {
         t = 50
       }
       if (document.documentElement.scrollTop > t) {
-        $(content).css("transition", "all 0.5s ease 0.4s");
+        //$(content).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("transition", "all 0.5s ease 0.4s");
         $(logo).css("width", 50);
         $(logo).css("height", 65);
-        $(content).css("height", 81);
+        //$(content).css("height", 81);
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
             $(menu[i]).css("transition", "all 0.5s ease 0.4s");
@@ -1043,9 +1064,9 @@ export default {
             $(menu[i]).css("padding", "17px 0");
           }
         }
-            $('#content-barna').css("transition", "all 0.4s ease 0.3s");
+            //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
              setTimeout(e => { 
-              $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
+              //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
             },300)            
       }
     });

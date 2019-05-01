@@ -5,7 +5,7 @@
     		<div class="pi-pic">
                 <!---->
     			<!--<div class="tag-sale">ON SALE</div>---><!--Fue comentado por si llegara a utilizar-->
-    			<img :src="image" alt="">
+    			<img :src="getUrl+image" alt="">
     			<div class="pi-links">
                     <a  v-if="getIsDesign" class="add-card add-bag">
                         <i class="fa fa-magic"></i><span>Diseñar</span>
@@ -49,7 +49,7 @@
         },
          computed: 
         {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
         },
         mounted()
         {

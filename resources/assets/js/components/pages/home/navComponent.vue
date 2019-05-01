@@ -6,7 +6,7 @@
         v-for="(item, i) in items"
         :key="i"
         class="hs-item"
-        :style="'background-position:center center;background-size:container;background-image:'+'url(' +item.url + ')'"
+        :style="'background-position:center center;background-size:container;background-image:'+'url(' +getUrl+item.url + ')'"
       >
         <div class="container">
           <div class="row">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <!--
-                    <div class="hs-item set-bg" :data-setbg="url+'/img/bg-2.jpg'">
+                    <div class="hs-item set-bg" :data-setbg="url+'img/bg-2.jpg'">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-7 text-white">
@@ -64,14 +64,14 @@ export default {
   name: "navComponent",
   computed: {
             
-      ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
+      ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
   },
   data() {
     return {
       barner: [
         {
           id: 0,
-          url: "/img/bg.jpg",
+          url: "img/bg.jpg",
           titulo: "Denim jackets",
           isDesign: false,
           descripcion:
@@ -81,7 +81,7 @@ export default {
         },
         {
           id: 1,
-          url: "/img/bg-2.jpg",
+          url: "img/bg-2.jpg",
           titulo: "Content Static",
           isDesign: false,
           descripcion:
@@ -93,7 +93,7 @@ export default {
       barnerDesign: [
         {
           id: 2,
-          url: "/img/bg-3.jpg",
+          url: "img/bg-3.jpg",
           titulo: "Toommy jackets",
           isDesign: true,
           descripcion:
@@ -103,7 +103,7 @@ export default {
         },
         {
           id: 3,
-          url: "/img/bg-4.jpg",
+          url: "img/bg-4.jpg",
           titulo: "Tonts Static",
           isDesign: true,
           descripcion:

@@ -34,9 +34,9 @@
         </div>
         <!--end loading-->
         <div id="app">
-            <router-view></router-view>
+            <router-view url="{{asset('/')}}"></router-view>
         </div>
-        <script src="{{ mix('js/app.js')}}"></script>
+        <script src="{{ asset('js/app.js')}}"></script>
 
     </body>
 </html>

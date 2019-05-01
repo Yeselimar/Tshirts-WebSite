@@ -9,7 +9,7 @@
                     <div  class="product-slider owl-carousel">
                         <div  v-for="(item, i) in items" :key="i"  class="product-item border-items">
                             <div class="pi-pic">
-                                <img :src="item.url" alt="">
+                                <img :src="getUrl+item.url" alt="">
                                 <div class="pi-links">
                                     <a  v-if="item.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
@@ -37,7 +37,7 @@ import { mapGetters } from 'vuex'
                 productDesigns: [
                     {
                         id: 0,
-                        url: '/img/product/1.jpg',
+                        url: 'img/product/1.jpg',
                         titulo: 'Blusa jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -46,7 +46,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 1,
-                        url: '/img/product/2.jpg',
+                        url: 'img/product/2.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -55,7 +55,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 2,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -64,7 +64,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 3,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -73,7 +73,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 4,
-                        url: '/img/product/5.jpg',
+                        url: 'img/product/5.jpg',
                         titulo: 'Tienza jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -84,7 +84,7 @@ import { mapGetters } from 'vuex'
                 products: [
                     {
                         id: 0,
-                        url: '/img/product/6.jpg',
+                        url: 'img/product/6.jpg',
                         titulo: 'Changes jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -93,7 +93,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 1,
-                        url: '/img/product/7.jpg',
+                        url: 'img/product/7.jpg',
                         titulo: 'Pages jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -102,7 +102,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 2,
-                        url: '/img/product/8.jpg',
+                        url: 'img/product/8.jpg',
                         titulo: 'Nenella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -111,7 +111,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 3,
-                        url: '/img/product/9.jpg',
+                        url: 'img/product/9.jpg',
                         titulo: 'Vitorius jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -120,7 +120,7 @@ import { mapGetters } from 'vuex'
                     },
                     {
                         id: 4,
-                        url: '/img/product/10.jpg',
+                        url: 'img/product/10.jpg',
                         titulo: 'Lorem jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -133,7 +133,7 @@ import { mapGetters } from 'vuex'
         },
         computed: {
             
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
         },
         mounted() {
             this.llenarItems()

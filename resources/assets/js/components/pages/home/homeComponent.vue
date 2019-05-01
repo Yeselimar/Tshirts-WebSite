@@ -95,7 +95,7 @@
                             <div class="project" v-bind:key="project.id" v-for="project in projectsC" >
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img :src="url+project.url" alt="">
+                                        <img :src="getUrl+project.url" alt="">
                                         <div class="pi-links">
                                             <a  v-if="project.isDesign" @click="addBag(project)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card cursor" @click="addCart(project)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
@@ -149,7 +149,7 @@ export default {
             prodDestacadosComponent
         },
         computed: {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag']),
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
              projectsC: function() {
                 let projectAux = []
                 if(this.projects  && this.projects.length)
@@ -207,7 +207,7 @@ export default {
                  productDesigns: [
                     {
                         id: 10020,
-                        url: '/img/product/12.jpg',
+                        url: 'img/product/12.jpg',
                         titulo: 'Blusa jackets',
                         categoria: 'Hombre',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -218,7 +218,7 @@ export default {
                     {
                         id: 1589,
                         categoria: 'Hombre',
-                        url: '/img/product/9.jpg',
+                        url: 'img/product/9.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -227,7 +227,7 @@ export default {
                     },
                     {
                         id: 54632,
-                        url: '/img/product/8.jpg',
+                        url: 'img/product/8.jpg',
                         categoria: 'Mujer',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -237,7 +237,7 @@ export default {
                     },
                     {
                         id: 345645,
-                        url: '/img/product/7.jpg',
+                        url: 'img/product/7.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Mujer',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -248,7 +248,7 @@ export default {
                     {
                         id: 14562,
                         categoria: 'Hombre',
-                        url: '/img/product/9.jpg',
+                        url: 'img/product/9.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -257,7 +257,7 @@ export default {
                     },
                     {
                         id: 2,
-                        url: '/img/product/8.jpg',
+                        url: 'img/product/8.jpg',
                         categoria: 'Niño',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -267,7 +267,7 @@ export default {
                     },
                     {
                         id: 31245,
-                        url: '/img/product/7.jpg',
+                        url: 'img/product/7.jpg',
                         categoria: 'Niña',
                         titulo: 'Carniut jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -277,7 +277,7 @@ export default {
                     },
                     {
                         id: 400,
-                        url: '/img/product/6.jpg',
+                        url: 'img/product/6.jpg',
                         categoria: 'Hombre',
                         titulo: 'Tienza jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -287,7 +287,7 @@ export default {
                     },
                      {
                         id: 10748,
-                        url: '/img/product/1.jpg',
+                        url: 'img/product/1.jpg',
                         titulo: 'Blusa jackets',
                         categoria: 'Niña',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -297,7 +297,7 @@ export default {
                     },
                     {
                         id: 1999,
-                        url: '/img/product/2.jpg',
+                        url: 'img/product/2.jpg',
                         categoria: 'Niña',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -307,7 +307,7 @@ export default {
                     },
                     {
                         id: 102,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -317,7 +317,7 @@ export default {
                     },
                     {
                         id: 513,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -327,7 +327,7 @@ export default {
                     },
                     {
                         id: 45582,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -337,7 +337,7 @@ export default {
                     },
                     {
                         id: 321,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -347,7 +347,7 @@ export default {
                     },
                     {
                         id: 21112,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -357,7 +357,7 @@ export default {
                     },
                     {
                         id: 22273,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -367,7 +367,7 @@ export default {
                     },
                     {
                         id: 5564,
-                        url: '/img/product/11.jpg',
+                        url: 'img/product/11.jpg',
                         titulo: 'Tienza jackets',
                         categoria: 'Buzo',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -379,7 +379,7 @@ export default {
                 products: [
                     {
                         id: 4440,
-                        url: '/img/product/12.jpg',
+                        url: 'img/product/12.jpg',
                         titulo: 'Blusa jackets',
                         categoria: 'Hombre',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -390,7 +390,7 @@ export default {
                     {
                         id: 555411,
                         categoria: 'Hombre',
-                        url: '/img/product/9.jpg',
+                        url: 'img/product/9.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -399,7 +399,7 @@ export default {
                     },
                     {
                         id: 2665,
-                        url: '/img/product/8.jpg',
+                        url: 'img/product/8.jpg',
                         categoria: 'Mujer',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -409,7 +409,7 @@ export default {
                     },
                     {
                         id: 105633,
-                        url: '/img/product/7.jpg',
+                        url: 'img/product/7.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Niño',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -420,7 +420,7 @@ export default {
                     {
                         id: 555451,
                         categoria: 'Niño',
-                        url: '/img/product/9.jpg',
+                        url: 'img/product/9.jpg',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
@@ -429,7 +429,7 @@ export default {
                     },
                     {
                         id: 5552,
-                        url: '/img/product/8.jpg',
+                        url: 'img/product/8.jpg',
                         categoria: 'Niño',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -439,7 +439,7 @@ export default {
                     },
                     {
                         id: 5553,
-                        url: '/img/product/7.jpg',
+                        url: 'img/product/7.jpg',
                         categoria: 'Niña',
                         titulo: 'Carniut jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -449,7 +449,7 @@ export default {
                     },
                     {
                         id: 4454,
-                        url: '/img/product/6.jpg',
+                        url: 'img/product/6.jpg',
                         categoria: 'Hombre',
                         titulo: 'Tienza jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -459,7 +459,7 @@ export default {
                     },
                      {
                         id: 5550,
-                        url: '/img/product/1.jpg',
+                        url: 'img/product/1.jpg',
                         titulo: 'Blusa jackets',
                         categoria: 'Mujer',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -469,7 +469,7 @@ export default {
                     },
                     {
                         id: 5661,
-                        url: '/img/product/2.jpg',
+                        url: 'img/product/2.jpg',
                         categoria: 'Niña',
                         titulo: 'Pantalon jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -479,7 +479,7 @@ export default {
                     },
                     {
                         id: 542,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -489,7 +489,7 @@ export default {
                     },
                     {
                         id: 45543,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Niña',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -499,7 +499,7 @@ export default {
                     },
                     {
                         id: 2222,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -509,7 +509,7 @@ export default {
                     },
                     {
                         id: 3,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -519,7 +519,7 @@ export default {
                     },
                     {
                         id: 1111,
-                        url: '/img/product/3.jpg',
+                        url: 'img/product/3.jpg',
                         categoria: 'Taza',
                         titulo: 'Franella jackets',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
@@ -529,7 +529,7 @@ export default {
                     },
                     {
                         id: 223,
-                        url: '/img/product/4.jpg',
+                        url: 'img/product/4.jpg',
                         titulo: 'Carniut jackets',
                         categoria: 'Taza',
                         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'

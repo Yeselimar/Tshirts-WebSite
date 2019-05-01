@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CerService from './plugins/CerService';
 import store from './indexStore';
+import Config from './config';
+
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,7 @@ const router = new VueRouter({
             redirect: { name: 'home' },
         },
 		{
-			path: '/',
+			path: Config.env.base,
 			component: Vue.component( 'App', require( './components/App.vue' ) ),
 			children: [
 				{
@@ -62,7 +64,7 @@ const router = new VueRouter({
 				/*
 					Catch Alls
                 */
-                { path: '_=_', redirect: '/' }
+                { path: '_=_', redirect: Config.env.base }
 
 			]
 		},
@@ -100,7 +102,7 @@ router.beforeEach((to, from, next) => {
 								})
 							} else {
 								next({
-									path: '/',
+									path: Config.env.base,
 									params: { nextUrl: to.fullPath }
 								})
 							}
@@ -111,7 +113,7 @@ router.beforeEach((to, from, next) => {
 					} else {
 						if(String(to.name) == 'register' &&  isAuthenticated){
 							next({
-								path: '/',
+								path: Config.env.base,
 								params: { nextUrl: to.fullPath }
 							})
 						}else {
@@ -132,7 +134,7 @@ router.beforeEach((to, from, next) => {
 								})
 							} else {
 								next({
-									path: '/',
+									path: Config.env.base,
 									params: { nextUrl: to.fullPath }
 								})
 							}
@@ -147,7 +149,7 @@ router.beforeEach((to, from, next) => {
 					.then(function (response) {
 					if(response.res !== 0){
 						next({
-							path: '/',
+							path: Config.env.base,
 							params: { nextUrl: to.fullPath }
 						})
 					}else {
@@ -158,7 +160,7 @@ router.beforeEach((to, from, next) => {
 				})
 				.catch(function () {
 					next({
-						path: '/',
+						path: Config.env.base,
 						params: { nextUrl: to.fullPath }
 					})
 						

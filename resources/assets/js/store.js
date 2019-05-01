@@ -15,7 +15,8 @@ const state = {
   cart: [],
   bag: [],
   userLoadStatus: 0,
-  userUpdateStatus: 0
+  userUpdateStatus: 0,
+  url: '' // ruta relativa del servidor
 }
 /*
   Defines the mutations used by the module.
@@ -26,6 +27,9 @@ const mutations = {
       */
   setUserLoadStatus(state, status) {
     state.userLoadStatus = status;
+  },
+  setUrl(state, url) {
+    state.url = url;
   },
 
   /*
@@ -112,7 +116,7 @@ const actions = {
         commit('setCart',[]);
         commit('setBag',[]);
         $(".loading").fadeOut();
-				$("#preloader").delay(400).fadeOut("slow");
+        $("#preloader").delay(400).fadeOut("slow");
 
       });
   },
@@ -177,6 +181,9 @@ const actions = {
     })
 
   },
+  cambiarUrl({ commit }, valor) {
+    commit('setUrl', valor);
+  },
   cambiarSearch({ commit }, valor) {
     commit('setSearch', valor);
   },
@@ -218,6 +225,9 @@ const getters = {
   */
   getUser(state) {
     return state.user;
+  },
+  getUrl(state) {
+    return state.url;
   },
   getCart(state) {
     return state.cart;
