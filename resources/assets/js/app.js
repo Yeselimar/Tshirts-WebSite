@@ -50,13 +50,15 @@ if (token) {
 
 import Vue            from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueKonva from 'vue-konva';
 
- 
+Vue.use(VueKonva)
+
 const options = {
   confirmButtonColor: '#41b882',
   cancelButtonColor: '#ff7674'
 }
- 
+
 Vue.use(VueSweetalert2, options)
 
 
@@ -78,7 +80,8 @@ const app = new Vue({
   el: "#app",
   store,
   router : router,
-  VueSweetalert2
+  VueSweetalert2,
+  VueKonva
 });
 
 export default app;

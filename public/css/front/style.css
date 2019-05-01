@@ -7,28 +7,103 @@
 /*----------------------------------------*/
 /* Personal CSS
 /*----------------------------------------*/
+.imagenes-predisenadas{
+	transition: all .35s ease-in-out;
+	padding: 10px;
+	margin: 5px 5px 5px 5px;
+	flex-basis: 20%;
+	/* box-shadow: 0px 2px 8px lightgrey; */
+	max-width: 100px;
+	max-height: 100px;
+	border: 1px solid lightgray;
+	display: flex;
+	flex-wrap: wrap;
+}
+.btn-upload{
+	display: inline-block;
+	border: none;
+	font-size: 14px;
+	font-weight: 600;
+	/* min-width: 119px; */
+	padding: 6px 12px 6px;
+	border-radius: 20px;
+	/* margin-top: 21px; */
+	margin-left: 10px;
+	background: #ef7a6e;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+}
+.btn-delete{
+	display: inline-block;
+	border: none;
+	font-size: 14px;
+	font-weight: 600;
+	/* min-width: 119px; */
+	padding: 6px 12px 6px;
+	border-radius: 10px;
+	/* margin-top: 21px; */
+	margin-left: 10px;
+	background: #ef7a6e;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+}
+.uploading-image{
+	display:flex;
+}
 .container-imagen-a-disenar{
 	border: 3px solid rgb(0, 0, 0);
-	margin-bottom: 1rem;
 /* 	max-width: 400px;
 	max-height: 400px; */
 	position: relative;
-	width: unset;
-
+	/* position:absolute; */
+	margin:3rem 15px 15px 15px;
+}
+.container-imagen-a-disenar-rv{
+	border: 3px solid rgb(0, 0, 0);
+/* 	max-width: 400px;
+	max-height: 400px; */
+	position: relative;
 	/* position:absolute; */
 	margin:3rem 15px 15px 15px;
 }
 .container-area-de-diseno{
 	border: 3px dashed rgb(75, 75, 75);
-
-	/* max-width: 400px;
-	max-height: 400px; */
 	position: absolute;
-	width: 200px;
-	height: 200px;
-	top: 10%;
-	left: 28%;
-	margin:3rem 15px 15px 15px;
+/* 	width: 31%;
+	height: 31%; */
+/* width:150px;
+height: 150px; */
+	/* top: 22%;
+	left: 35%; */
+/* 	top:95px;
+	left: 150px; */ /*Esto se transforma de px a porcentaje ya q este lo define el admin*/
+
+}
+.container-area-de-diseno-rv{
+	border: 3px dashed rgb(75, 75, 75);
+	position: absolute;
+/* 	width: 31%;
+	height: 31%; */
+/* width:150px;
+height: 150px; */
+	/* top: 22%;
+	left: 35%; */
+/* 	top:95px;
+	left: 150px; */ /*Esto se transforma de px a porcentaje ya q este lo define el admin*/
+
+}
+.container-area-de-diseno-fake{
+
+	position: absolute;
+	/* 	width: 35%;
+		height: 35%; */
+		width: 150px;
+		height: 150px;
+
 }
 .product-item .pd-text p {
 	font-size: 16px;
