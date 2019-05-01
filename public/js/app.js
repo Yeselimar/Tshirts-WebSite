@@ -19144,11 +19144,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost:8000/',
+        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/'
+        base: '/afodi/barna/public/'
     }
 });
 
@@ -87761,23 +87761,7 @@ router.beforeEach(function (to, from, next) {
 						});
 					}
 				} else {
-					if (__WEBPACK_IMPORTED_MODULE_3__indexStore__["a" /* default */].getters.getUser.rol === 'user') {
-						// si esta autentificado y además es un usuario
-						next();
-					} else {
-						// sino ir a rutas bases
-						if (from.name != null) {
-							next({
-								path: from.path,
-								params: { nextUrl: to.fullPath }
-							});
-						} else {
-							next({
-								path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
-								params: { nextUrl: to.fullPath }
-							});
-						}
-					}
+					next();
 				}
 			} else {
 				if (String(to.name) == 'register' && isAuthenticated) {
