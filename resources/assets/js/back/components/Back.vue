@@ -122,6 +122,9 @@
                             <nav class="sidebar-nav">
                                 <ul id="sidebarnav">
                                     <li class="nav-devider"></li>
+                                        <li class="cursor pb-3 pt-3 mb-1 nav-label" @click="home" >Ver Sitio Web</li>
+                                    <li class="nav-devider"></li>
+
                                     <li class="nav-label">Inicio</li>
                                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
                                         <ul aria-expanded="false" class="collapse">
@@ -200,6 +203,12 @@ export default {
     },
     methods:
     {
+        home(){
+            window.open(
+              this.getUrl,
+              '_blank' // <- This is what makes it open in a new window.
+            );
+        },
         montar(){
             if(this.getIsAuth){
                     setTimeout(e => {

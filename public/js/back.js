@@ -17143,11 +17143,11 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+        base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/afodi/barna/public/'
+        base: '/barna/barna/public/'
     }
 });
 
@@ -93591,6 +93591,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
@@ -93611,6 +93614,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     methods: {
+        home: function home() {
+            window.open(this.getUrl, '_blank' // <- This is what makes it open in a new window.
+            );
+        },
         montar: function montar() {
             if (this.getIsAuth) {
                 setTimeout(function (e) {
@@ -93902,6 +93909,17 @@ var render = function() {
         _c("div", { staticClass: "scroll-sidebar" }, [
           _c("nav", { staticClass: "sidebar-nav" }, [
             _c("ul", { attrs: { id: "sidebarnav" } }, [
+              _c("li", { staticClass: "nav-devider" }),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "cursor pb-3 pt-3 mb-1 nav-label",
+                  on: { click: _vm.home }
+                },
+                [_vm._v("Ver Sitio Web")]
+              ),
+              _vm._v(" "),
               _c("li", { staticClass: "nav-devider" }),
               _vm._v(" "),
               _c("li", { staticClass: "nav-label" }, [_vm._v("Inicio")]),

@@ -15533,11 +15533,11 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+        base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/afodi/barna/public/'
+        base: '/barna/barna/public/'
     }
 });
 
@@ -75852,7 +75852,23 @@ router.beforeEach(function (to, from, next) {
 						});
 					}
 				} else {
-					next();
+					if (__WEBPACK_IMPORTED_MODULE_3__indexStore__["a" /* default */].getters.getUser.rol === 'user') {
+						// si esta autentificado y además es un usuario
+						next();
+					} else {
+						// sino ir a rutas bases
+						if (from.name != null) {
+							next({
+								path: from.path,
+								params: { nextUrl: to.fullPath }
+							});
+						} else {
+							next({
+								path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
+								params: { nextUrl: to.fullPath }
+							});
+						}
+					}
 				}
 			} else {
 				if (String(to.name) == 'register' && isAuthenticated) {
@@ -76820,6 +76836,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -76882,6 +76906,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   methods: {
+    panelAdmin: function panelAdmin() {
+      window.open(this.getUrl + 'admin', '_blank' // <- This is what makes it open in a new window.
+      );
+    },
+
     /*  initComponent() {
         this.isLoading = true;
           CerService.get("/login/auth")
@@ -77147,11 +77176,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     var _this7 = this;
 
     //this.initComponent()
-    if (this.getIsAuth) {
-      this.user = this.getUser;
+    if (document.body.clientWidth <= 768) {
+      this.collapse = true;
+      $('#content-barna').css('min-height', 131);
+    } else {
+      this.collapse = false;
+      this.collVal = false;
+      $('#content-barna').css('min-height', 170);
     }
-    var logo = $("#logo-barna");
-    var content = $("#content-barna");
+    if (this.collapse) {
+      $("#logo-barna").css("width", 45);
+      $("#logo-barna").css("height", 85);
+    } else {
+      $("#logo-barna").css("width", 75);
+      $("#logo-barna").css("height", 105);
+    }
+
     $(window).resize(function (event) {
       event.preventDefault();
       //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
@@ -77166,36 +77206,50 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         _this7.collVal = false;
         $('#content-barna').css('min-height', 170);
       }
+      if (_this7.collapse) {
+        $("#logo-barna").css("width", 45);
+        $("#logo-barna").css("height", 85);
+      } else {
+        $("#logo-barna").css("width", 75);
+        $("#logo-barna").css("height", 105);
+      }
     });
 
     document.addEventListener("scroll", function (event) {
       event.preventDefault();
       var menu = $(".main-menu li a");
-      var t = 150;
-      if (_this7.collapse) {
-        t = 50;
-      }
+      var t = 10;
       if (document.documentElement.scrollTop > t) {
         //$(content).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("width", 50);
-        $(logo).css("height", 65);
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if (_this7.collapse) {
+          $("#logo-barna").css("width", 40);
+          $("#logo-barna").css("height", 60);
+        } else {
+          $("#logo-barna").css("width", 60);
+          $("#logo-barna").css("height", 75);
+        }
         //$(content).css("height", 81);
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.5s ease 0.4s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "8px 0");
           }
         }
       } else {
-        $(content).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("width", 75);
-        $(logo).css("height", 105);
+        $("#content-barna").css("transition", "all 0.2s ease 0.1s");
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if (_this7.collapse) {
+          $("#logo-barna").css("width", 45);
+          $("#logo-barna").css("height", 85);
+        } else {
+          $("#logo-barna").css("width", 75);
+          $("#logo-barna").css("height", 105);
+        }
 
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.3s ease 0.2s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "17px 0");
           }
         }
@@ -78184,11 +78238,49 @@ var render = function() {
                                                     _vm._v(" "),
                                                     _vm.getIsAuth
                                                       ? _c("div", [
-                                                          _vm._m(26),
-                                                          _vm._v(" "),
-                                                          _vm._m(27),
-                                                          _vm._v(" "),
-                                                          _vm._m(28),
+                                                          _vm.getUser.rol ==
+                                                          "user"
+                                                            ? _c("div", [
+                                                                _vm._m(26),
+                                                                _vm._v(" "),
+                                                                _vm._m(27),
+                                                                _vm._v(" "),
+                                                                _vm._m(28)
+                                                              ])
+                                                            : _c("div", [
+                                                                _c(
+                                                                  "p",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text-left pt-3"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "a",
+                                                                      {
+                                                                        staticClass:
+                                                                          "link-barna cursor",
+                                                                        on: {
+                                                                          click:
+                                                                            _vm.panelAdmin
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-user-secret pl-1 pr-2"
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          "Ir a Panel de Administración\n                              "
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]),
                                                           _vm._v(" "),
                                                           _c(
                                                             "p",
@@ -78905,7 +78997,7 @@ var staticRenderFns = [
     return _c("p", { staticClass: "mb-1 mt-3 text-left" }, [
       _c("a", { staticClass: "mt-1 link-barna" }, [
         _c("i", { staticClass: "fa fa-cogs pl-1 pr-2" }),
-        _vm._v("Perfil\n                            ")
+        _vm._v("Perfil\n                              ")
       ])
     ])
   },
@@ -78927,7 +79019,7 @@ var staticRenderFns = [
     return _c("p", { staticClass: "text-left" }, [
       _c("a", { staticClass: "link-barna" }, [
         _c("i", { staticClass: "fa fa-cart-arrow-down pl-1 pr-2" }),
-        _vm._v("Mis Compras\n                            ")
+        _vm._v("Mis Compras\n                              ")
       ])
     ])
   }
@@ -83090,6 +83182,7 @@ var render = function() {
                         _c(
                           "a",
                           {
+                            staticClass: "cursor",
                             class: [
                               { "texto-rosa-barna": _vm.getRubro === "" }
                             ],
@@ -83118,6 +83211,7 @@ var render = function() {
                           _c(
                             "a",
                             {
+                              staticClass: "cursor",
                               class: [
                                 {
                                   "texto-rosa-barna":

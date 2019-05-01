@@ -29,9 +29,9 @@
                         <div class="filter-widget">
                             <h2 class="fw-title">Rubros </h2>
                             <ul class="category-menu">
-                                <li :class="[{'lista-activa': (getRubro === '')}]"><a @click.prevent="cambialo('')" :class="[{'texto-rosa-barna': (getRubro === '')}]"><strong>Todas las categorías</strong></a></li>
+                                <li :class="[{'lista-activa': (getRubro === '')}]"><a @click.prevent="cambialo('')" :class="[{'texto-rosa-barna': (getRubro === '')}]" class="cursor" ><strong>Todas las categorías</strong></a></li>
                                 <li v-for="(rubro,i) in tipos_rubros" :key="i" :class="[{'lista-activa': (getRubro === rubro.nombre)}]">
-                                    <a @click.prevent="cambialo(rubro)" :class="[{'texto-rosa-barna': getRubro === rubro.nombre}]"><strong>{{rubro.nombre}}</strong></a>
+                                    <a @click.prevent="cambialo(rubro)" :class="[{'texto-rosa-barna': getRubro === rubro.nombre}]" class="cursor"><strong>{{rubro.nombre}}</strong></a>
                                 </li>
                                <!-- <template >
                                     <template v-if="rubro.nombre == getRubro">

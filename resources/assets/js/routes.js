@@ -108,7 +108,23 @@ router.beforeEach((to, from, next) => {
 							}
 
 						} else {
-							next()
+							if(store.getters.getUser.rol === 'user'){ // si esta autentificado y además es un usuario
+							   next()
+							} else { // sino ir a rutas bases
+								if(from.name != null)
+								{
+									next({
+										path: from.path,
+										params: { nextUrl: to.fullPath }
+									})
+								} else {
+									next({
+										path: Config.env.base,
+										params: { nextUrl: to.fullPath }
+								})
+							}
+
+							}
 						}
 					} else {
 						if(String(to.name) == 'register' &&  isAuthenticated){

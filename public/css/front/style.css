@@ -2791,8 +2791,8 @@ ol {
 		font-size: 10px
 	}
 	.site-logo img{
-		width: 45px !important;
-		height: 85px !important
+		width: 45px;
+		height: 85px 
 	}
 	.flex-basis-logo {
     flex-basis: 20%;

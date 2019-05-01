@@ -545,16 +545,24 @@ li.bagform .dropbag:after {
                             <i class="fa fa-user pr-2"></i><span v-if="getIsAuth">{{user.name}} {{user.last_name}}</span><span v-else> Iniciar Sesion </span>
                           </h5>
                           <div v-if="getIsAuth">
-                            <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
-                              <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
-                            </a></p>
-                            <p class="text-left mt-1 mb-1">
-                                          <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
-                            </p>
-							              <p class="text-left">
-                            <a class="link-barna">
-                              <i class="fa fa-cart-arrow-down pl-1 pr-2"></i>Mis Compras
-                            </a></p>
+                            <div v-if="getUser.rol=='user'">
+                              <p class="mb-1 mt-3 text-left"><a class="mt-1 link-barna">
+                                <i class="fa fa-cogs pl-1 pr-2"></i>Perfil
+                              </a></p>
+                              <p class="text-left mt-1 mb-1">
+                                            <a class="link-barna"> <i class="fa fa-product-hunt pl-1 pr-2"></i>Mis Pedidos</a>
+                              </p>
+  							              <p class="text-left">
+                              <a class="link-barna">
+                                <i class="fa fa-cart-arrow-down pl-1 pr-2"></i>Mis Compras
+                              </a></p>
+                            </div>
+                            <div v-else>
+                              <p class="text-left pt-3">
+                              <a class="link-barna cursor" @click="panelAdmin">
+                                <i class="fa fa-user-secret pl-1 pr-2"></i>Ir a Panel de Administración
+                              </a></p>
+                            </div>
 							              <p class="mt-1 text-right">
                             <a class="link-barna text-right" @click.stop.prevent="logout">
                               <i class="fa fa-external-link pr-2"></i>Cerrar Sesión
@@ -730,6 +738,12 @@ export default {
     };
   },
   methods: {
+    panelAdmin(){
+        window.open(
+            this.getUrl+'admin',
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    },
   /*  initComponent() {
       this.isLoading = true;
         CerService.get("/login/auth")
@@ -1011,11 +1025,22 @@ export default {
   },
   mounted: function() {
   //this.initComponent()
-    if (this.getIsAuth){
-      this.user = this.getUser
+    if (document.body.clientWidth <= 768) {
+      this.collapse = true;
+      $('#content-barna').css('min-height',131)
+    } else {
+      this.collapse = false;
+      this.collVal = false;
+      $('#content-barna').css('min-height',170)
     }
-    var logo = $("#logo-barna");
-    var content = $("#content-barna");
+      if(this.collapse){
+           $("#logo-barna").css("width", 45);
+           $("#logo-barna").css("height", 85);
+      } else {
+         $("#logo-barna").css("width", 75);
+         $("#logo-barna").css("height", 105);
+      }
+
     $(window).resize(event => {
       event.preventDefault();
        //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
@@ -1029,38 +1054,52 @@ export default {
         this.collapse = false;
         this.collVal = false;
         $('#content-barna').css('min-height',170)
-
       }
+        if(this.collapse){
+             $("#logo-barna").css("width", 45);
+             $("#logo-barna").css("height", 85);
+        } else {
+           $("#logo-barna").css("width", 75);
+           $("#logo-barna").css("height", 105);
+        }
     });
 
     document.addEventListener("scroll", event => {
       event.preventDefault();
       var menu = $(".main-menu li a");
-      var t = 150;
-      if(this.collapse){
-        t = 50
-      }
+      var t = 10;
       if (document.documentElement.scrollTop > t) {
         //$(content).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("transition", "all 0.5s ease 0.4s");
-        $(logo).css("width", 50);
-        $(logo).css("height", 65);
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if(this.collapse){
+          $("#logo-barna").css("width", 40);
+          $("#logo-barna").css("height", 60);
+        } else {
+          $("#logo-barna").css("width", 60);
+          $("#logo-barna").css("height", 75);
+        }
         //$(content).css("height", 81);
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.5s ease 0.4s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "8px 0");
           }
         }
       } else {
-        $(content).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("transition", "all 0.3s ease 0.2s");
-        $(logo).css("width", 75);
-        $(logo).css("height", 105);
+        $("#content-barna").css("transition", "all 0.2s ease 0.1s");
+        $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
+        if(this.collapse){
+           $("#logo-barna").css("width", 45);
+           $("#logo-barna").css("height", 85);
+        } else {
+           $("#logo-barna").css("width", 75);
+           $("#logo-barna").css("height", 105);
+        }
+
 
         if (menu.length) {
           for (var i = 0; i < menu.length; i++) {
-            $(menu[i]).css("transition", "all 0.3s ease 0.2s");
+            $(menu[i]).css("transition", "all 0.2s ease 0.1s");
             $(menu[i]).css("padding", "17px 0");
           }
         }
