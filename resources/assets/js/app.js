@@ -84,7 +84,7 @@ const app = new Vue({
   router : router,
   VueSweetalert2,
   VeeValidate,
-  VueScrollTo
+  VueScrollTo,
   VueKonva
 });
 

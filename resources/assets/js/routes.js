@@ -61,6 +61,12 @@ const router = new VueRouter({
 					meta: { requiresAuth: false } 
 
 				},
+				{
+					path: 'disenar',
+					name: 'disenar',
+					component: Vue.component( 'Disenar', require( './components/pages/disenar/disenarComponent.vue' ) ),
+					meta: { requiresAuth: true }
+				},
 				/*
 					Catch Alls
                 */

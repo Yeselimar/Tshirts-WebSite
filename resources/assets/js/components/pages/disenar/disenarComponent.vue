@@ -216,7 +216,7 @@
                                 <img :style="'width:'+width+'px;'+'top:'+top+'%;'+'height:'+height+'px;'+'left:'+left+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
                             </div>
 
-                        </div> 
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm pull-right" data-dismiss="modal" >Volver</button>
                           <!--   <button type="submit" class="btn btn-sm pull-right">Guardar</button> -->
