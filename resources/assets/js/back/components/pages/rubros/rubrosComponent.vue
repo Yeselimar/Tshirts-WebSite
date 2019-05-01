@@ -81,7 +81,7 @@
 
                 <template slot="visible" slot-scope="row">
                     <span v-if="row.item.principal" class="badge badge-pill badge-success">Si</span>
-                    <span v-else class="badge badge-pill badge-success">No</span>
+                    <span v-else class="badge badge-pill badge-danger">No</span>
                 </template>
 
                 <template slot="cantidad" slot-scope="row">
@@ -105,18 +105,27 @@
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title pull-left"><strong>Crear Rubro</strong></h5>
-                  <a class="pull-right mr-1" data-dismiss="modal" ><i class="fa fa-remove cursor"></i></a>
+                  <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove cursor"></i></a>
               </div>
               <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input type="text" name="nombre" class="form-control input-sm" v-model="rubro.nombre">
+                      <input type="text" name="nombre" id="nombre" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" placeholder="Ingresa tu nombre" 
+                          :class="{'error-input': errors.first('nombre','form-crear')}"
+                          data-vv-scope="form-crear"
+                          v-validate
+                          data-vv-rules="required:true|min:3"
+                      >
+
+                      <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-crear')">Campo requerido.</span>
+
+                      <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres.</span>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:15px">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="principal" v-model="rubro.principal">
-                        <label class="control-label" for="principal">Visible en la Página Principal</label>
+                        <label class="control-label" for="principal">Visible en la Barra</label>
                       </div>
                     </div>
                 </div>
@@ -136,18 +145,25 @@
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title pull-left"><strong>Editar Rubro</strong></h5>
-                  <a class="pull-right mr-1" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
               </div>
               <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input type="text" name="nombre" class="form-control input-sm" v-model="rubro.nombre">
+                      <input name="nombre" id="nombre" type="text" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" 
+                      :class="{'error-input': errors.first('nombre','form-actualizar')}"
+                      data-vv-scope="form-actualizar"
+                      v-validate
+                      data-vv-rules="required:true|min:3"
+                      >
+                      <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-actualizar')" >Campo requerido.</span>
+                      <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres.</span>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:15px">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="principal" v-model="rubro.principal">
-                        <label class="control-label" for="principal">Visible en la Página Principal</label>
+                        <label class="control-label" for="principal">Visible en la Barra</label>
                       </div>
                     </div>
                 </div>
@@ -167,7 +183,7 @@
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title pull-left"><strong>Eliminar Rubro</strong></h5>
-                  <a class="pull-right mr-1" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
               </div>
               <div class="modal-body">
                 <div class="col-lg-12">
@@ -182,15 +198,19 @@
         </div>
       </div>
       <!-- Modal para eliminar rubro -->
+
+      <loading v-if="isLoading"></loading>
   	</div>
   </template>
 
   <script>
   import CerService from "../../../../plugins/CerService";
+  import loading from "../../../../components/layouts/loading.vue";
 
   export default {
     data () {
       return {
+        isLoading: false,
         rubro:
         {
           id:'',
@@ -198,7 +218,8 @@
           principal:'',
         },
         rubros: [],
-        fields: [
+        fields: 
+        [
           { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
           { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' },
           { key: 'visible', label: 'Visible en la Barra', sortable: true, 'class': 'text-center' },
@@ -215,6 +236,10 @@
         table_responsive: false,
         filter: null,
         }
+    },
+    components:
+    {
+      loading
     },
     mounted()
     {
@@ -235,7 +260,9 @@
       } else {
         this.table_responsive = false;
       }
+      this.isLoading = true
       this.todos();
+      this.isLoading = false
     },
     computed:
     {
@@ -328,76 +355,116 @@
       },
       guardar()
       {
-        var dataform = new FormData();
-        dataform.append("nombre", this.rubro.nombre);
-        dataform.append("principal", this.rubro.principal);
-        $('#crear').modal('hide');
-        CerService.post("/rubros/guardar",dataform)
-        .then(response => 
+        this.$validator.validateAll("form-crear").then(resp => 
         {
-          this.todos();
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "success",
-            title: response.msg
-          });
-        })
-        .catch(error => {
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "error",
-            title: "Ha ocurrido un error inesperado"
-          });
+          if (resp)
+          {
+            var dataform = new FormData();
+            dataform.append("nombre", this.rubro.nombre);
+            dataform.append("principal", this.rubro.principal);
+            $('#crear').modal('hide');
+            CerService.post("/rubros/guardar",dataform)
+            .then(response => 
+            {
+              this.todos();
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "success",
+                title: response.msg
+              });
+            })
+            .catch(error => {
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "error",
+                title: "Ha ocurrido un error inesperado"
+              });
+            });
+          }
+          else
+          {
+            this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "warning",
+              title: "Por favor verifique los campos"
+            });
+          }
         });
       },
       actualizar()
       {
-        $('#editar').modal('hide');
-        var dataform = new FormData();
-        dataform.append("nombre", this.rubro.nombre);
-        dataform.append("principal", this.rubro.principal);
-        var url = '/rubros/:id/actualizar';
-        url = url.replace(':id', this.rubro.id);
-        CerService.post(url,dataform)
-        .then(response => 
+        this.$validator.validateAll("form-actualizar").then(resp => 
         {
-          this.todos();
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "success",
-            title: response.msg
-          });
-        })
-        .catch(error => {
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "error",
-            title: "Ha ocurrido un error inesperado"
-          });
+          if (resp)
+          {
+            $('#editar').modal('hide');
+            var dataform = new FormData();
+            dataform.append("nombre", this.rubro.nombre);
+            dataform.append("principal", this.rubro.principal);
+            var url = '/rubros/:id/actualizar';
+            url = url.replace(':id', this.rubro.id);
+            CerService.post(url,dataform)
+            .then(response => 
+            {
+              this.todos();
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "success",
+                title: response.msg
+              });
+            })
+            .catch(error => {
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "error",
+                title: "Ha ocurrido un error inesperado"
+              });
+            });
+          }
+          else
+          {
+            this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "warning",
+              title: "Por favor verifique los campos"
+            });
+          }
         });
       },
       todos()
