@@ -101,6 +101,8 @@
 
                         </b-table>
                         
+                        <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
+
                     </div>
                 </div>
             </div>
@@ -294,7 +296,7 @@ export default {
         {
             this.grupo.id = grupo.id;
             this.grupo.nombre = grupo.nombre;
-            this.grupo.es_color = grupo.es_color;
+            this.grupo.es_color = (grupo.es_color==1) ? true : false;
             $('#editar').modal('show');
         },
         eliminarGrupo(grupo)
@@ -476,6 +478,7 @@ export default {
                 if(response.grupos)
                 {
                     this.grupos = response.grupos;
+                    this.totalRows = this.grupos.length;
                 }
             })
             .catch(error => {

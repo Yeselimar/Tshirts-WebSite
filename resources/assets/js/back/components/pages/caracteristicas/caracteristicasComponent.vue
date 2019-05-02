@@ -118,6 +118,8 @@
 
                       </b-table>
 
+                      <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
+
 	                </div>
 	            </div>
 	        </div>
@@ -149,18 +151,35 @@
                               <span class="error-text" v-if="errors.firstByRule('valor', 'required','form-crear')">Campo requerido.</span>
                               <span class="error-text" v-else-if="errors.firstByRule('valor','min','form-crear')">Mínimo 3 caracteres.</span>
                           </div>
-                          <div v-if="es_color()" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                          <div v-if="es_color()" class="col-12 form-validation">
                               <label class="control-label h6" for="color">Color Hexadecimal</label>
+
                               <div class="input-group"> 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
+
+                                <input type="text" name="color" class="form-control" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
-                                  <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                  <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
                                 </span>
+
+                                <color-picker
+                                    v-if="focus_color"
+                                    ref="colorNuevo"
+                                    :color="color"
+                                    style="width: 50% !important;"
+                                    :sucker-hide="false"
+                                    :sucker-canvas="suckerCanvas"
+                                    :sucker-area="suckerArea"
+                                    @changeColor="updateColor"
+                                    @openSucker="openSucker"
+                                />
+
                               </div>
-                              <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
-                          </div>
+
+                              <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span>
+
+                            </div>
                     	</div>
                   </div>
                   <div class="modal-footer">
@@ -199,40 +218,32 @@
                               <span class="error-text" v-else-if="errors.firstByRule('valor','min','form-actualizar')">Mínimo 3 caracteres.</span>
                           </div>
                           <div v-if="es_color()" class="col-12 form-validation">
-                              <label class="control-label h6" for="color">Color Hexadecimal {{color}} {{caracteristica.color}}</label>
-                                <div class="input-group"> 
 
-                                  <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
-                                    :class="{'error-input': !esHexadecimal}"
-                                  >
-                                  <span class="input-group-append">
-                                    <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
-                                  </span>
+                              <label class="control-label h6" for="color">Color Hexadecimal</label>
 
-                                  <color-picker
-                                      v-if="focus_color"
-                                      ref="color"
-                                      :color="caracteristica.color"
-                                      style="width: 50% !important;"
-                                      :sucker-hide="false"
-                                      :sucker-canvas="suckerCanvas"
-                                      :sucker-area="suckerArea"
-                                      @changeColor="changeColor"
-                                      @openSucker="openSucker"
-                                  />
+                              <div class="input-group"> 
 
-                                </div>
+                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
+                                  :class="{'error-input': !esHexadecimal}"
+                                >
+                                <span class="input-group-append">
+                                  <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                </span>
 
-                                <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
+                                <color-picker
+                                    v-if="focus_color"
+                                    ref="color"
+                                    :color="caracteristica.color"
+                                    style="width: 50% !important;"
+                                    :sucker-hide="false"
+                                    :sucker-canvas="suckerCanvas"
+                                    :sucker-area="suckerArea"
+                                    @changeColor="changeColor"
+                                    @openSucker="openSucker"
+                                />
 
-                                <div class="input-group" v-if="false"> 
-                                  <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
-                                    :class="{'error-input': !esHexadecimal}"
-                                  >
-                                  <span class="input-group-append">
-                                    <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
-                                  </span>
-                                </div>
+                              </div>
+
                               <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
                           </div>
                       </div>
@@ -286,7 +297,7 @@ export default {
 	    	{
 	    		id:'',
 	    		valor:'',
-	    		color:'',
+	    		color:'#424242',
 	    		grupo:
 	    		{
 	    			id:'',
@@ -296,12 +307,20 @@ export default {
 	    	},
 	    	caracteristicas:[],
         grupo: {},
-        fields:
+        fields:[],
+        fields_color:
         [
             { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
             { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' },
             { key: 'color', label: 'Color', sortable: true, 'class': 'text-center' },
             { key: 'color_hexadecimal', label: 'Color Hexadecimal', sortable: true, 'class': 'text-center' },
+            { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' },
+            { key: 'actions', label: 'Acciones', 'class': 'text-center' }
+        ],
+        fields_sin_color:
+        [
+            { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
+            { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' },
             { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' },
             { key: 'actions', label: 'Acciones', 'class': 'text-center' }
         ],
@@ -314,7 +333,7 @@ export default {
         sortDirection: "asc",
         table_responsive: false,
         filter: null,
-        color: '#59c7f9',
+        color: '#424242',//Es usada para el componente
         suckerCanvas: null,
         suckerArea: [],
         isSucking: false
@@ -370,16 +389,17 @@ export default {
    	},
    	methods:
    	{
+      updateColor(color)
+      {
+        const {rgba: {r, g, b, a}} = color;
+        this.caracteristica.color = this.$refs.colorNuevo.modelHex;//guardo en mi variable
+        this.validando();//valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
+      },
       changeColor(color)
       {
           const {rgba: {r, g, b, a}} = color;
-          console.log(this.$refs.color.modelHex);
-          console.log(this.color);
-          this.color = this.$refs.color.modelHex;
-          this.caracteristica.color = this.color;
-
-          this.validando();
-          
+          this.caracteristica.color = this.$refs.color.modelHex;//guardo en mi variable
+          this.validando();//valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
       },
       openSucker(isOpen)
       {
@@ -416,7 +436,7 @@ export default {
       {
         var str = this.caracteristica.color;
         var res = str.substring(1, this.caracteristica.color.length);
-        if(!this.isHexaColor(res))
+        if(!this.isHexaColor(res))//sino es un hexadecimal asigno un color por defecto
         {
           this.caracteristica.color = "#424242".toUpperCase();
         }
@@ -438,12 +458,14 @@ export default {
       },
    		crear()
    		{
+        this.caracteristica.color = "#424242".toUpperCase();
    			this.caracteristica.valor = '';
-   			this.caracteristica.color = '#424242'.toUpperCase();
+        this.focus_color = false;
         $('#crear').modal('show');
    		},
    		editar(caracteristica)
    		{
+        this.focus_color = false;
         this.caracteristica.id=caracteristica.id;
         this.caracteristica.valor=caracteristica.valor;
         this.caracteristica.color=caracteristica.color;
@@ -639,6 +661,14 @@ export default {
           if(response.grupo)
           {
             this.grupo = response.grupo;
+            if(this.es_color())
+            {
+              this.fields = this.fields_color;
+            }
+            else
+            {
+              this.fields = this.fields_sin_color;
+            }
           }
         })
         .catch(error => {
@@ -664,6 +694,7 @@ export default {
           if(response.caracteristicas)
           {
             this.caracteristicas = response.caracteristicas;
+            this.totalRows = this.caracteristicas.length;
           }
         })
         .catch(error => {

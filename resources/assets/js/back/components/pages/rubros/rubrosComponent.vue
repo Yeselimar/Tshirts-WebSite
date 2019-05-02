@@ -94,6 +94,9 @@
                 </template>
 
               </b-table>
+
+              <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
+
             </div>
           </div>
         </div>
@@ -235,7 +238,7 @@
         sortDirection: "asc",
         table_responsive: false,
         filter: null,
-        }
+      }
     },
     components:
     {
@@ -474,6 +477,7 @@
           if(response.rubros)
           {
             this.rubros = response.rubros;
+            this.totalRows = this.rubros.length;
           }
         })
         .catch(error => {

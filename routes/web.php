@@ -58,6 +58,10 @@ Route::post('/caracteristicas/guardar','CaracteristicasController@store')->name(
 Route::post('/caracteristicas/{id}/actualizar','CaracteristicasController@update')->name('caracteristicas.actualizar');
 Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy')->name('caracteristicas.eliminar');
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
+//Artículos
+Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
+
+
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');

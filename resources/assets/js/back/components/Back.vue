@@ -126,39 +126,40 @@
                                     <li class="nav-devider"></li>
 
                                     <li class="nav-label">Inicio</li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                                    <li> 
+                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
+
                                         <ul aria-expanded="false" class="collapse">
-                                            <li><a href="index1.html">Analytics </a></li>
+                                            <li><a href="index1.html">Barna :D </a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-label">Artículos</li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Artículos</span></a>
-                                        <ul aria-expanded="false" class="collapse">
-                                            <li><a href="email-inbox.html">Todos</a></li>
-                                        </ul>
-                                    </li>
+                                    <li class="nav-label">Ventas</li>
                                     <li>
-                                        <a @click=" $router.push({ name: 'rubros' })" class="has-arrow cursor" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Rubros</span></a>
-                                    </li>
+                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Catálogo</span></a>
 
-                                    <li> <a class="has-arrow  cursor" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Grupos</span>
-                                    </a>
-
-                                    <li> <a class="has-arrow  " aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Imágenes Diseño</span></a>
-                                    </li>
-
-                                    <li class="nav-label">Ventas y Pedidos</li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Mis Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
                                         <ul aria-expanded="false" class="collapse">
-                                            <li><a href="ui-alert.html">Pedidos Enviado</a></li>
-                                            <li><a href="ui-typography.html">Pedidos Aprobados</a></li>
+                                            <li><a class="cursor" @click=" $router.push({ name: 'articulos' })">Artículos</a></li>
                                         </ul>
-                                    </li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Mis Ventas <span class="label label-rouded label-danger pull-right">6</span></span></a>
                                         <ul aria-expanded="false" class="collapse">
-                                            <li><a href="uc-calender.html">Ventas Pagadas</a></li>
+                                            <li><a class="cursor" @click=" $router.push({ name: 'rubros' })" >Rubros</a></li>
                                         </ul>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a class="cursor" @click=" $router.push({ name: 'grupos' })">Grupos y Características</a></li>
+                                        </ul>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a class="cursor" >Imágenes Prediseñadas</a></li>
+                                        </ul>
+                                        
                                     </li>
+
+                                    <li class="nav-label">Reportes</li>
+                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
+                                        
+                                    </li>
+                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Ventas<span class="label label-rouded label-danger pull-right">6</span></span></a>
+                                        
+                                    </li>
+
                                     <li class="nav-label">Usuarios</li>
                                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Usuarios</span></a>
                                         <ul aria-expanded="false" class="collapse">

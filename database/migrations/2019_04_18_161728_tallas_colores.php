@@ -23,7 +23,9 @@ class TallasColores extends Migration
             $table->foreign('talla_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo talla
 
             $table->integer('cantidad');//cantidad de una combinación: talla y color 
-
+            
+            $table->float('precio');
+            
             $table->timestamps();
         });
     }

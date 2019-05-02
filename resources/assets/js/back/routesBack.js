@@ -52,15 +52,14 @@ const router = new VueRouter({
                     component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
                     meta: { requiresAuth: false } 
                 },
-                /*{
-                    path: 'caracteristicas',
-                    name: 'caracteristicas',
-                    component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
+                {
+                    path: 'articulos',
+                    name: 'articulos',
+                    component: Vue.component( 'Articulos', require( './components/pages/articulos/ArticulosComponent.vue' ) ),
                     meta: { requiresAuth: false } 
-                },*/
-				/*	Catch Alls
-                */
-
+                },				
+                /*	Catch Alls*/
+                
 			]
 		},
          {
