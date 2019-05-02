@@ -148,12 +148,23 @@
 		},
         data() {
 			return {
-                isLoading: false,
+				isLoading: false,
+				articuloId: this.$route.params.id,
             }
         },
         methods:
         {
 
+		},
+		created() {
+		let element = document.getElementById("header-top");
+			var options = {
+			offset: 0,
+			force: true
+			};
+			this.$scrollTo(element, 0, options);
+		   this.articuloId=this.$route.params.id
+		   console.log(this.articuloId)
 		},
 		 computed: {
             ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),

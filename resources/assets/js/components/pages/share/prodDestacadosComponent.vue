@@ -10,11 +10,14 @@
                         <div  v-for="(item, i) in items" :key="i"  class="product-item border-items">
                             <div class="pi-pic">
                                 <img :src="getUrl+item.url" alt="">
-                                <div class="pi-links">
-                                    <a  v-if="item.isDesign" class="add-card add-bag"><i class="fa fa-magic"></i><span>Diseñar</span></a>
-                                    <a  v-else class="add-card"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
+                                <div class="pi-links" v-if="item.isDesign" >
+                                    <a  @click.prevent.stop="disenar(item.id)"  class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                </div>
+                                <div class="pi-links" v-else  >
+                                    <a @click.stop.prevent="verDetalle(item.id)" class="add-card cursor"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
 
                                 </div>
+
                             </div>
                             <div class="pi-text">
                                 <h6>${{item.precio}}</h6>
@@ -139,8 +142,28 @@ import { mapGetters } from 'vuex'
             this.llenarItems()
         },
         methods:{
-            verDetalle(i){
-                console.log(i)
+            disenar (idProd){
+                let element = document.getElementById("header-top");
+                var options = {
+                offset: 0,
+                force: true
+                };
+                this.$scrollTo(element, 0, options);
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+
+            },
+            verDetalle (idProd){
+                if(this.$route.name === 'detalleComprar'){
+                    let element = document.getElementById("header-top");
+                    var options = {
+                        offset: 0,
+                        force: true
+                    };
+                    this.$scrollTo(element, 0, options);
+                }
+                
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+
             },
             llenarItems(){
                 this.items = []
@@ -153,7 +176,8 @@ import { mapGetters } from 'vuex'
                 }
                 setTimeout(e => { 
                     $('.product-slider').owlCarousel({
-                            loop: true,
+                            loop: false,
+                            rewind: true,
                             nav: true,
                             dots: false,
                             margin : 30,
