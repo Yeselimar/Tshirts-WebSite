@@ -13,11 +13,14 @@
             <div class="col-xl-6 col-lg-7 text-white">
               <h2>{{item.titulo}}</h2>
               <p>{{item.descripcion}}</p>
-              <a @click.stop.prevent="verDetalle(item.id)" class="site-btn sb-line cursor">
-                <span class="font-xs-12" v-if="item.isDesign">
+              <a  @click.stop.prevent="disenar(item.id)"  v-if="item.isDesign" class="site-btn sb-line cursor">
+                <span class="font-xs-12">
                   <i class="fa fa-magic mr-2"></i>DISEÑAR
                 </span>
-                <span class="font-xs-12" v-else>
+                
+              </a>
+              <a  @click.stop.prevent="verDetalle(item.id)"  v-else class="site-btn sb-line cursor">
+                <span class="font-xs-12">
                   <i class="fa fa-eye mr-2"></i>VER DETALLE
                 </span>
               </a>
@@ -119,8 +122,11 @@ export default {
     this.llenarItems();
   },
   methods: {
-    verDetalle(i) {
-      console.log(i);
+     disenar (idProd){
+        this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+    },
+    verDetalle (idProd){
+        this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
     llenarItems() {
       this.items = [];
@@ -133,7 +139,8 @@ export default {
         setTimeout(e => {
           $(".hero-slider")
             .owlCarousel({
-              loop: true,
+              loop: false,
+              rewind: true,
               margin: 0,
               nav: true,
               items: 1,

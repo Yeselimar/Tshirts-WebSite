@@ -97,8 +97,8 @@
                                     <div class="pi-pic">
                                         <img :src="getUrl+project.url" alt="">
                                         <div class="pi-links">
-                                            <a  v-if="project.isDesign" @click="addBag(project)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
-                                    <a  v-else class="add-card cursor" @click="addCart(project)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
+                                            <a  v-if="project.isDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                    <a  v-else class="add-card cursor" @click="verDetalle(project.id)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
@@ -544,6 +544,12 @@ export default {
 			}
 		},
 		methods: {
+            disenar (idProd){
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+            },
+            verDetalle (idProd){
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+            },
             addCart (product){
                 if(this.getIsAuth){
                     this.isLoading = true

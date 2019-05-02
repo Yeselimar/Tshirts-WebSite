@@ -625,7 +625,7 @@ li.bagform .dropbag:after {
                               <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
-                                <router-link :to="{ name: 'register'} "@click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
+                                <router-link :to="{ name: 'register'}" @click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
                             </div>
                           </div>
                         </div>
