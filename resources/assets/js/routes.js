@@ -67,6 +67,12 @@ const router = new VueRouter({
 					component: Vue.component( 'Disenar', require( './components/pages/disenar/disenarComponent.vue' ) ),
 					meta: { requiresAuth: true }
 				},
+				{
+					path: 'detalle/prodComprar/:id',
+					name: 'detalleComprar',
+					component: Vue.component( 'DetalleComprar', require( './components/pages/comprar/comprarComponent.vue' ) ),
+					meta: { requiresAuth: false }
+				},
 				/*
 					Catch Alls
                 */

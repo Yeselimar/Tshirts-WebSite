@@ -1,3 +1,19 @@
+<style>
+.hu-color-picker
+{
+    background: #e9ecef !important;
+    border: 1px solid #ced4da !important;
+    box-shadow: none !important;
+}
+.colors,.color-show
+{
+  display: none !important;
+}
+.input-group-append
+{
+  height: 42px !important;
+}
+</style>
 <template>
 	<div class="page-wrapper">
 		<!-- Bread crumb -->
@@ -182,16 +198,41 @@
                               <span class="error-text" v-if="errors.firstByRule('valor', 'required','form-actualizar')">Campo requerido.</span>
                               <span class="error-text" v-else-if="errors.firstByRule('valor','min','form-actualizar')">Mínimo 3 caracteres.</span>
                           </div>
-                          <div v-if="es_color()" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
-                              <label class="control-label h6" for="color">Color Hexadecimal</label>
-                              <div class="input-group"> 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
-                                  :class="{'error-input': !esHexadecimal}"
-                                >
-                                <span class="input-group-append">
-                                  <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
-                                </span>
-                              </div>
+                          <div v-if="es_color()" class="col-12 form-validation">
+                              <label class="control-label h6" for="color">Color Hexadecimal {{color}} {{caracteristica.color}}</label>
+                                <div class="input-group"> 
+
+                                  <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
+                                    :class="{'error-input': !esHexadecimal}"
+                                  >
+                                  <span class="input-group-append">
+                                    <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                  </span>
+
+                                  <color-picker
+                                      v-if="focus_color"
+                                      ref="color"
+                                      :color="caracteristica.color"
+                                      style="width: 50% !important;"
+                                      :sucker-hide="false"
+                                      :sucker-canvas="suckerCanvas"
+                                      :sucker-area="suckerArea"
+                                      @changeColor="changeColor"
+                                      @openSucker="openSucker"
+                                  />
+
+                                </div>
+
+                                <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
+
+                                <div class="input-group" v-if="false"> 
+                                  <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
+                                    :class="{'error-input': !esHexadecimal}"
+                                  >
+                                  <span class="input-group-append">
+                                    <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                  </span>
+                                </div>
                               <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
                           </div>
                       </div>
@@ -233,12 +274,14 @@
 <script>
 import CerService from "../../../../plugins/CerService";
 import loading from "../../../../components/layouts/loading.vue";
+import colorPicker from '@caohenghu/vue-colorpicker';
 
 export default {
   	data () {
 	    return {
         isLoading: false,
         grupo_id: this.$route.params.id,
+        focus_color: false,
 	    	caracteristica:
 	    	{
 	    		id:'',
@@ -271,12 +314,16 @@ export default {
         sortDirection: "asc",
         table_responsive: false,
         filter: null,
-
+        color: '#59c7f9',
+        suckerCanvas: null,
+        suckerArea: [],
+        isSucking: false
 	    }
    	},
     components:
     {
-      loading
+      loading,
+      colorPicker,
     },
     mounted()
     {
@@ -323,6 +370,27 @@ export default {
    	},
    	methods:
    	{
+      changeColor(color)
+      {
+          const {rgba: {r, g, b, a}} = color;
+          console.log(this.$refs.color.modelHex);
+          console.log(this.color);
+          this.color = this.$refs.color.modelHex;
+          this.caracteristica.color = this.color;
+
+          this.validando();
+          
+      },
+      openSucker(isOpen)
+      {
+          if (isOpen){
+              // ... canvas be created
+              // this.suckerCanvas = canvas
+              // this.suckerArea = [x1, y1, x2, y2]
+          } else {
+              // this.suckerCanvas && this.suckerCanvas.remove
+          }
+      },
       es_color()
       {
         return this.grupo.es_color==1;
@@ -564,7 +632,7 @@ export default {
    		},
    		obtenergrupo(id)
       {
-        var url = '/grupos/:id/detalles/';
+        var url = '/grupos/:id/detalles';
         url = url.replace(':id', id);
         CerService.post(url)
         .then(response => {
@@ -589,7 +657,7 @@ export default {
       },
       obtenercaracteristicas(id)
       {
-        var url = '/grupo/:id/caracteristicas/';
+        var url = '/grupo/:id/caracteristicas';
         url = url.replace(':id', id);
         CerService.post(url)
         .then(response => {
