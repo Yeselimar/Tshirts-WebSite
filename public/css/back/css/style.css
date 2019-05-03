@@ -5018,8 +5018,8 @@ footer p {
 /*    Input Size
 --------------------*/
 .input-sm {
-  font-size: 12px;
-  height: 30px;
+  font-size: 1em;
+  height: 35px;
   line-height: 1.5;
 }
 .input-lg {
@@ -6953,4 +6953,78 @@ tbody tr td:last-child {
 .texto-rojo
 {
   color:red;
+}
+
+.basis-33 {
+  flex-basis: 33.3333%
+}
+
+.basis-30 {
+  flex-basis: 30%;
+}
+.basis-50 {
+  flex-basis: 50%;
+}
+.basis-17 {
+  flex-basis: 17%;
+}
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #f4f4f4
+}
+.project {
+  margin: 5px;
+  flex-basis: 10%;
+  box-shadow: 0px 1px 1px lightgrey;
+}
+
+.pi-pic {
+    position: relative;
+    display: block;
+}
+.pi-links {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  z-index: 9;
+  padding-right: 15px;
+  text-align: right;
+}
+.pi-links a {
+  display: inline-table;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 60px;
+  font-size: 18px;
+  line-height: 18px;
+  padding-top: 9px;
+  overflow: hidden;
+  color: #000;
+  position: relative;
+  -webkit-box-shadow: 1px 0 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 0 32px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+.basis-15{
+  flex-basis: 15% !important;
+}
+@media (max-width: 768px) {
+  .basis-30,.basis-15 {
+    flex-basis: 100%;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    }
+    .basis-17 {
+      flex-basis: 100%;
+    }
+    .div-price {
+      align-items: center!important;
+    }
 }

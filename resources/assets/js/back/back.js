@@ -54,6 +54,8 @@ import Vue            from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import BootstrapVue from 'bootstrap-vue';
 import VeeValidate from 'vee-validate';
+import vSelect from 'vue-select'
+import money from 'v-money'
 
  
 const options = {
@@ -64,7 +66,10 @@ const options = {
 
 Vue.use(VueSweetalert2, options)
 Vue.use(BootstrapVue)
+Vue.component('v-select', vSelect)
 Vue.use(VeeValidate, { fieldsBagName: 'veeFields' })
+Vue.use(money)
+
 
 /*
 	Imports all of the modules used in the application to build the data store.
@@ -84,7 +89,8 @@ const app = new Vue({
   router : router,
   VueSweetalert2,
   VeeValidate,
-  BootstrapVue
+  BootstrapVue,
+  money
 });
 
 export default app;

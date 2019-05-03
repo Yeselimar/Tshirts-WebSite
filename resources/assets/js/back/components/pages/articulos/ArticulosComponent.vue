@@ -43,7 +43,7 @@
                 </strong>
               </h4>
               <div class="pull-right">
-                <a class="btn btn-sm btn-danger">Nuevo Artículo</a>
+                <a class="btn btn-sm btn-danger" @click=" $router.push({ name: 'nuevoArticulo' })">Nuevo Artículo</a>
               </div>
             </div>
 
