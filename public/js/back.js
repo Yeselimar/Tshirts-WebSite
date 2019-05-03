@@ -78468,7 +78468,11 @@ exports.default = _default;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(19);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(22);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storeBack_js__ = __webpack_require__(500);
 /*
 	Initializes Vuex on Vue.
@@ -100736,6 +100740,34 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -101037,6 +101069,88 @@ var render = function() {
                           _vm._s(row.item.id) +
                           "\n            "
                       )
+                    ]
+                  }
+                },
+                {
+                  key: "imagen",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.id) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "nombre",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.nombre) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "rubros",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.rubros) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "precio",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.precio) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "cantidad",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.cantidad) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "estado",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.publicado) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "actions",
+                  fn: function(row) {
+                    return [
+                      _c("button", { staticClass: "btn btn-xs btn-primary" }, [
+                        _c("i", { staticClass: "fa fa-pencil" })
+                      ])
                     ]
                   }
                 }

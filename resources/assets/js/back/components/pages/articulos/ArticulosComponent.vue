@@ -92,6 +92,34 @@
                 {{row.item.id}}
               </template>
 
+              <template slot="imagen" slot-scope="row">
+                {{row.item.id}}
+              </template>
+
+              <template slot="nombre" slot-scope="row">
+                {{row.item.nombre}}
+              </template>
+
+              <template slot="rubros" slot-scope="row">
+                {{row.item.rubros}}
+              </template>
+
+              <template slot="precio" slot-scope="row">
+                {{row.item.precio}}
+              </template>
+
+              <template slot="cantidad" slot-scope="row">
+                {{row.item.cantidad}}
+              </template>
+
+              <template slot="estado" slot-scope="row">
+                {{row.item.publicado}}
+              </template>
+
+              <template slot="actions" slot-scope="row">
+                <button  class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
+              </template>
+
               </b-table>
 
               <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
