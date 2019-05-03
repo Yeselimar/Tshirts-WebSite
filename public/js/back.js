@@ -17378,19 +17378,11 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-<<<<<<< HEAD
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
         base: '/barna/barna/public/'
-=======
-        base: 'http://localhost:8000/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        base: '/'
->>>>>>> master
     }
 });
 
@@ -78476,13 +78468,8 @@ exports.default = _default;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storeBack_js__ = __webpack_require__(499);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storeBack_js__ = __webpack_require__(500);
->>>>>>> master
 /*
 	Initializes Vuex on Vue.
 */
@@ -93314,7 +93301,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         }, {
             path: 'articulos',
             name: 'articulos',
-            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Articulos', __webpack_require__(528)),
+            component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Articulos', __webpack_require__(529)),
             meta: { requiresAuth: false }
         }]
     }, {
@@ -94636,7 +94623,7 @@ var staticRenderFns = [
       { staticClass: "collapse", attrs: { "aria-expanded": "false" } },
       [
         _c("li", [
-          _c("a", { staticClass: "cursor" }, [_vm._v("-Imagenes Prediseñadas")])
+          _c("a", { staticClass: "cursor" }, [_vm._v("Imágenes Prediseñadas")])
         ])
       ]
     )
@@ -100528,19 +100515,19 @@ if (false) {
 }
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(529)
+  __webpack_require__(530)
 }
 var normalizeComponent = __webpack_require__(9)
 /* script */
-var __vue_script__ = __webpack_require__(531)
+var __vue_script__ = __webpack_require__(532)
 /* template */
-var __vue_template__ = __webpack_require__(532)
+var __vue_template__ = __webpack_require__(533)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -100579,13 +100566,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(530);
+var content = __webpack_require__(531);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -100605,7 +100592,7 @@ if(false) {
 }
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(21)(false);
@@ -100619,7 +100606,7 @@ exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n", ""]);
 
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100627,6 +100614,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -100822,7 +100837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -101030,6 +101045,88 @@ var render = function() {
                           _vm._s(row.item.id) +
                           "\n            "
                       )
+                    ]
+                  }
+                },
+                {
+                  key: "imagen",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.id) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "nombre",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.nombre) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "rubros",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.rubros) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "precio",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.precio) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "cantidad",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.cantidad) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "estado",
+                  fn: function(row) {
+                    return [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(row.item.publicado) +
+                          "\n            "
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "actions",
+                  fn: function(row) {
+                    return [
+                      _c("button", { staticClass: "btn btn-xs btn-primary" }, [
+                        _c("i", { staticClass: "fa fa-pencil" })
+                      ])
                     ]
                   }
                 }

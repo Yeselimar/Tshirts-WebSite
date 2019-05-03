@@ -18920,19 +18920,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-<<<<<<< HEAD
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
         base: '/barna/barna/public/'
-=======
-        base: 'http://localhost:8000/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        base: '/'
->>>>>>> master
     }
 });
 
@@ -71393,13 +71385,8 @@ Util_1.Collection.mapMethods(Text);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(255);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(256);
->>>>>>> master
 /*
 	Initializes Vuex on Vue.
 */
