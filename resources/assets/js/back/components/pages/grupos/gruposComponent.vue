@@ -120,7 +120,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                                 <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre" 
+                                <input type="text" name="nombre" class="form-control input-sm input-rounded" v-model="grupo.nombre" 
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('nombre','form-crear')}"
                                 data-vv-scope="form-crear"
@@ -160,7 +160,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                                 <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre"
+                                <input type="text" name="nombre" class="form-control input-sm input-rounded" v-model="grupo.nombre"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('nombre','form-actualizar')}"
                                 data-vv-scope="form-actualizar"

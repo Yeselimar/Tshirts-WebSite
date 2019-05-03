@@ -114,7 +114,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input type="text" name="nombre" id="nombre" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" placeholder="Ingresa tu nombre" 
+                      <input type="text" name="nombre" id="nombre" class="form-control input-sm input-rounded" v-model="rubro.nombre" autocomplete="off" placeholder="Ingresa tu nombre" 
                           :class="{'error-input': errors.first('nombre','form-crear')}"
                           data-vv-scope="form-crear"
                           v-validate
@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input name="nombre" id="nombre" type="text" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" 
+                      <input name="nombre" id="nombre" type="text" class="form-control input-sm input-rounded" v-model="rubro.nombre" autocomplete="off" 
                       :class="{'error-input': errors.first('nombre','form-actualizar')}"
                       data-vv-scope="form-actualizar"
                       v-validate

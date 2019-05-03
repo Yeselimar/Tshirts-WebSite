@@ -15,6 +15,7 @@
     return view('index');
 });
 */
+
 Route::get('/admin/{vue_capture?}', function () {
     return view('back.index');
 })->where('vue_capture', '[\/\w\.-]*');
@@ -24,6 +25,7 @@ Route::get('/login/{vue_capture?}', function () {
 Route::get('/{vue_capture?}', function () {
     return view('vue.index');
 })->where('vue_capture', '[\/\w\.-]*');
+
 //Login User
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');

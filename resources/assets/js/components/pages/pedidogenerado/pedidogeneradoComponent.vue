@@ -1,4 +1,4 @@
-<style lang="scss" scope>
+<style>
 	.col-center
 	{
 		float: none;
@@ -36,10 +36,7 @@
 </style>
 <template>
 	<div>
-		<!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
-        <!--end header -->
-
+		
         <migajas-component titulo="¡Tu pedido ha sido envíado!"></migajas-component>
 
         <div class="aviso">
@@ -96,7 +93,6 @@
 </template>
 
 <script>
-	import headerComponent from "../../../components/layouts/headerComponent.vue";
 	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 
 	export default
@@ -104,7 +100,6 @@
         name:'pedidogeneradoComponent',
         components:
         {
-		    headerComponent,
 		    migajasComponent
 		},
         props:

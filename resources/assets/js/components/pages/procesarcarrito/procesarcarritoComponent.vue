@@ -1,4 +1,4 @@
-<style lang="scss" scope>
+<style>
 	.checkout-form h4
 	{
 		color: #3b3b3b !important;
