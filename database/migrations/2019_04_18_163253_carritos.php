@@ -13,6 +13,7 @@ class Carritos extends Migration
             $table->increments('id');
 
             $table->integer('cantidad');
+            $table->float('precio');
             $table->boolean('disponible');
             $table->enum('tipo',['compra','pedido']);
 

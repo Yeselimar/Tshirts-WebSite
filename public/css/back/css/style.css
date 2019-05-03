@@ -3194,6 +3194,7 @@ table.dataTable thead .sorting::after {
   -webkit-transition: 0.2s ease-in;
   -o-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
+  color:#fff !important;
 }
 .btn-danger:hover {
   background: #ef5350;

@@ -147,7 +147,7 @@
                                             <li><a class="cursor" @click=" $router.push({ name: 'grupos' })">Grupos y Características</a></li>
                                         </ul>
                                         <ul aria-expanded="false" class="collapse">
-                                            <li><a class="cursor" >Imágenes Prediseñadas</a></li>
+                                            <li><a class="cursor" @click=" $router.push({ name: 'imagenes.disenos' })">Imágenes Prediseñadas</a></li>
                                         </ul>
                                         
                                     </li>

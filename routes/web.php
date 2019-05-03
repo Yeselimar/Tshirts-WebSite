@@ -63,6 +63,12 @@ Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
 
+//Imágenes Diseños
+Route::post('/imagenes-disenos/todos','ImagenesDisenosController@index')->name('imagenes.disenos.todos');
+
+
+//Categorías
+Route::post('/categorias/todos','CategoriasController@index')->name('categorias.todos');
 
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');

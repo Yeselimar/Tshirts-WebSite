@@ -183,8 +183,8 @@
                     	</div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="guardar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="guardar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -249,8 +249,8 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="actualizar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -272,8 +272,8 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="eliminar()">Eliminar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
                   </div>
               </div>
           </div>

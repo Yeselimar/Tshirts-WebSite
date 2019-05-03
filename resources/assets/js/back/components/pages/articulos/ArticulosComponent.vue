@@ -38,6 +38,7 @@
   {
     padding: 0px 10px !important;
     font-size: 14px !important;
+    text-align: right !important;
   }
 </style>
 <template>
@@ -79,7 +80,7 @@
                 </strong>
               </h4>
               <div class="pull-right">
-                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]">
+                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]" @click="abrir">
                   <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Artículo
                 </a>
               </div>

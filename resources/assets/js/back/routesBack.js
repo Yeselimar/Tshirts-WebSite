@@ -34,6 +34,12 @@ const router = new VueRouter({
 					meta: { requiresAuth: true } 
                 },
                 {
+                    path: 'imagenes-disenos',
+                    name: 'imagenes.disenos',
+                    component: Vue.component( 'ImagenesDisenos', require( './components/pages/imagenesdisenos/imagenesDisenosComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },
+                {
                     path: 'rubros',
                     name: 'rubros',
                     component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
