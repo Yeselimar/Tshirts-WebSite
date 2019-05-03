@@ -80,7 +80,7 @@
                 </strong>
               </h4>
               <div class="pull-right">
-                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]" @click="abrir">
+                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]">
                   <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Artículo
                 </a>
               </div>
