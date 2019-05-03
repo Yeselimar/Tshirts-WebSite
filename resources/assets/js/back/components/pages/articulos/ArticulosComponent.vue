@@ -3,6 +3,43 @@
   {
     color:#fff !important;
   }
+  .cuadro-negro
+  {
+    width:15px;
+    height:15px;
+    background-color:#000;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .imagen-cuadrada
+  {
+    width:15px; 
+    height:15px;
+  }
+  .capsula-rubros
+  {
+    height: 15px;
+    font-size: 11px;
+    background-color: #ef7a6e;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 4px;
+  }
+  .publicado
+  {
+    color: #43A047 !important; 
+  }
+  .no-publicado
+  {
+    color: #E53935 !important; 
+  }
+  .dropdown-item
+  {
+    padding: 0px 10px !important;
+    font-size: 14px !important;
+    text-align: right !important;
+  }
 </style>
 <template>
   	<div class="page-wrapper">
@@ -26,9 +63,9 @@
       <div class="container-fluid">
         
         <div class="text-right">
-          <a class="btn btn-xs btn-danger" @click="filtro='todos'">Todos</a>
-          <a class="btn btn-xs btn-danger" @click="filtro='disenables'">Diseñables</a>
-          <a class="btn btn-xs btn-danger" @click="filtro='nodisenables'">No Diseñables</a>
+          <a class="btn btn-xs btn-danger" @click="filtro=-1">Todos</a>
+          <a class="btn btn-xs btn-danger" @click="filtro=1">Diseñables</a>
+          <a class="btn btn-xs btn-danger" @click="filtro=0">No Diseñables</a>
         </div>
 
         <div class="card">
@@ -37,13 +74,15 @@
               <h4>
                 <strong>
                   Artículos
-                  <template v-if="filtro=='todos'">Todos</template>
-                  <template v-else-if="filtro=='disenables'">Diseñables</template>
-                  <template v-else-if="filtro=='nodisenables'">No Diseñables</template>
+                  <template v-if="filtro==-1">Todos</template>
+                  <template v-else-if="filtro==1">Diseñables</template>
+                  <template v-else-if="filtro==0">No Diseñables</template>
                 </strong>
               </h4>
               <div class="pull-right">
-                <a class="btn btn-sm btn-danger" @click=" $router.push({ name: 'nuevoArticulo' })">Nuevo Artículo</a>
+                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]" @click="abrir">
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Artículo
+                </a>
               </div>
             </div>
 
@@ -77,7 +116,7 @@
                   No hay registros que coincidan con su búsqueda"
                   class="table table-hover"
                   :class="{'table-responsive': table_responsive}"
-                  :items="articulos"
+                  :items="articulos_filtro"
                   :fields="fields"
                   :current-page="currentPage"
                   :per-page="perPage"
@@ -93,7 +132,13 @@
               </template>
 
               <template slot="imagen" slot-scope="row">
-                {{row.item.id}}
+                <template v-if="row.item.principal">
+                  <img :src="url+row.item.principal.url" class="imagen-cuadrada">
+                </template>
+                <template v-else>
+                  <div class="cuadro-negro">
+                  </div>
+                </template>
               </template>
 
               <template slot="nombre" slot-scope="row">
@@ -101,23 +146,38 @@
               </template>
 
               <template slot="rubros" slot-scope="row">
-                {{row.item.rubros}}
+                <template v-if="row.item.rubros.length>0">
+                  <template v-for="rubro in row.item.rubros">
+                    <span class="badge badge-pill capsula-rubros">{{rubro.nombre}}</span>
+                  </template>
+                </template>
+                <template v-else>
+                  <span class="badge badge-pill capsula-rubros">SIN RUBRO</span>
+                </template>
               </template>
 
               <template slot="precio" slot-scope="row">
-                {{row.item.precio}}
+                {{formatearmoneda(row.item.precio_general)}}
               </template>
 
               <template slot="cantidad" slot-scope="row">
                 {{row.item.cantidad}}
               </template>
 
-              <template slot="estado" slot-scope="row">
-                {{row.item.publicado}}
+              <template slot="publicado" slot-scope="row">
+                <i v-if="row.item.publicado" class="fa fa-check publicado" aria-hidden="true"></i>
+                <i v-else class="fa fa-remove no-publicado" aria-hidden="true"></i>
               </template>
 
               <template slot="actions" slot-scope="row">
-                <button  class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
+                  <button type="button" class="btn btn-inverse btn-xs" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item cursor">Editar</a>
+                      <a class="dropdown-item cursor">Eliminar</a>
+                      <a class="dropdown-item cursor">Vista Previa</a>
+                  </div>
               </template>
 
               </b-table>
@@ -139,12 +199,15 @@
   import loading from "../../../../components/layouts/loading.vue";
   import { mapGetters } from 'vuex'
 
-  export default {
+  export default
+  {
     data () {
       return {
+        url:'',
         isLoading: false,
-        filtro:'',
+        filtro:null,
         articulos:[],
+        articulos_filtro:[],
         fields: 
         [
           { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
@@ -152,7 +215,8 @@
           { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' },
           { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' },
           { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' },
-          { key: 'estado', label: 'Estado', sortable: true, 'class': 'text-center' },
+          { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' },
+          { key: 'publicado', label: 'Estado', sortable: true, 'class': 'text-center' },
           { key: 'actions', label: 'Acciones', 'class': 'text-center' }
         ],
         currentPage: 1,
@@ -179,7 +243,7 @@
         return this.fields.filter(f => f.sortable).map(f => {
             return { text: f.label, value: f.key };
           });
-      }
+      },
     },
     mounted()
     {
@@ -192,6 +256,7 @@
           this.table_responsive = false;
         }
       });
+
     },
     created: function()
     {
@@ -200,9 +265,9 @@
       } else {
         this.table_responsive = false;
       }
-      this.filtro='disenables';
-      this.todos();
-
+      this.filtro = -1;//inicialmente cargo todos los artículos
+      this.todos();//obtengo todos los artículos
+      this.url = this.getUrl;//obtengo la url base
     },
     methods:
     {
@@ -212,6 +277,10 @@
         this.totalRows = filteredItems.length;
         this.currentPage = 1;
       },
+      formatearmoneda(monto)
+      {
+          return monto.toFixed(2);
+      },
       todos()
       {
         CerService.post("/articulos/todos")
@@ -219,7 +288,8 @@
           if(response.articulos)
           {
             this.articulos = response.articulos;
-            this.totalRows = this.articulos.length;
+            this.articulos_filtro = this.articulos;//inicialmente cargo todos los artículos
+            this.totalRows = this.articulos_filtro.length;// total de filas es igual al array de artículos filtro
           }
         })
         .catch(error => {
@@ -235,13 +305,51 @@
             title: "Ha ocurrido un error inesperado"
           });
         }); 
+      },  
+      busqueda: function()
+      {
+        let resultado = [];
+        if(this.articulos  && this.articulos.length)
+        {
+          this.articulos.forEach(function(articulo,index)
+          {
+            if(this.filtro==-1)//todos los artículos
+            {
+              resultado.push(articulo);
+            }
+            else
+            {
+              if(this.filtro==1)//Es personalizable o diseñable
+              {
+                if(articulo.personalizable==1)
+                {
+                  resultado.push(articulo);
+                }
+              }
+              else
+              {
+                if(articulo.personalizable==0)//No es personalizable o diseñable
+                {
+                  resultado.push(articulo);
+                }
+              }
+              
+            }
+          },this);
+        }
+        this.articulos_filtro = resultado;//actualizo mis articulos
+        this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
       }
     },
-    watch: {
-      filtro: function(){
+    watch: 
+    {
+      filtro: function()
+      {
+        this.busqueda();
         this.$store.dispatch('cambiarFiltroArticulo', this.filtro)
       }
+    }
   }
-}
+
 
 </script>

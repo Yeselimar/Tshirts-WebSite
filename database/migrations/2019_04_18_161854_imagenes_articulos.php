@@ -25,6 +25,8 @@ class ImagenesArticulos extends Migration
 
             $table->enum('posicion', ['frontal','reverso'])->default('frontal');
 
+            $table->boolean('principal')->default(0);
+
             $table->timestamps();
         });
     }

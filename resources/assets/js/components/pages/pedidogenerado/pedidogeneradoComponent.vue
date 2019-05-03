@@ -1,4 +1,4 @@
-<style lang="scss" scope>
+<style>
 	.col-center
 	{
 		float: none;
@@ -33,14 +33,16 @@
 		padding-bottom: 20px;
 		padding-top: 20px
 	}
+	.btn-mp
+	{
+		font-size: 13px !important;
+	    padding: 9px 15px 9px !important;
+	}
 </style>
 <template>
 	<div>
-		<!-- header-->
-            <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM" @searchK="searchK"></header-component>
-        <!--end header -->
-
-        <migajas-component titulo="¡Tu pedido ha sido envíado!"></migajas-component>
+		
+        <migajas-component titulo="¡Tu pedido ha sido enviado!"></migajas-component>
 
         <div class="aviso">
         	<p class="h5 text-center">Gracias por confiar en Barna, le notificaremos cuando su pedido haya sido aprobado.</p>
@@ -57,35 +59,52 @@
 						<tr id="sin-linea">
 							<th>Producto</th>
 							<th class="text-center">Cant. </th>
-							<th class="text-center">Precio</th>
+							<th class="text-center">Precio Unit.</th>
+							<th class="text-center">Precio Total</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Remera Adidas corta</td>
-							<td class="text-center">x 1</td>
-							<td class="text-center">$ 900.20</td>
+						<tr v-for="articulo in recibo.articulos">
+							<td>{{articulo.articulo.nombre}}</td>
+							<td class="text-center">x {{articulo.cantidad}}</td>
+							<td class="text-center">$ {{formatearmoneda(articulo.precio)}}</td>
+							<td class="text-center">$ {{formatearmoneda(articulo.precio*articulo.cantidad)}}</td>
 						</tr>
 						<tr>
-							<td>Remera de Cabellero corte V</td>
-							<td class="text-center">x 1</td>
-							<td class="text-center">$ 900.20</td>
+							<td class="text-right" colspan="3"><strong>Total Productos</strong></td>
+							<td class="text-center">
+								<strong>{{totalproductos(recibo.articulos)}}</strong>
+							</td>
 						</tr>
 						<tr>
-							<td>Remera Adidas corta</td>
-							<td class="text-center">x 1</td>
-							<td class="text-center">$ 900.20</td>
+							<td class="text-right" colspan="3"><strong>Total</strong></td>
+							<td class="text-center">
+								<strong>$ {{formatearmoneda(total(recibo.articulos))}}</strong>
+							</td>
 						</tr>
 						<tr id="con-linea">
-							<td ><strong>Estatus</strong></td>
-							<td class="text-center" colspan="2">
-								<span class="badge badge-pill badge-primary">Enviado</span>
+							<td class="text-right" colspan="3"><strong>Estatus</strong></td>
+							<td class="text-center">
+								<span v-if="recibo.estatus=='enviado'" class="badge badge-pill badge-primary">Enviado</span>
+								<span v-else-if="recibo.estatus=='aprobado'" class="badge badge-pill badge-info">Aprobado</span>
+								<span v-else-if="recibo.estatus=='rechazado'" class="badge badge-pill badge-danger">Aprobado</span>
+								<span v-else-if="recibo.estatus=='rechazado'" class="badge badge-pill badge-success">Aprobado</span>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div class="text-right">
+				<!-- Cuando es un recibo aprobado o recibo tipo de factura -->
+				<button class="site-btn btn-mp" v-if="recibo.estatus=='aprobado' || recibo.tipo=='factura'">
+					<i class="fa fa-handshake-o" aria-hidden="true"></i>
+					Pagar con Mercado Pago
+				</button>
+			</div>
 		</div>
+
+		<p></p>
+		
 		<!-- end pedido generado -->
 
 		<br>	
@@ -96,27 +115,53 @@
 </template>
 
 <script>
-	import headerComponent from "../../../components/layouts/headerComponent.vue";
 	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 
 	export default
     {
-        name:'pedidogeneradoComponent',
-        components:
-        {
-		    headerComponent,
-		    migajasComponent
-		},
-        props:
-        {
-        	url:
-            {
-	            type: String,
-	            require:true
-        	}
-        },
-        data() {
+    	data() {
 			return {
+				tipo:'',
+				recibo:
+				{
+					"id":5,
+					"tipo": "factura",
+					"estatus": "aprobado",
+					"usuario":
+                    {
+                    	"id":1,
+                    	"name":"Rafael",
+                    	"last_name": "Delgado",
+                    },
+                    "articulos":
+                    [
+						{
+		                    "id": 1,
+		                    "cantidad": 5,
+		                    "precio": 150.05,
+		                    "disponible": true,
+		                    "tipo": "compra",
+		                    "articulo":
+		                    {
+		                    	"id":1,
+		                    	"nombre":"Remera de Cabellero corte V",
+		                    	"precio_general": 158.078,
+		                    },
+		                },
+		                {
+		                    "id": 2,
+		                    "cantidad": 3,
+		                    "precio": 140.20,
+		                    "disponible": true,
+		                    "articulo":
+		                    {
+		                    	"id":1,
+		                    	"nombre":"Remera Adidas corta",
+		                    	"precio_general": 180.5,
+		                    },
+		                }
+	                ]
+				},
                 isLoading: false,
                 isDesign: false,
                 numCart: 0,
@@ -127,8 +172,62 @@
                 titulo: ''
 			}
 		},
+        name:'pedidogeneradoComponent',
+        components:
+        {
+		    migajasComponent
+		},
+        props:
+        {
+        	url:
+            {
+	            type: String,
+	            require:true
+        	}
+        },
+		created: function()
+		{
+			this.obtenerarticulos();
+
+		},
         methods:
         {
+        	formateocifra(number, length)
+        	{
+			    var my_string = '' + number;
+			    while (my_string.length < length) {
+			        my_string = '0' + my_string;
+			    }
+			    return my_string;
+			},
+        	formatearmoneda(monto)
+            {
+                return monto.toFixed(2);
+            },
+            totalproductos(articulos)
+            {
+            	var i;
+        		var cantidad = 0;
+				for (i = 0; i < articulos.length; i++)
+				{ 
+				  	cantidad = cantidad + articulos[i].cantidad;
+				}
+				return this.formateocifra(cantidad,2);
+            },
+            total(articulos)
+        	{
+        		var i;
+        		var total = 0;
+				for (i = 0; i < articulos.length; i++)
+				{ 
+				  	total = total + (articulos[i].cantidad*articulos[i].precio);
+				}
+				return total;
+        	},
+        	obtenerarticulos()
+        	{
+
+        	},
             loginM(e)
             {
                 

@@ -171,7 +171,7 @@
         },
         watch:
         {
-             getRubro: function(){
+            getRubro: function(){
               this.rubro=this.$store.getters.getRubro
               //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
             },

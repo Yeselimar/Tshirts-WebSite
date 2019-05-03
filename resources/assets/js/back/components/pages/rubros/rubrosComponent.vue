@@ -114,7 +114,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input type="text" name="nombre" id="nombre" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" placeholder="Ingresa tu nombre" 
+                      <input type="text" name="nombre" id="nombre" class="form-control input-sm input-rounded" v-model="rubro.nombre" autocomplete="off" placeholder="Ingresa tu nombre" 
                           :class="{'error-input': errors.first('nombre','form-crear')}"
                           data-vv-scope="form-crear"
                           v-validate
@@ -126,16 +126,16 @@
                       <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres.</span>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="principal" v-model="rubro.principal">
-                        <label class="control-label" for="principal">Visible en la Barra</label>
+                      <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="principal" v-model="rubro.principal">
+                          <label class="custom-control-label" for="principal">Visible en la Barra</label>
                       </div>
                     </div>
                 </div>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-xs btn-inverse pull-right" @click="guardar()">Guardar</button>
+                  <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-xs btn-primary pull-right" @click="guardar()">Guardar</button>
               </div>
           </div>
         </div>
@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                       <label class="control-label h6" for="nombre">Nombre</label>
-                      <input name="nombre" id="nombre" type="text" class="form-control input-sm" v-model="rubro.nombre" autocomplete="off" 
+                      <input name="nombre" id="nombre" type="text" class="form-control input-sm input-rounded" v-model="rubro.nombre" autocomplete="off" 
                       :class="{'error-input': errors.first('nombre','form-actualizar')}"
                       data-vv-scope="form-actualizar"
                       v-validate
@@ -164,16 +164,16 @@
                       <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres.</span>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="principal" v-model="rubro.principal">
-                        <label class="control-label" for="principal">Visible en la Barra</label>
+                      <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="principal" v-model="rubro.principal">
+                          <label class="custom-control-label" for="principal">Visible en la Barra</label>
                       </div>
                     </div>
                 </div>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-xs btn-inverse pull-right" @click="actualizar()">Guardar</button>
+                  <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
               </div>
           </div>
         </div>
@@ -194,8 +194,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-xs btn-inverse pull-right" @click="eliminar()">Eliminar</button>
+                  <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
               </div>
           </div>
         </div>

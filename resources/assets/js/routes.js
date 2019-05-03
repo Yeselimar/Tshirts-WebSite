@@ -62,6 +62,13 @@ const router = new VueRouter({
 
 				},
 				{
+					path: 'pedido-generado',
+					name: 'pedido-generado',
+					component: Vue.component( 'Pedidogenerado', require( './components/pages/pedidogenerado/pedidogeneradoComponent.vue' ) ),
+					meta: { requiresAuth: false } 
+
+				},
+				{
 					path: 'disenar',
 					name: 'disenar',
 					component: Vue.component( 'Disenar', require( './components/pages/disenar/disenarComponent.vue' ) ),

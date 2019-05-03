@@ -11,7 +11,7 @@
 }
 .input-group-append
 {
-  height: 42px !important;
+  height: 30px !important;
 }
 </style>
 <template>
@@ -37,7 +37,7 @@
               <button type="button" class="btn btn-danger"  @click=" $router.push({ name: 'grupos'})">
                 Ver Grupos
               </button>
-	            <button type="button" class="btn btn-danger" @click="crear" :disabled="!grupo">
+	            <button type="button" class="btn btn-danger" @click="crear" :class="[{'disabled': !grupo.id}]">
 	              Crear Característica
 	            </button>
 	        </div>
@@ -126,7 +126,7 @@
 	    </div>
 
 	    <!-- Modal para crear característica -->
-      <div class="modal" id="crear" v-if="grupo">
+      <div class="modal" id="crear" v-if="grupo.id">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -137,11 +137,11 @@
                     	<div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Grupo</label>
-                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control" disabled>
+                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control input-sm input-rounded" disabled>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6 " for="nombre">Valor</label>
-                              <input type="text" name="valor" class="form-control" v-model="caracteristica.valor"
+                              <input type="text" name="valor" class="form-control input-sm input-rounded" v-model="caracteristica.valor"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('valor','form-crear')}"
                                 data-vv-scope="form-crear"
@@ -156,7 +156,7 @@
 
                               <div class="input-group"> 
 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
+                                <input type="text" name="color" class="form-control input-sm" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
@@ -183,8 +183,8 @@
                     	</div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="guardar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="guardar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -203,11 +203,11 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Grupo</label>
-                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control" disabled>
+                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control input-sm input-rounded" disabled>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6 " for="nombre">Valor</label>
-                              <input type="text" name="valor" class="form-control" v-model="caracteristica.valor"
+                              <input type="text" name="valor" class="form-control input-sm input-rounded" v-model="caracteristica.valor"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('valor','form-actualizar')}"
                                 data-vv-scope="form-actualizar"
@@ -223,7 +223,7 @@
 
                               <div class="input-group"> 
 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
+                                <input type="text" name="color" class="form-control input-sm" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
@@ -249,8 +249,8 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="actualizar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -272,8 +272,8 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="eliminar()">Eliminar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
                   </div>
               </div>
           </div>
@@ -356,7 +356,6 @@ export default {
             this.table_responsive = false;
           }
       });
-      
     },
     watch:
     {
@@ -669,6 +668,10 @@ export default {
             {
               this.fields = this.fields_sin_color;
             }
+          }
+          else
+          {
+            this.$router.push({ name: 'no.encontrado' });
           }
         })
         .catch(error => {

@@ -33,7 +33,12 @@ const router = new VueRouter({
 					default: true,
 					meta: { requiresAuth: true } 
                 },
-							
+                {
+                    path: 'imagenes-disenos',
+                    name: 'imagenes.disenos',
+                    component: Vue.component( 'ImagenesDisenos', require( './components/pages/imagenesdisenos/imagenesDisenosComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },
                 {
                     path: 'rubros',
                     name: 'rubros',
@@ -63,7 +68,13 @@ const router = new VueRouter({
                     name: 'articulos',
                     component: Vue.component( 'Articulos', require( './components/pages/articulos/ArticulosComponent.vue' ) ),
                     meta: { requiresAuth: true } 
-                },				
+                },
+                {
+                    path: 'no-encontrado',
+                    name: 'no.encontrado',
+                    component: Vue.component( 'Notfound', require( './components/pages/error/NotfoundComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },  			
                 /*	Catch Alls*/
                 
 			]
