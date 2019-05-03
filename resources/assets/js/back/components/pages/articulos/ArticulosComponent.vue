@@ -109,6 +109,7 @@
 <script>
   import CerService from "../../../../plugins/CerService";
   import loading from "../../../../components/layouts/loading.vue";
+  import { mapGetters } from 'vuex'
 
   export default {
     data () {
@@ -143,6 +144,7 @@
     },
     computed:
     {
+      ...mapGetters(['getIsAuth','getUrl','getFiltroArticulo']),
       sortOptions()
       {
         // Create an options list from our fields
@@ -206,7 +208,12 @@
           });
         }); 
       }
-    }
+    },
+    watch: {
+      filtro: function(){
+        this.$store.dispatch('cambiarFiltroArticulo', this.filtro)
+      }
+  }
 }
 
 </script>

@@ -44,19 +44,25 @@ const router = new VueRouter({
                     path: 'grupos',
                     name: 'grupos',
                     component: Vue.component( 'Grupos', require( './components/pages/grupos/gruposComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },
                 {
                     path: 'grupo/:id/caracteristicas',
                     name: 'grupo.caracteristicas',
                     component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },
+                {
+                    path: 'nuevoArticulo',
+                    name: 'nuevoArticulo',
+                    component: Vue.component( 'nuevoArticulo', require( './components/pages/articulos/newArticuloComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },  
                 {
                     path: 'articulos',
                     name: 'articulos',
                     component: Vue.component( 'Articulos', require( './components/pages/articulos/ArticulosComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },				
                 /*	Catch Alls*/
                 
