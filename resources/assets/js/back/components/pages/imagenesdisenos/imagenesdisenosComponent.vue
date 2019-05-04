@@ -189,15 +189,15 @@
 
                               </div>
                               
-                              <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto(event)">
+                              <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
 
                               <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
                               </div>
-                              <!--
+                              
                               <div class="custom-file">
             							    	<input type="file" ref="file_barna" class="custom-file-input input-sm" id="imagen_cargar" name="imagen_cargar" accept="image/*" @change="cargafoto">
             							    	<label class="custom-file-label" for="imagen_cargar">Seleccione una imagen</label>
-            							  	</div>-->
+            							  	</div>
                           </div>
                       </div>
                   </div>
@@ -352,7 +352,7 @@ export default
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
               dataform.append("imagen", this.imagen.url);
-              $('#crear').modal('hide');
+              
               CerService.post("/imagenes-disenos/guardar",dataform)
               .then(response => 
               {
@@ -363,6 +363,7 @@ export default
               .catch(error => {
                 this.mensaje("error","Ha ocurrido un error inesperado");
               });
+              $('#crear').modal('hide');
           }
           else
           {

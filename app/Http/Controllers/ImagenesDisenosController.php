@@ -24,9 +24,9 @@ class ImagenesDisenosController extends Controller
         $imagen->categoria_id = $request->categoria_id;
 
         $nombre = null;
-        if($request->imagen)
+        if($request->file('imagen'))
         {
-            $archivo= $request->imagen;
+            $archivo= $request->file('imagen');
             $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
             $ruta = public_path().'/'.ImagenDiseno::carpeta();
             $archivo->move($ruta, $nombre);

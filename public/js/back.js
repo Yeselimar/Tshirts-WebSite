@@ -95634,7 +95634,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           dataform.append("nombre", _this2.imagen.nombre);
           dataform.append("categoria_id", _this2.imagen.categoria.id);
           dataform.append("imagen", _this2.imagen.url);
-          $('#crear').modal('hide');
+
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/guardar", dataform).then(function (response) {
             _this2.todos();
             console.log(response.date);
@@ -95642,6 +95642,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           }).catch(function (error) {
             _this2.mensaje("error", "Ha ocurrido un error inesperado");
           });
+          $('#crear').modal('hide');
         } else {
           _this2.$swal.mixin({
             toast: true,
@@ -96077,7 +96078,7 @@ var render = function() {
                           attrs: { accept: "image/*", type: "file" },
                           on: {
                             change: function($event) {
-                              return _vm.cargafoto(_vm.event)
+                              return _vm.cargafoto($event)
                             }
                           }
                         })
@@ -96093,6 +96094,29 @@ var render = function() {
                           },
                           [_c("i", { staticClass: "fa fa-trash" })]
                         )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "custom-file" }, [
+                    _c("input", {
+                      ref: "file_barna",
+                      staticClass: "custom-file-input input-sm",
+                      attrs: {
+                        type: "file",
+                        id: "imagen_cargar",
+                        name: "imagen_cargar",
+                        accept: "image/*"
+                      },
+                      on: { change: _vm.cargafoto }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-file-label",
+                        attrs: { for: "imagen_cargar" }
+                      },
+                      [_vm._v("Seleccione una imagen")]
+                    )
                   ])
                 ]
               )
