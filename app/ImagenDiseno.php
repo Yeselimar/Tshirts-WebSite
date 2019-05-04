@@ -17,4 +17,9 @@ class ImagenDiseno extends Model
     {
         return $this->belongsTo('App\User','user_id');
     }
+
+    public static function carpeta()
+    {
+        return 'img/predisenadas/';
+    }
 }

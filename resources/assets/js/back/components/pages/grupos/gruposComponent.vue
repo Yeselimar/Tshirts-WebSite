@@ -319,45 +319,15 @@ export default {
                     .then(response => 
                     {
                         this.todos();
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        this.mensaje("success",response.msg);
                     })
                     .catch(error => {
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        this.mensaje("error","Ha ocurrido un error inesperado");
                     });
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    this.mensaje("warning","Por favor verifique los campos");
                 }
             });
         },
@@ -377,45 +347,15 @@ export default {
                     .then(response => 
                     {
                         this.todos();
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        this.mensaje("success",response.msg);
                     })
                     .catch(error => {
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        this.mensaje("error","Ha ocurrido un error inesperado");
                     });
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    this.mensaje("warning","Por favor verifique los campos");
                 }
             });
         },
@@ -430,45 +370,15 @@ export default {
                 this.todos();
                 if(response.res==1)
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "success",
-                        title: response.msg
-                    });
+                    this.mensaje("success",response.msg);
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "error",
-                        title: response.msg
-                    });
+                    this.mensaje("error",response.msg);
                 }
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                this.mensaje("error","Ha ocurrido un error inesperado");
             });
         },
         todos()
@@ -482,18 +392,22 @@ export default {
                 }
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                this.mensaje("error","Ha ocurrido un error inesperado");
             }); 
+        },
+        mensaje(tipo,mensaje)
+        {
+            this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: tipo,
+              title: mensaje
+            });
         }
 
     }

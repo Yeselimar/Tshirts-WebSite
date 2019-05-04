@@ -43,6 +43,7 @@ Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('log
 Route::post('/login/admin/post', 'Auth\LoginController@postloginAdmin')->name('post.admin.login');
 //Rubros
 Route::post('/rubros/todos','RubrosController@index')->name('rubros.todos');
+Route::post('/rubros/todos/api','RubrosController@misrubros')->name('rubros.misrubros');
 Route::post('/rubros/guardar','RubrosController@store')->name('rubros.guardar');
 Route::post('/rubros/{id}/actualizar','RubrosController@update')->name('rubros.actualizar');
 Route::post('/rubros/{id}/eliminar','RubrosController@destroy')->name('rubros.eliminar');
@@ -53,6 +54,9 @@ Route::post('/grupos/guardar','GruposController@store')->name('grupos.guardar');
 Route::post('/grupos/{id}/actualizar','GruposController@update')->name('grupos.actualizar');
 Route::post('/grupos/{id}/eliminar','GruposController@destroy')->name('grupos.eliminar');
 Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detalles');
+Route::post('/grupos/colores/api','GruposController@colores')->name('grupos.colores');
+Route::post('/grupos/talles/api','GruposController@talles')->name('grupos.talles');
+
 //Caracteristicas
 Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
 Route::post('/grupo/{grupo_id}/caracteristicas','CaracteristicasController@caracteristicaporgrupo')->name('caracteristicas.porgrupo');
@@ -67,6 +71,10 @@ Route::post('/articulo/guardar','ArticulosController@save')->name('articulos.gua
 
 //Imágenes Diseños
 Route::post('/imagenes-disenos/todos','ImagenesDisenosController@index')->name('imagenes.disenos.todos');
+Route::post('/imagenes-disenos/guardar','ImagenesDisenosController@store')->name('imagenes.disenos.guardar');
+Route::post('/imagenes-disenos/{id}/actualizar','ImagenesDisenosController@update')->name('imagenes.disenos.actualizar');
+Route::post('/imagenes-disenos/{id}/detalles','ImagenesDisenosController@show')->name('imagenes.disenos.detalles');
+Route::post('/imagenes-disenos/{id}/eliminar','ImagenesDisenosController@destroy')->name('imagenes.disenos.eliminar');
 
 
 //Categorías

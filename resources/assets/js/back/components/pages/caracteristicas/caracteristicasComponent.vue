@@ -13,6 +13,12 @@
 {
   height: 30px !important;
 }
+.input-group-text
+{
+  border-radius: 0px 25px 25px 0px !important;
+  height: 35px !important;
+  padding: 10px 12px !important;
+}
 </style>
 <template>
 	<div class="page-wrapper">
@@ -156,7 +162,7 @@
 
                               <div class="input-group"> 
 
-                                <input type="text" name="color" class="form-control input-sm" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
+                                <input type="text" name="color" class="form-control input-sm input-rounded" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
@@ -223,7 +229,7 @@
 
                               <div class="input-group"> 
 
-                                <input type="text" name="color" class="form-control input-sm" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
+                                <input type="text" name="color" class="form-control input-sm input-rounded" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
@@ -496,46 +502,16 @@ export default {
             CerService.post("/caracteristicas/guardar",dataform)
             .then(response => 
             {
-                this.obtenercaracteristicas(this.grupo_id);
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "success",
-                    title: response.msg
-                });
+              this.obtenercaracteristicas(this.grupo_id);
+              this.mensaje("success",response.msg);
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+              this.mensaje("error","Ha ocurrido un error inesperado");
             });
           }
           else
           {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "warning",
-                title: "Por favor verifique los campos"
-            });
+            this.mensaje("warning","Por favor verifique los campos");
           }
         });
    		},
@@ -557,45 +533,15 @@ export default {
               .then(response => 
               {
                   this.obtenercaracteristicas(this.grupo_id);
-                  this.$swal
-                  .mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 4000
-                  })
-                  .fire({
-                      type: "success",
-                      title: response.msg
-                  });
+                  this.mensaje("success",response.msg);
               })
               .catch(error => {
-                  this.$swal
-                  .mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 4000
-                  })
-                  .fire({
-                      type: "error",
-                      title: "Ha ocurrido un error inesperado"
-                  });
+                this.mensaje("error","Ha ocurrido un error inesperado");
               });
             }
             else
             {
-              this.$swal
-              .mixin({
-                  toast: true,
-                  position: "top-end",
-                  showConfirmButton: false,
-                  timer: 4000
-              })
-              .fire({
-                  type: "warning",
-                  title: "Por favor verifique los campos"
-              });
+              this.mensaje("warning","Por favor verifique los campos");
             }
           });
    		},
@@ -610,45 +556,15 @@ export default {
             this.obtenercaracteristicas(this.grupo_id);
             if(response.res==1)
             {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "success",
-                    title: response.msg
-                });
+              this.mensaje("success",response.msg);
             }
             else
             {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: response.msg
-                });
+              this.mensaje("error",response.msg);
             }
         })
         .catch(error => {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-            });
+            this.mensaje("error","Ha ocurrido un error inesperado");
         });
    		},
    		obtenergrupo(id)
@@ -675,17 +591,7 @@ export default {
           }
         })
         .catch(error => {
-          this.$swal
-          .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-          })
-          .fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
-          });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         }); 
       },
       obtenercaracteristicas(id)
@@ -701,19 +607,23 @@ export default {
           }
         })
         .catch(error => {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-            });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         }); 
       },
+      mensaje(tipo,mensaje)
+      {
+        this.$swal
+        .mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 4000
+        })
+        .fire({
+          type: tipo,
+          title: mensaje
+        });
+      }
       
    	}
 }
