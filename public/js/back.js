@@ -95286,7 +95286,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.custom-file-label\n\t{\n\t\theight: calc(1.90rem + 1px) !important;\n\t    padding: .200rem .50rem !important;\n\t    border-radius: 25px;\n}\n.custom-file-label::after\n\t{\n\t\theight: calc(calc(1.90rem + 1px) - 1px * 2) !important;\n\t    padding: 0.200rem .500rem !important;\n\t    content: \"Examinar\" !important;\n\t    border-radius: 0 25px 25px 0;\n}\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.90rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.capsula-rubros\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label\n\t{\n\t\t  height: calc(1.90rem + 1px) !important;\n\t    padding: .200rem .50rem !important;\n\t    border-radius: 25px;\n}\n.custom-file-label::after\n\t{\n\t\t  height: calc(calc(1.90rem + 1px) - 1px * 2) !important;\n\t    padding: 0.200rem .500rem !important;\n\t    content: \"Examinar\" !important;\n\t    border-radius: 0 25px 25px 0;\n}\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(2.25rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.capsula-rubros\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n.btn-cargar\n  {\n    border: 1px solid #e7e7e7;\n    border-radius: 25px;\n    height: 30px;\n    background-color: #fbfbfb;\n    color: #424242;\n    margin-bottom: 17px;\n}\n.btn-error\n  {\n    border: 1px solid red !important;\n}\n.img-barna\n  {\n    width:100%;\n    height:auto;\n    border: 1px solid #ebebeb;\n    margin-bottom: 5px;\n    border-radius: 4px;\n}\n", ""]);
 
 // exports
 
@@ -95478,178 +95478,241 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            url: '',
-            imagen: {
-                id: '',
-                url: '',
-                nombre: '',
-                categoria: {
-                    id: '',
-                    nombre: ''
-                }
-            },
-            imagenes: [],
-            categorias: [],
-            fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'categoria', label: 'Categoría', sortable: true, 'class': 'text-center' }, { key: 'pertenece', label: 'Pertenece', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
-            currentPage: 1,
-            perPage: 10,
-            totalRows: 0,
-            pageOptions: [5, 10, 15, 20, 50, 100, 500, 1000],
-            sortBy: null,
-            sortDesc: false,
-            sortDirection: "asc",
-            table_responsive: false,
-            filter: null
-        };
-    },
-
-    components: {},
-    mounted: function mounted() {
-        var _this = this;
-
-        $(window).resize(function (event) {
-            event.preventDefault();
-
-            if (document.body.clientWidth <= 500) {
-                _this.table_responsive = true;
-            } else {
-                _this.table_responsive = false;
-            }
-        });
-
-        $(".custom-file-input").on("change", function () {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-    },
-
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])(['getIsAuth', 'getUrl', 'getFiltroArticulo']), {
-        sortOptions: function sortOptions() {
-            // Create an options list from our fields
-            return this.fields.filter(function (f) {
-                return f.sortable;
-            }).map(function (f) {
-                return { text: f.label, value: f.key };
-            });
+  data: function data() {
+    return {
+      url: '',
+      imagen: {
+        id: '',
+        url: '',
+        nombre: '',
+        tamanho: '',
+        valida: false,
+        src: '',
+        categoria: {
+          id: '',
+          nombre: ''
         }
-    }),
-    created: function created() {
-        this.url = this.getUrl; //obtengo la url base
-        this.todos();
-        this.obtenercategorias();
-    },
-    methods: {
-        onFiltered: function onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            this.totalRows = filteredItems.length;
-            this.currentPage = 1;
-        },
-        crear: function crear() {
-            this.imagen.id = null;
-            this.imagen.nombre = '';
-            this.imagen.categoria.id = 1; //selecciono la primera
-            $('#crear').modal('show');
-        },
-        cargafoto: function cargafoto(event) {
-            this.imagen.url = event.target.files[0];
-        },
-        guardar: function guardar(event) {
-            var _this2 = this;
+      },
+      imagenes: [],
+      categorias: [],
+      fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'categoria', label: 'Categoría', sortable: true, 'class': 'text-center' }, { key: 'pertenece', label: 'Pertenece', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 10,
+      totalRows: 0,
+      pageOptions: [5, 10, 15, 20, 50, 100, 500, 1000],
+      sortBy: null,
+      sortDesc: false,
+      sortDirection: "asc",
+      table_responsive: false,
+      filter: null
+    };
+  },
 
-            this.$validator.validateAll("form-crear").then(function (resp) {
-                if (resp) {
-                    var dataform = new FormData();
-                    dataform.append("nombre", _this2.imagen.categoria.nombre);
-                    dataform.append("url", _this2.imagen.categoria.id);
-                    dataform.append("url", _this2.imagen.categoria.id);
-                    $('#crear').modal('hide');
-                    __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/categorias/guardar", dataform).then(function (response) {
-                        _this2.todos();
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "success",
-                            title: response.msg
-                        });
-                    }).catch(function (error) {
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
-                    });
-                } else {
-                    _this2.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
-                }
-            });
-        },
-        editar: function editar() {},
-        actualizar: function actualizar() {},
-        eliminar: function eliminar() {},
-        eliminarImagen: function eliminarImagen() {},
-        todos: function todos() {
-            var _this3 = this;
+  components: {},
+  mounted: function mounted() {
+    var _this = this;
 
-            __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/todos").then(function (response) {
-                if (response.imagenes) {
-                    _this3.imagenes = response.imagenes;
-                    _this3.totalRows = _this3.imagenes.length;
-                }
-            }).catch(function (error) {
-                _this3.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
-            });
-        },
-        obtenercategorias: function obtenercategorias() {
-            var _this4 = this;
+    $(window).resize(function (event) {
+      event.preventDefault();
 
-            __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/categorias/todos").then(function (response) {
-                if (response.categorias) {
-                    _this4.categorias = response.categorias;
-                }
-            }).catch(function (error) {
-                _this4.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
-            });
-        }
+      if (document.body.clientWidth <= 500) {
+        _this.table_responsive = true;
+      } else {
+        _this.table_responsive = false;
+      }
+    });
+
+    $(".custom-file-input").on("change", function () {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+  },
+
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])(['getIsAuth', 'getUrl', 'getFiltroArticulo']), {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
     }
+  }),
+  created: function created() {
+    this.url = this.getUrl; //obtengo la url base
+    this.todos();
+    this.obtenercategorias();
+  },
+  methods: {
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    crear: function crear() {
+      this.limpiar();
+      this.imagen.id = null;
+      this.imagen.nombre = '';
+      this.imagen.valida = true;
+      this.imagen.categoria.id = 1; //selecciono la primera
+      $('#crear').modal('show');
+    },
+    cargafoto: function cargafoto(event) {
+
+      this.imagen.tamanho = this.calculatamanho(event.target.files[0]['size']);
+      if (this.tamanhovalido() && event.target.files[0].type.split('/')[0] === 'image') //Si la imagen es mayor a 5MB
+        {
+          this.imagen.valida = true;
+          this.imagen.url = event.target.files[0];
+          console.log("Imagen cargada");
+          console.log(this.imagen.url);
+          var reader = new FileReader();
+          reader.readAsDataURL(event.target.files[0]);
+          reader.onload = function () {
+            this.imagen.src = reader.result;
+          }.bind(this);
+          reader.onerror = function (error) {};
+        } else {
+        this.limpiar();
+        this.imagen.valida = false;
+      }
+    },
+    guardar: function guardar(event) {
+      var _this2 = this;
+
+      console.log("imagen guardada");
+      console.log(this.imagen.url);
+      this.$validator.validateAll("form-crear").then(function (resp) {
+        if (resp) {
+          var dataform = new FormData();
+          dataform.append("nombre", _this2.imagen.nombre);
+          dataform.append("categoria_id", _this2.imagen.categoria.id);
+          dataform.append("imagen", _this2.imagen.url);
+          $('#crear').modal('hide');
+          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/guardar", dataform).then(function (response) {
+            _this2.todos();
+            console.log(response.date);
+            _this2.mensaje("success", response.msg);
+          }).catch(function (error) {
+            _this2.mensaje("error", "Ha ocurrido un error inesperado");
+          });
+        } else {
+          _this2.$swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 4000
+          }).fire({
+            type: "warning",
+            title: "Por favor verifique los campos"
+          });
+        }
+      });
+      this.limpiar();
+    },
+    editar: function editar() {},
+    actualizar: function actualizar() {},
+    eliminar: function eliminar() {},
+    eliminarImagen: function eliminarImagen() {},
+    todos: function todos() {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/todos").then(function (response) {
+        if (response.imagenes) {
+          _this3.imagenes = response.imagenes;
+          _this3.totalRows = _this3.imagenes.length;
+        }
+      }).catch(function (error) {
+        _this3.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    obtenercategorias: function obtenercategorias() {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/categorias/todos").then(function (response) {
+        if (response.categorias) {
+          _this4.categorias = response.categorias;
+        }
+      }).catch(function (error) {
+        _this4.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    mensaje: function mensaje(tipo, _mensaje) {
+      this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      }).fire({
+        type: tipo,
+        title: _mensaje
+      });
+    },
+    limpiar: function limpiar() {
+      this.imagen.url = '';
+      this.imagen.src = '';
+    },
+    openInputFile: function openInputFile() {
+      var elem = this.$refs.imagenInput;
+      elem.click();
+    },
+    tamanhovalido: function tamanhovalido() {
+      if (this.imagen.tamanho <= 1) //menor a un 1MB
+        {
+          return true;
+        }
+      return false;
+    },
+    calculatamanho: function calculatamanho(tamanho) {
+      return tamanho / 1024 / 1024;
+    }
+  }
 });
 
 /***/ }),
@@ -95665,10 +95728,14 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "text-right" }, [
+        _c("a", { staticClass: "btn btn-sm btn-danger" }, [
+          _vm._v("Cargar Múltiples")
+        ]),
+        _vm._v(" "),
         _c(
           "a",
           { staticClass: "btn btn-sm btn-danger", on: { click: _vm.crear } },
-          [_vm._v("Crear Imagen Prediseñada")]
+          [_vm._v("Crear una Imagen Prediseñada")]
         )
       ]),
       _vm._v(" "),
@@ -95952,7 +96019,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-lg-12 col-md-12 col-sm-12 col-xs-12" },
+                { staticClass: "col-lg-6 col-md-6 col-sm-12 col-xs-12" },
                 [
                   _c(
                     "label",
@@ -95963,25 +96030,69 @@ var render = function() {
                     [_vm._v("Imagen")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "custom-file" }, [
-                    _c("input", {
-                      staticClass: "custom-file-input input-sm",
-                      attrs: {
-                        type: "file",
-                        id: "customFile",
-                        accept: "image/*"
-                      },
-                      on: { change: _vm.cargafoto }
-                    }),
+                  _c("div", {}, [
+                    _vm.imagen.url == "" && _vm.imagen.src == ""
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn-cargar btn-block cursor",
+                            class: { "btn-error": !_vm.imagen.valida },
+                            on: {
+                              click: function($event) {
+                                return _vm.openInputFile()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-picture-o",
+                              attrs: { "aria-hidden": "true" }
+                            }),
+                            _vm._v(" Examinar\n                              ")
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "customFile" }
-                      },
-                      [_vm._v("Seleccione una imagen")]
-                    )
+                    !_vm.imagen.valida
+                      ? _c("span", { staticClass: "error-text" }, [
+                          _vm._v("Imagen debe ser menor o igual a 5MB")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" }, [
+                      _vm.imagen.url != null &&
+                      _vm.imagen.url != "" &&
+                      _vm.imagen.url != "image"
+                        ? _c("img", {
+                            staticClass: "img-fluid  img-responsive img-barna",
+                            attrs: { src: _vm.imagen.src }
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _vm.imagen.url == "" && _vm.imagen.src == ""
+                      ? _c("input", {
+                          ref: "imagenInput",
+                          staticClass: "d-none",
+                          attrs: { accept: "image/*", type: "file" },
+                          on: {
+                            change: function($event) {
+                              return _vm.cargafoto(_vm.event)
+                            }
+                          }
+                        })
+                      : _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-xs btn-danger pull-right",
+                            on: {
+                              click: function($event) {
+                                return _vm.limpiar()
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash" })]
+                        )
                   ])
                 ]
               )
@@ -96428,36 +96539,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
         _this2.todos();
         if (response.res == 1) {
-          _this2.$swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          }).fire({
-            type: "success",
-            title: response.msg
-          });
+          _this2.mensaje("success", response.msg);
         } else {
-          _this2.$swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          }).fire({
-            type: "error",
-            title: response.msg
-          });
+          _this2.mensaje("error", response.msg);
         }
       }).catch(function (error) {
-        _this2.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 4000
-        }).fire({
-          type: "error",
-          title: "Ha ocurrido un error inesperado"
-        });
+        _this2.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
     guardar: function guardar() {
@@ -96471,36 +96558,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           $('#crear').modal('hide');
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/rubros/guardar", dataform).then(function (response) {
             _this3.todos();
-            _this3.$swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            }).fire({
-              type: "success",
-              title: response.msg
-            });
+            _this3.mensaje("success", response.msg);
           }).catch(function (error) {
-            _this3.$swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            }).fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
-            });
+            _this3.mensaje("error", "Ha ocurrido un error inesperado");
           });
         } else {
-          _this3.$swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          }).fire({
-            type: "warning",
-            title: "Por favor verifique los campos"
-          });
+          _this3.mensaje("warning", "Por favor verifique los campos");
         }
       });
     },
@@ -96517,36 +96580,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           url = url.replace(':id', _this4.rubro.id);
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
             _this4.todos();
-            _this4.$swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            }).fire({
-              type: "success",
-              title: response.msg
-            });
+            _this4.mensaje("success", response.msg);
           }).catch(function (error) {
-            _this4.$swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            }).fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
-            });
+            _this4.mensaje("error", "Ha ocurrido un error inesperado");
           });
         } else {
-          _this4.$swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          }).fire({
-            type: "warning",
-            title: "Por favor verifique los campos"
-          });
+          _this4.mensaje("warning", "Por favor verifique los campos");
         }
       });
     },
@@ -96559,20 +96598,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this5.totalRows = _this5.rubros.length;
         }
       }).catch(function (error) {
-        _this5.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 4000
-        }).fire({
-          type: "error",
-          title: "Ha ocurrido un error inesperado"
-        });
+        _this5.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
     fechayhora: function fechayhora(fecha) {
       var dia = new Date(fecha);
       return moment(dia).format('DD/MM/YYYY hh:mm A');
+    },
+    mensaje: function mensaje(tipo, _mensaje) {
+      this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      }).fire({
+        type: tipo,
+        title: _mensaje
+      });
     }
   }
 });
@@ -97701,36 +97743,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#crear').modal('hide');
                     __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/guardar", dataform).then(function (response) {
                         _this2.todos();
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        _this2.mensaje("success", response.msg);
                     }).catch(function (error) {
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        _this2.mensaje("error", "Ha ocurrido un error inesperado");
                     });
                 } else {
-                    _this2.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    _this2.mensaje("warning", "Por favor verifique los campos");
                 }
             });
         },
@@ -97747,36 +97765,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     url = url.replace(':id', _this3.grupo.id);
                     __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
                         _this3.todos();
-                        _this3.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        _this3.mensaje("success", response.msg);
                     }).catch(function (error) {
-                        _this3.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        _this3.mensaje("error", "Ha ocurrido un error inesperado");
                     });
                 } else {
-                    _this3.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    _this3.mensaje("warning", "Por favor verifique los campos");
                 }
             });
         },
@@ -97789,36 +97783,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
                 _this4.todos();
                 if (response.res == 1) {
-                    _this4.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "success",
-                        title: response.msg
-                    });
+                    _this4.mensaje("success", response.msg);
                 } else {
-                    _this4.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "error",
-                        title: response.msg
-                    });
+                    _this4.mensaje("error", response.msg);
                 }
             }).catch(function (error) {
-                _this4.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                _this4.mensaje("error", "Ha ocurrido un error inesperado");
             });
         },
         todos: function todos() {
@@ -97830,15 +97800,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this5.totalRows = _this5.grupos.length;
                 }
             }).catch(function (error) {
-                _this5.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                _this5.mensaje("error", "Ha ocurrido un error inesperado");
+            });
+        },
+        mensaje: function mensaje(tipo, _mensaje) {
+            this.$swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+            }).fire({
+                type: tipo,
+                title: _mensaje
             });
         }
     }
@@ -98663,7 +98636,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.hu-color-picker\r\n{\r\n    background: #e9ecef !important;\r\n    border: 1px solid #ced4da !important;\r\n    box-shadow: none !important;\n}\n.colors,.color-show\r\n{\r\n  display: none !important;\n}\n.input-group-append\r\n{\r\n  height: 30px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.hu-color-picker\r\n{\r\n    background: #e9ecef !important;\r\n    border: 1px solid #ced4da !important;\r\n    box-shadow: none !important;\n}\n.colors,.color-show\r\n{\r\n  display: none !important;\n}\n.input-group-append\r\n{\r\n  height: 30px !important;\n}\n.input-group-text\r\n{\r\n  border-radius: 0px 25px 25px 0px !important;\r\n  height: 35px !important;\r\n  padding: 10px 12px !important;\n}\r\n", ""]);
 
 // exports
 
@@ -98962,362 +98935,291 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            isLoading: false,
-            grupo_id: this.$route.params.id,
-            focus_color: false,
-            caracteristica: {
-                id: '',
-                valor: '',
-                color: '#424242',
-                grupo: {
-                    id: '',
-                    nombre: '',
-                    es_color: ''
-                }
-            },
-            caracteristicas: [],
-            grupo: {},
-            fields: [],
-            fields_color: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' }, { key: 'color', label: 'Color', sortable: true, 'class': 'text-center' }, { key: 'color_hexadecimal', label: 'Color Hexadecimal', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
-            fields_sin_color: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' }, { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
-            currentPage: 1,
-            perPage: 10,
-            totalRows: 0,
-            pageOptions: [5, 10, 15, 20, 50, 100, 500, 1000],
-            sortBy: null,
-            sortDesc: false,
-            sortDirection: "asc",
-            table_responsive: false,
-            filter: null,
-            color: '#424242', //Es usada para el componente
-            suckerCanvas: null,
-            suckerArea: [],
-            isSucking: false
-        };
-    },
-
-    components: {
-        loading: __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default.a,
-        colorPicker: __WEBPACK_IMPORTED_MODULE_2__caohenghu_vue_colorpicker__["a" /* default */]
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        $(window).resize(function (event) {
-            event.preventDefault();
-
-            if (document.body.clientWidth <= 500) {
-                _this.table_responsive = true;
-            } else {
-                _this.table_responsive = false;
-            }
-        });
-    },
-
-    watch: {},
-    computed: {
-        esHexadecimal: function esHexadecimal() {
-            var str = this.caracteristica.color;
-            var res = str.substring(1, this.caracteristica.color.length);
-            if (!this.isHexaColor(res)) {
-                return false;
-            }
-            return true;
-        },
-        sortOptions: function sortOptions() {
-            // Create an options list from our fields
-            return this.fields.filter(function (f) {
-                return f.sortable;
-            }).map(function (f) {
-                return { text: f.label, value: f.key };
-            });
+  data: function data() {
+    return {
+      isLoading: false,
+      grupo_id: this.$route.params.id,
+      focus_color: false,
+      caracteristica: {
+        id: '',
+        valor: '',
+        color: '#424242',
+        grupo: {
+          id: '',
+          nombre: '',
+          es_color: ''
         }
+      },
+      caracteristicas: [],
+      grupo: {},
+      fields: [],
+      fields_color: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' }, { key: 'color', label: 'Color', sortable: true, 'class': 'text-center' }, { key: 'color_hexadecimal', label: 'Color Hexadecimal', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+      fields_sin_color: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' }, { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 10,
+      totalRows: 0,
+      pageOptions: [5, 10, 15, 20, 50, 100, 500, 1000],
+      sortBy: null,
+      sortDesc: false,
+      sortDirection: "asc",
+      table_responsive: false,
+      filter: null,
+      color: '#424242', //Es usada para el componente
+      suckerCanvas: null,
+      suckerArea: [],
+      isSucking: false
+    };
+  },
+
+  components: {
+    loading: __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default.a,
+    colorPicker: __WEBPACK_IMPORTED_MODULE_2__caohenghu_vue_colorpicker__["a" /* default */]
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    $(window).resize(function (event) {
+      event.preventDefault();
+
+      if (document.body.clientWidth <= 500) {
+        _this.table_responsive = true;
+      } else {
+        _this.table_responsive = false;
+      }
+    });
+  },
+
+  watch: {},
+  computed: {
+    esHexadecimal: function esHexadecimal() {
+      var str = this.caracteristica.color;
+      var res = str.substring(1, this.caracteristica.color.length);
+      if (!this.isHexaColor(res)) {
+        return false;
+      }
+      return true;
     },
-    created: function created() {
-        this.obtenergrupo(this.grupo_id); //obtengo información de un grupo determinado
-        this.obtenercaracteristicas(this.grupo_id); //obtengo las características de un grupo determinado
-    },
-
-    methods: {
-        updateColor: function updateColor(color) {
-            var _color$rgba = color.rgba,
-                r = _color$rgba.r,
-                g = _color$rgba.g,
-                b = _color$rgba.b,
-                a = _color$rgba.a;
-
-            this.caracteristica.color = this.$refs.colorNuevo.modelHex; //guardo en mi variable
-            this.validando(); //valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
-        },
-        changeColor: function changeColor(color) {
-            var _color$rgba2 = color.rgba,
-                r = _color$rgba2.r,
-                g = _color$rgba2.g,
-                b = _color$rgba2.b,
-                a = _color$rgba2.a;
-
-            this.caracteristica.color = this.$refs.color.modelHex; //guardo en mi variable
-            this.validando(); //valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
-        },
-        openSucker: function openSucker(isOpen) {
-            if (isOpen) {
-                // ... canvas be created
-                // this.suckerCanvas = canvas
-                // this.suckerArea = [x1, y1, x2, y2]
-            } else {
-                    // this.suckerCanvas && this.suckerCanvas.remove
-                }
-        },
-        es_color: function es_color() {
-            return this.grupo.es_color == 1;
-        },
-        validarcolor: function validarcolor() {
-            if (this.caracteristica.color.length >= 7) {
-                var str = this.caracteristica.color;
-                var res = str.substring(1, this.caracteristica.color.length);
-                if (!this.isHexaColor(res)) {
-                    this.caracteristica.color = "#424242";
-                } else {
-                    this.caracteristica.color = this.caracteristica.color;
-                }
-            }
-            this.caracteristica.color = this.caracteristica.color.toUpperCase();
-        },
-        validando: function validando() {
-            var str = this.caracteristica.color;
-            var res = str.substring(1, this.caracteristica.color.length);
-            if (!this.isHexaColor(res)) //sino es un hexadecimal asigno un color por defecto
-                {
-                    this.caracteristica.color = "#424242".toUpperCase();
-                } else {
-                this.caracteristica.color = this.caracteristica.color.toUpperCase();
-            }
-        },
-        isHexaColor: function isHexaColor(sNum) {
-            return typeof sNum === "string" && sNum.length === 6 && !isNaN(parseInt(sNum, 16));
-        },
-        onFiltered: function onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            this.totalRows = filteredItems.length;
-            this.currentPage = 1;
-        },
-        crear: function crear() {
-            this.caracteristica.color = "#424242".toUpperCase();
-            this.caracteristica.valor = '';
-            this.focus_color = false;
-            $('#crear').modal('show');
-        },
-        editar: function editar(caracteristica) {
-            this.focus_color = false;
-            this.caracteristica.id = caracteristica.id;
-            this.caracteristica.valor = caracteristica.valor;
-            this.caracteristica.color = caracteristica.color;
-            this.caracteristica.grupo.id = caracteristica.grupo.id;
-            this.caracteristica.grupo.nombre = caracteristica.grupo.nombre;
-            $('#editar').modal('show');
-        },
-        eliminarCaracteristica: function eliminarCaracteristica(caracteristica) {
-            this.caracteristica.id = caracteristica.id;
-            this.caracteristica.valor = caracteristica.valor;
-            this.caracteristica.color = caracteristica.color;
-            this.caracteristica.grupo.id = caracteristica.grupo.id;
-            this.caracteristica.grupo.nombre = caracteristica.grupo.nombre;
-            $('#eliminar').modal('show');
-        },
-        guardar: function guardar() {
-            var _this2 = this;
-
-            this.$validator.validateAll("form-crear").then(function (resp) {
-                if (resp) {
-                    $('#crear').modal('hide');
-                    var dataform = new FormData();
-                    dataform.append("grupo_id", _this2.grupo.id);
-                    dataform.append("es_color", _this2.grupo.es_color);
-                    dataform.append("valor", _this2.caracteristica.valor);
-                    dataform.append("color", _this2.caracteristica.color);
-                    __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/caracteristicas/guardar", dataform).then(function (response) {
-                        _this2.obtenercaracteristicas(_this2.grupo_id);
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "success",
-                            title: response.msg
-                        });
-                    }).catch(function (error) {
-                        _this2.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
-                    });
-                } else {
-                    _this2.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
-                }
-            });
-        },
-        actualizar: function actualizar() {
-            var _this3 = this;
-
-            this.$validator.validateAll("form-actualizar").then(function (resp) {
-                if (resp) {
-                    $('#editar').modal('hide');
-                    var dataform = new FormData();
-                    dataform.append("grupo_id", _this3.grupo.id);
-                    dataform.append("es_color", _this3.grupo.es_color);
-                    dataform.append("valor", _this3.caracteristica.valor);
-                    dataform.append("color", _this3.caracteristica.color);
-                    var url = '/caracteristicas/:id/actualizar';
-                    url = url.replace(':id', _this3.caracteristica.id);
-                    __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
-                        _this3.obtenercaracteristicas(_this3.grupo_id);
-                        _this3.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "success",
-                            title: response.msg
-                        });
-                    }).catch(function (error) {
-                        _this3.$swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        }).fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
-                    });
-                } else {
-                    _this3.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
-                }
-            });
-        },
-        eliminar: function eliminar() {
-            var _this4 = this;
-
-            $('#eliminar').modal('hide');
-            var url = '/caracteristicas/:id/eliminar';
-            url = url.replace(':id', this.caracteristica.id);
-            __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
-                _this4.obtenercaracteristicas(_this4.grupo_id);
-                if (response.res == 1) {
-                    _this4.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "success",
-                        title: response.msg
-                    });
-                } else {
-                    _this4.$swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    }).fire({
-                        type: "error",
-                        title: response.msg
-                    });
-                }
-            }).catch(function (error) {
-                _this4.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
-            });
-        },
-        obtenergrupo: function obtenergrupo(id) {
-            var _this5 = this;
-
-            var url = '/grupos/:id/detalles';
-            url = url.replace(':id', id);
-            __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
-                if (response.grupo) {
-                    _this5.grupo = response.grupo;
-                    if (_this5.es_color()) {
-                        _this5.fields = _this5.fields_color;
-                    } else {
-                        _this5.fields = _this5.fields_sin_color;
-                    }
-                } else {
-                    _this5.$router.push({ name: 'no.encontrado' });
-                }
-            }).catch(function (error) {
-                _this5.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
-            });
-        },
-        obtenercaracteristicas: function obtenercaracteristicas(id) {
-            var _this6 = this;
-
-            var url = '/grupo/:id/caracteristicas';
-            url = url.replace(':id', id);
-            __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
-                if (response.caracteristicas) {
-                    _this6.caracteristicas = response.caracteristicas;
-                    _this6.totalRows = _this6.caracteristicas.length;
-                }
-            }).catch(function (error) {
-                _this6.$swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                }).fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
-            });
-        }
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
     }
+  },
+  created: function created() {
+    this.obtenergrupo(this.grupo_id); //obtengo información de un grupo determinado
+    this.obtenercaracteristicas(this.grupo_id); //obtengo las características de un grupo determinado
+  },
+
+  methods: {
+    updateColor: function updateColor(color) {
+      var _color$rgba = color.rgba,
+          r = _color$rgba.r,
+          g = _color$rgba.g,
+          b = _color$rgba.b,
+          a = _color$rgba.a;
+
+      this.caracteristica.color = this.$refs.colorNuevo.modelHex; //guardo en mi variable
+      this.validando(); //valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
+    },
+    changeColor: function changeColor(color) {
+      var _color$rgba2 = color.rgba,
+          r = _color$rgba2.r,
+          g = _color$rgba2.g,
+          b = _color$rgba2.b,
+          a = _color$rgba2.a;
+
+      this.caracteristica.color = this.$refs.color.modelHex; //guardo en mi variable
+      this.validando(); //valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
+    },
+    openSucker: function openSucker(isOpen) {
+      if (isOpen) {
+        // ... canvas be created
+        // this.suckerCanvas = canvas
+        // this.suckerArea = [x1, y1, x2, y2]
+      } else {
+          // this.suckerCanvas && this.suckerCanvas.remove
+        }
+    },
+    es_color: function es_color() {
+      return this.grupo.es_color == 1;
+    },
+    validarcolor: function validarcolor() {
+      if (this.caracteristica.color.length >= 7) {
+        var str = this.caracteristica.color;
+        var res = str.substring(1, this.caracteristica.color.length);
+        if (!this.isHexaColor(res)) {
+          this.caracteristica.color = "#424242";
+        } else {
+          this.caracteristica.color = this.caracteristica.color;
+        }
+      }
+      this.caracteristica.color = this.caracteristica.color.toUpperCase();
+    },
+    validando: function validando() {
+      var str = this.caracteristica.color;
+      var res = str.substring(1, this.caracteristica.color.length);
+      if (!this.isHexaColor(res)) //sino es un hexadecimal asigno un color por defecto
+        {
+          this.caracteristica.color = "#424242".toUpperCase();
+        } else {
+        this.caracteristica.color = this.caracteristica.color.toUpperCase();
+      }
+    },
+    isHexaColor: function isHexaColor(sNum) {
+      return typeof sNum === "string" && sNum.length === 6 && !isNaN(parseInt(sNum, 16));
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    crear: function crear() {
+      this.caracteristica.color = "#424242".toUpperCase();
+      this.caracteristica.valor = '';
+      this.focus_color = false;
+      $('#crear').modal('show');
+    },
+    editar: function editar(caracteristica) {
+      this.focus_color = false;
+      this.caracteristica.id = caracteristica.id;
+      this.caracteristica.valor = caracteristica.valor;
+      this.caracteristica.color = caracteristica.color;
+      this.caracteristica.grupo.id = caracteristica.grupo.id;
+      this.caracteristica.grupo.nombre = caracteristica.grupo.nombre;
+      $('#editar').modal('show');
+    },
+    eliminarCaracteristica: function eliminarCaracteristica(caracteristica) {
+      this.caracteristica.id = caracteristica.id;
+      this.caracteristica.valor = caracteristica.valor;
+      this.caracteristica.color = caracteristica.color;
+      this.caracteristica.grupo.id = caracteristica.grupo.id;
+      this.caracteristica.grupo.nombre = caracteristica.grupo.nombre;
+      $('#eliminar').modal('show');
+    },
+    guardar: function guardar() {
+      var _this2 = this;
+
+      this.$validator.validateAll("form-crear").then(function (resp) {
+        if (resp) {
+          $('#crear').modal('hide');
+          var dataform = new FormData();
+          dataform.append("grupo_id", _this2.grupo.id);
+          dataform.append("es_color", _this2.grupo.es_color);
+          dataform.append("valor", _this2.caracteristica.valor);
+          dataform.append("color", _this2.caracteristica.color);
+          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/caracteristicas/guardar", dataform).then(function (response) {
+            _this2.obtenercaracteristicas(_this2.grupo_id);
+            _this2.mensaje("success", response.msg);
+          }).catch(function (error) {
+            _this2.mensaje("error", "Ha ocurrido un error inesperado");
+          });
+        } else {
+          _this2.mensaje("warning", "Por favor verifique los campos");
+        }
+      });
+    },
+    actualizar: function actualizar() {
+      var _this3 = this;
+
+      this.$validator.validateAll("form-actualizar").then(function (resp) {
+        if (resp) {
+          $('#editar').modal('hide');
+          var dataform = new FormData();
+          dataform.append("grupo_id", _this3.grupo.id);
+          dataform.append("es_color", _this3.grupo.es_color);
+          dataform.append("valor", _this3.caracteristica.valor);
+          dataform.append("color", _this3.caracteristica.color);
+          var url = '/caracteristicas/:id/actualizar';
+          url = url.replace(':id', _this3.caracteristica.id);
+          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
+            _this3.obtenercaracteristicas(_this3.grupo_id);
+            _this3.mensaje("success", response.msg);
+          }).catch(function (error) {
+            _this3.mensaje("error", "Ha ocurrido un error inesperado");
+          });
+        } else {
+          _this3.mensaje("warning", "Por favor verifique los campos");
+        }
+      });
+    },
+    eliminar: function eliminar() {
+      var _this4 = this;
+
+      $('#eliminar').modal('hide');
+      var url = '/caracteristicas/:id/eliminar';
+      url = url.replace(':id', this.caracteristica.id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        _this4.obtenercaracteristicas(_this4.grupo_id);
+        if (response.res == 1) {
+          _this4.mensaje("success", response.msg);
+        } else {
+          _this4.mensaje("error", response.msg);
+        }
+      }).catch(function (error) {
+        _this4.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    obtenergrupo: function obtenergrupo(id) {
+      var _this5 = this;
+
+      var url = '/grupos/:id/detalles';
+      url = url.replace(':id', id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        if (response.grupo) {
+          _this5.grupo = response.grupo;
+          if (_this5.es_color()) {
+            _this5.fields = _this5.fields_color;
+          } else {
+            _this5.fields = _this5.fields_sin_color;
+          }
+        } else {
+          _this5.$router.push({ name: 'no.encontrado' });
+        }
+      }).catch(function (error) {
+        _this5.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    obtenercaracteristicas: function obtenercaracteristicas(id) {
+      var _this6 = this;
+
+      var url = '/grupo/:id/caracteristicas';
+      url = url.replace(':id', id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        if (response.caracteristicas) {
+          _this6.caracteristicas = response.caracteristicas;
+          _this6.totalRows = _this6.caracteristicas.length;
+        }
+      }).catch(function (error) {
+        _this6.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    mensaje: function mensaje(tipo, _mensaje) {
+      this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      }).fire({
+        type: tipo,
+        title: _mensaje
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -100953,7 +100855,8 @@ var render = function() {
                                     expression: "caracteristica.color"
                                   }
                                 ],
-                                staticClass: "form-control input-sm",
+                                staticClass:
+                                  "form-control input-sm input-rounded",
                                 class: { "error-input": !_vm.esHexadecimal },
                                 attrs: {
                                   type: "text",
@@ -101218,7 +101121,8 @@ var render = function() {
                                     expression: "caracteristica.color"
                                   }
                                 ],
-                                staticClass: "form-control input-sm",
+                                staticClass:
+                                  "form-control input-sm input-rounded",
                                 class: { "error-input": !_vm.esHexadecimal },
                                 attrs: {
                                   type: "text",
@@ -105920,7 +105824,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:15px; \n  height:15px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.publicado\n{\n  color: #43A047 !important;\n}\n.no-publicado\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:15px; \n  height:15px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.sin-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #dc3545;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n}\n.publicado\n{\n  color: #43A047 !important;\n}\n.no-publicado\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
 
 // exports
 
@@ -105937,6 +105841,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -106535,9 +106448,7 @@ var render = function() {
                         : [
                             _c(
                               "span",
-                              {
-                                staticClass: "badge badge-pill capsula-rubros"
-                              },
+                              { staticClass: "badge badge-pill sin-rubros" },
                               [_vm._v("SIN RUBRO")]
                             )
                           ]

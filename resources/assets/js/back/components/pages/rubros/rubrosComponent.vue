@@ -315,45 +315,15 @@
           this.todos();
           if(response.res==1)
           {
-            this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "success",
-              title: response.msg
-            });
+            this.mensaje("success",response.msg);
           }
           else
           {
-            this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "error",
-              title: response.msg
-            });
+            this.mensaje("error",response.msg);
           }
         })
         .catch(error => {
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "error",
-            title: "Ha ocurrido un error inesperado"
-          });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         });
       },
       guardar()
@@ -370,45 +340,15 @@
             .then(response => 
             {
               this.todos();
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "success",
-                title: response.msg
-              });
+              this.mensaje("success",response.msg);
             })
             .catch(error => {
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-              });
+              this.mensaje("error","Ha ocurrido un error inesperado");
             });
           }
           else
           {
-            this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "warning",
-              title: "Por favor verifique los campos"
-            });
+            this.mensaje("warning","Por favor verifique los campos");
           }
         });
       },
@@ -428,45 +368,15 @@
             .then(response => 
             {
               this.todos();
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "success",
-                title: response.msg
-              });
+              this.mensaje("success",response.msg);
             })
             .catch(error => {
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-              });
+              this.mensaje("error","Ha ocurrido un error inesperado");
             });
           }
           else
           {
-            this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "warning",
-              title: "Por favor verifique los campos"
-            });
+            this.mensaje("warning","Por favor verifique los campos");
           }
         });
       },
@@ -481,6 +391,16 @@
           }
         })
         .catch(error => {
+          this.mensaje("error","Ha ocurrido un error inesperado");
+        }); 
+      },
+      fechayhora(fecha)
+      {
+        var dia = new Date (fecha);
+        return moment(dia).format('DD/MM/YYYY hh:mm A');
+      },
+      mensaje(tipo,mensaje)
+      {
           this.$swal
           .mixin({
             toast: true,
@@ -489,15 +409,9 @@
             timer: 4000
           })
           .fire({
-            type: "error",
-            title: "Ha ocurrido un error inesperado"
+            type: tipo,
+            title: mensaje
           });
-        }); 
-      },
-      fechayhora(fecha)
-      {
-        var dia = new Date (fecha);
-        return moment(dia).format('DD/MM/YYYY hh:mm A');
       }
     }
   }

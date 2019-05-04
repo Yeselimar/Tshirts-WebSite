@@ -26,6 +26,15 @@
     color: #fff !important;
     margin-right: 4px;
   }
+  .sin-rubros
+  {
+    height: 15px;
+    font-size: 11px;
+    background-color: #dc3545;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff !important;
+  }
   .publicado
   {
     color: #43A047 !important; 
@@ -152,7 +161,7 @@
                   </template>
                 </template>
                 <template v-else>
-                  <span class="badge badge-pill capsula-rubros">SIN RUBRO</span>
+                  <span class="badge badge-pill sin-rubros">SIN RUBRO</span>
                 </template>
               </template>
 

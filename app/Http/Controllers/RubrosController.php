@@ -14,6 +14,12 @@ class RubrosController extends Controller
     	return response()->json(['rubros' => $rubros]);
     }
 
+    public function misrubros()
+    {
+        $rubros = Rubro::all();
+        return response()->json(['rubros' => $rubros]);//si no hay rubros se envía vacío
+    }
+
     public function store(Request $request)
     {
         $request->validate([

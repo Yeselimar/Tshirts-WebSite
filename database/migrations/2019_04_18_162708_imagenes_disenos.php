@@ -8,7 +8,7 @@ class ImagenesDisenos extends Migration
 {
     public function up()
     {
-        Schema::create('imagenes_disenos', function (Blueprint $table)
+        Schema::create('imagenes_predisenadas', function (Blueprint $table)//Aquí tambien se gaurdan las imágenes de los diseños que suben los usuarios
         {
             $table->increments('id');
 
@@ -16,7 +16,7 @@ class ImagenesDisenos extends Migration
 
             $table->text('nombre');
 
-            $table->unsignedInteger('categoria_id');
+            $table->unsignedInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
 
             $table->unsignedInteger('user_id');
@@ -28,6 +28,6 @@ class ImagenesDisenos extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('imagenes_disenos');
+        Schema::dropIfExists('imagenes_predisenadas');
     }
 }

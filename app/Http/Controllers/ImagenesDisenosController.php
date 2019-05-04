@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ImagenDiseno;
+use File;
+use Illuminate\Support\Facades\Auth;
+
 
 class ImagenesDisenosController extends Controller
 {
@@ -14,9 +17,27 @@ class ImagenesDisenosController extends Controller
     	return response()->json(['imagenes' => $imagenes]); 
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $imagen = new ImagenDiseno;
+        $imagen->nombre = $request->nombre;
+        $imagen->categoria_id = $request->categoria_id;
 
+        $nombre = null;
+        if($request->imagen)
+        {
+            $archivo= $request->imagen;
+            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+            $ruta = public_path().'/'.ImagenDiseno::carpeta();
+            $archivo->move($ruta, $nombre);
+
+        }
+        
+        $imagen->url = ImagenDiseno::carpeta().$nombre;
+        $imagen->user_id = Auth::user()->id;
+        $imagen->save();
+
+        return response()->json(['msg'=>'El imágen prediseñada fue creada exitosamente','imagen' => $imagen]);
     }
 
     public function update($id)
