@@ -95518,6 +95518,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -95623,21 +95624,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.imagen.valida = false;
       }
     },
-    guardar: function guardar(event) {
+    guardar: function guardar() {
       var _this2 = this;
 
       console.log("imagen guardada");
-      console.log(this.imagen.url);
+      //console.log(this.imagen.url);
+      //console.log(event.target.files[0]);
       this.$validator.validateAll("form-crear").then(function (resp) {
         if (resp) {
+          console.log(_this2.imagen.url);
           var dataform = new FormData();
           dataform.append("nombre", _this2.imagen.nombre);
           dataform.append("categoria_id", _this2.imagen.categoria.id);
-          dataform.append("imagen", _this2.imagen.url);
-
+          dataform.append("imagene", _this2.imagen.url);
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/guardar", dataform).then(function (response) {
             _this2.todos();
-            console.log(response.date);
+            console.log(response.hola);
             _this2.mensaje("success", response.msg);
           }).catch(function (error) {
             _this2.mensaje("error", "Ha ocurrido un error inesperado");
@@ -95655,7 +95657,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           });
         }
       });
-      this.limpiar();
+      //this.limpiar();
     },
     editar: function editar() {},
     actualizar: function actualizar() {},
@@ -96094,29 +96096,6 @@ var render = function() {
                           },
                           [_c("i", { staticClass: "fa fa-trash" })]
                         )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "custom-file" }, [
-                    _c("input", {
-                      ref: "file_barna",
-                      staticClass: "custom-file-input input-sm",
-                      attrs: {
-                        type: "file",
-                        id: "imagen_cargar",
-                        name: "imagen_cargar",
-                        accept: "image/*"
-                      },
-                      on: { change: _vm.cargafoto }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "custom-file-label",
-                        attrs: { for: "imagen_cargar" }
-                      },
-                      [_vm._v("Seleccione una imagen")]
-                    )
                   ])
                 ]
               )

@@ -19,25 +19,27 @@ class ImagenesDisenosController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
         $imagen = new ImagenDiseno;
         $imagen->nombre = $request->nombre;
         $imagen->categoria_id = $request->categoria_id;
 
         $nombre = null;
-        if($request->file('imagen'))
+        $hola = null;
+        if($request->imagene)
         {
-            $archivo= $request->file('imagen');
+            $hola = "error backend";
+            $archivo= $request->imagene;
             $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
             $ruta = public_path().'/'.ImagenDiseno::carpeta();
             $archivo->move($ruta, $nombre);
-
         }
         
         $imagen->url = ImagenDiseno::carpeta().$nombre;
         $imagen->user_id = Auth::user()->id;
         $imagen->save();
 
-        return response()->json(['msg'=>'El imágen prediseñada fue creada exitosamente','imagen' => $imagen]);
+        return response()->json(['msg'=>'El imágen prediseñada fue creada exitosamente','imagen' => $imagen,'hola'=>$request->imagene]);
     }
 
     public function update($id)

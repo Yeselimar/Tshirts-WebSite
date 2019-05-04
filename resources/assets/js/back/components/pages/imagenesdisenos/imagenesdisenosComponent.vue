@@ -193,11 +193,12 @@
 
                               <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
                               </div>
-                              
+                              <!--
                               <div class="custom-file">
             							    	<input type="file" ref="file_barna" class="custom-file-input input-sm" id="imagen_cargar" name="imagen_cargar" accept="image/*" @change="cargafoto">
             							    	<label class="custom-file-label" for="imagen_cargar">Seleccione una imagen</label>
             							  	</div>
+                              -->
                           </div>
                       </div>
                   </div>
@@ -340,24 +341,25 @@ export default
           this.imagen.valida = false;
         }
 	    },
-	    guardar(event)
+	    guardar()
 	    {
         console.log("imagen guardada");
-        console.log(this.imagen.url);
+        //console.log(this.imagen.url);
+        //console.log(event.target.files[0]);
 	    	this.$validator.validateAll("form-crear").then(resp => 
         {
           if(resp)
           {
+             console.log(this.imagen.url);
               var dataform = new FormData();
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
-              dataform.append("imagen", this.imagen.url);
-              
+              dataform.append("imagene", this.imagen.url);
               CerService.post("/imagenes-disenos/guardar",dataform)
               .then(response => 
               {
                   this.todos();
-                  console.log(response.date);
+                  console.log(response.hola);
                   this.mensaje("success",response.msg);
               })
               .catch(error => {
@@ -380,7 +382,7 @@ export default
               });
           }
         });
-        this.limpiar();
+        //this.limpiar();
 	    },
 	    editar()
 	    {
