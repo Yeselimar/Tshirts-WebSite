@@ -66,6 +66,8 @@ Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy'
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
+Route::post('/articulo/guardar','ArticulosController@save')->name('articulos.guardar');
+
 
 //Imágenes Diseños
 Route::post('/imagenes-disenos/todos','ImagenesDisenosController@index')->name('imagenes.disenos.todos');

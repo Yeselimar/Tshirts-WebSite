@@ -1270,7 +1270,7 @@ module.exports = function normalizeComponent (
 "use strict";
 
 
-var bind = __webpack_require__(43);
+var bind = __webpack_require__(44);
 var isBuffer = __webpack_require__(75);
 
 /*global toString:true*/
@@ -18067,10 +18067,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(44);
+    adapter = __webpack_require__(45);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(44);
+    adapter = __webpack_require__(45);
   }
   return adapter;
 }
@@ -18148,681 +18148,6 @@ module.exports = defaults;
 /* 38 */,
 /* 39 */,
 /* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Util_1 = __webpack_require__(7);
-var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(12);
-var DragAndDrop_1 = __webpack_require__(57);
-var Validators_1 = __webpack_require__(5);
-var Container = (function (_super) {
-    __extends(Container, _super);
-    function Container() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.children = new Util_1.Collection();
-        return _this;
-    }
-    Container.prototype.getChildren = function (filterFunc) {
-        if (!filterFunc) {
-            return this.children;
-        }
-        var results = new Util_1.Collection();
-        this.children.each(function (child) {
-            if (filterFunc(child)) {
-                results.push(child);
-            }
-        });
-        return results;
-    };
-    Container.prototype.hasChildren = function () {
-        return this.getChildren().length > 0;
-    };
-    Container.prototype.removeChildren = function () {
-        var child;
-        for (var i = 0; i < this.children.length; i++) {
-            child = this.children[i];
-            child.parent = null;
-            child.index = 0;
-            child.remove();
-        }
-        this.children = new Util_1.Collection();
-        return this;
-    };
-    Container.prototype.destroyChildren = function () {
-        var child;
-        for (var i = 0; i < this.children.length; i++) {
-            child = this.children[i];
-            child.parent = null;
-            child.index = 0;
-            child.destroy();
-        }
-        this.children = new Util_1.Collection();
-        return this;
-    };
-    Container.prototype.add = function (child) {
-        if (arguments.length > 1) {
-            for (var i = 0; i < arguments.length; i++) {
-                this.add(arguments[i]);
-            }
-            return this;
-        }
-        if (child.getParent()) {
-            child.moveTo(this);
-            return this;
-        }
-        var children = this.children;
-        this._validateAdd(child);
-        child.index = children.length;
-        child.parent = this;
-        children.push(child);
-        this._fire('add', {
-            child: child
-        });
-        if (child.isDragging()) {
-            DragAndDrop_1.DD.anim.setLayers(child.getLayer());
-        }
-        return this;
-    };
-    Container.prototype.destroy = function () {
-        if (this.hasChildren()) {
-            this.destroyChildren();
-        }
-        _super.prototype.destroy.call(this);
-        return this;
-    };
-    Container.prototype.find = function (selector) {
-        return this._generalFind(selector, false);
-    };
-    Container.prototype.get = function (selector) {
-        Util_1.Util.warn('collection.get() method is deprecated. Please use collection.find() instead.');
-        return this.find(selector);
-    };
-    Container.prototype.findOne = function (selector) {
-        var result = this._generalFind(selector, true);
-        return result.length > 0 ? result[0] : undefined;
-    };
-    Container.prototype._generalFind = function (selector, findOne) {
-        var retArr = [];
-        this._descendants(function (node) {
-            var valid = node._isMatch(selector);
-            if (valid) {
-                retArr.push(node);
-            }
-            if (valid && findOne) {
-                return true;
-            }
-            return false;
-        });
-        return Util_1.Collection.toCollection(retArr);
-    };
-    Container.prototype._descendants = function (fn) {
-        var shouldStop = false;
-        for (var i = 0; i < this.children.length; i++) {
-            var child = this.children[i];
-            shouldStop = fn(child);
-            if (shouldStop) {
-                return true;
-            }
-            if (!child.hasChildren()) {
-                continue;
-            }
-            shouldStop = child._descendants(fn);
-            if (shouldStop) {
-                return true;
-            }
-        }
-        return false;
-    };
-    Container.prototype.toObject = function () {
-        var obj = Node_1.Node.prototype.toObject.call(this);
-        obj.children = [];
-        var children = this.getChildren();
-        var len = children.length;
-        for (var n = 0; n < len; n++) {
-            var child = children[n];
-            obj.children.push(child.toObject());
-        }
-        return obj;
-    };
-    Container.prototype._getDescendants = function (arr) {
-        var retArr = [];
-        var len = arr.length;
-        for (var n = 0; n < len; n++) {
-            var node = arr[n];
-            if (this.isAncestorOf(node)) {
-                retArr.push(node);
-            }
-        }
-        return retArr;
-    };
-    Container.prototype.isAncestorOf = function (node) {
-        var parent = node.getParent();
-        while (parent) {
-            if (parent._id === this._id) {
-                return true;
-            }
-            parent = parent.getParent();
-        }
-        return false;
-    };
-    Container.prototype.clone = function (obj) {
-        var node = Node_1.Node.prototype.clone.call(this, obj);
-        this.getChildren().each(function (no) {
-            node.add(no.clone());
-        });
-        return node;
-    };
-    Container.prototype.getAllIntersections = function (pos) {
-        var arr = [];
-        this.find('Shape').each(function (shape) {
-            if (shape.isVisible() && shape.intersects(pos)) {
-                arr.push(shape);
-            }
-        });
-        return arr;
-    };
-    Container.prototype._setChildrenIndices = function () {
-        this.children.each(function (child, n) {
-            child.index = n;
-        });
-    };
-    Container.prototype.drawScene = function (can, top, caching) {
-        var layer = this.getLayer(), canvas = can || (layer && layer.getCanvas()), context = canvas && canvas.getContext(), cachedCanvas = this._getCanvasCache(), cachedSceneCanvas = cachedCanvas && cachedCanvas.scene;
-        if (this.isVisible() || caching) {
-            if (!caching && cachedSceneCanvas) {
-                context.save();
-                layer._applyTransform(this, context, top);
-                this._drawCachedSceneCanvas(context);
-                context.restore();
-            }
-            else {
-                this._drawChildren(canvas, 'drawScene', top, false, caching, caching);
-            }
-        }
-        return this;
-    };
-    Container.prototype.drawHit = function (can, top, caching) {
-        var layer = this.getLayer(), canvas = can || (layer && layer.hitCanvas), context = canvas && canvas.getContext(), cachedCanvas = this._getCanvasCache(), cachedHitCanvas = cachedCanvas && cachedCanvas.hit;
-        if (this.shouldDrawHit(canvas) || caching) {
-            if (!caching && cachedHitCanvas) {
-                context.save();
-                layer._applyTransform(this, context, top);
-                this._drawCachedHitCanvas(context);
-                context.restore();
-            }
-            else {
-                this._drawChildren(canvas, 'drawHit', top, false, caching, caching);
-            }
-        }
-        return this;
-    };
-    Container.prototype._drawChildren = function (canvas, drawMethod, top, caching, skipBuffer, skipComposition) {
-        var layer = this.getLayer(), context = canvas && canvas.getContext(), clipWidth = this.clipWidth(), clipHeight = this.clipHeight(), clipFunc = this.clipFunc(), hasClip = (clipWidth && clipHeight) || clipFunc, clipX, clipY;
-        if (hasClip && layer) {
-            context.save();
-            var transform = this.getAbsoluteTransform(top);
-            var m = transform.getMatrix();
-            context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
-            context.beginPath();
-            if (clipFunc) {
-                clipFunc.call(this, context, this);
-            }
-            else {
-                clipX = this.clipX();
-                clipY = this.clipY();
-                context.rect(clipX, clipY, clipWidth, clipHeight);
-            }
-            context.clip();
-            m = transform
-                .copy()
-                .invert()
-                .getMatrix();
-            context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
-        }
-        var hasComposition = this.globalCompositeOperation() !== 'source-over' && !skipComposition;
-        if (hasComposition && layer) {
-            context.save();
-            context._applyGlobalCompositeOperation(this);
-        }
-        this.children.each(function (child) {
-            child[drawMethod](canvas, top, caching, skipBuffer);
-        });
-        if (hasComposition && layer) {
-            context.restore();
-        }
-        if (hasClip && layer) {
-            context.restore();
-        }
-    };
-    Container.prototype.shouldDrawHit = function (canvas) {
-        var layer = this.getLayer();
-        var layerUnderDrag = DragAndDrop_1.DD.isDragging && DragAndDrop_1.DD.anim.getLayers().indexOf(layer) !== -1;
-        return ((canvas && canvas.isCache) ||
-            (layer && layer.hitGraphEnabled() && this.isVisible() && !layerUnderDrag));
-    };
-    Container.prototype.getClientRect = function (attrs) {
-        attrs = attrs || {};
-        var skipTransform = attrs.skipTransform;
-        var relativeTo = attrs.relativeTo;
-        var minX, minY, maxX, maxY;
-        var selfRect = {
-            x: Infinity,
-            y: Infinity,
-            width: 0,
-            height: 0
-        };
-        var that = this;
-        this.children.each(function (child) {
-            if (!child.visible()) {
-                return;
-            }
-            var rect = child.getClientRect({
-                relativeTo: that,
-                skipShadow: attrs.skipShadow,
-                skipStroke: attrs.skipStroke
-            });
-            if (rect.width === 0 && rect.height === 0) {
-                return;
-            }
-            if (minX === undefined) {
-                minX = rect.x;
-                minY = rect.y;
-                maxX = rect.x + rect.width;
-                maxY = rect.y + rect.height;
-            }
-            else {
-                minX = Math.min(minX, rect.x);
-                minY = Math.min(minY, rect.y);
-                maxX = Math.max(maxX, rect.x + rect.width);
-                maxY = Math.max(maxY, rect.y + rect.height);
-            }
-        });
-        var shapes = this.find('Shape');
-        var hasVisible = false;
-        for (var i = 0; i < shapes.length; i++) {
-            var shape = shapes[i];
-            if (shape._isVisible(this)) {
-                hasVisible = true;
-                break;
-            }
-        }
-        if (hasVisible) {
-            selfRect = {
-                x: minX,
-                y: minY,
-                width: maxX - minX,
-                height: maxY - minY
-            };
-        }
-        else {
-            selfRect = {
-                x: 0,
-                y: 0,
-                width: 0,
-                height: 0
-            };
-        }
-        if (!skipTransform) {
-            return this._transformedRect(selfRect, relativeTo);
-        }
-        return selfRect;
-    };
-    return Container;
-}(Node_1.Node));
-exports.Container = Container;
-Factory_1.Factory.addComponentsGetterSetter(Container, 'clip', [
-    'x',
-    'y',
-    'width',
-    'height'
-]);
-Factory_1.Factory.addGetterSetter(Container, 'clipX', undefined, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Container, 'clipY', undefined, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Container, 'clipWidth', undefined, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Container, 'clipHeight', undefined, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Container, 'clipFunc');
-Util_1.Collection.mapMethods(Container);
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(8)
-/* script */
-var __vue_script__ = __webpack_require__(293)
-/* template */
-var __vue_template__ = __webpack_require__(294)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/layouts/migajasComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-41c87fd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-41c87fd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(74);
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function bind(fn, thisArg) {
-  return function wrap() {
-    var args = new Array(arguments.length);
-    for (var i = 0; i < args.length; i++) {
-      args[i] = arguments[i];
-    }
-    return fn.apply(thisArg, args);
-  };
-};
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(11);
-var settle = __webpack_require__(78);
-var buildURL = __webpack_require__(80);
-var parseHeaders = __webpack_require__(81);
-var isURLSameOrigin = __webpack_require__(82);
-var createError = __webpack_require__(45);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(83);
-
-module.exports = function xhrAdapter(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
-    var requestData = config.data;
-    var requestHeaders = config.headers;
-
-    if (utils.isFormData(requestData)) {
-      delete requestHeaders['Content-Type']; // Let the browser set it
-    }
-
-    var request = new XMLHttpRequest();
-    var loadEvent = 'onreadystatechange';
-    var xDomain = false;
-
-    // For IE 8/9 CORS support
-    // Only supports POST and GET calls and doesn't returns the response headers.
-    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
-        typeof window !== 'undefined' &&
-        window.XDomainRequest && !('withCredentials' in request) &&
-        !isURLSameOrigin(config.url)) {
-      request = new window.XDomainRequest();
-      loadEvent = 'onload';
-      xDomain = true;
-      request.onprogress = function handleProgress() {};
-      request.ontimeout = function handleTimeout() {};
-    }
-
-    // HTTP basic authentication
-    if (config.auth) {
-      var username = config.auth.username || '';
-      var password = config.auth.password || '';
-      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
-    }
-
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
-
-    // Set the request timeout in MS
-    request.timeout = config.timeout;
-
-    // Listen for ready state
-    request[loadEvent] = function handleLoad() {
-      if (!request || (request.readyState !== 4 && !xDomain)) {
-        return;
-      }
-
-      // The request errored out and we didn't get a response, this will be
-      // handled by onerror instead
-      // With one exception: request that using file: protocol, most browsers
-      // will return status as 0 even though it's a successful request
-      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
-        return;
-      }
-
-      // Prepare the response
-      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      var response = {
-        data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
-        status: request.status === 1223 ? 204 : request.status,
-        statusText: request.status === 1223 ? 'No Content' : request.statusText,
-        headers: responseHeaders,
-        config: config,
-        request: request
-      };
-
-      settle(resolve, reject, response);
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle low level network errors
-    request.onerror = function handleError() {
-      // Real errors are hidden from us by the browser
-      // onerror should only fire if it's a network error
-      reject(createError('Network Error', config, null, request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Handle timeout
-    request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
-        request));
-
-      // Clean up request
-      request = null;
-    };
-
-    // Add xsrf header
-    // This is only done if running in a standard browser environment.
-    // Specifically not if we're in a web worker, or react-native.
-    if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(84);
-
-      // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
-          cookies.read(config.xsrfCookieName) :
-          undefined;
-
-      if (xsrfValue) {
-        requestHeaders[config.xsrfHeaderName] = xsrfValue;
-      }
-    }
-
-    // Add headers to the request
-    if ('setRequestHeader' in request) {
-      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
-          // Remove Content-Type if data is undefined
-          delete requestHeaders[key];
-        } else {
-          // Otherwise add header to the request
-          request.setRequestHeader(key, val);
-        }
-      });
-    }
-
-    // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
-    }
-
-    // Add responseType to request if needed
-    if (config.responseType) {
-      try {
-        request.responseType = config.responseType;
-      } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
-        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
-        if (config.responseType !== 'json') {
-          throw e;
-        }
-      }
-    }
-
-    // Handle progress if needed
-    if (typeof config.onDownloadProgress === 'function') {
-      request.addEventListener('progress', config.onDownloadProgress);
-    }
-
-    // Not all browsers support upload events
-    if (typeof config.onUploadProgress === 'function' && request.upload) {
-      request.upload.addEventListener('progress', config.onUploadProgress);
-    }
-
-    if (config.cancelToken) {
-      // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
-        if (!request) {
-          return;
-        }
-
-        request.abort();
-        reject(cancel);
-        // Clean up request
-        request = null;
-      });
-    }
-
-    if (requestData === undefined) {
-      requestData = null;
-    }
-
-    // Send the request
-    request.send(requestData);
-  });
-};
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var enhanceError = __webpack_require__(79);
-
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- * @returns {Error} The created error.
- */
-module.exports = function createError(message, config, code, request, response) {
-  var error = new Error(message);
-  return enhanceError(error, config, code, request, response);
-};
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isCancel(value) {
-  return !!(value && value.__CANCEL__);
-};
-
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * A `Cancel` is an object that is thrown when an operation is canceled.
- *
- * @class
- * @param {string=} message The message.
- */
-function Cancel(message) {
-  this.message = message;
-}
-
-Cancel.prototype.toString = function toString() {
-  return 'Cancel' + (this.message ? ': ' + this.message : '');
-};
-
-Cancel.prototype.__CANCEL__ = true;
-
-module.exports = Cancel;
-
-
-/***/ }),
-/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -19181,6 +18506,681 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Util_1 = __webpack_require__(7);
+var Factory_1 = __webpack_require__(4);
+var Node_1 = __webpack_require__(12);
+var DragAndDrop_1 = __webpack_require__(57);
+var Validators_1 = __webpack_require__(5);
+var Container = (function (_super) {
+    __extends(Container, _super);
+    function Container() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.children = new Util_1.Collection();
+        return _this;
+    }
+    Container.prototype.getChildren = function (filterFunc) {
+        if (!filterFunc) {
+            return this.children;
+        }
+        var results = new Util_1.Collection();
+        this.children.each(function (child) {
+            if (filterFunc(child)) {
+                results.push(child);
+            }
+        });
+        return results;
+    };
+    Container.prototype.hasChildren = function () {
+        return this.getChildren().length > 0;
+    };
+    Container.prototype.removeChildren = function () {
+        var child;
+        for (var i = 0; i < this.children.length; i++) {
+            child = this.children[i];
+            child.parent = null;
+            child.index = 0;
+            child.remove();
+        }
+        this.children = new Util_1.Collection();
+        return this;
+    };
+    Container.prototype.destroyChildren = function () {
+        var child;
+        for (var i = 0; i < this.children.length; i++) {
+            child = this.children[i];
+            child.parent = null;
+            child.index = 0;
+            child.destroy();
+        }
+        this.children = new Util_1.Collection();
+        return this;
+    };
+    Container.prototype.add = function (child) {
+        if (arguments.length > 1) {
+            for (var i = 0; i < arguments.length; i++) {
+                this.add(arguments[i]);
+            }
+            return this;
+        }
+        if (child.getParent()) {
+            child.moveTo(this);
+            return this;
+        }
+        var children = this.children;
+        this._validateAdd(child);
+        child.index = children.length;
+        child.parent = this;
+        children.push(child);
+        this._fire('add', {
+            child: child
+        });
+        if (child.isDragging()) {
+            DragAndDrop_1.DD.anim.setLayers(child.getLayer());
+        }
+        return this;
+    };
+    Container.prototype.destroy = function () {
+        if (this.hasChildren()) {
+            this.destroyChildren();
+        }
+        _super.prototype.destroy.call(this);
+        return this;
+    };
+    Container.prototype.find = function (selector) {
+        return this._generalFind(selector, false);
+    };
+    Container.prototype.get = function (selector) {
+        Util_1.Util.warn('collection.get() method is deprecated. Please use collection.find() instead.');
+        return this.find(selector);
+    };
+    Container.prototype.findOne = function (selector) {
+        var result = this._generalFind(selector, true);
+        return result.length > 0 ? result[0] : undefined;
+    };
+    Container.prototype._generalFind = function (selector, findOne) {
+        var retArr = [];
+        this._descendants(function (node) {
+            var valid = node._isMatch(selector);
+            if (valid) {
+                retArr.push(node);
+            }
+            if (valid && findOne) {
+                return true;
+            }
+            return false;
+        });
+        return Util_1.Collection.toCollection(retArr);
+    };
+    Container.prototype._descendants = function (fn) {
+        var shouldStop = false;
+        for (var i = 0; i < this.children.length; i++) {
+            var child = this.children[i];
+            shouldStop = fn(child);
+            if (shouldStop) {
+                return true;
+            }
+            if (!child.hasChildren()) {
+                continue;
+            }
+            shouldStop = child._descendants(fn);
+            if (shouldStop) {
+                return true;
+            }
+        }
+        return false;
+    };
+    Container.prototype.toObject = function () {
+        var obj = Node_1.Node.prototype.toObject.call(this);
+        obj.children = [];
+        var children = this.getChildren();
+        var len = children.length;
+        for (var n = 0; n < len; n++) {
+            var child = children[n];
+            obj.children.push(child.toObject());
+        }
+        return obj;
+    };
+    Container.prototype._getDescendants = function (arr) {
+        var retArr = [];
+        var len = arr.length;
+        for (var n = 0; n < len; n++) {
+            var node = arr[n];
+            if (this.isAncestorOf(node)) {
+                retArr.push(node);
+            }
+        }
+        return retArr;
+    };
+    Container.prototype.isAncestorOf = function (node) {
+        var parent = node.getParent();
+        while (parent) {
+            if (parent._id === this._id) {
+                return true;
+            }
+            parent = parent.getParent();
+        }
+        return false;
+    };
+    Container.prototype.clone = function (obj) {
+        var node = Node_1.Node.prototype.clone.call(this, obj);
+        this.getChildren().each(function (no) {
+            node.add(no.clone());
+        });
+        return node;
+    };
+    Container.prototype.getAllIntersections = function (pos) {
+        var arr = [];
+        this.find('Shape').each(function (shape) {
+            if (shape.isVisible() && shape.intersects(pos)) {
+                arr.push(shape);
+            }
+        });
+        return arr;
+    };
+    Container.prototype._setChildrenIndices = function () {
+        this.children.each(function (child, n) {
+            child.index = n;
+        });
+    };
+    Container.prototype.drawScene = function (can, top, caching) {
+        var layer = this.getLayer(), canvas = can || (layer && layer.getCanvas()), context = canvas && canvas.getContext(), cachedCanvas = this._getCanvasCache(), cachedSceneCanvas = cachedCanvas && cachedCanvas.scene;
+        if (this.isVisible() || caching) {
+            if (!caching && cachedSceneCanvas) {
+                context.save();
+                layer._applyTransform(this, context, top);
+                this._drawCachedSceneCanvas(context);
+                context.restore();
+            }
+            else {
+                this._drawChildren(canvas, 'drawScene', top, false, caching, caching);
+            }
+        }
+        return this;
+    };
+    Container.prototype.drawHit = function (can, top, caching) {
+        var layer = this.getLayer(), canvas = can || (layer && layer.hitCanvas), context = canvas && canvas.getContext(), cachedCanvas = this._getCanvasCache(), cachedHitCanvas = cachedCanvas && cachedCanvas.hit;
+        if (this.shouldDrawHit(canvas) || caching) {
+            if (!caching && cachedHitCanvas) {
+                context.save();
+                layer._applyTransform(this, context, top);
+                this._drawCachedHitCanvas(context);
+                context.restore();
+            }
+            else {
+                this._drawChildren(canvas, 'drawHit', top, false, caching, caching);
+            }
+        }
+        return this;
+    };
+    Container.prototype._drawChildren = function (canvas, drawMethod, top, caching, skipBuffer, skipComposition) {
+        var layer = this.getLayer(), context = canvas && canvas.getContext(), clipWidth = this.clipWidth(), clipHeight = this.clipHeight(), clipFunc = this.clipFunc(), hasClip = (clipWidth && clipHeight) || clipFunc, clipX, clipY;
+        if (hasClip && layer) {
+            context.save();
+            var transform = this.getAbsoluteTransform(top);
+            var m = transform.getMatrix();
+            context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
+            context.beginPath();
+            if (clipFunc) {
+                clipFunc.call(this, context, this);
+            }
+            else {
+                clipX = this.clipX();
+                clipY = this.clipY();
+                context.rect(clipX, clipY, clipWidth, clipHeight);
+            }
+            context.clip();
+            m = transform
+                .copy()
+                .invert()
+                .getMatrix();
+            context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
+        }
+        var hasComposition = this.globalCompositeOperation() !== 'source-over' && !skipComposition;
+        if (hasComposition && layer) {
+            context.save();
+            context._applyGlobalCompositeOperation(this);
+        }
+        this.children.each(function (child) {
+            child[drawMethod](canvas, top, caching, skipBuffer);
+        });
+        if (hasComposition && layer) {
+            context.restore();
+        }
+        if (hasClip && layer) {
+            context.restore();
+        }
+    };
+    Container.prototype.shouldDrawHit = function (canvas) {
+        var layer = this.getLayer();
+        var layerUnderDrag = DragAndDrop_1.DD.isDragging && DragAndDrop_1.DD.anim.getLayers().indexOf(layer) !== -1;
+        return ((canvas && canvas.isCache) ||
+            (layer && layer.hitGraphEnabled() && this.isVisible() && !layerUnderDrag));
+    };
+    Container.prototype.getClientRect = function (attrs) {
+        attrs = attrs || {};
+        var skipTransform = attrs.skipTransform;
+        var relativeTo = attrs.relativeTo;
+        var minX, minY, maxX, maxY;
+        var selfRect = {
+            x: Infinity,
+            y: Infinity,
+            width: 0,
+            height: 0
+        };
+        var that = this;
+        this.children.each(function (child) {
+            if (!child.visible()) {
+                return;
+            }
+            var rect = child.getClientRect({
+                relativeTo: that,
+                skipShadow: attrs.skipShadow,
+                skipStroke: attrs.skipStroke
+            });
+            if (rect.width === 0 && rect.height === 0) {
+                return;
+            }
+            if (minX === undefined) {
+                minX = rect.x;
+                minY = rect.y;
+                maxX = rect.x + rect.width;
+                maxY = rect.y + rect.height;
+            }
+            else {
+                minX = Math.min(minX, rect.x);
+                minY = Math.min(minY, rect.y);
+                maxX = Math.max(maxX, rect.x + rect.width);
+                maxY = Math.max(maxY, rect.y + rect.height);
+            }
+        });
+        var shapes = this.find('Shape');
+        var hasVisible = false;
+        for (var i = 0; i < shapes.length; i++) {
+            var shape = shapes[i];
+            if (shape._isVisible(this)) {
+                hasVisible = true;
+                break;
+            }
+        }
+        if (hasVisible) {
+            selfRect = {
+                x: minX,
+                y: minY,
+                width: maxX - minX,
+                height: maxY - minY
+            };
+        }
+        else {
+            selfRect = {
+                x: 0,
+                y: 0,
+                width: 0,
+                height: 0
+            };
+        }
+        if (!skipTransform) {
+            return this._transformedRect(selfRect, relativeTo);
+        }
+        return selfRect;
+    };
+    return Container;
+}(Node_1.Node));
+exports.Container = Container;
+Factory_1.Factory.addComponentsGetterSetter(Container, 'clip', [
+    'x',
+    'y',
+    'width',
+    'height'
+]);
+Factory_1.Factory.addGetterSetter(Container, 'clipX', undefined, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Container, 'clipY', undefined, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Container, 'clipWidth', undefined, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Container, 'clipHeight', undefined, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Container, 'clipFunc');
+Util_1.Collection.mapMethods(Container);
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(293)
+/* template */
+var __vue_template__ = __webpack_require__(294)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/layouts/migajasComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-41c87fd8", Component.options)
+  } else {
+    hotAPI.reload("data-v-41c87fd8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(74);
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(11);
+var settle = __webpack_require__(78);
+var buildURL = __webpack_require__(80);
+var parseHeaders = __webpack_require__(81);
+var isURLSameOrigin = __webpack_require__(82);
+var createError = __webpack_require__(46);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(83);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if ("development" !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(84);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(79);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19326,11 +19326,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost/barna/barna/public/',
+        base: 'http://localhost:8000/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/barna/barna/public/'
+        base: '/'
     }
 });
 
@@ -52220,7 +52220,7 @@ module.exports = function(module) {
 
 
 var utils = __webpack_require__(11);
-var bind = __webpack_require__(43);
+var bind = __webpack_require__(44);
 var Axios = __webpack_require__(76);
 var defaults = __webpack_require__(36);
 
@@ -52255,9 +52255,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(47);
+axios.Cancel = __webpack_require__(48);
 axios.CancelToken = __webpack_require__(90);
-axios.isCancel = __webpack_require__(46);
+axios.isCancel = __webpack_require__(47);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -52410,7 +52410,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(45);
+var createError = __webpack_require__(46);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -52845,7 +52845,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(11);
 var transformData = __webpack_require__(87);
-var isCancel = __webpack_require__(46);
+var isCancel = __webpack_require__(47);
 var defaults = __webpack_require__(36);
 var isAbsoluteURL = __webpack_require__(88);
 var combineURLs = __webpack_require__(89);
@@ -53005,7 +53005,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(47);
+var Cancel = __webpack_require__(48);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -65374,7 +65374,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(48)(content, options);
+var update = __webpack_require__(40)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -65520,7 +65520,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var Global_1 = __webpack_require__(6);
 var Group = (function (_super) {
     __extends(Group, _super);
@@ -66736,7 +66736,7 @@ return Promise$1;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(42);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(50);
 
@@ -70031,7 +70031,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var Node_1 = __webpack_require__(12);
 var Factory_1 = __webpack_require__(4);
 var Canvas_1 = __webpack_require__(49);
@@ -71587,7 +71587,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(42);
+window.axios = __webpack_require__(43);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -81555,7 +81555,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Global_1 = __webpack_require__(6);
 var Util_1 = __webpack_require__(7);
 var Node_1 = __webpack_require__(12);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var Stage_1 = __webpack_require__(218);
 var Layer_1 = __webpack_require__(219);
 var FastLayer_1 = __webpack_require__(220);
@@ -81611,7 +81611,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var Global_1 = __webpack_require__(6);
 var Canvas_1 = __webpack_require__(49);
 var DragAndDrop_1 = __webpack_require__(57);
@@ -82193,7 +82193,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var Factory_1 = __webpack_require__(4);
 var BaseLayer_1 = __webpack_require__(131);
 var Canvas_1 = __webpack_require__(49);
@@ -82371,7 +82371,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
-var Container_1 = __webpack_require__(40);
+var Container_1 = __webpack_require__(41);
 var BaseLayer_1 = __webpack_require__(131);
 var Global_1 = __webpack_require__(6);
 var FastLayer = (function (_super) {
@@ -93090,7 +93090,7 @@ exports.push([module.i, "\n.modal-body .ingresar .input-group {\n  position: rel
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
@@ -94178,7 +94178,7 @@ exports.push([module.i, "\n.texto-rosa-barna {\n  color: #ef7a6e !important;\n}\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
@@ -95138,7 +95138,7 @@ exports.push([module.i, "\n.checkout-form h4\n{\n\tcolor: #3b3b3b !important;\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue__ = __webpack_require__(313);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_procesarcarrito_formularioComponent_vue__);
@@ -95917,7 +95917,7 @@ exports.push([module.i, "\n.col-center\n\t{\n\t\tfloat: none;\n  \t\tmargin-left
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 //
 //
@@ -96399,7 +96399,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_swatches__ = __webpack_require__(327);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_swatches___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_swatches__);
@@ -96997,7 +96997,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(48)(content, options);
+var update = __webpack_require__(40)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -98024,7 +98024,7 @@ exports.push([module.i, "", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__);

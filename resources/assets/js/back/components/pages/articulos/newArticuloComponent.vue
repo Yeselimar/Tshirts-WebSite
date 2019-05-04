@@ -121,33 +121,34 @@
                   <div class="tab-pane active show" id="ajustesbasicos" role="tabpanel">
                     <div class="card-body mt-4">
                       <div class="form-body d-flex justify-content-between flex-column flex-md-row">
-                        <div class="basis-30">
-                          <v-select
-                            placeholder="Seleccione Rubro"
-                            multiple
+                        <div class="basis-46 position-relative ppbb-2">
+                        
+                           <multiselect
                             v-model="selectedRubro"
                             :options="['Mujer','Hombre','Niño','Niña']"
-                          ></v-select>
+                            selectLabel =""
+                            selectedLabel = ""
+                            placeholder="Agregar rubro"
+                            open-direction="bottom"
+                            :multiple="true"
+                            :clearOnSelect="true"
+                            :hideSelected = "true"
+
+                             :class="{'error-input': selectedRubroValidation}"
+
+                            >
+                                <span slot="noResult">
+                                  No se encontraron resultados</span>
+
+                          </multiselect>
+                                      
+                                    <span
+                                            class="error-text"
+                                            v-if="selectedRubroValidation"
+                                    >Campo requerido.</span>
                         </div>
-                        <div class="basis-30" :class="{'basis-15':selectedTipo.toUpperCase() == 'OTROS'}">
-                          <v-select
-                            placeholder="Seleccione Tipo"
-                            v-model="selectedTipo"
-                            :options="['Ropa','Otros']"
-                          ></v-select>
-                        </div>
-                        <div class="basis-15" v-if="selectedTipo.toUpperCase() == 'OTROS'">
-                          <input
-                            name="otros"
-                            id="otros"
-                            type="text"
-                            placeholder="Calzado, Tazas..."
-                            class="form-control input-rounded input-sm"
-                            v-model="articulo.otros"
-                            autocomplete="off"
-                          >
-                        </div>
-                        <div class="basis-30">
+                        
+                        <div class="basis-46 position-relative ppbb-2">
                           <input
                             name="marca"
                             id="marca"
@@ -156,36 +157,98 @@
                             class="form-control input-rounded input-sm"
                             v-model="articulo.marca"
                             autocomplete="off"
+                            :class="{'error-input': errors.first('marca','form-ajustes')}"
+                            data-vv-scope="form-ajustes"
+                            v-validate
+                            data-vv-rules="required:true|min:3"
                           >
+                          <span
+                            class="error-text"
+                            v-if="errors.firstByRule('marca', 'required','form-ajustes')"
+                          >Campo requerido.</span>
+                          <span
+                            class="error-text"
+                            v-else-if="errors.firstByRule('marca','min','form-ajustes')"
+                          >Mínimo 3 caracteres.</span>
                         </div>
                       </div>
-                      <div class="align-items-baseline d-flex mt-3 pb-2 div-price">
-                        <label class="mr-2 mb-0">Precio General:</label>
-                        <div class="position-relative basis-17 ppbb-2">
+                      <div class="align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price">
+                        <div class="basis-46 position-relative ppbb-2" :class="{'basis-23':((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')}">
+                         
+                           <multiselect
+                            v-model="selectedTipo"
+                            :options="['Ropa','Otros']"
+                            selectLabel =""
+                            :hideSelected = "true"
+                            selectedLabel = ""
+                            placeholder="Seleccione tipo"
+                            deselectLabel = ""
+                            open-direction="bottom"
+                            :multiple="false"
+                             :class="{'error-input': selectedTipoValidation}"
+
+                            >
+                                <span slot="noResult">
+                                  No se encontraron resultados</span>
+
+                          </multiselect>
+                          
+                           <span
+                              class="error-text"
+                              v-if="selectedTipoValidation"
+                            >Campo requerido.</span>
+                        </div>
+                        <div class="basis-23 position-relative ppbb-2" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')">
                           <input
+                            name="otros"
+                            id="otros"
                             type="text"
-                            id="amount"
-                            name="amount"
-                            spellcheck="false"
-                            placeholder="Ingrese Precio General"
-                            v-model="maskAmount"
-                            v-validate
-                            data-vv-scope="form-ajustes"
-                            data-vv-rules="required|amountvv"
+                            placeholder="Calzado, Tazas..."
                             class="form-control input-rounded input-sm"
+                            v-model="articulo.otros"
                             autocomplete="off"
-                            v-bind:class="{'error-input': errors.first('amount','form-ajustes')}"
-                            @keyup="setPaymentAmount()"
-                            v-money="money"
+                            :class="{'error-input': errors.first('otros','form-ajustes')}"
+                            data-vv-scope="form-ajustes"
+                            v-validate
+                            data-vv-rules="required:true|min:3"
                           >
-                          <p
+                          <span
                             class="error-text"
-                            v-if="errors.firstByRule('amount', 'required', 'form-ajustes')"
-                          >Requerido</p>
-                          <p
+                            v-if="errors.firstByRule('otros', 'required','form-ajustes')"
+                          >Campo requerido.</span>
+                          <span
                             class="error-text"
-                            v-else-if="errors.firstByRule('amount', 'amountvv', 'form-ajustes')"
-                          >Monto Invalido</p>
+                            v-else-if="errors.firstByRule('otros','min','form-ajustes')"
+                          >Mínimo 3 caracteres.</span>
+                        </div>
+                        <div class="basis-46 d-flex align-items-baseline">
+                          <label class="mr-2 mb-0">Precio General:</label>
+                          <div class="position-relative ppbb-2">
+                            <input
+                              type="text"
+                              id="amount"
+                              name="amount"
+                              spellcheck="false"
+                              placeholder="Ingrese Precio General"
+                              v-model="maskAmount"
+                              v-validate
+                              data-vv-scope="form-ajustes"
+                              data-vv-rules="required|amountvv"
+                              class="form-control input-rounded input-sm"
+                              autocomplete="off"
+                              v-bind:class="{'error-input': errors.first('amount','form-ajustes')}"
+                              @keyup="setPaymentAmount()"
+                              v-money="money"
+                            >
+                            <p
+                              class="error-text"
+                              v-if="errors.firstByRule('amount', 'required', 'form-ajustes')"
+                            >Requerido</p>
+                            <p
+                              class="error-text"
+                              v-else-if="errors.firstByRule('amount', 'amountvv', 'form-ajustes')"
+                            >Monto Invalido</p>
+                          </div>
                         </div>
                       </div>
                       <!--subir imagenes -->
@@ -235,13 +298,65 @@
                       <!--end subir imagenes -->
                     </div>
                   </div>
-                  <!--second tab-->
-                  <div class="tab-pane" id="disponibilidad" role="tabpanel">Como</div>
+                  <!--second tab (Disponibilidad)-->
+                  <div class="tab-pane" id="disponibilidad" role="tabpanel">
+                    <div class="card-body mt-4" >
+                      <div class="form-body d-flex justify-content-between flex-column flex-md-row">
+                        <div class="basis-46 position-relative ppbb-2">
+                          <multiselect
+                            v-model="selectedTallas"
+                            :options="['XL','M','L','S','SS']"
+                            selectLabel =""
+                            selectedLabel = ""
+                            placeholder="Agregar talla"
+                            deselectLabel = ""
+                            open-direction="bottom"
+                            :multiple="true"
+                            :hideSelected = "true"
+                            :clearOnSelect="true"
+
+                            >
+                                <span slot="noResult">
+                                  No se encontraron resultados</span>
+
+                          </multiselect>
+                        </div>
+                        <div class="basis-46 position-relative ppbb-2">
+                          <multiselect
+                            v-model="selectedColores"
+                            :options="optionColors"
+                            selectLabel =""
+                            selectedLabel = ""
+                            placeholder="Agregar Color"
+                            deselectLabel = ""
+                            open-direction="bottom"
+                            :multiple="true"
+                            :hideSelected = "true"
+                            :clearOnSelect="true"
+                             :custom-label="customLabel" 
+                             :show-labels="false"
+                             label="title" 
+                             track-by="title" 
+
+                            >
+                              <template slot="option" slot-scope="props">
+                                <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.hex" ></div>{{ props.option.title }}</span></div>
+                              </template>
+                                <span slot="noResult">
+                                  No se encontraron resultados</span>
+
+                          </multiselect>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
                   <div class="tab-pane" id="relacion" role="tabpanel">Estas</div>
                 </div>
 
                 <div class="tab-content">
-                                  <button type="button" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                                  <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
 
                 </div>
               </div>
@@ -279,10 +394,13 @@
 <script>
 import CerService from "../../../../plugins/CerService";
 import { mapGetters } from "vuex";
+import Multiselect from 'vue-multiselect'
 import "vue-select/dist/vue-select.css";
+import "vue-multiselect/dist/vue-multiselect.min.css"
 import { Validator } from "vee-validate";
 import ImageCompressor from "@xkeshi/image-compressor";
 import FileUpload from "vue-upload-component";
+
 
 // obtener el valor decimal del monto
 function amountSplitDecimal(val) {
@@ -307,15 +425,27 @@ Validator.extend("amountvv", amountvv);
 export default {
   data() {
     return {
+      optionColors: [{ title: 'Negro', hex: '#000' },
+        { title: 'Azul', hex: '#fff' },
+        { title: 'Rojo',  hex: '#aaa' },
+        { title: 'Blanco', hex: '#bbb' }],
       isLoading: false,
       isDesign: false,
       selectedImg: '',
+      selectedTallas: [],
+      selectedColores: [],
       articulo: {
         nombre: "",
         marca: "",
         precioGeneral: 0.0,
-        otros: ''
+        otros: '',
+        files: [],
+        rubros: [],
+        tipo: ''
+
       },
+      selectedRubroValidation: false,
+      selectedTipoValidation: false,
       selectedRubro: "",
       selectedTipo: "",
       money: {
@@ -333,7 +463,7 @@ export default {
       // extensions: ['gif', 'jpg', 'jpeg','png', 'webp'],
       // extensions: /\.(gif|jpe?g|png|webp)$/i,
       minSize: 1024,
-      size: 1024 * 1024 * 10,
+      size: 1024 * 1024 * 1,
       multiple: true,
       directory: false,
       drop: true,
@@ -365,7 +495,8 @@ export default {
     };
   },
   components: {
-    FileUpload
+    FileUpload,
+    Multiselect
   },
   computed: {
     ...mapGetters(["getIsAuth", "getUrl", "getFiltroArticulo"])
@@ -379,43 +510,67 @@ export default {
     }
   },
   methods: {
+    customLabel ({ title, hex }) {
+      return `${title} – ${hex}`
+    },
     saveAll(){
-       /* this.$validator.validateAll("form-crear").then(resp => 
+       this.$validator.validateAll("form-create").then(resp => 
         {
           if (resp)
           {
-            $('#crear').modal('hide');
-            var dataform = new FormData();
-            dataform.append("grupo_id", this.grupo.id);
-            dataform.append("es_color", this.grupo.es_color);
-            dataform.append("valor", this.caracteristica.valor);
-            dataform.append("color", this.caracteristica.color);
-            CerService.post("/caracteristicas/guardar",dataform)
-            .then(response => 
-            {
-                this.obtenercaracteristicas(this.grupo_id);
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "success",
-                    title: response.msg
-                });
-            })
-            .catch(error => {
-                this.msgAlert('Ha ocurrido un error inesperado','error')
-            })
+             this.$validator.validateAll("form-ajustes").then(resA => 
+              {
+                if (resA && this.selectedRubro.length && this.selectedTipo !== ""){
+                  this.articulo.files = this.files
+                  this.articulo.rubros = this.selectedRubro
+                  this.articulo.tipo = this.selectedTipo
+
+                  var dataform = new FormData();
+                  for( var i = 0; i < this.files.length; i++ ){
+                      let file = this.files[i].file;
+                      dataform.append('files[' + i + ']', file);
+                  }
+                  let data = JSON.stringify({
+                          articulo: this.articulo,
+                      });
+                  dataform.append('articulo',data)
+
+                  CerService.post("/articulo/guardar",dataform,{
+                  headers:
+                    {
+                        'Content-Type': 'application/json',
+                    }
+                  })
+                  .then(response => 
+                  {
+                    console.log(response)
+                      if(response.res){
+                        this.msgAlert(response.msg,'success')
+                      } else {
+                        this.msgAlert(response.msg,'warning')
+
+                      }
+                  })
+                  .catch(error => {
+                     this.msgAlert('Ha ocurrido un error inesperado','error')
+                  });
+                } else {
+                  if(this.selectedRubro.length == 0){
+                    this.selectedRubroValidation = true
+                  }
+                  if(this.selectedTipo == ""){
+                    this.selectedTipoValidation = true
+                  }
+                  this.msgAlert('Por favor verifique el tab ajustes básicos','warning')
+                }
+              })
           }
           else
           {
-            this.msgAlert('Por favor verifique los campos','warning')
+            this.msgAlert('Por favor verifique el nombre del artículo','warning')
           }
         });
-        */
+        
     },
     msgAlert(msg,type){
       this.$swal
@@ -554,10 +709,19 @@ export default {
   },
   watch: {
     selectedTipo: function(){
-        if(this.selectedTipo.toLocaleLowerCase()!= 'OTROS'){
+        if(this.selectedTipo == null || this.selectedTipo.toUpperCase()!= 'OTROS'){
           this.articulo.otros = ''
         }
+        if(this.selectedTipo !== ""){
+          this.selectedTipoValidation = false
+        }
+    },
+    selectedRubro: function(){
+      if(this.selectedRubro.length > 0){
+          this.selectedRubroValidation = false
       }
+    }
+    
   }
 };
 </script>

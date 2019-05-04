@@ -90,7 +90,7 @@ const app = new Vue({
   VueSweetalert2,
   VeeValidate,
   BootstrapVue,
-  money
+  money,
 });
 
 export default app;
