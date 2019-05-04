@@ -394,7 +394,8 @@ export default {
                         type: "success",
                         title: "Ha ocurrido un error inesperado"
                       });
-                      $(".preloader").fadeOut();
+                        this.$router.push({ name: 'login' })
+                      $(".preloader").fadeOut();7
 
                 });
 

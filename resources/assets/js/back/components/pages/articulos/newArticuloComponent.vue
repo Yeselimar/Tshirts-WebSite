@@ -17,6 +17,11 @@
 .ppbb-2 {
   padding-bottom: 2.1rem;
 }
+#modalImg .modal-dialog {
+    transform: translateY(-50%) translateX(-50%) !important;
+    left: 50% !important;
+    margin: 0px !important;
+}
 </style>
 <template>
   <div class="page-wrapper">

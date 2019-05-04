@@ -94125,7 +94125,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                     type: "success",
                     title: "Ha ocurrido un error inesperado"
                 });
-                $(".preloader").fadeOut();
+                _this.$router.push({ name: 'login' });
+                $(".preloader").fadeOut();7;
             });
         }
     },
@@ -101543,7 +101544,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.btn {\r\n  color: #fff !important;\n}\n.profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n.tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 2.1rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn {\r\n  color: #fff !important;\n}\n.profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n.tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 2.1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\r\n", ""]);
 
 // exports
 
@@ -101565,6 +101566,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_upload_component__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
 //
 //
 //
