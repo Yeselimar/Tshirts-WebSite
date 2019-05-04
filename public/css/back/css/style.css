@@ -7016,14 +7016,22 @@ tbody tr td:last-child {
 .basis-15{
   flex-basis: 15% !important;
 }
+.basis-46 {
+  flex-basis: 46%;
+}
+.basis-23 {
+  flex-basis: 23%
+}
 @media (max-width: 768px) {
-  .basis-30,.basis-15 {
-    flex-basis: 100%;
+  .basis-30,.basis-15,.basis-46,.basis-23,.basis-33 {
+    flex-basis: 100% !important;
+    width: 100%;
     margin-bottom: 8px;
     margin-top: 8px;
     }
     .basis-17 {
       flex-basis: 100%;
+      width: 100%;
     }
     .div-price {
       align-items: center!important;
