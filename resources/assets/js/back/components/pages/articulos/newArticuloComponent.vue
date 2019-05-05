@@ -22,6 +22,27 @@
     left: 50% !important;
     margin: 0px !important;
 }
+.color-blue {
+  color: blue;
+}
+.hover-pic:hover {
+  color: blue !important;
+  cursor: pointer !important;
+}
+.hover-pic:hover:after {
+  position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0px;
+    background: rgba(0,0,0,.3)!important;
+    z-index: 9999999;
+}
+.checkmark {
+  left: 40%;
+  border: 1px solid #dadada;
+}
 </style>
 <template>
   <div class="page-wrapper">
@@ -125,7 +146,7 @@
                         
                            <multiselect
                             v-model="selectedRubro"
-                            :options="['Mujer','Hombre','Niño','Niña']"
+                            :options="optionRubros"
                             selectLabel =""
                             selectedLabel = ""
                             placeholder="Agregar rubro"
@@ -133,10 +154,16 @@
                             :multiple="true"
                             :clearOnSelect="true"
                             :hideSelected = "true"
-
+                            :custom-label="customLabelRubro" 
+                            :show-labels="false"
+                             label="nombre" 
+                             track-by="nombre" 
                              :class="{'error-input': selectedRubroValidation}"
-
                             >
+                             <template slot="option" slot-scope="props">
+                                <div class="option__desc"><span class="option__title">{{ props.option.nombre }}</span></div>
+                              </template>
+
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
 
@@ -305,17 +332,23 @@
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
                             v-model="selectedTallas"
-                            :options="['XL','M','L','S','SS']"
+                            :options="optionTalles"
                             selectLabel =""
                             selectedLabel = ""
-                            placeholder="Agregar talla"
+                            placeholder="Agregar talle"
                             deselectLabel = ""
                             open-direction="bottom"
                             :multiple="true"
                             :hideSelected = "true"
                             :clearOnSelect="true"
-
+                            :custom-label="customLabelTalla" 
+                            :show-labels="false"
+                             label="valor" 
+                             track-by="valor" 
                             >
+                              <template slot="option" slot-scope="props">
+                                <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
+                              </template>
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
 
@@ -333,14 +366,13 @@
                             :multiple="true"
                             :hideSelected = "true"
                             :clearOnSelect="true"
-                             :custom-label="customLabel" 
-                             :show-labels="false"
-                             label="title" 
-                             track-by="title" 
-
+                            :custom-label="customLabelColor" 
+                            :show-labels="false"
+                            label="valor" 
+                            track-by="valor" 
                             >
                               <template slot="option" slot-scope="props">
-                                <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.hex" ></div>{{ props.option.title }}</span></div>
+                                <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
                               </template>
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
@@ -348,14 +380,214 @@
                           </multiselect>
                         </div>
                       </div>
-                    </div>
+                       <div class="form-body mt-2 d-flex justify-content-between flex-column flex-md-row">
+                        <div class="basis-46 position-relative ppbb-2">
+                          <multiselect
+                            v-model="selectedCantidad"
+                            :options="['General','Por Variante']"
+                            selectLabel =""
+                            selectedLabel = ""
+                            placeholder="Cantidad"
+                            deselectLabel = ""
+                            open-direction="bottom"
+                            :multiple="false"
+                            :hideSelected = "true"
+                            >
+                                <span slot="noResult">
+                                  No se encontraron resultados</span>
 
+                          </multiselect>
+                        </div>
+                        <div class="basis-46 d-flex align-items-baseline" v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'GENERAL')">
+                          <label class="mr-2 mb-0">Ingrese Cantidad:</label>
+                          <div class="position-relative ppbb-2">
+                            <input
+                              type="text"
+                              id="cantidad"
+                              name="cantidad"
+                              spellcheck="false"
+                              placeholder="Ingrese Cantidad"
+                              v-model="maskCantidad"
+                              v-validate
+                              data-vv-scope="form-disponibilidad"
+                              data-vv-rules="required|cantidadvv"
+                              class="form-control input-rounded input-sm"
+                              autocomplete="off"
+                              v-bind:class="{'error-input': errors.first('cantidad','form-disponibilidad')}"
+                              @keyup="setCantidad()"
+                              v-money="cantidadSinDecimal"
+                            />
+                            <p
+                              class="error-text"
+                              v-if="errors.firstByRule('cantidad', 'required', 'form-disponibilidad')"
+                            >Requerido</p>
+                            <p
+                              class="error-text"
+                              v-else-if="errors.firstByRule('cantidad', 'cantidadvv', 'form-disponibilidad')"
+                            >Cantidad Invalida</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'POR VARIANTE')">
+                        <div class="text-center">
+                          <h3>VARIANTES</h3>
+                          <hr>
+                        </div>
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Color</th>
+                                <th class="text-center">Talle</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Es Principal</th>
+                                <th class="text-center">Agregar</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-if="!filesVariantes.length">
+                                <td colspan="6">
+                                  <div class="text-center p-5">
+                                    <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Variante</button>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr v-for="(fileV,index) in filesVariantes" :key="index">
+                                <td class="text-center">
+                                    <multiselect
+                                      v-model="filesVariantes[index].selectedColorVariante"
+                                      :options="selectedColores"
+                                      selectLabel =""
+                                      selectedLabel = ""
+                                      placeholder="Color"
+                                      deselectLabel = ""
+                                      open-direction="bottom"
+                                      :multiple="false"
+                                      :hideSelected = "true"
+                                      :custom-label="customLabelColor" 
+                                      :show-labels="false"
+                                      label="valor" 
+                                      track-by="valor" 
+                                      >
+                                        <template slot="option" slot-scope="props">
+                                          <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
+                                        </template>
+                                          <span slot="noResult">
+                                            No se encontraron resultados</span>
+
+                                    </multiselect>
+
+                                </td>
+                                <td class="text-center">
+                                  <multiselect
+                                      v-model="filesVariantes[index].selectedTalleVariante"
+                                      :options="selectedTallas"
+                                      selectLabel =""
+                                      selectedLabel = ""
+                                      placeholder="Talle"
+                                      deselectLabel = ""
+                                      open-direction="bottom"
+                                      :multiple="false"
+                                      :hideSelected = "true"
+                                      :custom-label="customLabelTalla" 
+                                      :show-labels="false"
+                                       label="valor" 
+                                       track-by="valor" 
+                                      >
+                                        <template slot="option" slot-scope="props">
+                                          <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
+                                        </template>
+                                          <span slot="noResult">
+                                            No se encontraron resultados</span>
+
+                                    </multiselect>
+                                </td>
+                                <td class="text-center">
+                                 <div class="position-relative pb-5">
+                                    <input
+                                        type="number"
+                                        :id="'cantidadV'+index"
+                                        :name="'cantidadV'+index"
+                                        v-model="filesVariantes[index].cantidadVariante"
+                                        spellcheck="false"
+                                        placeholder="Cantidad"                                       
+                                        class="form-control input-rounded input-sm"
+                                        min="0" 
+                                        v-validate
+                                        data-vv-scope="form-disponibilidad"
+                                        data-vv-rules="required|min_value:0|decimal:0|numeric"
+                                        autocomplete="off"
+                                         @keyup="setCantidadVariante(index)"
+                                        v-bind:class="{'error-input': errors.first('cantidadV'+index,'form-disponibilidad')}"
+                                      />
+                                      <p
+                                          class="error-text"
+                                          v-if="errors.firstByRule('cantidadV'+index, 'required', 'form-disponibilidad')"
+                                        >Requerido</p>
+                                        <p
+                                          class="error-text"
+                                          v-else-if="errors.first('cantidadV'+index, 'form-disponibilidad')"
+                                        >Cantidad invalida</p>
+                                  </div>
+                                </td>
+                                <td class="text-center">
+                                   <div class="position-relative pb-5">
+                                     <input
+                                        type="number"
+                                        :id="'amountV'+index"
+                                        :name="'amountV'+index"
+                                        spellcheck="false"
+                                        placeholder="Precio"
+                                        v-model="filesVariantes[index].precioVariante"
+                                        v-validate
+                                        data-vv-scope="form-disponibilidad"
+                                        data-vv-rules="required|min_value:0|decimal:2"
+                                        class="form-control input-rounded input-sm"
+                                        autocomplete="off"
+                                        min="0" 
+                                        @keyup="setPaymentAmountVariante(index)"
+                                        v-bind:class="{'error-input': errors.first('amountV'+index,'form-disponibilidad')}"
+                                      >
+                                      <p
+                                        class="error-text"
+                                        v-if="errors.firstByRule('amountV'+index, 'required', 'form-disponibilidad')"
+                                      >Requerido</p>
+                                      <p
+                                        class="error-text"
+                                        v-else-if="errors.first('amountV'+index, 'form-disponibilidad')"
+                                      >Monto Invalido</p>
+                                   </div>
+
+                                </td>
+                                  <td class="text-center">  
+                                      <label class="contenido">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                  </td>
+
+                                <td class="text-center">
+                                    
+                                    <button class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                </td>
+                             
+                              
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div> 
 
                   </div>
-                  <div class="tab-pane" id="relacion" role="tabpanel">Estas</div>
+                  <div class="tab-pane" id="relacion" role="tabpanel">
+                      <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas">Ver Modal Prueba</button>
+
+                  </div>
                 </div>
 
                 <div class="tab-content">
+                  
                                   <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
 
                 </div>
@@ -384,6 +616,34 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="closeModalImg">Cerrar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+     <div class="modal" id="modalImagenesCargadas" @click.stop.prevent="closeModalImagenesCargadas">
+      <div class="modal-dialog modal-lg"  @click.stop.prevent="">
+          <div class="modal-content modal-content-barna" >
+              <div class="modal-header modal-header-barna">
+                  <h5 class="modal-title pull-left"><strong>Seleccione Imagen</strong></h5>
+                  <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" @click.stop.prevent="closeModalImagenesCargadas" ><i class="fa fa-remove"></i></a>
+              </div>
+              <div class="modal-body">
+                  <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                            <div class="project" v-for="(file) in files" :key="file.id">
+                                <div class="pi-pic position-relative hover-pic">
+                                  <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2" @click.stop.prevent="seleccionarImg(file)"><i class="fa fa-check" :class="{'color-blue': file.selectedImagen}"></i></a>
+                                  </div>
+                                </div>
+                            </div>
+                  </span>
+                  
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="closeModalImagenesCargadas">Cerrar</button>
               </div>
           </div>
       </div>
@@ -420,33 +680,63 @@ const amountvv = {
   validate: value => amountSplitDecimal(value) >= 0 && value[0] !== "-"
 };
 
+const cantidadvv = {
+  getMessage: field => "Cantidad Invalida",
+  validate: value => parseInt(value) >= 0 && value[0] !== "-"
+};
 Validator.extend("amountvv", amountvv);
+Validator.extend("cantidadvv", cantidadvv);
+
 
 export default {
   data() {
     return {
-      optionColors: [{ title: 'Negro', hex: '#000' },
-        { title: 'Azul', hex: '#fff' },
-        { title: 'Rojo',  hex: '#aaa' },
-        { title: 'Blanco', hex: '#bbb' }],
+      optionColors: [{ id:1, valor: 'Negro', color: '#000' },
+        { id:2, valor: 'Azul', color: '#fff' },
+        { id:3, valor: 'Rojo',  color: '#aaa' },
+        { id:4, valor: 'Blanco', color: '#bbb' }],
+      optionTalles: [
+        { id:1, valor: 'S' },
+        { id:2, valor: 'M' },
+        { id:3, valor: 'L' },
+        { id:4, valor: 'XL' },
+        { id:5, valor: 'SS' }
+      ],
+      optionRubros: [
+        { id:1, nombre: 'Mujer' },
+        { id:2, nombre: 'Hombre' },
+        { id:3, nombre: 'Niño' },
+        { id:4, nombre: 'Niña' },
+        { id:5, nombre: 'Buzo' }
+      ],
+      selectedColorVariante: "",
+      selectedTalleVariante: "",
+      maskCantidadVariante: "",
+      cantidadVariante: 0,
+      maskAmountVariante: '',
+      precioVariante: 0.0,
       isLoading: false,
       isDesign: false,
       selectedImg: '',
       selectedTallas: [],
       selectedColores: [],
+      selectedCantidad: "",
+      filesVariantes: [],
+      maskCantidad: "",
       articulo: {
         nombre: "",
         marca: "",
-        precioGeneral: 0.0,
+        precioGeneral: 0.00,
         otros: '',
         files: [],
         rubros: [],
-        tipo: ''
+        tipo: '',
+        cantidad: 0
 
       },
       selectedRubroValidation: false,
       selectedTipoValidation: false,
-      selectedRubro: "",
+      selectedRubro: [],
       selectedTipo: "",
       money: {
         decimal: ",",
@@ -454,6 +744,14 @@ export default {
         prefix: "",
         suffix: " $",
         precision: 2,
+        masked: false
+      },
+      cantidadSinDecimal: {
+        decimal: ",",
+        thousands: ".",
+        prefix: "",
+        suffix: "",
+        precision: 0,
         masked: false
       },
       maskAmount: "",
@@ -510,8 +808,30 @@ export default {
     }
   },
   methods: {
-    customLabel ({ title, hex }) {
-      return `${title} – ${hex}`
+    addVariante()
+    {
+      let aux = {
+          selectedColorVariante: "",
+          selectedTalleVariante: "",
+          cantidadVariante: 0,
+          precioVariante: this.articulo.precioGeneral
+
+        }
+      this.filesVariantes.push(
+      {...aux}
+      )
+    },
+   seleccionarImg(file){
+      file.selectedImagen = true;
+    },
+    customLabelColor ({ valor, color }) {
+      return `${valor} – ${color}`
+    },
+    customLabelTalla({valor}) {
+      return `${valor}`
+    },
+    customLabelRubro({nombre}){
+      return `${nombre}`
     },
     saveAll(){
        this.$validator.validateAll("form-create").then(resp => 
@@ -543,7 +863,6 @@ export default {
                   })
                   .then(response => 
                   {
-                    console.log(response)
                       if(response.res){
                         this.msgAlert(response.msg,'success')
                       } else {
@@ -586,13 +905,19 @@ export default {
         });
     },
     closeModalImg(){
-      console.log('aja')
         $('#modalImg').modal('hide')
+
+    },
+     closeModalImagenesCargadas(){
+        $('#modalImagenesCargadas').modal('hide')
 
     },
     openModalImg(img){
         this.selectedImg=img;
         $('#modalImg').modal('show')
+    },
+     openModalImagenesCargadas(){
+        $('#modalImagenesCargadas').modal('show')
     },
     setPaymentAmount() {
       let amount = this.maskAmount;
@@ -600,6 +925,25 @@ export default {
       amount = amount.split(this.money.thousands).join("");
       amount = amount.replace(",", ".");
       this.articulo.precioGeneral = parseFloat(amount);
+    },
+    setCantidad(){
+      let cantidad = this.maskCantidad;
+      cantidad = cantidad.replace(this.cantidadSinDecimal.suffix, "");
+      cantidad = cantidad.split(this.cantidadSinDecimal.thousands).join("");
+      cantidad = cantidad.replace(",", ".");
+      this.articulo.cantidad = parseInt(cantidad);
+    },
+    setCantidadVariante(index){
+      let cantidad = this.filesVariantes[index].cantidadVariante;
+      if (cantidad !== null && cantidad !== ""){
+        this.filesVariantes[index].cantidadVariante = parseInt(cantidad)
+      }
+    },
+     setPaymentAmountVariante(index){
+      let cantidad = this.filesVariantes[index].precioVariante;
+      if (cantidad !== null && cantidad !== "" && (typeof cantidad =='number' || (cantidad.indexOf('.') !== cantidad.length-1))){
+        this.filesVariantes[index].precioVariante = parseFloat(cantidad)
+      }
     },
     inputFilter(newFile, oldFile, prevent) {
       if (newFile && !oldFile) {
@@ -636,7 +980,8 @@ export default {
                 error: "",
                 file,
                 size: file.size,
-                type: file.type
+                type: file.type,
+                selectedImagen: false //esto es agregado nuevo
               });
             })
             .catch(err => {
@@ -674,7 +1019,7 @@ export default {
             this.minSize > 0 &&
             newFile.size < this.minSize
           ) {
-            this.$refs.upload.update(newFile, { error: "size" });
+            this.$refs.upload.update(newFile, { error: "size",  selectedImagen: false /*agregado personal*/});
           }
         }
         if (newFile.progress !== oldFile.progress) {
@@ -720,6 +1065,12 @@ export default {
       if(this.selectedRubro.length > 0){
           this.selectedRubroValidation = false
       }
+    },
+    selectedCantidad: function(){
+      if(this.selectedCantidad == null || this.selectedTipo.toUpperCase()!= 'GENERAL'){
+          this.articulo.cantidad = 0
+          this.maskCantidad = ""
+        }
     }
     
   }

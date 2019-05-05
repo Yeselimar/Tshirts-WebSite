@@ -19326,11 +19326,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost:8000/',
+        base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/'
+        base: '/barna/barna/public/'
     }
 });
 

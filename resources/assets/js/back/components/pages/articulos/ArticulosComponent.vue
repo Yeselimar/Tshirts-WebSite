@@ -89,7 +89,7 @@
                 </strong>
               </h4>
               <div class="pull-right">
-                <a class="btn btn-sm btn-danger" :class="[{'disabled': (filtro === -1)}]">
+                <a class="btn btn-sm btn-danger" @click=" $router.push({ name: 'nuevoArticulo' })" :class="[{'disabled': (filtro === -1)}]">
                   <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuevo Artículo
                 </a>
               </div>
