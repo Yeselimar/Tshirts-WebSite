@@ -2951,522 +2951,6 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var Util_1 = __webpack_require__(7);
-var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(12);
-var Validators_1 = __webpack_require__(5);
-var Global_1 = __webpack_require__(6);
-var HAS_SHADOW = 'hasShadow';
-var SHADOW_RGBA = 'shadowRGBA';
-var patternImage = 'patternImage';
-var linearGradient = 'linearGradient';
-var radialGradient = 'radialGradient';
-var dummyContext;
-function getDummyContext() {
-    if (dummyContext) {
-        return dummyContext;
-    }
-    dummyContext = Util_1.Util.createCanvasElement().getContext('2d');
-    return dummyContext;
-}
-exports.shapes = {};
-function _fillFunc(context) {
-    context.fill();
-}
-function _strokeFunc(context) {
-    context.stroke();
-}
-function _fillFuncHit(context) {
-    context.fill();
-}
-function _strokeFuncHit(context) {
-    context.stroke();
-}
-function _clearHasShadowCache() {
-    this._clearCache(HAS_SHADOW);
-}
-function _clearGetShadowRGBACache() {
-    this._clearCache(SHADOW_RGBA);
-}
-function _clearFillPatternCache() {
-    this._clearCache(patternImage);
-}
-function _clearLinearGradientCache() {
-    this._clearCache(linearGradient);
-}
-function _clearRadialGradientCache() {
-    this._clearCache(radialGradient);
-}
-var Shape = (function (_super) {
-    __extends(Shape, _super);
-    function Shape(config) {
-        var _this = _super.call(this, config) || this;
-        var key;
-        while (true) {
-            key = Util_1.Util.getRandomColor();
-            if (key && !(key in exports.shapes)) {
-                break;
-            }
-        }
-        _this.colorKey = key;
-        exports.shapes[key] = _this;
-        _this.on('shadowColorChange.konva shadowBlurChange.konva shadowOffsetChange.konva shadowOpacityChange.konva shadowEnabledChange.konva', _clearHasShadowCache);
-        _this.on('shadowColorChange.konva shadowOpacityChange.konva shadowEnabledChange.konva', _clearGetShadowRGBACache);
-        _this.on('fillPriorityChange.konva fillPatternImageChange.konva fillPatternRepeatChange.konva', _clearFillPatternCache);
-        _this.on('fillPriorityChange.konva fillLinearGradientColorStopsChange.konva fillLinearGradientStartPointXChange.konva fillLinearGradientStartPointYChange.konva fillLinearGradientEndPointXChange.konva fillLinearGradientEndPointYChange.konva', _clearLinearGradientCache);
-        _this.on('fillPriorityChange.konva fillRadialGradientColorStopsChange.konva fillRadialGradientStartPointXChange.konva fillRadialGradientStartPointYChange.konva fillRadialGradientEndPointXChange.konva fillRadialGradientEndPointYChange.konva fillRadialGradientStartRadiusChange.konva fillRadialGradientEndRadiusChange.konva', _clearRadialGradientCache);
-        return _this;
-    }
-    Shape.prototype.getContext = function () {
-        return this.getLayer().getContext();
-    };
-    Shape.prototype.getCanvas = function () {
-        return this.getLayer().getCanvas();
-    };
-    Shape.prototype.getSceneFunc = function () {
-        return this.attrs.sceneFunc || this['_sceneFunc'];
-    };
-    Shape.prototype.getHitFunc = function () {
-        return this.attrs.hitFunc || this['_hitFunc'];
-    };
-    Shape.prototype.hasShadow = function () {
-        return this._getCache(HAS_SHADOW, this._hasShadow);
-    };
-    Shape.prototype._hasShadow = function () {
-        return (this.shadowEnabled() &&
-            (this.shadowOpacity() !== 0 &&
-                !!(this.shadowColor() ||
-                    this.shadowBlur() ||
-                    this.shadowOffsetX() ||
-                    this.shadowOffsetY())));
-    };
-    Shape.prototype._getFillPattern = function () {
-        return this._getCache(patternImage, this.__getFillPattern);
-    };
-    Shape.prototype.__getFillPattern = function () {
-        if (this.fillPatternImage()) {
-            var ctx = getDummyContext();
-            return ctx.createPattern(this.fillPatternImage(), this.fillPatternRepeat() || 'repeat');
-        }
-    };
-    Shape.prototype._getLinearGradient = function () {
-        return this._getCache(linearGradient, this.__getLinearGradient);
-    };
-    Shape.prototype.__getLinearGradient = function () {
-        var colorStops = this.fillLinearGradientColorStops();
-        if (colorStops) {
-            var ctx = getDummyContext();
-            var start = this.fillLinearGradientStartPoint();
-            var end = this.fillLinearGradientEndPoint();
-            var grd = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
-            for (var n = 0; n < colorStops.length; n += 2) {
-                grd.addColorStop(colorStops[n], colorStops[n + 1]);
-            }
-            return grd;
-        }
-    };
-    Shape.prototype._getRadialGradient = function () {
-        return this._getCache(radialGradient, this.__getRadialGradient);
-    };
-    Shape.prototype.__getRadialGradient = function () {
-        var colorStops = this.fillRadialGradientColorStops();
-        if (colorStops) {
-            var ctx = getDummyContext();
-            var start = this.fillRadialGradientStartPoint();
-            var end = this.fillRadialGradientEndPoint();
-            var grd = ctx.createRadialGradient(start.x, start.y, this.fillRadialGradientStartRadius(), end.x, end.y, this.fillRadialGradientEndRadius());
-            for (var n = 0; n < colorStops.length; n += 2) {
-                grd.addColorStop(colorStops[n], colorStops[n + 1]);
-            }
-            return grd;
-        }
-    };
-    Shape.prototype.getShadowRGBA = function () {
-        return this._getCache(SHADOW_RGBA, this._getShadowRGBA);
-    };
-    Shape.prototype._getShadowRGBA = function () {
-        if (this.hasShadow()) {
-            var rgba = Util_1.Util.colorToRGBA(this.shadowColor());
-            return ('rgba(' +
-                rgba.r +
-                ',' +
-                rgba.g +
-                ',' +
-                rgba.b +
-                ',' +
-                rgba.a * (this.shadowOpacity() || 1) +
-                ')');
-        }
-    };
-    Shape.prototype.hasFill = function () {
-        return !!(this.fill() ||
-            this.fillPatternImage() ||
-            this.fillLinearGradientColorStops() ||
-            this.fillRadialGradientColorStops());
-    };
-    Shape.prototype.hasStroke = function () {
-        return (this.strokeEnabled() &&
-            this.strokeWidth() &&
-            !!(this.stroke() || this.strokeLinearGradientColorStops()));
-    };
-    Shape.prototype.intersects = function (point) {
-        var stage = this.getStage(), bufferHitCanvas = stage.bufferHitCanvas, p;
-        bufferHitCanvas.getContext().clear();
-        this.drawHit(bufferHitCanvas);
-        p = bufferHitCanvas.context.getImageData(Math.round(point.x), Math.round(point.y), 1, 1).data;
-        return p[3] > 0;
-    };
-    Shape.prototype.destroy = function () {
-        Node_1.Node.prototype.destroy.call(this);
-        delete exports.shapes[this.colorKey];
-        delete this.colorKey;
-        return this;
-    };
-    Shape.prototype._useBufferCanvas = function (caching) {
-        return ((!caching || this.hasShadow()) &&
-            this.perfectDrawEnabled() &&
-            this.getAbsoluteOpacity() !== 1 &&
-            this.hasFill() &&
-            this.hasStroke() &&
-            this.getStage());
-    };
-    Shape.prototype.setStrokeHitEnabled = function (val) {
-        if (val) {
-            this.hitStrokeWidth('auto');
-        }
-        else {
-            this.hitStrokeWidth(0);
-        }
-    };
-    Shape.prototype.getStrokeHitEnabled = function () {
-        if (this.hitStrokeWidth() === 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    };
-    Shape.prototype.getSelfRect = function () {
-        var size = this.size();
-        return {
-            x: this._centroid ? Math.round(-size.width / 2) : 0,
-            y: this._centroid ? Math.round(-size.height / 2) : 0,
-            width: size.width,
-            height: size.height
-        };
-    };
-    Shape.prototype.getClientRect = function (attrs) {
-        attrs = attrs || {};
-        var skipTransform = attrs.skipTransform;
-        var relativeTo = attrs.relativeTo;
-        var fillRect = this.getSelfRect();
-        var applyStroke = !attrs.skipStroke && this.hasStroke();
-        var strokeWidth = (applyStroke && this.strokeWidth()) || 0;
-        var fillAndStrokeWidth = fillRect.width + strokeWidth;
-        var fillAndStrokeHeight = fillRect.height + strokeWidth;
-        var applyShadow = !attrs.skipShadow && this.hasShadow();
-        var shadowOffsetX = applyShadow ? this.shadowOffsetX() : 0;
-        var shadowOffsetY = applyShadow ? this.shadowOffsetY() : 0;
-        var preWidth = fillAndStrokeWidth + Math.abs(shadowOffsetX);
-        var preHeight = fillAndStrokeHeight + Math.abs(shadowOffsetY);
-        var blurRadius = (applyShadow && this.shadowBlur()) || 0;
-        var width = preWidth + blurRadius * 2;
-        var height = preHeight + blurRadius * 2;
-        var roundingOffset = 0;
-        if (Math.round(strokeWidth / 2) !== strokeWidth / 2) {
-            roundingOffset = 1;
-        }
-        var rect = {
-            width: width + roundingOffset,
-            height: height + roundingOffset,
-            x: -Math.round(strokeWidth / 2 + blurRadius) +
-                Math.min(shadowOffsetX, 0) +
-                fillRect.x,
-            y: -Math.round(strokeWidth / 2 + blurRadius) +
-                Math.min(shadowOffsetY, 0) +
-                fillRect.y
-        };
-        if (!skipTransform) {
-            return this._transformedRect(rect, relativeTo);
-        }
-        return rect;
-    };
-    Shape.prototype.drawScene = function (can, top, caching, skipBuffer) {
-        var layer = this.getLayer(), canvas = can || layer.getCanvas(), context = canvas.getContext(), cachedCanvas = this._getCanvasCache(), drawFunc = this.sceneFunc(), hasShadow = this.hasShadow(), hasStroke = this.hasStroke(), stage, bufferCanvas, bufferContext;
-        if (!this.isVisible() && !caching) {
-            return this;
-        }
-        if (cachedCanvas) {
-            context.save();
-            layer._applyTransform(this, context, top);
-            this._drawCachedSceneCanvas(context);
-            context.restore();
-            return this;
-        }
-        if (!drawFunc) {
-            return this;
-        }
-        context.save();
-        if (this._useBufferCanvas(caching) && !skipBuffer) {
-            stage = this.getStage();
-            bufferCanvas = stage.bufferCanvas;
-            bufferContext = bufferCanvas.getContext();
-            bufferContext.clear();
-            bufferContext.save();
-            bufferContext._applyLineJoin(this);
-            if (!caching) {
-                if (layer) {
-                    layer._applyTransform(this, bufferContext, top);
-                }
-                else {
-                    var m = this.getAbsoluteTransform(top).getMatrix();
-                    context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
-                }
-            }
-            drawFunc.call(this, bufferContext, this);
-            bufferContext.restore();
-            var ratio = bufferCanvas.pixelRatio;
-            if (hasShadow && !canvas.hitCanvas) {
-                context.save();
-                context._applyShadow(this);
-                context._applyOpacity(this);
-                context._applyGlobalCompositeOperation(this);
-                context.drawImage(bufferCanvas._canvas, 0, 0, bufferCanvas.width / ratio, bufferCanvas.height / ratio);
-                context.restore();
-            }
-            else {
-                context._applyOpacity(this);
-                context._applyGlobalCompositeOperation(this);
-                context.drawImage(bufferCanvas._canvas, 0, 0, bufferCanvas.width / ratio, bufferCanvas.height / ratio);
-            }
-        }
-        else {
-            context._applyLineJoin(this);
-            if (!caching) {
-                if (layer) {
-                    layer._applyTransform(this, context, top);
-                }
-                else {
-                    var o = this.getAbsoluteTransform(top).getMatrix();
-                    context.transform(o[0], o[1], o[2], o[3], o[4], o[5]);
-                }
-            }
-            if (hasShadow && hasStroke && !canvas.hitCanvas) {
-                context.save();
-                if (!caching) {
-                    context._applyOpacity(this);
-                    context._applyGlobalCompositeOperation(this);
-                }
-                context._applyShadow(this);
-                drawFunc.call(this, context, this);
-                context.restore();
-                if (this.hasFill() && this.shadowForStrokeEnabled()) {
-                    drawFunc.call(this, context, this);
-                }
-            }
-            else if (hasShadow && !canvas.hitCanvas) {
-                context.save();
-                if (!caching) {
-                    context._applyOpacity(this);
-                    context._applyGlobalCompositeOperation(this);
-                }
-                context._applyShadow(this);
-                drawFunc.call(this, context, this);
-                context.restore();
-            }
-            else {
-                if (!caching) {
-                    context._applyOpacity(this);
-                    context._applyGlobalCompositeOperation(this);
-                }
-                drawFunc.call(this, context, this);
-            }
-        }
-        context.restore();
-        return this;
-    };
-    Shape.prototype.drawHit = function (can, top, caching) {
-        var layer = this.getLayer(), canvas = can || layer.hitCanvas, context = canvas && canvas.getContext(), drawFunc = this.hitFunc() || this.sceneFunc(), cachedCanvas = this._getCanvasCache(), cachedHitCanvas = cachedCanvas && cachedCanvas.hit;
-        if (!this.colorKey) {
-            Util_1.Util.warn('Looks like your canvas has a destroyed shape in it. Do not reuse shape after you destroyed it. See the shape in logs above. If you want to reuse shape you should call remove() instead of destroy()');
-        }
-        if (!this.shouldDrawHit() && !caching) {
-            return this;
-        }
-        if (cachedHitCanvas) {
-            context.save();
-            layer._applyTransform(this, context, top);
-            this._drawCachedHitCanvas(context);
-            context.restore();
-            return this;
-        }
-        if (!drawFunc) {
-            return this;
-        }
-        context.save();
-        context._applyLineJoin(this);
-        if (!caching) {
-            if (layer) {
-                layer._applyTransform(this, context, top);
-            }
-            else {
-                var o = this.getAbsoluteTransform(top).getMatrix();
-                context.transform(o[0], o[1], o[2], o[3], o[4], o[5]);
-            }
-        }
-        drawFunc.call(this, context, this);
-        context.restore();
-        return this;
-    };
-    Shape.prototype.drawHitFromCache = function (alphaThreshold) {
-        var threshold = alphaThreshold || 0, cachedCanvas = this._getCanvasCache(), sceneCanvas = this._getCachedSceneCanvas(), hitCanvas = cachedCanvas.hit, hitContext = hitCanvas.getContext(), hitWidth = hitCanvas.getWidth(), hitHeight = hitCanvas.getHeight(), hitImageData, hitData, len, rgbColorKey, i, alpha;
-        hitContext.clear();
-        hitContext.drawImage(sceneCanvas._canvas, 0, 0, hitWidth, hitHeight);
-        try {
-            hitImageData = hitContext.getImageData(0, 0, hitWidth, hitHeight);
-            hitData = hitImageData.data;
-            len = hitData.length;
-            rgbColorKey = Util_1.Util._hexToRgb(this.colorKey);
-            for (i = 0; i < len; i += 4) {
-                alpha = hitData[i + 3];
-                if (alpha > threshold) {
-                    hitData[i] = rgbColorKey.r;
-                    hitData[i + 1] = rgbColorKey.g;
-                    hitData[i + 2] = rgbColorKey.b;
-                    hitData[i + 3] = 255;
-                }
-                else {
-                    hitData[i + 3] = 0;
-                }
-            }
-            hitContext.putImageData(hitImageData, 0, 0);
-        }
-        catch (e) {
-            Util_1.Util.error('Unable to draw hit graph from cached scene canvas. ' + e.message);
-        }
-        return this;
-    };
-    return Shape;
-}(Node_1.Node));
-exports.Shape = Shape;
-Shape.prototype._fillFunc = _fillFunc;
-Shape.prototype._strokeFunc = _strokeFunc;
-Shape.prototype._fillFuncHit = _fillFuncHit;
-Shape.prototype._strokeFuncHit = _strokeFuncHit;
-Shape.prototype._centroid = false;
-Shape.prototype.nodeType = 'Shape';
-Global_1._registerNode(Shape);
-Factory_1.Factory.addGetterSetter(Shape, 'stroke', undefined, Validators_1.getStringValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'strokeWidth', 2, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'hitStrokeWidth', 'auto', Validators_1.getNumberOrAutoValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'strokeHitEnabled', true, Validators_1.getBooleanValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'perfectDrawEnabled', true, Validators_1.getBooleanValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'shadowForStrokeEnabled', true, Validators_1.getBooleanValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'lineJoin');
-Factory_1.Factory.addGetterSetter(Shape, 'lineCap');
-Factory_1.Factory.addGetterSetter(Shape, 'sceneFunc');
-Factory_1.Factory.addGetterSetter(Shape, 'hitFunc');
-Factory_1.Factory.addGetterSetter(Shape, 'dash');
-Factory_1.Factory.addGetterSetter(Shape, 'dashOffset', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'shadowColor', undefined, Validators_1.getStringValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'shadowBlur', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'shadowOpacity', 1, Validators_1.getNumberValidator());
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'shadowOffset', ['x', 'y']);
-Factory_1.Factory.addGetterSetter(Shape, 'shadowOffsetX', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'shadowOffsetY', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternImage');
-Factory_1.Factory.addGetterSetter(Shape, 'fill', undefined, Validators_1.getStringValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternX', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternY', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientColorStops');
-Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientColorStops');
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartRadius', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndRadius', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientColorStops');
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternRepeat', 'repeat');
-Factory_1.Factory.addGetterSetter(Shape, 'fillEnabled', true);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeEnabled', true);
-Factory_1.Factory.addGetterSetter(Shape, 'shadowEnabled', true);
-Factory_1.Factory.addGetterSetter(Shape, 'dashEnabled', true);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeScaleEnabled', true);
-Factory_1.Factory.addGetterSetter(Shape, 'fillPriority', 'color');
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillPatternOffset', ['x', 'y']);
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternOffsetX', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternOffsetY', 0, Validators_1.getNumberValidator());
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillPatternScale', ['x', 'y']);
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternScaleX', 1, Validators_1.getNumberValidator());
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternScaleY', 1, Validators_1.getNumberValidator());
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillLinearGradientStartPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'strokeLinearGradientStartPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientStartPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientStartPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientStartPointY', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientStartPointY', 0);
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillLinearGradientEndPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'strokeLinearGradientEndPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientEndPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientEndPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientEndPointY', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientEndPointY', 0);
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillRadialGradientStartPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartPointY', 0);
-Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillRadialGradientEndPoint', [
-    'x',
-    'y'
-]);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndPointX', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndPointY', 0);
-Factory_1.Factory.addGetterSetter(Shape, 'fillPatternRotation', 0);
-Factory_1.Factory.backCompat(Shape, {
-    dashArray: 'dash',
-    getDashArray: 'getDash',
-    setDashArray: 'getDash',
-    drawFunc: 'sceneFunc',
-    getDrawFunc: 'getSceneFunc',
-    setDrawFunc: 'setSceneFunc',
-    drawHitFunc: 'hitFunc',
-    getDrawHitFunc: 'getHitFunc',
-    setDrawHitFunc: 'setHitFunc'
-});
-Util_1.Collection.mapMethods(Shape);
-
-
-/***/ }),
-/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4479,6 +3963,522 @@ var index_esm = {
 
 
 /***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Util_1 = __webpack_require__(7);
+var Factory_1 = __webpack_require__(4);
+var Node_1 = __webpack_require__(12);
+var Validators_1 = __webpack_require__(5);
+var Global_1 = __webpack_require__(6);
+var HAS_SHADOW = 'hasShadow';
+var SHADOW_RGBA = 'shadowRGBA';
+var patternImage = 'patternImage';
+var linearGradient = 'linearGradient';
+var radialGradient = 'radialGradient';
+var dummyContext;
+function getDummyContext() {
+    if (dummyContext) {
+        return dummyContext;
+    }
+    dummyContext = Util_1.Util.createCanvasElement().getContext('2d');
+    return dummyContext;
+}
+exports.shapes = {};
+function _fillFunc(context) {
+    context.fill();
+}
+function _strokeFunc(context) {
+    context.stroke();
+}
+function _fillFuncHit(context) {
+    context.fill();
+}
+function _strokeFuncHit(context) {
+    context.stroke();
+}
+function _clearHasShadowCache() {
+    this._clearCache(HAS_SHADOW);
+}
+function _clearGetShadowRGBACache() {
+    this._clearCache(SHADOW_RGBA);
+}
+function _clearFillPatternCache() {
+    this._clearCache(patternImage);
+}
+function _clearLinearGradientCache() {
+    this._clearCache(linearGradient);
+}
+function _clearRadialGradientCache() {
+    this._clearCache(radialGradient);
+}
+var Shape = (function (_super) {
+    __extends(Shape, _super);
+    function Shape(config) {
+        var _this = _super.call(this, config) || this;
+        var key;
+        while (true) {
+            key = Util_1.Util.getRandomColor();
+            if (key && !(key in exports.shapes)) {
+                break;
+            }
+        }
+        _this.colorKey = key;
+        exports.shapes[key] = _this;
+        _this.on('shadowColorChange.konva shadowBlurChange.konva shadowOffsetChange.konva shadowOpacityChange.konva shadowEnabledChange.konva', _clearHasShadowCache);
+        _this.on('shadowColorChange.konva shadowOpacityChange.konva shadowEnabledChange.konva', _clearGetShadowRGBACache);
+        _this.on('fillPriorityChange.konva fillPatternImageChange.konva fillPatternRepeatChange.konva', _clearFillPatternCache);
+        _this.on('fillPriorityChange.konva fillLinearGradientColorStopsChange.konva fillLinearGradientStartPointXChange.konva fillLinearGradientStartPointYChange.konva fillLinearGradientEndPointXChange.konva fillLinearGradientEndPointYChange.konva', _clearLinearGradientCache);
+        _this.on('fillPriorityChange.konva fillRadialGradientColorStopsChange.konva fillRadialGradientStartPointXChange.konva fillRadialGradientStartPointYChange.konva fillRadialGradientEndPointXChange.konva fillRadialGradientEndPointYChange.konva fillRadialGradientStartRadiusChange.konva fillRadialGradientEndRadiusChange.konva', _clearRadialGradientCache);
+        return _this;
+    }
+    Shape.prototype.getContext = function () {
+        return this.getLayer().getContext();
+    };
+    Shape.prototype.getCanvas = function () {
+        return this.getLayer().getCanvas();
+    };
+    Shape.prototype.getSceneFunc = function () {
+        return this.attrs.sceneFunc || this['_sceneFunc'];
+    };
+    Shape.prototype.getHitFunc = function () {
+        return this.attrs.hitFunc || this['_hitFunc'];
+    };
+    Shape.prototype.hasShadow = function () {
+        return this._getCache(HAS_SHADOW, this._hasShadow);
+    };
+    Shape.prototype._hasShadow = function () {
+        return (this.shadowEnabled() &&
+            (this.shadowOpacity() !== 0 &&
+                !!(this.shadowColor() ||
+                    this.shadowBlur() ||
+                    this.shadowOffsetX() ||
+                    this.shadowOffsetY())));
+    };
+    Shape.prototype._getFillPattern = function () {
+        return this._getCache(patternImage, this.__getFillPattern);
+    };
+    Shape.prototype.__getFillPattern = function () {
+        if (this.fillPatternImage()) {
+            var ctx = getDummyContext();
+            return ctx.createPattern(this.fillPatternImage(), this.fillPatternRepeat() || 'repeat');
+        }
+    };
+    Shape.prototype._getLinearGradient = function () {
+        return this._getCache(linearGradient, this.__getLinearGradient);
+    };
+    Shape.prototype.__getLinearGradient = function () {
+        var colorStops = this.fillLinearGradientColorStops();
+        if (colorStops) {
+            var ctx = getDummyContext();
+            var start = this.fillLinearGradientStartPoint();
+            var end = this.fillLinearGradientEndPoint();
+            var grd = ctx.createLinearGradient(start.x, start.y, end.x, end.y);
+            for (var n = 0; n < colorStops.length; n += 2) {
+                grd.addColorStop(colorStops[n], colorStops[n + 1]);
+            }
+            return grd;
+        }
+    };
+    Shape.prototype._getRadialGradient = function () {
+        return this._getCache(radialGradient, this.__getRadialGradient);
+    };
+    Shape.prototype.__getRadialGradient = function () {
+        var colorStops = this.fillRadialGradientColorStops();
+        if (colorStops) {
+            var ctx = getDummyContext();
+            var start = this.fillRadialGradientStartPoint();
+            var end = this.fillRadialGradientEndPoint();
+            var grd = ctx.createRadialGradient(start.x, start.y, this.fillRadialGradientStartRadius(), end.x, end.y, this.fillRadialGradientEndRadius());
+            for (var n = 0; n < colorStops.length; n += 2) {
+                grd.addColorStop(colorStops[n], colorStops[n + 1]);
+            }
+            return grd;
+        }
+    };
+    Shape.prototype.getShadowRGBA = function () {
+        return this._getCache(SHADOW_RGBA, this._getShadowRGBA);
+    };
+    Shape.prototype._getShadowRGBA = function () {
+        if (this.hasShadow()) {
+            var rgba = Util_1.Util.colorToRGBA(this.shadowColor());
+            return ('rgba(' +
+                rgba.r +
+                ',' +
+                rgba.g +
+                ',' +
+                rgba.b +
+                ',' +
+                rgba.a * (this.shadowOpacity() || 1) +
+                ')');
+        }
+    };
+    Shape.prototype.hasFill = function () {
+        return !!(this.fill() ||
+            this.fillPatternImage() ||
+            this.fillLinearGradientColorStops() ||
+            this.fillRadialGradientColorStops());
+    };
+    Shape.prototype.hasStroke = function () {
+        return (this.strokeEnabled() &&
+            this.strokeWidth() &&
+            !!(this.stroke() || this.strokeLinearGradientColorStops()));
+    };
+    Shape.prototype.intersects = function (point) {
+        var stage = this.getStage(), bufferHitCanvas = stage.bufferHitCanvas, p;
+        bufferHitCanvas.getContext().clear();
+        this.drawHit(bufferHitCanvas);
+        p = bufferHitCanvas.context.getImageData(Math.round(point.x), Math.round(point.y), 1, 1).data;
+        return p[3] > 0;
+    };
+    Shape.prototype.destroy = function () {
+        Node_1.Node.prototype.destroy.call(this);
+        delete exports.shapes[this.colorKey];
+        delete this.colorKey;
+        return this;
+    };
+    Shape.prototype._useBufferCanvas = function (caching) {
+        return ((!caching || this.hasShadow()) &&
+            this.perfectDrawEnabled() &&
+            this.getAbsoluteOpacity() !== 1 &&
+            this.hasFill() &&
+            this.hasStroke() &&
+            this.getStage());
+    };
+    Shape.prototype.setStrokeHitEnabled = function (val) {
+        if (val) {
+            this.hitStrokeWidth('auto');
+        }
+        else {
+            this.hitStrokeWidth(0);
+        }
+    };
+    Shape.prototype.getStrokeHitEnabled = function () {
+        if (this.hitStrokeWidth() === 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    Shape.prototype.getSelfRect = function () {
+        var size = this.size();
+        return {
+            x: this._centroid ? Math.round(-size.width / 2) : 0,
+            y: this._centroid ? Math.round(-size.height / 2) : 0,
+            width: size.width,
+            height: size.height
+        };
+    };
+    Shape.prototype.getClientRect = function (attrs) {
+        attrs = attrs || {};
+        var skipTransform = attrs.skipTransform;
+        var relativeTo = attrs.relativeTo;
+        var fillRect = this.getSelfRect();
+        var applyStroke = !attrs.skipStroke && this.hasStroke();
+        var strokeWidth = (applyStroke && this.strokeWidth()) || 0;
+        var fillAndStrokeWidth = fillRect.width + strokeWidth;
+        var fillAndStrokeHeight = fillRect.height + strokeWidth;
+        var applyShadow = !attrs.skipShadow && this.hasShadow();
+        var shadowOffsetX = applyShadow ? this.shadowOffsetX() : 0;
+        var shadowOffsetY = applyShadow ? this.shadowOffsetY() : 0;
+        var preWidth = fillAndStrokeWidth + Math.abs(shadowOffsetX);
+        var preHeight = fillAndStrokeHeight + Math.abs(shadowOffsetY);
+        var blurRadius = (applyShadow && this.shadowBlur()) || 0;
+        var width = preWidth + blurRadius * 2;
+        var height = preHeight + blurRadius * 2;
+        var roundingOffset = 0;
+        if (Math.round(strokeWidth / 2) !== strokeWidth / 2) {
+            roundingOffset = 1;
+        }
+        var rect = {
+            width: width + roundingOffset,
+            height: height + roundingOffset,
+            x: -Math.round(strokeWidth / 2 + blurRadius) +
+                Math.min(shadowOffsetX, 0) +
+                fillRect.x,
+            y: -Math.round(strokeWidth / 2 + blurRadius) +
+                Math.min(shadowOffsetY, 0) +
+                fillRect.y
+        };
+        if (!skipTransform) {
+            return this._transformedRect(rect, relativeTo);
+        }
+        return rect;
+    };
+    Shape.prototype.drawScene = function (can, top, caching, skipBuffer) {
+        var layer = this.getLayer(), canvas = can || layer.getCanvas(), context = canvas.getContext(), cachedCanvas = this._getCanvasCache(), drawFunc = this.sceneFunc(), hasShadow = this.hasShadow(), hasStroke = this.hasStroke(), stage, bufferCanvas, bufferContext;
+        if (!this.isVisible() && !caching) {
+            return this;
+        }
+        if (cachedCanvas) {
+            context.save();
+            layer._applyTransform(this, context, top);
+            this._drawCachedSceneCanvas(context);
+            context.restore();
+            return this;
+        }
+        if (!drawFunc) {
+            return this;
+        }
+        context.save();
+        if (this._useBufferCanvas(caching) && !skipBuffer) {
+            stage = this.getStage();
+            bufferCanvas = stage.bufferCanvas;
+            bufferContext = bufferCanvas.getContext();
+            bufferContext.clear();
+            bufferContext.save();
+            bufferContext._applyLineJoin(this);
+            if (!caching) {
+                if (layer) {
+                    layer._applyTransform(this, bufferContext, top);
+                }
+                else {
+                    var m = this.getAbsoluteTransform(top).getMatrix();
+                    context.transform(m[0], m[1], m[2], m[3], m[4], m[5]);
+                }
+            }
+            drawFunc.call(this, bufferContext, this);
+            bufferContext.restore();
+            var ratio = bufferCanvas.pixelRatio;
+            if (hasShadow && !canvas.hitCanvas) {
+                context.save();
+                context._applyShadow(this);
+                context._applyOpacity(this);
+                context._applyGlobalCompositeOperation(this);
+                context.drawImage(bufferCanvas._canvas, 0, 0, bufferCanvas.width / ratio, bufferCanvas.height / ratio);
+                context.restore();
+            }
+            else {
+                context._applyOpacity(this);
+                context._applyGlobalCompositeOperation(this);
+                context.drawImage(bufferCanvas._canvas, 0, 0, bufferCanvas.width / ratio, bufferCanvas.height / ratio);
+            }
+        }
+        else {
+            context._applyLineJoin(this);
+            if (!caching) {
+                if (layer) {
+                    layer._applyTransform(this, context, top);
+                }
+                else {
+                    var o = this.getAbsoluteTransform(top).getMatrix();
+                    context.transform(o[0], o[1], o[2], o[3], o[4], o[5]);
+                }
+            }
+            if (hasShadow && hasStroke && !canvas.hitCanvas) {
+                context.save();
+                if (!caching) {
+                    context._applyOpacity(this);
+                    context._applyGlobalCompositeOperation(this);
+                }
+                context._applyShadow(this);
+                drawFunc.call(this, context, this);
+                context.restore();
+                if (this.hasFill() && this.shadowForStrokeEnabled()) {
+                    drawFunc.call(this, context, this);
+                }
+            }
+            else if (hasShadow && !canvas.hitCanvas) {
+                context.save();
+                if (!caching) {
+                    context._applyOpacity(this);
+                    context._applyGlobalCompositeOperation(this);
+                }
+                context._applyShadow(this);
+                drawFunc.call(this, context, this);
+                context.restore();
+            }
+            else {
+                if (!caching) {
+                    context._applyOpacity(this);
+                    context._applyGlobalCompositeOperation(this);
+                }
+                drawFunc.call(this, context, this);
+            }
+        }
+        context.restore();
+        return this;
+    };
+    Shape.prototype.drawHit = function (can, top, caching) {
+        var layer = this.getLayer(), canvas = can || layer.hitCanvas, context = canvas && canvas.getContext(), drawFunc = this.hitFunc() || this.sceneFunc(), cachedCanvas = this._getCanvasCache(), cachedHitCanvas = cachedCanvas && cachedCanvas.hit;
+        if (!this.colorKey) {
+            Util_1.Util.warn('Looks like your canvas has a destroyed shape in it. Do not reuse shape after you destroyed it. See the shape in logs above. If you want to reuse shape you should call remove() instead of destroy()');
+        }
+        if (!this.shouldDrawHit() && !caching) {
+            return this;
+        }
+        if (cachedHitCanvas) {
+            context.save();
+            layer._applyTransform(this, context, top);
+            this._drawCachedHitCanvas(context);
+            context.restore();
+            return this;
+        }
+        if (!drawFunc) {
+            return this;
+        }
+        context.save();
+        context._applyLineJoin(this);
+        if (!caching) {
+            if (layer) {
+                layer._applyTransform(this, context, top);
+            }
+            else {
+                var o = this.getAbsoluteTransform(top).getMatrix();
+                context.transform(o[0], o[1], o[2], o[3], o[4], o[5]);
+            }
+        }
+        drawFunc.call(this, context, this);
+        context.restore();
+        return this;
+    };
+    Shape.prototype.drawHitFromCache = function (alphaThreshold) {
+        var threshold = alphaThreshold || 0, cachedCanvas = this._getCanvasCache(), sceneCanvas = this._getCachedSceneCanvas(), hitCanvas = cachedCanvas.hit, hitContext = hitCanvas.getContext(), hitWidth = hitCanvas.getWidth(), hitHeight = hitCanvas.getHeight(), hitImageData, hitData, len, rgbColorKey, i, alpha;
+        hitContext.clear();
+        hitContext.drawImage(sceneCanvas._canvas, 0, 0, hitWidth, hitHeight);
+        try {
+            hitImageData = hitContext.getImageData(0, 0, hitWidth, hitHeight);
+            hitData = hitImageData.data;
+            len = hitData.length;
+            rgbColorKey = Util_1.Util._hexToRgb(this.colorKey);
+            for (i = 0; i < len; i += 4) {
+                alpha = hitData[i + 3];
+                if (alpha > threshold) {
+                    hitData[i] = rgbColorKey.r;
+                    hitData[i + 1] = rgbColorKey.g;
+                    hitData[i + 2] = rgbColorKey.b;
+                    hitData[i + 3] = 255;
+                }
+                else {
+                    hitData[i + 3] = 0;
+                }
+            }
+            hitContext.putImageData(hitImageData, 0, 0);
+        }
+        catch (e) {
+            Util_1.Util.error('Unable to draw hit graph from cached scene canvas. ' + e.message);
+        }
+        return this;
+    };
+    return Shape;
+}(Node_1.Node));
+exports.Shape = Shape;
+Shape.prototype._fillFunc = _fillFunc;
+Shape.prototype._strokeFunc = _strokeFunc;
+Shape.prototype._fillFuncHit = _fillFuncHit;
+Shape.prototype._strokeFuncHit = _strokeFuncHit;
+Shape.prototype._centroid = false;
+Shape.prototype.nodeType = 'Shape';
+Global_1._registerNode(Shape);
+Factory_1.Factory.addGetterSetter(Shape, 'stroke', undefined, Validators_1.getStringValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'strokeWidth', 2, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'hitStrokeWidth', 'auto', Validators_1.getNumberOrAutoValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'strokeHitEnabled', true, Validators_1.getBooleanValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'perfectDrawEnabled', true, Validators_1.getBooleanValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'shadowForStrokeEnabled', true, Validators_1.getBooleanValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'lineJoin');
+Factory_1.Factory.addGetterSetter(Shape, 'lineCap');
+Factory_1.Factory.addGetterSetter(Shape, 'sceneFunc');
+Factory_1.Factory.addGetterSetter(Shape, 'hitFunc');
+Factory_1.Factory.addGetterSetter(Shape, 'dash');
+Factory_1.Factory.addGetterSetter(Shape, 'dashOffset', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'shadowColor', undefined, Validators_1.getStringValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'shadowBlur', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'shadowOpacity', 1, Validators_1.getNumberValidator());
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'shadowOffset', ['x', 'y']);
+Factory_1.Factory.addGetterSetter(Shape, 'shadowOffsetX', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'shadowOffsetY', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternImage');
+Factory_1.Factory.addGetterSetter(Shape, 'fill', undefined, Validators_1.getStringValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternX', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternY', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientColorStops');
+Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientColorStops');
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartRadius', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndRadius', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientColorStops');
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternRepeat', 'repeat');
+Factory_1.Factory.addGetterSetter(Shape, 'fillEnabled', true);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeEnabled', true);
+Factory_1.Factory.addGetterSetter(Shape, 'shadowEnabled', true);
+Factory_1.Factory.addGetterSetter(Shape, 'dashEnabled', true);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeScaleEnabled', true);
+Factory_1.Factory.addGetterSetter(Shape, 'fillPriority', 'color');
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillPatternOffset', ['x', 'y']);
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternOffsetX', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternOffsetY', 0, Validators_1.getNumberValidator());
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillPatternScale', ['x', 'y']);
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternScaleX', 1, Validators_1.getNumberValidator());
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternScaleY', 1, Validators_1.getNumberValidator());
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillLinearGradientStartPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'strokeLinearGradientStartPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientStartPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientStartPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientStartPointY', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientStartPointY', 0);
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillLinearGradientEndPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'strokeLinearGradientEndPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientEndPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientEndPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillLinearGradientEndPointY', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'strokeLinearGradientEndPointY', 0);
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillRadialGradientStartPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientStartPointY', 0);
+Factory_1.Factory.addComponentsGetterSetter(Shape, 'fillRadialGradientEndPoint', [
+    'x',
+    'y'
+]);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndPointX', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillRadialGradientEndPointY', 0);
+Factory_1.Factory.addGetterSetter(Shape, 'fillPatternRotation', 0);
+Factory_1.Factory.backCompat(Shape, {
+    dashArray: 'dash',
+    getDashArray: 'getDash',
+    setDashArray: 'getDash',
+    drawFunc: 'sceneFunc',
+    getDrawFunc: 'getSceneFunc',
+    setDrawFunc: 'setSceneFunc',
+    drawHitFunc: 'hitFunc',
+    getDrawHitFunc: 'getHitFunc',
+    setDrawHitFunc: 'setHitFunc'
+});
+Util_1.Collection.mapMethods(Shape);
+
+
+/***/ }),
 /* 17 */,
 /* 18 */,
 /* 19 */,
@@ -5059,7 +5059,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.3.1
+ * jQuery JavaScript Library v3.4.0
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -5069,7 +5069,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2018-01-20T17:24Z
+ * Date: 2019-04-10T19:48Z
  */
 ( function( global, factory ) {
 
@@ -5151,20 +5151,33 @@ var isWindow = function isWindow( obj ) {
 	var preservedScriptAttributes = {
 		type: true,
 		src: true,
+		nonce: true,
 		noModule: true
 	};
 
-	function DOMEval( code, doc, node ) {
+	function DOMEval( code, node, doc ) {
 		doc = doc || document;
 
-		var i,
+		var i, val,
 			script = doc.createElement( "script" );
 
 		script.text = code;
 		if ( node ) {
 			for ( i in preservedScriptAttributes ) {
-				if ( node[ i ] ) {
-					script[ i ] = node[ i ];
+
+				// Support: Firefox 64+, Edge 18+
+				// Some browsers don't support the "nonce" property on scripts.
+				// On the other hand, just using `getAttribute` is not enough as
+				// the `nonce` attribute is reset to an empty string whenever it
+				// becomes browsing-context connected.
+				// See https://github.com/whatwg/html/issues/2369
+				// See https://html.spec.whatwg.org/#nonce-attributes
+				// The `node.getAttribute` check was added for the sake of
+				// `jQuery.globalEval` so that it can fake a nonce-containing node
+				// via an object.
+				val = node[ i ] || node.getAttribute && node.getAttribute( i );
+				if ( val ) {
+					script.setAttribute( i, val );
 				}
 			}
 		}
@@ -5189,7 +5202,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.3.1",
+	version = "3.4.0",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5318,25 +5331,28 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 			// Extend the base object
 			for ( name in options ) {
-				src = target[ name ];
 				copy = options[ name ];
 
+				// Prevent Object.prototype pollution
 				// Prevent never-ending loop
-				if ( target === copy ) {
+				if ( name === "__proto__" || target === copy ) {
 					continue;
 				}
 
 				// Recurse if we're merging plain objects or arrays
 				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
+					src = target[ name ];
 
-					if ( copyIsArray ) {
-						copyIsArray = false;
-						clone = src && Array.isArray( src ) ? src : [];
-
+					// Ensure proper type for the source value
+					if ( copyIsArray && !Array.isArray( src ) ) {
+						clone = [];
+					} else if ( !copyIsArray && !jQuery.isPlainObject( src ) ) {
+						clone = {};
 					} else {
-						clone = src && jQuery.isPlainObject( src ) ? src : {};
+						clone = src;
 					}
+					copyIsArray = false;
 
 					// Never move original objects, clone them
 					target[ name ] = jQuery.extend( deep, clone, copy );
@@ -5389,9 +5405,6 @@ jQuery.extend( {
 	},
 
 	isEmptyObject: function( obj ) {
-
-		/* eslint-disable no-unused-vars */
-		// See https://github.com/eslint/eslint/issues/6125
 		var name;
 
 		for ( name in obj ) {
@@ -5401,8 +5414,8 @@ jQuery.extend( {
 	},
 
 	// Evaluates a script in a global context
-	globalEval: function( code ) {
-		DOMEval( code );
+	globalEval: function( code, options ) {
+		DOMEval( code, { nonce: options && options.nonce } );
 	},
 
 	each: function( obj, callback ) {
@@ -5558,14 +5571,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.3
+ * Sizzle CSS Selector Engine v2.3.4
  * https://sizzlejs.com/
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright JS Foundation and other contributors
  * Released under the MIT license
- * http://jquery.org/license
+ * https://js.foundation/
  *
- * Date: 2016-08-08
+ * Date: 2019-04-08
  */
 (function( window ) {
 
@@ -5599,6 +5612,7 @@ var i,
 	classCache = createCache(),
 	tokenCache = createCache(),
 	compilerCache = createCache(),
+	nonnativeSelectorCache = createCache(),
 	sortOrder = function( a, b ) {
 		if ( a === b ) {
 			hasDuplicate = true;
@@ -5660,8 +5674,7 @@ var i,
 
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
 	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
-
-	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+	rdescend = new RegExp( whitespace + "|>" ),
 
 	rpseudo = new RegExp( pseudos ),
 	ridentifier = new RegExp( "^" + identifier + "$" ),
@@ -5682,6 +5695,7 @@ var i,
 			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
 	},
 
+	rhtml = /HTML$/i,
 	rinputs = /^(?:input|select|textarea|button)$/i,
 	rheader = /^h\d$/i,
 
@@ -5736,9 +5750,9 @@ var i,
 		setDocument();
 	},
 
-	disabledAncestor = addCombinator(
+	inDisabledFieldset = addCombinator(
 		function( elem ) {
-			return elem.disabled === true && ("form" in elem || "label" in elem);
+			return elem.disabled === true && elem.nodeName.toLowerCase() === "fieldset";
 		},
 		{ dir: "parentNode", next: "legend" }
 	);
@@ -5851,18 +5865,22 @@ function Sizzle( selector, context, results, seed ) {
 
 			// Take advantage of querySelectorAll
 			if ( support.qsa &&
-				!compilerCache[ selector + " " ] &&
-				(!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+				!nonnativeSelectorCache[ selector + " " ] &&
+				(!rbuggyQSA || !rbuggyQSA.test( selector )) &&
 
-				if ( nodeType !== 1 ) {
-					newContext = context;
-					newSelector = selector;
-
-				// qSA looks outside Element context, which is not what we want
-				// Thanks to Andrew Dupont for this workaround technique
-				// Support: IE <=8
+				// Support: IE 8 only
 				// Exclude object elements
-				} else if ( context.nodeName.toLowerCase() !== "object" ) {
+				(nodeType !== 1 || context.nodeName.toLowerCase() !== "object") ) {
+
+				newSelector = selector;
+				newContext = context;
+
+				// qSA considers elements outside a scoping root when evaluating child or
+				// descendant combinators, which is not what we want.
+				// In such cases, we work around the behavior by prefixing every selector in the
+				// list with an ID selector referencing the scope context.
+				// Thanks to Andrew Dupont for this technique.
+				if ( nodeType === 1 && rdescend.test( selector ) ) {
 
 					// Capture the context ID, setting it first if necessary
 					if ( (nid = context.getAttribute( "id" )) ) {
@@ -5884,17 +5902,16 @@ function Sizzle( selector, context, results, seed ) {
 						context;
 				}
 
-				if ( newSelector ) {
-					try {
-						push.apply( results,
-							newContext.querySelectorAll( newSelector )
-						);
-						return results;
-					} catch ( qsaError ) {
-					} finally {
-						if ( nid === expando ) {
-							context.removeAttribute( "id" );
-						}
+				try {
+					push.apply( results,
+						newContext.querySelectorAll( newSelector )
+					);
+					return results;
+				} catch ( qsaError ) {
+					nonnativeSelectorCache( selector, true );
+				} finally {
+					if ( nid === expando ) {
+						context.removeAttribute( "id" );
 					}
 				}
 			}
@@ -6058,7 +6075,7 @@ function createDisabledPseudo( disabled ) {
 					// Where there is no isDisabled, check manually
 					/* jshint -W018 */
 					elem.isDisabled !== !disabled &&
-						disabledAncestor( elem ) === disabled;
+						inDisabledFieldset( elem ) === disabled;
 			}
 
 			return elem.disabled === disabled;
@@ -6115,10 +6132,13 @@ support = Sizzle.support = {};
  * @returns {Boolean} True iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
-	// documentElement is verified for cases where it doesn't yet exist
-	// (such as loading iframes in IE - #4833)
-	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
-	return documentElement ? documentElement.nodeName !== "HTML" : false;
+	var namespace = elem.namespaceURI,
+		docElem = (elem.ownerDocument || elem).documentElement;
+
+	// Support: IE <=8
+	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
+	// https://bugs.jquery.com/ticket/4833
+	return !rhtml.test( namespace || docElem && docElem.nodeName || "HTML" );
 };
 
 /**
@@ -6540,11 +6560,8 @@ Sizzle.matchesSelector = function( elem, expr ) {
 		setDocument( elem );
 	}
 
-	// Make sure that attribute selectors are quoted
-	expr = expr.replace( rattributeQuotes, "='$1']" );
-
 	if ( support.matchesSelector && documentIsHTML &&
-		!compilerCache[ expr + " " ] &&
+		!nonnativeSelectorCache[ expr + " " ] &&
 		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
 		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
 
@@ -6558,7 +6575,9 @@ Sizzle.matchesSelector = function( elem, expr ) {
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
-		} catch (e) {}
+		} catch (e) {
+			nonnativeSelectorCache( expr, true );
+		}
 	}
 
 	return Sizzle( expr, document, null, [ elem ] ).length > 0;
@@ -7017,7 +7036,7 @@ Expr = Sizzle.selectors = {
 		"contains": markFunction(function( text ) {
 			text = text.replace( runescape, funescape );
 			return function( elem ) {
-				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+				return ( elem.textContent || getText( elem ) ).indexOf( text ) > -1;
 			};
 		}),
 
@@ -7156,7 +7175,11 @@ Expr = Sizzle.selectors = {
 		}),
 
 		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
+			var i = argument < 0 ?
+				argument + length :
+				argument > length ?
+					length :
+					argument;
 			for ( ; --i >= 0; ) {
 				matchIndexes.push( i );
 			}
@@ -8206,18 +8229,18 @@ jQuery.each( {
 		return siblings( elem.firstChild );
 	},
 	contents: function( elem ) {
-        if ( nodeName( elem, "iframe" ) ) {
-            return elem.contentDocument;
-        }
+		if ( typeof elem.contentDocument !== "undefined" ) {
+			return elem.contentDocument;
+		}
 
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-        // Treat the template element as a regular one in browsers that
-        // don't support it.
-        if ( nodeName( elem, "template" ) ) {
-            elem = elem.content || elem;
-        }
+		// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+		// Treat the template element as a regular one in browsers that
+		// don't support it.
+		if ( nodeName( elem, "template" ) ) {
+			elem = elem.content || elem;
+		}
 
-        return jQuery.merge( [], elem.childNodes );
+		return jQuery.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
 	jQuery.fn[ name ] = function( until, selector ) {
@@ -9526,6 +9549,22 @@ var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
 
 var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
 
+var documentElement = document.documentElement;
+
+
+
+	var isAttached = function( elem ) {
+			return jQuery.contains( elem.ownerDocument, elem );
+		},
+		composed = { composed: true };
+
+	// Check attachment across shadow DOM boundaries when possible (gh-3504)
+	if ( documentElement.attachShadow ) {
+		isAttached = function( elem ) {
+			return jQuery.contains( elem.ownerDocument, elem ) ||
+				elem.getRootNode( composed ) === elem.ownerDocument;
+		};
+	}
 var isHiddenWithinTree = function( elem, el ) {
 
 		// isHiddenWithinTree might be called from jQuery#filter function;
@@ -9540,7 +9579,7 @@ var isHiddenWithinTree = function( elem, el ) {
 			// Support: Firefox <=43 - 45
 			// Disconnected elements can have computed display: none, so first confirm that elem is
 			// in the document.
-			jQuery.contains( elem.ownerDocument, elem ) &&
+			isAttached( elem ) &&
 
 			jQuery.css( elem, "display" ) === "none";
 	};
@@ -9582,7 +9621,8 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
 
 		// Starting value computation is required for potential unit mismatches
-		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+		initialInUnit = elem.nodeType &&
+			( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
 			rcssNum.exec( jQuery.css( elem, prop ) );
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
@@ -9729,7 +9769,7 @@ jQuery.fn.extend( {
 } );
 var rcheckableType = ( /^(?:checkbox|radio)$/i );
 
-var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
+var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]*)/i );
 
 var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 
@@ -9801,7 +9841,7 @@ function setGlobalEval( elems, refElements ) {
 var rhtml = /<|&#?\w+;/;
 
 function buildFragment( elems, context, scripts, selection, ignored ) {
-	var elem, tmp, tag, wrap, contains, j,
+	var elem, tmp, tag, wrap, attached, j,
 		fragment = context.createDocumentFragment(),
 		nodes = [],
 		i = 0,
@@ -9865,13 +9905,13 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 			continue;
 		}
 
-		contains = jQuery.contains( elem.ownerDocument, elem );
+		attached = isAttached( elem );
 
 		// Append to fragment
 		tmp = getAll( fragment.appendChild( elem ), "script" );
 
 		// Preserve script evaluation history
-		if ( contains ) {
+		if ( attached ) {
 			setGlobalEval( tmp );
 		}
 
@@ -9914,8 +9954,6 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	div.innerHTML = "<textarea>x</textarea>";
 	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
 } )();
-var documentElement = document.documentElement;
-
 
 
 var
@@ -9931,8 +9969,19 @@ function returnFalse() {
 	return false;
 }
 
+// Support: IE <=9 - 11+
+// focus() and blur() are asynchronous, except when they are no-op.
+// So expect focus to be synchronous when the element is already active,
+// and blur to be synchronous when the element is not already active.
+// (focus and blur are always synchronous in other supported browsers,
+// this just defines when we can count on it).
+function expectSync( elem, type ) {
+	return ( elem === safeActiveElement() ) === ( type === "focus" );
+}
+
 // Support: IE <=9 only
-// See #13393 for more info
+// Accessing document.activeElement can throw unexpectedly
+// https://bugs.jquery.com/ticket/13393
 function safeActiveElement() {
 	try {
 		return document.activeElement;
@@ -10232,9 +10281,10 @@ jQuery.event = {
 			while ( ( handleObj = matched.handlers[ j++ ] ) &&
 				!event.isImmediatePropagationStopped() ) {
 
-				// Triggered event must either 1) have no namespace, or 2) have namespace(s)
-				// a subset or equal to those in the bound event (both can have no namespace).
-				if ( !event.rnamespace || event.rnamespace.test( handleObj.namespace ) ) {
+				// If the event is namespaced, then each handler is only invoked if it is
+				// specially universal or its namespaces are a superset of the event's.
+				if ( !event.rnamespace || handleObj.namespace === false ||
+					event.rnamespace.test( handleObj.namespace ) ) {
 
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
@@ -10358,39 +10408,53 @@ jQuery.event = {
 			// Prevent triggered image.load events from bubbling to window.load
 			noBubble: true
 		},
-		focus: {
-
-			// Fire native event if possible so blur/focus sequence is correct
-			trigger: function() {
-				if ( this !== safeActiveElement() && this.focus ) {
-					this.focus();
-					return false;
-				}
-			},
-			delegateType: "focusin"
-		},
-		blur: {
-			trigger: function() {
-				if ( this === safeActiveElement() && this.blur ) {
-					this.blur();
-					return false;
-				}
-			},
-			delegateType: "focusout"
-		},
 		click: {
 
-			// For checkbox, fire native event so checked state will be right
-			trigger: function() {
-				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
-					this.click();
-					return false;
+			// Utilize native event to ensure correct state for checkable inputs
+			setup: function( data ) {
+
+				// For mutual compressibility with _default, replace `this` access with a local var.
+				// `|| data` is dead code meant only to preserve the variable through minification.
+				var el = this || data;
+
+				// Claim the first handler
+				if ( rcheckableType.test( el.type ) &&
+					el.click && nodeName( el, "input" ) &&
+					dataPriv.get( el, "click" ) === undefined ) {
+
+					// dataPriv.set( el, "click", ... )
+					leverageNative( el, "click", returnTrue );
 				}
+
+				// Return false to allow normal processing in the caller
+				return false;
+			},
+			trigger: function( data ) {
+
+				// For mutual compressibility with _default, replace `this` access with a local var.
+				// `|| data` is dead code meant only to preserve the variable through minification.
+				var el = this || data;
+
+				// Force setup before triggering a click
+				if ( rcheckableType.test( el.type ) &&
+					el.click && nodeName( el, "input" ) &&
+					dataPriv.get( el, "click" ) === undefined ) {
+
+					leverageNative( el, "click" );
+				}
+
+				// Return non-false to allow normal event-path propagation
+				return true;
 			},
 
-			// For cross-browser consistency, don't fire native .click() on links
+			// For cross-browser consistency, suppress native .click() on links
+			// Also prevent it if we're currently inside a leveraged native-event stack
 			_default: function( event ) {
-				return nodeName( event.target, "a" );
+				var target = event.target;
+				return rcheckableType.test( target.type ) &&
+					target.click && nodeName( target, "input" ) &&
+					dataPriv.get( target, "click" ) ||
+					nodeName( target, "a" );
 			}
 		},
 
@@ -10406,6 +10470,85 @@ jQuery.event = {
 		}
 	}
 };
+
+// Ensure the presence of an event listener that handles manually-triggered
+// synthetic events by interrupting progress until reinvoked in response to
+// *native* events that it fires directly, ensuring that state changes have
+// already occurred before other listeners are invoked.
+function leverageNative( el, type, expectSync ) {
+
+	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
+	if ( !expectSync ) {
+		jQuery.event.add( el, type, returnTrue );
+		return;
+	}
+
+	// Register the controller as a special universal handler for all event namespaces
+	dataPriv.set( el, type, false );
+	jQuery.event.add( el, type, {
+		namespace: false,
+		handler: function( event ) {
+			var notAsync, result,
+				saved = dataPriv.get( this, type );
+
+			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
+
+				// Interrupt processing of the outer synthetic .trigger()ed event
+				if ( !saved ) {
+
+					// Store arguments for use when handling the inner native event
+					saved = slice.call( arguments );
+					dataPriv.set( this, type, saved );
+
+					// Trigger the native event and capture its result
+					// Support: IE <=9 - 11+
+					// focus() and blur() are asynchronous
+					notAsync = expectSync( this, type );
+					this[ type ]();
+					result = dataPriv.get( this, type );
+					if ( saved !== result || notAsync ) {
+						dataPriv.set( this, type, false );
+					} else {
+						result = undefined;
+					}
+					if ( saved !== result ) {
+
+						// Cancel the outer synthetic event
+						event.stopImmediatePropagation();
+						event.preventDefault();
+						return result;
+					}
+
+				// If this is an inner synthetic event for an event with a bubbling surrogate
+				// (focus or blur), assume that the surrogate already propagated from triggering the
+				// native event and prevent that from happening again here.
+				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
+				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
+				// less bad than duplication.
+				} else if ( ( jQuery.event.special[ type ] || {} ).delegateType ) {
+					event.stopPropagation();
+				}
+
+			// If this is a native event triggered above, everything is now in order
+			// Fire an inner synthetic event with the original arguments
+			} else if ( saved ) {
+
+				// ...and capture the result
+				dataPriv.set( this, type, jQuery.event.trigger(
+
+					// Support: IE <=9 - 11+
+					// Extend with the prototype to reset the above stopImmediatePropagation()
+					jQuery.extend( saved.shift(), jQuery.Event.prototype ),
+					saved,
+					this
+				) );
+
+				// Abort handling of the native event
+				event.stopImmediatePropagation();
+			}
+		}
+	} );
+}
 
 jQuery.removeEvent = function( elem, type, handle ) {
 
@@ -10519,6 +10662,7 @@ jQuery.each( {
 	shiftKey: true,
 	view: true,
 	"char": true,
+	code: true,
 	charCode: true,
 	key: true,
 	keyCode: true,
@@ -10564,6 +10708,33 @@ jQuery.each( {
 		return event.which;
 	}
 }, jQuery.event.addProp );
+
+jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
+	jQuery.event.special[ type ] = {
+
+		// Utilize native event if possible so blur/focus sequence is correct
+		setup: function() {
+
+			// Claim the first handler
+			// dataPriv.set( this, "focus", ... )
+			// dataPriv.set( this, "blur", ... )
+			leverageNative( this, type, expectSync );
+
+			// Return false to allow normal processing in the caller
+			return false;
+		},
+		trigger: function() {
+
+			// Force setup before trigger
+			leverageNative( this, type );
+
+			// Return non-false to allow normal event-path propagation
+			return true;
+		},
+
+		delegateType: delegateType
+	};
+} );
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
 // so that event delegation works in jQuery.
@@ -10815,11 +10986,13 @@ function domManip( collection, args, callback, ignored ) {
 						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
 
 							// Optional AJAX dependency, but won't run scripts if not present
-							if ( jQuery._evalUrl ) {
-								jQuery._evalUrl( node.src );
+							if ( jQuery._evalUrl && !node.noModule ) {
+								jQuery._evalUrl( node.src, {
+									nonce: node.nonce || node.getAttribute( "nonce" )
+								} );
 							}
 						} else {
-							DOMEval( node.textContent.replace( rcleanScript, "" ), doc, node );
+							DOMEval( node.textContent.replace( rcleanScript, "" ), node, doc );
 						}
 					}
 				}
@@ -10841,7 +11014,7 @@ function remove( elem, selector, keepData ) {
 		}
 
 		if ( node.parentNode ) {
-			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+			if ( keepData && isAttached( node ) ) {
 				setGlobalEval( getAll( node, "script" ) );
 			}
 			node.parentNode.removeChild( node );
@@ -10859,7 +11032,7 @@ jQuery.extend( {
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 		var i, l, srcElements, destElements,
 			clone = elem.cloneNode( true ),
-			inPage = jQuery.contains( elem.ownerDocument, elem );
+			inPage = isAttached( elem );
 
 		// Fix IE cloning issues
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
@@ -11155,8 +11328,10 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 		// Support: IE 9 only
 		// Detect overflow:scroll screwiness (gh-3699)
+		// Support: Chrome <=64
+		// Don't get tricked when zoom affects offsetWidth (gh-4029)
 		div.style.position = "absolute";
-		scrollboxSizeVal = div.offsetWidth === 36 || "absolute";
+		scrollboxSizeVal = roundPixelMeasures( div.offsetWidth / 3 ) === 12;
 
 		documentElement.removeChild( container );
 
@@ -11227,7 +11402,7 @@ function curCSS( elem, name, computed ) {
 	if ( computed ) {
 		ret = computed.getPropertyValue( name ) || computed[ name ];
 
-		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+		if ( ret === "" && !isAttached( elem ) ) {
 			ret = jQuery.style( elem, name );
 		}
 
@@ -11283,29 +11458,12 @@ function addGetHookIf( conditionFn, hookFn ) {
 }
 
 
-var
+var cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style,
+	vendorProps = {};
 
-	// Swappable if display is none or starts with table
-	// except "table", "table-cell", or "table-caption"
-	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	rcustomProp = /^--/,
-	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
-	cssNormalTransform = {
-		letterSpacing: "0",
-		fontWeight: "400"
-	},
-
-	cssPrefixes = [ "Webkit", "Moz", "ms" ],
-	emptyStyle = document.createElement( "div" ).style;
-
-// Return a css property mapped to a potentially vendor prefixed property
+// Return a vendor-prefixed property or undefined
 function vendorPropName( name ) {
-
-	// Shortcut for names that are not vendor prefixed
-	if ( name in emptyStyle ) {
-		return name;
-	}
 
 	// Check for vendor prefixed names
 	var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
@@ -11319,15 +11477,32 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a property mapped along what jQuery.cssProps suggests or to
-// a vendor prefixed property.
+// Return a potentially-mapped jQuery.cssProps or vendor prefixed property
 function finalPropName( name ) {
-	var ret = jQuery.cssProps[ name ];
-	if ( !ret ) {
-		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+	var final = jQuery.cssProps[ name ] || vendorProps[ name ];
+
+	if ( final ) {
+		return final;
 	}
-	return ret;
+	if ( name in emptyStyle ) {
+		return name;
+	}
+	return vendorProps[ name ] = vendorPropName( name ) || name;
 }
+
+
+var
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rcustomProp = /^--/,
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	};
 
 function setPositiveNumber( elem, value, subtract ) {
 
@@ -11400,7 +11575,10 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 			delta -
 			extra -
 			0.5
-		) );
+
+		// If offsetWidth/offsetHeight is unknown, then we can't determine content-box scroll gutter
+		// Use an explicit zero to avoid NaN (gh-3964)
+		) ) || 0;
 	}
 
 	return delta;
@@ -11410,9 +11588,16 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 	// Start with computed style
 	var styles = getStyles( elem ),
+
+		// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-4322).
+		// Fake content-box until we know it's needed to know the true value.
+		boxSizingNeeded = !support.boxSizingReliable() || extra,
+		isBorderBox = boxSizingNeeded &&
+			jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox,
+
 		val = curCSS( elem, dimension, styles ),
-		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
-		valueIsBorderBox = isBorderBox;
+		offsetProp = "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 );
 
 	// Support: Firefox <=54
 	// Return a confounding non-pixel value or feign ignorance, as appropriate.
@@ -11423,22 +11608,29 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		val = "auto";
 	}
 
-	// Check for style in case a browser which returns unreliable values
-	// for getComputedStyle silently falls back to the reliable elem.style
-	valueIsBorderBox = valueIsBorderBox &&
-		( support.boxSizingReliable() || val === elem.style[ dimension ] );
 
 	// Fall back to offsetWidth/offsetHeight when value is "auto"
 	// This happens for inline elements with no explicit setting (gh-3571)
 	// Support: Android <=4.1 - 4.3 only
 	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
-	if ( val === "auto" ||
-		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) {
+	// Support: IE 9-11 only
+	// Also use offsetWidth/offsetHeight for when box sizing is unreliable
+	// We use getClientRects() to check for hidden/disconnected.
+	// In those cases, the computed value can be trusted to be border-box
+	if ( ( !support.boxSizingReliable() && isBorderBox ||
+		val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) &&
+		elem.getClientRects().length ) {
 
-		val = elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ];
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 
-		// offsetWidth/offsetHeight provide border-box values
-		valueIsBorderBox = true;
+		// Where available, offsetWidth/offsetHeight approximate border box dimensions.
+		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the
+		// retrieved value as a content box dimension.
+		valueIsBorderBox = offsetProp in elem;
+		if ( valueIsBorderBox ) {
+			val = elem[ offsetProp ];
+		}
 	}
 
 	// Normalize "" and auto
@@ -11484,6 +11676,13 @@ jQuery.extend( {
 		"flexGrow": true,
 		"flexShrink": true,
 		"fontWeight": true,
+		"gridArea": true,
+		"gridColumn": true,
+		"gridColumnEnd": true,
+		"gridColumnStart": true,
+		"gridRow": true,
+		"gridRowEnd": true,
+		"gridRowStart": true,
 		"lineHeight": true,
 		"opacity": true,
 		"order": true,
@@ -11539,7 +11738,9 @@ jQuery.extend( {
 			}
 
 			// If a number was passed in, add the unit (except for certain CSS properties)
-			if ( type === "number" ) {
+			// The isCustomProp check can be removed in jQuery 4.0 when we only auto-append
+			// "px" to a few hardcoded values.
+			if ( type === "number" && !isCustomProp ) {
 				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
 			}
 
@@ -11639,18 +11840,29 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 		set: function( elem, value, extra ) {
 			var matches,
 				styles = getStyles( elem ),
-				isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
-				subtract = extra && boxModelAdjustment(
-					elem,
-					dimension,
-					extra,
-					isBorderBox,
-					styles
-				);
+
+				// Only read styles.position if the test has a chance to fail
+				// to avoid forcing a reflow.
+				scrollboxSizeBuggy = !support.scrollboxSize() &&
+					styles.position === "absolute",
+
+				// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-3991)
+				boxSizingNeeded = scrollboxSizeBuggy || extra,
+				isBorderBox = boxSizingNeeded &&
+					jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+				subtract = extra ?
+					boxModelAdjustment(
+						elem,
+						dimension,
+						extra,
+						isBorderBox,
+						styles
+					) :
+					0;
 
 			// Account for unreliable border-box dimensions by comparing offset* to computed and
 			// faking a content-box to get border and padding (gh-3699)
-			if ( isBorderBox && support.scrollboxSize() === styles.position ) {
+			if ( isBorderBox && scrollboxSizeBuggy ) {
 				subtract -= Math.ceil(
 					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
 					parseFloat( styles[ dimension ] ) -
@@ -11818,9 +12030,9 @@ Tween.propHooks = {
 			// Use .style if available and use plain properties where available.
 			if ( jQuery.fx.step[ tween.prop ] ) {
 				jQuery.fx.step[ tween.prop ]( tween );
-			} else if ( tween.elem.nodeType === 1 &&
-				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
-					jQuery.cssHooks[ tween.prop ] ) ) {
+			} else if ( tween.elem.nodeType === 1 && (
+					jQuery.cssHooks[ tween.prop ] ||
+					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
 				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
 				tween.elem[ tween.prop ] = tween.now;
@@ -13527,6 +13739,10 @@ jQuery.param = function( a, traditional ) {
 				encodeURIComponent( value == null ? "" : value );
 		};
 
+	if ( a == null ) {
+		return "";
+	}
+
 	// If an array was passed in, assume that it is an array of form elements.
 	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
 
@@ -14029,12 +14245,14 @@ jQuery.extend( {
 						if ( !responseHeaders ) {
 							responseHeaders = {};
 							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
-								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
+								responseHeaders[ match[ 1 ].toLowerCase() + " " ] =
+									( responseHeaders[ match[ 1 ].toLowerCase() + " " ] || [] )
+										.concat( match[ 2 ] );
 							}
 						}
-						match = responseHeaders[ key.toLowerCase() ];
+						match = responseHeaders[ key.toLowerCase() + " " ];
 					}
-					return match == null ? null : match;
+					return match == null ? null : match.join( ", " );
 				},
 
 				// Raw string
@@ -14423,7 +14641,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 } );
 
 
-jQuery._evalUrl = function( url ) {
+jQuery._evalUrl = function( url, options ) {
 	return jQuery.ajax( {
 		url: url,
 
@@ -14433,7 +14651,16 @@ jQuery._evalUrl = function( url ) {
 		cache: true,
 		async: false,
 		global: false,
-		"throws": true
+
+		// Only evaluate the response if it is successful (gh-4126)
+		// dataFilter is not invoked for failure responses, so using it instead
+		// of the default converter is kludgy but it works.
+		converters: {
+			"text script": function() {}
+		},
+		dataFilter: function( response ) {
+			jQuery.globalEval( response, options );
+		}
 	} );
 };
 
@@ -14716,24 +14943,21 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 // Bind script tag hack transport
 jQuery.ajaxTransport( "script", function( s ) {
 
-	// This transport only deals with cross domain requests
-	if ( s.crossDomain ) {
+	// This transport only deals with cross domain or forced-by-attrs requests
+	if ( s.crossDomain || s.scriptAttrs ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = jQuery( "<script>" ).prop( {
-					charset: s.scriptCharset,
-					src: s.url
-				} ).on(
-					"load error",
-					callback = function( evt ) {
+				script = jQuery( "<script>" )
+					.attr( s.scriptAttrs || {} )
+					.prop( { charset: s.scriptCharset, src: s.url } )
+					.on( "load error", callback = function( evt ) {
 						script.remove();
 						callback = null;
 						if ( evt ) {
 							complete( evt.type === "error" ? 404 : 200, evt.type );
 						}
-					}
-				);
+					} );
 
 				// Use native DOM manipulation to avoid our domManip AJAX trickery
 				document.head.appendChild( script[ 0 ] );
@@ -18905,25 +19129,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-<<<<<<< HEAD
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    api: {
-        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        base: '/afodi/barna/public/'
-        /*     api: {
-                base: 'http://localhost:8000/',
-                token: 'ebf8ebbc77b700ed77d14afc03467335'
-            },
-            env: {
-                base: '/'
-            } */
-    } });
-=======
->>>>>>> master
 
 /***/ }),
 /* 43 */
@@ -19345,13 +19550,19 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost/barna/barna/public/',
+        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/barna/barna/public/'
-    }
-});
+        base: '/afodi/barna/public/'
+        /*     api: {
+                base: 'http://localhost:8000/',
+                token: 'ebf8ebbc77b700ed77d14afc03467335'
+            },
+            env: {
+                base: '/'
+            } */
+    } });
 
 /***/ }),
 /* 51 */,
@@ -66783,8 +66994,8 @@ var RestService = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
 
 "use strict";
 /*!
-  * vue-router v3.0.2
-  * (c) 2018 Evan You
+  * vue-router v3.0.4
+  * (c) 2019 Evan You
   * @license MIT
   */
 /*  */
@@ -67866,16 +68077,24 @@ function fillParams (
   params,
   routeMsg
 ) {
+  params = params || {};
   try {
     var filler =
       regexpCompileCache[path] ||
       (regexpCompileCache[path] = pathToRegexp_1.compile(path));
-    return filler(params || {}, { pretty: true })
+
+    // Fix #2505 resolving asterisk routes { name: 'not-found', params: { pathMatch: '/not-found' }}
+    if (params.pathMatch) { params[0] = params.pathMatch; }
+
+    return filler(params, { pretty: true })
   } catch (e) {
     if (true) {
       warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
     }
     return ''
+  } finally {
+    // delete the 0 if it was added
+    delete params[0];
   }
 }
 
@@ -68054,8 +68273,10 @@ function normalizeLocation (
 ) {
   var next = typeof raw === 'string' ? { path: raw } : raw;
   // named target
-  if (next.name || next._normalized) {
+  if (next._normalized) {
     return next
+  } else if (next.name) {
+    return extend({}, raw)
   }
 
   // relative params
@@ -68912,7 +69133,7 @@ function poll (
 
 /*  */
 
-var HTML5History = (function (History$$1) {
+var HTML5History = /*@__PURE__*/(function (History$$1) {
   function HTML5History (router, base) {
     var this$1 = this;
 
@@ -69000,7 +69221,7 @@ function getLocation (base) {
 
 /*  */
 
-var HashHistory = (function (History$$1) {
+var HashHistory = /*@__PURE__*/(function (History$$1) {
   function HashHistory (router, base, fallback) {
     History$$1.call(this, router, base);
     // check history fallback deeplinking
@@ -69109,7 +69330,23 @@ function getHash () {
   // consistent across browsers - Firefox will pre-decode it!
   var href = window.location.href;
   var index = href.indexOf('#');
-  return index === -1 ? '' : decodeURI(href.slice(index + 1))
+  // empty path
+  if (index < 0) { return '' }
+
+  href = href.slice(index + 1);
+  // decode the hash but not the search or hash
+  // as search(query) is already decoded
+  // https://github.com/vuejs/vue-router/issues/2708
+  var searchIndex = href.indexOf('?');
+  if (searchIndex < 0) {
+    var hashIndex = href.indexOf('#');
+    if (hashIndex > -1) { href = decodeURI(href.slice(0, hashIndex)) + href.slice(hashIndex); }
+    else { href = decodeURI(href); }
+  } else {
+    if (searchIndex > -1) { href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex); }
+  }
+
+  return href
 }
 
 function getUrl (path) {
@@ -69137,7 +69374,7 @@ function replaceHash (path) {
 
 /*  */
 
-var AbstractHistory = (function (History$$1) {
+var AbstractHistory = /*@__PURE__*/(function (History$$1) {
   function AbstractHistory (router, base) {
     History$$1.call(this, router, base);
     this.stack = [];
@@ -69260,7 +69497,19 @@ VueRouter.prototype.init = function init (app /* Vue component instance */) {
 
   this.apps.push(app);
 
-  // main app already initialized.
+  // set up app destroyed handler
+  // https://github.com/vuejs/vue-router/issues/2639
+  app.$once('hook:destroyed', function () {
+    // clean out app from this.apps array once destroyed
+    var index = this$1.apps.indexOf(app);
+    if (index > -1) { this$1.apps.splice(index, 1); }
+    // ensure we still have a main app or null if no apps
+    // we do not release the router so it can be reused
+    if (this$1.app === app) { this$1.app = this$1.apps[0] || null; }
+  });
+
+  // main app previously initialized
+  // return as we don't need to set up new history listener
   if (this.app) {
     return
   }
@@ -69350,9 +69599,10 @@ VueRouter.prototype.resolve = function resolve (
   current,
   append
 ) {
+  current = current || this.history.current;
   var location = normalizeLocation(
     to,
-    current || this.history.current,
+    current,
     append,
     this
   );
@@ -69393,7 +69643,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.2';
+VueRouter.version = '3.0.4';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -70246,7 +70496,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Line = (function (_super) {
@@ -70395,7 +70645,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Global_1 = __webpack_require__(6);
 var Path = (function (_super) {
     __extends(Path, _super);
@@ -71013,7 +71263,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Rect = (function (_super) {
@@ -71073,7 +71323,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -71404,7 +71654,7 @@ Util_1.Collection.mapMethods(Text);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(256);
 /*
 	Initializes Vuex on Vue.
@@ -81580,7 +81830,7 @@ var Layer_1 = __webpack_require__(219);
 var FastLayer_1 = __webpack_require__(220);
 var Group_1 = __webpack_require__(100);
 var DragAndDrop_1 = __webpack_require__(57);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Animation_1 = __webpack_require__(58);
 var Tween_1 = __webpack_require__(221);
 var Context_1 = __webpack_require__(130);
@@ -82216,7 +82466,7 @@ var Container_1 = __webpack_require__(41);
 var Factory_1 = __webpack_require__(4);
 var BaseLayer_1 = __webpack_require__(131);
 var Canvas_1 = __webpack_require__(49);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var HASH = '#', BEFORE_DRAW = 'beforeDraw', DRAW = 'draw', INTERSECTION_OFFSETS = [
@@ -82974,7 +83224,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -83139,7 +83389,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Circle = (function (_super) {
@@ -83202,7 +83452,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Ellipse = (function (_super) {
@@ -83269,7 +83519,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Image = (function (_super) {
@@ -83376,7 +83626,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Group_1 = __webpack_require__(100);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
@@ -83585,7 +83835,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var RegularPolygon = (function (_super) {
@@ -83651,7 +83901,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var PIx2 = Math.PI * 2;
@@ -83714,7 +83964,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Animation_1 = __webpack_require__(58);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
@@ -83850,7 +84100,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Star = (function (_super) {
@@ -83918,7 +84168,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Path_1 = __webpack_require__(133);
 var Text_1 = __webpack_require__(135);
 var Validators_1 = __webpack_require__(5);
@@ -84284,7 +84534,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
 var Node_1 = __webpack_require__(12);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Rect_1 = __webpack_require__(134);
 var Group_1 = __webpack_require__(100);
 var Global_1 = __webpack_require__(6);
@@ -84968,7 +85218,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(7);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(15);
+var Shape_1 = __webpack_require__(16);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -87577,7 +87827,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 		}, {
 			path: 'detalle/prodComprar/:id',
 			name: 'detalleComprar',
-			component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DetalleComprar', __webpack_require__(331)),
+			component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('DetalleComprar', __webpack_require__(332)),
 			meta: { requiresAuth: false }
 		},
 		/*
@@ -87913,7 +88163,7 @@ exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(21);
@@ -90826,7 +91076,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -91190,7 +91440,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_home_itemsComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -91854,7 +92104,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -92363,7 +92613,7 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -94217,7 +94467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -94510,7 +94760,7 @@ exports.push([module.i, "\n.col-center {\n  float: none;\n  margin-left: auto;\n
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_share_articuloComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -94752,7 +95002,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -95661,7 +95911,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -95868,7 +96118,7 @@ var normalizeComponent = __webpack_require__(8)
 /* script */
 var __vue_script__ = __webpack_require__(323)
 /* template */
-var __vue_template__ = __webpack_require__(325)
+var __vue_template__ = __webpack_require__(324)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96390,7 +96640,7 @@ var normalizeComponent = __webpack_require__(8)
 /* script */
 var __vue_script__ = __webpack_require__(326)
 /* template */
-var __vue_template__ = __webpack_require__(330)
+var __vue_template__ = __webpack_require__(331)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96442,9 +96692,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_swatches_dist_vue_swatches_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_swatches_dist_vue_swatches_min_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_drag_resize__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_drag_resize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_drag_resize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html2canvas__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -98090,7 +98340,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 });
 
 /***/ }),
-/* 325 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -99327,19 +99577,19 @@ if (false) {
 }
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(332)
+  __webpack_require__(333)
 }
 var normalizeComponent = __webpack_require__(8)
 /* script */
-var __vue_script__ = __webpack_require__(334)
+var __vue_script__ = __webpack_require__(335)
 /* template */
-var __vue_template__ = __webpack_require__(335)
+var __vue_template__ = __webpack_require__(336)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -99378,13 +99628,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(333);
+var content = __webpack_require__(334);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -99404,7 +99654,7 @@ if(false) {
 }
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(14)(false);
@@ -99418,7 +99668,7 @@ exports.push([module.i, "", ""]);
 
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99427,7 +99677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -99600,7 +99850,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 });
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
