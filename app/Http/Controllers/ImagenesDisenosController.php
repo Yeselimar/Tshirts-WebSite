@@ -31,7 +31,6 @@ class ImagenesDisenosController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
         $imagen = new ImagenDiseno;
         $imagen->nombre = $request->nombre;
         $imagen->categoria_id = ($request->categoria_id=='') ? null : $request->categoria_id ;

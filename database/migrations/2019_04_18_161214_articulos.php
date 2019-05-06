@@ -17,8 +17,8 @@ class Articulos extends Migration
             $table->string('marca');
             $table->text('descripcion');
 
-            //$table->boolean('')->default(0);//es variante
-            $table->integer('cantidad');//si el articulo no tiene variates se agrega la suma cantidad
+            $table->enum('tipo_cantidad', ['general','por_variante'])->default('general');
+            $table->integer('cantidad');//si el articulo no tiene variates se agrega la suma cantidad de sus variantes
             $table->float('precio_general');//si el articulo no tiene variantes se agrega la cantidad
             $table->float('descuento')->nullable();
 
