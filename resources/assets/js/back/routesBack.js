@@ -58,6 +58,12 @@ const router = new VueRouter({
                     meta: { requiresAuth: true } 
                 },
                 {
+                    path: 'banner',
+                    name: 'banner',
+                    component: Vue.component( 'Banner', require( './components/pages/banner/bannerComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },
+                {
                     path: 'nuevoArticulo',
                     name: 'nuevoArticulo',
                     component: Vue.component( 'nuevoArticulo', require( './components/pages/articulos/newArticuloComponent.vue' ) ),
