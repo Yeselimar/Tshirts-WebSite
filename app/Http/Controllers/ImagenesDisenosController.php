@@ -13,7 +13,7 @@ class ImagenesDisenosController extends Controller
     
     public function index()
     {
-    	$imagenes = ImagenDiseno::with('categoria')->with('usuario')->get();
+    	$imagenes = ImagenDiseno::with('categoria')->with('usuario')->with('disenos')->get();
     	return response()->json(['imagenes' => $imagenes]); 
     }
 
@@ -22,14 +22,12 @@ class ImagenesDisenosController extends Controller
         //dd($request);
         $imagen = new ImagenDiseno;
         $imagen->nombre = $request->nombre;
-        $imagen->categoria_id = $request->categoria_id;
+        $imagen->categoria_id = ($request->categoria_id=='') ? null : $request->categoria_id ;
 
         $nombre = null;
-        $hola = null;
-        if($request->imagene)
+        if($request->imagen)
         {
-            $hola = "error backend";
-            $archivo= $request->imagene;
+            $archivo= $request->imagen;
             $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
             $ruta = public_path().'/'.ImagenDiseno::carpeta();
             $archivo->move($ruta, $nombre);
@@ -39,21 +37,52 @@ class ImagenesDisenosController extends Controller
         $imagen->user_id = Auth::user()->id;
         $imagen->save();
 
-        return response()->json(['msg'=>'El imágen prediseñada fue creada exitosamente','imagen' => $imagen,'hola'=>$request->imagene]);
+        return response()->json(['msg'=>'El imagen prediseñada fue creada exitosamente','imagen' => $imagen]);
     }
 
-    public function update($id)
+    public function update(Request $request,$id)
     {
+        $imagen = ImagenDiseno::find($id);
+        $imagen->nombre = $request->nombre;
+        $imagen->categoria_id = ($request->categoria_id=='') ? null : $request->categoria_id ;
 
+        $nombre = null;
+        if($request->imagen)
+        {
+            File::delete($imagen->url);
+
+            $archivo= $request->imagen;
+            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+            $ruta = public_path().'/'.ImagenDiseno::carpeta();
+            $archivo->move($ruta, $nombre);
+
+            $imagen->url = ImagenDiseno::carpeta().$nombre;
+        }
+        
+        $imagen->user_id = Auth::user()->id;
+        $imagen->save();
+
+        return response()->json(['msg'=>'El imagen prediseñada fue creada exitosamente','imagen' => $imagen]);
     }
 
     public function show($id)
     {
-
+        $imagen = ImagenDiseno::find($id);
+        return response()->json(['imagen' => $imagen]);
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-
+        $imagen = ImagenDiseno::find($id);
+        if($imagen->disenos->count()==0)//Si no hay un diseño que referencia a la imagen prediseñada la puedo eliminar
+        {
+            File::delete($imagen->url);
+            $imagen->delete();
+            return response()->json(['res'=>1,'msg'=>'La imagen prediseñada fue eliminada exitosamente']);
+        }
+        else
+        {
+            return response()->json(['res'=>2,'msg'=>'La imagen prediseñada no puede ser eliminada']);
+        }
     }
 }

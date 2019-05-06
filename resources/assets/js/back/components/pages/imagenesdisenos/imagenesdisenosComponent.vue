@@ -21,7 +21,7 @@
 	    width:15px; 
 	    height:15px;
 	}
-	.capsula-rubros
+	.capsula-categoria
 	{
 	    height: 15px;
 	    font-size: 11px;
@@ -31,6 +31,15 @@
 	    color: #fff !important;
 	    margin-right: 4px;
 	}
+  .sin-categoria
+  {
+    height: 15px;
+    font-size: 11px;
+    background-color: #dc3545;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff !important;
+  }
   .btn-cargar
   {
     border: 1px solid #e7e7e7;
@@ -38,7 +47,7 @@
     height: 30px;
     background-color: #fbfbfb;
     color: #424242;
-    margin-bottom: 17px;
+    /*margin-bottom: 17px;*/
   }
   .btn-error
   {
@@ -121,7 +130,8 @@
               	</template>
 
               	<template slot="categoria" slot-scope="row">
-              		<span class="badge badge-pill capsula-rubros">{{row.item.categoria.nombre}}</span>
+              	  <span v-if="row.item.categoria_id" class="badge badge-pill capsula-categoria">{{row.item.categoria.nombre}}</span>
+                  <span v-else class="badge badge-pill sin-categoria">SIN CATEGORÍA</span>
               	</template>
 
               	<template slot="pertenece" slot-scope="row">
@@ -144,7 +154,6 @@
     	</div>
 
     	<!-- Modal para crear imagen -->
-
       <div class="modal" id="crear">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -168,15 +177,14 @@
                               <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres.</span>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
-                              <label class="control-label h6" for="nombre">Categoría {{imagen.categoria.id }}</label>
+                              <label class="control-label h6" for="nombre">Categoría {{imagen.categoria.id}}</label>
                               <select class="form-control input-sm input-rounded" v-model="imagen.categoria.id">
                               	<option  v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
                               </select>
                           </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="imagen">Imagen</label>
                               <div style="">
-                                
                               
                               <button class="btn-cargar btn-block cursor" v-if="imagen.url == '' &&  imagen.src == ''" @click="openInputFile()" style="" :class="{'btn-error': !imagen.valida}">
                                 <i class="fa fa-picture-o" aria-hidden="true"></i> Examinar
@@ -209,8 +217,103 @@
               </div>
           </div>
       </div>
-      
       <!-- Modal para crear imagen -->
+
+      <!-- Modal para editar imagen -->
+      <div class="modal" id="editar">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title pull-left"><strong>Editar Imagen Prediseñada</strong></h5>
+                      <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                              <label class="control-label h6" for="nombre">Nombre</label>
+                              <input type="text" name="nombre" class="form-control input-sm input-rounded" v-model="imagen.nombre" 
+                              autocomplete="off" 
+                              :class="{'error-input': errors.first('nombre','form-actualizar')}"
+                              data-vv-scope="form-actualizar"
+                              v-validate
+                              data-vv-rules="required:true|min:3"
+                              >
+                              <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-actualizar')">Campo requerido.</span>
+
+                              <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres.</span>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                              <label class="control-label h6" for="nombre">Categoría</label>
+                              <select class="form-control input-sm input-rounded" v-model="imagen.categoria.id">
+                                <option  v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
+                              </select>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" v-if="imagen.src==''">
+                            <label class="control-label h6" for="imagen">Imagen Actual</label>
+                            <div class="text-center">
+                              <img :src="url+imagen.imagen" class="img-fluid img-responsive img-barna">
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                              <label class="control-label h6" for="imagen">Actualizar Imagen</label>
+                              <div style="">
+                                
+                              <button class="btn-cargar btn-block cursor" v-if="imagen.url == '' &&  imagen.src == ''" @click="openInputFile()" style="" :class="{'btn-error': !imagen.valida}">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> Examinar
+                              </button>
+
+                              <span v-if="!imagen.valida" class="error-text">Imagen debe ser menor o igual a 5MB</span> 
+
+                              <div class="text-center">
+                                <img class="img-fluid  img-responsive img-barna" v-if="imagen.url != null && imagen.url != '' && imagen.url!='image'" :src="imagen.src" >
+                              </div>
+                              
+                              <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
+
+                              <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
+                              </div>
+                              <!--
+                              <div class="custom-file">
+                                <input type="file" ref="file_barna" class="custom-file-input input-sm" id="imagen_cargar" name="imagen_cargar" accept="image/*" @change="cargafoto">
+                                <label class="custom-file-label" for="imagen_cargar">Seleccione una imagen</label>
+                              </div>
+                              -->
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Modal para crear imagen -->
+
+      <!-- Modal para eliminar grupo -->
+      <div class="modal" id="eliminar">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title pull-left"><strong>Eliminar Imagen Prediseñada</strong></h5>
+                      <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  </div>
+                  <div class="modal-body">
+                      <div class="col-lg-12">
+                          <p>¿Está seguro que desea eliminar la imagen prediseñada <strong>{{this.imagen.nombre}}</strong> de forma permanente? </p>
+                      </div>
+                      <div class="col-12">
+                        <img :src="url+imagen.imagen" class="img-responsive img-barna">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Modal para eliminar grupo -->
 	</div>
 </template>
 
@@ -227,6 +330,7 @@ export default
         imagen:
         {
         	id:'',
+          imagen:'',
         	url:'',
         	nombre:'',
           tamanho:'',
@@ -313,7 +417,7 @@ export default
 	    	this.imagen.id = null;
         this.imagen.nombre = '';
         this.imagen.valida = true;
-        this.imagen.categoria.id = 1;//selecciono la primera
+        this.imagen.categoria.id = '';
         $('#crear').modal('show');
 	    },
 	    cargafoto(event)
@@ -324,8 +428,6 @@ export default
         {
           this.imagen.valida = true;
           this.imagen.url = event.target.files[0];
-          console.log("Imagen cargada");
-          console.log(this.imagen.url);
           var reader = new FileReader()
           reader.readAsDataURL(event.target.files[0])
           reader.onload = function ()
@@ -343,23 +445,18 @@ export default
 	    },
 	    guardar()
 	    {
-        console.log("imagen guardada");
-        //console.log(this.imagen.url);
-        //console.log(event.target.files[0]);
 	    	this.$validator.validateAll("form-crear").then(resp => 
         {
           if(resp)
           {
-             console.log(this.imagen.url);
               var dataform = new FormData();
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
-              dataform.append("imagene", this.imagen.url);
+              dataform.append("imagen", this.imagen.url);
               CerService.post("/imagenes-disenos/guardar",dataform)
               .then(response => 
               {
                   this.todos();
-                  console.log(response.hola);
                   this.mensaje("success",response.msg);
               })
               .catch(error => {
@@ -369,36 +466,77 @@ export default
           }
           else
           {
-              this.$swal
-              .mixin({
-                  toast: true,
-                  position: "top-end",
-                  showConfirmButton: false,
-                  timer: 4000
-              })
-              .fire({
-                  type: "warning",
-                  title: "Por favor verifique los campos"
-              });
+            this.mensaje("warning","Por favor verifique los campos");
           }
         });
-        //this.limpiar();
 	    },
-	    editar()
+	    editar(imagen)
 	    {
-
+        this.limpiar();
+        this.imagen.id = imagen.id;
+        this.imagen.nombre = imagen.nombre;
+        this.imagen.imagen = imagen.url;
+        this.imagen.valida = true;
+        this.imagen.categoria.id = (imagen.categoria_id == null) ? "" : imagen.categoria_id;
+        $('#editar').modal('show');
 	    },
 	    actualizar()
 	    {
-
+        this.$validator.validateAll("form-actualizar").then(resp => 
+        {
+          if(resp)
+          {
+              var dataform = new FormData();
+              dataform.append("nombre", this.imagen.nombre);
+              dataform.append("categoria_id", this.imagen.categoria.id);
+              dataform.append("imagen", this.imagen.url);
+              var url = '/imagenes-disenos/:id/actualizar';
+              url = url.replace(':id', this.imagen.id);
+              CerService.post(url,dataform)
+              .then(response => 
+              {
+                  this.todos();
+                  this.mensaje("success",response.msg);
+              })
+              .catch(error => {
+                this.mensaje("error","Ha ocurrido un error inesperado");
+              });
+              $('#editar').modal('hide');
+          }
+          else
+          {
+            this.mensaje("warning","Por favor verifique los campos");
+          }
+        });
+	    },
+	    eliminarImagen(imagen)
+	    {
+        this.imagen.id = imagen.id;
+        this.imagen.nombre = imagen.nombre;
+        this.imagen.imagen = imagen.url;
+        $('#eliminar').modal('show');
 	    },
 	    eliminar()
 	    {
-
-	    },
-	    eliminarImagen()
-	    {
-
+        $('#eliminar').modal('hide');
+        var url = '/imagenes-disenos/:id/eliminar';
+        url = url.replace(':id', this.imagen.id);
+        CerService.post(url)
+        .then(response => 
+        {
+            this.todos();
+            if(response.res==1)
+            {
+                this.mensaje("success",response.msg);
+            }
+            else
+            {
+                this.mensaje("error",response.msg);
+            }
+        })
+        .catch(error => {
+            this.mensaje("error","Ha ocurrido un error inesperado");
+        });
 	    },
 	    todos()
 	    {
@@ -421,6 +559,7 @@ export default
 	          	if(response.categorias)
 	          	{
 	            	this.categorias = response.categorias;
+                this.categorias.push({id:"",nombre:"Sin categoría"});
 	          	}
 	        })
 	        .catch(error => {
@@ -453,7 +592,7 @@ export default
       },
       tamanhovalido()
       {
-        if(this.imagen.tamanho<=1)//menor a un 1MB
+        if(this.imagen.tamanho<=5)//menor a un 1MB
         {
           return true;
         }

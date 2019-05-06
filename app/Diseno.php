@@ -10,7 +10,7 @@ class Diseno extends Model
     
     public function imagendiseno()
     {
-        return $this->belongsTo('App\ImagenDiseno','imagen_diseno_id');
+        return $this->belongsTo('App\ImagenDiseno','imagen_predisenada_id');
     }
 
     public function imagenarticulo()
