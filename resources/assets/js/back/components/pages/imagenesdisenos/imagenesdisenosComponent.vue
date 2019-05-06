@@ -1,22 +1,9 @@
 <style>
-	.custom-file-label
-	{
-		  height: calc(1.90rem + 1px) !important;
-	    padding: .200rem .50rem !important;
-	    border-radius: 25px;
-	}
-	.custom-file-label::after
-	{
-		  height: calc(calc(1.90rem + 1px) - 1px * 2) !important;
-	    padding: 0.200rem .500rem !important;
-	    content: "Examinar" !important;
-	    border-radius: 0 25px 25px 0;
-	}
 	select.form-control:not([size]):not([multiple])
 	{
     	height: calc(2.25rem + 1.15px);
 	}
-  	.imagen-cuadrada
+  .imagen-cuadrada
 	{
 	    width:15px; 
 	    height:15px;
@@ -47,7 +34,6 @@
     height: 30px;
     background-color: #fbfbfb;
     color: #424242;
-    /*margin-bottom: 17px;*/
   }
   .btn-error
   {
@@ -92,7 +78,7 @@
             <div class="card-title">
               	<h4>
                 <strong>
-                  	Imágenes de Diseños
+                  	Imágenes Prediseñadas
                 </strong>
               	</h4>
 
@@ -122,7 +108,7 @@
               	</template>
 
               	<template slot="imagen" slot-scope="row">
-                	<img :src="url+row.item.url" class="imagen-cuadrada">
+                	<a class="cursor" @click="ver(row.item)"><img :src="url+row.item.url" class="imagen-cuadrada"></a>
               	</template>
 
               	<template slot="nombre" slot-scope="row">
@@ -197,12 +183,6 @@
 
                               <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
                               </div>
-                              <!--
-                              <div class="custom-file">
-            							    	<input type="file" ref="file_barna" class="custom-file-input input-sm" id="imagen_cargar" name="imagen_cargar" accept="image/*" @change="cargafoto">
-            							    	<label class="custom-file-label" for="imagen_cargar">Seleccione una imagen</label>
-            							  	</div>
-                              -->
                           </div>
                       </div>
                   </div>
@@ -268,12 +248,6 @@
 
                               <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
                               </div>
-                              <!--
-                              <div class="custom-file">
-                                <input type="file" ref="file_barna" class="custom-file-input input-sm" id="imagen_cargar" name="imagen_cargar" accept="image/*" @change="cargafoto">
-                                <label class="custom-file-label" for="imagen_cargar">Seleccione una imagen</label>
-                              </div>
-                              -->
                           </div>
                       </div>
                   </div>
@@ -286,7 +260,7 @@
       </div>
       <!-- Modal para crear imagen -->
 
-      <!-- Modal para eliminar grupo -->
+      <!-- Modal para eliminar imagen -->
       <div class="modal" id="eliminar">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -309,7 +283,28 @@
               </div>
           </div>
       </div>
-      <!-- Modal para eliminar grupo -->
+      <!-- Modal para eliminar imagen -->
+
+      <!-- Modal para ver la imagen -->
+      <div class="modal" id="ver">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title pull-left"><strong>Imagen Prediseñada: {{this.imagen.nombre}}</strong></h5>
+                      <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  </div>
+                  <div class="modal-body">
+                      <div class="col-12">
+                        <img :src="url+imagen.imagen" class="img-responsive img-barna">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Modal para ver la imagen -->
 	</div>
 </template>
 
@@ -326,12 +321,12 @@ export default
         imagen:
         {
         	id:'',
+          nombre:'',
           imagen:'',
         	url:'',
-        	nombre:'',
+          src:'',
           tamanho:'',
           valida:false,
-          src:'',
         	categoria:
         	{
         		id:'',
@@ -373,12 +368,7 @@ export default
         } else {
           this.table_responsive = false;
         }
-     	});
-      	
-      $(".custom-file-input").on("change", function() {
-  		  var fileName = $(this).val().split("\\").pop();
-  		  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  		});
+     	});      
     },
    	computed:
     {
@@ -417,7 +407,6 @@ export default
 	    },
 	    cargafoto(event)
 	    {
-        
         this.imagen.tamanho = this.calculatamanho(event.target.files[0]['size']);
         if (this.tamanhovalido() && event.target.files[0].type.split('/')[0] === 'image')//Si la imagen es mayor a 5MB
         {
@@ -448,7 +437,7 @@ export default
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
               dataform.append("imagen", this.imagen.url);
-              CerService.post("/imagenes-disenos/guardar",dataform)
+              CerService.post("/imagenes-predisenadas/guardar",dataform)
               .then(response => 
               {
                   this.todos();
@@ -485,7 +474,7 @@ export default
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
               dataform.append("imagen", this.imagen.url);
-              var url = '/imagenes-disenos/:id/actualizar';
+              var url = '/imagenes-predisenadas/:id/actualizar';
               url = url.replace(':id', this.imagen.id);
               CerService.post(url,dataform)
               .then(response => 
@@ -514,7 +503,7 @@ export default
 	    eliminar()
 	    {
         $('#eliminar').modal('hide');
-        var url = '/imagenes-disenos/:id/eliminar';
+        var url = '/imagenes-predisenadas/:id/eliminar';
         url = url.replace(':id', this.imagen.id);
         CerService.post(url)
         .then(response => 
@@ -533,9 +522,16 @@ export default
             this.mensaje("error","Ha ocurrido un error inesperado");
         });
 	    },
+      ver(imagen)
+      {
+        this.imagen.id = imagen.id;
+        this.imagen.nombre = imagen.nombre;
+        this.imagen.imagen = imagen.url;
+        $('#ver').modal('show');
+      },
 	    todos()
 	    {
-	    	CerService.post("/imagenes-disenos/tipo/administrador")
+	    	CerService.post("/imagenes-predisenadas/tipo/administrador")
 	        .then(response => {
 	          	if(response.imagenes)
 	          	{
@@ -587,7 +583,7 @@ export default
       },
       tamanhovalido()
       {
-        if(this.imagen.tamanho<=5)//menor a un 1MB
+        if(this.imagen.tamanho<=5)//menor a 5MB
         {
           return true;
         }

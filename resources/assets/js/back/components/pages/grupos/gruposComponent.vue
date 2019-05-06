@@ -174,7 +174,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="es_color" v-model="grupo.es_color">
-                                    <label class="custom-control-label" for="es_color">Check this custom checkbox</label>
+                                    <label class="custom-control-label" for="es_color">Es color</label>
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TallasColores extends Migration
+class TallesColores extends Migration
 {
     public function up()
     {
@@ -19,10 +19,10 @@ class TallasColores extends Migration
             $table->unsignedInteger('color_id');
             $table->foreign('color_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo color
 
-            $table->unsignedInteger('talla_id')->nullable(); //es opcional en caso de que  el tipo sea una taza
-            $table->foreign('talla_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo talla
+            $table->unsignedInteger('talle_id')->nullable(); //es opcional en caso de que  el tipo sea una taza
+            $table->foreign('talle_id')->references('id')->on('caracteristicas')->onDelete('cascade');//característica del grupo talle
 
-            $table->integer('cantidad');//cantidad de una combinación: talla y color 
+            $table->integer('cantidad');//cantidad de una combinación: talle y color 
             
             $table->float('precio');
             

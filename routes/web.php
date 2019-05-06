@@ -66,6 +66,7 @@ Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy'
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
+Route::post('/articulos/todos/para-banner','ArticulosController@todosparabanner')->name('articulos.todos.para.banner');
 Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
 Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.disenable');
 Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
@@ -73,19 +74,29 @@ Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@update
 Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
 Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('articulo.eliminar');
 
+//Imagenes Artículos
+Route::post('/imagenes-articulos/posicion-imagen','ImagenesArticulosController@posicionimagen')->name('imagenes.articulos.posicion.imagen');
+
 
 //Imágenes Prediseñadas
-Route::post('/imagenes-disenos/todos','ImagenesDisenosController@index')->name('imagenes.disenos.todos');
-Route::post('/imagenes-disenos/tipo/administrador','ImagenesDisenosController@deadministrador')->name('imagenes.disenos.de.administrador');
-Route::post('/imagenes-disenos/tipo/cliente','ImagenesDisenosController@decliente')->name('imagenes.disenos.de.cliente');
-Route::post('/imagenes-disenos/guardar','ImagenesDisenosController@store')->name('imagenes.disenos.guardar');
-Route::post('/imagenes-disenos/{id}/actualizar','ImagenesDisenosController@update')->name('imagenes.disenos.actualizar');
-Route::post('/imagenes-disenos/{id}/detalles','ImagenesDisenosController@show')->name('imagenes.disenos.detalles');
-Route::post('/imagenes-disenos/{id}/eliminar','ImagenesDisenosController@destroy')->name('imagenes.disenos.eliminar');
+Route::post('/imagenes-predisenadas/todos','ImagenesPredisenadasController@index')->name('imagenes.disenos.todos');
+Route::post('/imagenes-predisenadas/tipo/administrador','ImagenesPredisenadasController@deadministrador')->name('imagenes.disenos.de.administrador');
+Route::post('/imagenes-predisenadas/tipo/cliente','ImagenesPredisenadasController@decliente')->name('imagenes.disenos.de.cliente');
+Route::post('/imagenes-predisenadas/guardar','ImagenesPredisenadasController@store')->name('imagenes.disenos.guardar');
+Route::post('/imagenes-predisenadas/{id}/actualizar','ImagenesPredisenadasController@update')->name('imagenes.disenos.actualizar');
+Route::post('/imagenes-predisenadas/{id}/detalles','ImagenesPredisenadasController@show')->name('imagenes.disenos.detalles');
+Route::post('/imagenes-predisenadas/{id}/eliminar','ImagenesPredisenadasController@destroy')->name('imagenes.disenos.eliminar');
 
 
 //Categorías
 Route::post('/categorias/todos','CategoriasController@index')->name('categorias.todos');
+
+//Banner
+Route::post('/banner/todos','BannerController@index')->name('banner.todos');
+Route::post('/banner/guardar','BannerController@store')->name('banner.guardar');
+Route::post('/banner/{id}/actualizar','BannerController@update')->name('banner.actualizar');
+Route::post('/banner/{id}/detalles','BannerController@show')->name('banner.detalles');
+Route::post('/banner/{id}/eliminar','BannerController@destroy')->name('banner.eliminar');
 
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');

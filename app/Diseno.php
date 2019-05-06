@@ -8,9 +8,9 @@ class Diseno extends Model
 {
     protected $table = 'disenos';
     
-    public function imagendiseno()
+    public function imagenpredisenada()
     {
-        return $this->belongsTo('App\ImagenDiseno','imagen_predisenada_id');
+        return $this->belongsTo('App\ImagenPredisenada','imagen_predisenada_id');
     }
 
     public function imagenarticulo()
