@@ -6,9 +6,9 @@
 
     <!-- end title --->
     <!-- section disenar --->
-    <div class="container mt-5 d-flex flex-wrap justify-content-center">
+<div class="container mt-5 d-flex flex-wrap justify-content-center">
     <!-- Lado 1 --->
-    <div class="panel-diseno-l1 justify-content-center">
+    <div class="panel-diseno-l1">
         <!-- Header Lado 1 --->
         <div class="scroll-barna d-flex justify-content-center title-panel-diseno">
             <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Productos'}]" @click="showProductsPanel('Productos')"> <i class="fa fa-check-circle-o">&nbsp;</i>
@@ -22,56 +22,16 @@
         <!--Contenedor del Lado 1 -->
         <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" >
                 <!--Contenedor Productos del Lado 1 -->
-                <div class="justify-content-center d-flex flex-wrap" v-if="showProducts">
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
+            <div class="justify-content-center d-flex flex-wrap" v-if="showProducts">
+                <div v-for="imagenProducto in imagenes_productos2" class="productos-disenar">
+                    <div class="product-item">
+                        <div class="pi-pic"><img :src="getUrl+imagenProducto" alt="">
                         </div>
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
+                        <div class="pd-text"><p>Blusa jackets </p>
                         </div>
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img src="http://localhost:8000/img/product/12.jpg" alt="">
-                                </div>
-                                <div class="pd-text"><p>Blusa jackets </p>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </div>
+            </div>
                 <!--Contenedor Imagen Frontal del Lado 1 -->
                 <div v-else-if="showImage && activofb=='Frontal'">
                     <div class="d-flex justify-content-center align-items-center m-3">
@@ -89,7 +49,7 @@
                         <div v-for="imagen in imagenes_predisenadas">
                             <div class="imagenes-predisenadas">
                                 <div class="product-item">
-                                    <div class="pi-pic"><img  @click="imagenPredisenadaFrontal(imagen)" style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" :src="imagen" alt="">
+                                    <div class="pi-pic"><img  @click="imagenPredisenadaFrontal(imagen)" style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" :src="getUrl+imagen" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -108,12 +68,11 @@
                     <!--Imagenes predisenadas-->
                     <hr>
                     <div class=" justify-content-center d-flex flex-wrap pt-2"><h5>Imagenes Prediseñadas:  </h5><br></div>
-
                     <div class="justify-content-center d-flex flex-wrap">
                         <div v-for="imagen in imagenes_predisenadas">
                             <div class="imagenes-predisenadas">
                                 <div class="product-item">
-                                    <div class="pi-pic"><img  @click="imagenPredisenadaReverso(imagen)" style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" :src="imagen" alt="">
+                                    <div class="pi-pic"><img  @click="imagenPredisenadaReverso(imagen)" style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" :src="getUrl+imagen" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -123,15 +82,28 @@
 
                 <!--Contenedor Info del Lado 1 -->
                 <div v-else-if="showInfo">
-                        HOLA INFO
+                    <div class="px-5 py-3">
+                        <ul>
+                            <li>Selecciona el Producto a personalizar</li>
+                            <li>Selecciona el color de tu producto</li>
+                            <li>Inserta la Imagen en el lado Frontal</li>
+                            <li>Inserta la Imagen en el lado Reverso</li>
+                            <li>Ubica la Imagen en la posicion de tu gusto</li>
+                            <li>Seleeciona el Talle o Tamaño</li>
+                            <li>Envia tu Pedido</li>
+                        </ul>
+                        <br>
+                        <h6>Una vez enviado tu pedido, este pasara por un proceso de revision. Una vez aprobado podrás proceder a realizar el pago.</h6>
+                    </div>
                 </div>
         </div>
+
         <!--Fin contenedor lado 1 -->
     </div>
     <!-- Lado 2 --->
     <div class="panel-diseno-l2 justify-content-center">
         <div class="scroll-barna d-flex justify-content-center title-panel-diseno">
-            <div class="panel-btn d-flex"  @click=showVistaPrevia> <i class="fa fa-eye"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Vista previa</div></div>
+            <div class="panel-btn d-flex"  @click="showVistaPrevia()"> <i class="fa fa-eye"></i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">&nbsp;Vista previa</div></div>
             <div class="d-flex align-items-center panel-btn letras-panel" :class="[{'panel-btn-active pulse animated': activofb === 'Frontal'}]" @click="showFrontalPanel('Frontal')">Frontal</div>
 
             <div class="d-flex align-items-center panel-btn letras-panel" :class="[{'panel-btn-active pulse animated': activofb === 'Reverso'}]" @click="showReversePanel('Reverso')">Reverso</div>
@@ -141,8 +113,8 @@
                 show-border popover-to="left"></swatches>
             </div>
         </div>
-        <div class="container-imagen-a-disenar" id="contenedor" v-show="showFrontal">
-           <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/frontal.png">
+        <div class="container-imagen-a-disenar" id="contenedor-frontal" v-show="showFrontal">
+           <img style="width:100%; height:100%" src="http://localhost:8000/img/product/frontal.png">
             <div class="container-area-de-diseno" :style="'width:'+w_result_container+'px;'+'top:'+top_result+'%;'+'height:'+h_result_container+'px;'+'left:'+left_result+'%;'">
 
                     <VueDragResize id="frontal" style="border: 0px"
@@ -156,8 +128,8 @@
                     :parentW=w_result
                     :parentH=h_result
                     :parentLimitation="true"
-                    :w="50"
-                    :h="50"
+                    :w="30"
+                    :h="30"
                     :x="0"
                     :y="0"
                     >
@@ -169,8 +141,8 @@
             <p>Reverso:Top:{{toprv}} Left:{{leftrv}}</p>
             <p>Reverso:width:{{widthrv}} heigh:{{heightrv}}</p> -->
         </div>
-        <div class="container-imagen-a-disenar-rv" id="contenedor" v-show="showReverse">
-        <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/reverso.png">
+        <div class="container-imagen-a-disenar-rv" id="contenedor-reverso" v-show="showReverse">
+        <img style="width:100%; height:100%" src="http://localhost:8000/img/product/reverso.png">
             <div class="container-area-de-diseno-rv" :style="'width:'+w_result_container_rv+'px;'+'top:'+top_result_rv+'%;'+'height:'+h_result_container_rv+'px;'+'left:'+left_result_rv+'%;'">
                     <VueDragResize2 id="reverso" style="border: 0px"
                     @clicked="onActivatedRV"
@@ -183,8 +155,8 @@
                     :parentW=w_result_rv
                     :parentH=h_result_rv
                     :parentLimitation="true"
-                    :w="50"
-                    :h="50"
+                    :w="30"
+                    :h="30"
                     :x="0"
                     :y="0">
                         <img style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
@@ -195,13 +167,47 @@
             <p>Reverso:Top:{{toprv}} Left:{{leftrv}}</p>
             <p>Reverso:width:{{widthrv}} heigh:{{heightrv}}</p> -->
         </div>
+    <!--     <div class="d-flex justify-content-center m-2 p-1">
+            <button class="btn-upload" @click="showConfirmacion()"> Enviar Pedido</button>
+            <a class="btn-upload" :href="disenoUsuario64" download="diseño.png">Ver Diseño</a>
+        </div> -->
     </div>
+</div>
+    <!--Detalles del pedido -->
+    <div class="row">
+        <div class="col-lg-12 product-details">
+            <div id="accordion" class="accordion-area">
+                <div class="panel">
+                    <div class="panel-header" id="headingOne">
+                        <button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">information</button>
+                    </div>
+                    <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+                            <p>Approx length 66cm/26" (Based on a UK size 8 sample)</p>
+                            <p>Mixed fibres</p>
+                            <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="panel">
+                    <div class="panel-header" id="headingThree">
+                        <button class="panel-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">shipping & Returns</button>
+                    </div>
+                    <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="panel-body">
+                            <h4>7 Days Returns</h4>
+                            <p>Cash on Delivery Available<br>Home Delivery <span>3 - 4 days</span></p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- end section disenar --->
     <!-- Modal VistaPrevia -->
-
-
         <div class="modal fade" id="ModalVistaPrevia">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -210,21 +216,62 @@
                         <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
                     </div>
                     <div class="modal-body">
-                        <div class="container-imagen-a-disenar">
+                        <div  class="container-imagen-a-disenar"  id="contenedor-preview-frontal" v-show="showFrontal">
                         <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/frontal.png">
-                            <div class="container-area-de-diseno" :style="'width:'+w_result+'px;'+'top:'+top_result+'%;'+'height:'+h_result+'px;'+'left:'+left_result+'%;'">
-                                <img :style="'width:'+width+'px;'+'top:'+top+'%;'+'height:'+height+'px;'+'left:'+left+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
+                            <div class="container-area-de-diseno" style="border:0px !important" :style="'width:'+w_result_preview+'px;'+'top:'+top_result_preview+'%;'+'height:'+h_result_preview+'px;'+'left:'+left_result_preview+'%;'">
+                                <img :style="'width:'+width_preview+'%;'+'top:'+top_preview+'%;'+'height:'+height_preview+'%;'+'left:'+left_preview+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
                             </div>
-
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm pull-right" data-dismiss="modal" >Volver</button>
-                          <!--   <button type="submit" class="btn btn-sm pull-right">Guardar</button> -->
+                        <div class="container-imagen-a-disenar-rv"  id="contenedor-preview-reverso" v-show="showReverse">
+                        <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/reverso.png">
+                            <div class="container-area-de-diseno-rv" style="border:0px !important" :style="'width:'+w_result_preview_rv+'px;'+'top:'+top_result_preview_rv+'%;'+'height:'+h_result_preview_rv+'px;'+'left:'+left_result_preview_rv+'%;'">
+                                <img :style="'width:'+width_preview_rv+'%;'+'top:'+top_preview_rv+'%;'+'height:'+height_preview_rv+'%;'+'left:'+left_preview_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
+                            </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm pull-right" data-dismiss="modal" >Volver</button>
+                    <!--   <button type="submit" class="btn btn-sm pull-right">Guardar</button> -->
                     </div>
                 </div>
             </div>
         </div>
+<!-- Modal Confirmacion -->
+            <div class="modal fade" id="ModalConfirmacion">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title pull-left"><strong>Vista previa del Confirmacion</strong></h5>
+                            <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                        </div>
+                        <div class="modal-body d-flex" id="disenosDelUsuario">
+                            <div  class="container-imagen-confirmacion" id="contenedor-confirmacion-frontal">
+                            <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/frontal.png">
+                                <div class="container-area-de-diseno" style="border:0px !important" :style="'width:'+w_result_confirmacion+'px;'+'top:'+top_result_confirmacion+'%;'+'height:'+h_result_confirmacion+'px;'+'left:'+left_result_confirmacion+'%;'">
+                                    <img :style="'width:'+width_confirmacion+'%;'+'top:'+top_confirmacion+'%;'+'height:'+height_confirmacion+'%;'+'left:'+left_confirmacion+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
+                                </div>
+                            </div>
+                            <div class="container-imagen-confirmacion-rv" id="contenedor-confirmacion-reverso">
+                            <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/reverso.png">
+                                <div class="container-area-de-diseno-rv" style="border:0px !important" :style="'width:'+w_result_confirmacion_rv+'px;'+'top:'+top_result_confirmacion_rv+'%;'+'height:'+h_result_confirmacion_rv+'px;'+'left:'+left_result_confirmacion_rv+'%;'">
+                                    <img :style="'width:'+width_confirmacion_rv+'%;'+'top:'+top_confirmacion_rv+'%;'+'height:'+height_confirmacion_rv+'%;'+'left:'+left_confirmacion_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-sm pull-right" data-dismiss="modal" >Volver</button>
+                            <button type="submit" class="btn btn-sm pull-right" @click="saveDisenos()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="container-area-de-diseno-rv" :style="'width:'+w_result_preview_rv+'px;'+'top:'+top_result_preview_rv+'%;'+'height:'+h_result_preview_rv+'px;'+'left:'+left_result_preview_rv+'%;'">
+                <p>HOLA LA IMAGEN GENERADA ES:</p>
+            <img class="img-fluid" :src="disenoFrontal64">
+            </div> -->
+
 
 </div>
 
@@ -236,6 +283,8 @@ import Swatches from 'vue-swatches'
 import "vue-swatches/dist/vue-swatches.min.css"
 import VueDragResize from 'vue-drag-resize';
 import VueDragResize2 from 'vue-drag-resize';
+import html2canvas from 'html2canvas';
+import { mapGetters } from 'vuex'
 
     export default
     {
@@ -244,31 +293,73 @@ import VueDragResize2 from 'vue-drag-resize';
         {
             migajasComponent,
             Swatches,
-
             VueDragResize,
-            VueDragResize2
-
+            VueDragResize2,
+        },
+        computed:{
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
+        },
+        created(){
+            this.articulos_info()
         },
         mounted(){
-           this.dimensionesFrontal()
+        this.dimensionesFrontal()
+        this.dimensionesReverso()
             $(window).resize(event => {
                 event.preventDefault();
                 this.dimensionesFrontal();
             });
-            this.dimensionesReverso()
             $(window).resize(event => {
                 event.preventDefault();
                 this.dimensionesReverso();
+            });
+            $(window).resize(event => {
+                event.preventDefault();
+                this.dimensionesPreviewFrontal();
+            });
+            $(window).resize(event => {
+                event.preventDefault();
+                this.dimensionesPreviewReverso();
+            });
+            $(window).resize(event => {
+                event.preventDefault();
+                this.dimensionesConfirmacionFrontal();
+            });
+            $(window).resize(event => {
+                event.preventDefault();
+                this.dimensionesConfirmacionReverso();
             });
         },
 
         data() {
             return {
-
-                imagenes_predisenadas:['img/predisenadas/1.jpg', 'http://localhost:8000/img/predisenadas/2.png', 'http://localhost:8000/img/predisenadas/3.jpg', 'http://localhost:8000/img/predisenadas/6.jpg', 'http://localhost:8000/img/predisenadas/7.png', 'http://localhost:8000/img/predisenadas/8.png', 'http://localhost:8000/img/predisenadas/9.png', 'http://localhost:8000/img/predisenadas/10.png', 'http://localhost:8000/img/predisenadas/11.png', 'http://localhost:8000/img/predisenadas/12.png', 'http://localhost:8000/img/predisenadas/13.png', 'http://localhost:8000/img/predisenadas/4.jpg', 'http://localhost:8000/img/predisenadas/5.png', 'http://localhost:8000/img/predisenadas/14.png'],
+                output: null,
+                imagenes_predisenadas:['img/predisenadas/1.jpg', 'img/predisenadas/2.png', 'img/predisenadas/3.jpg', 'img/predisenadas/6.jpg', 'img/predisenadas/7.png', 'img/predisenadas/8.png', 'img/predisenadas/9.png', 'img/predisenadas/10.png', 'img/predisenadas/11.png', 'img/predisenadas/12.png', 'img/predisenadas/13.png', 'img/predisenadas/4.jpg', 'img/predisenadas/5.png', 'img/predisenadas/14.png'],
+                imagenes_productos2:['img/product/1.jpg','img/product/2.jpg','img/product/3.jpg','img/product/4.jpg','img/product/5.jpg','img/product/6.jpg','img/product/7.jpg','img/product/8.jpg','img/product/10.jpg', 'img/product/11.jpg', 'img/product/12.jpg'],
+                articulos:[{
+                    id:'',
+                    nombre:'',
+                    cantidad:'',
+                    principal:'',
+                    tallesColores:{
+                        talle_id:'',
+                        color_id:'',
+                        cantidad:'',
+                        precio:'',
+                    },
+                    imagenesarticulos:[{
+                    url:'',
+                    id:'',
+                    articulo_id:'',
+                    coordenada_id:'',
+                    caracteristica_id:'', //color
+                    posicion:'', //Forntal o reverso
+                    principal:'',
+                    }]
+                }],
                 /*Variables para el componente del Frente*/
-                width: 0, //variable del componente
-                height: 0, //variable del componente
+                width: 30, //variable del componente
+                height: 30, //variable del componente
                 top: 0, //variable del componente
                 left: 0, //variable del componente
                 /* Variables para definir el contenedor frontal*/
@@ -306,12 +397,51 @@ import VueDragResize2 from 'vue-drag-resize';
                 h_content_actual_int_rv: 0, //height del container a usar
                 w_result_rv:0, //width final que tendra el area de diseno
                 h_result_rv:0, //width final que tendra el area de diseno
-                widthrv: 0, //variable del componente
-                heightrv: 0, //variable del componente
+                widthrv: 30, //variable  del componente (width inicial)
+                heightrv: 30, //variable del componente (height inicial)
                 toprv: 0, //variable del componente
                 leftrv: 0, //variable del componente
                 /*(w_admin * w_content_actual)/w_content_admin */
+                /*Variables para el contenedor de la vista previa frontal*/
+                w_content_preview: 0,
+                h_content_preview: 0,
+                w_content_preview_int:0,
+                h_content_preview_int: 0,
+                h_result_preview:0,
+                w_result_preview:0,
+                top_result_preview:0,
+                left_result_preview:0,
+                top_preview:0, //top de la imagen
+                left_preview:0, //left de la imagen
+                width_preview:0,
+                height_preview:0,
+                /*Variables para el contenedor de la vista previa reverso*/
+                w_content_preview_rv: 0,
+                h_content_preview_rv: 0,
+                w_content_preview_rv_int:0,
+                h_content_preview_rv_int: 0,
+                h_result_preview_rv:0,
+                w_result_preview_rv:0,
+                top_result_preview_rv:0,
+                left_result_preview_rv:0,
+                top_preview_rv:0, //top de la imagen
+                left_preview_rv:0, //left de la imagen
+                width_preview_rv:0,
+                height_preview_rv:0,
                 previewImage:null,
+                /*Variables para el contenedor de la vista de confirmacion frontal*/
+                w_content_preview: 0,
+                h_content_preview: 0,
+                w_content_preview_int:0,
+                h_content_preview_int: 0,
+                h_result_preview:0,
+                w_result_preview:0,
+                top_result_preview:0,
+                left_result_preview:0,
+                top_preview:0, //top de la imagen
+                left_preview:0, //left de la imagen
+                width_preview:0,
+                height_preview:0,
                 /*Variables de componentes globales*/
                 isLoading: false,
                 isDesign: false,
@@ -350,12 +480,91 @@ import VueDragResize2 from 'vue-drag-resize';
                 h_result_container: 0,
                 w_result_container_rv: 0,
                 h_result_container_rv: 0,
+                //guardar imagen
+                disenoFrontal:'',
+                disenoFrontal64:'',
+                disenoReverso64:'',
+                disenoReverso:'',
+                disenoUsuario64:'',
+                disenoUsuario:'',
+                /*Variables para el contenedor de la vista de confirmacion frontal*/
+                w_content_confirmacion: 0,
+                h_content_confirmacion: 0,
+                w_content_confirmacion_int:0,
+                h_content_confirmacion_int: 0,
+                h_result_confirmacion:0,
+                w_result_confirmacion:0,
+                top_result_confirmacion:0,
+                left_result_confirmacion:0,
+                top_confirmacion:0, //top de la imagen
+                left_confirmacion:0, //left de la imagen
+                width_confirmacion:0,
+                height_confirmacion:0,
+                /*Variables para el contenedor de la confirmacion reverso*/
+                w_content_confirmacion_rv: 0,
+                h_content_confirmacion_rv: 0,
+                w_content_confirmacion_rv_int:0,
+                h_content_confirmacion_rv_int: 0,
+                h_result_confirmacion_rv:0,
+                w_result_confirmacion_rv:0,
+                top_result_confirmacion_rv:0,
+                left_result_confirmacion_rv:0,
+                top_confirmacion_rv:0, //top de la imagen
+                left_confirmacion_rv:0, //left de la imagen
+                width_confirmacion_rv:0,
+                height_confirmacion_rv:0,
+
+
 
             }
         },
 
         methods:
         {
+            articulos_info(){
+
+            },
+            //return a promise that resolves with a File instance
+            dataURLtoFile(imagen, filename) {
+
+                console.log('FILENAME es:', filename)
+                console.log('IMAGEN ES:', imagen)
+                    var arr = imagen.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+                    while(n--){
+                        u8arr[n] = bstr.charCodeAt(n);
+                    }
+                    return new File([u8arr], filename, {type:mime});
+            },
+
+            saveDisenos(){
+            //Diseño del Usuario
+                html2canvas(document.querySelector("#disenosDelUsuario")).then(canvas => {
+                this.disenoUsuario64= canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
+                })
+                setTimeout(e =>{
+                    this.disenoUsuario = this.dataURLtoFile(this.disenoUsuario64, 'ili.png');
+                },5000)
+
+             /*    //Diseño Frontal
+                html2canvas(document.querySelector("#contenedor-confirmacion-frontal")).then(canvas => {
+                this.disenoFrontal64= canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
+                })
+                //Diseño reverso
+               html2canvas(document.querySelector("#contenedor-confirmacion-reverso")).then(canvas2 => {
+                this.disenoReverso64= canvas2.toDataURL("image/png").replace("image/png, image/octet-stream");
+                })
+                setTimeout(e =>{
+                    this.disenoFrontal = this.dataURLtoFile(this.disenoFrontal64, 'ili.png');
+                    this.disenoReverso = this.dataURLtoFile(this.disenoReverso64, 'ilia.png');
+                    console.log('de vuelta:', this.disenoFrontal);
+                },4000) */
+            },
+
+
             /*Metodos del componente DragResize*/
             resize(newRect) {
                 this.width = newRect.width;
@@ -365,7 +574,6 @@ import VueDragResize2 from 'vue-drag-resize';
             },
             onActivated(event){
                 this.isActive=true
-                //this.$store.dispatch('rect/setActive', {id: index});
 
             },
             onDeactivated(event){
@@ -389,53 +597,153 @@ import VueDragResize2 from 'vue-drag-resize';
             dimensionesFrontal(){
                 setTimeout(e =>{
                  /*Calculo del width y heigh del area de diseno dinamicamente*/
-                    this.w_content_actual=$('#contenedor').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
-                    this.h_content_actual=$('#contenedor').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
-                    let w=this.w_content_actual.split('px')[0] //le quito la palabra px
-                    let h=this.h_content_actual.split('px')[0] //le quito la palabra px
+                    this.w_content_actual=$('#contenedor-frontal').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
+                    this.h_content_actual=$('#contenedor-frontal').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
+                    let w=this.w_content_actual.split('%')[0] //le quito la palabra %
+                    let h=this.h_content_actual.split('%')[0] //le quito la palabra %
                     this.w_content_actual_int=parseFloat(w) //lo convierto de cadena a float
                     this.h_content_actual_int=parseFloat(h) //lo convierto de cadena a float
-                    this.h_result=(this.h_admin * this.h_content_actual_int/this.h_content_admin)//calculo el nuevo height
-                    this.w_result=(this.w_admin * this.w_content_actual_int/this.w_content_admin)//calculo el nuevo width
-               /*  $('#container-area-diseno-padre').css('width', this.w_result) //cambio el estilo dinamicamente
-                $('#container-area-diseno-padre').css('height', this.h_result) //cambio el estilo dinamicamente
- */
-                /*Calculo del top y left del area de diseno dinamicamente*/
-                this.top_result=(this.top_px*100/this.h_content_admin)
-                this.left_result=(this.left_px*100/this.h_content_admin)
-                this.w_result_container= this.w_result+5
-                this.h_result_container= this.h_result+5
-               /*  $('#container-area-diseno-padre').css('top', this.top_result+'%') //cambio el estilo dinamicamente
-                $('#container-area-diseno-padre').css('left', this.left_result+'%') //cambio el estilo dinamicamente */
-                },600)
+                    this.h_result=(this.h_admin * this.h_content_actual_int/this.h_content_admin)//nuevo height
+                    this.w_result=(this.w_admin * this.w_content_actual_int/this.w_content_admin)//nuevo width
+                    this.top_result=(this.top_px*100/this.h_content_admin)//nuevo top
+                    this.left_result=(this.left_px*100/this.w_content_admin)//nuevo left
+                    this.w_result_container= this.w_result+5
+                    this.h_result_container= this.h_result+5
+
+                },800)
             },
             dimensionesReverso(){
                 setTimeout(e =>{
                 /*Calculo del width y heigh del area de diseno dinamicamente*/
-                    this.w_content_actual_rv=$('#contenedor').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
-                    this.h_content_actual_rv=$('#contenedor').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
-                    let w_rv=this.w_content_actual_rv.split('px')[0] //le quito la palabra px
-                    let h_rv=this.h_content_actual_rv.split('px')[0] //le quito la palabra px
-                    this.w_content_actual_int_rv=parseFloat(w_rv) //lo convierto de cadena a float
-                    this.h_content_actual_int_rv=parseFloat(h_rv) //lo convierto de cadena a float
-                    this.h_result_rv=(this.h_admin_rv * this.h_content_actual_int_rv/this.h_content_admin_rv)//calculo el nuevo height
-                    this.w_result_rv=(this.w_admin_rv * this.w_content_actual_int_rv/this.w_content_admin_rv) //calculo el nuevo width
-                /* $('#container-area-disenorv-padre').css('width', this.w_result_rv+5) //cambio el estilo dinamicamente
-                $('#container-area-disenorv-padre').css('height', this.h_result_rv+5) //cambio el estilo dinamicamente
- */
-                /*Calculo del top y left del area de diseno dinamicamente*/
-                this.top_result_rv=(this.top_px_rv*100/this.h_content_admin_rv)
-                this.left_result_rv=(this.left_px_rv*100/this.h_content_admin_rv)
+                this.w_content_actual_rv=$('#contenedor-reverso').css('width')//width del contenedor donde va la imagen del producto
+                this.h_content_actual_rv=$('#contenedor-reverso').css('height') //height del contenedor principal (donde va la imagen del producto)
+                let w_rv=this.w_content_actual_rv.split('%')[0] //quito la palabra %
+                let h_rv=this.h_content_actual_rv.split('%')[0] //quito la palabra %
+                this.w_content_actual_int_rv=parseFloat(w_rv) //convierto de cadena a float
+                this.h_content_actual_int_rv=parseFloat(h_rv) //convierto de cadena a float
+                this.h_result_rv=(this.h_admin_rv * this.h_content_actual_int_rv/this.h_content_admin_rv)//nuevo height
+                this.w_result_rv=(this.w_admin_rv * this.w_content_actual_int_rv/this.w_content_admin_rv) //nuevo width
+                this.top_result_rv=(this.top_px_rv*100/this.h_content_admin_rv)//nuevo top
+                this.left_result_rv=(this.left_px_rv*100/this.w_content_admin_rv) //nuevo left
                 this.w_result_container_rv= this.w_result_rv+5
                 this.h_result_container_rv= this.h_result_rv+5
-                /* $('#container-area-disenorv-padre').css('top', this.top_result_rv+'%') //cambio el estilo dinamicamente
-                $('#container-area-disenorv-padre').css('left', this.left_result_rv+'%') //cambio el estilo dinamicamente */
-                },600)
+    /* $('#container-area-disenorv-padre').css('width', this.w_result_rv+5) //cambio el estilo dinamicamente
+    $('#container-area-disenorv-padre').css('height', this.h_result_rv+5) //cambio el estilo dinamicamente*/
+    /* $('#container-area-disenorv-padre').css('top', this.top_result_rv+'%') //cambio el estilo dinamicamente
+    $('#container-area-disenorv-padre').css('left', this.left_result_rv+'%') //cambio el estilo dinamicamente */
+                },800)
+            },
+            dimensionesPreviewFrontal(){
+                setTimeout(e =>{
+                    /*Calculo del width y heigh del area de diseno dinamicamente*/
+                    this.w_content_preview=$('#contenedor-preview-frontal').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
+                    this.h_content_preview=$('#contenedor-preview-frontal').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
+                    let w_preview=this.w_content_preview.split('px')[0] //le quito la palabra px
+                    let h_preview=this.h_content_preview.split('px')[0] //le quito la palabra px
+                    this.w_content_preview_int=parseFloat(w_preview) //lo convierto de cadena a float
+                    this.h_content_preview_int=parseFloat(h_preview) //lo convierto de cadena a float
+
+                    this.h_result_preview=(this.h_admin * this.h_content_preview_int/this.h_content_admin)//nuevo height
+                    this.w_result_preview=(this.w_admin * this.w_content_preview_int/this.w_content_admin)//nuevo width
+                    this.top_result_preview=(this.top_px*100/this.h_content_admin)//nuevo top
+                    this.left_result_preview=(this.left_px*100/this.h_content_admin)//nuevo left
+
+                    /*Calculo del top y left de la imagen colocada por el usuario*/
+                    this.width_preview=(this.width*100/this.w_result)
+                    this.height_preview=(this.height*100/this.h_result)
+                    this.top_preview=(this.top*100/this.h_result)
+                    this.left_preview=(this.left*100/this.w_result)
+
+                    },600)
+            },
+            dimensionesPreviewReverso(){
+                setTimeout(e =>{
+                    /*Calculo del width y heigh del area de diseno dinamicamente*/
+                    this.w_content_preview_rv=$('#contenedor-preview-reverso').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
+                    this.h_content_preview_rv=$('#contenedor-preview-reverso').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
+                    let w_preview_rv=this.w_content_preview_rv.split('px')[0] //le quito la palabra px
+                    let h_preview_rv=this.h_content_preview_rv.split('px')[0] //le quito la palabra px
+                    this.w_content_preview_rv_int=parseFloat(w_preview_rv) //lo convierto de cadena a float
+                    this.h_content_preview_rv_int=parseFloat(h_preview_rv) //lo convierto de cadena a float
+
+                    //Calculo el width y height del area punteada
+                    this.h_result_preview_rv=(this.h_admin_rv * this.h_content_preview_rv_int/this.h_content_admin_rv)//nuevo height
+                    this.w_result_preview_rv=(this.w_admin_rv * this.w_content_preview_rv_int/this.w_content_admin_rv)//nuevo width
+                    this.top_result_preview_rv=(this.top_px_rv*100/this.h_content_admin_rv)//nuevo top
+                    this.left_result_preview_rv=(this.left_px_rv*100/this.w_content_admin_rv)//nuevo left
+
+                    /*Calculo del top y left de la imagen colocada por el usuario*/
+                    this.width_preview_rv=(this.widthrv*100/this.w_result_rv)
+                    this.height_preview_rv=(this.heightrv*100/this.h_result_rv)
+                    this.top_preview_rv=(this.toprv*100/this.h_result_rv)
+                    this.left_preview_rv=(this.leftrv*100/this.w_result_rv)
+
+                    },600)
+            },
+            dimensionesConfirmacionFrontal(){
+                setTimeout(e =>{
+                    /*Calculo del width y heigh del area de diseno dinamicamente*/
+                    this.w_content_confirmacion=$('#contenedor-confirmacion-frontal').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
+                    this.h_content_confirmacion=$('#contenedor-confirmacion-frontal').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
+
+                    let w_confirmacion=this.w_content_confirmacion.split('px')[0] //le quito la palabra px
+                    let h_confirmacion=this.h_content_confirmacion.split('px')[0] //le quito la palabra px
+                    this.w_content_confirmacion_int=parseFloat(w_confirmacion) //lo convierto de cadena a float
+                    this.h_content_confirmacion_int=parseFloat(h_confirmacion) //lo convierto de cadena a float
+                   /*  console.log('HOLA ILI ESTE ES EL W:', this.w_content_confirmacion_int)
+                    console.log('HOLA ILI ESTE ES EL H:', this.h_content_confirmacion_int) */
+                    //Calculo el width y height del area punteada
+                    this.h_result_confirmacion=(this.h_admin * this.h_content_confirmacion_int/this.h_content_admin)//nuevo height
+                    this.w_result_confirmacion=(this.w_admin * this.w_content_confirmacion_int/this.w_content_admin)//nuevo width
+                    this.top_result_confirmacion=(this.top_px*100/this.h_content_admin)//nuevo top
+                    this.left_result_confirmacion=(this.left_px*100/this.h_content_admin)//nuevo left
+
+                    /*Calculo del top y left de la imagen colocada por el usuario*/
+                    this.width_confirmacion=(this.width*100/this.w_result)
+                    this.height_confirmacion=(this.height*100/this.h_result)
+                    this.top_confirmacion=(this.top*100/this.h_result)
+                    this.left_confirmacion=(this.left*100/this.w_result)
+
+                    },600)
+            },
+            dimensionesConfirmacionReverso(){
+                setTimeout(e =>{
+                    /*Calculo del width y heigh del area de diseno dinamicamente*/
+                    this.w_content_confirmacion_rv=$('#contenedor-confirmacion-reverso').css('width')//Calculo el width del contenedor principal (donde va la imagen del producto)
+                    this.h_content_confirmacion_rv=$('#contenedor-confirmacion-reverso').css('height') //Calculo el height del contenedor principal (donde va la imagen del producto)
+                    let w_confirmacion_rv=this.w_content_confirmacion_rv.split('px')[0] //le quito la palabra px
+                    let h_confirmacion_rv=this.h_content_confirmacion_rv.split('px')[0] //le quito la palabra px
+                    this.w_content_confirmacion_rv_int=parseFloat(w_confirmacion_rv) //lo convierto de cadena a float
+                    this.h_content_confirmacion_rv_int=parseFloat(h_confirmacion_rv) //lo convierto de cadena a float
+
+                    //Calculo el width y height del area punteada
+                    this.h_result_confirmacion_rv=(this.h_admin_rv * this.h_content_confirmacion_rv_int/this.h_content_admin_rv)//nuevo height
+                    this.w_result_confirmacion_rv=(this.w_admin_rv * this.w_content_confirmacion_rv_int/this.w_content_admin_rv)//nuevo width
+                    this.top_result_confirmacion_rv=(this.top_px_rv*100/this.h_content_admin_rv)//nuevo top
+                    this.left_result_confirmacion_rv=(this.left_px_rv*100/this.w_content_admin_rv)//nuevo left
+
+                    /*Calculo del top y left de la imagen colocada por el usuario*/
+                    this.width_confirmacion_rv=(this.widthrv*100/this.w_result_rv)
+                    this.height_confirmacion_rv=(this.heightrv*100/this.h_result_rv)
+                    this.top_confirmacion_rv=(this.toprv*100/this.h_result_rv)
+                    this.left_confirmacion_rv=(this.leftrv*100/this.w_result_rv)
+
+                    },600)
             },
             /*Modal de vista previa*/
             showVistaPrevia()
             {
+                console.log('hola mundo')
                 $('#ModalVistaPrevia').modal('show');
+                this.dimensionesPreviewFrontal()
+                this.dimensionesPreviewReverso()
+            },
+            /*Modal de vista previa*/
+            showConfirmacion()
+            {
+                $('#ModalConfirmacion').modal('show');
+                 this.dimensionesConfirmacionFrontal()
+                this.dimensionesConfirmacionReverso()
             },
             /*Metodos para la carga de Archivos*/
             openInputFile () {
@@ -502,7 +810,8 @@ import VueDragResize2 from 'vue-drag-resize';
                     this.showReverseOut = false;
                     this.showReverse = true;
                     this.activofb = activo;
-
+                    console.log('AAAAAAAAAAAA');
+                    this.this.dimensionesReverso();
 
 
                 } else {

@@ -8,12 +8,12 @@ import Config from './config';
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-    mode: 'history',
+	mode: 'history',
 	routes: [
-        {
-            path: '*',
-            redirect: { name: 'home' },
-        },
+		{
+			path: '*',
+			redirect: { name: 'home' },
+		},
 		{
 			path: Config.env.base,
 			component: Vue.component( 'App', require( './components/App.vue' ) ),
@@ -38,27 +38,27 @@ const router = new VueRouter({
 					path: 'example2',
 					name: 'example2',
 					component: Vue.component( 'Example2', require( './components/Example2.vue' ) ),
-					meta: { requiresAuth: true } 
+					meta: { requiresAuth: true }
 				},
 				{
 					path: 'register',
 					name: 'register',
 					component: Vue.component( 'Register', require( './components/pages/register/registerComponent.vue' ) ),
-					meta: { requiresAuth: false } 
+					meta: { requiresAuth: false }
 
 				},
 				{
 					path: 'rubros',
 					name: 'rubros',
 					component: Vue.component( 'Rubros', require( './components/pages/rubros/rubrosComponent.vue' ) ),
-					meta: { requiresAuth: false } 
+					meta: { requiresAuth: false }
 
 				},
 				{
 					path: 'procesar-carrito',
 					name: 'procesar-carrito',
 					component: Vue.component( 'Procesarcarrito', require( './components/pages/procesarcarrito/procesarcarritoComponent.vue' ) ),
-					meta: { requiresAuth: false } 
+					meta: { requiresAuth: false }
 
 				},
 				{
@@ -69,8 +69,8 @@ const router = new VueRouter({
 				},
 				/*
 					Catch Alls
-                */
-                { path: '_=_', redirect: Config.env.base }
+				*/
+				{ path: '_=_', redirect: Config.env.base }
 
 			]
 		},
@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
 	if(to.matched.some(record => record.meta.requiresAuth)) {
 				CerService.post('/login/auth')
 				.then(function (response) {
-					
+
 					let isAuthenticated
 					if (response.res != 0) {
 						isAuthenticated = true
@@ -93,7 +93,7 @@ router.beforeEach((to, from, next) => {
 					} else {
 						isAuthenticated = false
 						store.dispatch('logoutUser')
-					} 
+					}
 					store.dispatch('cambiarIsAuth',isAuthenticated)
 					// check route meta if it requires auth or not
 					$(".loading").fadeOut();
@@ -114,7 +114,23 @@ router.beforeEach((to, from, next) => {
 							}
 
 						} else {
+							if(store.getters.getUser.rol === 'user'){ // si esta autentificado y además es un usuario
 							next()
+							} else { // sino ir a rutas bases
+								if(from.name != null)
+								{
+									next({
+										path: from.path,
+										params: { nextUrl: to.fullPath }
+									})
+								} else {
+									next({
+										path: Config.env.base,
+										params: { nextUrl: to.fullPath }
+								})
+							}
+
+							}
 						}
 					} else {
 						if(String(to.name) == 'register' &&  isAuthenticated){
@@ -131,7 +147,7 @@ router.beforeEach((to, from, next) => {
 				.catch(function () {
 					$(".loading").fadeOut();
 					$("#preloader").delay(400).fadeOut("slow");
-					if(to.matched.some(record => record.meta.requiresAuth)) { 
+					if(to.matched.some(record => record.meta.requiresAuth)) {
 						if(from.name != null)
 							{
 								next({
@@ -169,25 +185,25 @@ router.beforeEach((to, from, next) => {
 						path: Config.env.base,
 						params: { nextUrl: to.fullPath }
 					})
-						
+
 					$(".loading").fadeOut();
 					$("#preloader").delay(400).fadeOut("slow");
 				});
-				
+
 			} else {
 				next()
 				$(".loading").fadeOut();
 				$("#preloader").delay(400).fadeOut("slow");
 			}
-			
+
 		}
 
-  })
-  
+})
+
 export default router;
 
 /*export const routes = [
-    { path: '/vue', component: Home, name: 'Home' },
-    { path: '/vue/example', component: Example, name: 'Example' }
+	{ path: '/vue', component: Home, name: 'Home' },
+	{ path: '/vue/example', component: Example, name: 'Example' }
 ];
 */
