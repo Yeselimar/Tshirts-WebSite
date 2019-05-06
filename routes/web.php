@@ -66,11 +66,18 @@ Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy'
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
-Route::post('/articulo/guardar','ArticulosController@save')->name('articulos.guardar');
+Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
+Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.disenable');
+Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
+Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
+Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
+Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('articulo.eliminar');
 
 
-//Imágenes Diseños
+//Imágenes Prediseñadas
 Route::post('/imagenes-disenos/todos','ImagenesDisenosController@index')->name('imagenes.disenos.todos');
+Route::post('/imagenes-disenos/tipo/administrador','ImagenesDisenosController@deadministrador')->name('imagenes.disenos.de.administrador');
+Route::post('/imagenes-disenos/tipo/cliente','ImagenesDisenosController@decliente')->name('imagenes.disenos.de.cliente');
 Route::post('/imagenes-disenos/guardar','ImagenesDisenosController@store')->name('imagenes.disenos.guardar');
 Route::post('/imagenes-disenos/{id}/actualizar','ImagenesDisenosController@update')->name('imagenes.disenos.actualizar');
 Route::post('/imagenes-disenos/{id}/detalles','ImagenesDisenosController@show')->name('imagenes.disenos.detalles');

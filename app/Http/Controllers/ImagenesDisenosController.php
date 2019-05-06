@@ -17,12 +17,25 @@ class ImagenesDisenosController extends Controller
     	return response()->json(['imagenes' => $imagenes]); 
     }
 
+    public function deadministrador()
+    {
+        $imagenes = ImagenDiseno::where('tipo','=','administrador')->with('categoria')->with('usuario')->with('disenos')->get();
+        return response()->json(['imagenes' => $imagenes]); 
+    }
+
+    public function decliente()
+    {
+        $imagenes = ImagenDiseno::where('tipo','=','cliente')->with('categoria')->with('usuario')->with('disenos')->get();
+        return response()->json(['imagenes' => $imagenes]);
+    }
+
     public function store(Request $request)
     {
         //dd($request);
         $imagen = new ImagenDiseno;
         $imagen->nombre = $request->nombre;
         $imagen->categoria_id = ($request->categoria_id=='') ? null : $request->categoria_id ;
+        $imagen->tipo = "administrador";
 
         $nombre = null;
         if($request->imagen)

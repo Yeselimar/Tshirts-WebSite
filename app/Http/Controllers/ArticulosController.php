@@ -44,18 +44,19 @@ class ArticulosController extends Controller
         $articulo = Articulo::find($id);
         return response()->json(['imagen' => $imagen]); 
     }
-    public function save(Request $request)
+    
+    public function storenodisenable(Request $request)
     {
         dd($request);
         return response()->json(['msg' => 'prueba','res'=> 1,'request' => $request]); 
 
     }
-
-    public function store()
+    
+    public function storedisenable()
     {
 
     }
-
+    
     public function update()
     {
 
@@ -65,7 +66,7 @@ class ArticulosController extends Controller
     {
     	
     }
-
+    
     public function destroy()
     {
 

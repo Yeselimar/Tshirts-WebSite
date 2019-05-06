@@ -134,10 +134,6 @@
                   <span v-else class="badge badge-pill sin-categoria">SIN CATEGORÍA</span>
               	</template>
 
-              	<template slot="pertenece" slot-scope="row">
-              		{{row.item.usuario.rol}}
-              	</template>
-
               	<template slot="actions" slot-scope="row"> 
               		<button @click="editar(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
                   	<button @click="eliminarImagen(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-trash"></i></button>
@@ -350,7 +346,6 @@ export default
           { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' },
           { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' },
           { key: 'categoria', label: 'Categoría', sortable: true, 'class': 'text-center' },
-          { key: 'pertenece', label: 'Pertenece', sortable: true, 'class': 'text-center' },
           { key: 'actions', label: 'Acciones', 'class': 'text-center' }
         ],
         currentPage: 1,
@@ -540,7 +535,7 @@ export default
 	    },
 	    todos()
 	    {
-	    	CerService.post("/imagenes-disenos/todos")
+	    	CerService.post("/imagenes-disenos/tipo/administrador")
 	        .then(response => {
 	          	if(response.imagenes)
 	          	{

@@ -95618,10 +95618,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -95646,7 +95642,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       },
       imagenes: [],
       categorias: [],
-      fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'categoria', label: 'Categoría', sortable: true, 'class': 'text-center' }, { key: 'pertenece', label: 'Pertenece', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+      fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'categoria', label: 'Categoría', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 10,
       totalRows: 0,
@@ -95783,7 +95779,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.imagen.id = imagen.id;
       this.imagen.nombre = imagen.nombre;
       this.imagen.imagen = imagen.url;
-      //this.imagen.categoria.id = (imagen.categoria_id == null) ? "" : imagen.categoria_id;
       $('#eliminar').modal('show');
     },
     eliminar: function eliminar() {
@@ -95806,7 +95801,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     todos: function todos() {
       var _this5 = this;
 
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/todos").then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/tipo/administrador").then(function (response) {
         if (response.imagenes) {
           _this5.imagenes = response.imagenes;
           _this5.totalRows = _this5.imagenes.length;
@@ -95975,18 +95970,6 @@ var render = function() {
                             { staticClass: "badge badge-pill sin-categoria" },
                             [_vm._v("SIN CATEGORÍA")]
                           )
-                    ]
-                  }
-                },
-                {
-                  key: "pertenece",
-                  fn: function(row) {
-                    return [
-                      _vm._v(
-                        "\n              \t\t" +
-                          _vm._s(row.item.usuario.rol) +
-                          "\n              \t"
-                      )
                     ]
                   }
                 },
