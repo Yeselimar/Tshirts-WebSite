@@ -47,6 +47,10 @@
     margin-bottom: 5px;
     border-radius: 4px;
   }
+  .form-validation
+  {
+    padding-bottom: 18px !important;
+  }
 </style>
 <template>
   	<div class="page-wrapper">
@@ -154,9 +158,9 @@
                               v-validate
                               data-vv-rules="required:true|min:3"
                               >
-                              <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-crear')">Campo requerido.</span>
+                              <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-crear')">Campo requerido</span>
 
-                              <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres.</span>
+                              <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres</span>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Categoría {{imagen.categoria.id}}</label>
@@ -214,9 +218,9 @@
                               v-validate
                               data-vv-rules="required:true|min:3"
                               >
-                              <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-actualizar')">Campo requerido.</span>
+                              <span class="error-text" v-if="errors.firstByRule('nombre', 'required','form-actualizar')">Campo requerido</span>
 
-                              <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres.</span>
+                              <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres</span>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Categoría</label>

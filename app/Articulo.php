@@ -30,4 +30,9 @@ class Articulo extends Model
     {
         return $this->hasMany('App\TalleColor','articulo_id');
     }
+
+    public function banners()//verificar que funcione
+    {
+        return $this->hasMany('App\Banner','articulo_id');
+    }
 }

@@ -24,6 +24,10 @@
 	    width:15px; 
 	    height:15px;
 	}
+	.textarea-barna
+	{
+		border-radius: 10px;
+	}
 </style>
 
 <template>
@@ -86,6 +90,14 @@
 	                	{{row.item.id}}
 	              	</template>
 
+	              	<template slot="imagen" slot-scope="row">
+	                	{{row.item.imagen}}
+	              	</template>
+
+	              	<template slot="actions" slot-scope="row">
+	                	
+	              	</template>
+
 	              	</b-table>
 
               		<b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
@@ -111,7 +123,7 @@
                           	</div>
                           	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
 
-                              	<label class="control-label h6" for="imagen">Imagen</label>
+                              	<label class="control-label h6" for="imagen">Imagen (1920x720)</label>
                               	
                           		<button class="btn-cargar btn-block cursor" v-if="banner.url == '' &&  banner.src == ''" @click="openInputFile()" style="" :class="{'btn-error': !banner.valida}">
                             	<i class="fa fa-picture-o" aria-hidden="true"></i> Examinar
@@ -130,7 +142,7 @@
                           	</div>
                           	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                               	<label class="control-label h6" for="descripcion">Descripción</label>
-                              	<textarea rows="5" cols="23" name="descripcion" class="form-control input-sm input-rounded" v-model="banner.descripcion" 
+                              	<textarea rows="5"  name="descripcion" class="form-control textarea-barna" v-model="banner.descripcion" 
                               	autocomplete="off" 
                               	:class="{'error-input': errors.first('descripcion','form-crear')}"
                               	data-vv-scope="form-crear"
@@ -139,9 +151,9 @@
 							        Ingrese una descripción
 							    </textarea> 
                               	
-                              	<span class="error-text" v-if="errors.firstByRule('descripcion', 'required','form-crear')">Campo requerido.</span>	
+                              	<span class="error-text" v-if="errors.firstByRule('descripcion', 'required','form-crear')">Campo requerido</span>	
 
-                              	<span class="error-text" v-else-if="errors.firstByRule('descripcion','min','form-crear')">Mínimo 3 caracteres.</span>
+                              	<span class="error-text" v-else-if="errors.firstByRule('descripcion','min','form-crear')">Mínimo 3 caracteres</span>
                           	</div>
                       	</div>
                   	</div>
