@@ -11295,10 +11295,17 @@ var
 		letterSpacing: "0",
 		fontWeight: "400"
 	},
+<<<<<<< HEAD
 
 	cssPrefixes = [ "Webkit", "Moz", "ms" ],
 	emptyStyle = document.createElement( "div" ).style;
 
+=======
+
+	cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style;
+
+>>>>>>> master
 // Return a css property mapped to a potentially vendor prefixed property
 function vendorPropName( name ) {
 
@@ -19327,6 +19334,7 @@ exports.HitCanvas = HitCanvas;
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -19336,6 +19344,8 @@ exports.HitCanvas = HitCanvas;
 });
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> master
         base: 'http://localhost:8000/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -19343,6 +19353,7 @@ exports.HitCanvas = HitCanvas;
         base: '/'
     }
 });
+<<<<<<< HEAD
 =======
         base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
@@ -19358,6 +19369,8 @@ exports.HitCanvas = HitCanvas;
             } */
     } });
 >>>>>>> master
+>>>>>>> master
+=======
 >>>>>>> master
 
 /***/ }),

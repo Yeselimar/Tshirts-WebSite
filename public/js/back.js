@@ -9929,6 +9929,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 
 
 var
+<<<<<<< HEAD
 
 	// Swappable if display is none or starts with table
 	// except "table", "table-cell", or "table-caption"
@@ -9944,6 +9945,23 @@ var
 	cssPrefixes = [ "Webkit", "Moz", "ms" ],
 	emptyStyle = document.createElement( "div" ).style;
 
+=======
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rcustomProp = /^--/,
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	},
+
+	cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style;
+
+>>>>>>> master
 // Return a css property mapped to a potentially vendor prefixed property
 function vendorPropName( name ) {
 
@@ -17739,6 +17757,7 @@ module.exports = Cancel;
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -17748,6 +17767,8 @@ module.exports = Cancel;
 });
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> master
         base: 'http://localhost:8000/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -17755,6 +17776,7 @@ module.exports = Cancel;
         base: '/'
     }
 });
+<<<<<<< HEAD
 =======
         base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
@@ -17770,6 +17792,8 @@ module.exports = Cancel;
             } */
     } });
 >>>>>>> master
+>>>>>>> master
+=======
 >>>>>>> master
 
 /***/ }),
@@ -101857,6 +101881,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 // module
 <<<<<<< HEAD
+<<<<<<< HEAD
 exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 10px;\n}\n", ""]);
 =======
 <<<<<<< HEAD
@@ -101864,6 +101889,9 @@ exports.push([module.i, "\n.btn {\r\n  color: #fff !important;\n}\n.profile-tab 
 =======
 exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n", ""]);
 >>>>>>> master
+>>>>>>> master
+=======
+exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n", ""]);
 >>>>>>> master
 
 // exports
@@ -102736,7 +102764,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.btn {\r\n  color: #fff !important;\n}\n.profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n.tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 2.1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n.hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n.checkmark {\r\n  left: 40%;\r\n  border: 1px solid #dadada;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn {\r\n  color: #fff !important;\n}\n.profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n.tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n.hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n.checkmark {\r\n  left: 40%;\r\n  border: 1px solid #dadada;\n}\r\n", ""]);
 
 // exports
 
@@ -102762,6 +102790,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_upload_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_upload_component__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -107216,8 +107249,17 @@ var render = function() {
                                 _c(
                                   "multiselect",
                                   {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate"
+                                      }
+                                    ],
                                     class: {
-                                      "error-input": _vm.selectedRubroValidation
+                                      "error-input": _vm.errors.first(
+                                        "rubro",
+                                        "form-ajustes"
+                                      )
                                     },
                                     attrs: {
                                       options: _vm.optionRubros,
@@ -107231,7 +107273,11 @@ var render = function() {
                                       "custom-label": _vm.customLabelRubro,
                                       "show-labels": false,
                                       label: "nombre",
-                                      "track-by": "nombre"
+                                      "track-by": "nombre",
+                                      "data-vv-rules": "required",
+                                      "data-vv-scope": "form-ajustes",
+                                      "data-vv-name": "rubro",
+                                      "data-vv-value-path": "rubro"
                                     },
                                     scopedSlots: _vm._u([
                                       {
@@ -107299,7 +107345,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(" "),
-                                _vm.selectedRubroValidation
+                                _vm.errors.first("rubro", "form-ajustes")
                                   ? _c("span", { staticClass: "error-text" }, [
                                       _vm._v("Campo requerido.")
                                     ])
