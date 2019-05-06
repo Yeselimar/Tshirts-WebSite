@@ -158,7 +158,12 @@
                             :show-labels="false"
                              label="nombre" 
                              track-by="nombre" 
-                             :class="{'error-input': selectedRubroValidation}"
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-ajustes"
+                              data-vv-name="rubro"
+                              data-vv-value-path="rubro"
+                             :class="{'error-input': errors.first('rubro','form-ajustes')}"
+
                             >
                              <template slot="option" slot-scope="props">
                                 <div class="option__desc"><span class="option__title">{{ props.option.nombre }}</span></div>
@@ -174,7 +179,7 @@
                                       
                                     <span
                                             class="error-text"
-                                            v-if="selectedRubroValidation"
+                                            v-if="errors.first('rubro','form-ajustes')"
                                     >Campo requerido.</span>
                         </div>
                         
