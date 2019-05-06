@@ -17756,8 +17756,11 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -17765,6 +17768,7 @@ module.exports = Cancel;
         base: '/barna/barna/public/'
     }
 });
+<<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
 =======
@@ -17795,6 +17799,8 @@ module.exports = Cancel;
 >>>>>>> master
 =======
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
 
 /***/ }),
 /* 51 */
@@ -101880,6 +101886,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
 exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 10px;\n}\n", ""]);
@@ -101893,6 +101900,9 @@ exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\
 =======
 exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n", ""]);
 >>>>>>> master
+=======
+exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:100%;\n\t    height:auto;\n\t    border: 1px solid #ebebeb;\n\t    margin-bottom: 5px;\n\t    border-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 10px;\n}\n", ""]);
+>>>>>>> Stashed changes
 
 // exports
 

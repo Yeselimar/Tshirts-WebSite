@@ -19333,8 +19333,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
@@ -19342,6 +19345,7 @@ exports.HitCanvas = HitCanvas;
         base: '/barna/barna/public/'
     }
 });
+<<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
 =======
@@ -19372,6 +19376,8 @@ exports.HitCanvas = HitCanvas;
 >>>>>>> master
 =======
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
 
 /***/ }),
 /* 51 */,
