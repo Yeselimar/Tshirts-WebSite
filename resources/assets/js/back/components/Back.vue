@@ -96,7 +96,7 @@
                                         <li class="cursor pb-3 pt-3 mb-1 nav-label" @click="home" >Ver Sitio Web</li>
                                     <li class="nav-devider"></li>
                                     <li>
-                                        <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                                        <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio </span></a>
                                     </li>
                                     <li class="nav-label">Ventas</li>
                                     <li>

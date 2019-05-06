@@ -94748,14 +94748,7 @@ var staticRenderFns = [
         },
         [
           _c("i", { staticClass: "fa fa-tachometer" }),
-          _c("span", { staticClass: "hide-menu" }, [
-            _vm._v("Inicio "),
-            _c(
-              "span",
-              { staticClass: "label label-rouded label-primary pull-right" },
-              [_vm._v("2")]
-            )
-          ])
+          _c("span", { staticClass: "hide-menu" }, [_vm._v("Inicio ")])
         ]
       )
     ])
