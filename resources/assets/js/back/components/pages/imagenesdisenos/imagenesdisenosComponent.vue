@@ -448,7 +448,7 @@ export default
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
               dataform.append("imagen", this.imagen.url);
-              CerService.post("/imagenes-disenos/guardar",dataform)
+              CerService.post("/imagenes-predisenadas/guardar",dataform)
               .then(response => 
               {
                   this.todos();
@@ -485,7 +485,7 @@ export default
               dataform.append("nombre", this.imagen.nombre);
               dataform.append("categoria_id", this.imagen.categoria.id);
               dataform.append("imagen", this.imagen.url);
-              var url = '/imagenes-disenos/:id/actualizar';
+              var url = '/imagenes-predisenadas/:id/actualizar';
               url = url.replace(':id', this.imagen.id);
               CerService.post(url,dataform)
               .then(response => 
@@ -514,7 +514,7 @@ export default
 	    eliminar()
 	    {
         $('#eliminar').modal('hide');
-        var url = '/imagenes-disenos/:id/eliminar';
+        var url = '/imagenes-predisenadas/:id/eliminar';
         url = url.replace(':id', this.imagen.id);
         CerService.post(url)
         .then(response => 
@@ -535,7 +535,7 @@ export default
 	    },
 	    todos()
 	    {
-	    	CerService.post("/imagenes-disenos/tipo/administrador")
+	    	CerService.post("/imagenes-predisenadas/tipo/administrador")
 	        .then(response => {
 	          	if(response.imagenes)
 	          	{

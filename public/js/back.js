@@ -95731,7 +95731,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           dataform.append("nombre", _this2.imagen.nombre);
           dataform.append("categoria_id", _this2.imagen.categoria.id);
           dataform.append("imagen", _this2.imagen.url);
-          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/guardar", dataform).then(function (response) {
+          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-predisenadas/guardar", dataform).then(function (response) {
             _this2.todos();
             _this2.mensaje("success", response.msg);
           }).catch(function (error) {
@@ -95761,7 +95761,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           dataform.append("nombre", _this3.imagen.nombre);
           dataform.append("categoria_id", _this3.imagen.categoria.id);
           dataform.append("imagen", _this3.imagen.url);
-          var url = '/imagenes-disenos/:id/actualizar';
+          var url = '/imagenes-predisenadas/:id/actualizar';
           url = url.replace(':id', _this3.imagen.id);
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
             _this3.todos();
@@ -95785,7 +95785,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       var _this4 = this;
 
       $('#eliminar').modal('hide');
-      var url = '/imagenes-disenos/:id/eliminar';
+      var url = '/imagenes-predisenadas/:id/eliminar';
       url = url.replace(':id', this.imagen.id);
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
         _this4.todos();
@@ -95801,7 +95801,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     todos: function todos() {
       var _this5 = this;
 
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/tipo/administrador").then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-predisenadas/tipo/administrador").then(function (response) {
         if (response.imagenes) {
           _this5.imagenes = response.imagenes;
           _this5.totalRows = _this5.imagenes.length;
