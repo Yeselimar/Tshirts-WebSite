@@ -94217,41 +94217,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -94464,49 +94429,6 @@ var render = function() {
                 _vm._m(1),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item dropdown" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "dropdown-menu dropdown-menu-right mailbox animated zoomIn",
-                      attrs: { "aria-labelledby": "2" }
-                    },
-                    [
-                      _c("ul", [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("div", { staticClass: "message-center" }, [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("div", { staticClass: "user-img" }, [
-                                _c("img", {
-                                  staticClass: "img-circle",
-                                  attrs: {
-                                    src: _vm.getUrl + "images/users/5.jpg",
-                                    alt: "user"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", {
-                                  staticClass:
-                                    "profile-status online pull-right"
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(4)
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(5)
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item dropdown" }, [
                   _c(
                     "a",
                     {
@@ -94537,10 +94459,6 @@ var render = function() {
                     },
                     [
                       _c("ul", { staticClass: "dropdown-user" }, [
-                        _vm._m(6),
-                        _vm._v(" "),
-                        _vm._m(7),
-                        _vm._v(" "),
                         _c("li", [
                           _c(
                             "a",
@@ -94581,14 +94499,12 @@ var render = function() {
               _vm._v(" "),
               _c("li", { staticClass: "nav-devider" }),
               _vm._v(" "),
-              _c("li", { staticClass: "nav-label" }, [_vm._v("Inicio")]),
-              _vm._v(" "),
-              _vm._m(8),
+              _vm._m(2),
               _vm._v(" "),
               _c("li", { staticClass: "nav-label" }, [_vm._v("Ventas")]),
               _vm._v(" "),
               _c("li", [
-                _vm._m(9),
+                _vm._m(3),
                 _vm._v(" "),
                 _c(
                   "ul",
@@ -94691,13 +94607,13 @@ var render = function() {
               _vm._v(" "),
               _c("li", { staticClass: "nav-label" }, [_vm._v("Reportes")]),
               _vm._v(" "),
-              _vm._m(10),
+              _vm._m(4),
               _vm._v(" "),
-              _vm._m(11),
+              _vm._m(5),
               _vm._v(" "),
               _c("li", { staticClass: "nav-label" }, [_vm._v("Usuarios")]),
               _vm._v(" "),
-              _vm._m(12)
+              _vm._m(6)
             ])
           ])
         ])
@@ -94823,104 +94739,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "nav-link dropdown-toggle text-muted  ",
-        attrs: {
-          href: "#",
-          id: "2",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      },
-      [
-        _c("i", { staticClass: "fa fa-envelope" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "notify" }, [
-          _c("span", { staticClass: "heartbit" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "point" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("div", { staticClass: "drop-title" }, [
-        _vm._v("You have 4 new messages")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mail-contnet" }, [
-      _c("h5", [_vm._v("Michael Qin")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "mail-desc" }, [
-        _vm._v("Just see the my admin!")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "time" }, [_vm._v("9:30 AM")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link text-center",
-          attrs: { href: "javascript:void(0);" }
-        },
-        [
-          _c("strong", [_vm._v("See all e-Mails")]),
-          _vm._v(" "),
-          _c("i", { staticClass: "fa fa-angle-right" })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "ti-user" }),
-        _vm._v(" Perfil")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "ti-settings" }),
-        _vm._v(" Configuraciones")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("li", [
       _c(
         "a",
         {
           staticClass: "has-arrow  ",
-          attrs: { href: "#", "aria-expanded": "false" }
+          attrs: { a: "", href: "index1.html", "aria-expanded": "false" }
         },
         [
           _c("i", { staticClass: "fa fa-tachometer" }),
@@ -94931,16 +94755,6 @@ var staticRenderFns = [
               { staticClass: "label label-rouded label-primary pull-right" },
               [_vm._v("2")]
             )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "collapse", attrs: { "aria-expanded": "false" } },
-        [
-          _c("li", [
-            _c("a", { attrs: { href: "index1.html" } }, [_vm._v("Barna :D ")])
           ])
         ]
       )
