@@ -125,6 +125,11 @@
                                         <li class="cursor pb-3 pt-3 mb-1 nav-label" @click="home" >Ver Sitio Web</li>
                                     <li class="nav-devider"></li>
 
+                                    <li class="nav-label">Página</li>
+                                    <li> 
+                                        <a class="cursor"  @click=" $router.push({ name: 'banner' })"  aria-expanded="false"><i class="fa fa-image"></i><span class="hide-menu">Banner</span></a>
+                                    </li>
+
                                     <li class="nav-label">Inicio</li>
                                     <li> 
                                         <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
@@ -133,6 +138,7 @@
                                             <li><a href="index1.html">Barna :D </a></li>
                                         </ul>
                                     </li>
+                                    
                                     <li class="nav-label">Ventas</li>
                                     <li>
                                         <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Catálogo</span></a>

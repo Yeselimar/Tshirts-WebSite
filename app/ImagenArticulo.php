@@ -17,4 +17,24 @@ class ImagenArticulo extends Model
     {
     	return $this->belongsTo('App\Articulo');
     }
+
+    public static function carpeta()
+    {
+        return 'img/articulos/';
+    }
+
+    public function scopeParaArticulo($query,$id)
+    {
+        return $query->where('articulo_id','=',$id);
+    }
+
+    public function scopeParaCoordenada($query,$id)
+    {
+        return $query->where('coordenada_id','=',$id);
+    }
+
+    public function scopeParaCaracteristica($query,$id)//color
+    {
+        return $query->where('caracteristica','=',$id);
+    }
 }

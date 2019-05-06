@@ -66,6 +66,7 @@ Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy'
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
+Route::post('/articulos/todos/para-banner','ArticulosController@todosparabanner')->name('articulos.todos.para.banner');
 Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
 Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.disenable');
 Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
@@ -89,6 +90,13 @@ Route::post('/imagenes-predisenadas/{id}/eliminar','ImagenesPredisenadasControll
 
 //Categorías
 Route::post('/categorias/todos','CategoriasController@index')->name('categorias.todos');
+
+//Banner
+Route::post('/banner/todos','BannerController@index')->name('banner.todos');
+Route::post('/banner/guardar','BannerController@store')->name('banner.guardar');
+Route::post('/banner/{id}/actualizar','BannerController@update')->name('banner.actualizar');
+Route::post('/banner/{id}/detalles','BannerController@show')->name('banner.detalles');
+Route::post('/banner/{id}/eliminar','BannerController@destroy')->name('banner.eliminar');
 
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
