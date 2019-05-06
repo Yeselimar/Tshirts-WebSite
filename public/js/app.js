@@ -19326,11 +19326,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost/barna/barna/public/',
+        base: 'http://localhost:8000/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/barna/barna/public/'
+        base: '/'
     }
 });
 
@@ -88549,6 +88549,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -90090,6 +90094,25 @@ var render = function() {
                                                                         .email
                                                                   },
                                                                   on: {
+                                                                    keyup: function(
+                                                                      $event
+                                                                    ) {
+                                                                      if (
+                                                                        !$event.type.indexOf(
+                                                                          "key"
+                                                                        ) &&
+                                                                        _vm._k(
+                                                                          $event.keyCode,
+                                                                          "enter",
+                                                                          13,
+                                                                          $event.key,
+                                                                          "Enter"
+                                                                        )
+                                                                      ) {
+                                                                        return null
+                                                                      }
+                                                                      return _vm.loginM()
+                                                                    },
                                                                     input: function(
                                                                       $event
                                                                     ) {
@@ -90208,6 +90231,25 @@ var render = function() {
                                                                         .password
                                                                   },
                                                                   on: {
+                                                                    keyup: function(
+                                                                      $event
+                                                                    ) {
+                                                                      if (
+                                                                        !$event.type.indexOf(
+                                                                          "key"
+                                                                        ) &&
+                                                                        _vm._k(
+                                                                          $event.keyCode,
+                                                                          "enter",
+                                                                          13,
+                                                                          $event.key,
+                                                                          "Enter"
+                                                                        )
+                                                                      ) {
+                                                                        return null
+                                                                      }
+                                                                      return _vm.loginM()
+                                                                    },
                                                                     input: function(
                                                                       $event
                                                                     ) {
@@ -93285,6 +93327,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -93920,6 +93965,21 @@ var render = function() {
                               },
                               domProps: { value: _vm.email_login },
                               on: {
+                                keyup: function($event) {
+                                  if (
+                                    !$event.type.indexOf("key") &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "enter",
+                                      13,
+                                      $event.key,
+                                      "Enter"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  return _vm.ingresar($event)
+                                },
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return
@@ -93979,6 +94039,21 @@ var render = function() {
                               },
                               domProps: { value: _vm.password_login },
                               on: {
+                                keyup: function($event) {
+                                  if (
+                                    !$event.type.indexOf("key") &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "enter",
+                                      13,
+                                      $event.key,
+                                      "Enter"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  return _vm.ingresar($event)
+                                },
                                 input: function($event) {
                                   if ($event.target.composing) {
                                     return

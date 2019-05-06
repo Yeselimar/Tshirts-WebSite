@@ -140,6 +140,7 @@
                                                             data-vv-scope="form-login-register"
                                                             v-validate
                                                             data-vv-rules="required:true|email"
+                                                             @keyup.enter="ingresar"
                                                         >
                                                             <span
                                                             class="error-text"
@@ -161,6 +162,8 @@
                                                             v-validate
                                                             data-vv-rules="required:true|min:6"
                                                             :placeholder="'Ingrese su contraseña'"
+                                                             @keyup.enter="ingresar"
+
                                                         >
                                                             <span
                                                             class="error-text"
