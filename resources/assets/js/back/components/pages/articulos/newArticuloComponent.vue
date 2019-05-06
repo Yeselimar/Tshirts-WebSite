@@ -29,7 +29,7 @@
   color: blue !important;
   cursor: pointer !important;
 }
-.hover-pic:hover:after {
+/*.hover-pic:hover:after {
   position: absolute;
     content: "";
     width: 100%;
@@ -38,7 +38,7 @@
     top: 0px;
     background: rgba(0,0,0,.3)!important;
     z-index: 9999999;
-}
+}*/
 .checkmark {
   left: 40%;
   border: 1px solid #dadada;
@@ -429,7 +429,7 @@
                         </div>
                       </div>
                     </div>
-                    <div v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'POR VARIANTE')">
+                    <div :class="{'table-responsive': table_responsive}" v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'POR VARIANTE')">
                         <div class="text-center">
                           <h3>VARIANTES</h3>
                           <hr>
@@ -441,14 +441,13 @@
                                 <th class="text-center">Talle</th>
                                 <th class="text-center">Cantidad</th>
                                 <th class="text-center">Precio</th>
-                                <th class="text-center">Es Principal</th>
-                                <th class="text-center">Agregar</th>
+                                <th class="text-center">Acciones</th>
                                 
                               </tr>
                             </thead>
                             <tbody>
                               <tr v-if="!filesVariantes.length">
-                                <td colspan="6">
+                                <td colspan="5">
                                   <div class="text-center p-5">
                                     <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Variante</button>
                                   </div>
@@ -561,16 +560,10 @@
                                    </div>
 
                                 </td>
-                                  <td class="text-center">  
-                                      <label class="contenido">
-                                        <input type="radio" name="radio">
-                                        <span class="checkmark"></span>
-                                      </label>
-                                  </td>
 
                                 <td class="text-center">
-                                    
-                                    <button class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                     <button class="cursor btn btn-inverse" @click="deleteVariante(index)"><i class="fa fa-trash cursor"></i></button>
+                                    <button v-if="index == filesVariantes.length-1" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
                                 </td>
                              
                               
@@ -581,7 +574,82 @@
 
                   </div>
                   <div class="tab-pane" id="relacion" role="tabpanel">
-                      <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas">Ver Modal Prueba</button>
+
+
+                      <div :class="{'table-responsive': table_responsive}" >
+                        <div class="text-center">
+                          <h3>IMAGEN-COLOR</h3>
+                          <hr>
+                        </div>
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th class="text-center">Imagen</th>
+                                <th class="text-center">Color</th>
+                                <th class="text-center">Es Principal</th>
+                                <th class="text-center">Acciones</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-if="!filesImagesColor.length">
+                                <td colspan="4">
+                                  <div class="text-center p-5">
+                                    <button  @click.stop.prevent="addRelacion" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Relación Imagen-Color</button>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr v-for="(fileIC,index) in filesImagesColor" :key="index">
+                                 <td class="text-center">
+                                      <img v-if="filesImagesColor[index].file !== null && filesImagesColor[index].file !== {} && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                     <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
+                                    
+                                </td>
+                                <td class="text-center">
+                                    <multiselect
+                                      v-model="filesImagesColor[index].selectedColorRelacion"
+                                      :options="selectedColores"
+                                      selectLabel =""
+                                      selectedLabel = ""
+                                      placeholder="Color"
+                                      deselectLabel = ""
+                                      open-direction="bottom"
+                                      :multiple="false"
+                                      :hideSelected = "true"
+                                      :custom-label="customLabelColor" 
+                                      :show-labels="false"
+                                      label="valor" 
+                                      track-by="valor" 
+                                      >
+                                        <template slot="option" slot-scope="props">
+                                          <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
+                                        </template>
+                                          <span slot="noResult">
+                                            No se encontraron resultados</span>
+
+                                    </multiselect>
+
+                                </td>
+                                
+                                  <td class="text-center">  
+                                      <label class="contenido">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                  </td>
+
+                                <td class="text-center">
+                                     <button class="cursor btn btn-inverse" @click="deleteRelacion(index)"><i class="fa fa-trash cursor"></i></button>
+                                    <button v-if="index == filesImagesColor.length-1" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                </td>
+                             
+                              
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div> 
+
+                
 
                   </div>
                 </div>
@@ -630,12 +698,12 @@
               </div>
               <div class="modal-body">
                   <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
-                            <div class="project" v-for="(file) in files" :key="file.id">
-                                <div class="pi-pic position-relative hover-pic">
+                            <div class="project" v-for="(file) in files" :key="file.id" v-if="!file.selectedImagen">
+                                <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImg(file)">
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
-                                    <a class="cursor mr-2" @click.stop.prevent="seleccionarImg(file)"><i class="fa fa-check" :class="{'color-blue': file.selectedImagen}"></i></a>
+                                    <a class="cursor mr-2"><i class="fa fa-check" :class="{'color-blue': file.selectedImagen}"></i></a>
                                   </div>
                                 </div>
                             </div>
@@ -722,6 +790,7 @@ export default {
       selectedColores: [],
       selectedCantidad: "",
       filesVariantes: [],
+      filesImagesColor: [],
       maskCantidad: "",
       articulo: {
         nombre: "",
@@ -734,6 +803,7 @@ export default {
         cantidad: 0
 
       },
+      table_responsive: false,
       selectedRubroValidation: false,
       selectedTipoValidation: false,
       selectedRubro: [],
@@ -799,8 +869,24 @@ export default {
   computed: {
     ...mapGetters(["getIsAuth", "getUrl", "getFiltroArticulo"])
   },
-  mounted() {},
+  mounted() {
+      $(window).resize(event => {
+        event.preventDefault();
+         
+        if (document.body.clientWidth <= 900) {
+          this.table_responsive = true;
+        } else {
+          this.table_responsive = false;
+        }
+      });
+
+  },
   created: function() {
+    if (document.body.clientWidth <= 900){
+          this.table_responsive = true;
+      } else {
+        this.table_responsive = false;
+      }
     if (this.getFiltroArticulo === "disenables") {
       this.isDesign = true;
     } else {
@@ -808,6 +894,12 @@ export default {
     }
   },
   methods: {
+    deleteVariante(index){
+      this.filesVariantes.splice(index,1)
+    },
+    deleteRelacion(index){
+      this.filesImagesColor.splice(index,1)
+    },
     addVariante()
     {
       let aux = {
@@ -821,8 +913,19 @@ export default {
       {...aux}
       )
     },
+    addRelacion(){
+      let aux = {
+          selectedColorRelacion: "",
+          file: {},
+        }
+      this.filesImagesColor.push(
+      {...aux}
+      )
+    },
    seleccionarImg(file){
       file.selectedImagen = true;
+      this.filesImagesColor[this.indexRelacion].file = file
+      this.closeModalImagenesCargadas()
     },
     customLabelColor ({ valor, color }) {
       return `${valor} – ${color}`
@@ -916,7 +1019,8 @@ export default {
         this.selectedImg=img;
         $('#modalImg').modal('show')
     },
-     openModalImagenesCargadas(){
+     openModalImagenesCargadas(index){
+        this.indexRelacion = index
         $('#modalImagenesCargadas').modal('show')
     },
     setPaymentAmount() {
