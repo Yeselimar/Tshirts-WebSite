@@ -95286,7 +95286,7 @@ exports = module.exports = __webpack_require__(14)(false);
 
 
 // module
-exports.push([module.i, "\n.custom-file-label\n\t{\n\t\t  height: calc(1.90rem + 1px) !important;\n\t    padding: .200rem .50rem !important;\n\t    border-radius: 25px;\n}\n.custom-file-label::after\n\t{\n\t\t  height: calc(calc(1.90rem + 1px) - 1px * 2) !important;\n\t    padding: 0.200rem .500rem !important;\n\t    content: \"Examinar\" !important;\n\t    border-radius: 0 25px 25px 0;\n}\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(2.25rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.capsula-rubros\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n.btn-cargar\n  {\n    border: 1px solid #e7e7e7;\n    border-radius: 25px;\n    height: 30px;\n    background-color: #fbfbfb;\n    color: #424242;\n    margin-bottom: 17px;\n}\n.btn-error\n  {\n    border: 1px solid red !important;\n}\n.img-barna\n  {\n    width:100%;\n    height:auto;\n    border: 1px solid #ebebeb;\n    margin-bottom: 5px;\n    border-radius: 4px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-file-label\n\t{\n\t\t  height: calc(1.90rem + 1px) !important;\n\t    padding: .200rem .50rem !important;\n\t    border-radius: 25px;\n}\n.custom-file-label::after\n\t{\n\t\t  height: calc(calc(1.90rem + 1px) - 1px * 2) !important;\n\t    padding: 0.200rem .500rem !important;\n\t    content: \"Examinar\" !important;\n\t    border-radius: 0 25px 25px 0;\n}\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(2.25rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.capsula-categoria\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n.sin-categoria\n  {\n    height: 15px;\n    font-size: 11px;\n    background-color: #dc3545;\n    font-weight: bold;\n    text-transform: uppercase;\n    color: #fff !important;\n}\n.btn-cargar\n  {\n    border: 1px solid #e7e7e7;\n    border-radius: 25px;\n    height: 30px;\n    background-color: #fbfbfb;\n    color: #424242;\n    /*margin-bottom: 17px;*/\n}\n.btn-error\n  {\n    border: 1px solid red !important;\n}\n.img-barna\n  {\n    width:100%;\n    height:auto;\n    border: 1px solid #ebebeb;\n    margin-bottom: 5px;\n    border-radius: 4px;\n}\n", ""]);
 
 // exports
 
@@ -95519,6 +95519,109 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -95530,6 +95633,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       url: '',
       imagen: {
         id: '',
+        imagen: '',
         url: '',
         nombre: '',
         tamanho: '',
@@ -95601,7 +95705,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.imagen.id = null;
       this.imagen.nombre = '';
       this.imagen.valida = true;
-      this.imagen.categoria.id = 1; //selecciono la primera
+      this.imagen.categoria.id = '';
       $('#crear').modal('show');
     },
     cargafoto: function cargafoto(event) {
@@ -95611,8 +95715,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         {
           this.imagen.valida = true;
           this.imagen.url = event.target.files[0];
-          console.log("Imagen cargada");
-          console.log(this.imagen.url);
           var reader = new FileReader();
           reader.readAsDataURL(event.target.files[0]);
           reader.onload = function () {
@@ -95627,63 +95729,102 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     guardar: function guardar() {
       var _this2 = this;
 
-      console.log("imagen guardada");
-      //console.log(this.imagen.url);
-      //console.log(event.target.files[0]);
       this.$validator.validateAll("form-crear").then(function (resp) {
         if (resp) {
-          console.log(_this2.imagen.url);
           var dataform = new FormData();
           dataform.append("nombre", _this2.imagen.nombre);
           dataform.append("categoria_id", _this2.imagen.categoria.id);
-          dataform.append("imagene", _this2.imagen.url);
+          dataform.append("imagen", _this2.imagen.url);
           __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/guardar", dataform).then(function (response) {
             _this2.todos();
-            console.log(response.hola);
             _this2.mensaje("success", response.msg);
           }).catch(function (error) {
             _this2.mensaje("error", "Ha ocurrido un error inesperado");
           });
           $('#crear').modal('hide');
         } else {
-          _this2.$swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          }).fire({
-            type: "warning",
-            title: "Por favor verifique los campos"
-          });
+          _this2.mensaje("warning", "Por favor verifique los campos");
         }
       });
-      //this.limpiar();
     },
-    editar: function editar() {},
-    actualizar: function actualizar() {},
-    eliminar: function eliminar() {},
-    eliminarImagen: function eliminarImagen() {},
-    todos: function todos() {
+    editar: function editar(imagen) {
+      this.limpiar();
+      this.imagen.id = imagen.id;
+      this.imagen.nombre = imagen.nombre;
+      this.imagen.imagen = imagen.url;
+      this.imagen.valida = true;
+      this.imagen.categoria.id = imagen.categoria_id == null ? "" : imagen.categoria_id;
+      $('#editar').modal('show');
+    },
+    actualizar: function actualizar() {
       var _this3 = this;
 
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/todos").then(function (response) {
-        if (response.imagenes) {
-          _this3.imagenes = response.imagenes;
-          _this3.totalRows = _this3.imagenes.length;
+      this.$validator.validateAll("form-actualizar").then(function (resp) {
+        if (resp) {
+          var dataform = new FormData();
+          dataform.append("nombre", _this3.imagen.nombre);
+          dataform.append("categoria_id", _this3.imagen.categoria.id);
+          dataform.append("imagen", _this3.imagen.url);
+          var url = '/imagenes-disenos/:id/actualizar';
+          url = url.replace(':id', _this3.imagen.id);
+          __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform).then(function (response) {
+            _this3.todos();
+            _this3.mensaje("success", response.msg);
+          }).catch(function (error) {
+            _this3.mensaje("error", "Ha ocurrido un error inesperado");
+          });
+          $('#editar').modal('hide');
+        } else {
+          _this3.mensaje("warning", "Por favor verifique los campos");
         }
-      }).catch(function (error) {
-        _this3.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
-    obtenercategorias: function obtenercategorias() {
+    eliminarImagen: function eliminarImagen(imagen) {
+      this.imagen.id = imagen.id;
+      this.imagen.nombre = imagen.nombre;
+      this.imagen.imagen = imagen.url;
+      //this.imagen.categoria.id = (imagen.categoria_id == null) ? "" : imagen.categoria_id;
+      $('#eliminar').modal('show');
+    },
+    eliminar: function eliminar() {
       var _this4 = this;
 
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/categorias/todos").then(function (response) {
-        if (response.categorias) {
-          _this4.categorias = response.categorias;
+      $('#eliminar').modal('hide');
+      var url = '/imagenes-disenos/:id/eliminar';
+      url = url.replace(':id', this.imagen.id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        _this4.todos();
+        if (response.res == 1) {
+          _this4.mensaje("success", response.msg);
+        } else {
+          _this4.mensaje("error", response.msg);
         }
       }).catch(function (error) {
         _this4.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    todos: function todos() {
+      var _this5 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-disenos/todos").then(function (response) {
+        if (response.imagenes) {
+          _this5.imagenes = response.imagenes;
+          _this5.totalRows = _this5.imagenes.length;
+        }
+      }).catch(function (error) {
+        _this5.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    obtenercategorias: function obtenercategorias() {
+      var _this6 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/categorias/todos").then(function (response) {
+        if (response.categorias) {
+          _this6.categorias = response.categorias;
+          _this6.categorias.push({ id: "", nombre: "Sin categoría" });
+        }
+      }).catch(function (error) {
+        _this6.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
     mensaje: function mensaje(tipo, _mensaje) {
@@ -95706,7 +95847,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       elem.click();
     },
     tamanhovalido: function tamanhovalido() {
-      if (this.imagen.tamanho <= 1) //menor a un 1MB
+      if (this.imagen.tamanho <= 5) //menor a un 1MB
         {
           return true;
         }
@@ -95821,11 +95962,19 @@ var render = function() {
                   key: "categoria",
                   fn: function(row) {
                     return [
-                      _c(
-                        "span",
-                        { staticClass: "badge badge-pill capsula-rubros" },
-                        [_vm._v(_vm._s(row.item.categoria.nombre))]
-                      )
+                      row.item.categoria_id
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "badge badge-pill capsula-categoria"
+                            },
+                            [_vm._v(_vm._s(row.item.categoria.nombre))]
+                          )
+                        : _c(
+                            "span",
+                            { staticClass: "badge badge-pill sin-categoria" },
+                            [_vm._v("SIN CATEGORÍA")]
+                          )
                     ]
                   }
                 },
@@ -96022,7 +96171,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-lg-6 col-md-6 col-sm-12 col-xs-12" },
+                {
+                  staticClass:
+                    "col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation"
+                },
                 [
                   _c(
                     "label",
@@ -96128,6 +96280,329 @@ var render = function() {
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "editar" } }, [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation"
+                },
+                [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "control-label h6",
+                      attrs: { for: "nombre" }
+                    },
+                    [_vm._v("Nombre")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.imagen.nombre,
+                        expression: "imagen.nombre"
+                      },
+                      { name: "validate", rawName: "v-validate" }
+                    ],
+                    staticClass: "form-control input-sm input-rounded",
+                    class: {
+                      "error-input": _vm.errors.first(
+                        "nombre",
+                        "form-actualizar"
+                      )
+                    },
+                    attrs: {
+                      type: "text",
+                      name: "nombre",
+                      autocomplete: "off",
+                      "data-vv-scope": "form-actualizar",
+                      "data-vv-rules": "required:true|min:3"
+                    },
+                    domProps: { value: _vm.imagen.nombre },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.imagen, "nombre", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.firstByRule(
+                    "nombre",
+                    "required",
+                    "form-actualizar"
+                  )
+                    ? _c("span", { staticClass: "error-text" }, [
+                        _vm._v("Campo requerido.")
+                      ])
+                    : _vm.errors.firstByRule("nombre", "min", "form-actualizar")
+                    ? _c("span", { staticClass: "error-text" }, [
+                        _vm._v("Mínimo 3 caracteres.")
+                      ])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation"
+                },
+                [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "control-label h6",
+                      attrs: { for: "nombre" }
+                    },
+                    [_vm._v("Categoría")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.imagen.categoria.id,
+                          expression: "imagen.categoria.id"
+                        }
+                      ],
+                      staticClass: "form-control input-sm input-rounded",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.imagen.categoria,
+                            "id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.categorias, function(categoria) {
+                      return _c(
+                        "option",
+                        { domProps: { value: categoria.id } },
+                        [_vm._v(_vm._s(categoria.nombre))]
+                      )
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.imagen.src == ""
+                ? _c(
+                    "div",
+                    { staticClass: "col-lg-6 col-md-6 col-sm-12 col-xs-12" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "control-label h6",
+                          attrs: { for: "imagen" }
+                        },
+                        [_vm._v("Imagen Actual")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-center" }, [
+                        _c("img", {
+                          staticClass: "img-fluid img-responsive img-barna",
+                          attrs: { src: _vm.url + _vm.imagen.imagen }
+                        })
+                      ])
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation"
+                },
+                [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "control-label h6",
+                      attrs: { for: "imagen" }
+                    },
+                    [_vm._v("Actualizar Imagen")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", {}, [
+                    _vm.imagen.url == "" && _vm.imagen.src == ""
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn-cargar btn-block cursor",
+                            class: { "btn-error": !_vm.imagen.valida },
+                            on: {
+                              click: function($event) {
+                                return _vm.openInputFile()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-picture-o",
+                              attrs: { "aria-hidden": "true" }
+                            }),
+                            _vm._v(" Examinar\n                              ")
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.imagen.valida
+                      ? _c("span", { staticClass: "error-text" }, [
+                          _vm._v("Imagen debe ser menor o igual a 5MB")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text-center" }, [
+                      _vm.imagen.url != null &&
+                      _vm.imagen.url != "" &&
+                      _vm.imagen.url != "image"
+                        ? _c("img", {
+                            staticClass: "img-fluid  img-responsive img-barna",
+                            attrs: { src: _vm.imagen.src }
+                          })
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _vm.imagen.url == "" && _vm.imagen.src == ""
+                      ? _c("input", {
+                          ref: "imagenInput",
+                          staticClass: "d-none",
+                          attrs: { accept: "image/*", type: "file" },
+                          on: {
+                            change: function($event) {
+                              return _vm.cargafoto($event)
+                            }
+                          }
+                        })
+                      : _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-xs btn-danger pull-right",
+                            on: {
+                              click: function($event) {
+                                return _vm.limpiar()
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fa fa-trash" })]
+                        )
+                  ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-inverse pull-right",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Cerrar")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-primary pull-right",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.actualizar()
+                  }
+                }
+              },
+              [_vm._v("Guardar")]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "eliminar" } }, [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("p", [
+                _vm._v(
+                  "¿Está seguro que desea eliminar la imagen prediseñada "
+                ),
+                _c("strong", [_vm._v(_vm._s(this.imagen.nombre))]),
+                _vm._v(" de forma permanente? ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("img", {
+                staticClass: "img-responsive img-barna",
+                attrs: { src: _vm.url + _vm.imagen.imagen }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-inverse pull-right",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Cerrar")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-primary pull-right",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.eliminar()
+                  }
+                }
+              },
+              [_vm._v("Eliminar")]
+            )
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -96161,6 +96636,44 @@ var staticRenderFns = [
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title pull-left" }, [
         _c("strong", [_vm._v("Crear Imagen Prediseñada")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "pull-right mr-1 cursor",
+          attrs: { "data-dismiss": "modal" }
+        },
+        [_c("i", { staticClass: "fa fa-remove" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title pull-left" }, [
+        _c("strong", [_vm._v("Editar Imagen Prediseñada")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "pull-right mr-1 cursor",
+          attrs: { "data-dismiss": "modal" }
+        },
+        [_c("i", { staticClass: "fa fa-remove" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title pull-left" }, [
+        _c("strong", [_vm._v("Eliminar Imagen Prediseñada")])
       ]),
       _vm._v(" "),
       _c(

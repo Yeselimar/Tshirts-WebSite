@@ -409,7 +409,6 @@ export default {
               title: mensaje
             });
         }
-
     }
 }
 </script>

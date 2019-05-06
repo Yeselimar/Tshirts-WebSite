@@ -17,11 +17,11 @@ class Disenos extends Migration
             $table->float('x');
             $table->float('y');
 
-            $table->unsignedInteger('imagen_articulo_id');
+            $table->unsignedInteger('imagen_articulo_id')->nullable();
             $table->foreign('imagen_articulo_id')->references('id')->on('imagenes_articulos')->onDelete('cascade');
 
-            $table->unsignedInteger('imagen_diseno_id');
-            $table->foreign('imagen_diseno_id')->references('id')->on('imagenes_disenos')->onDelete('cascade');
+            $table->unsignedInteger('imagen_predisenada_id');
+            $table->foreign('imagen_predisenada_id')->references('id')->on('imagenes_predisenadas')->onDelete('cascade');
 
             $table->timestamps();
         });
