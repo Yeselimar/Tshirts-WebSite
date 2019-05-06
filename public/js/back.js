@@ -94747,7 +94747,7 @@ var staticRenderFns = [
           attrs: { a: "", href: "index1.html", "aria-expanded": "false" }
         },
         [
-          _c("i", { staticClass: "fa fa-tachometer" }),
+          _c("i", { staticClass: "fa fa-home" }),
           _c("span", { staticClass: "hide-menu" }, [_vm._v("Inicio ")])
         ]
       )
@@ -94764,7 +94764,7 @@ var staticRenderFns = [
         attrs: { href: "#", "aria-expanded": "false" }
       },
       [
-        _c("i", { staticClass: "fa fa-envelope" }),
+        _c("i", { staticClass: "fa fa-store" }),
         _c("span", { staticClass: "hide-menu" }, [_vm._v("Catálogo")])
       ]
     )
@@ -94781,7 +94781,7 @@ var staticRenderFns = [
           attrs: { href: "#", "aria-expanded": "false" }
         },
         [
-          _c("i", { staticClass: "fa fa-suitcase" }),
+          _c("i", { staticClass: "fa fa-tachometer" }),
           _c("span", { staticClass: "hide-menu" }, [
             _vm._v("De Pedidos"),
             _c(
@@ -94806,7 +94806,7 @@ var staticRenderFns = [
           attrs: { href: "#", "aria-expanded": "false" }
         },
         [
-          _c("i", { staticClass: "fa fa-suitcase" }),
+          _c("i", { staticClass: "fa fa-tachometer" }),
           _c("span", { staticClass: "hide-menu" }, [
             _vm._v("De Ventas"),
             _c(
@@ -94831,7 +94831,7 @@ var staticRenderFns = [
           attrs: { href: "#", "aria-expanded": "false" }
         },
         [
-          _c("i", { staticClass: "fa fa-wpforms" }),
+          _c("i", { staticClass: "fa fa-users" }),
           _c("span", { staticClass: "hide-menu" }, [_vm._v("Usuarios")])
         ]
       ),
