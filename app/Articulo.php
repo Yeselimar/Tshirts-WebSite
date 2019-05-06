@@ -26,8 +26,8 @@ class Articulo extends Model
         return $this->belongsToMany('App\Caracteristica','articulos_caracteristicas','articulo_id','caracteristica_id');
     }
 
-    public function tallacolor()
+    public function tallecolor()
     {
-        return $this->hasMany('App\TallaColor','articulo_id');
+        return $this->hasMany('App\TalleColor','articulo_id');
     }
 }

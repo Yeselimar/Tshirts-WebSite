@@ -7,10 +7,10 @@
     			<!--<div class="tag-sale">ON SALE</div>---><!--Fue comentado por si llegara a utilizar-->
     			<img :src="getUrl+image" alt="">
     			<div class="pi-links">
-                    <a  v-if="getIsDesign" class="add-card add-bag">
+                    <a  v-if="getIsDesign" @click="disenar(id)" class="add-card add-bag cursor">
                         <i class="fa fa-magic"></i><span>Diseñar</span>
                     </a>
-                    <a  v-else class="add-card">
+                    <a  v-else class="add-card cursor" @click="verDetalle(id)" >
                         <i class="fa fa-eye"></i><span>Ver Detalle</span>
                     </a>
     			</div>
@@ -30,7 +30,10 @@
         name:'articuloComponent',
         props:
         {
-            
+            id : {
+                type: Number,
+                require: true
+            },
             title:
             {
 	            type: String,
@@ -57,6 +60,12 @@
         },
         methods:
         {
+            disenar (idProd){
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+            },
+            verDetalle (idProd){
+                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+            },
             formatearmoneda(monto)
             {
                 return monto.toFixed(2);

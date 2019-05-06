@@ -13,7 +13,7 @@ class Rubros extends Migration
             $table->increments('id');
 
             $table->string('nombre');
-            $table->boolean('principal')->default(0);
+            $table->boolean('principal')->default(0);//si es visible en la barra del menú principal
 
             $table->timestamps();
         });

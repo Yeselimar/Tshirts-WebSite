@@ -8,8 +8,8 @@ class Categoria extends Model
 {
     protected $table = 'categorias';
 
-    public function imagenesdisenadas()
+    public function imagenespredisenadas()
     {
-        return $this->hasMany('App\ImagenDiseno','categoria_id');
+        return $this->hasMany('App\ImagenPredisenada','categoria_id');
     }
 }

@@ -33,7 +33,12 @@ const router = new VueRouter({
 					default: true,
 					meta: { requiresAuth: true } 
                 },
-							
+                {
+                    path: 'imagenes-disenos',
+                    name: 'imagenes.disenos',
+                    component: Vue.component( 'ImagenesDisenos', require( './components/pages/imagenesdisenos/imagenesDisenosComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },
                 {
                     path: 'rubros',
                     name: 'rubros',
@@ -44,23 +49,34 @@ const router = new VueRouter({
                     path: 'grupos',
                     name: 'grupos',
                     component: Vue.component( 'Grupos', require( './components/pages/grupos/gruposComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },
                 {
                     path: 'grupo/:id/caracteristicas',
                     name: 'grupo.caracteristicas',
                     component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
+                    meta: { requiresAuth: true } 
                 },
-                /*{
-                    path: 'caracteristicas',
-                    name: 'caracteristicas',
-                    component: Vue.component( 'Caracteristicas', require( './components/pages/caracteristicas/caracteristicasComponent.vue' ) ),
-                    meta: { requiresAuth: false } 
-                },*/
-				/*	Catch Alls
-                */
-
+                {
+                    path: 'nuevoArticulo',
+                    name: 'nuevoArticulo',
+                    component: Vue.component( 'nuevoArticulo', require( './components/pages/articulos/newArticuloComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },  
+                {
+                    path: 'articulos',
+                    name: 'articulos',
+                    component: Vue.component( 'Articulos', require( './components/pages/articulos/ArticulosComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },
+                {
+                    path: 'no-encontrado',
+                    name: 'no.encontrado',
+                    component: Vue.component( 'Notfound', require( './components/pages/error/NotfoundComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },  			
+                /*	Catch Alls*/
+                
 			]
 		},
          {

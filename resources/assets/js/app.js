@@ -64,6 +64,9 @@ import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate, { fieldsBagName: 'veeFields' });
 import VueScrollTo from 'vue-scrollto';
 Vue.use(VueScrollTo);
+import VueCarousel from 'vue-carousel';
+
+Vue.use(VueCarousel);
 
 
 /*
@@ -85,7 +88,8 @@ const app = new Vue({
   VueSweetalert2,
   VeeValidate,
   VueScrollTo,
-  VueKonva
+  VueKonva,
+  VueCarousel
 });
 
 export default app;

@@ -3,10 +3,6 @@
 </style>
 <template>
 	<div>
-		<!-- header-->
-	        <header-component :isdesignp="isDesign" :url="url" :rubrop="rubro" :numcartp="numCart" :numbagp="numBag" :isauthp="isAuth" :searchp="search" @loginM="loginM" @designM="designM"  @searchM="searchM"></header-component>
-	    <!--end header -->
-
 		<migajas-component titulo="Comprar"></migajas-component>
 		
 		<!-- Comprar  -->
@@ -20,14 +16,14 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="product-pic-zoom">
-								<img class="product-big-img" :src="url+'/img/single-product/1.jpg'" alt="">
+								<img class="product-big-img" :src="getUrl+'img/single-product/1.jpg'" alt="">
 							</div>
 							<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
 								<div class="product-thumbs-track">
-									<div class="pt active" :data-imgbigurl="url+'/img/single-product/1.jpg'"><img :src="url+'/img/single-product/thumb-1.jpg'" alt=""></div>
-									<div class="pt" :data-imgbigurl="url+'/img/single-product/2.jpg'"><img :src="url+'/img/single-product/thumb-2.jpg'" alt=""></div>
-									<div class="pt" _data-imgbigurl="url+'/img/single-product/3.jpg'"><img :src="url+'/img/single-product/thumb-3.jpg'" alt=""></div>
-									<div class="pt" :data-imgbigurl="url+'/img/single-product/4.jpg'"><img :src="url+'/img/single-product/thumb-4.jpg'" alt=""></div>
+									<div class="pt active" :data-imgbigurl="getUrl+'img/single-product/1.jpg'"><img :src="getUrl+'img/single-product/thumb-1.jpg'" alt=""></div>
+									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/2.jpg'"><img :src="getUrl+'img/single-product/thumb-2.jpg'" alt=""></div>
+									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/3.jpg'"><img :src="getUrl+'img/single-product/thumb-3.jpg'" alt=""></div>
+									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/4.jpg'"><img :src="getUrl+'img/single-product/thumb-4.jpg'" alt=""></div>
 								</div>
 							</div>
 						</div>
@@ -99,7 +95,7 @@
 										<div class="panel-body">
 											<!-- :src="url+image"-->
 
-											<img :src="url+'/img/cards.png'" alt="">
+											<img :src="getUrl+'img/cards.png'" alt="">
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
 										</div>
 									</div>
@@ -132,58 +128,46 @@
 
 
 		<!-- Productos destacados -->
-			<prod-destacados-component :isdesignp="isDesign" :url="url"></prod-destacados-component >
+			<prod-destacados-component></prod-destacados-component >
 		<!-- Productos destacados-->
 
 	</div>
 </template>
 
 <script>
-	import headerComponent from "../../../components/layouts/headerComponent.vue";
 	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 	import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
+	import { mapGetters } from 'vuex'
 
 	export default {
         name:'procesarcarritoComponent',
         components:
         {
-        	headerComponent,
         	migajasComponent,
         	prodDestacadosComponent
 		},
-        props:
-        {
-            url:
-            {
-	            type: String,
-	            require:true
-        	}
-        },
         data() {
 			return {
-                isLoading: false,
-                isDesign: false,
-                numCart: 0,
-                numBag: 0,
-                isAuth: false,
-                search: '',
-                rubro: ''
+				isLoading: false,
+				articuloId: this.$route.params.id,
             }
         },
         methods:
         {
-            loginM(e)
-            {
-                
-            },
-            designM(e)
-            {
-                
-            },
-            searchM(e)
-            {
-                
-            }
+
 		},
+		created() {
+		let element = document.getElementById("header-top");
+			var options = {
+			offset: 0,
+			force: true
+			};
+			this.$scrollTo(element, 0, options);
+		   this.articuloId=this.$route.params.id
+		   console.log(this.articuloId)
+		},
+		 computed: {
+            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
+        }
     }
 </script>

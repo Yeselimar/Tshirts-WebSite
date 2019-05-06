@@ -101,6 +101,8 @@
 
                         </b-table>
                         
+                        <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
+
                     </div>
                 </div>
             </div>
@@ -118,7 +120,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                                 <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre" 
+                                <input type="text" name="nombre" class="form-control input-sm input-rounded" v-model="grupo.nombre" 
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('nombre','form-crear')}"
                                 data-vv-scope="form-crear"
@@ -130,16 +132,16 @@
                                 <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-crear')">Mínimo 3 caracteres.</span>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="principal" v-model="grupo.es_color">
-                                    <label class="control-label" for="principal">Es un color</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="es_color" v-model="grupo.es_color">
+                                    <label class="custom-control-label" for="es_color">Es un color</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-xs btn-inverse pull-right" @click="guardar()">Guardar</button>
+                        <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-xs btn-primary pull-right" @click="guardar()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -158,7 +160,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-validation">
                                 <label class="control-label h6" for="nombre">Nombre</label>
-                                <input type="text" name="nombre" class="form-control input-sm" v-model="grupo.nombre"
+                                <input type="text" name="nombre" class="form-control input-sm input-rounded" v-model="grupo.nombre"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('nombre','form-actualizar')}"
                                 data-vv-scope="form-actualizar"
@@ -170,16 +172,16 @@
                                 <span class="error-text" v-else-if="errors.firstByRule('nombre','min','form-actualizar')">Mínimo 3 caracteres.</span>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="principal" v-model="grupo.es_color">
-                                    <label class="control-label" for="principal">Es un color</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="es_color" v-model="grupo.es_color">
+                                    <label class="custom-control-label" for="es_color">Check this custom checkbox</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-xs btn-inverse pull-right" @click="actualizar()">Guardar</button>
+                        <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -200,8 +202,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-xs btn-inverse pull-right" @click="eliminar()">Eliminar</button>
+                        <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -294,7 +296,7 @@ export default {
         {
             this.grupo.id = grupo.id;
             this.grupo.nombre = grupo.nombre;
-            this.grupo.es_color = grupo.es_color;
+            this.grupo.es_color = (grupo.es_color==1) ? true : false;
             $('#editar').modal('show');
         },
         eliminarGrupo(grupo)
@@ -317,45 +319,15 @@ export default {
                     .then(response => 
                     {
                         this.todos();
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        this.mensaje("success",response.msg);
                     })
                     .catch(error => {
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        this.mensaje("error","Ha ocurrido un error inesperado");
                     });
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    this.mensaje("warning","Por favor verifique los campos");
                 }
             });
         },
@@ -375,45 +347,15 @@ export default {
                     .then(response => 
                     {
                         this.todos();
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "success",
-                            title: response.msg
-                        });
+                        this.mensaje("success",response.msg);
                     })
                     .catch(error => {
-                        this.$swal
-                        .mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 4000
-                        })
-                        .fire({
-                            type: "error",
-                            title: "Ha ocurrido un error inesperado"
-                        });
+                        this.mensaje("error","Ha ocurrido un error inesperado");
                     });
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "warning",
-                        title: "Por favor verifique los campos"
-                    });
+                    this.mensaje("warning","Por favor verifique los campos");
                 }
             });
         },
@@ -428,45 +370,15 @@ export default {
                 this.todos();
                 if(response.res==1)
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "success",
-                        title: response.msg
-                    });
+                    this.mensaje("success",response.msg);
                 }
                 else
                 {
-                    this.$swal
-                    .mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 4000
-                    })
-                    .fire({
-                        type: "error",
-                        title: response.msg
-                    });
+                    this.mensaje("error",response.msg);
                 }
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                this.mensaje("error","Ha ocurrido un error inesperado");
             });
         },
         todos()
@@ -476,23 +388,27 @@ export default {
                 if(response.grupos)
                 {
                     this.grupos = response.grupos;
+                    this.totalRows = this.grupos.length;
                 }
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+                this.mensaje("error","Ha ocurrido un error inesperado");
             }); 
+        },
+        mensaje(tipo,mensaje)
+        {
+            this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: tipo,
+              title: mensaje
+            });
         }
-
     }
 }
 </script>

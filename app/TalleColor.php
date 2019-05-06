@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TallaColor extends Model
+class TalleColor extends Model
 {
-    protected $table = 'tallas_colores';
+    protected $table = 'talles_colores';
 
     public function articulo()
     {
@@ -18,8 +18,8 @@ class TallaColor extends Model
         return $this->belongsTo('App\Caracteristica','color_id');
     }
 
-    public function talla()
+    public function talle()
     {
-        return $this->belongsTo('App\Caracteristica','talla_id');
+        return $this->belongsTo('App\Caracteristica','talle_id');
     }
 }

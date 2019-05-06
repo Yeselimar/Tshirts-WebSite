@@ -9,8 +9,8 @@ import CerService from '../plugins/CerService';
 const state = {
   user: {},
   isAuth: false,
-  url: '' // ruta relativa del servidor
-
+  url: '', // ruta relativa del servidor
+  filtroArticulo: ''
 }
 /*
   Defines the mutations used by the module.
@@ -29,6 +29,9 @@ const mutations = {
   setUrl(state, url) {
     state.url = url;
   },
+  setFiltroArticulo(state, filtro) {
+    state.filtroArticulo = filtro
+  }
 }
 /*
   Defines the actions used by the module.
@@ -75,6 +78,9 @@ const actions = {
   cambiarUrl({ commit }, valor) {
     commit('setUrl', valor);
   },
+  cambiarFiltroArticulo({ commit }, valor) {
+    commit('setFiltroArticulo', valor);
+  },
 }
 /*
   Defines the getters used by the module.
@@ -94,6 +100,9 @@ const getters = {
   getUrl(state) {
     return state.url;
   },
+  getFiltroArticulo(state) {
+    return state.filtroArticulo
+  }
 
 }
 

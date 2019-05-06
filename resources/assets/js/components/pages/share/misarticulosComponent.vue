@@ -12,7 +12,7 @@
         <template v-if="busqueda.length!=0">
             <div class="row">
                 <template v-for="(articulo,i) in busqueda">
-                    <articulo-component :title="articulo.nombre" :price="articulo.precio" :image="articulo.image"></articulo-component>
+                    <articulo-component :title="articulo.nombre" :id="articulo.id" :price="articulo.precio" :image="articulo.image"></articulo-component>
                 </template>
                 <div class="text-center w-100 pt-3">
                     <button class="site-btn sb-line sb-dark">VER MÁS...</button>

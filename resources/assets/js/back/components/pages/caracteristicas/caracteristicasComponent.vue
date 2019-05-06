@@ -1,3 +1,25 @@
+<style>
+.hu-color-picker
+{
+    background: #e9ecef !important;
+    border: 1px solid #ced4da !important;
+    box-shadow: none !important;
+}
+.colors,.color-show
+{
+  display: none !important;
+}
+.input-group-append
+{
+  height: 30px !important;
+}
+.input-group-text
+{
+  border-radius: 0px 25px 25px 0px !important;
+  height: 35px !important;
+  padding: 10px 12px !important;
+}
+</style>
 <template>
 	<div class="page-wrapper">
 		<!-- Bread crumb -->
@@ -21,7 +43,7 @@
               <button type="button" class="btn btn-danger"  @click=" $router.push({ name: 'grupos'})">
                 Ver Grupos
               </button>
-	            <button type="button" class="btn btn-danger" @click="crear" :disabled="!grupo">
+	            <button type="button" class="btn btn-danger" @click="crear" :class="[{'disabled': !grupo.id}]">
 	              Crear Característica
 	            </button>
 	        </div>
@@ -102,13 +124,15 @@
 
                       </b-table>
 
+                      <b-pagination :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pull-right pt-3"/>
+
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 
 	    <!-- Modal para crear característica -->
-      <div class="modal" id="crear" v-if="grupo">
+      <div class="modal" id="crear" v-if="grupo.id">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -119,11 +143,11 @@
                     	<div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Grupo</label>
-                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control" disabled>
+                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control input-sm input-rounded" disabled>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6 " for="nombre">Valor</label>
-                              <input type="text" name="valor" class="form-control" v-model="caracteristica.valor"
+                              <input type="text" name="valor" class="form-control input-sm input-rounded" v-model="caracteristica.valor"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('valor','form-crear')}"
                                 data-vv-scope="form-crear"
@@ -133,23 +157,40 @@
                               <span class="error-text" v-if="errors.firstByRule('valor', 'required','form-crear')">Campo requerido.</span>
                               <span class="error-text" v-else-if="errors.firstByRule('valor','min','form-crear')">Mínimo 3 caracteres.</span>
                           </div>
-                          <div v-if="es_color()" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                          <div v-if="es_color()" class="col-12 form-validation">
                               <label class="control-label h6" for="color">Color Hexadecimal</label>
+
                               <div class="input-group"> 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
+
+                                <input type="text" name="color" class="form-control input-sm input-rounded" v-model="caracteristica.color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
-                                  <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                  <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
                                 </span>
+
+                                <color-picker
+                                    v-if="focus_color"
+                                    ref="colorNuevo"
+                                    :color="color"
+                                    style="width: 50% !important;"
+                                    :sucker-hide="false"
+                                    :sucker-canvas="suckerCanvas"
+                                    :sucker-area="suckerArea"
+                                    @changeColor="updateColor"
+                                    @openSucker="openSucker"
+                                />
+
                               </div>
-                              <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
-                          </div>
+
+                              <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span>
+
+                            </div>
                     	</div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="guardar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="guardar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -168,11 +209,11 @@
                       <div class="row">
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="nombre">Grupo</label>
-                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control" disabled>
+                              <input type="text" name="grupo" v-model="grupo.nombre" class="form-control input-sm input-rounded" disabled>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6 " for="nombre">Valor</label>
-                              <input type="text" name="valor" class="form-control" v-model="caracteristica.valor"
+                              <input type="text" name="valor" class="form-control input-sm input-rounded" v-model="caracteristica.valor"
                                 autocomplete="off" 
                                 :class="{'error-input': errors.first('valor','form-actualizar')}"
                                 data-vv-scope="form-actualizar"
@@ -182,23 +223,40 @@
                               <span class="error-text" v-if="errors.firstByRule('valor', 'required','form-actualizar')">Campo requerido.</span>
                               <span class="error-text" v-else-if="errors.firstByRule('valor','min','form-actualizar')">Mínimo 3 caracteres.</span>
                           </div>
-                          <div v-if="es_color()" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
+                          <div v-if="es_color()" class="col-12 form-validation">
+
                               <label class="control-label h6" for="color">Color Hexadecimal</label>
+
                               <div class="input-group"> 
-                                <input type="text" name="color" class="form-control" v-model="caracteristica.color" id="color" @keyup="validarcolor()" @blur="validando()" 
+
+                                <input type="text" name="color" class="form-control input-sm input-rounded" v-model="caracteristica.color" id="color"  @click="focus_color=!focus_color"  readonly 
                                   :class="{'error-input': !esHexadecimal}"
                                 >
                                 <span class="input-group-append">
-                                  <span class="input-group-text colorpicker-input-addon" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
+                                  <span class="input-group-text colorpicker-input-addon" @click="focus_color=!focus_color" :class="{'error-input': !esHexadecimal}" ><i v-bind:style="{'background-color':caracteristica.color}"></i></span>
                                 </span>
+
+                                <color-picker
+                                    v-if="focus_color"
+                                    ref="color"
+                                    :color="caracteristica.color"
+                                    style="width: 50% !important;"
+                                    :sucker-hide="false"
+                                    :sucker-canvas="suckerCanvas"
+                                    :sucker-area="suckerArea"
+                                    @changeColor="changeColor"
+                                    @openSucker="openSucker"
+                                />
+
                               </div>
+
                               <span v-if="!esHexadecimal" class="error-text">Color debe ser hexadecimal</span> 
                           </div>
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="actualizar()">Guardar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="actualizar()">Guardar</button>
                   </div>
               </div>
           </div>
@@ -220,8 +278,8 @@
                       </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-primary pull-right" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" @click="eliminar()">Eliminar</button>
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
                   </div>
               </div>
           </div>
@@ -233,17 +291,19 @@
 <script>
 import CerService from "../../../../plugins/CerService";
 import loading from "../../../../components/layouts/loading.vue";
+import colorPicker from '@caohenghu/vue-colorpicker';
 
 export default {
   	data () {
 	    return {
         isLoading: false,
         grupo_id: this.$route.params.id,
+        focus_color: false,
 	    	caracteristica:
 	    	{
 	    		id:'',
 	    		valor:'',
-	    		color:'',
+	    		color:'#424242',
 	    		grupo:
 	    		{
 	    			id:'',
@@ -253,12 +313,20 @@ export default {
 	    	},
 	    	caracteristicas:[],
         grupo: {},
-        fields:
+        fields:[],
+        fields_color:
         [
             { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
             { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' },
             { key: 'color', label: 'Color', sortable: true, 'class': 'text-center' },
             { key: 'color_hexadecimal', label: 'Color Hexadecimal', sortable: true, 'class': 'text-center' },
+            { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' },
+            { key: 'actions', label: 'Acciones', 'class': 'text-center' }
+        ],
+        fields_sin_color:
+        [
+            { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
+            { key: 'valor', label: 'Valor', sortable: true, 'class': 'text-left' },
             { key: 'cantidad', label: 'Cant. Artículos', sortable: true, 'class': 'text-center' },
             { key: 'actions', label: 'Acciones', 'class': 'text-center' }
         ],
@@ -271,12 +339,16 @@ export default {
         sortDirection: "asc",
         table_responsive: false,
         filter: null,
-
+        color: '#424242',//Es usada para el componente
+        suckerCanvas: null,
+        suckerArea: [],
+        isSucking: false
 	    }
    	},
     components:
     {
-      loading
+      loading,
+      colorPicker,
     },
     mounted()
     {
@@ -290,7 +362,6 @@ export default {
             this.table_responsive = false;
           }
       });
-      
     },
     watch:
     {
@@ -323,6 +394,28 @@ export default {
    	},
    	methods:
    	{
+      updateColor(color)
+      {
+        const {rgba: {r, g, b, a}} = color;
+        this.caracteristica.color = this.$refs.colorNuevo.modelHex;//guardo en mi variable
+        this.validando();//valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
+      },
+      changeColor(color)
+      {
+          const {rgba: {r, g, b, a}} = color;
+          this.caracteristica.color = this.$refs.color.modelHex;//guardo en mi variable
+          this.validando();//valido mi color: Sino es un hexadecimal asigna el color por defecto #424242
+      },
+      openSucker(isOpen)
+      {
+          if (isOpen){
+              // ... canvas be created
+              // this.suckerCanvas = canvas
+              // this.suckerArea = [x1, y1, x2, y2]
+          } else {
+              // this.suckerCanvas && this.suckerCanvas.remove
+          }
+      },
       es_color()
       {
         return this.grupo.es_color==1;
@@ -348,7 +441,7 @@ export default {
       {
         var str = this.caracteristica.color;
         var res = str.substring(1, this.caracteristica.color.length);
-        if(!this.isHexaColor(res))
+        if(!this.isHexaColor(res))//sino es un hexadecimal asigno un color por defecto
         {
           this.caracteristica.color = "#424242".toUpperCase();
         }
@@ -370,12 +463,14 @@ export default {
       },
    		crear()
    		{
+        this.caracteristica.color = "#424242".toUpperCase();
    			this.caracteristica.valor = '';
-   			this.caracteristica.color = '#424242'.toUpperCase();
+        this.focus_color = false;
         $('#crear').modal('show');
    		},
    		editar(caracteristica)
    		{
+        this.focus_color = false;
         this.caracteristica.id=caracteristica.id;
         this.caracteristica.valor=caracteristica.valor;
         this.caracteristica.color=caracteristica.color;
@@ -407,46 +502,16 @@ export default {
             CerService.post("/caracteristicas/guardar",dataform)
             .then(response => 
             {
-                this.obtenercaracteristicas(this.grupo_id);
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "success",
-                    title: response.msg
-                });
+              this.obtenercaracteristicas(this.grupo_id);
+              this.mensaje("success",response.msg);
             })
             .catch(error => {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: "Ha ocurrido un error inesperado"
-                });
+              this.mensaje("error","Ha ocurrido un error inesperado");
             });
           }
           else
           {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "warning",
-                title: "Por favor verifique los campos"
-            });
+            this.mensaje("warning","Por favor verifique los campos");
           }
         });
    		},
@@ -468,45 +533,15 @@ export default {
               .then(response => 
               {
                   this.obtenercaracteristicas(this.grupo_id);
-                  this.$swal
-                  .mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 4000
-                  })
-                  .fire({
-                      type: "success",
-                      title: response.msg
-                  });
+                  this.mensaje("success",response.msg);
               })
               .catch(error => {
-                  this.$swal
-                  .mixin({
-                      toast: true,
-                      position: "top-end",
-                      showConfirmButton: false,
-                      timer: 4000
-                  })
-                  .fire({
-                      type: "error",
-                      title: "Ha ocurrido un error inesperado"
-                  });
+                this.mensaje("error","Ha ocurrido un error inesperado");
               });
             }
             else
             {
-              this.$swal
-              .mixin({
-                  toast: true,
-                  position: "top-end",
-                  showConfirmButton: false,
-                  timer: 4000
-              })
-              .fire({
-                  type: "warning",
-                  title: "Por favor verifique los campos"
-              });
+              this.mensaje("warning","Por favor verifique los campos");
             }
           });
    		},
@@ -521,97 +556,74 @@ export default {
             this.obtenercaracteristicas(this.grupo_id);
             if(response.res==1)
             {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "success",
-                    title: response.msg
-                });
+              this.mensaje("success",response.msg);
             }
             else
             {
-                this.$swal
-                .mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-                .fire({
-                    type: "error",
-                    title: response.msg
-                });
+              this.mensaje("error",response.msg);
             }
         })
         .catch(error => {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-            });
+            this.mensaje("error","Ha ocurrido un error inesperado");
         });
    		},
    		obtenergrupo(id)
       {
-        var url = '/grupos/:id/detalles/';
+        var url = '/grupos/:id/detalles';
         url = url.replace(':id', id);
         CerService.post(url)
         .then(response => {
           if(response.grupo)
           {
             this.grupo = response.grupo;
+            if(this.es_color())
+            {
+              this.fields = this.fields_color;
+            }
+            else
+            {
+              this.fields = this.fields_sin_color;
+            }
+          }
+          else
+          {
+            this.$router.push({ name: 'no.encontrado' });
           }
         })
         .catch(error => {
-          this.$swal
-          .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-          })
-          .fire({
-              type: "error",
-              title: "Ha ocurrido un error inesperado"
-          });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         }); 
       },
       obtenercaracteristicas(id)
       {
-        var url = '/grupo/:id/caracteristicas/';
+        var url = '/grupo/:id/caracteristicas';
         url = url.replace(':id', id);
         CerService.post(url)
         .then(response => {
           if(response.caracteristicas)
           {
             this.caracteristicas = response.caracteristicas;
+            this.totalRows = this.caracteristicas.length;
           }
         })
         .catch(error => {
-            this.$swal
-            .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-            })
-            .fire({
-                type: "error",
-                title: "Ha ocurrido un error inesperado"
-            });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         }); 
       },
+      mensaje(tipo,mensaje)
+      {
+        this.$swal
+        .mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 4000
+        })
+        .fire({
+          type: tipo,
+          title: mensaje
+        });
+      }
       
    	}
 }

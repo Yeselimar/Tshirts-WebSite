@@ -15,6 +15,7 @@
     return view('index');
 });
 */
+
 Route::get('/admin/{vue_capture?}', function () {
     return view('back.index');
 })->where('vue_capture', '[\/\w\.-]*');
@@ -24,6 +25,7 @@ Route::get('/login/{vue_capture?}', function () {
 Route::get('/{vue_capture?}', function () {
     return view('vue.index');
 })->where('vue_capture', '[\/\w\.-]*');
+
 //Login User
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
@@ -41,6 +43,7 @@ Route::post('/login/admin/auth', 'Auth\LoginController@isLogedAdmin')->name('log
 Route::post('/login/admin/post', 'Auth\LoginController@postloginAdmin')->name('post.admin.login');
 //Rubros
 Route::post('/rubros/todos','RubrosController@index')->name('rubros.todos');
+Route::post('/rubros/todos/api','RubrosController@misrubros')->name('rubros.misrubros');
 Route::post('/rubros/guardar','RubrosController@store')->name('rubros.guardar');
 Route::post('/rubros/{id}/actualizar','RubrosController@update')->name('rubros.actualizar');
 Route::post('/rubros/{id}/eliminar','RubrosController@destroy')->name('rubros.eliminar');
@@ -51,6 +54,9 @@ Route::post('/grupos/guardar','GruposController@store')->name('grupos.guardar');
 Route::post('/grupos/{id}/actualizar','GruposController@update')->name('grupos.actualizar');
 Route::post('/grupos/{id}/eliminar','GruposController@destroy')->name('grupos.eliminar');
 Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detalles');
+Route::post('/grupos/colores/api','GruposController@colores')->name('grupos.colores');
+Route::post('/grupos/talles/api','GruposController@talles')->name('grupos.talles');
+
 //Caracteristicas
 Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
 Route::post('/grupo/{grupo_id}/caracteristicas','CaracteristicasController@caracteristicaporgrupo')->name('caracteristicas.porgrupo');
@@ -58,6 +64,32 @@ Route::post('/caracteristicas/guardar','CaracteristicasController@store')->name(
 Route::post('/caracteristicas/{id}/actualizar','CaracteristicasController@update')->name('caracteristicas.actualizar');
 Route::post('/caracteristicas/{id}/eliminar','CaracteristicasController@destroy')->name('caracteristicas.eliminar');
 Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->name('caracteristicas.detalles');
+//Artículos
+Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
+Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
+Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.disenable');
+Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
+Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
+Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
+Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('articulo.eliminar');
+
+//Imagenes Artículos
+Route::post('/imagenes-articulos/posicion-imagen','ImagenesArticulosController@posicionimagen')->name('imagenes.articulos.posicion.imagen');
+
+
+//Imágenes Prediseñadas
+Route::post('/imagenes-predisenadas/todos','ImagenesPredisenadasController@index')->name('imagenes.disenos.todos');
+Route::post('/imagenes-predisenadas/tipo/administrador','ImagenesPredisenadasController@deadministrador')->name('imagenes.disenos.de.administrador');
+Route::post('/imagenes-predisenadas/tipo/cliente','ImagenesPredisenadasController@decliente')->name('imagenes.disenos.de.cliente');
+Route::post('/imagenes-predisenadas/guardar','ImagenesPredisenadasController@store')->name('imagenes.disenos.guardar');
+Route::post('/imagenes-predisenadas/{id}/actualizar','ImagenesPredisenadasController@update')->name('imagenes.disenos.actualizar');
+Route::post('/imagenes-predisenadas/{id}/detalles','ImagenesPredisenadasController@show')->name('imagenes.disenos.detalles');
+Route::post('/imagenes-predisenadas/{id}/eliminar','ImagenesPredisenadasController@destroy')->name('imagenes.disenos.eliminar');
+
+
+//Categorías
+Route::post('/categorias/todos','CategoriasController@index')->name('categorias.todos');
+
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');
