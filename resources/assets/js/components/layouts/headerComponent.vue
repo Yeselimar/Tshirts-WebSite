@@ -581,6 +581,8 @@ li.bagform .dropbag:after {
                                 data-vv-scope="form-login"
                                 v-validate
                                 data-vv-rules="required:true|email"
+                                @keyup.enter="loginM()"
+
                               >
                                 <span
                                 class="error-text"
@@ -602,6 +604,8 @@ li.bagform .dropbag:after {
                                 v-validate
                                 data-vv-rules="required:true|min:6"
                                 :placeholder="'Ingrese su contraseña'"
+                                @keyup.enter="loginM()"
+
                               >
                                   <span
                                   class="error-text"

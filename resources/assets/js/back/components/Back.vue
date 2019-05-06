@@ -96,12 +96,12 @@
                                         <li class="cursor pb-3 pt-3 mb-1 nav-label" @click="home" >Ver Sitio Web</li>
                                     <li class="nav-devider"></li>
                                     <li>
-                                        <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio </span></a>
+                                        <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Inicio </span></a>
                                     </li>
                                     
                                     <li class="nav-label">Ventas</li>
                                     <li>
-                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Catálogo</span></a>
+                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-store"></i><span class="hide-menu">Catálogo</span></a>
 
                                         <ul aria-expanded="false" class="collapse">
                                             <li><a class="cursor" @click=" $router.push({ name: 'articulos' })">Artículos</a></li>
@@ -119,15 +119,15 @@
                                     </li>
 
                                     <li class="nav-label">Reportes</li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
+                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">De Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
 
                                     </li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Ventas<span class="label label-rouded label-danger pull-right">6</span></span></a>
+                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">De Ventas<span class="label label-rouded label-danger pull-right">6</span></span></a>
 
                                     </li>
 
                                     <li class="nav-label">Usuarios</li>
-                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Usuarios</span></a>
+                                    <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Usuarios</span></a>
                                         <ul aria-expanded="false" class="collapse">
                                             <li><a href="form-basic.html">Mis usuarios</a></li>
                                         </ul>

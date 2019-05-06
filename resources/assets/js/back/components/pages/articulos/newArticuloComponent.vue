@@ -15,7 +15,7 @@
   padding: 15px;
 }
 .ppbb-2 {
-  padding-bottom: 2.1rem;
+  padding-bottom: 1rem;
 }
 #modalImg .modal-dialog {
     transform: translateY(-50%) translateX(-50%) !important;
@@ -166,6 +166,9 @@
 
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
+                                  <span slot="noOptions">
+                                  Lista vacía</span>
+                                  
 
                           </multiselect>
                                       
@@ -184,21 +187,10 @@
                             class="form-control input-rounded input-sm"
                             v-model="articulo.marca"
                             autocomplete="off"
-                            :class="{'error-input': errors.first('marca','form-ajustes')}"
-                            data-vv-scope="form-ajustes"
-                            v-validate
-                            data-vv-rules="required:true|min:3"
                           >
-                          <span
-                            class="error-text"
-                            v-if="errors.firstByRule('marca', 'required','form-ajustes')"
-                          >Campo requerido.</span>
-                          <span
-                            class="error-text"
-                            v-else-if="errors.firstByRule('marca','min','form-ajustes')"
-                          >Mínimo 3 caracteres.</span>
                         </div>
                       </div>
+                      
                       <div class="align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price">
                         <div class="basis-46 position-relative ppbb-2" :class="{'basis-23':((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')}">
                          
@@ -217,7 +209,8 @@
                             >
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                    <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
                           
                            <span
@@ -278,6 +271,33 @@
                           </div>
                         </div>
                       </div>
+                        <div class="align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price">
+                        <div class="w-100 position-relative ppbb-2">
+
+                            <textarea
+                                name="descripcion"
+                                id="descripcion"
+                                row="5"
+                                class="form-control input-rounded h-auto"
+                                v-model="articulo.descripcion"
+                                autocomplete="off"
+                                :class="{'error-input': errors.first('descripcion','form-ajustes')}"
+                                data-vv-scope="form-ajustes"
+                                v-validate
+                                data-vv-rules="required:true|min:3"
+                                placeholder="Ingrese Descripción"
+                              > 
+                            </textarea>
+                              <span
+                                class="error-text"
+                                v-if="errors.firstByRule('descripcion', 'required','form-ajustes')"
+                              >Campo requerido.</span>
+                              <span
+                                class="error-text"
+                                v-else-if="errors.firstByRule('descripcion','min','form-ajustes')"
+                              >Mínimo 3 caracteres.</span>
+                            </div>
+                        </div>
                       <!--subir imagenes -->
                       <div class="text-center">
                         <h3>Subir Imagenes de Artículo</h3>
@@ -290,7 +310,7 @@
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
                                     <a class="cursor mr-2" @click="openModalImg(file.blob)"><i class="fa fa-eye"></i></a>
-                                    <a class="cursor" @click.prevent="$refs.upload.remove(file)">
+                                    <a class="cursor" @click.prevent="removeImg(file)">
                                       <i class="fa fa-trash"></i>
                                     </a>
                                   </div>
@@ -328,8 +348,8 @@
                   <!--second tab (Disponibilidad)-->
                   <div class="tab-pane" id="disponibilidad" role="tabpanel">
                     <div class="card-body mt-4" >
-                      <div class="form-body d-flex justify-content-between flex-column flex-md-row">
-                        <div class="basis-46 position-relative ppbb-2">
+                      <div class="form-body d-flex justify-content-between flex-column flex-md-row wrap-f">
+                        <div class="basis-46 position-relative ppbb-2" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
                           <multiselect
                             v-model="selectedTallas"
                             :options="optionTalles"
@@ -351,7 +371,8 @@
                               </template>
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                  <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
                         </div>
                         <div class="basis-46 position-relative ppbb-2">
@@ -379,8 +400,6 @@
 
                           </multiselect>
                         </div>
-                      </div>
-                       <div class="form-body mt-2 d-flex justify-content-between flex-column flex-md-row">
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
                             v-model="selectedCantidad"
@@ -395,7 +414,8 @@
                             >
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
                         </div>
                         <div class="basis-46 d-flex align-items-baseline" v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'GENERAL')">
@@ -438,7 +458,7 @@
                             <thead>
                               <tr>
                                 <th class="text-center">Color</th>
-                                <th class="text-center">Talle</th>
+                                <th class="text-center"  v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">Talle</th>
                                 <th class="text-center">Cantidad</th>
                                 <th class="text-center">Precio</th>
                                 <th class="text-center">Acciones</th>
@@ -447,9 +467,9 @@
                             </thead>
                             <tbody>
                               <tr v-if="!filesVariantes.length">
-                                <td colspan="5">
+                                <td :colspan="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')? 5:4">
                                   <div class="text-center p-5">
-                                    <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Variante</button>
+                                    <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor pr-2"></i>Agregar Variante</button>
                                   </div>
                                 </td>
                               </tr>
@@ -475,11 +495,13 @@
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                              Lista vacía</span>
 
                                     </multiselect>
 
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
                                   <multiselect
                                       v-model="filesVariantes[index].selectedTalleVariante"
                                       :options="selectedTallas"
@@ -500,6 +522,8 @@
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                             Lista vacía</span>
 
                                     </multiselect>
                                 </td>
@@ -595,7 +619,7 @@
                               <tr v-if="!filesImagesColor.length">
                                 <td colspan="4">
                                   <div class="text-center p-5">
-                                    <button  @click.stop.prevent="addRelacion" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Relación Imagen-Color</button>
+                                    <button  @click.stop.prevent="addRelacion" class="cursor btn btn-primary"><i class="fa fa-plus cursor pr-2"></i>Agregar Relación Imagen-Color</button>
                                   </div>
                                 </td>
                               </tr>
@@ -626,6 +650,8 @@
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                              Lista vacía</span>
 
                                     </multiselect>
 
@@ -633,7 +659,7 @@
                                 
                                   <td class="text-center">  
                                       <label class="contenido">
-                                        <input type="radio" name="radio">
+                                        <input type="radio" @change="cambiarEsPrincipal(index)" :id="'radio_'+index" name="radio">
                                         <span class="checkmark"></span>
                                       </label>
                                   </td>
@@ -698,7 +724,7 @@
               </div>
               <div class="modal-body">
                   <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
-                            <div class="project" v-for="(file) in files" :key="file.id" v-if="!file.selectedImagen">
+                            <div class="project" v-for="(file) in files" :key="file.id" v-if="file.selectedImagen != true">
                                 <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImg(file)">
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
                                   <span v-else>No Image</span>
@@ -797,10 +823,12 @@ export default {
         marca: "",
         precioGeneral: 0.00,
         otros: '',
-        files: [],
+        imagenes: [],
         rubros: [],
         tipo: '',
-        cantidad: 0
+        tipo_cantidad: '',
+        cantidad: 0,
+        descripcion: ''
 
       },
       table_responsive: false,
@@ -894,11 +922,66 @@ export default {
     }
   },
   methods: {
+    cambiarEsPrincipal(index){
+      this.filesImagesColor.forEach((file,id) =>{
+        if(id == index){
+          this.filesImagesColor[id].es_principal = true
+           $("#radio_"+id).prop("checked", true);
+
+        }else {
+          this.filesImagesColor[id].es_principal = false
+           $("#radio_"+id).prop("checked", false);
+
+        }
+      },this)
+    },
+    removeImg(file){
+      // se borra las imagenes que han sido borrada para la relación imagen-color
+      const resultado = this.filesImagesColor.findIndex( fileIC => fileIC.file === file );
+      if(resultado !== -1){
+        //si esta check como principal
+        let mainP = false
+        if(this.filesImagesColor[resultado].es_principal){
+          $("#radio_"+resultado).prop("checked", false);
+          mainP = true
+        }
+        this.filesImagesColor.splice(resultado,1)
+         if(mainP && this.filesImagesColor.length){
+            setTimeout(e => {
+              $("#radio_0").prop("checked", true);
+            },100) 
+            this.filesImagesColor[0].es_principal = true
+          }
+      }
+      this.$refs.upload.remove(file)
+    },
     deleteVariante(index){
       this.filesVariantes.splice(index,1)
     },
     deleteRelacion(index){
+      //buscar la imagen para quitar el seleccionado 
+      let fileAux = this.filesImagesColor[index].file
+      const resultado = this.files.findIndex( file => file === fileAux );
+      if( resultado !== -1)
+      {
+        this.files[resultado].selectedImagen = false
+
+      }
+      //si esta check como principal
+      let mainP = false
+      if(this.filesImagesColor[index].es_principal){
+        $("#radio_"+index).prop("checked", false);
+        mainP = true
+      }
+      // borra la imagen de la relación
+      
       this.filesImagesColor.splice(index,1)
+      if(mainP && this.filesImagesColor.length){
+        setTimeout(e => {
+          $("#radio_0").prop("checked", true);
+        },100)         
+        this.filesImagesColor[0].es_principal = true
+      }
     },
     addVariante()
     {
@@ -917,10 +1000,18 @@ export default {
       let aux = {
           selectedColorRelacion: "",
           file: {},
+          es_principal: false,
+          posicion: 'frontal'
         }
       this.filesImagesColor.push(
       {...aux}
       )
+       if (this.filesImagesColor.length === 1){
+          this.filesImagesColor[0].es_principal = true
+          setTimeout(e => {
+            $("#radio_0").prop("checked", true);
+          },10)
+      }
     },
    seleccionarImg(file){
       file.selectedImagen = true;
@@ -944,7 +1035,7 @@ export default {
              this.$validator.validateAll("form-ajustes").then(resA => 
               {
                 if (resA && this.selectedRubro.length && this.selectedTipo !== ""){
-                  this.articulo.files = this.files
+                  this.articulo.imagenes = this.files
                   this.articulo.rubros = this.selectedRubro
                   this.articulo.tipo = this.selectedTipo
 
@@ -1085,7 +1176,8 @@ export default {
                 file,
                 size: file.size,
                 type: file.type,
-                selectedImagen: false //esto es agregado nuevo
+                selectedImagen: false, //esto es agregado nuevo
+                es_principal: false //tambien es nuevo
               });
             })
             .catch(err => {
@@ -1123,7 +1215,7 @@ export default {
             this.minSize > 0 &&
             newFile.size < this.minSize
           ) {
-            this.$refs.upload.update(newFile, { error: "size",  selectedImagen: false /*agregado personal*/});
+            this.$refs.upload.update(newFile, { error: "size",  selectedImagen: false, es_principal: false /*agregado personal*/});
           }
         }
         if (newFile.progress !== oldFile.progress) {
@@ -1175,7 +1267,15 @@ export default {
           this.articulo.cantidad = 0
           this.maskCantidad = ""
         }
+    },
+    filesImagesColor: function(){
+      if (this.filesImagesColor.length === 1){
+          this.filesImagesColor[0].es_principal = true
+          setTimeout(e => {
+            $("#radio_0").prop("checked", true);
+          },10)      }
     }
+    
     
   }
 };

@@ -7089,6 +7089,12 @@ label.contenido .checkmark:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.h-auto {
+  height: auto !important;
+}
+.wrap-f{
+  flex-wrap: wrap !important;
+}
 @media (max-width: 768px) {
   .basis-30,.basis-15,.basis-46,.basis-23,.basis-33 {
     flex-basis: 100% !important;
