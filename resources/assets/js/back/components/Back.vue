@@ -1,5 +1,5 @@
 <template>
-    
+
     <div class="main-wrapper">
         <!-- Cabecera Component-->
          <!-- header header  -->
@@ -33,11 +33,11 @@
                                     <!-- Comment -->
                                     <li class="nav-item dropdown">
 
-                                        
+
                                         <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
                                             <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                                         </a>
-                                        
+
 
                                         <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                             <ul>
@@ -54,7 +54,7 @@
                                                             </div>
                                                         </a>
                                                         <!-- Message -->
-                                                        
+
                                                     </div>
                                                 </li>
                                                 <li>
@@ -64,36 +64,7 @@
                                         </div>
                                     </li>
                                     <!-- End Comment -->
-                                    <!-- Messages -->
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-                                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
-                                            <ul>
-                                                <li>
-                                                    <div class="drop-title">You have 4 new messages</div>
-                                                </li>
-                                                <li>
-                                                    <div class="message-center">
-                                                        <!-- Message -->
-                                                        <a href="#">
-                                                            <div class="user-img"> <img :src="getUrl+'images/users/5.jpg'" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                                            <div class="mail-contnet">
-                                                                <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
-                                                            </div>
-                                                        </a>
-                                                        <!-- Message -->
-                                                        
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <!-- End Messages -->
+
 
                                     <!-- Profile -->
                                     <li class="nav-item dropdown">
@@ -102,8 +73,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                             <ul class="dropdown-user">
-                                                <li><a href="#"><i class="ti-user"></i> Perfil</a></li>
-                                                <li><a href="#"><i class="ti-settings"></i> Configuraciones</a></li>
+                                               <!--  <li><a href="#"><i class="ti-user"></i> Perfil</a></li>
+                                                <li><a href="#"><i class="ti-settings"></i> Configuraciones</a></li> -->
                                                 <li><a @click="logout" class="cursor"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                                             </ul>
                                         </div>
@@ -124,19 +95,8 @@
                                     <li class="nav-devider"></li>
                                         <li class="cursor pb-3 pt-3 mb-1 nav-label" @click="home" >Ver Sitio Web</li>
                                     <li class="nav-devider"></li>
-
-                                    <li class="nav-label">Página</li>
-                                    <li> 
-                                        <a class="cursor"  @click=" $router.push({ name: 'banner' })"  aria-expanded="false"><i class="fa fa-image"></i><span class="hide-menu">Banner</span></a>
-                                    </li>
-
-                                    <li class="nav-label">Inicio</li>
-                                    <li> 
-                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
-
-                                        <ul aria-expanded="false" class="collapse">
-                                            <li><a href="index1.html">Barna :D </a></li>
-                                        </ul>
+                                    <li>
+                                        <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Inicio <span class="label label-rouded label-primary pull-right">2</span></span></a>
                                     </li>
                                     
                                     <li class="nav-label">Ventas</li>
@@ -155,15 +115,15 @@
                                         <ul aria-expanded="false" class="collapse">
                                             <li><a class="cursor" @click=" $router.push({ name: 'imagenes.disenos' })">Imágenes Prediseñadas</a></li>
                                         </ul>
-                                        
+
                                     </li>
 
                                     <li class="nav-label">Reportes</li>
                                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
-                                        
+
                                     </li>
                                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">De Ventas<span class="label label-rouded label-danger pull-right">6</span></span></a>
-                                        
+
                                     </li>
 
                                     <li class="nav-label">Usuarios</li>
@@ -202,7 +162,7 @@ export default {
     mounted()
     {
         this.montar()
-       
+
     },
     data() {
         return {
@@ -408,7 +368,7 @@ export default {
         }
 
     },
-    
+
     computed: {
         ...mapGetters(['getIsAuth','getUrl']),
       },
