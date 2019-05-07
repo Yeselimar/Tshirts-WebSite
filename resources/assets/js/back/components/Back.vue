@@ -118,6 +118,10 @@
 
                                     </li>
 
+                                    <li>
+                                        <a class="cursor" @click=" $router.push({ name: 'banner' })" aria-expanded="false"><i class="fa fa-image"></i><span class="hide-menu">Banner</span></a>
+                                    </li>
+
                                     <li class="nav-label">Reportes</li>
                                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">De Pedidos<span class="label label-rouded label-warning pull-right">6</span></span></a>
 
