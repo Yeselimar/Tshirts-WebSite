@@ -143,12 +143,10 @@ height: 150px; */
 .container-disenar{
 	padding-top: 3rem;
 	padding-bottom: 1rem;
-
-	height: -moz-available;          /* WebKit-based browsers will ignore this. */
+	height: 100%;
 	height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
 	height: fill-available;
-
-	overflow: auto;
+	overflow-y: scroll;
 }
 .productos-disenar {
 
@@ -177,6 +175,7 @@ height: 150px; */
 	border: 1px solid #919191;
 	position: relative;
 	min-width: 290px;
+	max-height: 600px;
 }
 .title-panel-diseno{
 	background: white;
@@ -199,6 +198,7 @@ height: 150px; */
 	border: 1px solid #919191;
 	position: relative;
 	min-width: 290px;
+	max-height: 600px;
 }
 .panel-btn{
 	display: inline-block;

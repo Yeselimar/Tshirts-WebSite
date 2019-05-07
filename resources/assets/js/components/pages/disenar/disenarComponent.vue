@@ -258,7 +258,7 @@
                             </div>
                             <div class="modal-body">
                                 <div  class="container-imagen-a-disenar"  id="contenedor-preview-frontal" v-show="showFrontal">
-                                <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/frontal.png">
+                                <img style="width: -webkit-fill-available" src="http://localhost:8000/img/product/frontal.png">
                                     <div class="container-area-de-diseno" style="border:0px !important" :style="'width:'+w_result_preview+'px;'+'top:'+top_result_preview+'%;'+'height:'+h_result_preview+'px;'+'left:'+left_result_preview+'%;'">
                                         <img :style="'width:'+width_preview+'%;'+'top:'+top_preview+'%;'+'height:'+height_preview+'%;'+'left:'+left_preview+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
                                     </div>
