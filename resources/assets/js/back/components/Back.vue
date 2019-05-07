@@ -98,10 +98,10 @@
                                     <li>
                                         <a class="has-arrow  " a href="index1.html" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Inicio </span></a>
                                     </li>
-                                    
+
                                     <li class="nav-label">Ventas</li>
                                     <li>
-                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-store"></i><span class="hide-menu">Catálogo</span></a>
+                                        <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Catálogo</span></a>
 
                                         <ul aria-expanded="false" class="collapse">
                                             <li><a class="cursor" @click=" $router.push({ name: 'articulos' })">Artículos</a></li>

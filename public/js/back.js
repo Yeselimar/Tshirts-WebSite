@@ -17967,13 +17967,13 @@ module.exports = Cancel;
     },
     env: {
         base: '/afodi/barna/public/'
-        /*     api: {
-                base: 'http://localhost:8000/',
-                token: 'ebf8ebbc77b700ed77d14afc03467335'
-            },
-            env: {
-                base: '/'
-            } */
+        /* api: {
+            base: 'http://localhost:8000/',
+            token: 'ebf8ebbc77b700ed77d14afc03467335'
+        },
+        env: {
+            base: '/'
+        } */
     } });
 
 /***/ }),
@@ -94770,7 +94770,7 @@ var staticRenderFns = [
         attrs: { href: "#", "aria-expanded": "false" }
       },
       [
-        _c("i", { staticClass: "fa fa-store" }),
+        _c("i", { staticClass: "fa fa-book" }),
         _c("span", { staticClass: "hide-menu" }, [_vm._v("Catálogo")])
       ]
     )
@@ -109500,7 +109500,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:15px; \n  height:15px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.sin-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #dc3545;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n}\n.publicado\n{\n  color: #43A047 !important;\n}\n.no-publicado\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:15px;\n  height:15px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.sin-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #dc3545;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n}\n.publicado\n{\n  color: #43A047 !important;\n}\n.no-publicado\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
 
 // exports
 
@@ -109955,7 +109955,7 @@ var render = function() {
               },
               [
                 _c("label", { staticClass: "d-flex align-items-center" }, [
-                  _vm._v("Mostrar \n                  "),
+                  _vm._v("Mostrar\n                  "),
                   _c(
                     "select",
                     {

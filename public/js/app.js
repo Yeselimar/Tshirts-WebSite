@@ -19555,13 +19555,13 @@ exports.HitCanvas = HitCanvas;
     },
     env: {
         base: '/afodi/barna/public/'
-        /*     api: {
-                base: 'http://localhost:8000/',
-                token: 'ebf8ebbc77b700ed77d14afc03467335'
-            },
-            env: {
-                base: '/'
-            } */
+        /* api: {
+            base: 'http://localhost:8000/',
+            token: 'ebf8ebbc77b700ed77d14afc03467335'
+        },
+        env: {
+            base: '/'
+        } */
     } });
 
 /***/ }),
@@ -96978,6 +96978,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -97162,18 +97213,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }, 5000);
 
             /*    //Diseño Frontal
-               html2canvas(document.querySelector("#contenedor-confirmacion-frontal")).then(canvas => {
-               this.disenoFrontal64= canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
-               })
-               //Diseño reverso
-              html2canvas(document.querySelector("#contenedor-confirmacion-reverso")).then(canvas2 => {
-               this.disenoReverso64= canvas2.toDataURL("image/png").replace("image/png, image/octet-stream");
-               })
-               setTimeout(e =>{
-                   this.disenoFrontal = this.dataURLtoFile(this.disenoFrontal64, 'ili.png');
-                   this.disenoReverso = this.dataURLtoFile(this.disenoReverso64, 'ilia.png');
-                   console.log('de vuelta:', this.disenoFrontal);
-               },4000) */
+                html2canvas(document.querySelector("#contenedor-confirmacion-frontal")).then(canvas => {
+                this.disenoFrontal64= canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
+                })
+                //Diseño reverso
+            html2canvas(document.querySelector("#contenedor-confirmacion-reverso")).then(canvas2 => {
+                this.disenoReverso64= canvas2.toDataURL("image/png").replace("image/png, image/octet-stream");
+                })
+                setTimeout(e =>{
+                    this.disenoFrontal = this.dataURLtoFile(this.disenoFrontal64, 'ili.png');
+                    this.disenoReverso = this.dataURLtoFile(this.disenoReverso64, 'ilia.png');
+                    console.log('de vuelta:', this.disenoFrontal);
+                },4000) */
         },
 
 
@@ -97220,7 +97271,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this3.left_result = _this3.left_px * 100 / _this3.w_content_admin; //nuevo left
                 _this3.w_result_container = _this3.w_result + 5;
                 _this3.h_result_container = _this3.h_result + 5;
-            }, 800);
+            }, 1200);
         },
         dimensionesReverso: function dimensionesReverso() {
             var _this4 = this;
@@ -97243,7 +97294,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 $('#container-area-disenorv-padre').css('height', this.h_result_rv+5) //cambio el estilo dinamicamente*/
                 /* $('#container-area-disenorv-padre').css('top', this.top_result_rv+'%') //cambio el estilo dinamicamente
                 $('#container-area-disenorv-padre').css('left', this.left_result_rv+'%') //cambio el estilo dinamicamente */
-            }, 800);
+            }, 1200);
         },
         dimensionesPreviewFrontal: function dimensionesPreviewFrontal() {
             var _this5 = this;
@@ -97307,7 +97358,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this7.w_content_confirmacion_int = parseFloat(w_confirmacion); //lo convierto de cadena a float
                 _this7.h_content_confirmacion_int = parseFloat(h_confirmacion); //lo convierto de cadena a float
                 /*  console.log('HOLA ILI ESTE ES EL W:', this.w_content_confirmacion_int)
-                 console.log('HOLA ILI ESTE ES EL H:', this.h_content_confirmacion_int) */
+                    console.log('HOLA ILI ESTE ES EL H:', this.h_content_confirmacion_int) */
                 //Calculo el width y height del area punteada
                 _this7.h_result_confirmacion = _this7.h_admin * _this7.h_content_confirmacion_int / _this7.h_content_admin; //nuevo height
                 _this7.w_result_confirmacion = _this7.w_admin * _this7.w_content_confirmacion_int / _this7.w_content_admin; //nuevo width
@@ -97423,8 +97474,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.showReverseOut = false;
                 this.showReverse = true;
                 this.activofb = activo;
-                console.log('AAAAAAAAAAAA');
-                this.this.dimensionesReverso();
             } else {
                 this.showFrontalOut = true;
                 this.showFrontal = false;
@@ -99004,7 +99053,46 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(4),
+      _c(
+        "div",
+        { staticClass: "container d-flex flex-wrap justify-content-around" },
+        [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "product-details panel-detalles" }, [
+            _c("h2", { staticClass: "p-title" }, [
+              _vm._v("Remera Deportiva Roja")
+            ]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "p-price" }, [_vm._v("$19.90")]),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-flex justify-content-center m-2 p-1" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-upload",
+                    on: {
+                      click: function($event) {
+                        return _vm.showConfirmacion()
+                      }
+                    }
+                  },
+                  [_vm._v(" Enviar Pedido")]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -99012,7 +99100,7 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog" }, [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(5),
+              _vm._m(8),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -99154,7 +99242,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(9)
             ])
           ])
         ]
@@ -99166,7 +99254,9 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog modal-lg" }, [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(7),
+              _vm._m(10),
+              _vm._v(" "),
+              _vm._m(11),
               _vm._v(" "),
               _c(
                 "div",
@@ -99299,11 +99389,14 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
+              _vm._m(12),
+              _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-sm pull-right",
+                    staticClass: "btn btn-upload pull-right",
+                    staticStyle: { background: "grey !important" },
                     attrs: { type: "button", "data-dismiss": "modal" }
                   },
                   [_vm._v("Volver")]
@@ -99312,7 +99405,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-sm pull-right",
+                    staticClass: "btn btn-upload pull-right",
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
@@ -99320,7 +99413,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Guardar")]
+                  [_vm._v("Enviar")]
                 )
               ])
             ])
@@ -99394,122 +99487,193 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12 product-details" }, [
-        _c(
-          "div",
-          { staticClass: "accordion-area", attrs: { id: "accordion" } },
-          [
-            _c("div", { staticClass: "panel" }, [
-              _c(
-                "div",
-                { staticClass: "panel-header", attrs: { id: "headingOne" } },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "panel-link active",
-                      attrs: {
-                        "data-toggle": "collapse",
-                        "data-target": "#collapse1",
-                        "aria-expanded": "true",
-                        "aria-controls": "collapse1"
-                      }
-                    },
-                    [_vm._v("information")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapse show",
-                  attrs: {
-                    id: "collapse1",
-                    "aria-labelledby": "headingOne",
-                    "data-parent": "#accordion"
-                  }
-                },
-                [
-                  _c("div", { staticClass: "panel-body" }, [
-                    _c("p", [
-                      _vm._v(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        'Approx length 66cm/26" (Based on a UK size 8 sample)'
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Mixed fibres")]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8\""
-                      )
-                    ])
-                  ])
-                ]
-              )
-            ]),
+    return _c("div", { staticClass: "product-details panel-detalles" }, [
+      _c(
+        "div",
+        {
+          staticClass: "accordion-area",
+          staticStyle: { "margin-top": "5px !important" },
+          attrs: { id: "accordion" }
+        },
+        [
+          _c("div", { staticClass: "panel" }, [
+            _c(
+              "div",
+              { staticClass: "panel-header", attrs: { id: "headingOne" } },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "panel-link active",
+                    attrs: {
+                      "data-toggle": "collapse",
+                      "data-target": "#collapse1",
+                      "aria-expanded": "true",
+                      "aria-controls": "collapse1"
+                    }
+                  },
+                  [_vm._v("Descripción")]
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "panel" }, [
-              _c(
-                "div",
-                { staticClass: "panel-header", attrs: { id: "headingThree" } },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "panel-link",
-                      attrs: {
-                        "data-toggle": "collapse",
-                        "data-target": "#collapse3",
-                        "aria-expanded": "false",
-                        "aria-controls": "collapse3"
-                      }
-                    },
-                    [_vm._v("shipping & Returns")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapse",
-                  attrs: {
-                    id: "collapse3",
-                    "aria-labelledby": "headingThree",
-                    "data-parent": "#accordion"
-                  }
-                },
-                [
-                  _c("div", { staticClass: "panel-body" }, [
-                    _c("h4", [_vm._v("7 Days Returns")]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v("Cash on Delivery Available"),
-                      _c("br"),
-                      _vm._v("Home Delivery "),
-                      _c("span", [_vm._v("3 - 4 days")])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec."
-                      )
-                    ])
+            _c(
+              "div",
+              {
+                staticClass: "collapse show",
+                attrs: {
+                  id: "collapse1",
+                  "aria-labelledby": "headingOne",
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("p", [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec."
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      'Approx length 66cm/26" (Based on a UK size 8 sample)'
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Mixed fibres")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8\""
+                    )
                   ])
-                ]
-              )
-            ])
-          ]
-        )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel" }, [
+            _c(
+              "div",
+              { staticClass: "panel-header", attrs: { id: "headingThree" } },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "panel-link",
+                    attrs: {
+                      "data-toggle": "collapse",
+                      "data-target": "#collapse3",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapse3"
+                    }
+                  },
+                  [_vm._v("shipping & Returns")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                attrs: {
+                  id: "collapse3",
+                  "aria-labelledby": "headingThree",
+                  "data-parent": "#accordion"
+                }
+              },
+              [
+                _c("div", { staticClass: "panel-body" }, [
+                  _c("h4", [_vm._v("7 Days Returns")]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("Cash on Delivery Available"),
+                    _c("br"),
+                    _vm._v("Home Delivery "),
+                    _c("span", [_vm._v("3 - 4 days")])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec."
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", { staticClass: "p-stock" }, [
+      _vm._v("Disponibilidad: "),
+      _c("span", [_vm._v("In Stock")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fw-size-choose" }, [
+      _c("p", [_vm._v("Talle")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item" }, [
+        _c("input", { attrs: { type: "radio", name: "sc", id: "xs-size" } }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "xs-size" } }, [_vm._v("32")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item" }, [
+        _c("input", { attrs: { type: "radio", name: "sc", id: "s-size" } }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "s-size" } }, [_vm._v("34")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item" }, [
+        _c("input", {
+          attrs: { type: "radio", name: "sc", id: "m-size", checked: "" }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "m-size" } }, [_vm._v("36")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item" }, [
+        _c("input", { attrs: { type: "radio", name: "sc", id: "l-size" } }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "l-size" } }, [_vm._v("38")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item disable" }, [
+        _c("input", {
+          attrs: { type: "radio", name: "sc", id: "xl-size", disabled: "" }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "xl-size" } }, [_vm._v("40")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sc-item" }, [
+        _c("input", { attrs: { type: "radio", name: "sc", id: "xxl-size" } }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "xxl-size" } }, [_vm._v("42")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "quantity" }, [
+      _c("p", [_vm._v("Cantidad")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "pro-qty" }, [
+        _c("input", { attrs: { type: "text", value: "1" } })
       ])
     ])
   },
@@ -99553,7 +99717,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title pull-left" }, [
-        _c("strong", [_vm._v("Vista previa del Confirmacion")])
+        _c("strong", [_vm._v("Confirmacion del Pedido")])
       ]),
       _vm._v(" "),
       _c(
@@ -99565,6 +99729,58 @@ var staticRenderFns = [
         [_c("i", { staticClass: "fa fa-remove" })]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-center pt-3 text-center" },
+      [
+        _c("h5", [
+          _vm._v(
+            "Por favor revise su pedido, ya que una vez enviado este no podrá ser modificado."
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "container-fluid",
+        staticStyle: { width: "95% !important" }
+      },
+      [
+        _c("h4", [_vm._v("Remera Deportiva Roja")]),
+        _vm._v(" "),
+        _c("h5", [_vm._v("$19.90")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex justify-content-around" }, [
+          _c("p", { staticStyle: { "font-size": "20px !important" } }, [
+            _c("b", [_vm._v("Talle:")]),
+            _vm._v(" XL")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticStyle: { "font-size": "20px !important" } }, [
+            _c("b", [_vm._v("Cantidad:")]),
+            _vm._v(" 2")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticStyle: { "font-size": "20px !important" } }, [
+            _c("b", [_vm._v("Color:")]),
+            _vm._v(" Rojo")
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

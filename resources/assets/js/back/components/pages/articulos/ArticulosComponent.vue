@@ -13,7 +13,7 @@
   }
   .imagen-cuadrada
   {
-    width:15px; 
+    width:15px;
     height:15px;
   }
   .capsula-rubros
@@ -37,11 +37,11 @@
   }
   .publicado
   {
-    color: #43A047 !important; 
+    color: #43A047 !important;
   }
   .no-publicado
   {
-    color: #E53935 !important; 
+    color: #E53935 !important;
   }
   .dropdown-item
   {
@@ -70,7 +70,7 @@
       <!-- End Bread crumb -->
 
       <div class="container-fluid">
-        
+
         <div class="text-right">
           <a class="btn btn-xs btn-danger" @click="filtro=-1">Todos</a>
           <a class="btn btn-xs btn-danger" @click="filtro=1">Diseñables</a>
@@ -98,7 +98,7 @@
             <div class="card-body">
               <div class="align-items-center align-items-sm-end d-flex dataTables_length flex-column flex-sm-row justify-content-center justify-content-sm-between pb-3">
 
-                  <label class="d-flex align-items-center">Mostrar 
+                  <label class="d-flex align-items-center">Mostrar
                     <select v-model="perPage" class="custom-select custom-select-sm form-control form-control-sm">
                       <option v-for="(value, key) in pageOptions" :key="key">
                         {{value}}
@@ -110,7 +110,7 @@
                     <div>
                       <b-input-group-append>
                       <label class="d-flex">Buscar:<input type="search" v-model="filter" placeholder="" >
-                          
+
                       </label>
                       </b-input-group-append>
                     </div>
@@ -199,7 +199,7 @@
       </div>
     </div>
 
-   
+
 
 </template>
 
@@ -217,7 +217,7 @@
         filtro:null,
         articulos:[],
         articulos_filtro:[],
-        fields: 
+        fields:
         [
           { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
           { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' },
@@ -258,7 +258,7 @@
     {
       $(window).resize(event => {
         event.preventDefault();
-         
+
         if (document.body.clientWidth <= 500) {
           this.table_responsive = true;
         } else {
@@ -313,8 +313,8 @@
             type: "error",
             title: "Ha ocurrido un error inesperado"
           });
-        }); 
-      },  
+        });
+      },
       busqueda: function()
       {
         let resultado = [];
@@ -342,7 +342,7 @@
                   resultado.push(articulo);
                 }
               }
-              
+
             }
           },this);
         }
@@ -350,7 +350,7 @@
         this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
       }
     },
-    watch: 
+    watch:
     {
       filtro: function()
       {
