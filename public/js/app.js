@@ -4547,10 +4547,7 @@ CerService.put = function (endpoint, json) {
 /* harmony default export */ __webpack_exports__["a"] = (CerService);
 
 /***/ }),
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -4778,6 +4775,9 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
+/* 20 */,
+/* 21 */,
+/* 22 */,
 /* 23 */,
 /* 24 */
 /***/ (function(module, exports) {
@@ -19326,11 +19326,20 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
+<<<<<<< HEAD
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
         base: '/barna/barna/public/'
+=======
+        //base: 'http://localhost:8000/',
+        base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
+    },
+    env: {
+        base: '/afodi/barna/public'
+>>>>>>> master
     }
 });
 
@@ -87606,23 +87615,25 @@ router.beforeEach(function (to, from, next) {
 						});
 					}
 				} else {
-					if (__WEBPACK_IMPORTED_MODULE_3__indexStore__["a" /* default */].getters.getUser.rol === 'user') {
-						// si esta autentificado y además es un usuario
-						next();
-					} else {
-						// sino ir a rutas bases
-						if (from.name != null) {
-							next({
-								path: from.path,
-								params: { nextUrl: to.fullPath }
-							});
-						} else {
-							next({
-								path: __WEBPACK_IMPORTED_MODULE_4__config__["a" /* default */].env.base,
-								params: { nextUrl: to.fullPath }
-							});
-						}
-					}
+					/*if(store.getters.getUser.rol === 'user'){ // si esta autentificado y además es un usuario
+     next()
+     } else { // sino ir a rutas bases
+     if(from.name != null)
+     	{
+     		next({
+     			path: from.path,
+     			params: { nextUrl: to.fullPath }
+     		})
+     	} else {
+     		next({
+     			path: Config.env.base,
+     			params: { nextUrl: to.fullPath }
+     	})
+     		}			
+     
+     }
+     	*/
+					next();
 				}
 			} else {
 				if (String(to.name) == 'register' && isAuthenticated) {
@@ -87859,7 +87870,7 @@ var content = __webpack_require__(263);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("26943fae", content, false, {});
+var update = __webpack_require__(19)("26943fae", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -91170,7 +91181,7 @@ var content = __webpack_require__(272);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("3331a510", content, false, {});
+var update = __webpack_require__(19)("3331a510", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -93113,7 +93124,7 @@ var content = __webpack_require__(291);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("2c4a5a7a", content, false, {});
+var update = __webpack_require__(19)("2c4a5a7a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -94234,7 +94245,7 @@ var content = __webpack_require__(298);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("3ea8d0e5", content, false, {});
+var update = __webpack_require__(19)("3ea8d0e5", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -94529,7 +94540,7 @@ var content = __webpack_require__(302);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("4436b3eb", content, false, {});
+var update = __webpack_require__(19)("4436b3eb", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -95194,7 +95205,7 @@ var content = __webpack_require__(311);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("c8536a7c", content, false, {});
+var update = __webpack_require__(19)("c8536a7c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -95973,7 +95984,7 @@ var content = __webpack_require__(322);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("def88efc", content, false, {});
+var update = __webpack_require__(19)("def88efc", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -99444,7 +99455,7 @@ var content = __webpack_require__(334);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(22)("6a1c6c2a", content, false, {});
+var update = __webpack_require__(19)("6a1c6c2a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

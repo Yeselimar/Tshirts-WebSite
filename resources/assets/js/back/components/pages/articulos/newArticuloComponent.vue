@@ -1,14 +1,14 @@
 <style>
-.btn {
+#nuevoArticulo  .btn {
   color: #fff !important;
 }
 
-.profile-tab li a.nav-link.active {
+#nuevoArticulo  .profile-tab li a.nav-link.active {
   background: #5c4ac7 none repeat scroll 0 0 !important;
   border-color: #5c4ac7 !important;
   color: white !important;
 }
-.tab-content {
+#nuevoArticulo  .tab-content {
   border-radius: 1px;
   box-shadow: 0 0 5px #ddd;
   background: #fff;
@@ -25,9 +25,12 @@
 .color-blue {
   color: blue;
 }
-.hover-pic:hover {
+#nuevoArticulo  .hover-pic:hover {
   color: blue !important;
   cursor: pointer !important;
+}
+#nuevoArticulo  .error-text {
+  right: 10px !important
 }
 /*.hover-pic:hover:after {
   position: absolute;
@@ -39,13 +42,26 @@
     background: rgba(0,0,0,.3)!important;
     z-index: 9999999;
 }*/
-.checkmark {
+#nuevoArticulo  .checkmark {
   left: 40%;
   border: 1px solid #dadada;
 }
+#nuevoArticulo .min-w120,.mw-120{
+  min-width: 120px;
+}
+#nuevoArticulo  .mw-150{
+  min-width: 150px;
+}
+#nuevoArticulo .form-control {
+    height: 42px !important;
+}
+.error-input-multi{
+  border-radius: 7px
+}
+
 </style>
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper" id="nuevoArticulo">
     <!-- Bread crumb -->
     <div class="row page-titles">
       <div class="col-md-5 align-self-center">
@@ -162,7 +178,7 @@
                              data-vv-scope="form-ajustes"
                               data-vv-name="rubro"
                               data-vv-value-path="rubro"
-                             :class="{'error-input': errors.first('rubro','form-ajustes')}"
+                             :class="{'error-input error-input-multi': errors.first('rubro','form-ajustes')}"
 
                             >
                              <template slot="option" slot-scope="props">
@@ -209,7 +225,11 @@
                             deselectLabel = ""
                             open-direction="bottom"
                             :multiple="false"
-                             :class="{'error-input': selectedTipoValidation}"
+                            v-validate data-vv-rules="required" 
+                             data-vv-scope="form-ajustes"
+                              data-vv-name="tipo"
+                              data-vv-value-path="tipo"
+                             :class="{'error-input error-input-multi': errors.first('tipo','form-ajustes')}"
 
                             >
                                 <span slot="noResult">
@@ -218,9 +238,9 @@
                                   Lista vacía</span>
                           </multiselect>
                           
-                           <span
-                              class="error-text"
-                              v-if="selectedTipoValidation"
+                            <span
+                                    class="error-text"
+                                    v-if="errors.first('tipo','form-ajustes')"
                             >Campo requerido.</span>
                         </div>
                         <div class="basis-23 position-relative ppbb-2" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')">
@@ -369,7 +389,12 @@
                             :custom-label="customLabelTalla" 
                             :show-labels="false"
                              label="valor" 
-                             track-by="valor" 
+                             track-by="valor"
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="talles"
+                              data-vv-value-path="talles"
+                             :class="{'error-input error-input-multi': errors.first('talles','form-disponibilidad')}" 
                             >
                               <template slot="option" slot-scope="props">
                                 <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
@@ -379,6 +404,10 @@
                                   <span slot="noOptions">
                                   Lista vacía</span>
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('talles','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
@@ -396,6 +425,11 @@
                             :show-labels="false"
                             label="valor" 
                             track-by="valor" 
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="colores"
+                              data-vv-value-path="colores"
+                             :class="{'error-input': errors.first('colores','form-disponibilidad')}" 
                             >
                               <template slot="option" slot-scope="props">
                                 <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
@@ -404,6 +438,10 @@
                                   No se encontraron resultados</span>
 
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('colores','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
@@ -411,17 +449,27 @@
                             :options="['General','Por Variante']"
                             selectLabel =""
                             selectedLabel = ""
-                            placeholder="Cantidad"
+                            placeholder="Tipo Cantidad"
                             deselectLabel = ""
                             open-direction="bottom"
                             :multiple="false"
                             :hideSelected = "true"
+                            v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="tipoCantidad"
+                              data-vv-value-path="tipoCantidad"
+                             :class="{'error-input error-input-multi': errors.first('tipoCantidad','form-disponibilidad')}" 
+
                             >
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
                                 <span slot="noOptions">
                                   Lista vacía</span>
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('tipoCantidad','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
                         <div class="basis-46 d-flex align-items-baseline" v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'GENERAL')">
                           <label class="mr-2 mb-0">Ingrese Cantidad:</label>
@@ -442,14 +490,14 @@
                               @keyup="setCantidad()"
                               v-money="cantidadSinDecimal"
                             />
-                            <p
+                            <span
                               class="error-text"
                               v-if="errors.firstByRule('cantidad', 'required', 'form-disponibilidad')"
-                            >Requerido</p>
-                            <p
+                            >Requerido</span>
+                            <span
                               class="error-text"
                               v-else-if="errors.firstByRule('cantidad', 'cantidadvv', 'form-disponibilidad')"
-                            >Cantidad Invalida</p>
+                            >Cantidad Invalida</span>
                           </div>
                         </div>
                       </div>
@@ -479,9 +527,9 @@
                                 </td>
                               </tr>
                               <tr v-for="(fileV,index) in filesVariantes" :key="index">
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3 min-w120" >
                                     <multiselect
-                                      v-model="filesVariantes[index].selectedColorVariante"
+                                      v-model="fileV.selectedColorVariante"
                                       :options="selectedColores"
                                       selectLabel =""
                                       selectedLabel = ""
@@ -493,7 +541,8 @@
                                       :custom-label="customLabelColor" 
                                       :show-labels="false"
                                       label="valor" 
-                                      track-by="valor" 
+                                      track-by="valor"
+                                      v-bind:class="{'error-input error-input-multi': fileV.selectedColorVariante==''||fileV.selectedColorVariante==null}"
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
@@ -504,11 +553,14 @@
                                               Lista vacía</span>
 
                                     </multiselect>
-
+                                    <span
+                                      class="error-text"
+                                      v-if=" fileV.selectedColorVariante==''||fileV.selectedColorVariante==null"
+                                      >Campo requerido.</span>
                                 </td>
-                                <td class="text-center" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
+                                <td class="text-center position-relative pb-3 min-w120" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
                                   <multiselect
-                                      v-model="filesVariantes[index].selectedTalleVariante"
+                                      v-model="fileV.selectedTalleVariante"
                                       :options="selectedTallas"
                                       selectLabel =""
                                       selectedLabel = ""
@@ -520,7 +572,9 @@
                                       :custom-label="customLabelTalla" 
                                       :show-labels="false"
                                        label="valor" 
-                                       track-by="valor" 
+                                       track-by="valor"
+                                       v-bind:class="{'error-input error-input-multi': fileV.selectedTalleVariante==''||fileV.selectedTalleVariante==null}"
+
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
@@ -531,9 +585,12 @@
                                              Lista vacía</span>
 
                                     </multiselect>
+                                    <span
+                                      class="error-text"
+                                      v-if=" fileV.selectedTalleVariante==''||fileV.selectedTalleVariante==null"
+                                      >Campo requerido.</span>
                                 </td>
-                                <td class="text-center">
-                                 <div class="position-relative pb-5">
+                                <td class="text-center position-relative pb-3 mw-120">
                                     <input
                                         type="number"
                                         :id="'cantidadV'+index"
@@ -550,18 +607,16 @@
                                          @keyup="setCantidadVariante(index)"
                                         v-bind:class="{'error-input': errors.first('cantidadV'+index,'form-disponibilidad')}"
                                       />
-                                      <p
+                                      <span
                                           class="error-text"
                                           v-if="errors.firstByRule('cantidadV'+index, 'required', 'form-disponibilidad')"
-                                        >Requerido</p>
-                                        <p
+                                        >Requerido</span>
+                                        <span
                                           class="error-text"
                                           v-else-if="errors.first('cantidadV'+index, 'form-disponibilidad')"
-                                        >Cantidad invalida</p>
-                                  </div>
+                                        >Cantidad invalida</span>
                                 </td>
-                                <td class="text-center">
-                                   <div class="position-relative pb-5">
+                                <td class="text-center position-relative pb-3 mw-150">
                                      <input
                                         type="number"
                                         :id="'amountV'+index"
@@ -578,21 +633,22 @@
                                         @keyup="setPaymentAmountVariante(index)"
                                         v-bind:class="{'error-input': errors.first('amountV'+index,'form-disponibilidad')}"
                                       >
-                                      <p
+                                      <span
                                         class="error-text"
                                         v-if="errors.firstByRule('amountV'+index, 'required', 'form-disponibilidad')"
-                                      >Requerido</p>
-                                      <p
+                                      >Requerido</span>
+                                      <span
                                         class="error-text"
                                         v-else-if="errors.first('amountV'+index, 'form-disponibilidad')"
-                                      >Monto Invalido</p>
-                                   </div>
+                                      >Monto Invalido</span>
 
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3">
                                      <button class="cursor btn btn-inverse" @click="deleteVariante(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesVariantes.length-1" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-else-if="fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos','warning')"><i class="fa fa-plus cursor"></i></button>
+
                                 </td>
                              
                               
@@ -634,7 +690,7 @@
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-4">
                                     <multiselect
                                       v-model="filesImagesColor[index].selectedColorRelacion"
                                       :options="selectedColores"
@@ -649,6 +705,12 @@
                                       :show-labels="false"
                                       label="valor" 
                                       track-by="valor" 
+                                       v-validate data-vv-rules="required" 
+                                      data-vv-scope="form-relacionIC"
+                                        :data-vv-name="'relacionCI'+index"
+                                        :data-vv-value-path="'relacionCI'+index"  
+                                        v-bind:class="{'error-input error-input-multi': errors.first('relacionCI'+index,'form-relacionIC')}"
+
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
@@ -659,6 +721,10 @@
                                               Lista vacía</span>
 
                                     </multiselect>
+                                     <span
+                                      class="error-text"
+                                      v-if="errors.first('relacionCI'+index,'form-relacionIC')"
+                                      >Campo requerido.</span>
 
                                 </td>
                                 
@@ -671,7 +737,9 @@
 
                                 <td class="text-center">
                                      <button class="cursor btn btn-inverse" @click="deleteRelacion(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesImagesColor.length-1" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-if="((index == filesImagesColor.length-1) && (fileIC.file) && (fileIC.file !== null) && (Object.keys(fileIC.file).length !== 0))" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                   <button v-else-if="index == filesImagesColor.length-1 && (fileIC.file == null || Object.keys(fileIC.file).length == 0)"  class="cursor btn btn-primary disabled" @click="msgAlert('La imagen es requerida','warning')"><i class="fa fa-plus cursor"></i></button>
+
                                 </td>
                              
                               
@@ -747,6 +815,7 @@
           </div>
       </div>
   </div>
+  <loading v-if="isLoading"></loading>
   </div>
 </template>
 
@@ -759,6 +828,7 @@ import "vue-multiselect/dist/vue-multiselect.min.css"
 import { Validator } from "vee-validate";
 import ImageCompressor from "@xkeshi/image-compressor";
 import FileUpload from "vue-upload-component";
+import Loading from "../../layouts/loadingComponent"
 
 
 // obtener el valor decimal del monto
@@ -897,7 +967,8 @@ export default {
   },
   components: {
     FileUpload,
-    Multiselect
+    Multiselect,
+    Loading
   },
   computed: {
     ...mapGetters(["getIsAuth", "getUrl", "getFiltroArticulo"])
@@ -915,6 +986,16 @@ export default {
 
   },
   created: function() {
+    CerService.post("/grupos/colores/api")
+    .then(response => 
+    {
+        console.log(response.colores)
+         
+    })
+    .catch(error => {
+      console.log('Ha ocurrido un error inesperado')
+    });
+
     if (document.body.clientWidth <= 900){
           this.table_responsive = true;
       } else {
@@ -1032,6 +1113,24 @@ export default {
     customLabelRubro({nombre}){
       return `${nombre}`
     },
+    validatorImagenRelacion(){
+      let validator = true
+      this.filesImagesColor.forEach(e => {
+        if(Object.keys(e.file).length == 0){
+          validator = false
+        }
+      })
+      return validator;
+    },
+    validatorDisponibilidad(){
+      let validator = true
+      this.filesVariantes.forEach(e => {
+        if(e.selectedColorVariante == '' || e.selectedColorVariante == null || e.selectedTalleVariante == '' || e.selectedTalleVariante == null){
+          validator = false
+        }
+      })
+      return validator;
+    },
     saveAll(){
        this.$validator.validateAll("form-create").then(resp => 
         {
@@ -1039,47 +1138,66 @@ export default {
           {
              this.$validator.validateAll("form-ajustes").then(resA => 
               {
-                if (resA && this.selectedRubro.length && this.selectedTipo !== ""){
-                  this.articulo.imagenes = this.files
-                  this.articulo.rubros = this.selectedRubro
-                  this.articulo.tipo = this.selectedTipo
+                    if (resA){
+                      if(this.files.length){
+                        this.$validator.validateAll("form-disponibilidad").then(resD => 
+                      {
+                        if (resD && this.validatorDisponibilidad()){
+                            if (this.validatorImagenRelacion()){
+                              this.$validator.validateAll("form-relacionIC").then(resR => 
+                              {
+                                if (resR){
+                                    this.articulo.imagenes = this.files
+                                    this.articulo.rubros = this.selectedRubro
+                                    this.articulo.tipo = this.selectedTipo
 
-                  var dataform = new FormData();
-                  for( var i = 0; i < this.files.length; i++ ){
-                      let file = this.files[i].file;
-                      dataform.append('files[' + i + ']', file);
-                  }
-                  let data = JSON.stringify({
-                          articulo: this.articulo,
-                      });
-                  dataform.append('articulo',data)
+                                    var dataform = new FormData();
+                                    for( var i = 0; i < this.files.length; i++ ){
+                                        let file = this.files[i].file;
+                                        dataform.append('files[' + i + ']', file);
+                                    }
+                                    let data = JSON.stringify({
+                                            articulo: this.articulo,
+                                        });
+                                    dataform.append('articulo',data)
 
-                  CerService.post("/articulo/guardar",dataform,{
-                  headers:
-                    {
-                        'Content-Type': 'application/json',
-                    }
-                  })
-                  .then(response => 
-                  {
-                      if(response.res){
-                        this.msgAlert(response.msg,'success')
-                      } else {
-                        this.msgAlert(response.msg,'warning')
+                                    CerService.post("/articulo/guardar",dataform,{
+                                    headers:
+                                      {
+                                          'Content-Type': 'application/json',
+                                      }
+                                    })
+                                    .then(response => 
+                                    {
+                                        if(response.res){
+                                          this.msgAlert(response.msg,'success')
+                                        } else {
+                                          this.msgAlert(response.msg,'warning')
+                                        }
+                                    })
+                                    .catch(error => {
+                                      this.msgAlert('Ha ocurrido un error inesperado','error')
+                                    });
+                                  } else {
+                                    this.msgAlert('Por favor verifique el tab relacion Imagen-Color','warning')
+
+                                  }
+                          });
+                           } else {
+                                      this.msgAlert('La imagen es requerida en la relación Imagen-Color','warning')
+                            }
+                        } else {
+                          this.msgAlert('Por favor verifique el tab disponibilidad','warning')
+                        }
+                        })
+                      }else {
+                        this.msgAlert('Debe subir por lo menos una imagen del articulo en ajustes básicos','warning')
 
                       }
-                  })
-                  .catch(error => {
-                     this.msgAlert('Ha ocurrido un error inesperado','error')
-                  });
+                      
                 } else {
-                  if(this.selectedRubro.length == 0){
-                    this.selectedRubroValidation = true
-                  }
-                  if(this.selectedTipo == ""){
-                    this.selectedTipoValidation = true
-                  }
                   this.msgAlert('Por favor verifique el tab ajustes básicos','warning')
+
                 }
               })
           }
@@ -1096,7 +1214,7 @@ export default {
             toast: true,
             position: "top-end",
             showConfirmButton: false,
-            timer: 3000
+            timer: 4000
         })
         .fire({
             type: type,
