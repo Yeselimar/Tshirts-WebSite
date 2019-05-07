@@ -14,7 +14,7 @@ class Articulos extends Migration
             $table->enum('tipo', ['ropa','otros'])->default('ropa');//ropa: remera y buzo.
             $table->string('otros')->nullable();// si el tipo es otros se habilita este atributo
             $table->string('nombre');
-            $table->string('marca');
+            $table->string('marca')->nullable();
             $table->text('descripcion');
 
             $table->enum('tipo_cantidad', ['general','por_variante'])->default('general');

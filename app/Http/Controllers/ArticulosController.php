@@ -60,7 +60,7 @@ class ArticulosController extends Controller
     {
         //$auxiliar["ajsha"] = 5;
         //$auxiliar["aksj"] = 6;
-        //return $auxiliar["aksj"];
+        //return $auxiliar["aksj"];//retorna el 6
 
         //Artículo
         $articulo = new Articulo;
@@ -87,13 +87,17 @@ class ArticulosController extends Controller
         }
 
         //Características Talles
-        foreach ($request->articulo['talles'] as $talle)
+        if(strtoupper($request->articulo['tipo'])==strtoupper("ropa"))
         {
-            $articulo_caracteristica = new ArticuloCaracteristica;
-            $articulo_caracteristica->articulo_id = $articulo->id;
-            $articulo_caracteristica->caracteristica_id = $talle['id'];
-            $articulo_caracteristica->save();
+            foreach ($request->articulo['talles'] as $talle)
+            {
+                $articulo_caracteristica = new ArticuloCaracteristica;
+                $articulo_caracteristica->articulo_id = $articulo->id;
+                $articulo_caracteristica->caracteristica_id = $talle['id'];
+                $articulo_caracteristica->save();
+            }
         }
+        
 
         //Características Colores
         foreach ($request->articulo['colores'] as $color)
@@ -109,7 +113,6 @@ class ArticulosController extends Controller
         {
             $imagen_articulo = new ImagenArticulo;
 
-            
             if($request->imagenes[$i])
             {
                 //Para guardar la imagen del artículo
@@ -118,6 +121,7 @@ class ArticulosController extends Controller
                 $ruta = public_path().'/'.ImagenArticulo::carpeta();
                 $archivo->move($ruta, $nombre);
             }
+            
             //Guardando datos de la imagen del artículo
             $imagen_articulo->articulo_id = $articulo->id;
             $imagen_articulo->url = ArticuloArticulo::carpeta().$nombre;
@@ -143,7 +147,12 @@ class ArticulosController extends Controller
         {
             $talle_color = new TalleColor;
             $talle_color->articulo_id = $articulo->id;
-            $talle_color->caracteristica_id = $talle_color['talle']['id']; //talle
+
+            if(strtoupper($request->articulo['tipo'])==strtoupper("ropa"))
+            {
+                $talle_color->caracteristica_id = $talle_color['talle']['id']; //talle
+            }
+
             $talle_color->caracteristica_id = $talle_color['color']['id']; //color
             $talle_color->cantidad = $talle_color['cantidad'];
             $talle_color->precio = $talle_color['precio'];

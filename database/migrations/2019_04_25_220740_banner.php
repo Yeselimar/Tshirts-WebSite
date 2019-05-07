@@ -17,6 +17,8 @@ class Banner extends Migration
 
             $table->unsignedInteger('articulo_id');
             $table->foreign('articulo_id')->references('id')->on('articulos')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
     

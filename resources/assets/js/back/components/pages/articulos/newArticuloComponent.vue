@@ -1,21 +1,21 @@
 <style>
-.btn {
+#nuevoArticulo  .btn {
   color: #fff !important;
 }
 
-.profile-tab li a.nav-link.active {
+#nuevoArticulo  .profile-tab li a.nav-link.active {
   background: #5c4ac7 none repeat scroll 0 0 !important;
   border-color: #5c4ac7 !important;
   color: white !important;
 }
-.tab-content {
+#nuevoArticulo  .tab-content {
   border-radius: 1px;
   box-shadow: 0 0 5px #ddd;
   background: #fff;
   padding: 15px;
 }
 .ppbb-2 {
-  padding-bottom: 2.1rem;
+  padding-bottom: 1rem;
 }
 #modalImg .modal-dialog {
     transform: translateY(-50%) translateX(-50%) !important;
@@ -25,9 +25,12 @@
 .color-blue {
   color: blue;
 }
-.hover-pic:hover {
+#nuevoArticulo  .hover-pic:hover {
   color: blue !important;
   cursor: pointer !important;
+}
+#nuevoArticulo  .error-text {
+  right: 10px !important
 }
 /*.hover-pic:hover:after {
   position: absolute;
@@ -39,13 +42,26 @@
     background: rgba(0,0,0,.3)!important;
     z-index: 9999999;
 }*/
-.checkmark {
+#nuevoArticulo  .checkmark {
   left: 40%;
   border: 1px solid #dadada;
 }
+#nuevoArticulo .min-w120,.mw-120{
+  min-width: 120px;
+}
+#nuevoArticulo  .mw-150{
+  min-width: 150px;
+}
+#nuevoArticulo .form-control {
+    height: 42px !important;
+}
+.error-input-multi{
+  border-radius: 7px
+}
+
 </style>
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper" id="nuevoArticulo">
     <!-- Bread crumb -->
     <div class="row page-titles">
       <div class="col-md-5 align-self-center">
@@ -158,7 +174,12 @@
                             :show-labels="false"
                              label="nombre" 
                              track-by="nombre" 
-                             :class="{'error-input': selectedRubroValidation}"
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-ajustes"
+                              data-vv-name="rubro"
+                              data-vv-value-path="rubro"
+                             :class="{'error-input error-input-multi': errors.first('rubro','form-ajustes')}"
+
                             >
                              <template slot="option" slot-scope="props">
                                 <div class="option__desc"><span class="option__title">{{ props.option.nombre }}</span></div>
@@ -166,12 +187,15 @@
 
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
+                                  <span slot="noOptions">
+                                  Lista vacía</span>
+                                  
 
                           </multiselect>
                                       
                                     <span
                                             class="error-text"
-                                            v-if="selectedRubroValidation"
+                                            v-if="errors.first('rubro','form-ajustes')"
                                     >Campo requerido.</span>
                         </div>
                         
@@ -184,21 +208,10 @@
                             class="form-control input-rounded input-sm"
                             v-model="articulo.marca"
                             autocomplete="off"
-                            :class="{'error-input': errors.first('marca','form-ajustes')}"
-                            data-vv-scope="form-ajustes"
-                            v-validate
-                            data-vv-rules="required:true|min:3"
                           >
-                          <span
-                            class="error-text"
-                            v-if="errors.firstByRule('marca', 'required','form-ajustes')"
-                          >Campo requerido.</span>
-                          <span
-                            class="error-text"
-                            v-else-if="errors.firstByRule('marca','min','form-ajustes')"
-                          >Mínimo 3 caracteres.</span>
                         </div>
                       </div>
+                      
                       <div class="align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price">
                         <div class="basis-46 position-relative ppbb-2" :class="{'basis-23':((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')}">
                          
@@ -212,17 +225,22 @@
                             deselectLabel = ""
                             open-direction="bottom"
                             :multiple="false"
-                             :class="{'error-input': selectedTipoValidation}"
+                            v-validate data-vv-rules="required" 
+                             data-vv-scope="form-ajustes"
+                              data-vv-name="tipo"
+                              data-vv-value-path="tipo"
+                             :class="{'error-input error-input-multi': errors.first('tipo','form-ajustes')}"
 
                             >
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                    <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
                           
-                           <span
-                              class="error-text"
-                              v-if="selectedTipoValidation"
+                            <span
+                                    class="error-text"
+                                    v-if="errors.first('tipo','form-ajustes')"
                             >Campo requerido.</span>
                         </div>
                         <div class="basis-23 position-relative ppbb-2" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'OTROS')">
@@ -278,6 +296,33 @@
                           </div>
                         </div>
                       </div>
+                        <div class="align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price">
+                        <div class="w-100 position-relative ppbb-2">
+
+                            <textarea
+                                name="descripcion"
+                                id="descripcion"
+                                row="5"
+                                class="form-control input-rounded h-auto"
+                                v-model="articulo.descripcion"
+                                autocomplete="off"
+                                :class="{'error-input': errors.first('descripcion','form-ajustes')}"
+                                data-vv-scope="form-ajustes"
+                                v-validate
+                                data-vv-rules="required:true|min:3"
+                                placeholder="Ingrese Descripción"
+                              > 
+                            </textarea>
+                              <span
+                                class="error-text"
+                                v-if="errors.firstByRule('descripcion', 'required','form-ajustes')"
+                              >Campo requerido.</span>
+                              <span
+                                class="error-text"
+                                v-else-if="errors.firstByRule('descripcion','min','form-ajustes')"
+                              >Mínimo 3 caracteres.</span>
+                            </div>
+                        </div>
                       <!--subir imagenes -->
                       <div class="text-center">
                         <h3>Subir Imagenes de Artículo</h3>
@@ -290,7 +335,7 @@
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
                                     <a class="cursor mr-2" @click="openModalImg(file.blob)"><i class="fa fa-eye"></i></a>
-                                    <a class="cursor" @click.prevent="$refs.upload.remove(file)">
+                                    <a class="cursor" @click.prevent="removeImg(file)">
                                       <i class="fa fa-trash"></i>
                                     </a>
                                   </div>
@@ -328,8 +373,8 @@
                   <!--second tab (Disponibilidad)-->
                   <div class="tab-pane" id="disponibilidad" role="tabpanel">
                     <div class="card-body mt-4" >
-                      <div class="form-body d-flex justify-content-between flex-column flex-md-row">
-                        <div class="basis-46 position-relative ppbb-2">
+                      <div class="form-body d-flex justify-content-between flex-column flex-md-row wrap-f">
+                        <div class="basis-46 position-relative ppbb-2" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
                           <multiselect
                             v-model="selectedTallas"
                             :options="optionTalles"
@@ -344,15 +389,25 @@
                             :custom-label="customLabelTalla" 
                             :show-labels="false"
                              label="valor" 
-                             track-by="valor" 
+                             track-by="valor"
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="talles"
+                              data-vv-value-path="talles"
+                             :class="{'error-input error-input-multi': errors.first('talles','form-disponibilidad')}" 
                             >
                               <template slot="option" slot-scope="props">
                                 <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
                               </template>
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                  <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('talles','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
@@ -370,6 +425,11 @@
                             :show-labels="false"
                             label="valor" 
                             track-by="valor" 
+                             v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="colores"
+                              data-vv-value-path="colores"
+                             :class="{'error-input': errors.first('colores','form-disponibilidad')}" 
                             >
                               <template slot="option" slot-scope="props">
                                 <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
@@ -378,25 +438,38 @@
                                   No se encontraron resultados</span>
 
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('colores','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
-                      </div>
-                       <div class="form-body mt-2 d-flex justify-content-between flex-column flex-md-row">
                         <div class="basis-46 position-relative ppbb-2">
                           <multiselect
                             v-model="selectedCantidad"
                             :options="['General','Por Variante']"
                             selectLabel =""
                             selectedLabel = ""
-                            placeholder="Cantidad"
+                            placeholder="Tipo Cantidad"
                             deselectLabel = ""
                             open-direction="bottom"
                             :multiple="false"
                             :hideSelected = "true"
+                            v-validate data-vv-rules="required" 
+                             data-vv-scope="form-disponibilidad"
+                              data-vv-name="tipoCantidad"
+                              data-vv-value-path="tipoCantidad"
+                             :class="{'error-input error-input-multi': errors.first('tipoCantidad','form-disponibilidad')}" 
+
                             >
                                 <span slot="noResult">
                                   No se encontraron resultados</span>
-
+                                <span slot="noOptions">
+                                  Lista vacía</span>
                           </multiselect>
+                          <span
+                                    class="error-text"
+                                    v-if="errors.first('tipoCantidad','form-disponibilidad')"
+                            >Campo requerido.</span>
                         </div>
                         <div class="basis-46 d-flex align-items-baseline" v-if="((selectedCantidad !== null) && selectedCantidad.toUpperCase() == 'GENERAL')">
                           <label class="mr-2 mb-0">Ingrese Cantidad:</label>
@@ -417,14 +490,14 @@
                               @keyup="setCantidad()"
                               v-money="cantidadSinDecimal"
                             />
-                            <p
+                            <span
                               class="error-text"
                               v-if="errors.firstByRule('cantidad', 'required', 'form-disponibilidad')"
-                            >Requerido</p>
-                            <p
+                            >Requerido</span>
+                            <span
                               class="error-text"
                               v-else-if="errors.firstByRule('cantidad', 'cantidadvv', 'form-disponibilidad')"
-                            >Cantidad Invalida</p>
+                            >Cantidad Invalida</span>
                           </div>
                         </div>
                       </div>
@@ -438,7 +511,7 @@
                             <thead>
                               <tr>
                                 <th class="text-center">Color</th>
-                                <th class="text-center">Talle</th>
+                                <th class="text-center"  v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">Talle</th>
                                 <th class="text-center">Cantidad</th>
                                 <th class="text-center">Precio</th>
                                 <th class="text-center">Acciones</th>
@@ -447,16 +520,16 @@
                             </thead>
                             <tbody>
                               <tr v-if="!filesVariantes.length">
-                                <td colspan="5">
+                                <td :colspan="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')? 5:4">
                                   <div class="text-center p-5">
-                                    <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Variante</button>
+                                    <button  @click.stop.prevent="addVariante" class="cursor btn btn-primary"><i class="fa fa-plus cursor pr-2"></i>Agregar Variante</button>
                                   </div>
                                 </td>
                               </tr>
                               <tr v-for="(fileV,index) in filesVariantes" :key="index">
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3 min-w120" >
                                     <multiselect
-                                      v-model="filesVariantes[index].selectedColorVariante"
+                                      v-model="fileV.selectedColorVariante"
                                       :options="selectedColores"
                                       selectLabel =""
                                       selectedLabel = ""
@@ -468,20 +541,26 @@
                                       :custom-label="customLabelColor" 
                                       :show-labels="false"
                                       label="valor" 
-                                      track-by="valor" 
+                                      track-by="valor"
+                                      v-bind:class="{'error-input error-input-multi': fileV.selectedColorVariante==''||fileV.selectedColorVariante==null}"
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                              Lista vacía</span>
 
                                     </multiselect>
-
+                                    <span
+                                      class="error-text"
+                                      v-if=" fileV.selectedColorVariante==''||fileV.selectedColorVariante==null"
+                                      >Campo requerido.</span>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3 min-w120" v-if="((selectedTipo !== null) && selectedTipo.toUpperCase() == 'ROPA')">
                                   <multiselect
-                                      v-model="filesVariantes[index].selectedTalleVariante"
+                                      v-model="fileV.selectedTalleVariante"
                                       :options="selectedTallas"
                                       selectLabel =""
                                       selectedLabel = ""
@@ -493,18 +572,25 @@
                                       :custom-label="customLabelTalla" 
                                       :show-labels="false"
                                        label="valor" 
-                                       track-by="valor" 
+                                       track-by="valor"
+                                       v-bind:class="{'error-input error-input-multi': fileV.selectedTalleVariante==''||fileV.selectedTalleVariante==null}"
+
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc"><span class="option__title">{{ props.option.valor }}</span></div>
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                             Lista vacía</span>
 
                                     </multiselect>
+                                    <span
+                                      class="error-text"
+                                      v-if=" fileV.selectedTalleVariante==''||fileV.selectedTalleVariante==null"
+                                      >Campo requerido.</span>
                                 </td>
-                                <td class="text-center">
-                                 <div class="position-relative pb-5">
+                                <td class="text-center position-relative pb-3 mw-120">
                                     <input
                                         type="number"
                                         :id="'cantidadV'+index"
@@ -521,18 +607,16 @@
                                          @keyup="setCantidadVariante(index)"
                                         v-bind:class="{'error-input': errors.first('cantidadV'+index,'form-disponibilidad')}"
                                       />
-                                      <p
+                                      <span
                                           class="error-text"
                                           v-if="errors.firstByRule('cantidadV'+index, 'required', 'form-disponibilidad')"
-                                        >Requerido</p>
-                                        <p
+                                        >Requerido</span>
+                                        <span
                                           class="error-text"
                                           v-else-if="errors.first('cantidadV'+index, 'form-disponibilidad')"
-                                        >Cantidad invalida</p>
-                                  </div>
+                                        >Cantidad invalida</span>
                                 </td>
-                                <td class="text-center">
-                                   <div class="position-relative pb-5">
+                                <td class="text-center position-relative pb-3 mw-150">
                                      <input
                                         type="number"
                                         :id="'amountV'+index"
@@ -549,21 +633,22 @@
                                         @keyup="setPaymentAmountVariante(index)"
                                         v-bind:class="{'error-input': errors.first('amountV'+index,'form-disponibilidad')}"
                                       >
-                                      <p
+                                      <span
                                         class="error-text"
                                         v-if="errors.firstByRule('amountV'+index, 'required', 'form-disponibilidad')"
-                                      >Requerido</p>
-                                      <p
+                                      >Requerido</span>
+                                      <span
                                         class="error-text"
                                         v-else-if="errors.first('amountV'+index, 'form-disponibilidad')"
-                                      >Monto Invalido</p>
-                                   </div>
+                                      >Monto Invalido</span>
 
                                 </td>
 
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3">
                                      <button class="cursor btn btn-inverse" @click="deleteVariante(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesVariantes.length-1" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-else-if="fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos','warning')"><i class="fa fa-plus cursor"></i></button>
+
                                 </td>
                              
                               
@@ -595,7 +680,7 @@
                               <tr v-if="!filesImagesColor.length">
                                 <td colspan="4">
                                   <div class="text-center p-5">
-                                    <button  @click.stop.prevent="addRelacion" class="cursor btn btn-primary"><i class="fa fa-plus cursor"></i>Agregar Relación Imagen-Color</button>
+                                    <button  @click.stop.prevent="addRelacion" class="cursor btn btn-primary"><i class="fa fa-plus cursor pr-2"></i>Agregar Relación Imagen-Color</button>
                                   </div>
                                 </td>
                               </tr>
@@ -605,7 +690,7 @@
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-4">
                                     <multiselect
                                       v-model="filesImagesColor[index].selectedColorRelacion"
                                       :options="selectedColores"
@@ -620,27 +705,41 @@
                                       :show-labels="false"
                                       label="valor" 
                                       track-by="valor" 
+                                       v-validate data-vv-rules="required" 
+                                      data-vv-scope="form-relacionIC"
+                                        :data-vv-name="'relacionCI'+index"
+                                        :data-vv-value-path="'relacionCI'+index"  
+                                        v-bind:class="{'error-input error-input-multi': errors.first('relacionCI'+index,'form-relacionIC')}"
+
                                       >
                                         <template slot="option" slot-scope="props">
                                           <div class="option__desc d-flex align-items-center"><span class="option__title d-flex align-items-center"><div class="mr-2" :style="'width:25px;height:25px;border: 1px solid black;background:'+props.option.color" ></div>{{ props.option.valor }}</span></div>
                                         </template>
                                           <span slot="noResult">
                                             No se encontraron resultados</span>
+                                            <span slot="noOptions">
+                                              Lista vacía</span>
 
                                     </multiselect>
+                                     <span
+                                      class="error-text"
+                                      v-if="errors.first('relacionCI'+index,'form-relacionIC')"
+                                      >Campo requerido.</span>
 
                                 </td>
                                 
                                   <td class="text-center">  
                                       <label class="contenido">
-                                        <input type="radio" name="radio">
+                                        <input type="radio" @change="cambiarEsPrincipal(index)" :id="'radio_'+index" name="radio">
                                         <span class="checkmark"></span>
                                       </label>
                                   </td>
 
                                 <td class="text-center">
                                      <button class="cursor btn btn-inverse" @click="deleteRelacion(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesImagesColor.length-1" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-if="((index == filesImagesColor.length-1) && (fileIC.file) && (fileIC.file !== null) && (Object.keys(fileIC.file).length !== 0))" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                   <button v-else-if="index == filesImagesColor.length-1 && (fileIC.file == null || Object.keys(fileIC.file).length == 0)"  class="cursor btn btn-primary disabled" @click="msgAlert('La imagen es requerida','warning')"><i class="fa fa-plus cursor"></i></button>
+
                                 </td>
                              
                               
@@ -698,7 +797,7 @@
               </div>
               <div class="modal-body">
                   <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
-                            <div class="project" v-for="(file) in files" :key="file.id" v-if="!file.selectedImagen">
+                            <div class="project" v-for="(file) in files" :key="file.id" v-if="file.selectedImagen != true">
                                 <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImg(file)">
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
                                   <span v-else>No Image</span>
@@ -716,6 +815,7 @@
           </div>
       </div>
   </div>
+  <loading v-if="isLoading"></loading>
   </div>
 </template>
 
@@ -728,6 +828,7 @@ import "vue-multiselect/dist/vue-multiselect.min.css"
 import { Validator } from "vee-validate";
 import ImageCompressor from "@xkeshi/image-compressor";
 import FileUpload from "vue-upload-component";
+import Loading from "../../layouts/loadingComponent"
 
 
 // obtener el valor decimal del monto
@@ -797,10 +898,12 @@ export default {
         marca: "",
         precioGeneral: 0.00,
         otros: '',
-        files: [],
+        imagenes: [],
         rubros: [],
         tipo: '',
-        cantidad: 0
+        tipo_cantidad: '',
+        cantidad: 0,
+        descripcion: ''
 
       },
       table_responsive: false,
@@ -864,7 +967,8 @@ export default {
   },
   components: {
     FileUpload,
-    Multiselect
+    Multiselect,
+    Loading
   },
   computed: {
     ...mapGetters(["getIsAuth", "getUrl", "getFiltroArticulo"])
@@ -882,6 +986,16 @@ export default {
 
   },
   created: function() {
+    CerService.post("/grupos/colores/api")
+    .then(response => 
+    {
+        console.log(response.colores)
+         
+    })
+    .catch(error => {
+      console.log('Ha ocurrido un error inesperado')
+    });
+
     if (document.body.clientWidth <= 900){
           this.table_responsive = true;
       } else {
@@ -894,11 +1008,66 @@ export default {
     }
   },
   methods: {
+    cambiarEsPrincipal(index){
+      this.filesImagesColor.forEach((file,id) =>{
+        if(id == index){
+          this.filesImagesColor[id].es_principal = true
+           $("#radio_"+id).prop("checked", true);
+
+        }else {
+          this.filesImagesColor[id].es_principal = false
+           $("#radio_"+id).prop("checked", false);
+
+        }
+      },this)
+    },
+    removeImg(file){
+      // se borra las imagenes que han sido borrada para la relación imagen-color
+      const resultado = this.filesImagesColor.findIndex( fileIC => fileIC.file === file );
+      if(resultado !== -1){
+        //si esta check como principal
+        let mainP = false
+        if(this.filesImagesColor[resultado].es_principal){
+          $("#radio_"+resultado).prop("checked", false);
+          mainP = true
+        }
+        this.filesImagesColor.splice(resultado,1)
+         if(mainP && this.filesImagesColor.length){
+            setTimeout(e => {
+              $("#radio_0").prop("checked", true);
+            },100) 
+            this.filesImagesColor[0].es_principal = true
+          }
+      }
+      this.$refs.upload.remove(file)
+    },
     deleteVariante(index){
       this.filesVariantes.splice(index,1)
     },
     deleteRelacion(index){
+      //buscar la imagen para quitar el seleccionado 
+      let fileAux = this.filesImagesColor[index].file
+      const resultado = this.files.findIndex( file => file === fileAux );
+      if( resultado !== -1)
+      {
+        this.files[resultado].selectedImagen = false
+
+      }
+      //si esta check como principal
+      let mainP = false
+      if(this.filesImagesColor[index].es_principal){
+        $("#radio_"+index).prop("checked", false);
+        mainP = true
+      }
+      // borra la imagen de la relación
+      
       this.filesImagesColor.splice(index,1)
+      if(mainP && this.filesImagesColor.length){
+        setTimeout(e => {
+          $("#radio_0").prop("checked", true);
+        },100)         
+        this.filesImagesColor[0].es_principal = true
+      }
     },
     addVariante()
     {
@@ -917,10 +1086,18 @@ export default {
       let aux = {
           selectedColorRelacion: "",
           file: {},
+          es_principal: false,
+          posicion: 'frontal'
         }
       this.filesImagesColor.push(
       {...aux}
       )
+       if (this.filesImagesColor.length === 1){
+          this.filesImagesColor[0].es_principal = true
+          setTimeout(e => {
+            $("#radio_0").prop("checked", true);
+          },10)
+      }
     },
    seleccionarImg(file){
       file.selectedImagen = true;
@@ -936,6 +1113,24 @@ export default {
     customLabelRubro({nombre}){
       return `${nombre}`
     },
+    validatorImagenRelacion(){
+      let validator = true
+      this.filesImagesColor.forEach(e => {
+        if(Object.keys(e.file).length == 0){
+          validator = false
+        }
+      })
+      return validator;
+    },
+    validatorDisponibilidad(){
+      let validator = true
+      this.filesVariantes.forEach(e => {
+        if(e.selectedColorVariante == '' || e.selectedColorVariante == null || e.selectedTalleVariante == '' || e.selectedTalleVariante == null){
+          validator = false
+        }
+      })
+      return validator;
+    },
     saveAll(){
        this.$validator.validateAll("form-create").then(resp => 
         {
@@ -943,47 +1138,66 @@ export default {
           {
              this.$validator.validateAll("form-ajustes").then(resA => 
               {
-                if (resA && this.selectedRubro.length && this.selectedTipo !== ""){
-                  this.articulo.files = this.files
-                  this.articulo.rubros = this.selectedRubro
-                  this.articulo.tipo = this.selectedTipo
+                    if (resA){
+                      if(this.files.length){
+                        this.$validator.validateAll("form-disponibilidad").then(resD => 
+                      {
+                        if (resD && this.validatorDisponibilidad()){
+                            if (this.validatorImagenRelacion()){
+                              this.$validator.validateAll("form-relacionIC").then(resR => 
+                              {
+                                if (resR){
+                                    this.articulo.imagenes = this.files
+                                    this.articulo.rubros = this.selectedRubro
+                                    this.articulo.tipo = this.selectedTipo
 
-                  var dataform = new FormData();
-                  for( var i = 0; i < this.files.length; i++ ){
-                      let file = this.files[i].file;
-                      dataform.append('files[' + i + ']', file);
-                  }
-                  let data = JSON.stringify({
-                          articulo: this.articulo,
-                      });
-                  dataform.append('articulo',data)
+                                    var dataform = new FormData();
+                                    for( var i = 0; i < this.files.length; i++ ){
+                                        let file = this.files[i].file;
+                                        dataform.append('files[' + i + ']', file);
+                                    }
+                                    let data = JSON.stringify({
+                                            articulo: this.articulo,
+                                        });
+                                    dataform.append('articulo',data)
 
-                  CerService.post("/articulo/guardar",dataform,{
-                  headers:
-                    {
-                        'Content-Type': 'application/json',
-                    }
-                  })
-                  .then(response => 
-                  {
-                      if(response.res){
-                        this.msgAlert(response.msg,'success')
-                      } else {
-                        this.msgAlert(response.msg,'warning')
+                                    CerService.post("/articulo/guardar",dataform,{
+                                    headers:
+                                      {
+                                          'Content-Type': 'application/json',
+                                      }
+                                    })
+                                    .then(response => 
+                                    {
+                                        if(response.res){
+                                          this.msgAlert(response.msg,'success')
+                                        } else {
+                                          this.msgAlert(response.msg,'warning')
+                                        }
+                                    })
+                                    .catch(error => {
+                                      this.msgAlert('Ha ocurrido un error inesperado','error')
+                                    });
+                                  } else {
+                                    this.msgAlert('Por favor verifique el tab relacion Imagen-Color','warning')
+
+                                  }
+                          });
+                           } else {
+                                      this.msgAlert('La imagen es requerida en la relación Imagen-Color','warning')
+                            }
+                        } else {
+                          this.msgAlert('Por favor verifique el tab disponibilidad','warning')
+                        }
+                        })
+                      }else {
+                        this.msgAlert('Debe subir por lo menos una imagen del articulo en ajustes básicos','warning')
 
                       }
-                  })
-                  .catch(error => {
-                     this.msgAlert('Ha ocurrido un error inesperado','error')
-                  });
+                      
                 } else {
-                  if(this.selectedRubro.length == 0){
-                    this.selectedRubroValidation = true
-                  }
-                  if(this.selectedTipo == ""){
-                    this.selectedTipoValidation = true
-                  }
                   this.msgAlert('Por favor verifique el tab ajustes básicos','warning')
+
                 }
               })
           }
@@ -1000,7 +1214,7 @@ export default {
             toast: true,
             position: "top-end",
             showConfirmButton: false,
-            timer: 3000
+            timer: 4000
         })
         .fire({
             type: type,
@@ -1085,7 +1299,8 @@ export default {
                 file,
                 size: file.size,
                 type: file.type,
-                selectedImagen: false //esto es agregado nuevo
+                selectedImagen: false, //esto es agregado nuevo
+                es_principal: false //tambien es nuevo
               });
             })
             .catch(err => {
@@ -1123,7 +1338,7 @@ export default {
             this.minSize > 0 &&
             newFile.size < this.minSize
           ) {
-            this.$refs.upload.update(newFile, { error: "size",  selectedImagen: false /*agregado personal*/});
+            this.$refs.upload.update(newFile, { error: "size",  selectedImagen: false, es_principal: false /*agregado personal*/});
           }
         }
         if (newFile.progress !== oldFile.progress) {
@@ -1175,7 +1390,15 @@ export default {
           this.articulo.cantidad = 0
           this.maskCantidad = ""
         }
+    },
+    filesImagesColor: function(){
+      if (this.filesImagesColor.length === 1){
+          this.filesImagesColor[0].es_principal = true
+          setTimeout(e => {
+            $("#radio_0").prop("checked", true);
+          },10)      }
     }
+    
     
   }
 };

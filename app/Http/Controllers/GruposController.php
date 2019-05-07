@@ -19,7 +19,7 @@ class GruposController extends Controller
         $nombre = "talle";
         $nombre = strtolower($nombre);
         $grupo = Grupo::whereRaw('LOWER(nombre) = ?', [$nombre])->first();
-        return response()->json(['grupo' => $grupo->caracteristicas]); 
+        return response()->json(['talles' => $grupo->caracteristicas]); 
     }
 
     public function colores()
@@ -27,7 +27,7 @@ class GruposController extends Controller
         $nombre = "color";
         $nombre = strtolower($nombre);
         $grupo = Grupo::whereRaw('LOWER(nombre) = ?', [$nombre])->first();
-        return response()->json(['grupo' => $grupo->caracteristicas]); 
+        return response()->json(['colores' => $grupo->caracteristicas]); 
     }
 
     public function store(Request $request)
