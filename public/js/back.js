@@ -17962,22 +17962,10 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        base: 'http://localhost/barna/barna/public/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        base: '/barna/barna/public/'
-=======
-        //base: 'http://localhost:8000/',
->>>>>>> master
         base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-<<<<<<< HEAD
         base: '/afodi/barna/public/'
         /*
         api: {
@@ -17988,12 +17976,6 @@ module.exports = Cancel;
             base: '/'
         }*/
     } });
-=======
-        base: '/afodi/barna/public'
->>>>>>> master
-    }
-});
->>>>>>> master
 
 /***/ }),
 /* 51 */
@@ -102455,6 +102437,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 						__WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/banner/todos").then(function (response) {
 								if (response.banners) {
 										_this3.banners = response.banners;
+										_this3.totalRows;
 								}
 						}).catch(function (error) {
 								_this3.mensaje("error", "Ha ocurrido un error inesperado");
