@@ -17962,10 +17962,22 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        base: 'http://localhost/barna/barna/public/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
+    },
+    env: {
+        base: '/barna/barna/public/'
+=======
+        //base: 'http://localhost:8000/',
+>>>>>>> master
         base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
+<<<<<<< HEAD
         base: '/afodi/barna/public/'
         /*
         api: {
@@ -17976,6 +17988,12 @@ module.exports = Cancel;
             base: '/'
         }*/
     } });
+=======
+        base: '/afodi/barna/public'
+>>>>>>> master
+    }
+});
+>>>>>>> master
 
 /***/ }),
 /* 51 */
@@ -94224,6 +94242,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -94608,6 +94630,25 @@ var render = function() {
                         [_vm._v("Imágenes Prediseñadas")]
                       )
                     ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "cursor",
+                    attrs: { "aria-expanded": "false" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$router.push({ name: "banner" })
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-image" }),
+                    _c("span", { staticClass: "hide-menu" }, [_vm._v("Banner")])
                   ]
                 )
               ]),

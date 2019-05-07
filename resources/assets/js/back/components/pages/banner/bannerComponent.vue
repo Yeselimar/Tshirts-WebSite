@@ -323,6 +323,7 @@ export default
 	          	if(response.banners)
 	          	{
 	            	this.banners = response.banners;
+	            	this.totalRows
 	          	}
 	        })
 	        .catch(error => {
