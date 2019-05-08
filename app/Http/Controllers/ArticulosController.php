@@ -62,6 +62,7 @@ class ArticulosController extends Controller
         //$auxiliar["aksj"] = 6;
         //return $auxiliar["aksj"];//retorna el 6
 
+        dd($request);
         //Artículo
         $articulo = new Articulo;
         $articulo->tipo = $request->articulo['tipo'];

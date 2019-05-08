@@ -61,7 +61,9 @@
 #nuevoArticulo .form-control{
   height: auto !important
 }
-
+#nuevoArticulo .tab-contentGlobal{
+  min-height: 65vh
+}
 </style>
 <template>
   <div class="page-wrapper" id="nuevoArticulo">
@@ -157,7 +159,7 @@
                   </li>
                 </ul>
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content tab-contentGlobal">
                   <div class="tab-pane active show" id="ajustesbasicos" role="tabpanel">
                     <div class="card-body mt-4">
                       <div class="form-body d-flex justify-content-between flex-column flex-md-row">
@@ -676,7 +678,6 @@
                               <tr>
                                 <th class="text-center">Imagen</th>
                                 <th class="text-center">Color</th>
-                                <th class="text-center">Posición</th>
                                 <th class="text-center">Es Principal</th>
                                 <th class="text-center">Acciones</th>
                                 
@@ -710,8 +711,6 @@
                                       :custom-label="customLabelColor" 
                                       :show-labels="false"
                                       label="valor" 
-                                      @close="closeMultiCR(index,fileIC.selectedColorRelacion)"
-                                      @remove="removeMultiCR(index,fileIC.selectedColorRelacion)"
                                       track-by="valor" 
                                         v-bind:class="{'error-input error-input-multi': fileIC.selectedColorRelacion==''||fileIC.selectedColorRelacion==null}"
 
@@ -731,39 +730,7 @@
                                       >Campo requerido.</span>
 
                                 </td>
-                                <td class="text-center position-relative pb-3">
-                                    <multiselect
-                                      v-model="fileIC.posicionRelacion"
-                                      :options="optionsPosicion"
-                                      selectLabel =""
-                                      selectedLabel = ""
-                                      placeholder="Posición"
-                                      deselectLabel = ""
-                                      open-direction="bottom"
-                                      :multiple="false"
-                                      :hideSelected = "true"
-                                      :custom-label="customLabelPosicion" 
-                                      :show-labels="false"
-                                      label="nombre" 
-                                      track-by="nombre" 
-                                        v-bind:class="{'error-input error-input-multi': fileIC.posicionRelacion==''||fileIC.posicionRelacion==null}"
-
-                                      >
-                                        <template slot="option" slot-scope="props">
-                                          <div class="option__desc"><span class="option__title">{{ props.option.nombre }}</span></div>
-                                        </template>
-                                          <span slot="noResult">
-                                            No se encontraron resultados</span>
-                                            <span slot="noOptions">
-                                              Lista vacía</span>
-
-                                    </multiselect>
-                                     <span
-                                      class="error-text"
-                                      v-if="fileIC.posicionRelacion==''||fileIC.posicionRelacion==null"
-                                      >Campo requerido.</span>
-
-                                </td>
+                               
                                 
                                   <td class="text-center position-relative pb-4">  
                                       <label class="contenido">
@@ -793,9 +760,21 @@
                   </div>
                 </div>
 
-                <div class="tab-content">
+                <div class="tab-content d-flex justify-content-between align-items-center">
+                  <label class="contenido basis-33">
+                    Publicado
+                    <input type="checkbox"  id="publicado" v-model="articulo.publicado" name="publicado">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="contenido basis-33">
+                    Destacado
+                    <input type="checkbox"  id="destacado" v-model="articulo.destacado" name="destacado">
+                    <span class="checkmark"></span>
+                  </label>
                   
-                                  <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                  <label class="contenido basis-33">
+                     <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                   </label>
 
                 </div>
               </div>
@@ -928,11 +907,16 @@ export default {
         otros: '',
         imagenes: [],
         rubros: [],
+        talles: [],
+        colores: [],
+        talles_colores: [],
+        imagenes_colores: [],
         tipo: '',
         tipo_cantidad: '',
         cantidad: 0,
-        descripcion: ''
-
+        descripcion: '',
+        destacado: false,
+        publicado:false
       },
       posicionColor: [],
       table_responsive: false,
@@ -1033,7 +1017,6 @@ export default {
   methods: {
     eventSelectColor(selectedOption, id){
       let aux = {
-        id: id,
         color: selectedOption,
         position: {
             existFrontal: false,
@@ -1044,12 +1027,6 @@ export default {
     },
     eventRemoveColor(removedOption, id){
       this.posicionColor.splice(id,1)
-    },
-    closeMultiCR(index,obj){
-        console.log(index, obj)
-    },
-    removeMultiCR(index, obj){
-        console.log(index, obj)
     },
     getPosicion(){
       this.isLoading = true
@@ -1272,18 +1249,23 @@ export default {
                                     this.articulo.imagenes = this.files
                                     this.articulo.rubros = this.selectedRubro
                                     this.articulo.tipo = this.selectedTipo
+                                    this.articulo.talles = this.selectedTallas
+                                    this.articulo.colores = this.selectedColores
+                                    this.articulo.tipo_cantidad = this.selectedCantidad
+                                    this.articulo.talles_colores = this.filesVariantes
+                                    this.articulo.imagenes_colores = this.filesImagesColor
 
                                     var dataform = new FormData();
                                     for( var i = 0; i < this.files.length; i++ ){
                                         let file = this.files[i].file;
-                                        dataform.append('files[' + i + ']', file);
+                                        dataform.append('imagenes[' + i + ']', file);
                                     }
                                     let data = JSON.stringify({
                                             articulo: this.articulo,
                                         });
                                     dataform.append('articulo',data)
-
-                                    CerService.post("/articulo/guardar",dataform,{
+                                    console.log(dataform);
+                                    CerService.post("/articulo/no-disenable/guardar",dataform,{
                                     headers:
                                       {
                                           'Content-Type': 'application/json',
@@ -1291,6 +1273,7 @@ export default {
                                     })
                                     .then(response => 
                                     {
+                                        console.log(response)
                                         if(response.res){
                                           this.msgAlert(response.msg,'success')
                                         } else {
