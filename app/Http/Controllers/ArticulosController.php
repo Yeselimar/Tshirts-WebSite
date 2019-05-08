@@ -58,7 +58,6 @@ class ArticulosController extends Controller
 
     public function storenodisenable(Request $request)
     {
-
         //Convirtiendo mis string a json
         $aux = json_decode($request->articulo, true);
         $requests = $aux["articulo"];
@@ -76,7 +75,6 @@ class ArticulosController extends Controller
         }
 
         //Validando para devolver una respuesta al frontend 
-        
         if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
         {
             return response()->json(["res"=>2,"msg"=>"Disculpe selecciono una imagen con el mismo color"]);
@@ -110,7 +108,7 @@ class ArticulosController extends Controller
             $articulo_rubro = new ArticuloRubro;
             $articulo_rubro->articulo_id = $articulo->id;
             $articulo_rubro->rubro_id = $rubro['id'];
-            //$articulo_rubro->save();
+            $articulo_rubro->save();
         }
 
         //Características Talles
@@ -121,7 +119,7 @@ class ArticulosController extends Controller
                 $articulo_caracteristica = new ArticuloCaracteristica;
                 $articulo_caracteristica->articulo_id = $articulo->id;
                 $articulo_caracteristica->caracteristica_id = $talle['id'];
-                //$articulo_caracteristica->save();
+                $articulo_caracteristica->save();
             }
         }
         
@@ -131,7 +129,7 @@ class ArticulosController extends Controller
             $articulo_caracteristica = new ArticuloCaracteristica;
             $articulo_caracteristica->articulo_id = $articulo->id;
             $articulo_caracteristica->caracteristica_id = $color['id'];
-            //$articulo_caracteristica->save();
+            $articulo_caracteristica->save();
         }
 
         //Imágenes Artículos
@@ -169,7 +167,6 @@ class ArticulosController extends Controller
         }
 
         //Guardando las Talles y Colores 
-
         $total_cantidad = 0;
         foreach ($requests["talles_colores"] as $index)
         {
