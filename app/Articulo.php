@@ -35,4 +35,9 @@ class Articulo extends Model
     {
         return $this->hasMany('App\Banner','articulo_id');
     }
+
+    public static function carpeta()
+    {
+        return 'img/articulos/';
+    }
 }

@@ -19,3 +19,5 @@ composer\.lock
 resources/assets/js/config\.js
 
 public/img/predisenadas/
+
+public/img/articulos/

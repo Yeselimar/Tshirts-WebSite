@@ -108344,7 +108344,7 @@ var render = function() {
                                         )
                                       },
                                       attrs: {
-                                        options: ["Ropa", "Otros"],
+                                        options: ["ropa", "otros"],
                                         selectLabel: "",
                                         hideSelected: true,
                                         selectedLabel: "",
