@@ -89002,7 +89002,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     } else {
       this.collapse = false;
     }
-    console.log("ahí voy");
     this.todosrubros();
     this.rubrosfavoritos();
   },
@@ -91437,272 +91436,343 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                     }*/
             ],
             projects: [],
-            productDesigns: [{
-                id: 10020,
-                url: 'img/product/12.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Hombre',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1589,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 54632,
-                url: 'img/product/8.jpg',
-                categoria: 'Mujer',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 345645,
-                url: 'img/product/7.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Mujer',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 14562,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 2,
-                url: 'img/product/8.jpg',
-                categoria: 'Niño',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 31245,
-                url: 'img/product/7.jpg',
-                categoria: 'Niña',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 400,
-                url: 'img/product/6.jpg',
-                categoria: 'Hombre',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }, {
-                id: 10748,
-                url: 'img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Niña',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1999,
-                url: 'img/product/2.jpg',
-                categoria: 'Niña',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 102,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 513,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 45582,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 321,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 21112,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 22273,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 5564,
-                url: 'img/product/11.jpg',
-                titulo: 'Tienza jackets',
-                categoria: 'Buzo',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }],
-            products: [{
-                id: 4440,
-                url: 'img/product/12.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Hombre',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: false
-            }, {
-                id: 555411,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 2665,
-                url: 'img/product/8.jpg',
-                categoria: 'Mujer',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 105633,
-                url: 'img/product/7.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Niño',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 555451,
-                categoria: 'Niño',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 5552,
-                url: 'img/product/8.jpg',
-                categoria: 'Niño',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 5553,
-                url: 'img/product/7.jpg',
-                categoria: 'Niña',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 4454,
-                url: 'img/product/6.jpg',
-                categoria: 'Hombre',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: false
-            }, {
-                id: 5550,
-                url: 'img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Mujer',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: false
-            }, {
-                id: 5661,
-                url: 'img/product/2.jpg',
-                categoria: 'Niña',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 542,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 45543,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Niña',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 2222,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 3,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 1111,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 223,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }],
+            productDesigns: [
+                /*
+                {
+                    id: 10020,
+                    url: 'img/product/12.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Hombre',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: true
+                },
+                {
+                    id: 1589,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 54632,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Mujer',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 345645,
+                    url: 'img/product/7.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Mujer',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 14562,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 2,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Niño',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 31245,
+                    url: 'img/product/7.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Carniut jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 400,
+                    url: 'img/product/6.jpg',
+                    categoria: 'Hombre',
+                    titulo: 'Tienza jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: true
+                },
+                 {
+                    id: 10748,
+                    url: 'img/product/1.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Niña',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: true
+                },
+                {
+                    id: 1999,
+                    url: 'img/product/2.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 102,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 513,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 45582,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 321,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 21112,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 22273,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 5564,
+                    url: 'img/product/11.jpg',
+                    titulo: 'Tienza jackets',
+                    categoria: 'Buzo',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: true
+                },*/
+            ],
+            products: [
+                /*
+                {
+                    id: 4440,
+                    url: 'img/product/12.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Hombre',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: false
+                },
+                {
+                    id: 555411,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 2665,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Mujer',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 105633,
+                    url: 'img/product/7.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Niño',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 555451,
+                    categoria: 'Niño',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 5552,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Niño',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 5553,
+                    url: 'img/product/7.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Carniut jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 4454,
+                    url: 'img/product/6.jpg',
+                    categoria: 'Hombre',
+                    titulo: 'Tienza jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: false
+                },
+                 {
+                    id: 5550,
+                    url: 'img/product/1.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Mujer',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: false
+                },
+                {
+                    id: 5661,
+                    url: 'img/product/2.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 542,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 45543,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Niña',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 2222,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 3,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 1111,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 223,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                }
+                */
+            ],
             url: '',
             isLoading: false,
             showNav: true
@@ -91710,14 +91780,36 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     methods: {
-        obtenerrubros: function obtenerrubros() {
+        articulosdisenables: function articulosdisenables() {
             var _this = this;
 
-            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
-                _this.tipos_rubros = response.rubros;
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/disenables/todos/api").then(function (response) {
+                _this.productDesigns = response.articulos;
                 _this.isLoading = false;
             }).catch(function (error) {
                 _this.isLoading = false;
+                console.log('Ha ocurrido un error inesperado');
+            });
+        },
+        articulosnodisenables: function articulosnodisenables() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/no-disenables/todos/api").then(function (response) {
+                _this2.products = response.articulos;
+                _this2.isLoading = false;
+            }).catch(function (error) {
+                _this2.isLoading = false;
+                console.log('Ha ocurrido un error inesperado');
+            });
+        },
+        obtenerrubros: function obtenerrubros() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
+                _this3.tipos_rubros = response.rubros;
+                _this3.isLoading = false;
+            }).catch(function (error) {
+                _this3.isLoading = false;
                 console.log('Ha ocurrido un error inesperado');
             });
         },
@@ -91729,14 +91821,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
         },
         addCart: function addCart(product) {
-            var _this2 = this;
+            var _this4 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddCart', _extends({}, product)).then(function (res) {
-                    _this2.isLoading = false;
+                    _this4.isLoading = false;
                     if (res === 1) {
-                        _this2.$swal.mixin({
+                        _this4.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91746,7 +91838,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su carrito exitosamente"
                         });
                     } else {
-                        _this2.$swal.mixin({
+                        _this4.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91770,14 +91862,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }
         },
         addBag: function addBag(product) {
-            var _this3 = this;
+            var _this5 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddBag', _extends({}, product)).then(function (res) {
-                    _this3.isLoading = false;
+                    _this5.isLoading = false;
                     if (res === 1) {
-                        _this3.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91787,7 +91879,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su cesta exitosamente"
                         });
                     } else {
-                        _this3.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91823,7 +91915,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     },
     mounted: function mounted() {
-        var _this4 = this;
+        var _this6 = this;
 
         var element = document.getElementById("header-top");
         var options = {
@@ -91833,11 +91925,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.$scrollTo(element, 0, options);
         $(window).resize(function (event) {
             event.preventDefault();
-            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this4.max = 6;else if (document.body.clientWidth < 460) _this4.max = 3;else _this4.max = 12;
+            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this6.max = 6;else if (document.body.clientWidth < 460) _this6.max = 3;else _this6.max = 12;
         });
     },
     created: function created() {
         this.obtenerrubros();
+
+        this.articulosdisenables();
+        this.articulosnodisenables();
 
         if (this.getIsDesign) {
             this.projects = this.productDesigns;
