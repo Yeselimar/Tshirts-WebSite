@@ -64,11 +64,17 @@ const router = new VueRouter({
                     meta: { requiresAuth: true } 
                 },
                 {
-                    path: 'nuevoArticulo',
+                    path: 'nuevo-articulo',
                     name: 'nuevoArticulo',
                     component: Vue.component( 'nuevoArticulo', require( './components/pages/articulos/newArticuloComponent.vue' ) ),
                     meta: { requiresAuth: true } 
-                },  
+                },
+                {
+                    path: 'articulo/:id/edit',
+                    name: 'editArticulo',
+                    component: Vue.component( 'editArticulo', require( './components/pages/articulos/newArticuloComponent.vue' ) ),
+                    meta: { requiresAuth: true } 
+                },    
                 {
                     path: 'articulos',
                     name: 'articulos',
