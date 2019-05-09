@@ -65,11 +65,11 @@ const router = new VueRouter({
 					path: 'pedido-generado',
 					name: 'pedido-generado',
 					component: Vue.component( 'Pedidogenerado', require( './components/pages/pedidogenerado/pedidogeneradoComponent.vue' ) ),
-					meta: { requiresAuth: false } 
+					meta: { requiresAuth: false }
 
 				},
 				{
-					path: 'disenar',
+					path: 'disenar/:id',
 					name: 'disenar',
 					component: Vue.component( 'Disenar', require( './components/pages/disenar/disenarComponent.vue' ) ),
 					meta: { requiresAuth: true }
@@ -141,8 +141,8 @@ router.beforeEach((to, from, next) => {
 										path: Config.env.base,
 										params: { nextUrl: to.fullPath }
 								})
-									}			
-							
+									}
+
 							}
 								*/
 								next()

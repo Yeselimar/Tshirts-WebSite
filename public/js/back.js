@@ -1316,7 +1316,7 @@ var _get = _interopRequireDefault(__webpack_require__(117));
 
 var _memoize = _interopRequireDefault(__webpack_require__(118));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _inspect = __webpack_require__(1);
 
@@ -2594,6 +2594,73 @@ var index_esm = {
 /***/ }),
 /* 16 */,
 /* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(102);
+
+
+var CerService = {};
+
+CerService.setToken = function (token) {
+    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
+};
+
+CerService.get = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.delete = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error al Eliminar');
+    });
+};
+
+CerService.post = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.put = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
+        return res.data;
+    });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (CerService);
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2674,6 +2741,8 @@ var _default = warn;
 exports.default = _default;
 
 /***/ }),
+<<<<<<< HEAD
+=======
 /* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2741,6 +2810,7 @@ CerService.put = function (endpoint, json) {
 /* harmony default export */ __webpack_exports__["a"] = (CerService);
 
 /***/ }),
+>>>>>>> master
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17737,12 +17807,28 @@ module.exports = Cancel;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+    /* api: {
+          base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+          token: 'ebf8ebbc77b700ed77d14afc03467335'
+      },
+      env: {
+      	base: '/afodi/barna/public/'
+      }*/
+
     api: {
+<<<<<<< HEAD
+        base: 'http://localhost:8000/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
+    },
+    env: {
+        base: '/'
+=======
         base: 'http://localhost/barna/barna/public/',
         token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
         base: '/barna/barna/public/'
+>>>>>>> master
     }
 });
 
@@ -17861,7 +17947,7 @@ exports.default = void 0;
 
 var _dom = __webpack_require__(9);
 
-var _warn = __webpack_require__(17);
+var _warn = __webpack_require__(18);
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -72995,7 +73081,7 @@ var _bvEvent = _interopRequireDefault(__webpack_require__(69));
 
 var _keyCodes = _interopRequireDefault(__webpack_require__(33));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _dom = __webpack_require__(9);
 
@@ -75863,7 +75949,7 @@ var _range = _interopRequireDefault(__webpack_require__(459));
 
 var _toString = _interopRequireDefault(__webpack_require__(53));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _inspect = __webpack_require__(1);
 
@@ -77032,7 +77118,7 @@ var _popper = _interopRequireDefault(__webpack_require__(32));
 
 var _popover = _interopRequireDefault(__webpack_require__(189));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _env = __webpack_require__(23);
 
@@ -78632,7 +78718,7 @@ var _vue = _interopRequireDefault(__webpack_require__(0));
 
 var _portalVue = __webpack_require__(198);
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _dom = __webpack_require__(9);
 
@@ -78798,7 +78884,7 @@ var _popper = _interopRequireDefault(__webpack_require__(32));
 
 var _tooltip = _interopRequireDefault(__webpack_require__(128));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _env = __webpack_require__(23);
 
@@ -84358,7 +84444,7 @@ var _memoize = _interopRequireDefault(__webpack_require__(118));
 
 var _upperFirst = _interopRequireDefault(__webpack_require__(122));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _array = __webpack_require__(20);
 
@@ -86938,7 +87024,7 @@ exports.default = exports.BvModalEvent = void 0;
 
 var _bvEvent = _interopRequireDefault(__webpack_require__(69));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _object = __webpack_require__(10);
 
@@ -87039,7 +87125,7 @@ var _inspect = __webpack_require__(1);
 
 var _object = __webpack_require__(10);
 
-var _warn = __webpack_require__(17);
+var _warn = __webpack_require__(18);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -88193,7 +88279,7 @@ var _looseEqual = _interopRequireDefault(__webpack_require__(34));
 
 var _toString = _interopRequireDefault(__webpack_require__(53));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _dom = __webpack_require__(9);
 
@@ -88593,7 +88679,7 @@ var _vue = _interopRequireDefault(__webpack_require__(0));
 
 var _popover = _interopRequireDefault(__webpack_require__(189));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _toolpop = _interopRequireDefault(__webpack_require__(190));
 
@@ -89366,7 +89452,7 @@ exports.default = void 0;
 
 var _looseEqual = _interopRequireDefault(__webpack_require__(34));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _inspect = __webpack_require__(1);
 
@@ -91302,7 +91388,7 @@ exports.default = void 0;
 
 var _looseEqual = _interopRequireDefault(__webpack_require__(34));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _inspect = __webpack_require__(1);
 
@@ -92203,7 +92289,7 @@ var _vue = _interopRequireDefault(__webpack_require__(0));
 
 var _id = _interopRequireDefault(__webpack_require__(22));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _dom = __webpack_require__(9);
 
@@ -92488,7 +92574,7 @@ var _inspect = __webpack_require__(1);
 
 var _object = __webpack_require__(10);
 
-var _warn = __webpack_require__(17);
+var _warn = __webpack_require__(18);
 
 var _toast = _interopRequireWildcard(__webpack_require__(197));
 
@@ -92771,7 +92857,7 @@ var _vue = _interopRequireDefault(__webpack_require__(0));
 
 var _tooltip = _interopRequireDefault(__webpack_require__(128));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _toolpop = _interopRequireDefault(__webpack_require__(190));
 
@@ -93087,7 +93173,7 @@ exports.default = void 0;
 
 var _observeDom = _interopRequireDefault(__webpack_require__(54));
 
-var _warn = _interopRequireDefault(__webpack_require__(17));
+var _warn = _interopRequireDefault(__webpack_require__(18));
 
 var _dom = __webpack_require__(9);
 
@@ -93682,7 +93768,7 @@ exports.default = _default;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /*
 |-------------------------------------------------------------------------------
 | VUEX modules/index.js
@@ -93811,9 +93897,15 @@ var getters = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+<<<<<<< HEAD
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexStoreBack__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(17);
+=======
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexStoreBack__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(18);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(50);
 
 
@@ -94037,7 +94129,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 //
 //
 //
@@ -94323,7 +94415,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -95193,7 +95285,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 //
 //
 //
@@ -95655,7 +95747,7 @@ exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
@@ -97158,7 +97250,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 //
@@ -98359,7 +98451,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 //
@@ -99572,7 +99664,7 @@ exports.push([module.i, "\n.hu-color-picker\r\n{\r\n    background: #e9ecef !imp
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__caohenghu_vue_colorpicker__ = __webpack_require__(534);
@@ -102384,7 +102476,7 @@ exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
@@ -103929,7 +104021,7 @@ exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_multiselect__ = __webpack_require__(551);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_multiselect__);
@@ -111698,7 +111790,7 @@ exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);

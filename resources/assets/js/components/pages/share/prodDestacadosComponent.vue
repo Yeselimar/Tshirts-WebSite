@@ -135,7 +135,7 @@ import { mapGetters } from 'vuex'
             }
         },
         computed: {
-            
+
             ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
         },
         mounted() {
@@ -149,7 +149,7 @@ import { mapGetters } from 'vuex'
                 force: true
                 };
                 this.$scrollTo(element, 0, options);
-                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+                this.$router.push({ name: 'disenar', params: { id: idProd } })
 
             },
             verDetalle (idProd){
@@ -161,20 +161,20 @@ import { mapGetters } from 'vuex'
                     };
                     this.$scrollTo(element, 0, options);
                 }
-                
+
                 this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
 
             },
             llenarItems(){
                 this.items = []
-                setTimeout(e => { 
-					
+                setTimeout(e => {
+
                 if(this.getIsDesign){
                     this.items = this.productDesigns
                 } else {
                     this.items = this.products
                 }
-                setTimeout(e => { 
+                setTimeout(e => {
                     $('.product-slider').owlCarousel({
                             loop: false,
                             rewind: true,
@@ -198,8 +198,8 @@ import { mapGetters } from 'vuex'
                                 }
                             }
                         });
-                },10)	
-               },10)	
+                },10)
+               },10)
 
             }
         },

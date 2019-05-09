@@ -15,7 +15,7 @@
 
 .filter:hover {
 	background:lightgray;
-} 
+}
 
 .projects {
 	display:flex;
@@ -45,7 +45,7 @@
     margin: 5px;
     flex-basis: 24%;
 	box-shadow:0px 2px 8px lightgrey;
-	
+
 }
 @media (max-width: 980px) {
    .project {
@@ -110,7 +110,7 @@
                         </transition-group>
                         <p class="center-element no-found-search"  v-if="totalI === 0">
                           No hay resultados</p>
-                        
+
                     </div>
                     <div class="text-center pt-5" v-if="isMax">
                         <button @click="verMas" class="site-btn sb-line sb-dark">VER MÁS</button>
@@ -120,12 +120,12 @@
             <!-- Product filter section end -->
 
 
-          
+
     		<loading v-if="isLoading"></loading>
 
             <!--modals-->
 
-            
+
             <!--end modals -->
     </div>
 
@@ -139,7 +139,7 @@ import prodDestacadosComponent from "../../../components/pages/share/prodDestaca
 import { mapGetters } from 'vuex'
 
 
- 
+
 export default {
         name:'homeComponent',
 		components: {
@@ -545,7 +545,8 @@ export default {
 		},
 		methods: {
             disenar (idProd){
-                this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
+               this.$router.push({ name: 'disenar', params: { id: idProd } })
+               console.log('helloo ili')
             },
             verDetalle (idProd){
                 this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
@@ -666,7 +667,7 @@ export default {
                                 this.max = 6
                             else if(document.body.clientWidth < 460)
                                     this.max = 3
-                                else 
+                                else
                                      this.max = 12
             });
         },
@@ -680,13 +681,13 @@ export default {
 				this.max = 6
 			else if(document.body.clientWidth < 460)
                     this.max = 3
-                else 
+                else
                     this.max = 12
-			
-            this.isLoading = true  
+
+            this.isLoading = true
 		},
 		beforeMount() {
-			this.isLoading = false	
+			this.isLoading = false
         },
           watch: {
             getIsDesign: function(){
