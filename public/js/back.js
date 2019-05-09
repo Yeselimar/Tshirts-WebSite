@@ -105018,15 +105018,28 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
   },
 
   created: function created() {
+<<<<<<< HEAD
+    if (this.$route.name == 'nuevoArticulo') {
+
+=======
     if (Object.keys(this.$route.params.length !== 0)) {
       this.isEdit = true;
       this.serviceArticulo(this.$route.params.id);
     } else {
+>>>>>>> master
       this.isEdit = false;
       this.getColores();
       this.getRubros();
       this.getTalles();
       this.getPosicion();
+<<<<<<< HEAD
+    } else {
+      if (Object.keys(this.$route.params).length !== 0) {
+        this.isEdit = true;
+        this.serviceArticulo(this.$route.params.id);
+      }
+=======
+>>>>>>> master
     }
 
     if (document.body.clientWidth <= 900) {
@@ -105046,8 +105059,13 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
 
       this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulo/no-disenable/" + id + "/editar").then(function (response) {
+<<<<<<< HEAD
+        if (response.res == 1) {
+          _this2.imagenesarticulos = response.articulo.imagenesarticulos;
+=======
         console.log(response);
         if (response.res) {
+>>>>>>> master
           _this2.getColores();
           _this2.getRubros();
           _this2.getTalles();
@@ -105335,19 +105353,31 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         });
                         dataform.append('articulo', data);
                         console.log(dataform);
+                        _this11.isLoading = true;
                         __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulo/no-disenable/guardar", dataform, {
                           headers: {
                             'Content-Type': 'application/json'
                           }
                         }).then(function (response) {
                           console.log(response);
+<<<<<<< HEAD
+                          if (response.res == 1) {
+                            _this11.msgAlert(response.msg, 'success');
+                            _this11.$router.push({ name: 'articulos' });
+=======
                           if (response.res) {
                             _this11.msgAlert(response.msg, 'success');
+>>>>>>> master
                           } else {
                             _this11.msgAlert(response.msg, 'warning');
                           }
+                          _this11.isLoading = false;
                         }).catch(function (error) {
                           _this11.msgAlert('Ha ocurrido un error inesperado', 'error');
+<<<<<<< HEAD
+                          _this11.isLoading = false;
+=======
+>>>>>>> master
                         });
                       } else {
                         var element = document.getElementById("tabcontent");
@@ -108850,6 +108880,21 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
+<<<<<<< HEAD
+      !_vm.isLoading
+        ? _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-title" }, [
+                _c("h4", [
+                  !_vm.isEdit
+                    ? _c("strong", [_vm._v("Nuevo Artículo")])
+                    : _c("strong", [_vm._v("Editar Artículo")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pull-right" }, [
+                  _c(
+                    "a",
+=======
       _c("div", { staticClass: "container-fluid" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-title" }, [
@@ -108880,38 +108925,97 @@ var render = function() {
               _c("div", { staticClass: "position-relative basis-33 pb-3" }, [
                 _c("input", {
                   directives: [
+>>>>>>> master
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.articulo.nombre,
-                      expression: "articulo.nombre"
-                    },
-                    { name: "validate", rawName: "v-validate" }
-                  ],
-                  staticClass: "form-control input-rounded input-sm",
-                  class: {
-                    "error-input": _vm.errors.first("nombre", "form-create")
-                  },
-                  attrs: {
-                    name: "nombre",
-                    id: "nombre",
-                    type: "text",
-                    placeholder: "Nombre del Artículo",
-                    autocomplete: "off",
-                    "data-vv-scope": "form-create",
-                    "data-vv-rules": "required:true|min:3"
-                  },
-                  domProps: { value: _vm.articulo.nombre },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                      staticClass: "btn btn-sm btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.$router.push({ name: "articulos" })
+                        }
                       }
-                      _vm.$set(_vm.articulo, "nombre", $event.target.value)
-                    }
-                  }
-                }),
+                    },
+                    [_vm._v("Ir a Listado de Artículos")]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "d-flex" }, [
+                  _c(
+                    "div",
+                    { staticClass: "position-relative basis-33 pb-3" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.articulo.nombre,
+                            expression: "articulo.nombre"
+                          },
+                          { name: "validate", rawName: "v-validate" }
+                        ],
+                        staticClass: "form-control input-rounded input-sm",
+                        class: {
+                          "error-input": _vm.errors.first(
+                            "nombre",
+                            "form-create"
+                          )
+                        },
+                        attrs: {
+                          name: "nombre",
+                          id: "nombre",
+                          type: "text",
+                          placeholder: "Nombre del Artículo",
+                          autocomplete: "off",
+                          "data-vv-scope": "form-create",
+                          "data-vv-rules": "required:true|min:3"
+                        },
+                        domProps: { value: _vm.articulo.nombre },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.articulo,
+                              "nombre",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.firstByRule(
+                        "nombre",
+                        "required",
+                        "form-create"
+                      )
+                        ? _c("span", { staticClass: "error-text" }, [
+                            _vm._v("Campo requerido.")
+                          ])
+                        : _vm.errors.firstByRule("nombre", "min", "form-create")
+                        ? _c("span", { staticClass: "error-text" }, [
+                            _vm._v("Mínimo 3 caracteres.")
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
+<<<<<<< HEAD
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row", attrs: { id: "tabcontent" } }, [
+                  _c("div", { staticClass: "col-lg-12" }, [
+                    _c("div", { staticClass: "card" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "tab-content tab-contentGlobal" },
+                        [
+=======
                 _vm.errors.firstByRule("nombre", "required", "form-create")
                   ? _c("span", { staticClass: "error-text" }, [
                       _vm._v("Campo requerido.")
@@ -108940,414 +109044,221 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "card-body mt-4" }, [
+>>>>>>> master
                           _c(
                             "div",
                             {
-                              staticClass:
-                                "form-body d-flex justify-content-between flex-column flex-md-row"
+                              staticClass: "tab-pane active show",
+                              attrs: { id: "ajustesbasicos", role: "tabpanel" }
                             },
                             [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 position-relative ppbb-2"
-                                },
-                                [
-                                  _c(
-                                    "multiselect",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate"
-                                        }
-                                      ],
-                                      class: {
-                                        "error-input error-input-multi": _vm.errors.first(
+                              _c("div", { staticClass: "card-body mt-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "form-body d-flex justify-content-between flex-column flex-md-row"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "basis-46 position-relative ppbb-2"
+                                      },
+                                      [
+                                        _c(
+                                          "multiselect",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate"
+                                              }
+                                            ],
+                                            class: {
+                                              "error-input error-input-multi": _vm.errors.first(
+                                                "rubro",
+                                                "form-ajustes"
+                                              )
+                                            },
+                                            attrs: {
+                                              options: _vm.optionRubros,
+                                              selectLabel: "",
+                                              selectedLabel: "",
+                                              placeholder: "Agregar rubro",
+                                              "open-direction": "bottom",
+                                              multiple: true,
+                                              clearOnSelect: true,
+                                              hideSelected: true,
+                                              "custom-label":
+                                                _vm.customLabelRubro,
+                                              "show-labels": false,
+                                              label: "nombre",
+                                              "track-by": "nombre",
+                                              "data-vv-rules": "required",
+                                              "data-vv-scope": "form-ajustes",
+                                              "data-vv-name": "rubro",
+                                              "data-vv-value-path": "rubro"
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "option",
+                                                  fn: function(props) {
+                                                    return [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "option__desc"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "option__title"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  props.option
+                                                                    .nombre
+                                                                )
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  }
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              241180323
+                                            ),
+                                            model: {
+                                              value: _vm.selectedRubro,
+                                              callback: function($$v) {
+                                                _vm.selectedRubro = $$v
+                                              },
+                                              expression: "selectedRubro"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noResult" },
+                                                slot: "noResult"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                No se encontraron resultados"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noOptions" },
+                                                slot: "noOptions"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                Lista vacía"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.first(
                                           "rubro",
                                           "form-ajustes"
                                         )
-                                      },
-                                      attrs: {
-                                        options: _vm.optionRubros,
-                                        selectLabel: "",
-                                        selectedLabel: "",
-                                        placeholder: "Agregar rubro",
-                                        "open-direction": "bottom",
-                                        multiple: true,
-                                        clearOnSelect: true,
-                                        hideSelected: true,
-                                        "custom-label": _vm.customLabelRubro,
-                                        "show-labels": false,
-                                        label: "nombre",
-                                        "track-by": "nombre",
-                                        "data-vv-rules": "required",
-                                        "data-vv-scope": "form-ajustes",
-                                        "data-vv-name": "rubro",
-                                        "data-vv-value-path": "rubro"
-                                      },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "option",
-                                          fn: function(props) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                { staticClass: "option__desc" },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "option__title"
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          props.option.nombre
-                                                        )
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ]),
-                                      model: {
-                                        value: _vm.selectedRubro,
-                                        callback: function($$v) {
-                                          _vm.selectedRubro = $$v
-                                        },
-                                        expression: "selectedRubro"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noResult" },
-                                          slot: "noResult"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                No se encontraron resultados"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noOptions" },
-                                          slot: "noOptions"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                Lista vacía"
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.first("rubro", "form-ajustes")
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Campo requerido.")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 position-relative ppbb-2"
-                                },
-                                [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.articulo.marca,
-                                        expression: "articulo.marca"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "form-control input-rounded input-sm",
-                                    attrs: {
-                                      name: "marca",
-                                      id: "marca",
-                                      type: "text",
-                                      placeholder: "Ingrese Marca",
-                                      autocomplete: "off"
-                                    },
-                                    domProps: { value: _vm.articulo.marca },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.articulo,
-                                          "marca",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price"
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 position-relative ppbb-2",
-                                  class: {
-                                    "basis-23":
-                                      _vm.selectedTipo !== null &&
-                                      _vm.selectedTipo.toUpperCase() == "OTROS"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "multiselect",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate"
-                                        }
-                                      ],
-                                      class: {
-                                        "error-input error-input-multi": _vm.errors.first(
-                                          "tipo",
-                                          "form-ajustes"
-                                        )
-                                      },
-                                      attrs: {
-                                        options: ["Ropa", "Otros"],
-                                        selectLabel: "",
-                                        hideSelected: true,
-                                        selectedLabel: "",
-                                        placeholder: "Seleccione tipo",
-                                        deselectLabel: "",
-                                        "open-direction": "bottom",
-                                        multiple: false,
-                                        "data-vv-rules": "required",
-                                        "data-vv-scope": "form-ajustes",
-                                        "data-vv-name": "tipo",
-                                        "data-vv-value-path": "tipo"
-                                      },
-                                      model: {
-                                        value: _vm.selectedTipo,
-                                        callback: function($$v) {
-                                          _vm.selectedTipo = $$v
-                                        },
-                                        expression: "selectedTipo"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noResult" },
-                                          slot: "noResult"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                No se encontraron resultados"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noOptions" },
-                                          slot: "noOptions"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                Lista vacía"
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.first("tipo", "form-ajustes")
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Campo requerido.")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _vm.selectedTipo !== null &&
-                              _vm.selectedTipo.toUpperCase() == "OTROS"
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "basis-23 position-relative ppbb-2"
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.articulo.otros,
-                                            expression: "articulo.otros"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate"
-                                          }
-                                        ],
-                                        staticClass:
-                                          "form-control input-rounded input-sm",
-                                        class: {
-                                          "error-input": _vm.errors.first(
-                                            "otros",
-                                            "form-ajustes"
-                                          )
-                                        },
-                                        attrs: {
-                                          name: "otros",
-                                          id: "otros",
-                                          type: "text",
-                                          placeholder: "Calzado, Tazas...",
-                                          autocomplete: "off",
-                                          "data-vv-scope": "form-ajustes",
-                                          "data-vv-rules": "required:true|min:3"
-                                        },
-                                        domProps: { value: _vm.articulo.otros },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.articulo,
-                                              "otros",
-                                              $event.target.value
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Campo requerido.")]
                                             )
-                                          }
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _vm.errors.firstByRule(
-                                        "otros",
-                                        "required",
-                                        "form-ajustes"
-                                      )
-                                        ? _c(
-                                            "span",
-                                            { staticClass: "error-text" },
-                                            [_vm._v("Campo requerido.")]
-                                          )
-                                        : _vm.errors.firstByRule(
-                                            "otros",
-                                            "min",
-                                            "form-ajustes"
-                                          )
-                                        ? _c(
-                                            "span",
-                                            { staticClass: "error-text" },
-                                            [_vm._v("Mínimo 3 caracteres.")]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 d-flex align-items-baseline"
-                                },
-                                [
-                                  _c("label", { staticClass: "mr-2 mb-0" }, [
-                                    _vm._v("Precio General:")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "position-relative ppbb-2" },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.maskAmount,
-                                            expression: "maskAmount"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate"
-                                          },
-                                          {
-                                            name: "money",
-                                            rawName: "v-money",
-                                            value: _vm.money,
-                                            expression: "money"
-                                          }
-                                        ],
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
                                         staticClass:
-                                          "form-control input-rounded input-sm",
-                                        class: {
-                                          "error-input": _vm.errors.first(
-                                            "amount",
-                                            "form-ajustes"
-                                          )
-                                        },
-                                        attrs: {
-                                          type: "text",
-                                          id: "amount",
-                                          name: "amount",
-                                          spellcheck: "false",
-                                          placeholder: "Ingrese Precio General",
-                                          "data-vv-scope": "form-ajustes",
-                                          "data-vv-rules": "required|amountvv",
-                                          autocomplete: "off"
-                                        },
-                                        domProps: { value: _vm.maskAmount },
-                                        on: {
-                                          keyup: function($event) {
-                                            return _vm.setPaymentAmount()
-                                          },
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
+                                          "basis-46 position-relative ppbb-2"
+                                      },
+                                      [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.articulo.marca,
+                                              expression: "articulo.marca"
                                             }
-                                            _vm.maskAmount = $event.target.value
+                                          ],
+                                          staticClass:
+                                            "form-control input-rounded input-sm",
+                                          attrs: {
+                                            name: "marca",
+                                            id: "marca",
+                                            type: "text",
+                                            placeholder: "Ingrese Marca",
+                                            autocomplete: "off"
+                                          },
+                                          domProps: {
+                                            value: _vm.articulo.marca
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.articulo,
+                                                "marca",
+                                                $event.target.value
+                                              )
+                                            }
                                           }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "basis-46 position-relative ppbb-2",
+                                        class: {
+                                          "basis-23":
+                                            _vm.selectedTipo !== null &&
+                                            _vm.selectedTipo.toUpperCase() ==
+                                              "OTROS"
                                         }
+<<<<<<< HEAD
+                                      },
+                                      [
+=======
                                       }),
                                       _vm._v(" "),
                                       _vm.errors.firstByRule(
@@ -109601,537 +109512,849 @@ var render = function() {
                                         : _c("span", [_vm._v("No Image")]),
                                       _vm._v(" "),
                                       _c("div", { staticClass: "pi-links" }, [
+>>>>>>> master
                                         _c(
-                                          "a",
+                                          "multiselect",
                                           {
-                                            staticClass: "cursor mr-2",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.openModalImg(
-                                                  file.blob
-                                                )
+                                            directives: [
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate"
                                               }
+                                            ],
+                                            class: {
+                                              "error-input error-input-multi": _vm.errors.first(
+                                                "tipo",
+                                                "form-ajustes"
+                                              )
+                                            },
+                                            attrs: {
+                                              options: ["Ropa", "Otros"],
+                                              selectLabel: "",
+                                              hideSelected: true,
+                                              selectedLabel: "",
+                                              placeholder: "Seleccione tipo",
+                                              deselectLabel: "",
+                                              "open-direction": "bottom",
+                                              multiple: false,
+                                              "data-vv-rules": "required",
+                                              "data-vv-scope": "form-ajustes",
+                                              "data-vv-name": "tipo",
+                                              "data-vv-value-path": "tipo"
+                                            },
+                                            model: {
+                                              value: _vm.selectedTipo,
+                                              callback: function($$v) {
+                                                _vm.selectedTipo = $$v
+                                              },
+                                              expression: "selectedTipo"
                                             }
                                           },
                                           [
-                                            _c("i", {
-                                              staticClass: "fa fa-eye"
-                                            })
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noResult" },
+                                                slot: "noResult"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                No se encontraron resultados"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noOptions" },
+                                                slot: "noOptions"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                Lista vacía"
+                                                )
+                                              ]
+                                            )
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _c(
-                                          "a",
+                                        _vm.errors.first("tipo", "form-ajustes")
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Campo requerido.")]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.selectedTipo !== null &&
+                                    _vm.selectedTipo.toUpperCase() == "OTROS"
+                                      ? _c(
+                                          "div",
                                           {
-                                            staticClass: "cursor",
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                return _vm.removeImg(file)
-                                              }
-                                            }
+                                            staticClass:
+                                              "basis-23 position-relative ppbb-2"
                                           },
                                           [
-                                            _c("i", {
-                                              staticClass: "fa fa-trash"
-                                            })
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.articulo.otros,
+                                                  expression: "articulo.otros"
+                                                },
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "form-control input-rounded input-sm",
+                                              class: {
+                                                "error-input": _vm.errors.first(
+                                                  "otros",
+                                                  "form-ajustes"
+                                                )
+                                              },
+                                              attrs: {
+                                                name: "otros",
+                                                id: "otros",
+                                                type: "text",
+                                                placeholder:
+                                                  "Calzado, Tazas...",
+                                                autocomplete: "off",
+                                                "data-vv-scope": "form-ajustes",
+                                                "data-vv-rules":
+                                                  "required:true|min:3"
+                                              },
+                                              domProps: {
+                                                value: _vm.articulo.otros
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.articulo,
+                                                    "otros",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _vm.errors.firstByRule(
+                                              "otros",
+                                              "required",
+                                              "form-ajustes"
+                                            )
+                                              ? _c(
+                                                  "span",
+                                                  { staticClass: "error-text" },
+                                                  [_vm._v("Campo requerido.")]
+                                                )
+                                              : _vm.errors.firstByRule(
+                                                  "otros",
+                                                  "min",
+                                                  "form-ajustes"
+                                                )
+                                              ? _c(
+                                                  "span",
+                                                  { staticClass: "error-text" },
+                                                  [
+                                                    _vm._v(
+                                                      "Mínimo 3 caracteres."
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
                                           ]
                                         )
-                                      ])
-                                    ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "basis-46 d-flex align-items-baseline"
+                                      },
+                                      [
+                                        _c(
+                                          "label",
+                                          { staticClass: "mr-2 mb-0" },
+                                          [_vm._v("Precio General:")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "position-relative ppbb-2"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.maskAmount,
+                                                  expression: "maskAmount"
+                                                },
+                                                {
+                                                  name: "validate",
+                                                  rawName: "v-validate"
+                                                },
+                                                {
+                                                  name: "money",
+                                                  rawName: "v-money",
+                                                  value: _vm.money,
+                                                  expression: "money"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "form-control input-rounded input-sm",
+                                              class: {
+                                                "error-input": _vm.errors.first(
+                                                  "amount",
+                                                  "form-ajustes"
+                                                )
+                                              },
+                                              attrs: {
+                                                type: "text",
+                                                id: "amount",
+                                                name: "amount",
+                                                spellcheck: "false",
+                                                placeholder:
+                                                  "Ingrese Precio General",
+                                                "data-vv-scope": "form-ajustes",
+                                                "data-vv-rules":
+                                                  "required|amountvv",
+                                                autocomplete: "off"
+                                              },
+                                              domProps: {
+                                                value: _vm.maskAmount
+                                              },
+                                              on: {
+                                                keyup: function($event) {
+                                                  return _vm.setPaymentAmount()
+                                                },
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.maskAmount =
+                                                    $event.target.value
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _vm.errors.firstByRule(
+                                              "amount",
+                                              "required",
+                                              "form-ajustes"
+                                            )
+                                              ? _c(
+                                                  "p",
+                                                  { staticClass: "error-text" },
+                                                  [_vm._v("Requerido")]
+                                                )
+                                              : _vm.errors.firstByRule(
+                                                  "amount",
+                                                  "amountvv",
+                                                  "form-ajustes"
+                                                )
+                                              ? _c(
+                                                  "p",
+                                                  { staticClass: "error-text" },
+                                                  [_vm._v("Monto invalido")]
+                                                )
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      ]
+                                    )
                                   ]
-                                )
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "ml-3" },
-                                [
-                                  _c(
-                                    "file-upload",
-                                    {
-                                      ref: "upload",
-                                      staticClass: "btn btn-primary cursor",
-                                      attrs: {
-                                        "post-action": _vm.postAction,
-                                        "put-action": _vm.putAction,
-                                        extensions: _vm.extensions,
-                                        accept: _vm.accept,
-                                        multiple: _vm.multiple,
-                                        directory: _vm.directory,
-                                        size: _vm.size || 0,
-                                        thread:
-                                          _vm.thread < 1
-                                            ? 1
-                                            : _vm.thread > 5
-                                            ? 5
-                                            : _vm.thread,
-                                        headers: _vm.headers,
-                                        data: _vm.data,
-                                        drop: _vm.drop,
-                                        "drop-directory": _vm.dropDirectory,
-                                        "add-index": _vm.addIndex
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price"
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "w-100 position-relative ppbb-2"
                                       },
-                                      on: {
-                                        "input-filter": _vm.inputFilter,
-                                        "input-file": _vm.inputFile
-                                      },
-                                      model: {
-                                        value: _vm.files,
-                                        callback: function($$v) {
-                                          _vm.files = $$v
-                                        },
-                                        expression: "files"
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fa fa-plus cursor"
-                                      }),
-                                      _vm._v(" "),
-                                      _vm.files.length == 0
-                                        ? _c("span", [
-                                            _vm._v("Agregar Imagenes")
-                                          ])
-                                        : _vm._e()
-                                    ]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            2
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane",
-                        attrs: { id: "disponibilidad", role: "tabpanel" }
-                      },
-                      [
-                        _c("div", { staticClass: "card-body mt-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "form-body d-flex justify-content-between flex-column flex-md-row wrap-f"
-                            },
-                            [
-                              _vm.selectedTipo !== null &&
-                              _vm.selectedTipo.toUpperCase() == "ROPA"
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "basis-46 position-relative ppbb-2"
-                                    },
-                                    [
-                                      _c(
-                                        "multiselect",
-                                        {
+                                      [
+                                        _c("textarea", {
                                           directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.articulo.descripcion,
+                                              expression: "articulo.descripcion"
+                                            },
                                             {
                                               name: "validate",
                                               rawName: "v-validate"
                                             }
                                           ],
+                                          staticClass:
+                                            "form-control input-rounded h-auto",
                                           class: {
-                                            "error-input error-input-multi": _vm.errors.first(
-                                              "talles",
-                                              "form-disponibilidad"
+                                            "error-input": _vm.errors.first(
+                                              "descripcion",
+                                              "form-ajustes"
                                             )
                                           },
                                           attrs: {
-                                            options: _vm.optionTalles,
-                                            selectLabel: "",
-                                            selectedLabel: "",
-                                            placeholder: "Agregar talle",
-                                            deselectLabel: "",
-                                            "open-direction": "bottom",
-                                            multiple: true,
-                                            hideSelected: true,
-                                            clearOnSelect: true,
-                                            "custom-label":
-                                              _vm.customLabelTalla,
-                                            "show-labels": false,
-                                            label: "valor",
-                                            "track-by": "valor",
-                                            "data-vv-rules": "required",
-                                            "data-vv-scope":
-                                              "form-disponibilidad",
-                                            "data-vv-name": "talles",
-                                            "data-vv-value-path": "talles"
+                                            name: "descripcion",
+                                            id: "descripcion",
+                                            row: "5",
+                                            autocomplete: "off",
+                                            "data-vv-scope": "form-ajustes",
+                                            "data-vv-rules":
+                                              "required:true|min:3",
+                                            placeholder: "Ingrese Descripción"
                                           },
-                                          on: { remove: _vm.eventRemoveTalle },
-                                          scopedSlots: _vm._u(
-                                            [
-                                              {
-                                                key: "option",
-                                                fn: function(props) {
-                                                  return [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "option__desc"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "option__title"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                props.option
-                                                                  .valor
-                                                              )
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                }
+                                          domProps: {
+                                            value: _vm.articulo.descripcion
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
                                               }
-                                            ],
-                                            null,
-                                            false,
-                                            3754474780
-                                          ),
-                                          model: {
-                                            value: _vm.selectedTallas,
-                                            callback: function($$v) {
-                                              _vm.selectedTallas = $$v
-                                            },
-                                            expression: "selectedTallas"
+                                              _vm.$set(
+                                                _vm.articulo,
+                                                "descripcion",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _vm.errors.firstByRule(
+                                          "descripcion",
+                                          "required",
+                                          "form-ajustes"
+                                        )
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Campo requerido.")]
+                                            )
+                                          : _vm.errors.firstByRule(
+                                              "descripcion",
+                                              "min",
+                                              "form-ajustes"
+                                            )
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Mínimo 3 caracteres.")]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm.isEdit
+                                  ? _c("div", [
+                                      _vm._m(2),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "projects justify-content-start align-items-center",
+                                          class: {
+                                            "justify-content-center":
+                                              _vm.imagenesarticulos.length == 0
+                                          },
+                                          staticStyle: {
+                                            padding: "10px",
+                                            "min-height": "30vh",
+                                            position: "relative"
                                           }
                                         },
-                                        [
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
+                                        _vm._l(_vm.imagenesarticulos, function(
+                                          file
+                                        ) {
+                                          return _c(
+                                            "div",
                                             {
-                                              attrs: { slot: "noResult" },
-                                              slot: "noResult"
+                                              key: file.id,
+                                              staticClass: "project"
                                             },
                                             [
-                                              _vm._v(
-                                                "\n                                No se encontraron resultados"
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              attrs: { slot: "noOptions" },
-                                              slot: "noOptions"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                Lista vacía"
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm.errors.first(
-                                        "talles",
-                                        "form-disponibilidad"
-                                      )
-                                        ? _c(
-                                            "span",
-                                            { staticClass: "error-text" },
-                                            [_vm._v("Campo requerido.")]
-                                          )
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 position-relative ppbb-2"
-                                },
-                                [
-                                  _c(
-                                    "multiselect",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate"
-                                        }
-                                      ],
-                                      class: {
-                                        "error-input": _vm.errors.first(
-                                          "colores",
-                                          "form-disponibilidad"
-                                        )
-                                      },
-                                      attrs: {
-                                        options: _vm.optionColors,
-                                        selectLabel: "",
-                                        selectedLabel: "",
-                                        placeholder: "Agregar Color",
-                                        deselectLabel: "",
-                                        "open-direction": "bottom",
-                                        multiple: true,
-                                        hideSelected: true,
-                                        clearOnSelect: true,
-                                        "custom-label": _vm.customLabelColor,
-                                        "show-labels": false,
-                                        label: "valor",
-                                        "track-by": "valor",
-                                        "data-vv-rules": "required",
-                                        "data-vv-scope": "form-disponibilidad",
-                                        "data-vv-name": "colores",
-                                        "data-vv-value-path": "colores"
-                                      },
-                                      on: {
-                                        select: _vm.eventSelectColor,
-                                        remove: _vm.eventRemoveColor
-                                      },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "option",
-                                          fn: function(props) {
-                                            return [
                                               _c(
                                                 "div",
-                                                {
-                                                  staticClass:
-                                                    "option__desc d-flex align-items-center"
-                                                },
+                                                { staticClass: "pi-pic" },
                                                 [
+                                                  file.url
+                                                    ? _c("img", {
+                                                        attrs: {
+                                                          src:
+                                                            _vm.getUrl +
+                                                            file.url,
+                                                          width: "125",
+                                                          height: "125"
+                                                        }
+                                                      })
+                                                    : _c("span", [
+                                                        _vm._v("No Image")
+                                                      ]),
+                                                  _vm._v(" "),
                                                   _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "option__title d-flex align-items-center"
-                                                    },
+                                                    "div",
+                                                    { staticClass: "pi-links" },
                                                     [
-                                                      _c("div", {
-                                                        staticClass: "mr-2",
-                                                        style:
-                                                          "width:25px;height:25px;border: 1px solid black;background:" +
-                                                          props.option.color
-                                                      }),
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          props.option.valor
-                                                        )
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticClass:
+                                                            "cursor mr-2",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.openModalImg(
+                                                                file.url
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-eye"
+                                                          })
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticClass: "cursor",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              $event.preventDefault()
+                                                              return _vm.removeImageServer(
+                                                                file
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-trash"
+                                                          })
+                                                        ]
                                                       )
                                                     ]
                                                   )
                                                 ]
                                               )
                                             ]
-                                          }
-                                        }
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !_vm.isEdit
+                                  ? _c("div", { staticClass: "text-center" }, [
+                                      _c("h3", [
+                                        _vm._v("Subir imagenes de artículo")
                                       ]),
-                                      model: {
-                                        value: _vm.selectedColores,
-                                        callback: function($$v) {
-                                          _vm.selectedColores = $$v
-                                        },
-                                        expression: "selectedColores"
-                                      }
-                                    },
-                                    [
                                       _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noResult" },
-                                          slot: "noResult"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                No se encontraron resultados"
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.first(
-                                    "colores",
-                                    "form-disponibilidad"
-                                  )
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Campo requerido.")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "basis-46 position-relative ppbb-2"
-                                },
-                                [
-                                  _c(
-                                    "multiselect",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate"
-                                        }
-                                      ],
-                                      class: {
-                                        "error-input error-input-multi": _vm.errors.first(
-                                          "tipoCantidad",
-                                          "form-disponibilidad"
+                                      _c("hr")
+                                    ])
+                                  : _c("div", { staticClass: "text-center" }, [
+                                      _c("h3", [
+                                        _vm._v(
+                                          "Agregar otras imagenes al artículo"
                                         )
-                                      },
-                                      attrs: {
-                                        options: ["General", "Por Variante"],
-                                        selectLabel: "",
-                                        selectedLabel: "",
-                                        placeholder: "Tipo Cantidad",
-                                        deselectLabel: "",
-                                        "open-direction": "bottom",
-                                        multiple: false,
-                                        hideSelected: true,
-                                        "data-vv-rules": "required",
-                                        "data-vv-scope": "form-disponibilidad",
-                                        "data-vv-name": "tipoCantidad",
-                                        "data-vv-value-path": "tipoCantidad"
-                                      },
-                                      model: {
-                                        value: _vm.selectedCantidad,
-                                        callback: function($$v) {
-                                          _vm.selectedCantidad = $$v
-                                        },
-                                        expression: "selectedCantidad"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noResult" },
-                                          slot: "noResult"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                No se encontraron resultados"
-                                          )
-                                        ]
-                                      ),
+                                      ]),
                                       _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          attrs: { slot: "noOptions" },
-                                          slot: "noOptions"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                Lista vacía"
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.first(
-                                    "tipoCantidad",
-                                    "form-disponibilidad"
-                                  )
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Campo requerido.")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _vm.selectedCantidad !== null &&
-                              _vm.selectedCantidad.toUpperCase() == "GENERAL"
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "basis-46 d-flex align-items-baseline"
+                                      _c("hr")
+                                    ]),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "projects justify-content-start align-items-center",
+                                    class: {
+                                      "justify-content-center":
+                                        _vm.files.length == 0
                                     },
-                                    [
-                                      _c(
-                                        "label",
-                                        { staticClass: "mr-2 mb-0" },
-                                        [_vm._v("Ingrese Cantidad:")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
+                                    staticStyle: {
+                                      padding: "10px",
+                                      "min-height": "30vh",
+                                      position: "relative"
+                                    },
+                                    attrs: { id: "ajustesbasicosIMG" }
+                                  },
+                                  [
+                                    _vm._l(_vm.files, function(file) {
+                                      return _c(
                                         "div",
                                         {
-                                          staticClass:
-                                            "position-relative ppbb-2"
+                                          key: file.id,
+                                          staticClass: "project"
                                         },
                                         [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.maskCantidad,
-                                                expression: "maskCantidad"
+                                          _c("div", { staticClass: "pi-pic" }, [
+                                            file.thumb
+                                              ? _c("img", {
+                                                  attrs: {
+                                                    src: file.thumb,
+                                                    width: "125",
+                                                    height: "125"
+                                                  }
+                                                })
+                                              : _c("span", [
+                                                  _vm._v("No Image")
+                                                ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "pi-links" },
+                                              [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass: "cursor mr-2",
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.openModalImg(
+                                                          file.blob
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fa fa-eye"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    staticClass: "cursor",
+                                                    on: {
+                                                      click: function($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.removeImg(
+                                                          file
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fa fa-trash"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "ml-3" },
+                                      [
+                                        _c(
+                                          "file-upload",
+                                          {
+                                            ref: "upload",
+                                            staticClass:
+                                              "btn btn-primary cursor",
+                                            attrs: {
+                                              "post-action": _vm.postAction,
+                                              "put-action": _vm.putAction,
+                                              extensions: _vm.extensions,
+                                              accept: _vm.accept,
+                                              multiple: _vm.multiple,
+                                              directory: _vm.directory,
+                                              size: _vm.size || 0,
+                                              thread:
+                                                _vm.thread < 1
+                                                  ? 1
+                                                  : _vm.thread > 5
+                                                  ? 5
+                                                  : _vm.thread,
+                                              headers: _vm.headers,
+                                              data: _vm.data,
+                                              drop: _vm.drop,
+                                              "drop-directory":
+                                                _vm.dropDirectory,
+                                              "add-index": _vm.addIndex
+                                            },
+                                            on: {
+                                              "input-filter": _vm.inputFilter,
+                                              "input-file": _vm.inputFile
+                                            },
+                                            model: {
+                                              value: _vm.files,
+                                              callback: function($$v) {
+                                                _vm.files = $$v
                                               },
+                                              expression: "files"
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-plus cursor"
+                                            }),
+                                            _vm._v(" "),
+                                            _vm.files.length == 0
+                                              ? _c("span", [
+                                                  _vm._v("Agregar Imagenes")
+                                                ])
+                                              : _vm._e()
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  2
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "tab-pane",
+                              attrs: { id: "disponibilidad", role: "tabpanel" }
+                            },
+                            [
+                              _c("div", { staticClass: "card-body mt-4" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "form-body d-flex justify-content-between flex-column flex-md-row wrap-f"
+                                  },
+                                  [
+                                    _vm.selectedTipo !== null &&
+                                    _vm.selectedTipo.toUpperCase() == "ROPA"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "basis-46 position-relative ppbb-2"
+                                          },
+                                          [
+                                            _c(
+                                              "multiselect",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "validate",
+                                                    rawName: "v-validate"
+                                                  }
+                                                ],
+                                                class: {
+                                                  "error-input error-input-multi": _vm.errors.first(
+                                                    "talles",
+                                                    "form-disponibilidad"
+                                                  )
+                                                },
+                                                attrs: {
+                                                  options: _vm.optionTalles,
+                                                  selectLabel: "",
+                                                  selectedLabel: "",
+                                                  placeholder: "Agregar talle",
+                                                  deselectLabel: "",
+                                                  "open-direction": "bottom",
+                                                  multiple: true,
+                                                  hideSelected: true,
+                                                  clearOnSelect: true,
+                                                  "custom-label":
+                                                    _vm.customLabelTalla,
+                                                  "show-labels": false,
+                                                  label: "valor",
+                                                  "track-by": "valor",
+                                                  "data-vv-rules": "required",
+                                                  "data-vv-scope":
+                                                    "form-disponibilidad",
+                                                  "data-vv-name": "talles",
+                                                  "data-vv-value-path": "talles"
+                                                },
+                                                on: {
+                                                  remove: _vm.eventRemoveTalle
+                                                },
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "option",
+                                                      fn: function(props) {
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "option__desc"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "option__title"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      props
+                                                                        .option
+                                                                        .valor
+                                                                    )
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      }
+                                                    }
+                                                  ],
+                                                  null,
+                                                  false,
+                                                  3754474780
+                                                ),
+                                                model: {
+                                                  value: _vm.selectedTallas,
+                                                  callback: function($$v) {
+                                                    _vm.selectedTallas = $$v
+                                                  },
+                                                  expression: "selectedTallas"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(" "),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    attrs: { slot: "noResult" },
+                                                    slot: "noResult"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                No se encontraron resultados"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    attrs: {
+                                                      slot: "noOptions"
+                                                    },
+                                                    slot: "noOptions"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                Lista vacía"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm.errors.first(
+                                              "talles",
+                                              "form-disponibilidad"
+                                            )
+                                              ? _c(
+                                                  "span",
+                                                  { staticClass: "error-text" },
+                                                  [_vm._v("Campo requerido.")]
+                                                )
+                                              : _vm._e()
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "basis-46 position-relative ppbb-2"
+                                      },
+                                      [
+                                        _c(
+                                          "multiselect",
+                                          {
+                                            directives: [
                                               {
                                                 name: "validate",
                                                 rawName: "v-validate"
-                                              },
-                                              {
-                                                name: "money",
-                                                rawName: "v-money",
-                                                value: _vm.cantidadSinDecimal,
-                                                expression: "cantidadSinDecimal"
                                               }
                                             ],
-                                            staticClass:
-                                              "form-control input-rounded input-sm",
                                             class: {
                                               "error-input": _vm.errors.first(
-                                                "cantidad",
+                                                "colores",
                                                 "form-disponibilidad"
                                               )
                                             },
                                             attrs: {
-                                              type: "text",
-                                              id: "cantidad",
-                                              name: "cantidad",
-                                              spellcheck: "false",
-                                              placeholder: "Ingrese Cantidad",
+                                              options: _vm.optionColors,
+                                              selectLabel: "",
+                                              selectedLabel: "",
+                                              placeholder: "Agregar Color",
+                                              deselectLabel: "",
+                                              "open-direction": "bottom",
+                                              multiple: true,
+                                              hideSelected: true,
+                                              clearOnSelect: true,
+                                              "custom-label":
+                                                _vm.customLabelColor,
+                                              "show-labels": false,
+                                              label: "valor",
+                                              "track-by": "valor",
+                                              "data-vv-rules": "required",
                                               "data-vv-scope":
                                                 "form-disponibilidad",
-                                              "data-vv-rules":
-                                                "required|cantidadvv",
-                                              autocomplete: "off"
-                                            },
-                                            domProps: {
-                                              value: _vm.maskCantidad
+                                              "data-vv-name": "colores",
+                                              "data-vv-value-path": "colores"
                                             },
                                             on: {
+<<<<<<< HEAD
+                                              select: _vm.eventSelectColor,
+                                              remove: _vm.eventRemoveColor
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+=======
                                               keyup: function($event) {
                                                 return _vm.setCantidad()
                                               },
@@ -110235,661 +110458,1042 @@ var render = function() {
                                           ? _c("tr", [
                                               _c(
                                                 "td",
+>>>>>>> master
                                                 {
-                                                  attrs: {
-                                                    colspan:
-                                                      _vm.selectedTipo !==
-                                                        null &&
-                                                      _vm.selectedTipo.toUpperCase() ==
-                                                        "ROPA"
-                                                        ? 5
-                                                        : 4
-                                                  }
-                                                },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "text-center p-5"
-                                                    },
-                                                    [
+                                                  key: "option",
+                                                  fn: function(props) {
+                                                    return [
                                                       _c(
-                                                        "button",
+                                                        "div",
                                                         {
                                                           staticClass:
-                                                            "cursor btn btn-primary",
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              $event.stopPropagation()
-                                                              $event.preventDefault()
-                                                              return _vm.addVariante(
-                                                                $event
-                                                              )
-                                                            }
-                                                          }
+                                                            "option__desc d-flex align-items-center"
                                                         },
                                                         [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "fa fa-plus cursor pr-2"
-                                                          }),
-                                                          _vm._v(
-                                                            "Agregar Variante"
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "option__title d-flex align-items-center"
+                                                            },
+                                                            [
+                                                              _c("div", {
+                                                                staticClass:
+                                                                  "mr-2",
+                                                                style:
+                                                                  "width:25px;height:25px;border: 1px solid black;background:" +
+                                                                  props.option
+                                                                    .color
+                                                              }),
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  props.option
+                                                                    .valor
+                                                                )
+                                                              )
+                                                            ]
                                                           )
                                                         ]
                                                       )
                                                     ]
-                                                  )
-                                                ]
-                                              )
-                                            ])
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm._l(_vm.filesVariantes, function(
-                                          fileV,
-                                          index
-                                        ) {
-                                          return _c("tr", { key: index }, [
+                                                  }
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              425134504
+                                            ),
+                                            model: {
+                                              value: _vm.selectedColores,
+                                              callback: function($$v) {
+                                                _vm.selectedColores = $$v
+                                              },
+                                              expression: "selectedColores"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(" "),
                                             _c(
-                                              "td",
+                                              "span",
                                               {
-                                                staticClass:
-                                                  "text-center position-relative pb-3 min-w120"
+                                                attrs: { slot: "noResult" },
+                                                slot: "noResult"
                                               },
                                               [
-                                                _c(
-                                                  "multiselect",
-                                                  {
-                                                    class: {
-                                                      "error-input error-input-multi":
-                                                        fileV.selectedColorVariante ==
-                                                          "" ||
-                                                        fileV.selectedColorVariante ==
-                                                          null
+                                                _vm._v(
+                                                  "\n                                No se encontraron resultados"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.first(
+                                          "colores",
+                                          "form-disponibilidad"
+                                        )
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Campo requerido.")]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "basis-46 position-relative ppbb-2"
+                                      },
+                                      [
+                                        _c(
+                                          "multiselect",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate"
+                                              }
+                                            ],
+                                            class: {
+                                              "error-input error-input-multi": _vm.errors.first(
+                                                "tipoCantidad",
+                                                "form-disponibilidad"
+                                              )
+                                            },
+                                            attrs: {
+                                              options: [
+                                                "General",
+                                                "Por Variante"
+                                              ],
+                                              selectLabel: "",
+                                              selectedLabel: "",
+                                              placeholder: "Tipo Cantidad",
+                                              deselectLabel: "",
+                                              "open-direction": "bottom",
+                                              multiple: false,
+                                              hideSelected: true,
+                                              "data-vv-rules": "required",
+                                              "data-vv-scope":
+                                                "form-disponibilidad",
+                                              "data-vv-name": "tipoCantidad",
+                                              "data-vv-value-path":
+                                                "tipoCantidad"
+                                            },
+                                            model: {
+                                              value: _vm.selectedCantidad,
+                                              callback: function($$v) {
+                                                _vm.selectedCantidad = $$v
+                                              },
+                                              expression: "selectedCantidad"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noResult" },
+                                                slot: "noResult"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                No se encontraron resultados"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                attrs: { slot: "noOptions" },
+                                                slot: "noOptions"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                Lista vacía"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.first(
+                                          "tipoCantidad",
+                                          "form-disponibilidad"
+                                        )
+                                          ? _c(
+                                              "span",
+                                              { staticClass: "error-text" },
+                                              [_vm._v("Campo requerido.")]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.selectedCantidad !== null &&
+                                    _vm.selectedCantidad.toUpperCase() ==
+                                      "GENERAL"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "basis-46 d-flex align-items-baseline"
+                                          },
+                                          [
+                                            _c(
+                                              "label",
+                                              { staticClass: "mr-2 mb-0" },
+                                              [_vm._v("Ingrese Cantidad:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "position-relative ppbb-2"
+                                              },
+                                              [
+                                                _c("input", {
+                                                  directives: [
+                                                    {
+                                                      name: "model",
+                                                      rawName: "v-model",
+                                                      value: _vm.maskCantidad,
+                                                      expression: "maskCantidad"
                                                     },
-                                                    attrs: {
-                                                      options:
-                                                        _vm.selectedColores,
-                                                      selectLabel: "",
-                                                      selectedLabel: "",
-                                                      placeholder: "Color",
-                                                      deselectLabel: "",
-                                                      "open-direction":
-                                                        "bottom",
-                                                      multiple: false,
-                                                      hideSelected: true,
-                                                      "custom-label":
-                                                        _vm.customLabelColor,
-                                                      "show-labels": false,
-                                                      label: "valor",
-                                                      "track-by": "valor"
+                                                    {
+                                                      name: "validate",
+                                                      rawName: "v-validate"
                                                     },
-                                                    scopedSlots: _vm._u(
+                                                    {
+                                                      name: "money",
+                                                      rawName: "v-money",
+                                                      value:
+                                                        _vm.cantidadSinDecimal,
+                                                      expression:
+                                                        "cantidadSinDecimal"
+                                                    }
+                                                  ],
+                                                  staticClass:
+                                                    "form-control input-rounded input-sm",
+                                                  class: {
+                                                    "error-input": _vm.errors.first(
+                                                      "cantidad",
+                                                      "form-disponibilidad"
+                                                    )
+                                                  },
+                                                  attrs: {
+                                                    type: "text",
+                                                    id: "cantidad",
+                                                    name: "cantidad",
+                                                    spellcheck: "false",
+                                                    placeholder:
+                                                      "Ingrese Cantidad",
+                                                    "data-vv-scope":
+                                                      "form-disponibilidad",
+                                                    "data-vv-rules":
+                                                      "required|cantidadvv",
+                                                    autocomplete: "off"
+                                                  },
+                                                  domProps: {
+                                                    value: _vm.maskCantidad
+                                                  },
+                                                  on: {
+                                                    keyup: function($event) {
+                                                      return _vm.setCantidad()
+                                                    },
+                                                    input: function($event) {
+                                                      if (
+                                                        $event.target.composing
+                                                      ) {
+                                                        return
+                                                      }
+                                                      _vm.maskCantidad =
+                                                        $event.target.value
+                                                    }
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _vm.errors.firstByRule(
+                                                  "cantidad",
+                                                  "required",
+                                                  "form-disponibilidad"
+                                                )
+                                                  ? _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "error-text"
+                                                      },
+                                                      [_vm._v("Requerido")]
+                                                    )
+                                                  : _vm.errors.firstByRule(
+                                                      "cantidad",
+                                                      "cantidadvv",
+                                                      "form-disponibilidad"
+                                                    )
+                                                  ? _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "error-text"
+                                                      },
                                                       [
-                                                        {
-                                                          key: "option",
-                                                          fn: function(props) {
-                                                            return [
-                                                              _c(
-                                                                "div",
-                                                                {
+                                                        _vm._v(
+                                                          "Cantidad Invalida"
+                                                        )
+                                                      ]
+                                                    )
+                                                  : _vm._e()
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.selectedCantidad !== null &&
+                              _vm.selectedCantidad.toUpperCase() ==
+                                "POR VARIANTE"
+                                ? _c(
+                                    "div",
+                                    {
+                                      class: {
+                                        "table-responsive": _vm.table_responsive
+                                      }
+                                    },
+                                    [
+                                      _vm._m(3),
+                                      _vm._v(" "),
+                                      _c(
+                                        "table",
+                                        { staticClass: "table table-hover" },
+                                        [
+                                          _c("thead", [
+                                            _c("tr", [
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Color")]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.selectedTipo !== null &&
+                                              _vm.selectedTipo.toUpperCase() ==
+                                                "ROPA"
+                                                ? _c(
+                                                    "th",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [_vm._v("Talle")]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Cantidad")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Precio")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "th",
+                                                { staticClass: "text-center" },
+                                                [_vm._v("Acciones")]
+                                              )
+                                            ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tbody",
+                                            [
+                                              !_vm.filesVariantes.length
+                                                ? _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        attrs: {
+                                                          colspan:
+                                                            _vm.selectedTipo !==
+                                                              null &&
+                                                            _vm.selectedTipo.toUpperCase() ==
+                                                              "ROPA"
+                                                              ? 5
+                                                              : 4
+                                                        }
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-center p-5"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "button",
+                                                              {
+                                                                staticClass:
+                                                                  "cursor btn btn-primary",
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    $event.stopPropagation()
+                                                                    $event.preventDefault()
+                                                                    return _vm.addVariante(
+                                                                      $event
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _c("i", {
                                                                   staticClass:
-                                                                    "option__desc d-flex align-items-center"
+                                                                    "fa fa-plus cursor pr-2"
+                                                                }),
+                                                                _vm._v(
+                                                                  "Agregar Variante"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ])
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _vm._l(
+                                                _vm.filesVariantes,
+                                                function(fileV, index) {
+                                                  return _c(
+                                                    "tr",
+                                                    { key: index },
+                                                    [
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center position-relative pb-3 min-w120"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "multiselect",
+                                                            {
+                                                              class: {
+                                                                "error-input error-input-multi":
+                                                                  fileV.selectedColorVariante ==
+                                                                    "" ||
+                                                                  fileV.selectedColorVariante ==
+                                                                    null
+                                                              },
+                                                              attrs: {
+                                                                options:
+                                                                  _vm.selectedColores,
+                                                                selectLabel: "",
+                                                                selectedLabel:
+                                                                  "",
+                                                                placeholder:
+                                                                  "Color",
+                                                                deselectLabel:
+                                                                  "",
+                                                                "open-direction":
+                                                                  "bottom",
+                                                                multiple: false,
+                                                                hideSelected: true,
+                                                                "custom-label":
+                                                                  _vm.customLabelColor,
+                                                                "show-labels": false,
+                                                                label: "valor",
+                                                                "track-by":
+                                                                  "valor"
+                                                              },
+                                                              scopedSlots: _vm._u(
+                                                                [
+                                                                  {
+                                                                    key:
+                                                                      "option",
+                                                                    fn: function(
+                                                                      props
+                                                                    ) {
+                                                                      return [
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "option__desc d-flex align-items-center"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "span",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "option__title d-flex align-items-center"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "div",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "mr-2",
+                                                                                    style:
+                                                                                      "width:25px;height:25px;border: 1px solid black;background:" +
+                                                                                      props
+                                                                                        .option
+                                                                                        .color
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  _vm._s(
+                                                                                    props
+                                                                                      .option
+                                                                                      .valor
+                                                                                  )
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    }
+                                                                  }
+                                                                ],
+                                                                null,
+                                                                true
+                                                              ),
+                                                              model: {
+                                                                value:
+                                                                  fileV.selectedColorVariante,
+                                                                callback: function(
+                                                                  $$v
+                                                                ) {
+                                                                  _vm.$set(
+                                                                    fileV,
+                                                                    "selectedColorVariante",
+                                                                    $$v
+                                                                  )
+                                                                },
+                                                                expression:
+                                                                  "fileV.selectedColorVariante"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  attrs: {
+                                                                    slot:
+                                                                      "noResult"
+                                                                  },
+                                                                  slot:
+                                                                    "noResult"
                                                                 },
                                                                 [
-                                                                  _c(
-                                                                    "span",
-                                                                    {
-                                                                      staticClass:
-                                                                        "option__title d-flex align-items-center"
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "mr-2",
-                                                                          style:
-                                                                            "width:25px;height:25px;border: 1px solid black;background:" +
-                                                                            props
-                                                                              .option
-                                                                              .color
-                                                                        }
-                                                                      ),
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          props
-                                                                            .option
-                                                                            .valor
-                                                                        )
-                                                                      )
-                                                                    ]
+                                                                  _vm._v(
+                                                                    "\n                                          No se encontraron resultados"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  attrs: {
+                                                                    slot:
+                                                                      "noOptions"
+                                                                  },
+                                                                  slot:
+                                                                    "noOptions"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n                                            Lista vacía"
                                                                   )
                                                                 ]
                                                               )
                                                             ]
-                                                          }
-                                                        }
-                                                      ],
-                                                      null,
-                                                      true
-                                                    ),
-                                                    model: {
-                                                      value:
-                                                        fileV.selectedColorVariante,
-                                                      callback: function($$v) {
-                                                        _vm.$set(
-                                                          fileV,
-                                                          "selectedColorVariante",
-                                                          $$v
-                                                        )
-                                                      },
-                                                      expression:
-                                                        "fileV.selectedColorVariante"
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        attrs: {
-                                                          slot: "noResult"
-                                                        },
-                                                        slot: "noResult"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                          No se encontraron resultados"
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        attrs: {
-                                                          slot: "noOptions"
-                                                        },
-                                                        slot: "noOptions"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                            Lista vacía"
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                fileV.selectedColorVariante ==
-                                                  "" ||
-                                                fileV.selectedColorVariante ==
-                                                  null
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "error-text"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Campo requerido."
-                                                        )
-                                                      ]
-                                                    )
-                                                  : _vm._e()
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _vm.selectedTipo !== null &&
-                                            _vm.selectedTipo.toUpperCase() ==
-                                              "ROPA"
-                                              ? _c(
-                                                  "td",
-                                                  {
-                                                    staticClass:
-                                                      "text-center position-relative pb-3 min-w120"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "multiselect",
-                                                      {
-                                                        class: {
-                                                          "error-input error-input-multi":
-                                                            fileV.selectedTalleVariante ==
-                                                              "" ||
-                                                            fileV.selectedTalleVariante ==
-                                                              null
-                                                        },
-                                                        attrs: {
-                                                          options:
-                                                            _vm.selectedTallas,
-                                                          selectLabel: "",
-                                                          selectedLabel: "",
-                                                          placeholder: "Talle",
-                                                          deselectLabel: "",
-                                                          "open-direction":
-                                                            "bottom",
-                                                          multiple: false,
-                                                          hideSelected: true,
-                                                          "custom-label":
-                                                            _vm.customLabelTalla,
-                                                          "show-labels": false,
-                                                          label: "valor",
-                                                          "track-by": "valor"
-                                                        },
-                                                        scopedSlots: _vm._u(
-                                                          [
+                                                          ),
+                                                          _vm._v(" "),
+                                                          fileV.selectedColorVariante ==
+                                                            "" ||
+                                                          fileV.selectedColorVariante ==
+                                                            null
+                                                            ? _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "error-text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Campo requerido."
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ],
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _vm.selectedTipo !==
+                                                        null &&
+                                                      _vm.selectedTipo.toUpperCase() ==
+                                                        "ROPA"
+                                                        ? _c(
+                                                            "td",
                                                             {
-                                                              key: "option",
-                                                              fn: function(
-                                                                props
-                                                              ) {
-                                                                return [
+                                                              staticClass:
+                                                                "text-center position-relative pb-3 min-w120"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "multiselect",
+                                                                {
+                                                                  class: {
+                                                                    "error-input error-input-multi":
+                                                                      fileV.selectedTalleVariante ==
+                                                                        "" ||
+                                                                      fileV.selectedTalleVariante ==
+                                                                        null
+                                                                  },
+                                                                  attrs: {
+                                                                    options:
+                                                                      _vm.selectedTallas,
+                                                                    selectLabel:
+                                                                      "",
+                                                                    selectedLabel:
+                                                                      "",
+                                                                    placeholder:
+                                                                      "Talle",
+                                                                    deselectLabel:
+                                                                      "",
+                                                                    "open-direction":
+                                                                      "bottom",
+                                                                    multiple: false,
+                                                                    hideSelected: true,
+                                                                    "custom-label":
+                                                                      _vm.customLabelTalla,
+                                                                    "show-labels": false,
+                                                                    label:
+                                                                      "valor",
+                                                                    "track-by":
+                                                                      "valor"
+                                                                  },
+                                                                  scopedSlots: _vm._u(
+                                                                    [
+                                                                      {
+                                                                        key:
+                                                                          "option",
+                                                                        fn: function(
+                                                                          props
+                                                                        ) {
+                                                                          return [
+                                                                            _c(
+                                                                              "div",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "option__desc"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "span",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "option__title"
+                                                                                  },
+                                                                                  [
+                                                                                    _vm._v(
+                                                                                      _vm._s(
+                                                                                        props
+                                                                                          .option
+                                                                                          .valor
+                                                                                      )
+                                                                                    )
+                                                                                  ]
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    ],
+                                                                    null,
+                                                                    true
+                                                                  ),
+                                                                  model: {
+                                                                    value:
+                                                                      fileV.selectedTalleVariante,
+                                                                    callback: function(
+                                                                      $$v
+                                                                    ) {
+                                                                      _vm.$set(
+                                                                        fileV,
+                                                                        "selectedTalleVariante",
+                                                                        $$v
+                                                                      )
+                                                                    },
+                                                                    expression:
+                                                                      "fileV.selectedTalleVariante"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(" "),
                                                                   _c(
-                                                                    "div",
+                                                                    "span",
                                                                     {
-                                                                      staticClass:
-                                                                        "option__desc"
+                                                                      attrs: {
+                                                                        slot:
+                                                                          "noResult"
+                                                                      },
+                                                                      slot:
+                                                                        "noResult"
                                                                     },
                                                                     [
-                                                                      _c(
-                                                                        "span",
-                                                                        {
-                                                                          staticClass:
-                                                                            "option__title"
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            _vm._s(
-                                                                              props
-                                                                                .option
-                                                                                .valor
-                                                                            )
-                                                                          )
-                                                                        ]
+                                                                      _vm._v(
+                                                                        "\n                                          No se encontraron resultados"
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      attrs: {
+                                                                        slot:
+                                                                          "noOptions"
+                                                                      },
+                                                                      slot:
+                                                                        "noOptions"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                                           Lista vacía"
                                                                       )
                                                                     ]
                                                                   )
                                                                 ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              fileV.selectedTalleVariante ==
+                                                                "" ||
+                                                              fileV.selectedTalleVariante ==
+                                                                null
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "error-text"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "Campo requerido."
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm._e()
+                                                            ],
+                                                            1
+                                                          )
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center position-relative pb-3 mw-120"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm
+                                                                    .filesVariantes[
+                                                                    index
+                                                                  ]
+                                                                    .cantidadVariante,
+                                                                expression:
+                                                                  "filesVariantes[index].cantidadVariante"
+                                                              },
+                                                              {
+                                                                name:
+                                                                  "validate",
+                                                                rawName:
+                                                                  "v-validate"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control input-rounded input-sm",
+                                                            class: {
+                                                              "error-input": _vm.errors.first(
+                                                                "cantidadV" +
+                                                                  index,
+                                                                "form-disponibilidad"
+                                                              )
+                                                            },
+                                                            attrs: {
+                                                              type: "number",
+                                                              id:
+                                                                "cantidadV" +
+                                                                index,
+                                                              name:
+                                                                "cantidadV" +
+                                                                index,
+                                                              spellcheck:
+                                                                "false",
+                                                              placeholder:
+                                                                "Cantidad",
+                                                              min: "0",
+                                                              "data-vv-scope":
+                                                                "form-disponibilidad",
+                                                              "data-vv-rules":
+                                                                "required|min_value:0|decimal:0|numeric",
+                                                              autocomplete:
+                                                                "off"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm
+                                                                  .filesVariantes[
+                                                                  index
+                                                                ]
+                                                                  .cantidadVariante
+                                                            },
+                                                            on: {
+                                                              keyup: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.setCantidadVariante(
+                                                                  index
+                                                                )
+                                                              },
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm
+                                                                    .filesVariantes[
+                                                                    index
+                                                                  ],
+                                                                  "cantidadVariante",
+                                                                  $event.target
+                                                                    .value
+                                                                )
                                                               }
                                                             }
-                                                          ],
-                                                          null,
-                                                          true
-                                                        ),
-                                                        model: {
-                                                          value:
-                                                            fileV.selectedTalleVariante,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              fileV,
-                                                              "selectedTalleVariante",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "fileV.selectedTalleVariante"
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            attrs: {
-                                                              slot: "noResult"
-                                                            },
-                                                            slot: "noResult"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                          No se encontraron resultados"
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            attrs: {
-                                                              slot: "noOptions"
-                                                            },
-                                                            slot: "noOptions"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                           Lista vacía"
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    fileV.selectedTalleVariante ==
-                                                      "" ||
-                                                    fileV.selectedTalleVariante ==
-                                                      null
-                                                      ? _c(
-                                                          "span",
-                                                          {
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _vm.errors.firstByRule(
+                                                            "cantidadV" + index,
+                                                            "required",
+                                                            "form-disponibilidad"
+                                                          )
+                                                            ? _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "error-text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Requerido"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm.errors.first(
+                                                                "cantidadV" +
+                                                                  index,
+                                                                "form-disponibilidad"
+                                                              )
+                                                            ? _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "error-text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Cantidad invalida"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center position-relative pb-3 mw-150"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm
+                                                                    .filesVariantes[
+                                                                    index
+                                                                  ]
+                                                                    .precioVariante,
+                                                                expression:
+                                                                  "filesVariantes[index].precioVariante"
+                                                              },
+                                                              {
+                                                                name:
+                                                                  "validate",
+                                                                rawName:
+                                                                  "v-validate"
+                                                              }
+                                                            ],
                                                             staticClass:
-                                                              "error-text"
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Campo requerido."
-                                                            )
-                                                          ]
-                                                        )
-                                                      : _vm._e()
-                                                  ],
-                                                  1
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "text-center position-relative pb-3 mw-120"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.filesVariantes[
-                                                          index
-                                                        ].cantidadVariante,
-                                                      expression:
-                                                        "filesVariantes[index].cantidadVariante"
-                                                    },
-                                                    {
-                                                      name: "validate",
-                                                      rawName: "v-validate"
-                                                    }
-                                                  ],
-                                                  staticClass:
-                                                    "form-control input-rounded input-sm",
-                                                  class: {
-                                                    "error-input": _vm.errors.first(
-                                                      "cantidadV" + index,
-                                                      "form-disponibilidad"
-                                                    )
-                                                  },
-                                                  attrs: {
-                                                    type: "number",
-                                                    id: "cantidadV" + index,
-                                                    name: "cantidadV" + index,
-                                                    spellcheck: "false",
-                                                    placeholder: "Cantidad",
-                                                    min: "0",
-                                                    "data-vv-scope":
-                                                      "form-disponibilidad",
-                                                    "data-vv-rules":
-                                                      "required|min_value:0|decimal:0|numeric",
-                                                    autocomplete: "off"
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.filesVariantes[index]
-                                                        .cantidadVariante
-                                                  },
-                                                  on: {
-                                                    keyup: function($event) {
-                                                      return _vm.setCantidadVariante(
-                                                        index
-                                                      )
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.filesVariantes[
-                                                          index
-                                                        ],
-                                                        "cantidadVariante",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _vm.errors.firstByRule(
-                                                  "cantidadV" + index,
-                                                  "required",
-                                                  "form-disponibilidad"
-                                                )
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "error-text"
-                                                      },
-                                                      [_vm._v("Requerido")]
-                                                    )
-                                                  : _vm.errors.first(
-                                                      "cantidadV" + index,
-                                                      "form-disponibilidad"
-                                                    )
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "error-text"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Cantidad invalida"
-                                                        )
-                                                      ]
-                                                    )
-                                                  : _vm._e()
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "text-center position-relative pb-3 mw-150"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.filesVariantes[
-                                                          index
-                                                        ].precioVariante,
-                                                      expression:
-                                                        "filesVariantes[index].precioVariante"
-                                                    },
-                                                    {
-                                                      name: "validate",
-                                                      rawName: "v-validate"
-                                                    }
-                                                  ],
-                                                  staticClass:
-                                                    "form-control input-rounded input-sm",
-                                                  class: {
-                                                    "error-input": _vm.errors.first(
-                                                      "amountV" + index,
-                                                      "form-disponibilidad"
-                                                    )
-                                                  },
-                                                  attrs: {
-                                                    type: "number",
-                                                    id: "amountV" + index,
-                                                    name: "amountV" + index,
-                                                    spellcheck: "false",
-                                                    placeholder: "Precio",
-                                                    "data-vv-scope":
-                                                      "form-disponibilidad",
-                                                    "data-vv-rules":
-                                                      "required|min_value:0|decimal:2",
-                                                    autocomplete: "off",
-                                                    min: "0"
-                                                  },
-                                                  domProps: {
-                                                    value:
-                                                      _vm.filesVariantes[index]
-                                                        .precioVariante
-                                                  },
-                                                  on: {
-                                                    keyup: function($event) {
-                                                      return _vm.setPaymentAmountVariante(
-                                                        index
-                                                      )
-                                                    },
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.filesVariantes[
-                                                          index
-                                                        ],
-                                                        "precioVariante",
-                                                        $event.target.value
-                                                      )
-                                                    }
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _vm.errors.firstByRule(
-                                                  "amountV" + index,
-                                                  "required",
-                                                  "form-disponibilidad"
-                                                )
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "error-text"
-                                                      },
-                                                      [_vm._v("Requerido")]
-                                                    )
-                                                  : _vm.errors.first(
-                                                      "amountV" + index,
-                                                      "form-disponibilidad"
-                                                    )
-                                                  ? _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "error-text"
-                                                      },
-                                                      [_vm._v("Monto Invalido")]
-                                                    )
-                                                  : _vm._e()
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "td",
-                                              {
-                                                staticClass:
-                                                  "text-center position-relative pb-3"
-                                              },
-                                              [
-                                                _c(
-                                                  "button",
-                                                  {
-                                                    staticClass:
-                                                      "cursor btn btn-inverse",
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.deleteVariante(
-                                                          index
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("i", {
-                                                      staticClass:
-                                                        "fa fa-trash cursor"
-                                                    })
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm.selectedTipo.toUpperCase() ==
-                                                "ROPA"
-                                                  ? [
-                                                      index ==
-                                                        _vm.filesVariantes
-                                                          .length -
-                                                          1 &&
-                                                      fileV.selectedTalleVariante !=
-                                                        "" &&
-                                                      fileV.selectedTalleVariante !=
-                                                        null &&
-                                                      fileV.selectedColorVariante !=
-                                                        "" &&
-                                                      fileV.selectedColorVariante !=
-                                                        null
-                                                        ? _c(
-                                                            "button",
-                                                            {
-                                                              staticClass:
-                                                                "cursor btn btn-primary",
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.addVariante()
-                                                                }
-                                                              }
+                                                              "form-control input-rounded input-sm",
+                                                            class: {
+                                                              "error-input": _vm.errors.first(
+                                                                "amountV" +
+                                                                  index,
+                                                                "form-disponibilidad"
+                                                              )
                                                             },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "fa fa-plus cursor"
-                                                              })
-                                                            ]
+                                                            attrs: {
+                                                              type: "number",
+                                                              id:
+                                                                "amountV" +
+                                                                index,
+                                                              name:
+                                                                "amountV" +
+                                                                index,
+                                                              spellcheck:
+                                                                "false",
+                                                              placeholder:
+                                                                "Precio",
+                                                              "data-vv-scope":
+                                                                "form-disponibilidad",
+                                                              "data-vv-rules":
+                                                                "required|min_value:0|decimal:2",
+                                                              autocomplete:
+                                                                "off",
+                                                              min: "0"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm
+                                                                  .filesVariantes[
+                                                                  index
+                                                                ].precioVariante
+                                                            },
+                                                            on: {
+                                                              keyup: function(
+                                                                $event
+                                                              ) {
+                                                                return _vm.setPaymentAmountVariante(
+                                                                  index
+                                                                )
+                                                              },
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm
+                                                                    .filesVariantes[
+                                                                    index
+                                                                  ],
+                                                                  "precioVariante",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _vm.errors.firstByRule(
+                                                            "amountV" + index,
+                                                            "required",
+                                                            "form-disponibilidad"
                                                           )
-                                                        : index ==
-                                                            _vm.filesVariantes
-                                                              .length -
-                                                              1 &&
-                                                          (fileV.selectedTalleVariante ==
-                                                            "" ||
-                                                            fileV.selectedTalleVariante ==
-                                                              null ||
-                                                            fileV.selectedColorVariante ==
-                                                              "" ||
-                                                            fileV.selectedColorVariante ==
-                                                              null)
-                                                        ? _c(
+                                                            ? _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "error-text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Requerido"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm.errors.first(
+                                                                "amountV" +
+                                                                  index,
+                                                                "form-disponibilidad"
+                                                              )
+                                                            ? _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "error-text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Monto Invalido"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            : _vm._e()
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "text-center position-relative pb-3"
+                                                        },
+                                                        [
+                                                          _c(
                                                             "button",
                                                             {
                                                               staticClass:
-                                                                "cursor btn btn-primary disabled",
+                                                                "cursor btn btn-inverse",
                                                               on: {
                                                                 click: function(
                                                                   $event
                                                                 ) {
-                                                                  return _vm.msgAlert(
-                                                                    "Los campos color y talle son requeridos en la tabla",
-                                                                    "warning"
+                                                                  return _vm.deleteVariante(
+                                                                    index
                                                                   )
                                                                 }
                                                               }
@@ -110897,71 +111501,165 @@ var render = function() {
                                                             [
                                                               _c("i", {
                                                                 staticClass:
-                                                                  "fa fa-plus cursor"
+                                                                  "fa fa-trash cursor"
                                                               })
                                                             ]
-                                                          )
-                                                        : _vm._e()
-                                                    ]
-                                                  : [
-                                                      index ==
-                                                        _vm.filesVariantes
-                                                          .length -
-                                                          1 &&
-                                                      fileV.selectedColorVariante !=
-                                                        "" &&
-                                                      fileV.selectedColorVariante !=
-                                                        null
-                                                        ? _c(
-                                                            "button",
-                                                            {
-                                                              staticClass:
-                                                                "cursor btn btn-primary",
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.addVariante()
-                                                                }
-                                                              }
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "fa fa-plus cursor"
-                                                              })
-                                                            ]
-                                                          )
-                                                        : index ==
-                                                            _vm.filesVariantes
-                                                              .length -
-                                                              1 &&
-                                                          (fileV.selectedColorVariante ==
-                                                            "" ||
-                                                            fileV.selectedColorVariante ==
-                                                              null)
-                                                        ? _c(
-                                                            "button",
-                                                            {
-                                                              staticClass:
-                                                                "cursor btn btn-primary disabled",
-                                                              on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  return _vm.msgAlert(
-                                                                    "El campo color es requrido en la tabla",
-                                                                    "warning"
-                                                                  )
-                                                                }
-                                                              }
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "fa fa-plus cursor"
-                                                              })
-                                                            ]
+<<<<<<< HEAD
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _vm.selectedTipo.toUpperCase() ==
+                                                          "ROPA"
+                                                            ? [
+                                                                index ==
+                                                                  _vm
+                                                                    .filesVariantes
+                                                                    .length -
+                                                                    1 &&
+                                                                fileV.selectedTalleVariante !=
+                                                                  "" &&
+                                                                fileV.selectedTalleVariante !=
+                                                                  null &&
+                                                                fileV.selectedColorVariante !=
+                                                                  "" &&
+                                                                fileV.selectedColorVariante !=
+                                                                  null
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "cursor btn btn-primary",
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.addVariante()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-plus cursor"
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : index ==
+                                                                      _vm
+                                                                        .filesVariantes
+                                                                        .length -
+                                                                        1 &&
+                                                                    (fileV.selectedTalleVariante ==
+                                                                      "" ||
+                                                                      fileV.selectedTalleVariante ==
+                                                                        null ||
+                                                                      fileV.selectedColorVariante ==
+                                                                        "" ||
+                                                                      fileV.selectedColorVariante ==
+                                                                        null)
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "cursor btn btn-primary disabled",
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.msgAlert(
+                                                                              "Los campos color y talle son requeridos en la tabla",
+                                                                              "warning"
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-plus cursor"
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e()
+                                                              ]
+                                                            : [
+                                                                index ==
+                                                                  _vm
+                                                                    .filesVariantes
+                                                                    .length -
+                                                                    1 &&
+                                                                fileV.selectedColorVariante !=
+                                                                  "" &&
+                                                                fileV.selectedColorVariante !=
+                                                                  null
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "cursor btn btn-primary",
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.addVariante()
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-plus cursor"
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : index ==
+                                                                      _vm
+                                                                        .filesVariantes
+                                                                        .length -
+                                                                        1 &&
+                                                                    (fileV.selectedColorVariante ==
+                                                                      "" ||
+                                                                      fileV.selectedColorVariante ==
+                                                                        null)
+                                                                  ? _c(
+                                                                      "button",
+                                                                      {
+                                                                        staticClass:
+                                                                          "cursor btn btn-primary disabled",
+                                                                        on: {
+                                                                          click: function(
+                                                                            $event
+                                                                          ) {
+                                                                            return _vm.msgAlert(
+                                                                              "El campo color es requrido en la tabla",
+                                                                              "warning"
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "i",
+                                                                          {
+                                                                            staticClass:
+                                                                              "fa fa-plus cursor"
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  : _vm._e()
+                                                              ]
+                                                        ],
+                                                        2
+=======
                                                           )
                                                         : _vm._e()
                                                     ]
@@ -111020,522 +111718,648 @@ var render = function() {
                                                       $event.preventDefault()
                                                       return _vm.addRelacion(
                                                         $event
+>>>>>>> master
                                                       )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fa fa-plus cursor pr-2"
-                                                  }),
-                                                  _vm._v(
-                                                    "Agregar Relación Imagen-Color"
+                                                    ]
                                                   )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.filesImagesColor, function(
-                                    fileIC,
-                                    index
-                                  ) {
-                                    return _c("tr", { key: index }, [
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "text-center position-relative pb-3"
-                                        },
-                                        [
-                                          _vm.filesImagesColor[index].file !==
-                                            null &&
-                                          Object.keys(
-                                            _vm.filesImagesColor[index].file
-                                          ).length !== 0 &&
-                                          _vm.filesImagesColor[index].file.thumb
-                                            ? _c("img", {
-                                                staticStyle: {
-                                                  width: "50px",
-                                                  height: "50px"
-                                                },
-                                                attrs: {
-                                                  src:
-                                                    _vm.filesImagesColor[index]
-                                                      .file.thumb
                                                 }
-                                              })
-                                            : _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "cursor btn btn-danger",
-                                                  attrs: {
-                                                    "data-dismiss": "modal"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      $event.stopPropagation()
-                                                      $event.preventDefault()
-                                                      return _vm.openModalImagenesCargadas(
-                                                        index
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fa fa-image cursor pr-1"
-                                                  }),
-                                                  _vm._v("Seleccionar")
-                                                ]
                                               )
+                                            ],
+                                            2
+                                          )
                                         ]
-                                      ),
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "tab-pane",
+                              attrs: { id: "relacion", role: "tabpanel" }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  class: {
+                                    "table-responsive": _vm.table_responsive
+                                  }
+                                },
+                                [
+                                  _vm._m(4),
+                                  _vm._v(" "),
+                                  _c(
+                                    "table",
+                                    { staticClass: "table table-hover" },
+                                    [
+                                      _vm._m(5),
                                       _vm._v(" "),
                                       _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "text-center position-relative pb-3"
-                                        },
+                                        "tbody",
                                         [
-                                          _c(
-                                            "multiselect",
-                                            {
-                                              class: {
-                                                "error-input error-input-multi":
-                                                  fileIC.selectedColorRelacion ==
-                                                    "" ||
-                                                  fileIC.selectedColorRelacion ==
-                                                    null
-                                              },
-                                              attrs: {
-                                                options: _vm.selectedColores,
-                                                selectLabel: "",
-                                                selectedLabel: "",
-                                                placeholder: "Color",
-                                                deselectLabel: "",
-                                                "open-direction": "bottom",
-                                                multiple: false,
-                                                hideSelected: true,
-                                                "custom-label":
-                                                  _vm.customLabelColor,
-                                                "show-labels": false,
-                                                label: "valor",
-                                                "track-by": "valor"
-                                              },
-                                              scopedSlots: _vm._u(
-                                                [
-                                                  {
-                                                    key: "option",
-                                                    fn: function(props) {
-                                                      return [
+                                          !_vm.filesImagesColor.length
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "4" } },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "text-center p-5"
+                                                      },
+                                                      [
                                                         _c(
-                                                          "div",
+                                                          "button",
                                                           {
                                                             staticClass:
-                                                              "option__desc d-flex align-items-center"
+                                                              "cursor btn btn-primary",
+                                                            on: {
+                                                              click: function(
+                                                                $event
+                                                              ) {
+                                                                $event.stopPropagation()
+                                                                $event.preventDefault()
+                                                                return _vm.addRelacion(
+                                                                  $event
+                                                                )
+                                                              }
+                                                            }
                                                           },
                                                           [
-                                                            _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "option__title d-flex align-items-center"
-                                                              },
-                                                              [
-                                                                _c("div", {
-                                                                  staticClass:
-                                                                    "mr-2",
-                                                                  style:
-                                                                    "width:25px;height:25px;border: 1px solid black;background:" +
-                                                                    props.option
-                                                                      .color
-                                                                }),
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    props.option
-                                                                      .valor
-                                                                  )
-                                                                )
-                                                              ]
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "fa fa-plus cursor pr-2"
+                                                            }),
+                                                            _vm._v(
+                                                              "Agregar Relación Imagen-Color"
                                                             )
                                                           ]
                                                         )
                                                       ]
-                                                    }
-                                                  }
-                                                ],
-                                                null,
-                                                true
-                                              ),
-                                              model: {
-                                                value:
-                                                  fileIC.selectedColorRelacion,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    fileIC,
-                                                    "selectedColorRelacion",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "fileIC.selectedColorRelacion"
-                                              }
-                                            },
-                                            [
-                                              _vm._v(" "),
-                                              _c(
-                                                "span",
-                                                {
-                                                  attrs: { slot: "noResult" },
-                                                  slot: "noResult"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                          No se encontraron resultados"
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "span",
-                                                {
-                                                  attrs: { slot: "noOptions" },
-                                                  slot: "noOptions"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                            Lista vacía"
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          fileIC.selectedColorRelacion == "" ||
-                                          fileIC.selectedColorRelacion == null
-                                            ? _c(
-                                                "span",
-                                                { staticClass: "error-text" },
-                                                [_vm._v("Campo requerido.")]
-                                              )
-                                            : _vm._e()
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "text-center position-relative pb-4"
-                                        },
-                                        [
-                                          _c(
-                                            "label",
-                                            { staticClass: "contenido" },
-                                            [
-                                              _c("input", {
-                                                attrs: {
-                                                  type: "radio",
-                                                  id: "radio_" + index,
-                                                  name: "radio"
-                                                },
-                                                on: {
-                                                  change: function($event) {
-                                                    return _vm.cambiarEsPrincipal(
-                                                      index
                                                     )
-                                                  }
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("span", {
-                                                staticClass: "checkmark"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "text-center position-relative pb-3"
-                                        },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "cursor btn btn-inverse",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.deleteRelacion(
-                                                    index
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass:
-                                                  "fa fa-trash cursor"
-                                              })
-                                            ]
-                                          ),
+                                                  ]
+                                                )
+                                              ])
+                                            : _vm._e(),
                                           _vm._v(" "),
-                                          index ==
-                                            _vm.filesImagesColor.length - 1 &&
-                                          fileIC.file &&
-                                          fileIC.file !== null &&
-                                          Object.keys(fileIC.file).length !==
-                                            0 &&
-                                          fileIC.selectedColorRelacion != "" &&
-                                          fileIC.selectedColorRelacion !=
-                                            null &&
-                                          fileIC.posicionRelacion != "" &&
-                                          fileIC.posicionRelacion != null
-                                            ? _c(
-                                                "button",
+                                          _vm._l(_vm.filesImagesColor, function(
+                                            fileIC,
+                                            index
+                                          ) {
+                                            return _c("tr", { key: index }, [
+                                              _c(
+                                                "td",
                                                 {
                                                   staticClass:
-                                                    "cursor btn btn-primary",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.addRelacion()
-                                                    }
-                                                  }
+                                                    "text-center position-relative pb-3"
                                                 },
                                                 [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fa fa-plus cursor"
-                                                  })
-                                                ]
-                                              )
-                                            : index ==
-                                                _vm.filesImagesColor.length -
-                                                  1 &&
-                                              (fileIC.selectedColorRelacion ==
-                                                "" ||
-                                                fileIC.selectedColorRelacion ==
-                                                  null ||
-                                                fileIC.posicionRelacion == "" ||
-                                                fileIC.posicionRelacion == null)
-                                            ? _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "cursor btn btn-primary disabled",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.msgAlert(
-                                                        "Hay campos requeridos",
-                                                        "warning"
+                                                  _vm.filesImagesColor[index]
+                                                    .file !== null &&
+                                                  Object.keys(
+                                                    _vm.filesImagesColor[index]
+                                                      .file
+                                                  ).length !== 0 &&
+                                                  _vm.filesImagesColor[index]
+                                                    .file.thumb
+                                                    ? _c("img", {
+                                                        staticStyle: {
+                                                          width: "50px",
+                                                          height: "50px"
+                                                        },
+                                                        attrs: {
+                                                          src:
+                                                            _vm
+                                                              .filesImagesColor[
+                                                              index
+                                                            ].file.thumb
+                                                        }
+                                                      })
+                                                    : _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "cursor btn btn-danger",
+                                                          attrs: {
+                                                            "data-dismiss":
+                                                              "modal"
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              $event.stopPropagation()
+                                                              $event.preventDefault()
+                                                              return _vm.openModalImagenesCargadas(
+                                                                index
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-image cursor pr-1"
+                                                          }),
+                                                          _vm._v("Seleccionar")
+                                                        ]
                                                       )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fa fa-plus cursor"
-                                                  })
                                                 ]
-                                              )
-                                            : index ==
-                                                _vm.filesImagesColor.length -
-                                                  1 &&
-                                              (fileIC.file == null ||
-                                                Object.keys(fileIC.file)
-                                                  .length == 0)
-                                            ? _c(
-                                                "button",
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
                                                 {
                                                   staticClass:
-                                                    "cursor btn btn-primary disabled",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.msgAlert(
-                                                        "La imagen es requerida",
-                                                        "warning"
-                                                      )
-                                                    }
-                                                  }
+                                                    "text-center position-relative pb-3"
                                                 },
                                                 [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fa fa-plus cursor"
-                                                  })
+                                                  _c(
+                                                    "multiselect",
+                                                    {
+                                                      class: {
+                                                        "error-input error-input-multi":
+                                                          fileIC.selectedColorRelacion ==
+                                                            "" ||
+                                                          fileIC.selectedColorRelacion ==
+                                                            null
+                                                      },
+                                                      attrs: {
+                                                        options:
+                                                          _vm.selectedColores,
+                                                        selectLabel: "",
+                                                        selectedLabel: "",
+                                                        placeholder: "Color",
+                                                        deselectLabel: "",
+                                                        "open-direction":
+                                                          "bottom",
+                                                        multiple: false,
+                                                        hideSelected: true,
+                                                        "custom-label":
+                                                          _vm.customLabelColor,
+                                                        "show-labels": false,
+                                                        label: "valor",
+                                                        "track-by": "valor"
+                                                      },
+                                                      scopedSlots: _vm._u(
+                                                        [
+                                                          {
+                                                            key: "option",
+                                                            fn: function(
+                                                              props
+                                                            ) {
+                                                              return [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "option__desc d-flex align-items-center"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "span",
+                                                                      {
+                                                                        staticClass:
+                                                                          "option__title d-flex align-items-center"
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "mr-2",
+                                                                            style:
+                                                                              "width:25px;height:25px;border: 1px solid black;background:" +
+                                                                              props
+                                                                                .option
+                                                                                .color
+                                                                          }
+                                                                        ),
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            props
+                                                                              .option
+                                                                              .valor
+                                                                          )
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            }
+                                                          }
+                                                        ],
+                                                        null,
+                                                        true
+                                                      ),
+                                                      model: {
+                                                        value:
+                                                          fileIC.selectedColorRelacion,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            fileIC,
+                                                            "selectedColorRelacion",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "fileIC.selectedColorRelacion"
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          attrs: {
+                                                            slot: "noResult"
+                                                          },
+                                                          slot: "noResult"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                          No se encontraron resultados"
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          attrs: {
+                                                            slot: "noOptions"
+                                                          },
+                                                          slot: "noOptions"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                            Lista vacía"
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  fileIC.selectedColorRelacion ==
+                                                    "" ||
+                                                  fileIC.selectedColorRelacion ==
+                                                    null
+                                                    ? _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "error-text"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Campo requerido."
+                                                          )
+                                                        ]
+                                                      )
+                                                    : _vm._e()
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass:
+                                                    "text-center position-relative pb-4"
+                                                },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass: "contenido"
+                                                    },
+                                                    [
+                                                      _c("input", {
+                                                        attrs: {
+                                                          type: "radio",
+                                                          id: "radio_" + index,
+                                                          name: "radio"
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            return _vm.cambiarEsPrincipal(
+                                                              index
+                                                            )
+                                                          }
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c("span", {
+                                                        staticClass: "checkmark"
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass:
+                                                    "text-center position-relative pb-3"
+                                                },
+                                                [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "cursor btn btn-inverse",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.deleteRelacion(
+                                                            index
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fa fa-trash cursor"
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  index ==
+                                                    _vm.filesImagesColor
+                                                      .length -
+                                                      1 &&
+                                                  fileIC.file &&
+                                                  fileIC.file !== null &&
+                                                  Object.keys(fileIC.file)
+                                                    .length !== 0 &&
+                                                  fileIC.selectedColorRelacion !=
+                                                    "" &&
+                                                  fileIC.selectedColorRelacion !=
+                                                    null &&
+                                                  fileIC.posicionRelacion !=
+                                                    "" &&
+                                                  fileIC.posicionRelacion !=
+                                                    null
+                                                    ? _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "cursor btn btn-primary",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.addRelacion()
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-plus cursor"
+                                                          })
+                                                        ]
+                                                      )
+                                                    : index ==
+                                                        _vm.filesImagesColor
+                                                          .length -
+                                                          1 &&
+                                                      (fileIC.selectedColorRelacion ==
+                                                        "" ||
+                                                        fileIC.selectedColorRelacion ==
+                                                          null ||
+                                                        fileIC.posicionRelacion ==
+                                                          "" ||
+                                                        fileIC.posicionRelacion ==
+                                                          null)
+                                                    ? _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "cursor btn btn-primary disabled",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.msgAlert(
+                                                                "Hay campos requeridos",
+                                                                "warning"
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-plus cursor"
+                                                          })
+                                                        ]
+                                                      )
+                                                    : index ==
+                                                        _vm.filesImagesColor
+                                                          .length -
+                                                          1 &&
+                                                      (fileIC.file == null ||
+                                                        Object.keys(fileIC.file)
+                                                          .length == 0)
+                                                    ? _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "cursor btn btn-primary disabled",
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.msgAlert(
+                                                                "La imagen es requerida",
+                                                                "warning"
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("i", {
+                                                            staticClass:
+                                                              "fa fa-plus cursor"
+                                                          })
+                                                        ]
+                                                      )
+                                                    : _vm._e()
                                                 ]
                                               )
-                                            : _vm._e()
-                                        ]
+                                            ])
+                                          })
+                                        ],
+                                        2
                                       )
-                                    ])
-                                  })
-                                ],
-                                2
+                                    ]
+                                  )
+                                ]
                               )
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "tab-content d-flex justify-content-between align-items-center"
-                    },
-                    [
-                      _c("label", { staticClass: "contenido basis-33" }, [
-                        _vm._v(
-                          "\n                  Publicado\n                  "
-                        ),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.articulo.publicado,
-                              expression: "articulo.publicado"
-                            }
-                          ],
-                          attrs: {
-                            type: "checkbox",
-                            id: "publicado",
-                            name: "publicado"
-                          },
-                          domProps: {
-                            checked: Array.isArray(_vm.articulo.publicado)
-                              ? _vm._i(_vm.articulo.publicado, null) > -1
-                              : _vm.articulo.publicado
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.articulo.publicado,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.articulo,
-                                      "publicado",
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.articulo,
-                                      "publicado",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
-                                }
-                              } else {
-                                _vm.$set(_vm.articulo, "publicado", $$c)
-                              }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "checkmark" })
-                      ]),
+                            ]
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
-                      _c("label", { staticClass: "contenido basis-33" }, [
-                        _vm._v(
-                          "\n                  Destacado\n                  "
-                        ),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.articulo.destacado,
-                              expression: "articulo.destacado"
-                            }
-                          ],
-                          attrs: {
-                            type: "checkbox",
-                            id: "destacado",
-                            name: "destacado"
-                          },
-                          domProps: {
-                            checked: Array.isArray(_vm.articulo.destacado)
-                              ? _vm._i(_vm.articulo.destacado, null) > -1
-                              : _vm.articulo.destacado
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.articulo.destacado,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.articulo,
-                                      "destacado",
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.articulo,
-                                      "destacado",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "tab-content d-flex justify-content-between align-items-center"
+                        },
+                        [
+                          _c("label", { staticClass: "contenido basis-33" }, [
+                            _vm._v(
+                              "\n                  Publicado\n                  "
+                            ),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.articulo.publicado,
+                                  expression: "articulo.publicado"
                                 }
-                              } else {
-                                _vm.$set(_vm.articulo, "destacado", $$c)
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                id: "publicado",
+                                name: "publicado"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.articulo.publicado)
+                                  ? _vm._i(_vm.articulo.publicado, null) > -1
+                                  : _vm.articulo.publicado
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.articulo.publicado,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.articulo,
+                                          "publicado",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.articulo,
+                                          "publicado",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.articulo, "publicado", $$c)
+                                  }
+                                }
                               }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "checkmark" })
-                      ]),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "contenido basis-33" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary  m-b-10 pull-right",
-                            attrs: { type: "button" },
-                            on: { click: _vm.saveAll }
-                          },
-                          [_vm._v("Guardar")]
-                        )
-                      ])
-                    ]
-                  )
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "checkmark" })
+                          ]),
+                          _vm._v(" "),
+                          _c("label", { staticClass: "contenido basis-33" }, [
+                            _vm._v(
+                              "\n                  Destacado\n                  "
+                            ),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.articulo.destacado,
+                                  expression: "articulo.destacado"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                id: "destacado",
+                                name: "destacado"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.articulo.destacado)
+                                  ? _vm._i(_vm.articulo.destacado, null) > -1
+                                  : _vm.articulo.destacado
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.articulo.destacado,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.articulo,
+                                          "destacado",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.articulo,
+                                          "destacado",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.articulo, "destacado", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "checkmark" })
+                          ]),
+                          _vm._v(" "),
+                          _c("label", { staticClass: "contenido basis-33" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-primary  m-b-10 pull-right",
+                                attrs: { type: "button" },
+                                on: { click: _vm.saveAll }
+                              },
+                              [_vm._v("Guardar")]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
                 ])
               ])
             ])
           ])
-        ])
-      ]),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
