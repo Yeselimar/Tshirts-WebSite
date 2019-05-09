@@ -626,7 +626,7 @@ li.bagform .dropbag:after {
                               >
                             </div>
                             <div class="remember justify-content-start text-left">
-                              <a @click.stop.prevent class="link-login cursor">Recuperar contraseña</a>
+                              <a @click.stop.prevent="prueba" class="link-login cursor">Recuperar contraseña</a>
                             </div>
                             <div class="justify-content-start text-left">
                                 <router-link :to="{ name: 'register'}" @click="closeAll(1)" class="link-login cursor">Registrarse</router-link>
@@ -742,6 +742,22 @@ export default {
     };
   },
   methods: {
+
+    prueba()
+    {
+      this.isLoading = true;
+
+    CerService.post("/front/prueba")
+      .then(response => 
+      {
+          this.isLoading = false;
+          console.log(response);
+      })
+      .catch(error => {
+        this.isLoading = false;
+        console.log('Ha ocurrido un error inesperado')
+      });
+    },
     panelAdmin(){
         window.open(
             this.getUrl+'admin',
@@ -1028,6 +1044,8 @@ export default {
     ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart', 'getUrl']),
   },
   mounted: function() {
+
+
   //this.initComponent()
     if (document.body.clientWidth <= 768) {
       this.collapse = true;
@@ -1120,6 +1138,7 @@ export default {
     } else {
       this.collapse = false;
     }
+
   },
   watch: {
     getIsDesign: function(){

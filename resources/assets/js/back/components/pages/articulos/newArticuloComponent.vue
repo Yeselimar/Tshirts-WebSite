@@ -62,7 +62,7 @@
   height: auto !important
 }
 #nuevoArticulo .tab-contentGlobal{
-  min-height: 65vh
+  min-height: 50vh
 }
 </style>
 <template>
@@ -393,7 +393,8 @@
                             :clearOnSelect="true"
                             :custom-label="customLabelTalla" 
                             :show-labels="false"
-                             label="valor" 
+                             label="valor"
+                             @remove="eventRemoveTalle" 
                              track-by="valor"
                              v-validate data-vv-rules="required" 
                              data-vv-scope="form-disponibilidad"
@@ -653,8 +654,19 @@
 
                                 <td class="text-center position-relative pb-3">
                                      <button class="cursor btn btn-inverse" @click="deleteVariante(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
-                                    <button v-else-if="fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos','warning')"><i class="fa fa-plus cursor"></i></button>
+                                     <template v-if="(selectedTipo.toUpperCase() == 'ROPA')">
+                                        <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                         <button v-else-if="index == filesVariantes.length-1 && (fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null)" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos en la tabla','warning')"><i class="fa fa-plus cursor"></i></button>
+                                    </template>
+                                  
+                                      
+                                    <template v-else>
+                                       <button v-if="index == filesVariantes.length-1 && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                         <button v-else-if="index == filesVariantes.length-1 && (fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null)" class="cursor btn btn-primary disabled" @click="msgAlert('El campo color es requrido en la tabla','warning')"><i class="fa fa-plus cursor"></i></button>
+                                    </template>
+                                      
+
+                                    
 
                                 </td>
                              
@@ -1026,8 +1038,25 @@ export default {
       this.posicionColor.push({...aux})
     },
     eventRemoveColor(removedOption, id){
+     this.filesImagesColor.forEach((file,id) =>{
+        if(removedOption == file.selectedColorRelacion){
+          this.filesImagesColor[id].selectedColorRelacion = ""
+        }
+      },this)
+     this.filesVariantes.forEach((file,id) =>{
+        if(removedOption == file.selectedColorVariante){
+          this.filesVariantes[id].selectedColorVariante = ""
+        }
+      },this)
       this.posicionColor.splice(id,1)
     },
+     eventRemoveTalle(removedOption, id){
+        this.filesVariantes.forEach((file,id) =>{
+          if(removedOption == file.selectedTalleVariante){
+            this.filesVariantes[id].selectedTalleVariante = ""
+          }
+        },this)
+     },
     getPosicion(){
       this.isLoading = true
         CerService.post("/imagenes-articulos/posicion-imagen")
@@ -1121,7 +1150,7 @@ export default {
          if(mainP && this.filesImagesColor.length){
             setTimeout(e => {
               $("#radio_0").prop("checked", true);
-            },100) 
+            },10) 
             this.filesImagesColor[0].es_principal = true
           }
       }
@@ -1151,7 +1180,7 @@ export default {
       if(mainP && this.filesImagesColor.length){
         setTimeout(e => {
           $("#radio_0").prop("checked", true);
-        },100)         
+        },10)         
         this.filesImagesColor[0].es_principal = true
       }
     },
@@ -1160,6 +1189,10 @@ export default {
       let aux = {
           selectedColorVariante: "",
           selectedTalleVariante: "",
+          colorVarianteAux: {
+            colorOld: '',
+            colorNew: '',
+          },
           cantidadVariante: 0,
           precioVariante: this.articulo.precioGeneral
 
@@ -1217,8 +1250,11 @@ export default {
     validatorDisponibilidad(){
       let validator = true
       this.filesVariantes.forEach(e => {
-        if(e.selectedColorVariante == '' || e.selectedColorVariante == null || e.selectedTalleVariante == '' || e.selectedTalleVariante == null){
+        if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
           validator = false
+          if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+            validator = false
+          }
         }
       })
       return validator;
@@ -1531,7 +1567,8 @@ export default {
       }
     },
     selectedCantidad: function(){
-      if(this.selectedCantidad == null || this.selectedTipo.toUpperCase()!= 'GENERAL'){
+      if(this.selectedCantidad == null || this.selectedCantidad.toUpperCase()!= 'GENERAL'){
+          this.filesVariantes = []
           this.articulo.cantidad = 0
           this.maskCantidad = ""
         }

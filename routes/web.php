@@ -98,6 +98,8 @@ Route::post('/banner/{id}/actualizar','BannerController@update')->name('banner.a
 Route::post('/banner/{id}/detalles','BannerController@show')->name('banner.detalles');
 Route::post('/banner/{id}/eliminar','BannerController@destroy')->name('banner.eliminar');
 
+Route::post('/front/prueba','FrontController@prueba')->name('front.prueba');
+
 //comente esto por el vue-router
 /*Route::get('/','FrontController@index')->name('inicio');
 Route::get('/rubros','FrontController@rubros')->name('rubros');

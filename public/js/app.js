@@ -88634,6 +88634,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   methods: {
+    prueba: function prueba() {
+      var _this = this;
+
+      this.isLoading = true;
+
+      __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/front/prueba").then(function (response) {
+        _this.isLoading = false;
+        console.log(response);
+      }).catch(function (error) {
+        _this.isLoading = false;
+        console.log('Ha ocurrido un error inesperado');
+      });
+    },
     panelAdmin: function panelAdmin() {
       window.open(this.getUrl + 'admin', '_blank' // <- This is what makes it open in a new window.
       );
@@ -88670,14 +88683,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
     },
     logout: function logout() {
-      var _this = this;
+      var _this2 = this;
 
       this.closeAll(10);
       this.isLoading = true;
       this.$store.dispatch('logout').then(function (res) {
 
         if (res.res) {
-          _this.$swal.mixin({
+          _this2.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88686,10 +88699,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             type: "success",
             title: res.msg
           });
-          _this.$router.push({ name: 'home' });
-          _this.isLoading = false;
+          _this2.$router.push({ name: 'home' });
+          _this2.isLoading = false;
         } else {
-          _this.$swal.mixin({
+          _this2.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88698,10 +88711,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             type: "warning",
             title: res.msg
           });
-          _this.isLoading = false;
+          _this2.isLoading = false;
         }
       }).catch(function (err) {
-        _this.$swal.mixin({
+        _this2.$swal.mixin({
           toast: true,
           position: "top-end",
           showConfirmButton: false,
@@ -88710,7 +88723,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           type: "success",
           title: "Ha ocurrido un error inesperado"
         });
-        _this.isLoading = false;
+        _this2.isLoading = false;
       });
     },
     seleted: function seleted(rubro) {
@@ -88726,7 +88739,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$router.push({ name: 'rubros' });
     },
     showBagM: function showBagM() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.showBag) {
         this.showBagOut = false;
@@ -88734,19 +88747,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showLoginOut = true;
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this2.showLogin = false;
-          _this2.showCart = false;
+          _this3.showLogin = false;
+          _this3.showCart = false;
         }, 500);
       } else {
         this.showBagOut = true;
         setTimeout(function (e) {
-          _this2.showBagOut = false;
-          _this2.showBag = false;
+          _this3.showBagOut = false;
+          _this3.showBag = false;
         }, 500);
       }
     },
     showCartM: function showCartM() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.showCart) {
         this.showCartOut = false;
@@ -88754,19 +88767,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showLoginOut = true;
         this.showBagOut = true;
         setTimeout(function (e) {
-          _this3.showLogin = false;
-          _this3.showBag = false;
+          _this4.showLogin = false;
+          _this4.showBag = false;
         }, 500);
       } else {
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this3.showCartOut = false;
-          _this3.showCart = false;
+          _this4.showCartOut = false;
+          _this4.showCart = false;
         }, 500);
       }
     },
     showLoginM: function showLoginM() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!this.showLogin) {
         this.showLoginOut = false;
@@ -88774,30 +88787,30 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showBagOut = true;
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this4.showBag = false;
-          _this4.showCart = false;
+          _this5.showBag = false;
+          _this5.showCart = false;
         }, 500);
       } else {
         this.showLoginOut = true;
         setTimeout(function (e) {
-          _this4.showLoginOut = false;
-          _this4.showLogin = false;
+          _this5.showLoginOut = false;
+          _this5.showLogin = false;
         }, 500);
       }
     },
     closeAll: function closeAll(val) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.showLoginOut = true;
       this.showCartOut = true;
       this.showBagOut = true;
       setTimeout(function (e) {
-        _this5.showLoginOut = false;
-        _this5.showCartOut = false;
-        _this5.showBagOut = false;
-        _this5.showLogin = false;
-        _this5.showCart = false;
-        _this5.showBag = false;
+        _this6.showLoginOut = false;
+        _this6.showCartOut = false;
+        _this6.showBagOut = false;
+        _this6.showLogin = false;
+        _this6.showCart = false;
+        _this6.showBag = false;
       }, val);
     },
     designM: function designM(cent) {
@@ -88811,29 +88824,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$store.dispatch('cambiarIsDesign', cent);
     },
     loginM: function loginM() {
-      var _this6 = this;
+      var _this7 = this;
 
       this.$validator.validateAll("form-login").then(function (resp) {
         if (resp) {
-          _this6.isLoading = true;
+          _this7.isLoading = true;
           var dataform = new FormData();
-          dataform.append("password", _this6.user.password);
-          dataform.append("email", _this6.user.email);
+          dataform.append("password", _this7.user.password);
+          dataform.append("email", _this7.user.email);
           __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/login/post", dataform).then(function (response) {
             if (response.res) {
-              _this6.closeAll(1);
-              _this6.$store.dispatch('loadUser');
-              if (_this6.$route.name == 'register') {
-                _this6.$router.push({ name: 'home' });
+              _this7.closeAll(1);
+              _this7.$store.dispatch('loadUser');
+              if (_this7.$route.name == 'register') {
+                _this7.$router.push({ name: 'home' });
               }
               var element = document.getElementById("header-top");
               var options = {
                 offset: 0,
                 force: true
               };
-              _this6.$scrollTo(element, 0, options);
-              _this6.isLoading = false;
-              _this6.$swal.mixin({
+              _this7.$scrollTo(element, 0, options);
+              _this7.isLoading = false;
+              _this7.$swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
@@ -88843,8 +88856,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 title: response.msg
               });
             } else {
-              _this6.isLoading = false;
-              _this6.$swal.mixin({
+              _this7.isLoading = false;
+              _this7.$swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
@@ -88855,9 +88868,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
               });
             }
           }).catch(function (error) {
-            _this6.$store.dispatch('loadUser');
-            _this6.isLoading = false;
-            _this6.$swal.mixin({
+            _this7.$store.dispatch('loadUser');
+            _this7.isLoading = false;
+            _this7.$swal.mixin({
               toast: true,
               position: "top-end",
               showConfirmButton: false,
@@ -88868,7 +88881,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
           });
         } else {
-          _this6.$swal.mixin({
+          _this7.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88901,7 +88914,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getBag', 'getCart', 'getUrl'])),
   mounted: function mounted() {
-    var _this7 = this;
+    var _this8 = this;
 
     //this.initComponent()
     if (document.body.clientWidth <= 768) {
@@ -88927,14 +88940,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
       }, 400);
       if (document.body.clientWidth <= 768) {
-        _this7.collapse = true;
+        _this8.collapse = true;
         $('#content-barna').css('min-height', 131);
       } else {
-        _this7.collapse = false;
-        _this7.collVal = false;
+        _this8.collapse = false;
+        _this8.collVal = false;
         $('#content-barna').css('min-height', 170);
       }
-      if (_this7.collapse) {
+      if (_this8.collapse) {
         $("#logo-barna").css("width", 45);
         $("#logo-barna").css("height", 85);
       } else {
@@ -88950,7 +88963,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       if (document.documentElement.scrollTop > t) {
         //$(content).css("transition", "all 0.5s ease 0.4s");
         $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
-        if (_this7.collapse) {
+        if (_this8.collapse) {
           $("#logo-barna").css("width", 40);
           $("#logo-barna").css("height", 60);
         } else {
@@ -88967,7 +88980,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       } else {
         $("#content-barna").css("transition", "all 0.2s ease 0.1s");
         $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
-        if (_this7.collapse) {
+        if (_this8.collapse) {
           $("#logo-barna").css("width", 45);
           $("#logo-barna").css("height", 85);
         } else {
@@ -90373,6 +90386,9 @@ var render = function() {
                                                                       ) {
                                                                         $event.stopPropagation()
                                                                         $event.preventDefault()
+                                                                        return _vm.prueba(
+                                                                          $event
+                                                                        )
                                                                       }
                                                                     }
                                                                   },

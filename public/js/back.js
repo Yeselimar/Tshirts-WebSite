@@ -103247,7 +103247,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 65vh\n}\r\n", ""]);
+exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 50vh\n}\r\n", ""]);
 
 // exports
 
@@ -103275,6 +103275,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -104308,72 +104320,93 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       this.posicionColor.push(_extends({}, aux));
     },
     eventRemoveColor: function eventRemoveColor(removedOption, id) {
+      var _this2 = this;
+
+      this.filesImagesColor.forEach(function (file, id) {
+        if (removedOption == file.selectedColorRelacion) {
+          _this2.filesImagesColor[id].selectedColorRelacion = "";
+        }
+      }, this);
+      this.filesVariantes.forEach(function (file, id) {
+        if (removedOption == file.selectedColorVariante) {
+          _this2.filesVariantes[id].selectedColorVariante = "";
+        }
+      }, this);
       this.posicionColor.splice(id, 1);
     },
+    eventRemoveTalle: function eventRemoveTalle(removedOption, id) {
+      var _this3 = this;
+
+      this.filesVariantes.forEach(function (file, id) {
+        if (removedOption == file.selectedTalleVariante) {
+          _this3.filesVariantes[id].selectedTalleVariante = "";
+        }
+      }, this);
+    },
     getPosicion: function getPosicion() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-articulos/posicion-imagen").then(function (response) {
         if (response.posicion) {
-          _this2.optionsPosicion = response.posicion;
+          _this4.optionsPosicion = response.posicion;
         }
-        _this2.isLoading = false;
+        _this4.isLoading = false;
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
-        _this2.isLoading = false;
+        _this4.isLoading = false;
       });
     },
     getColores: function getColores() {
-      var _this3 = this;
+      var _this5 = this;
 
       this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/colores/api").then(function (response) {
         if (response.colores) {
-          _this3.optionColors = response.colores;
+          _this5.optionColors = response.colores;
         }
-        _this3.isLoading = false;
-      }).catch(function (error) {
-        console.log('Ha ocurrido un error inesperado');
-        _this3.isLoading = false;
-      });
-    },
-    getTalles: function getTalles() {
-      var _this4 = this;
-
-      this.isLoading = true;
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/talles/api").then(function (response) {
-        if (response.talles) {
-          _this4.optionTalles = response.talles;
-        }
-        _this4.isLoading = false;
-      }).catch(function (error) {
-        console.log('Ha ocurrido un error inesperado');
-        _this4.isLoading = false;
-      });
-    },
-    getRubros: function getRubros() {
-      var _this5 = this;
-
-      this.isLoading = true;
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
-        if (response.rubros) {
-          _this5.optionRubros = response.rubros;
-        }
+        _this5.isLoading = false;
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
         _this5.isLoading = false;
       });
     },
-    cambiarEsPrincipal: function cambiarEsPrincipal(index) {
+    getTalles: function getTalles() {
       var _this6 = this;
+
+      this.isLoading = true;
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/talles/api").then(function (response) {
+        if (response.talles) {
+          _this6.optionTalles = response.talles;
+        }
+        _this6.isLoading = false;
+      }).catch(function (error) {
+        console.log('Ha ocurrido un error inesperado');
+        _this6.isLoading = false;
+      });
+    },
+    getRubros: function getRubros() {
+      var _this7 = this;
+
+      this.isLoading = true;
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
+        if (response.rubros) {
+          _this7.optionRubros = response.rubros;
+        }
+      }).catch(function (error) {
+        console.log('Ha ocurrido un error inesperado');
+        _this7.isLoading = false;
+      });
+    },
+    cambiarEsPrincipal: function cambiarEsPrincipal(index) {
+      var _this8 = this;
 
       this.filesImagesColor.forEach(function (file, id) {
         if (id == index) {
-          _this6.filesImagesColor[id].es_principal = true;
+          _this8.filesImagesColor[id].es_principal = true;
           $("#radio_" + id).prop("checked", true);
         } else {
-          _this6.filesImagesColor[id].es_principal = false;
+          _this8.filesImagesColor[id].es_principal = false;
           $("#radio_" + id).prop("checked", false);
         }
       }, this);
@@ -104394,7 +104427,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         if (mainP && this.filesImagesColor.length) {
           setTimeout(function (e) {
             $("#radio_0").prop("checked", true);
-          }, 100);
+          }, 10);
           this.filesImagesColor[0].es_principal = true;
         }
       }
@@ -104424,7 +104457,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       if (mainP && this.filesImagesColor.length) {
         setTimeout(function (e) {
           $("#radio_0").prop("checked", true);
-        }, 100);
+        }, 10);
         this.filesImagesColor[0].es_principal = true;
       }
     },
@@ -104432,6 +104465,10 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       var aux = {
         selectedColorVariante: "",
         selectedTalleVariante: "",
+        colorVarianteAux: {
+          colorOld: '',
+          colorNew: ''
+        },
         cantidadVariante: 0,
         precioVariante: this.articulo.precioGeneral
 
@@ -104492,10 +104529,15 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       return validator;
     },
     validatorDisponibilidad: function validatorDisponibilidad() {
+      var _this9 = this;
+
       var validator = true;
       this.filesVariantes.forEach(function (e) {
-        if (e.selectedColorVariante == '' || e.selectedColorVariante == null || e.selectedTalleVariante == '' || e.selectedTalleVariante == null) {
+        if (e.selectedColorVariante == '' || e.selectedColorVariante == null) {
           validator = false;
+          if (_this9.selectedTipo.toUpperCase() == 'ROPA' && (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)) {
+            validator = false;
+          }
         }
       });
       return validator;
@@ -104510,33 +104552,33 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       return validator;
     },
     saveAll: function saveAll() {
-      var _this7 = this;
+      var _this10 = this;
 
       this.$validator.validateAll("form-create").then(function (resp) {
         if (resp) {
-          _this7.$validator.validateAll("form-ajustes").then(function (resA) {
+          _this10.$validator.validateAll("form-ajustes").then(function (resA) {
             if (resA) {
-              if (_this7.files.length) {
-                _this7.$validator.validateAll("form-disponibilidad").then(function (resD) {
-                  if (resD && _this7.validatorDisponibilidad()) {
-                    if (_this7.validatorImagenRelacion()) {
-                      if (_this7.validatorRelacion()) {
-                        _this7.articulo.imagenes = _this7.files;
-                        _this7.articulo.rubros = _this7.selectedRubro;
-                        _this7.articulo.tipo = _this7.selectedTipo;
-                        _this7.articulo.talles = _this7.selectedTallas;
-                        _this7.articulo.colores = _this7.selectedColores;
-                        _this7.articulo.tipo_cantidad = _this7.selectedCantidad;
-                        _this7.articulo.talles_colores = _this7.filesVariantes;
-                        _this7.articulo.imagenes_colores = _this7.filesImagesColor;
+              if (_this10.files.length) {
+                _this10.$validator.validateAll("form-disponibilidad").then(function (resD) {
+                  if (resD && _this10.validatorDisponibilidad()) {
+                    if (_this10.validatorImagenRelacion()) {
+                      if (_this10.validatorRelacion()) {
+                        _this10.articulo.imagenes = _this10.files;
+                        _this10.articulo.rubros = _this10.selectedRubro;
+                        _this10.articulo.tipo = _this10.selectedTipo;
+                        _this10.articulo.talles = _this10.selectedTallas;
+                        _this10.articulo.colores = _this10.selectedColores;
+                        _this10.articulo.tipo_cantidad = _this10.selectedCantidad;
+                        _this10.articulo.talles_colores = _this10.filesVariantes;
+                        _this10.articulo.imagenes_colores = _this10.filesImagesColor;
 
                         var dataform = new FormData();
-                        for (var i = 0; i < _this7.files.length; i++) {
-                          var file = _this7.files[i].file;
+                        for (var i = 0; i < _this10.files.length; i++) {
+                          var file = _this10.files[i].file;
                           dataform.append('imagenes[' + i + ']', file);
                         }
                         var data = JSON.stringify({
-                          articulo: _this7.articulo
+                          articulo: _this10.articulo
                         });
                         dataform.append('articulo', data);
                         console.log(dataform);
@@ -104547,12 +104589,12 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         }).then(function (response) {
                           console.log(response);
                           if (response.res) {
-                            _this7.msgAlert(response.msg, 'success');
+                            _this10.msgAlert(response.msg, 'success');
                           } else {
-                            _this7.msgAlert(response.msg, 'warning');
+                            _this10.msgAlert(response.msg, 'warning');
                           }
                         }).catch(function (error) {
-                          _this7.msgAlert('Ha ocurrido un error inesperado', 'error');
+                          _this10.msgAlert('Ha ocurrido un error inesperado', 'error');
                         });
                       } else {
                         var element = document.getElementById("tabcontent");
@@ -104560,9 +104602,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                           offset: 0,
                           force: true
                         };
-                        _this7.$scrollTo(element, 0, options);
+                        _this10.$scrollTo(element, 0, options);
                         $('.nav-tabs a[href="#relacion"]').tab('show');
-                        _this7.msgAlert('Por favor verifique el tab relacion Imagen-Color', 'warning');
+                        _this10.msgAlert('Por favor verifique el tab relacion Imagen-Color', 'warning');
                       }
                     } else {
                       var _element = document.getElementById("tabcontent");
@@ -104570,9 +104612,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         offset: 0,
                         force: true
                       };
-                      _this7.$scrollTo(_element, 0, options);
+                      _this10.$scrollTo(_element, 0, options);
                       $('.nav-tabs a[href="#relacion"]').tab('show');
-                      _this7.msgAlert('La imagen es requerida en la relación Imagen-Color', 'warning');
+                      _this10.msgAlert('La imagen es requerida en la relación Imagen-Color', 'warning');
                     }
                   } else {
                     var _element2 = document.getElementById("tabcontent");
@@ -104580,9 +104622,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                       offset: 0,
                       force: true
                     };
-                    _this7.$scrollTo(_element2, 0, options);
+                    _this10.$scrollTo(_element2, 0, options);
                     $('.nav-tabs a[href="#disponibilidad"]').tab('show');
-                    _this7.msgAlert('Por favor verifique el tab disponibilidad', 'warning');
+                    _this10.msgAlert('Por favor verifique el tab disponibilidad', 'warning');
                   }
                 });
               } else {
@@ -104591,9 +104633,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                   offset: 0,
                   force: true
                 };
-                _this7.$scrollTo(element, 0, options);
+                _this10.$scrollTo(element, 0, options);
                 $('.nav-tabs a[href="#ajustesbasicos"]').tab('show');
-                _this7.msgAlert('Debe subir por lo menos una imagen del articulo en ajustes básicos', 'warning');
+                _this10.msgAlert('Debe subir por lo menos una imagen del articulo en ajustes básicos', 'warning');
               }
             } else {
               var _element3 = document.getElementById("tabcontent");
@@ -104601,9 +104643,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                 offset: 0,
                 force: true
               };
-              _this7.$scrollTo(_element3, 0, options);
+              _this10.$scrollTo(_element3, 0, options);
               $('.nav-tabs a[href="#ajustesbasicos"]').tab('show');
-              _this7.msgAlert('Por favor verifique el tab ajustes básicos', 'warning');
+              _this10.msgAlert('Por favor verifique el tab ajustes básicos', 'warning');
             }
           });
         } else {
@@ -104612,8 +104654,8 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
             offset: 0,
             force: true
           };
-          _this7.$scrollTo(element, 0, options);
-          _this7.msgAlert('Por favor verifique el nombre del artículo', 'warning');
+          _this10.$scrollTo(element, 0, options);
+          _this10.msgAlert('Por favor verifique el nombre del artículo', 'warning');
         }
       });
     },
@@ -104669,7 +104711,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       }
     },
     inputFilter: function inputFilter(newFile, oldFile, prevent) {
-      var _this8 = this;
+      var _this11 = this;
 
       if (newFile && !oldFile) {
         // Before adding a file
@@ -104694,7 +104736,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
             maxHeight: 512
           });
           imageCompressor.compress(newFile.file).then(function (file) {
-            _this8.$refs.upload.update(newFile, {
+            _this11.$refs.upload.update(newFile, {
               error: "",
               file: file,
               size: file.size,
@@ -104703,7 +104745,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
               es_principal: false //tambien es nuevo
             });
           }).catch(function (err) {
-            _this8.$refs.upload.update(newFile, {
+            _this11.$refs.upload.update(newFile, {
               error: err.message || "compress"
             });
           });
@@ -104779,7 +104821,8 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       }
     },
     selectedCantidad: function selectedCantidad() {
-      if (this.selectedCantidad == null || this.selectedTipo.toUpperCase() != 'GENERAL') {
+      if (this.selectedCantidad == null || this.selectedCantidad.toUpperCase() != 'GENERAL') {
+        this.filesVariantes = [];
         this.articulo.cantidad = 0;
         this.maskCantidad = "";
       }
@@ -108344,7 +108387,7 @@ var render = function() {
                                         )
                                       },
                                       attrs: {
-                                        options: ["ropa", "otros"],
+                                        options: ["Ropa", "Otros"],
                                         selectLabel: "",
                                         hideSelected: true,
                                         selectedLabel: "",
@@ -108864,6 +108907,7 @@ var render = function() {
                                             "data-vv-name": "talles",
                                             "data-vv-value-path": "talles"
                                           },
+                                          on: { remove: _vm.eventRemoveTalle },
                                           scopedSlots: _vm._u(
                                             [
                                               {
@@ -109928,70 +109972,142 @@ var render = function() {
                                                   ]
                                                 ),
                                                 _vm._v(" "),
-                                                index ==
-                                                  _vm.filesVariantes.length -
-                                                    1 &&
-                                                fileV.selectedTalleVariante !=
-                                                  "" &&
-                                                fileV.selectedTalleVariante !=
-                                                  null &&
-                                                fileV.selectedColorVariante !=
-                                                  "" &&
-                                                fileV.selectedColorVariante !=
-                                                  null
-                                                  ? _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "cursor btn btn-primary",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.addVariante()
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("i", {
-                                                          staticClass:
-                                                            "fa fa-plus cursor"
-                                                        })
-                                                      ]
-                                                    )
-                                                  : fileV.selectedTalleVariante ==
-                                                      "" ||
-                                                    fileV.selectedTalleVariante ==
-                                                      null ||
-                                                    fileV.selectedColorVariante ==
-                                                      "" ||
-                                                    fileV.selectedColorVariante ==
-                                                      null
-                                                  ? _c(
-                                                      "button",
-                                                      {
-                                                        staticClass:
-                                                          "cursor btn btn-primary disabled",
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            return _vm.msgAlert(
-                                                              "Los campos color y talle son requeridos",
-                                                              "warning"
-                                                            )
-                                                          }
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("i", {
-                                                          staticClass:
-                                                            "fa fa-plus cursor"
-                                                        })
-                                                      ]
-                                                    )
-                                                  : _vm._e()
-                                              ]
+                                                _vm.selectedTipo.toUpperCase() ==
+                                                "ROPA"
+                                                  ? [
+                                                      index ==
+                                                        _vm.filesVariantes
+                                                          .length -
+                                                          1 &&
+                                                      fileV.selectedTalleVariante !=
+                                                        "" &&
+                                                      fileV.selectedTalleVariante !=
+                                                        null &&
+                                                      fileV.selectedColorVariante !=
+                                                        "" &&
+                                                      fileV.selectedColorVariante !=
+                                                        null
+                                                        ? _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "cursor btn btn-primary",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.addVariante()
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-plus cursor"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : index ==
+                                                            _vm.filesVariantes
+                                                              .length -
+                                                              1 &&
+                                                          (fileV.selectedTalleVariante ==
+                                                            "" ||
+                                                            fileV.selectedTalleVariante ==
+                                                              null ||
+                                                            fileV.selectedColorVariante ==
+                                                              "" ||
+                                                            fileV.selectedColorVariante ==
+                                                              null)
+                                                        ? _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "cursor btn btn-primary disabled",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.msgAlert(
+                                                                    "Los campos color y talle son requeridos en la tabla",
+                                                                    "warning"
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-plus cursor"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e()
+                                                    ]
+                                                  : [
+                                                      index ==
+                                                        _vm.filesVariantes
+                                                          .length -
+                                                          1 &&
+                                                      fileV.selectedColorVariante !=
+                                                        "" &&
+                                                      fileV.selectedColorVariante !=
+                                                        null
+                                                        ? _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "cursor btn btn-primary",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.addVariante()
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-plus cursor"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : index ==
+                                                            _vm.filesVariantes
+                                                              .length -
+                                                              1 &&
+                                                          (fileV.selectedColorVariante ==
+                                                            "" ||
+                                                            fileV.selectedColorVariante ==
+                                                              null)
+                                                        ? _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "cursor btn btn-primary disabled",
+                                                              on: {
+                                                                click: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.msgAlert(
+                                                                    "El campo color es requrido en la tabla",
+                                                                    "warning"
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-plus cursor"
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _vm._e()
+                                                    ]
+                                              ],
+                                              2
                                             )
                                           ])
                                         })
