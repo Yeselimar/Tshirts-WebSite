@@ -91784,7 +91784,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var _this = this;
 
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/disenables/todos/api").then(function (response) {
-                _this.productDesigns = response.articulos;
+                _this.projects = response.articulos;
+
                 _this.isLoading = false;
             }).catch(function (error) {
                 _this.isLoading = false;
@@ -91794,8 +91795,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         articulosnodisenables: function articulosnodisenables() {
             var _this2 = this;
 
+            this.isLoading = true;
+
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/no-disenables/todos/api").then(function (response) {
-                _this2.products = response.articulos;
+                _this2.projects = response.articulos;
                 _this2.isLoading = false;
             }).catch(function (error) {
                 _this2.isLoading = false;
@@ -91805,6 +91808,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         obtenerrubros: function obtenerrubros() {
             var _this3 = this;
 
+            this.isLoading = true;
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
                 _this3.tipos_rubros = response.rubros;
                 _this3.isLoading = false;
@@ -91931,14 +91935,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     created: function created() {
         this.obtenerrubros();
 
-        this.articulosdisenables();
-        this.articulosnodisenables();
-
         if (this.getIsDesign) {
-            this.projects = this.productDesigns;
+            this.articulosdisenables();
         } else {
-            this.projects = this.products;
+            this.articulosnodisenables();
         }
+
+        console.log(this.productDesigns);
+        console.log(this.products);
+
         if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) this.max = 6;else if (document.body.clientWidth < 460) this.max = 3;else this.max = 12;
 
         this.isLoading = true;
@@ -91950,9 +91955,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     watch: {
         getIsDesign: function getIsDesign() {
             if (this.getIsDesign) {
-                this.projects = this.productDesigns;
+                this.articulosdisenables();
             } else {
-                this.projects = this.products;
+                this.articulosnodisenables();
             }
             //console.log('esto esta cambiando a ',this.getIsDesign)
             //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
@@ -92916,11 +92921,14 @@ var render = function() {
                       _c("div", { staticClass: "product-item" }, [
                         _c("div", { staticClass: "pi-pic" }, [
                           _c("img", {
-                            attrs: { src: _vm.getUrl + project.url, alt: "" }
+                            attrs: {
+                              src: _vm.getUrl + project.imagen.url,
+                              alt: ""
+                            }
                           }),
                           _vm._v(" "),
                           _c("div", { staticClass: "pi-links" }, [
-                            project.isDesign
+                            _vm.getIsDesign
                               ? _c(
                                   "a",
                                   {
@@ -92955,9 +92963,11 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "pi-text" }, [
-                          _c("h6", [_vm._v("$" + _vm._s(project.precio))]),
+                          _c("h6", [
+                            _vm._v("$" + _vm._s(project.precio_general))
+                          ]),
                           _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(project.titulo) + " ")])
+                          _c("p", [_vm._v(_vm._s(project.nombre) + " ")])
                         ])
                       ])
                     ]

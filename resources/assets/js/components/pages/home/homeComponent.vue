@@ -95,15 +95,15 @@
                             <div class="project" v-bind:key="project.id" v-for="project in projectsC" >
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img :src="getUrl+project.url" alt="">
+                                        <img :src="getUrl+project.imagen.url" alt="">
                                         <div class="pi-links">
-                                            <a  v-if="project.isDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                            <a  v-if="getIsDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card cursor" @click="verDetalle(project.id)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
-                                        <h6>${{project.precio}}</h6>
-                                        <p>{{project.titulo}} </p>
+                                        <h6>${{project.precio_general}}</h6>
+                                        <p>{{project.nombre}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +555,8 @@ export default {
                 CerService.post("/articulos/disenables/todos/api")
                 .then(response => 
                 {
-                    this.productDesigns = response.articulos;
+                    this.projects = response.articulos;
+
                     this.isLoading = false;
                 })
                 .catch(error => {
@@ -565,10 +566,12 @@ export default {
             },
             articulosnodisenables()
             {
+                this.isLoading =true
+
                 CerService.post("/articulos/no-disenables/todos/api")
                 .then(response => 
                 {
-                    this.products = response.articulos;
+                    this.projects = response.articulos;
                     this.isLoading = false;
                 })
                 .catch(error => {
@@ -578,6 +581,7 @@ export default {
             },
             obtenerrubros()
             {
+                this.isLoading =true
                 CerService.post("/rubros/todos/api")
                 .then(response => 
                 {
@@ -723,14 +727,19 @@ export default {
         {
             this.obtenerrubros();
 
-            this.articulosdisenables();
-            this.articulosnodisenables();
-
             if(this.getIsDesign){
-                this.projects = this.productDesigns
+                            this.articulosdisenables();
+
             }else {
-                this.projects = this.products
+                            this.articulosnodisenables();
+
             }
+
+
+            console.log(this.productDesigns);
+            console.log(this.products);
+
+           
             if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)
 				this.max = 6
 			else if(document.body.clientWidth < 460)
@@ -749,9 +758,9 @@ export default {
             getIsDesign: function()
             {
                 if(this.getIsDesign){
-                    this.projects = this.productDesigns
+                     this.articulosdisenables()
                 }else {
-                    this.projects = this.products
+                     this.articulosnodisenables();
                 }
                 //console.log('esto esta cambiando a ',this.getIsDesign)
                 //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign

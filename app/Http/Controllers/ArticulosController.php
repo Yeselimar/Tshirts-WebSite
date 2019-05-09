@@ -46,12 +46,60 @@ class ArticulosController extends Controller
     public function disenables()
     {
         $articulos = Articulo::personalizable(1)->get();
+        foreach ($articulos as $key => $articulo)
+        {
+            $encontrado = false;
+            $longitud = $articulo->imagenesarticulos->count();
+            if($longitud>0)
+            {
+                $i = 0;
+                $imagenes = $articulo->imagenesarticulos;
+                while(!$encontrado && $i<$longitud)
+                {
+                    if($imagenes[$i]->principal==1)
+                    {
+                        $imagen = $imagenes[$i];
+                        $encontrado = true;
+                    }
+                    $i++;
+                }
+                if($encontrado)
+                {
+                    $articulo['imagen'] = $imagen;
+                }
+                //¿Qué pasa si no encuentro la imagen principal?
+            }
+        }
         return response()->json(['articulos' => $articulos]);
     }
 
     public function nodisenables()
     {
         $articulos = Articulo::personalizable(0)->get();
+        foreach ($articulos as $key => $articulo)
+        {
+            $encontrado = false;
+            $longitud = $articulo->imagenesarticulos->count();
+            if($longitud>0)
+            {
+                $i = 0;
+                $imagenes = $articulo->imagenesarticulos;
+                while(!$encontrado && $i<$longitud)
+                {
+                    if($imagenes[$i]->principal==1)
+                    {
+                        $imagen = $imagenes[$i];
+                        $encontrado = true;
+                    }
+                    $i++;
+                }
+                if($encontrado)
+                {
+                    $articulo['imagen'] = $imagen;
+                }
+                //¿Qué pasa si no encuentro la imagen principal?
+            }
+        }
         return response()->json(['articulos' => $articulos]);
     }
 
