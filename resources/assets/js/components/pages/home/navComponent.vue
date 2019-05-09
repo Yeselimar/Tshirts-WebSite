@@ -128,12 +128,34 @@ export default {
     verDetalle (idProd){
         this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
+    obtenerdisenables()
+    {
+      console.log("disenables");
+
+    },
+    obtenernodisenables()
+    {
+      console.log("no disenables");
+      /*CerService.post("/grupos/talles/api")
+      .then(response => 
+      {
+          
+          this.isLoading = false
+          
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });*/
+    },
     llenarItems() {
       this.items = [];
       setTimeout(e => {
         if (this.getIsDesign) {
+          this.obtenerdisenables();
           this.items = this.barnerDesign;
         } else {
+          this.obtenernodisenables();
           this.items = this.barner;
         }
         setTimeout(e => {

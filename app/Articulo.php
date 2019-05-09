@@ -13,7 +13,7 @@ class Articulo extends Model
 
     public function imagenesarticulos()
     {
-        return $this->hasMany('App\ImagenArticulo','articulo_id');
+        return $this->hasMany('App\ImagenArticulo','articulo_id')->with('color');
     }
     
     public function rubros()
@@ -28,7 +28,7 @@ class Articulo extends Model
     
     public function tallescolores()
     {
-        return $this->hasMany('App\TalleColor','articulo_id');
+        return $this->hasMany('App\TalleColor','articulo_id')->with('color')->with('talle');
     }
 
     public function banners()//verificar que funcione
