@@ -69,71 +69,32 @@ import CerService from "../../../plugins/CerService";
 
 export default {
   name: "navComponent",
-  components: {
+  components:
+  {
     loading
   },
-  computed: {
-            
+  computed:
+  {
       ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
   },
   data() {
     return {
       isLoading:false,
-      barner: [
-        {
-          id: 0,
-          url: "img/bg.jpg",
-          titulo: "Denim jackets",
-          isDesign: false,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 1229.2
-        },
-        {
-          id: 1,
-          url: "img/bg-2.jpg",
-          titulo: "Content Static",
-          isDesign: false,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 89.5
-        }
-      ],
-      barnerDesign: [
-        {
-          id: 2,
-          url: "img/bg-3.jpg",
-          titulo: "Toommy jackets",
-          isDesign: true,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 19.2
-        },
-        {
-          id: 3,
-          url: "img/bg-4.jpg",
-          titulo: "Tonts Static",
-          isDesign: true,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 9.5
-        }
-      ],
-      items: [],
+      items: []
     };
   },
-  mounted() {
+  mounted()
+  {
     this.llenarItems();
   },
-  methods: {
-     disenar (idProd){
+  methods:
+  {
+    disenar (idProd)
+    {
         this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
-    verDetalle (idProd){
+    verDetalle (idProd)
+    {
         this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
     carousel()
@@ -184,15 +145,12 @@ export default {
     obtenerdisenables()
     {
       this.isLoading = true;
-      console.log("disenables");
       CerService.post("/banner/todos/disenables")
       .then(response => 
       {
           this.items = response.banners;
-          console.log(this.items)
           this.carousel();
           this.isLoading = false
-          
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
@@ -202,35 +160,35 @@ export default {
     obtenernodisenables()
     {
       this.isLoading = true;
-      console.log("no disenables");
       CerService.post("/banner/todos/no-disenables")
       .then(response => 
       {
           this.items = response.banners;
-          console.log(this.items)
           this.carousel();
           this.isLoading = false
-          
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
         this.isLoading = false
       });
     },
-    llenarItems() {
+    llenarItems()
+    {
       this.items = [];
-        if (this.getIsDesign) {
-          this.obtenerdisenables();
-          //this.items = this.barnerDesign;
-        } else {
-          this.obtenernodisenables();
-          //this.items = this.barner;
-        }
-
+      if (this.getIsDesign)
+      {
+        this.obtenerdisenables();
+      }
+      else
+      {
+        this.obtenernodisenables();
+      }
     }
   },
-  watch: {
-    getIsDesign: function(){
+  watch:
+  {
+    getIsDesign: function()
+    {
       this.llenarItems();
     }
   }

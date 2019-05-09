@@ -87,7 +87,8 @@
       <div class="card">
         <div class="card-title">
           <h4>
-            <strong>Nuevo Artículo</strong>
+            <strong v-if="!isEdit">Nuevo Artículo</strong>
+            <strong v-else>Editar Artículo</strong>
           </h4>
           <div class="pull-right">
             <a class="btn btn-sm btn-danger" @click=" $router.push({ name: 'articulos' })">Ir a Listado de Artículos</a>
@@ -297,7 +298,7 @@
                             <p
                               class="error-text"
                               v-else-if="errors.firstByRule('amount', 'amountvv', 'form-ajustes')"
-                            >Monto Invalido</p>
+                            >Monto invalido</p>
                           </div>
                         </div>
                       </div>
@@ -329,9 +330,37 @@
                             </div>
                         </div>
                       <!--subir imagenes -->
-                      <div class="text-center">
-                        <h3>Subir Imagenes de Artículo</h3>
+                      <!-- agregar otras imagenes-->
+
+                      <div v-if="!isEdit">
+                          <div class="text-center">
+                            <h4>Imagenes del articulo actualmente almacenadas</h4>
+                            <hr>
+                          </div>
+                          <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': imagenesarticulos.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                            <div class="project" v-for="(file) in imagenesarticulos" :key="file.id">
+                                <div class="pi-pic">
+                                  <img v-if="file.url" :src="getUrl+file.url" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2" @click="openModalImg(file.url)"><i class="fa fa-eye"></i></a>
+                                    <a class="cursor" @click.prevent="removeImageServer(file)">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                            </div>
+                          </span>
+
+                      </div>
+                      <div class="text-center" v-if="!isEdit">
+                        <h3>Subir imagenes de artículo</h3>
                         <hr>
+                      </div>
+                      <div class="text-center" v-else>
+                        <h3>Agregar otras imagenes al artículo</h3>
+                        <hr>
+
                       </div>
                           <span class="projects justify-content-start align-items-center" id="ajustesbasicosIMG" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
                             <div class="project" v-for="(file) in files" :key="file.id">
@@ -705,7 +734,7 @@
                               </tr>
                               <tr v-for="(fileIC,index) in filesImagesColor" :key="index">
                                  <td class="text-center position-relative pb-3">
-                                      <img v-if="filesImagesColor[index].file !== null && filesImagesColor[index].file !== {} && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                      <img v-if="filesImagesColor[index].file !== null &&  Object.keys(filesImagesColor[index].file).length !== 0 && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
@@ -906,6 +935,7 @@ export default {
       isLoading: false,
       isDesign: false,
       selectedImg: '',
+      imagenesarticulos: [],
       selectedTallas: [],
       selectedColores: [],
       selectedCantidad: "",
@@ -987,7 +1017,8 @@ export default {
       editFile: {
         show: false,
         name: ""
-      }
+      },
+      isEdit: false
     };
   },
   components: {
@@ -1011,10 +1042,17 @@ export default {
 
   },
   created: function() {
-    this.getColores()
-    this.getRubros()
-    this.getTalles()
-    this.getPosicion()
+    if(Object.keys(this.$route.params.length !== 0)){
+      this.isEdit = true
+      this.serviceArticulo(this.$route.params.id)
+    } else {
+      this.isEdit = false
+      this.getColores()
+      this.getRubros()
+      this.getTalles()
+      this.getPosicion()
+    }
+    
     if (document.body.clientWidth <= 900){
           this.table_responsive = true;
       } else {
@@ -1027,6 +1065,30 @@ export default {
     }
   },
   methods: {
+    serviceArticulo(id){
+       this.isLoading = true
+      CerService.post("/articulo/no-disenable/"+id+"/editar")
+      .then(response => 
+      {
+        console.log(response)
+        if(response.res){
+          this.getColores()
+          this.getRubros()
+          this.getTalles()
+          this.getPosicion()
+        }else{
+          this.msgAlert(response.msg,'error')
+          this.$router.push({ name: 'no.encontrado' });
+        }
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+    },
+    removeImageServer(file){
+
+    },
     eventSelectColor(selectedOption, id){
       let aux = {
         color: selectedOption,

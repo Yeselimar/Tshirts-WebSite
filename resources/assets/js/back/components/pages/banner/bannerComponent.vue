@@ -32,7 +32,7 @@
 	}
 	.textarea-barna
 	{
-		border-radius: 10px;
+		border-radius: 5px;
 	}
 	.h-30
 	{
@@ -170,13 +170,15 @@
                               	:class="{'error-input': errors.first('descripcion','form-crear')}"
                               	data-vv-scope="form-crear"
                               	v-validate
-                              	data-vv-rules="required:true|min:3"> 
+                              	data-vv-rules="required:true|min:3|max:300"> 
 							        Ingrese una descripción
 							    </textarea> 
                               	
                               	<span class="error-text" v-if="errors.firstByRule('descripcion', 'required','form-crear')">Campo requerido</span>	
 
                               	<span class="error-text" v-else-if="errors.firstByRule('descripcion','min','form-crear')">Mínimo 3 caracteres</span>
+
+                              	<span class="error-text" v-else-if="errors.firstByRule('descripcion','max','form-crear')">Máximo 300 caracteres</span>
                           	</div>
                       	</div>
                   	</div>
@@ -237,13 +239,16 @@
                               	:class="{'error-input': errors.first('descripcion','form-actualizar')}"
                               	data-vv-scope="form-actualizar"
                               	v-validate
-                              	data-vv-rules="required:true|min:3"> 
+                              	data-vv-rules="required:true|min:3|max:300"> 
 							        Ingrese una descripción
 							    </textarea> 
                               	
                               	<span class="error-text" v-if="errors.firstByRule('descripcion', 'required','form-actualizar')">Campo requerido</span>	
 
                               	<span class="error-text" v-else-if="errors.firstByRule('descripcion','min','form-actualizar')">Mínimo 3 caracteres</span>
+                          		
+                          		<span class="error-text" v-else-if="errors.firstByRule('descripcion','max','form-crear')">Máximo 300 caracteres</span>
+
                           	</div>
                       	</div>
                   	</div>

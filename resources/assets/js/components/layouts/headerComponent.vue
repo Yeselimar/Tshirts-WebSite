@@ -679,53 +679,10 @@ export default {
   },
   data() {
     return {
+      isLoading:false,
       collVal: false,
-      tipos_rubros:
-      [
-          {
-              "id": 1,
-              "nombre": 'Hombre',
-          },
-          {
-              "id": 2,
-              "nombre": 'Mujer',
-          },
-          {
-              "id": 3,
-              "nombre": 'Niño',
-          },
-          {
-              "id": 4,
-              "nombre": 'Niña',
-          },
-          {
-              "id": 5,
-              "nombre": 'Taza',
-          },
-          {
-              "id": 6,
-              "nombre": 'Buzo',
-          }
-      ],
-      tipos_rubros_fav:
-      [
-          {
-              "id": 1,
-              "nombre": 'Hombre',
-          },
-          {
-              "id": 2,
-              "nombre": 'Mujer',
-          },
-          {
-              "id": 3,
-              "nombre": 'Niño',
-          },
-          {
-              "id": 4,
-              "nombre": 'Niña',
-          }
-      ],
+      tipos_rubros:[],
+      tipos_rubros_fav:[],
       user: {
         name: "",
         last_name: ""
@@ -741,13 +698,39 @@ export default {
       isLoading: false
     };
   },
-  methods: {
-
+  methods:
+  {
+    todosrubros()
+    {
+      CerService.post("/rubros/todos/api")
+      .then(response => 
+      {
+        this.tipos_rubros = response.rubros;
+        this.isLoading = false;
+      })
+      .catch(error => {
+        this.isLoading = false;
+        console.log('Ha ocurrido un error inesperado');
+      });
+    },
+    rubrosfavoritos()
+    {
+      CerService.post("/rubros/todos/favoritos")
+      .then(response => 
+      {
+        this.tipos_rubros_fav = response.rubros;
+        this.isLoading = false;
+      })
+      .catch(error => {
+        this.isLoading = false;
+        console.log('Ha ocurrido un error inesperado')
+      });
+    },
     prueba()
     {
       this.isLoading = true;
 
-    CerService.post("/front/prueba")
+      CerService.post("/front/prueba")
       .then(response => 
       {
           this.isLoading = false;
@@ -758,13 +741,14 @@ export default {
         console.log('Ha ocurrido un error inesperado')
       });
     },
-    panelAdmin(){
+    panelAdmin()
+    {
         window.open(
             this.getUrl+'admin',
             '_blank' // <- This is what makes it open in a new window.
         );
     },
-  /*  initComponent() {
+    /*  initComponent() {
       this.isLoading = true;
         CerService.get("/login/auth")
           .then(response => {
@@ -782,8 +766,9 @@ export default {
             console.log("Ha ocurrido un error inesperado");
              this.isLoading = false;
           });
-  },*/
-  cambCollapse(){
+    },*/
+  cambCollapse()
+  {
     //var content = $("#content-barna");
     //console.log('holaa')
       //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
@@ -795,72 +780,75 @@ export default {
       }
 
   },
-	logout(){
+	logout()
+  {
 	  this.closeAll(10)
 	  this.isLoading = true;
-        this.$store.dispatch('logout').then((res)=>{
+      this.$store.dispatch('logout').then((res)=>{
 
-            if (res.res) {
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "success",
-                title: res.msg
-              });
-              this.$router.push({ name: 'home' })
-              this.isLoading = false;
-            } else {
-              this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "warning",
-                title: res.msg
-              });
-              this.isLoading = false;
-            }
-          })
-          .catch(err => {
+          if (res.res) {
             this.$swal
-              .mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 4000
-              })
-              .fire({
-                type: "success",
-                title: "Ha ocurrido un error inesperado"
-              });
-             this.isLoading = false;
-          });
-	},
-    seleted(rubro) {
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "success",
+              title: res.msg
+            });
+            this.$router.push({ name: 'home' })
+            this.isLoading = false;
+          } else {
+            this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "warning",
+              title: res.msg
+            });
+            this.isLoading = false;
+          }
+        })
+        .catch(err => {
+          this.$swal
+            .mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 4000
+            })
+            .fire({
+              type: "success",
+              title: "Ha ocurrido un error inesperado"
+            });
+           this.isLoading = false;
+        });
+	 },
+    seleted(rubro) 
+    {
       //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
       this.$store.dispatch('cambiarRubro',rubro)
       $("#rubrosCat").dropdown("toggle");
 
     },
-    seletedRoute(rubro) {
+    seletedRoute(rubro)
+    {
       //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
       this.$store.dispatch('cambiarRubro',rubro)
       this.search = ""
       this.$store.dispatch('cambiarSearch',this.search)
       this.$router.push({ name: 'rubros' })
-
-
     },
-    showBagM() {
-      if (!this.showBag) {
+    showBagM()
+    {
+      if (!this.showBag)
+      {
         this.showBagOut = false;
         this.showBag = true;
         this.showLoginOut = true;
@@ -877,7 +865,8 @@ export default {
         }, 500);
       }
     },
-    showCartM() {
+    showCartM()
+    {
       if (!this.showCart) {
         this.showCartOut = false;
         this.showCart = true;
@@ -895,7 +884,8 @@ export default {
         }, 500);
       }
     },
-    showLoginM() {
+    showLoginM()
+    {
       if (!this.showLogin) {
         this.showLoginOut = false;
         this.showLogin = true;
@@ -913,7 +903,8 @@ export default {
         }, 500);
       }
     },
-    closeAll(val) {
+    closeAll(val)
+    {
       this.showLoginOut = true;
       this.showCartOut = true;
       this.showBagOut = true;
@@ -926,7 +917,8 @@ export default {
         this.showBag = false;
       }, val);
     },
-    designM(cent) {
+    designM(cent)
+    {
       //this.$emit("designM", cent);
       let element = document.getElementById("header-top");
        var options = {
@@ -937,7 +929,8 @@ export default {
       this.$store.dispatch('cambiarIsDesign',cent)
 
     },
-    loginM() {
+    loginM()
+    {
       this.$validator.validateAll("form-login").then(resp => {
         if (resp) {
             this.isLoading = true;
@@ -1016,7 +1009,8 @@ export default {
       });
 
     },
-    searchM() {
+    searchM()
+    {
       this.$store.dispatch('cambiarSearch',this.search)
       this.$router.push({ name: 'rubros' })
       /*if(this.isRouteRubro) {
@@ -1025,10 +1019,12 @@ export default {
           location.replace(this.url+'/rubros');
       }*/
     },
-    searchK() {
+    searchK()
+    {
       this.$store.dispatch('cambiarSearch',this.search)
     },
-    searchRubro() {
+    searchRubro()
+    {
       var value = $("#myInput").val();
       $(".dropdown-menu li").filter(function() {
         $(this).toggle(
@@ -1040,13 +1036,15 @@ export default {
       });
     }
   },
-  computed: {
+  computed:
+  {
     ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getBag','getCart', 'getUrl']),
   },
-  mounted: function() {
+  mounted: function()
+  {
 
 
-  //this.initComponent()
+    //this.initComponent()
     if (document.body.clientWidth <= 768) {
       this.collapse = true;
       $('#content-barna').css('min-height',131)
@@ -1132,13 +1130,16 @@ export default {
       }
     });
   },
-  created() {
+  created()
+  {
+
     if (document.body.clientWidth <= 768) {
       this.collapse = true;
     } else {
       this.collapse = false;
     }
-
+    this.todosrubros();
+    this.rubrosfavoritos();
   },
   watch: {
     getIsDesign: function(){

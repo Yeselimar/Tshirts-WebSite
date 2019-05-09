@@ -20,6 +20,12 @@ class RubrosController extends Controller
         return response()->json(['rubros' => $rubros]);//si no hay rubros se envía vacío
     }
 
+    public function todosfavoritos()
+    {
+        $rubros = Rubro::favoritos(1)->get();
+        return response()->json(['rubros' => $rubros]);//si no hay rubros se envía vacío
+    }
+
     public function store(Request $request)
     {
         $request->validate([
