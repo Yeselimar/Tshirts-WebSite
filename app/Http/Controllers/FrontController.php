@@ -52,24 +52,14 @@ class FrontController extends Controller
     public function prueba()
     {
         $client = new \GuzzleHttp\Client();
-          $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.mercadopago.com/v1/advanced_payments/1');
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://api.mercadopago.com/v1/advanced_payments/1');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 //echo $response->getStatusCode(); # 200
                 //echo $response->getHeaderLine('content-type'); # 'application/json; charset=utf8'
                
-                try {
-                     echo $response->getStatusCode();
                      echo $response->getBody(); # '{"id": 1420053, "name": "guzzle", ...}'    
-                }
-                catch (GuzzleHttp\Exception\ClientException $e) {
-                    echo $e->getResponse();
-                    echo $response->getBody()->getContents();
-                }
-            } catch (GuzzleHttp\Exception\ClientException $e) {
-                    echo $e->getResponse();
-                    echo $response->getBody()->getContents();
-                });
-
+                
+            });
 
             $promise->wait();
         //return response()->json(['' => $grupo->caracteristicas]); 

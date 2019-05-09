@@ -42,6 +42,12 @@ class ArticulosController extends Controller
     	return response()->json(['articulos' => $articulos]);
     }
 
+    public function editnodisenable($id)
+    {
+        $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
+        return response()->json(['articulo' => $articulo]);
+    }
+
     public function todosparabanner()
     {
         $articulos = Articulo::all();
@@ -50,7 +56,6 @@ class ArticulosController extends Controller
 
     public function imagenprincipal($id)
     {
-
         $imagen = null;
         $articulo = Articulo::find($id);
         return response()->json(['imagen' => $imagen]);
@@ -58,6 +63,7 @@ class ArticulosController extends Controller
 
     public function storenodisenable(Request $request)
     {
+        //dd($request);
         //Convirtiendo mis string a json
         $aux = json_decode($request->articulo, true);
         $requests = $aux["articulo"];

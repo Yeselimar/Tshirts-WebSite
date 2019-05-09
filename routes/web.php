@@ -70,6 +70,9 @@ Route::post('/articulos/disenables/todos','ArticulosController@getarticulosdisen
 Route::post('/articulos/todos/para-banner','ArticulosController@todosparabanner')->name('articulos.todos.para.banner');
 Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
 Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.guardar.disenable');
+
+Route::get('/articulo/no-disenable/{id}/editar','ArticulosController@editnodisenable')->name('articulo.editar.nodisenable');
+
 Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
 Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
 Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
