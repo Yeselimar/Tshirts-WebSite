@@ -669,7 +669,7 @@ li.bagform .dropbag:after {
 
 <script>
 import { mapGetters } from 'vuex'
-import loading from "../../components/layouts/loading.vue";
+import loading from "./loading.vue";
 import CerService from "../../plugins/CerService";
 
 export default {

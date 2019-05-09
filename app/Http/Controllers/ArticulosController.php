@@ -109,10 +109,14 @@ class ArticulosController extends Controller
         }
 
         //Validando para devolver una respuesta al frontend 
-        if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
+        if($temporal)
         {
-            return response()->json(["res"=>2,"msg"=>"Disculpe seleccionó una imagen con el mismo color"]);
+            if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
+            {
+                return response()->json(["res"=>2,"msg"=>"Disculpe seleccionó una imagen con el mismo color"]);
+            }
         }
+        
 
         //Artículo
         $articulo = new Articulo;

@@ -14,7 +14,7 @@
 	.img-barna
   	{
 	    width:auto;
-	    height:28px;
+	    height:27px;
 	    border: 1px solid #ebebeb;
 	    border-radius: 4px;
   	}

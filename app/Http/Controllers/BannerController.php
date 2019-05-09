@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Banner;
 use File;
-
+use DB;
 class BannerController extends Controller
 {
     public function index()
@@ -17,13 +17,21 @@ class BannerController extends Controller
     public function todosdisenables()
     {
         $banners = Banner::all();
-        //fore
+        $banners = Banner::join("articulos","banner.articulo_id","=","articulos.id")
+            ->where('articulos.personalizable','=',1)
+            ->select('*', DB::raw('articulos.descripcion as descripcion_articulo, banner.descripcion as descripcion_banner'))
+        ->get();
         return response()->json(['banners' => $banners]); 
     }
 
     public function todosnodisenables()
     {
-        //return response()->json(['banners' => $banners]); 
+        $banners = Banner::all();
+        $banners = Banner::join("articulos","banner.articulo_id","=","articulos.id")
+            ->select('*', DB::raw('articulos.descripcion as descripcion_articulo, banner.descripcion as descripcion_banner'))
+            ->where('articulos.personalizable','=',0)
+        ->get();
+        return response()->json(['banners' => $banners]); 
     }
 
     public function store(Request $request)
