@@ -39,21 +39,21 @@ class ArticulosController extends Controller
                 //¿Qué pasa si no encuentro la imagen principal?
             }
         }
-    	return response()->json(['articulos' => $articulos]); 
+    	return response()->json(['articulos' => $articulos]);
     }
 
     public function todosparabanner()
     {
         $articulos = Articulo::all();
-        return response()->json(['articulos' => $articulos]); 
+        return response()->json(['articulos' => $articulos]);
     }
 
     public function imagenprincipal($id)
     {
-        
+
         $imagen = null;
         $articulo = Articulo::find($id);
-        return response()->json(['imagen' => $imagen]); 
+        return response()->json(['imagen' => $imagen]);
     }
 
     public function storenodisenable(Request $request)
@@ -65,7 +65,7 @@ class ArticulosController extends Controller
         //Artículo
         $articulo = new Articulo;
         $articulo->tipo = $request->articulo['tipo'];
-        $articulo->otros = (strtoupper($request->articulo['tipo'])==strtoupper("otros")) ? $request->articulo['otros'] : null; 
+        $articulo->otros = (strtoupper($request->articulo['tipo'])==strtoupper("otros")) ? $request->articulo['otros'] : null;
         $articulo->nombre = $request->articulo['nombre'];
         $articulo->marca = $request->articulo['marca'];
         $articulo->descripcion = $request->articulo['descripcion'];
@@ -97,7 +97,7 @@ class ArticulosController extends Controller
                 $articulo_caracteristica->save();
             }
         }
-        
+
 
         //Características Colores
         foreach ($request->articulo['colores'] as $color)
@@ -107,7 +107,7 @@ class ArticulosController extends Controller
             $articulo_caracteristica->caracteristica_id = $color['id'];
             $articulo_caracteristica->save();
         }
-        
+
         //Imágenes Artículos
         foreach ($request->articulo['imagenes'] as $i=>$imagen)
         {
@@ -121,13 +121,13 @@ class ArticulosController extends Controller
                 $ruta = public_path().'/'.ImagenArticulo::carpeta();
                 $archivo->move($ruta, $nombre);
             }
-            
+
             //Guardando datos de la imagen del artículo
             $imagen_articulo->articulo_id = $articulo->id;
             $imagen_articulo->url = ArticuloArticulo::carpeta().$nombre;
             $imagen_articulo->principal = 0;
             $imagen_articulo->save();
-                        
+
             $auxiliar[$imagen['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
         }
 
@@ -141,7 +141,7 @@ class ArticulosController extends Controller
             $imagen_articulo->save();
         }
 
-        //Guardando las Talles y Colores 
+        //Guardando las Talles y Colores
         $total_cantidad = 0;
         foreach ($request->talles_colores as $talle_color)
         {
@@ -168,7 +168,7 @@ class ArticulosController extends Controller
             $articulo->save();
         }
 
-        return response()->json(['msg' => 'El artículo no diseñable fue creado exitosamente.','res'=> 1]); 
+        return response()->json(['msg' => 'El artículo no diseñable fue creado exitosamente.','res'=> 1]);
     }
 
     public function storedisenable()
@@ -183,12 +183,16 @@ class ArticulosController extends Controller
 
     public function show()
     {
-    	
+
     }
 
     public function destroy()
     {
 
+    }
+    public function getarticulosdisenables(){
+        $articulos_nd = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
+        return response()->json(['articulos_nd' => $articulos_nd]);
     }
 
 }

@@ -336,6 +336,7 @@
         import VueDragResize2 from 'vue-drag-resize';
         import html2canvas from 'html2canvas';
         import { mapGetters } from 'vuex'
+        import CerService from "../../../plugins/CerService";
 
             export default
             {
@@ -564,6 +565,7 @@
                         left_confirmacion_rv:0, //left de la imagen
                         width_confirmacion_rv:0,
                         height_confirmacion_rv:0,
+                        articulos:'',
 
 
 
@@ -573,7 +575,17 @@
                 methods:
                 {
                     articulos_info(){
-
+                        CerService.post("/articulos/disenables/todos")
+                        .then(response => {
+                            if(response.articulos_nd)
+                            {
+                                this.articulos = response.articulos_nd;
+                                console.log(this.articulos)
+                            }
+                        })
+                        .catch(error => {
+                            this.mensaje("error","Ha ocurrido un error inesperado");
+                        });
                     },
                     //return a promise that resolves with a File instance
                     dataURLtoFile(imagen, filename) {
