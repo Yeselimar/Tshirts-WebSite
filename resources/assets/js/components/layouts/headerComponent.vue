@@ -309,7 +309,7 @@ li.bagform .dropbag:after {
                           :class="[{'bg-barna color-white': getRubro === rubro.nombre}]"
                         >{{rubro.nombre}}</a>
                       </li>
-                      
+
                     </ul>
                   </div>
                   <input
@@ -455,7 +455,7 @@ li.bagform .dropbag:after {
                           <h5 class="pb-2">
                             <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra
                           </h5>
-                          
+
                           <div v-if="getCart.length == 0" class="content-no-found">
                             <p class="center-element no-found-search w-60">
                                 Carrito de compras vacío</p>
@@ -657,7 +657,7 @@ li.bagform .dropbag:after {
         </div>
       </nav>
     </div>
-    <div id="content-barna" class="h-171" 
+    <div id="content-barna" class="h-171"
     style="background-position: center center;
     background-size: contain;
     background-color: #282828;
@@ -847,7 +847,7 @@ export default {
     seleted(rubro) {
       //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
       this.$store.dispatch('cambiarRubro',rubro)
-      $("#rubrosCat").dropdown("toggle");   
+      $("#rubrosCat").dropdown("toggle");
 
     },
     seletedRoute(rubro) {
@@ -932,7 +932,7 @@ export default {
        var options = {
         offset: 0,
         force: true
-       };  
+       };
       this.$scrollTo(element, 0, options);
       this.$store.dispatch('cambiarIsDesign',cent)
 
@@ -943,7 +943,7 @@ export default {
             this.isLoading = true;
             var dataform = new FormData();
             dataform.append("password", this.user.password);
-            dataform.append("email", this.user.email);      
+            dataform.append("email", this.user.email);
               CerService.post("/login/post", dataform)
               .then(response => {
                 if (response.res) {
@@ -956,7 +956,7 @@ export default {
                    var options = {
                     offset: 0,
                     force: true
-                   };  
+                   };
                   this.$scrollTo(element, 0, options);
                   this.isLoading = false;
                   this.$swal
@@ -1066,9 +1066,9 @@ export default {
     $(window).resize(event => {
       event.preventDefault();
        //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
-      setTimeout(e => { 
-           // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
-        },400)  
+      setTimeout(e => {
+           // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))
+        },400)
       if (document.body.clientWidth <= 768) {
         this.collapse = true;
         $('#content-barna').css('min-height',131)
@@ -1126,9 +1126,9 @@ export default {
           }
         }
             //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
-             setTimeout(e => { 
-              //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
-            },300)            
+             setTimeout(e => {
+              //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))
+            },300)
       }
     });
   },

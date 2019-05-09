@@ -4479,8 +4479,7 @@ Util_1.Collection.mapMethods(Shape);
 
 
 /***/ }),
-/* 17 */,
-/* 18 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4547,6 +4546,7 @@ CerService.put = function (endpoint, json) {
 /* harmony default export */ __webpack_exports__["a"] = (CerService);
 
 /***/ }),
+/* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19325,12 +19325,28 @@ exports.HitCanvas = HitCanvas;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+    /* api: {
+          base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+          token: 'ebf8ebbc77b700ed77d14afc03467335'
+      },
+      env: {
+      	base: '/afodi/barna/public/'
+      }*/
+
     api: {
+<<<<<<< HEAD
+        base: 'http://localhost:8000/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
+    },
+    env: {
+        base: '/'
+=======
         base: 'http://localhost/barna/barna/public/',
-        token: document.head.querySelector('meta[name="csrf-token"]')
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
         base: '/barna/barna/public/'
+>>>>>>> master
     }
 });
 
@@ -87181,7 +87197,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'threshold', 0.5, Validators_1.ge
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /*
@@ -87489,9 +87505,15 @@ var getters = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+<<<<<<< HEAD
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(136);
+=======
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(137);
+>>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(50);
 
 
@@ -87552,7 +87574,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 			meta: { requiresAuth: false }
 
 		}, {
-			path: 'disenar',
+			path: 'disenar/:id',
 			name: 'disenar',
 			component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Disenar', __webpack_require__(325)),
 			meta: { requiresAuth: true }
@@ -87621,9 +87643,8 @@ router.beforeEach(function (to, from, next) {
      			path: Config.env.base,
      			params: { nextUrl: to.fullPath }
      	})
-     		}			
-     
-     }
+     		}
+     		}
      	*/
 					next();
 				}
@@ -87900,7 +87921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -88937,7 +88958,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       event.preventDefault();
       //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
       setTimeout(function (e) {
-        // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))           
+        // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))
       }, 400);
       if (document.body.clientWidth <= 768) {
         _this8.collapse = true;
@@ -88996,7 +89017,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
         //$('#content-barna').css("transition", "all 0.4s ease 0.3s");
         setTimeout(function (e) {
-          //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0])) 
+          //$('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))
         }, 300);
       }
     });
@@ -91703,7 +91724,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     methods: {
         disenar: function disenar(idProd) {
-            this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
+            this.$router.push({ name: 'disenar', params: { id: idProd } });
+            console.log('helloo ili');
         },
         verDetalle: function verDetalle(idProd) {
             this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
@@ -92536,7 +92558,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 force: true
             };
             this.$scrollTo(element, 0, options);
-            this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
+            this.$router.push({ name: 'disenar', params: { id: idProd } });
         },
         verDetalle: function verDetalle(idProd) {
             if (this.$route.name === 'detalleComprar') {
@@ -93171,7 +93193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
 //
 //
 //
@@ -96520,6 +96542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html2canvas__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -96863,6 +96886,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'disenarComponent',
     components: {
@@ -97004,12 +97028,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             width_preview_rv: 0,
             height_preview_rv: 0,
             previewImage: null
-        }, _defineProperty(_ref, "w_content_preview", 0), _defineProperty(_ref, "h_content_preview", 0), _defineProperty(_ref, "w_content_preview_int", 0), _defineProperty(_ref, "h_content_preview_int", 0), _defineProperty(_ref, "h_result_preview", 0), _defineProperty(_ref, "w_result_preview", 0), _defineProperty(_ref, "top_result_preview", 0), _defineProperty(_ref, "left_result_preview", 0), _defineProperty(_ref, "top_preview", 0), _defineProperty(_ref, "left_preview", 0), _defineProperty(_ref, "width_preview", 0), _defineProperty(_ref, "height_preview", 0), _defineProperty(_ref, "isLoading", false), _defineProperty(_ref, "isDesign", false), _defineProperty(_ref, "numCart", 0), _defineProperty(_ref, "numBag", 0), _defineProperty(_ref, "isAuth", false), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "rubro", ''), _defineProperty(_ref, "color", '#1CA085'), _defineProperty(_ref, "colors", ['#F64272', '#F6648B', '#F493A7', '#F891A6', '#FFCCD5', '']), _defineProperty(_ref, "showProductsOut", false), _defineProperty(_ref, "showProducts", true), _defineProperty(_ref, "activo", 'Productos'), _defineProperty(_ref, "showImageOut", true), _defineProperty(_ref, "showImage", false), _defineProperty(_ref, "showInfoOut", true), _defineProperty(_ref, "showInfo", false), _defineProperty(_ref, "activofb", 'Frontal'), _defineProperty(_ref, "showFrontalOut", true), _defineProperty(_ref, "showFrontal", true), _defineProperty(_ref, "showReverse", false), _defineProperty(_ref, "showReverseOut", true), _defineProperty(_ref, "showImageReverse", false), _defineProperty(_ref, "showImageReverseOut", true), _defineProperty(_ref, "newImagenUrlRV", ''), _defineProperty(_ref, "newImagenRV", ''), _defineProperty(_ref, "color_btn_borde", '#ddd'), _defineProperty(_ref, "isActiverv", true), _defineProperty(_ref, "w_result_container", 0), _defineProperty(_ref, "h_result_container", 0), _defineProperty(_ref, "w_result_container_rv", 0), _defineProperty(_ref, "h_result_container_rv", 0), _defineProperty(_ref, "disenoFrontal", ''), _defineProperty(_ref, "disenoFrontal64", ''), _defineProperty(_ref, "disenoReverso64", ''), _defineProperty(_ref, "disenoReverso", ''), _defineProperty(_ref, "disenoUsuario64", ''), _defineProperty(_ref, "disenoUsuario", ''), _defineProperty(_ref, "w_content_confirmacion", 0), _defineProperty(_ref, "h_content_confirmacion", 0), _defineProperty(_ref, "w_content_confirmacion_int", 0), _defineProperty(_ref, "h_content_confirmacion_int", 0), _defineProperty(_ref, "h_result_confirmacion", 0), _defineProperty(_ref, "w_result_confirmacion", 0), _defineProperty(_ref, "top_result_confirmacion", 0), _defineProperty(_ref, "left_result_confirmacion", 0), _defineProperty(_ref, "top_confirmacion", 0), _defineProperty(_ref, "left_confirmacion", 0), _defineProperty(_ref, "width_confirmacion", 0), _defineProperty(_ref, "height_confirmacion", 0), _defineProperty(_ref, "w_content_confirmacion_rv", 0), _defineProperty(_ref, "h_content_confirmacion_rv", 0), _defineProperty(_ref, "w_content_confirmacion_rv_int", 0), _defineProperty(_ref, "h_content_confirmacion_rv_int", 0), _defineProperty(_ref, "h_result_confirmacion_rv", 0), _defineProperty(_ref, "w_result_confirmacion_rv", 0), _defineProperty(_ref, "top_result_confirmacion_rv", 0), _defineProperty(_ref, "left_result_confirmacion_rv", 0), _defineProperty(_ref, "top_confirmacion_rv", 0), _defineProperty(_ref, "left_confirmacion_rv", 0), _defineProperty(_ref, "width_confirmacion_rv", 0), _defineProperty(_ref, "height_confirmacion_rv", 0), _ref;
+        }, _defineProperty(_ref, "w_content_preview", 0), _defineProperty(_ref, "h_content_preview", 0), _defineProperty(_ref, "w_content_preview_int", 0), _defineProperty(_ref, "h_content_preview_int", 0), _defineProperty(_ref, "h_result_preview", 0), _defineProperty(_ref, "w_result_preview", 0), _defineProperty(_ref, "top_result_preview", 0), _defineProperty(_ref, "left_result_preview", 0), _defineProperty(_ref, "top_preview", 0), _defineProperty(_ref, "left_preview", 0), _defineProperty(_ref, "width_preview", 0), _defineProperty(_ref, "height_preview", 0), _defineProperty(_ref, "isLoading", false), _defineProperty(_ref, "isDesign", false), _defineProperty(_ref, "numCart", 0), _defineProperty(_ref, "numBag", 0), _defineProperty(_ref, "isAuth", false), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "rubro", ''), _defineProperty(_ref, "color", '#1CA085'), _defineProperty(_ref, "colors", ['#F64272', '#F6648B', '#F493A7', '#F891A6', '#FFCCD5', '']), _defineProperty(_ref, "showProductsOut", false), _defineProperty(_ref, "showProducts", true), _defineProperty(_ref, "activo", 'Productos'), _defineProperty(_ref, "showImageOut", true), _defineProperty(_ref, "showImage", false), _defineProperty(_ref, "showInfoOut", true), _defineProperty(_ref, "showInfo", false), _defineProperty(_ref, "activofb", 'Frontal'), _defineProperty(_ref, "showFrontalOut", true), _defineProperty(_ref, "showFrontal", true), _defineProperty(_ref, "showReverse", false), _defineProperty(_ref, "showReverseOut", true), _defineProperty(_ref, "showImageReverse", false), _defineProperty(_ref, "showImageReverseOut", true), _defineProperty(_ref, "newImagenUrlRV", ''), _defineProperty(_ref, "newImagenRV", ''), _defineProperty(_ref, "color_btn_borde", '#ddd'), _defineProperty(_ref, "isActiverv", true), _defineProperty(_ref, "w_result_container", 0), _defineProperty(_ref, "h_result_container", 0), _defineProperty(_ref, "w_result_container_rv", 0), _defineProperty(_ref, "h_result_container_rv", 0), _defineProperty(_ref, "disenoFrontal", ''), _defineProperty(_ref, "disenoFrontal64", ''), _defineProperty(_ref, "disenoReverso64", ''), _defineProperty(_ref, "disenoReverso", ''), _defineProperty(_ref, "disenoUsuario64", ''), _defineProperty(_ref, "disenoUsuario", ''), _defineProperty(_ref, "w_content_confirmacion", 0), _defineProperty(_ref, "h_content_confirmacion", 0), _defineProperty(_ref, "w_content_confirmacion_int", 0), _defineProperty(_ref, "h_content_confirmacion_int", 0), _defineProperty(_ref, "h_result_confirmacion", 0), _defineProperty(_ref, "w_result_confirmacion", 0), _defineProperty(_ref, "top_result_confirmacion", 0), _defineProperty(_ref, "left_result_confirmacion", 0), _defineProperty(_ref, "top_confirmacion", 0), _defineProperty(_ref, "left_confirmacion", 0), _defineProperty(_ref, "width_confirmacion", 0), _defineProperty(_ref, "height_confirmacion", 0), _defineProperty(_ref, "w_content_confirmacion_rv", 0), _defineProperty(_ref, "h_content_confirmacion_rv", 0), _defineProperty(_ref, "w_content_confirmacion_rv_int", 0), _defineProperty(_ref, "h_content_confirmacion_rv_int", 0), _defineProperty(_ref, "h_result_confirmacion_rv", 0), _defineProperty(_ref, "w_result_confirmacion_rv", 0), _defineProperty(_ref, "top_result_confirmacion_rv", 0), _defineProperty(_ref, "left_result_confirmacion_rv", 0), _defineProperty(_ref, "top_confirmacion_rv", 0), _defineProperty(_ref, "left_confirmacion_rv", 0), _defineProperty(_ref, "width_confirmacion_rv", 0), _defineProperty(_ref, "height_confirmacion_rv", 0), _defineProperty(_ref, "articulos", ''), _ref;
     },
 
 
     methods: {
-        articulos_info: function articulos_info() {},
+        articulos_info: function articulos_info() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__["a" /* default */].post("/articulos/disenables/todos").then(function (response) {
+                if (response.articulos_nd) {
+                    _this2.articulos = response.articulos_nd;
+                    console.log(_this2.articulos);
+                }
+            }).catch(function (error) {
+                _this2.mensaje("error", "Ha ocurrido un error inesperado");
+            });
+        },
 
         //return a promise that resolves with a File instance
         dataURLtoFile: function dataURLtoFile(imagen, filename) {
@@ -97027,14 +97062,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return new File([u8arr], filename, { type: mime });
         },
         saveDisenos: function saveDisenos() {
-            var _this2 = this;
+            var _this3 = this;
 
             //Diseño del Usuario
             __WEBPACK_IMPORTED_MODULE_4_html2canvas___default()(document.querySelector("#disenosDelUsuario")).then(function (canvas) {
-                _this2.disenoUsuario64 = canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
+                _this3.disenoUsuario64 = canvas.toDataURL("image/png").replace("image/png, image/octet-stream");
             });
             setTimeout(function (e) {
-                _this2.disenoUsuario = _this2.dataURLtoFile(_this2.disenoUsuario64, 'ili.png');
+                _this3.disenoUsuario = _this3.dataURLtoFile(_this3.disenoUsuario64, 'ili.png');
             }, 5000);
 
             /*    //Diseño Frontal
@@ -97080,41 +97115,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.isActiverv = false;
         },
         dimensionesFrontal: function dimensionesFrontal() {
-            var _this3 = this;
-
-            setTimeout(function (e) {
-                /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this3.w_content_actual = $('#contenedor-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
-                _this3.h_content_actual = $('#contenedor-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
-                var w = _this3.w_content_actual.split('%')[0]; //le quito la palabra %
-                var h = _this3.h_content_actual.split('%')[0]; //le quito la palabra %
-                _this3.w_content_actual_int = parseFloat(w); //lo convierto de cadena a float
-                _this3.h_content_actual_int = parseFloat(h); //lo convierto de cadena a float
-                _this3.h_result = _this3.h_admin * _this3.h_content_actual_int / _this3.h_content_admin; //nuevo height
-                _this3.w_result = _this3.w_admin * _this3.w_content_actual_int / _this3.w_content_admin; //nuevo width
-                _this3.top_result = _this3.top_px * 100 / _this3.h_content_admin; //nuevo top
-                _this3.left_result = _this3.left_px * 100 / _this3.w_content_admin; //nuevo left
-                _this3.w_result_container = _this3.w_result + 5;
-                _this3.h_result_container = _this3.h_result + 5;
-            }, 1200);
-        },
-        dimensionesReverso: function dimensionesReverso() {
             var _this4 = this;
 
             setTimeout(function (e) {
                 /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this4.w_content_actual_rv = $('#contenedor-reverso').css('width'); //width del contenedor donde va la imagen del producto
-                _this4.h_content_actual_rv = $('#contenedor-reverso').css('height'); //height del contenedor principal (donde va la imagen del producto)
-                var w_rv = _this4.w_content_actual_rv.split('%')[0]; //quito la palabra %
-                var h_rv = _this4.h_content_actual_rv.split('%')[0]; //quito la palabra %
-                _this4.w_content_actual_int_rv = parseFloat(w_rv); //convierto de cadena a float
-                _this4.h_content_actual_int_rv = parseFloat(h_rv); //convierto de cadena a float
-                _this4.h_result_rv = _this4.h_admin_rv * _this4.h_content_actual_int_rv / _this4.h_content_admin_rv; //nuevo height
-                _this4.w_result_rv = _this4.w_admin_rv * _this4.w_content_actual_int_rv / _this4.w_content_admin_rv; //nuevo width
-                _this4.top_result_rv = _this4.top_px_rv * 100 / _this4.h_content_admin_rv; //nuevo top
-                _this4.left_result_rv = _this4.left_px_rv * 100 / _this4.w_content_admin_rv; //nuevo left
-                _this4.w_result_container_rv = _this4.w_result_rv + 5;
-                _this4.h_result_container_rv = _this4.h_result_rv + 5;
+                _this4.w_content_actual = $('#contenedor-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
+                _this4.h_content_actual = $('#contenedor-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
+                var w = _this4.w_content_actual.split('%')[0]; //le quito la palabra %
+                var h = _this4.h_content_actual.split('%')[0]; //le quito la palabra %
+                _this4.w_content_actual_int = parseFloat(w); //lo convierto de cadena a float
+                _this4.h_content_actual_int = parseFloat(h); //lo convierto de cadena a float
+                _this4.h_result = _this4.h_admin * _this4.h_content_actual_int / _this4.h_content_admin; //nuevo height
+                _this4.w_result = _this4.w_admin * _this4.w_content_actual_int / _this4.w_content_admin; //nuevo width
+                _this4.top_result = _this4.top_px * 100 / _this4.h_content_admin; //nuevo top
+                _this4.left_result = _this4.left_px * 100 / _this4.w_content_admin; //nuevo left
+                _this4.w_result_container = _this4.w_result + 5;
+                _this4.h_result_container = _this4.h_result + 5;
+            }, 1200);
+        },
+        dimensionesReverso: function dimensionesReverso() {
+            var _this5 = this;
+
+            setTimeout(function (e) {
+                /*Calculo del width y heigh del area de diseno dinamicamente*/
+                _this5.w_content_actual_rv = $('#contenedor-reverso').css('width'); //width del contenedor donde va la imagen del producto
+                _this5.h_content_actual_rv = $('#contenedor-reverso').css('height'); //height del contenedor principal (donde va la imagen del producto)
+                var w_rv = _this5.w_content_actual_rv.split('%')[0]; //quito la palabra %
+                var h_rv = _this5.h_content_actual_rv.split('%')[0]; //quito la palabra %
+                _this5.w_content_actual_int_rv = parseFloat(w_rv); //convierto de cadena a float
+                _this5.h_content_actual_int_rv = parseFloat(h_rv); //convierto de cadena a float
+                _this5.h_result_rv = _this5.h_admin_rv * _this5.h_content_actual_int_rv / _this5.h_content_admin_rv; //nuevo height
+                _this5.w_result_rv = _this5.w_admin_rv * _this5.w_content_actual_int_rv / _this5.w_content_admin_rv; //nuevo width
+                _this5.top_result_rv = _this5.top_px_rv * 100 / _this5.h_content_admin_rv; //nuevo top
+                _this5.left_result_rv = _this5.left_px_rv * 100 / _this5.w_content_admin_rv; //nuevo left
+                _this5.w_result_container_rv = _this5.w_result_rv + 5;
+                _this5.h_result_container_rv = _this5.h_result_rv + 5;
                 /* $('#container-area-disenorv-padre').css('width', this.w_result_rv+5) //cambio el estilo dinamicamente
                 $('#container-area-disenorv-padre').css('height', this.h_result_rv+5) //cambio el estilo dinamicamente*/
                 /* $('#container-area-disenorv-padre').css('top', this.top_result_rv+'%') //cambio el estilo dinamicamente
@@ -97122,104 +97157,104 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }, 1200);
         },
         dimensionesPreviewFrontal: function dimensionesPreviewFrontal() {
-            var _this5 = this;
-
-            setTimeout(function (e) {
-                /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this5.w_content_preview = $('#contenedor-preview-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
-                _this5.h_content_preview = $('#contenedor-preview-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
-                var w_preview = _this5.w_content_preview.split('px')[0]; //le quito la palabra px
-                var h_preview = _this5.h_content_preview.split('px')[0]; //le quito la palabra px
-                _this5.w_content_preview_int = parseFloat(w_preview); //lo convierto de cadena a float
-                _this5.h_content_preview_int = parseFloat(h_preview); //lo convierto de cadena a float
-
-                _this5.h_result_preview = _this5.h_admin * _this5.h_content_preview_int / _this5.h_content_admin; //nuevo height
-                _this5.w_result_preview = _this5.w_admin * _this5.w_content_preview_int / _this5.w_content_admin; //nuevo width
-                _this5.top_result_preview = _this5.top_px * 100 / _this5.h_content_admin; //nuevo top
-                _this5.left_result_preview = _this5.left_px * 100 / _this5.h_content_admin; //nuevo left
-
-                /*Calculo del top y left de la imagen colocada por el usuario*/
-                _this5.width_preview = _this5.width * 100 / _this5.w_result;
-                _this5.height_preview = _this5.height * 100 / _this5.h_result;
-                _this5.top_preview = _this5.top * 100 / _this5.h_result;
-                _this5.left_preview = _this5.left * 100 / _this5.w_result;
-            }, 600);
-        },
-        dimensionesPreviewReverso: function dimensionesPreviewReverso() {
             var _this6 = this;
 
             setTimeout(function (e) {
                 /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this6.w_content_preview_rv = $('#contenedor-preview-reverso').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
-                _this6.h_content_preview_rv = $('#contenedor-preview-reverso').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
-                var w_preview_rv = _this6.w_content_preview_rv.split('px')[0]; //le quito la palabra px
-                var h_preview_rv = _this6.h_content_preview_rv.split('px')[0]; //le quito la palabra px
-                _this6.w_content_preview_rv_int = parseFloat(w_preview_rv); //lo convierto de cadena a float
-                _this6.h_content_preview_rv_int = parseFloat(h_preview_rv); //lo convierto de cadena a float
+                _this6.w_content_preview = $('#contenedor-preview-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
+                _this6.h_content_preview = $('#contenedor-preview-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
+                var w_preview = _this6.w_content_preview.split('px')[0]; //le quito la palabra px
+                var h_preview = _this6.h_content_preview.split('px')[0]; //le quito la palabra px
+                _this6.w_content_preview_int = parseFloat(w_preview); //lo convierto de cadena a float
+                _this6.h_content_preview_int = parseFloat(h_preview); //lo convierto de cadena a float
 
-                //Calculo el width y height del area punteada
-                _this6.h_result_preview_rv = _this6.h_admin_rv * _this6.h_content_preview_rv_int / _this6.h_content_admin_rv; //nuevo height
-                _this6.w_result_preview_rv = _this6.w_admin_rv * _this6.w_content_preview_rv_int / _this6.w_content_admin_rv; //nuevo width
-                _this6.top_result_preview_rv = _this6.top_px_rv * 100 / _this6.h_content_admin_rv; //nuevo top
-                _this6.left_result_preview_rv = _this6.left_px_rv * 100 / _this6.w_content_admin_rv; //nuevo left
+                _this6.h_result_preview = _this6.h_admin * _this6.h_content_preview_int / _this6.h_content_admin; //nuevo height
+                _this6.w_result_preview = _this6.w_admin * _this6.w_content_preview_int / _this6.w_content_admin; //nuevo width
+                _this6.top_result_preview = _this6.top_px * 100 / _this6.h_content_admin; //nuevo top
+                _this6.left_result_preview = _this6.left_px * 100 / _this6.h_content_admin; //nuevo left
 
                 /*Calculo del top y left de la imagen colocada por el usuario*/
-                _this6.width_preview_rv = _this6.widthrv * 100 / _this6.w_result_rv;
-                _this6.height_preview_rv = _this6.heightrv * 100 / _this6.h_result_rv;
-                _this6.top_preview_rv = _this6.toprv * 100 / _this6.h_result_rv;
-                _this6.left_preview_rv = _this6.leftrv * 100 / _this6.w_result_rv;
+                _this6.width_preview = _this6.width * 100 / _this6.w_result;
+                _this6.height_preview = _this6.height * 100 / _this6.h_result;
+                _this6.top_preview = _this6.top * 100 / _this6.h_result;
+                _this6.left_preview = _this6.left * 100 / _this6.w_result;
             }, 600);
         },
-        dimensionesConfirmacionFrontal: function dimensionesConfirmacionFrontal() {
+        dimensionesPreviewReverso: function dimensionesPreviewReverso() {
             var _this7 = this;
 
             setTimeout(function (e) {
                 /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this7.w_content_confirmacion = $('#contenedor-confirmacion-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
-                _this7.h_content_confirmacion = $('#contenedor-confirmacion-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
+                _this7.w_content_preview_rv = $('#contenedor-preview-reverso').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
+                _this7.h_content_preview_rv = $('#contenedor-preview-reverso').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
+                var w_preview_rv = _this7.w_content_preview_rv.split('px')[0]; //le quito la palabra px
+                var h_preview_rv = _this7.h_content_preview_rv.split('px')[0]; //le quito la palabra px
+                _this7.w_content_preview_rv_int = parseFloat(w_preview_rv); //lo convierto de cadena a float
+                _this7.h_content_preview_rv_int = parseFloat(h_preview_rv); //lo convierto de cadena a float
 
-                var w_confirmacion = _this7.w_content_confirmacion.split('px')[0]; //le quito la palabra px
-                var h_confirmacion = _this7.h_content_confirmacion.split('px')[0]; //le quito la palabra px
-                _this7.w_content_confirmacion_int = parseFloat(w_confirmacion); //lo convierto de cadena a float
-                _this7.h_content_confirmacion_int = parseFloat(h_confirmacion); //lo convierto de cadena a float
-                /*  console.log('HOLA ILI ESTE ES EL W:', this.w_content_confirmacion_int)
-                    console.log('HOLA ILI ESTE ES EL H:', this.h_content_confirmacion_int) */
                 //Calculo el width y height del area punteada
-                _this7.h_result_confirmacion = _this7.h_admin * _this7.h_content_confirmacion_int / _this7.h_content_admin; //nuevo height
-                _this7.w_result_confirmacion = _this7.w_admin * _this7.w_content_confirmacion_int / _this7.w_content_admin; //nuevo width
-                _this7.top_result_confirmacion = _this7.top_px * 100 / _this7.h_content_admin; //nuevo top
-                _this7.left_result_confirmacion = _this7.left_px * 100 / _this7.h_content_admin; //nuevo left
+                _this7.h_result_preview_rv = _this7.h_admin_rv * _this7.h_content_preview_rv_int / _this7.h_content_admin_rv; //nuevo height
+                _this7.w_result_preview_rv = _this7.w_admin_rv * _this7.w_content_preview_rv_int / _this7.w_content_admin_rv; //nuevo width
+                _this7.top_result_preview_rv = _this7.top_px_rv * 100 / _this7.h_content_admin_rv; //nuevo top
+                _this7.left_result_preview_rv = _this7.left_px_rv * 100 / _this7.w_content_admin_rv; //nuevo left
 
                 /*Calculo del top y left de la imagen colocada por el usuario*/
-                _this7.width_confirmacion = _this7.width * 100 / _this7.w_result;
-                _this7.height_confirmacion = _this7.height * 100 / _this7.h_result;
-                _this7.top_confirmacion = _this7.top * 100 / _this7.h_result;
-                _this7.left_confirmacion = _this7.left * 100 / _this7.w_result;
+                _this7.width_preview_rv = _this7.widthrv * 100 / _this7.w_result_rv;
+                _this7.height_preview_rv = _this7.heightrv * 100 / _this7.h_result_rv;
+                _this7.top_preview_rv = _this7.toprv * 100 / _this7.h_result_rv;
+                _this7.left_preview_rv = _this7.leftrv * 100 / _this7.w_result_rv;
             }, 600);
         },
-        dimensionesConfirmacionReverso: function dimensionesConfirmacionReverso() {
+        dimensionesConfirmacionFrontal: function dimensionesConfirmacionFrontal() {
             var _this8 = this;
 
             setTimeout(function (e) {
                 /*Calculo del width y heigh del area de diseno dinamicamente*/
-                _this8.w_content_confirmacion_rv = $('#contenedor-confirmacion-reverso').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
-                _this8.h_content_confirmacion_rv = $('#contenedor-confirmacion-reverso').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
-                var w_confirmacion_rv = _this8.w_content_confirmacion_rv.split('px')[0]; //le quito la palabra px
-                var h_confirmacion_rv = _this8.h_content_confirmacion_rv.split('px')[0]; //le quito la palabra px
-                _this8.w_content_confirmacion_rv_int = parseFloat(w_confirmacion_rv); //lo convierto de cadena a float
-                _this8.h_content_confirmacion_rv_int = parseFloat(h_confirmacion_rv); //lo convierto de cadena a float
+                _this8.w_content_confirmacion = $('#contenedor-confirmacion-frontal').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
+                _this8.h_content_confirmacion = $('#contenedor-confirmacion-frontal').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
 
+                var w_confirmacion = _this8.w_content_confirmacion.split('px')[0]; //le quito la palabra px
+                var h_confirmacion = _this8.h_content_confirmacion.split('px')[0]; //le quito la palabra px
+                _this8.w_content_confirmacion_int = parseFloat(w_confirmacion); //lo convierto de cadena a float
+                _this8.h_content_confirmacion_int = parseFloat(h_confirmacion); //lo convierto de cadena a float
+                /*  console.log('HOLA ILI ESTE ES EL W:', this.w_content_confirmacion_int)
+                    console.log('HOLA ILI ESTE ES EL H:', this.h_content_confirmacion_int) */
                 //Calculo el width y height del area punteada
-                _this8.h_result_confirmacion_rv = _this8.h_admin_rv * _this8.h_content_confirmacion_rv_int / _this8.h_content_admin_rv; //nuevo height
-                _this8.w_result_confirmacion_rv = _this8.w_admin_rv * _this8.w_content_confirmacion_rv_int / _this8.w_content_admin_rv; //nuevo width
-                _this8.top_result_confirmacion_rv = _this8.top_px_rv * 100 / _this8.h_content_admin_rv; //nuevo top
-                _this8.left_result_confirmacion_rv = _this8.left_px_rv * 100 / _this8.w_content_admin_rv; //nuevo left
+                _this8.h_result_confirmacion = _this8.h_admin * _this8.h_content_confirmacion_int / _this8.h_content_admin; //nuevo height
+                _this8.w_result_confirmacion = _this8.w_admin * _this8.w_content_confirmacion_int / _this8.w_content_admin; //nuevo width
+                _this8.top_result_confirmacion = _this8.top_px * 100 / _this8.h_content_admin; //nuevo top
+                _this8.left_result_confirmacion = _this8.left_px * 100 / _this8.h_content_admin; //nuevo left
 
                 /*Calculo del top y left de la imagen colocada por el usuario*/
-                _this8.width_confirmacion_rv = _this8.widthrv * 100 / _this8.w_result_rv;
-                _this8.height_confirmacion_rv = _this8.heightrv * 100 / _this8.h_result_rv;
-                _this8.top_confirmacion_rv = _this8.toprv * 100 / _this8.h_result_rv;
-                _this8.left_confirmacion_rv = _this8.leftrv * 100 / _this8.w_result_rv;
+                _this8.width_confirmacion = _this8.width * 100 / _this8.w_result;
+                _this8.height_confirmacion = _this8.height * 100 / _this8.h_result;
+                _this8.top_confirmacion = _this8.top * 100 / _this8.h_result;
+                _this8.left_confirmacion = _this8.left * 100 / _this8.w_result;
+            }, 600);
+        },
+        dimensionesConfirmacionReverso: function dimensionesConfirmacionReverso() {
+            var _this9 = this;
+
+            setTimeout(function (e) {
+                /*Calculo del width y heigh del area de diseno dinamicamente*/
+                _this9.w_content_confirmacion_rv = $('#contenedor-confirmacion-reverso').css('width'); //Calculo el width del contenedor principal (donde va la imagen del producto)
+                _this9.h_content_confirmacion_rv = $('#contenedor-confirmacion-reverso').css('height'); //Calculo el height del contenedor principal (donde va la imagen del producto)
+                var w_confirmacion_rv = _this9.w_content_confirmacion_rv.split('px')[0]; //le quito la palabra px
+                var h_confirmacion_rv = _this9.h_content_confirmacion_rv.split('px')[0]; //le quito la palabra px
+                _this9.w_content_confirmacion_rv_int = parseFloat(w_confirmacion_rv); //lo convierto de cadena a float
+                _this9.h_content_confirmacion_rv_int = parseFloat(h_confirmacion_rv); //lo convierto de cadena a float
+
+                //Calculo el width y height del area punteada
+                _this9.h_result_confirmacion_rv = _this9.h_admin_rv * _this9.h_content_confirmacion_rv_int / _this9.h_content_admin_rv; //nuevo height
+                _this9.w_result_confirmacion_rv = _this9.w_admin_rv * _this9.w_content_confirmacion_rv_int / _this9.w_content_admin_rv; //nuevo width
+                _this9.top_result_confirmacion_rv = _this9.top_px_rv * 100 / _this9.h_content_admin_rv; //nuevo top
+                _this9.left_result_confirmacion_rv = _this9.left_px_rv * 100 / _this9.w_content_admin_rv; //nuevo left
+
+                /*Calculo del top y left de la imagen colocada por el usuario*/
+                _this9.width_confirmacion_rv = _this9.widthrv * 100 / _this9.w_result_rv;
+                _this9.height_confirmacion_rv = _this9.heightrv * 100 / _this9.h_result_rv;
+                _this9.top_confirmacion_rv = _this9.toprv * 100 / _this9.h_result_rv;
+                _this9.left_confirmacion_rv = _this9.leftrv * 100 / _this9.w_result_rv;
             }, 600);
         },
 

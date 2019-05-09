@@ -39,21 +39,21 @@ class ArticulosController extends Controller
                 //¿Qué pasa si no encuentro la imagen principal?
             }
         }
-    	return response()->json(['articulos' => $articulos]); 
+    	return response()->json(['articulos' => $articulos]);
     }
 
     public function todosparabanner()
     {
         $articulos = Articulo::all();
-        return response()->json(['articulos' => $articulos]); 
+        return response()->json(['articulos' => $articulos]);
     }
 
     public function imagenprincipal($id)
     {
-        
+
         $imagen = null;
         $articulo = Articulo::find($id);
-        return response()->json(['imagen' => $imagen]); 
+        return response()->json(['imagen' => $imagen]);
     }
 
     public function storenodisenable(Request $request)
@@ -150,7 +150,6 @@ class ArticulosController extends Controller
             $imagen_articulo->principal = 0;
             $imagen_articulo->save();
             $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
-
         }
 
         //Imágenes Artículos actualizando los colores y si es principal
@@ -166,7 +165,7 @@ class ArticulosController extends Controller
             }
         }
 
-        //Guardando las Talles y Colores 
+        //Guardando las Talles y Colores
         $total_cantidad = 0;
         foreach ($requests["talles_colores"] as $index)
         {
@@ -192,7 +191,7 @@ class ArticulosController extends Controller
             $articulo->save();
         }
 
-        return response()->json(['msg' => 'El artículo no diseñable fue creado exitosamente.','res'=> 1]); 
+        return response()->json(['msg' => 'El artículo no diseñable fue creado exitosamente.','res'=> 1]);
     }
 
     public function storedisenable()
@@ -207,12 +206,16 @@ class ArticulosController extends Controller
 
     public function show()
     {
-    	
+
     }
 
     public function destroy()
     {
 
+    }
+    public function getarticulosdisenables(){
+        $articulos_nd = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
+        return response()->json(['articulos_nd' => $articulos_nd]);
     }
 
 }
