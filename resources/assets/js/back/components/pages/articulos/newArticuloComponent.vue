@@ -83,7 +83,7 @@
     </div>
     <!-- End Bread crumb -->
 
-    <div class="container-fluid">
+    <div class="container-fluid"  v-if="!isLoading">
       <div class="card">
         <div class="card-title">
           <h4>
@@ -332,7 +332,7 @@
                       <!--subir imagenes -->
                       <!-- agregar otras imagenes-->
 
-                      <div v-if="!isEdit">
+                      <div v-if="isEdit">
                           <div class="text-center">
                             <h4>Imagenes del articulo actualmente almacenadas</h4>
                             <hr>
@@ -836,7 +836,9 @@
               <div class="modal-body">
                   <div class="d-flex flex-wrap ingresar justify-content-center">
 
-                      <img :src="selectedImg" style="width:100%;height:100%"/>  
+                      <img v-if="isEdit" :src="selectedImg" style="width:100%;height:100%"/>  
+                      <img v-else :src="getUrl+selectedImg" style="width:100%;height:100%"/>  
+
           
                   </div>
                   
@@ -948,6 +950,7 @@ export default {
         precioGeneral: 0.00,
         otros: '',
         imagenes: [],
+        mask_precio: '',
         rubros: [],
         talles: [],
         colores: [],
@@ -1042,15 +1045,18 @@ export default {
 
   },
   created: function() {
-    if(Object.keys(this.$route.params.length !== 0)){
-      this.isEdit = true
-      this.serviceArticulo(this.$route.params.id)
-    } else {
+    if(this.$route.name=='nuevoArticulo'){
+       
       this.isEdit = false
       this.getColores()
       this.getRubros()
       this.getTalles()
       this.getPosicion()
+    } else {
+      if(Object.keys(this.$route.params).length !== 0){
+        this.isEdit = true
+        this.serviceArticulo(this.$route.params.id)
+      }
     }
     
     if (document.body.clientWidth <= 900){
@@ -1070,8 +1076,65 @@ export default {
       CerService.post("/articulo/no-disenable/"+id+"/editar")
       .then(response => 
       {
-        console.log(response)
-        if(response.res){
+        if(response.res == 1){
+          this.imagenesarticulos = response.articulo.imagenesarticulos
+          this.articulo.nombre = response.articulo.nombre
+          this.articulo.marca = response.articulo.marca
+          this.articulo.descripcion = response.articulo.descripcion
+          this.selectedRubros = response.articulo.rubros
+          this.articulo.publicado = response.articulo.publicado
+          this.articulo.destacado = response.articulo.destacado
+          if(response.articulo.tipo == 'ropa') {
+            this.selectedTipo = 'Ropa'
+          } else {
+            this.selectedTio = 'Otros'
+          }
+          this.articulo.precioGeneral = response.articulo.precioGeneral
+          this.maskAmount = response.articulo.mask_precio
+          this.maskCantidad = response.articulo.mask_cantidad
+          this.articulo.otros = response.articulo.otros
+          this.selectedTallas = response.articulo.talles
+          this.selectedColores = response.articulo.colores
+          this.articulo.cantidad = parseInt(response.articulo.cantidad)
+          if(response.articulo.tipo_cantidad == 'por_variante') {
+            this.selectedCantidad = 'Por Variante'
+          } else {
+            this.selectedCantidad = 'General'
+          }
+          response.articulo.tallescolores.forEach(function(file,i){
+            let aux = {
+                selectedColorVariante: file.color,
+                selectedTalleVariante: (this.selectedTipo === 'Ropa') ? file.talle: {},
+                colorVarianteAux: {
+                  colorOld: '',
+                  colorNew: '',
+                },
+                cantidadVariante: file.cantidad,
+                precioVariante: parseFloat(file.precio)
+
+              }
+              this.filesVariantes.push(
+              {...aux}
+              )
+          },this)
+          response.articulo.imagenes_colores.foreach(function(file,i){
+            let aux = {
+                  selectedColorRelacion: file.color,
+                  file: {
+                      id: file.id,
+                      thumb: '',
+                      url: file.url
+                  },
+                  es_principal: file.principal,
+                  posicionRelacion: {
+                    id:'frontal',
+                    nombre: 'Frontal'
+                  }
+                }
+              this.filesImagesColor.push(
+              {...aux}
+              )
+          },this)
           this.getColores()
           this.getRubros()
           this.getTalles()
@@ -1352,7 +1415,8 @@ export default {
                                     this.articulo.tipo_cantidad = this.selectedCantidad
                                     this.articulo.talles_colores = this.filesVariantes
                                     this.articulo.imagenes_colores = this.filesImagesColor
-
+                                    this.articulo.mask_precio = this.maskAmount
+                                    this.articulo.mask_cantidad = this.maskCantidad
                                     var dataform = new FormData();
                                     for( var i = 0; i < this.files.length; i++ ){
                                         let file = this.files[i].file;
@@ -1363,6 +1427,7 @@ export default {
                                         });
                                     dataform.append('articulo',data)
                                     console.log(dataform);
+                                    this.isLoading=true
                                     CerService.post("/articulo/no-disenable/guardar",dataform,{
                                     headers:
                                       {
@@ -1372,14 +1437,19 @@ export default {
                                     .then(response => 
                                     {
                                         console.log(response)
-                                        if(response.res){
+                                        if(response.res == 1){
                                           this.msgAlert(response.msg,'success')
+                                          this.$router.push({ name: 'articulos' });
+
                                         } else {
                                           this.msgAlert(response.msg,'warning')
                                         }
+                                        this.isLoading=false
                                     })
                                     .catch(error => {
                                       this.msgAlert('Ha ocurrido un error inesperado','error')
+                                        this.isLoading=false
+
                                     });
                                   } else {
                                     let element = document.getElementById("tabcontent");
