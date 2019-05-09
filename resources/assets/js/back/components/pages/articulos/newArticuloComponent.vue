@@ -43,7 +43,7 @@
     z-index: 9999999;
 }*/
 #nuevoArticulo  .checkmark {
-  left: 40%;
+  left: 45%;
   border: 1px solid #dadada;
 }
 #nuevoArticulo .min-w120,.mw-120{
@@ -58,7 +58,12 @@
 .error-input-multi{
   border-radius: 7px
 }
-
+#nuevoArticulo .form-control{
+  height: auto !important
+}
+#nuevoArticulo .tab-contentGlobal{
+  min-height: 65vh
+}
 </style>
 <template>
   <div class="page-wrapper" id="nuevoArticulo">
@@ -91,7 +96,7 @@
 
         <div class="card-body">
           <div class="d-flex">
-            <div class="position-relative basis-33 pb-3">
+            <div class="position-relative basis-33 pb-3" >
               <input
                 name="nombre"
                 id="nombre"
@@ -120,7 +125,7 @@
             -->
           </div>
           <hr>
-          <div class="row">
+          <div class="row" id="tabcontent">
             <div class="col-lg-12">
               <div class="card">
                 <!-- Nav tabs -->
@@ -154,7 +159,7 @@
                   </li>
                 </ul>
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content tab-contentGlobal">
                   <div class="tab-pane active show" id="ajustesbasicos" role="tabpanel">
                     <div class="card-body mt-4">
                       <div class="form-body d-flex justify-content-between flex-column flex-md-row">
@@ -328,7 +333,7 @@
                         <h3>Subir Imagenes de Artículo</h3>
                         <hr>
                       </div>
-                          <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                          <span class="projects justify-content-start align-items-center" id="ajustesbasicosIMG" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
                             <div class="project" v-for="(file) in files" :key="file.id">
                                 <div class="pi-pic">
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
@@ -425,6 +430,8 @@
                             :show-labels="false"
                             label="valor" 
                             track-by="valor" 
+                            @select="eventSelectColor"
+                            @remove="eventRemoveColor"
                              v-validate data-vv-rules="required" 
                              data-vv-scope="form-disponibilidad"
                               data-vv-name="colores"
@@ -685,14 +692,14 @@
                                 </td>
                               </tr>
                               <tr v-for="(fileIC,index) in filesImagesColor" :key="index">
-                                 <td class="text-center">
+                                 <td class="text-center position-relative pb-3">
                                       <img v-if="filesImagesColor[index].file !== null && filesImagesColor[index].file !== {} && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
-                                <td class="text-center position-relative pb-4">
+                                <td class="text-center position-relative pb-3">
                                     <multiselect
-                                      v-model="filesImagesColor[index].selectedColorRelacion"
+                                      v-model="fileIC.selectedColorRelacion"
                                       :options="selectedColores"
                                       selectLabel =""
                                       selectedLabel = ""
@@ -705,11 +712,7 @@
                                       :show-labels="false"
                                       label="valor" 
                                       track-by="valor" 
-                                       v-validate data-vv-rules="required" 
-                                      data-vv-scope="form-relacionIC"
-                                        :data-vv-name="'relacionCI'+index"
-                                        :data-vv-value-path="'relacionCI'+index"  
-                                        v-bind:class="{'error-input error-input-multi': errors.first('relacionCI'+index,'form-relacionIC')}"
+                                        v-bind:class="{'error-input error-input-multi': fileIC.selectedColorRelacion==''||fileIC.selectedColorRelacion==null}"
 
                                       >
                                         <template slot="option" slot-scope="props">
@@ -723,22 +726,26 @@
                                     </multiselect>
                                      <span
                                       class="error-text"
-                                      v-if="errors.first('relacionCI'+index,'form-relacionIC')"
+                                      v-if="fileIC.selectedColorRelacion==''||fileIC.selectedColorRelacion==null"
                                       >Campo requerido.</span>
 
                                 </td>
+                               
                                 
-                                  <td class="text-center">  
+                                  <td class="text-center position-relative pb-4">  
                                       <label class="contenido">
                                         <input type="radio" @change="cambiarEsPrincipal(index)" :id="'radio_'+index" name="radio">
                                         <span class="checkmark"></span>
                                       </label>
                                   </td>
 
-                                <td class="text-center">
+                                <td class="text-center position-relative pb-3">
                                      <button class="cursor btn btn-inverse" @click="deleteRelacion(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="((index == filesImagesColor.length-1) && (fileIC.file) && (fileIC.file !== null) && (Object.keys(fileIC.file).length !== 0))" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
-                                   <button v-else-if="index == filesImagesColor.length-1 && (fileIC.file == null || Object.keys(fileIC.file).length == 0)"  class="cursor btn btn-primary disabled" @click="msgAlert('La imagen es requerida','warning')"><i class="fa fa-plus cursor"></i></button>
+                                    <button v-if="((index == filesImagesColor.length-1) && (fileIC.file) && (fileIC.file !== null) && (Object.keys(fileIC.file).length !== 0) && fileIC.selectedColorRelacion!='' && fileIC.selectedColorRelacion!=null && fileIC.posicionRelacion!='' && fileIC.posicionRelacion!=null)" class="cursor btn btn-primary" @click="addRelacion()"><i class="fa fa-plus cursor"></i></button>
+                                   <button v-else-if="index == filesImagesColor.length-1 && (fileIC.selectedColorRelacion=='' || fileIC.selectedColorRelacion==null || fileIC.posicionRelacion=='' || fileIC.posicionRelacion==null)"  class="cursor btn btn-primary disabled" @click="msgAlert('Hay campos requeridos','warning')"><i class="fa fa-plus cursor"></i></button>
+
+                                      <button v-else-if="index == filesImagesColor.length-1 && (fileIC.file == null || Object.keys(fileIC.file).length == 0)"  class="cursor btn btn-primary disabled" @click="msgAlert('La imagen es requerida','warning')"><i class="fa fa-plus cursor"></i></button>
+
 
                                 </td>
                              
@@ -753,9 +760,21 @@
                   </div>
                 </div>
 
-                <div class="tab-content">
+                <div class="tab-content d-flex justify-content-between align-items-center">
+                  <label class="contenido basis-33">
+                    Publicado
+                    <input type="checkbox"  id="publicado" v-model="articulo.publicado" name="publicado">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="contenido basis-33">
+                    Destacado
+                    <input type="checkbox"  id="destacado" v-model="articulo.destacado" name="destacado">
+                    <span class="checkmark"></span>
+                  </label>
                   
-                                  <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                  <label class="contenido basis-33">
+                     <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                   </label>
 
                 </div>
               </div>
@@ -860,23 +879,11 @@ Validator.extend("cantidadvv", cantidadvv);
 export default {
   data() {
     return {
-      optionColors: [{ id:1, valor: 'Negro', color: '#000' },
-        { id:2, valor: 'Azul', color: '#fff' },
-        { id:3, valor: 'Rojo',  color: '#aaa' },
-        { id:4, valor: 'Blanco', color: '#bbb' }],
+      optionColors: [],
       optionTalles: [
-        { id:1, valor: 'S' },
-        { id:2, valor: 'M' },
-        { id:3, valor: 'L' },
-        { id:4, valor: 'XL' },
-        { id:5, valor: 'SS' }
       ],
+      optionsPosicion: [],
       optionRubros: [
-        { id:1, nombre: 'Mujer' },
-        { id:2, nombre: 'Hombre' },
-        { id:3, nombre: 'Niño' },
-        { id:4, nombre: 'Niña' },
-        { id:5, nombre: 'Buzo' }
       ],
       selectedColorVariante: "",
       selectedTalleVariante: "",
@@ -900,12 +907,18 @@ export default {
         otros: '',
         imagenes: [],
         rubros: [],
+        talles: [],
+        colores: [],
+        talles_colores: [],
+        imagenes_colores: [],
         tipo: '',
         tipo_cantidad: '',
         cantidad: 0,
-        descripcion: ''
-
+        descripcion: '',
+        destacado: false,
+        publicado:false
       },
+      posicionColor: [],
       table_responsive: false,
       selectedRubroValidation: false,
       selectedTipoValidation: false,
@@ -986,16 +999,10 @@ export default {
 
   },
   created: function() {
-    CerService.post("/grupos/colores/api")
-    .then(response => 
-    {
-        console.log(response.colores)
-         
-    })
-    .catch(error => {
-      console.log('Ha ocurrido un error inesperado')
-    });
-
+    this.getColores()
+    this.getRubros()
+    this.getTalles()
+    this.getPosicion()
     if (document.body.clientWidth <= 900){
           this.table_responsive = true;
       } else {
@@ -1008,6 +1015,85 @@ export default {
     }
   },
   methods: {
+    eventSelectColor(selectedOption, id){
+      let aux = {
+        color: selectedOption,
+        position: {
+            existFrontal: false,
+            existReverso: false
+        }
+      }
+      this.posicionColor.push({...aux})
+    },
+    eventRemoveColor(removedOption, id){
+      this.posicionColor.splice(id,1)
+    },
+    getPosicion(){
+      this.isLoading = true
+        CerService.post("/imagenes-articulos/posicion-imagen")
+        .then(response => 
+        {
+            if(response.posicion)
+            {
+              this.optionsPosicion = response.posicion
+            }
+            this.isLoading = false
+        })
+        .catch(error => {
+          console.log('Ha ocurrido un error inesperado')
+          this.isLoading = false
+        });
+    },
+    getColores(){
+      this.isLoading = true
+        CerService.post("/grupos/colores/api")
+        .then(response => 
+        {
+            if(response.colores)
+            {
+              this.optionColors = response.colores
+            }
+            this.isLoading = false
+        })
+        .catch(error => {
+          console.log('Ha ocurrido un error inesperado')
+          this.isLoading = false
+        });
+    },
+    getTalles(){
+      this.isLoading = true
+      CerService.post("/grupos/talles/api")
+      .then(response => 
+      {
+          if(response.talles)
+          {
+           this.optionTalles = response.talles
+          }
+          this.isLoading = false
+          
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+    },
+    getRubros(){
+      this.isLoading = true
+      CerService.post("/rubros/todos/api")
+      .then(response => 
+      {
+          if(response.rubros)
+          {
+            this.optionRubros = response.rubros
+          }
+          
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+
+    },
     cambiarEsPrincipal(index){
       this.filesImagesColor.forEach((file,id) =>{
         if(id == index){
@@ -1087,7 +1173,10 @@ export default {
           selectedColorRelacion: "",
           file: {},
           es_principal: false,
-          posicion: 'frontal'
+          posicionRelacion: {
+            id:'frontal',
+            nombre: 'Frontal'
+          }
         }
       this.filesImagesColor.push(
       {...aux}
@@ -1113,6 +1202,9 @@ export default {
     customLabelRubro({nombre}){
       return `${nombre}`
     },
+    customLabelPosicion({nombre}){
+      return `${nombre}`
+    },
     validatorImagenRelacion(){
       let validator = true
       this.filesImagesColor.forEach(e => {
@@ -1131,6 +1223,15 @@ export default {
       })
       return validator;
     },
+    validatorRelacion(){
+      let validator = true
+      this.filesImagesColor.forEach(e => {
+        if(e.selectedColorRelacion == '' || e.selectedColorRelacion == null || e.posicionRelacion == '' || e.posicionRelacion == null ){
+          validator = false
+        }
+      })
+      return validator;
+    },
     saveAll(){
        this.$validator.validateAll("form-create").then(resp => 
         {
@@ -1144,24 +1245,27 @@ export default {
                       {
                         if (resD && this.validatorDisponibilidad()){
                             if (this.validatorImagenRelacion()){
-                              this.$validator.validateAll("form-relacionIC").then(resR => 
-                              {
-                                if (resR){
+                                if (this.validatorRelacion()){
                                     this.articulo.imagenes = this.files
                                     this.articulo.rubros = this.selectedRubro
                                     this.articulo.tipo = this.selectedTipo
+                                    this.articulo.talles = this.selectedTallas
+                                    this.articulo.colores = this.selectedColores
+                                    this.articulo.tipo_cantidad = this.selectedCantidad
+                                    this.articulo.talles_colores = this.filesVariantes
+                                    this.articulo.imagenes_colores = this.filesImagesColor
 
                                     var dataform = new FormData();
                                     for( var i = 0; i < this.files.length; i++ ){
                                         let file = this.files[i].file;
-                                        dataform.append('files[' + i + ']', file);
+                                        dataform.append('imagenes[' + i + ']', file);
                                     }
                                     let data = JSON.stringify({
                                             articulo: this.articulo,
                                         });
                                     dataform.append('articulo',data)
-
-                                    CerService.post("/articulo/guardar",dataform,{
+                                    console.log(dataform);
+                                    CerService.post("/articulo/no-disenable/guardar",dataform,{
                                     headers:
                                       {
                                           'Content-Type': 'application/json',
@@ -1169,6 +1273,7 @@ export default {
                                     })
                                     .then(response => 
                                     {
+                                        console.log(response)
                                         if(response.res){
                                           this.msgAlert(response.msg,'success')
                                         } else {
@@ -1179,23 +1284,57 @@ export default {
                                       this.msgAlert('Ha ocurrido un error inesperado','error')
                                     });
                                   } else {
+                                    let element = document.getElementById("tabcontent");
+                                      var options = {
+                                          offset: 0,
+                                          force: true
+                                     };
+                                    this.$scrollTo(element, 0, options);
+                                    $('.nav-tabs a[href="#relacion"]').tab('show');
                                     this.msgAlert('Por favor verifique el tab relacion Imagen-Color','warning')
 
                                   }
-                          });
                            } else {
+                                      let element = document.getElementById("tabcontent");
+                                      var options = {
+                                          offset: 0,
+                                          force: true
+                                     };
+                                    this.$scrollTo(element, 0, options);
+                                    $('.nav-tabs a[href="#relacion"]').tab('show');
                                       this.msgAlert('La imagen es requerida en la relación Imagen-Color','warning')
                             }
                         } else {
+                          let element = document.getElementById("tabcontent");
+                            var options = {
+                                offset: 0,
+                                force: true
+                           };
+                          this.$scrollTo(element, 0, options);
+                          $('.nav-tabs a[href="#disponibilidad"]').tab('show');
                           this.msgAlert('Por favor verifique el tab disponibilidad','warning')
                         }
                         })
                       }else {
+                        let element = document.getElementById("ajustesbasicosIMG");
+                          var options = {
+                              offset: 0,
+                              force: true
+                         };
+                        this.$scrollTo(element, 0, options);
+                        $('.nav-tabs a[href="#ajustesbasicos"]').tab('show');
                         this.msgAlert('Debe subir por lo menos una imagen del articulo en ajustes básicos','warning')
 
                       }
                       
                 } else {
+                  let element = document.getElementById("tabcontent");
+                    var options = {
+                        offset: 0,
+                        force: true
+                   };
+                  this.$scrollTo(element, 0, options);
+                  $('.nav-tabs a[href="#ajustesbasicos"]').tab('show');
                   this.msgAlert('Por favor verifique el tab ajustes básicos','warning')
 
                 }
@@ -1203,6 +1342,12 @@ export default {
           }
           else
           {
+            let element = document.getElementById("nuevoArticulo");
+                    var options = {
+                        offset: 0,
+                        force: true
+             };
+            this.$scrollTo(element, 0, options);
             this.msgAlert('Por favor verifique el nombre del artículo','warning')
           }
         });

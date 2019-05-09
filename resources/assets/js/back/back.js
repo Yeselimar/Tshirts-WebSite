@@ -69,6 +69,8 @@ Vue.use(BootstrapVue)
 Vue.component('v-select', vSelect)
 Vue.use(VeeValidate, { fieldsBagName: 'veeFields' })
 Vue.use(money)
+import VueScrollTo from 'vue-scrollto';
+Vue.use(VueScrollTo);
 
 
 /*
@@ -90,6 +92,7 @@ const app = new Vue({
   VueSweetalert2,
   VeeValidate,
   BootstrapVue,
+  VueScrollTo,
   money,
 });
 

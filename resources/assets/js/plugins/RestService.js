@@ -6,6 +6,7 @@ const RestService = axios.create({
         //baseURL: config.apiURL
         baseURL: config.api.base,
         headers: {
+            'token': config.api.token,
             'Content-Type': 'application/json',
         }
         /*headers: {
