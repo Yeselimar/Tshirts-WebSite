@@ -46,27 +46,34 @@ class ArticulosController extends Controller
     public function editnodisenable($id)
     {
         $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
-        $colores = [];
-        $talles = [];
-        foreach ($articulo->caracteristicas as $caracteristica)
+        if($articulo)
         {
-            if(strtolower($caracteristica->grupo->nombre)==strtolower("color"))
+            $colores = [];
+            $talles = [];
+            foreach ($articulo->caracteristicas as $caracteristica)
             {
-                $auxiliar  = Caracteristica::find($caracteristica->id);
-                array_push($colores,$auxiliar);
-            }
-            else
-            {
-                if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
+                if(strtolower($caracteristica->grupo->nombre)==strtolower("color"))
                 {
                     $auxiliar  = Caracteristica::find($caracteristica->id);
-                    array_push($talles,$auxiliar);
+                    array_push($colores,$auxiliar);
+                }
+                else
+                {
+                    if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
+                    {
+                        $auxiliar  = Caracteristica::find($caracteristica->id);
+                        array_push($talles,$auxiliar);
+                    }
                 }
             }
+            $articulo["talles"] = $talles;
+            $articulo["colores"] = $colores;
+            return response()->json(['res'=>1,'articulo' => $articulo]);
         }
-        $articulo["talles"] = $talles;
-        $articulo["colores"] = $colores;
-        return response()->json(['articulo' => $articulo]);
+        else
+        {
+            return response()->json(['res'=>2,'msg' => "Artículo no encontrado"]);
+        }
     }
 
     public function todosparabanner()

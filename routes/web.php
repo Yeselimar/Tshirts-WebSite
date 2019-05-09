@@ -26,6 +26,7 @@ Route::get('/{vue_capture?}', function () {
     return view('vue.index');
 })->where('vue_capture', '[\/\w\.-]*');
 
+
 //Login User
 Route::post('/register/post','RegistroBarnaController@registerPost')->name('registerPost');
 Route::post('/login/post', 'Auth\LoginController@postlogin')->name('post.login');
@@ -71,7 +72,7 @@ Route::post('/articulos/todos/para-banner','ArticulosController@todosparabanner'
 Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
 Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.guardar.disenable');
 
-Route::get('/articulo/no-disenable/{id}/editar','ArticulosController@editnodisenable')->name('articulo.editar.nodisenable');
+Route::post('/articulo/no-disenable/{id}/editar','ArticulosController@editnodisenable')->name('articulo.editar.nodisenable');
 
 Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articulo.detalles');
 Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
