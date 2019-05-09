@@ -92013,14 +92013,33 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     verDetalle: function verDetalle(idProd) {
       this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
     },
+    obtenerdisenables: function obtenerdisenables() {
+      console.log("disenables");
+    },
+    obtenernodisenables: function obtenernodisenables() {
+      console.log("no disenables");
+      /*CerService.post("/grupos/talles/api")
+      .then(response => 
+      {
+          
+          this.isLoading = false
+          
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });*/
+    },
     llenarItems: function llenarItems() {
       var _this = this;
 
       this.items = [];
       setTimeout(function (e) {
         if (_this.getIsDesign) {
+          _this.obtenerdisenables();
           _this.items = _this.barnerDesign;
         } else {
+          _this.obtenernodisenables();
           _this.items = _this.barner;
         }
         setTimeout(function (e) {

@@ -102373,7 +102373,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:auto;\n\t    height:28px;\n\t    border: 1px solid #ebebeb;\n\t    border-radius: 4px;\n}\n.img-barna-grande\n  \t{\n    \twidth:100%;\n    \theight:auto;\n    \tborder: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 10px;\n}\n.h-30\n\t{\n\t\theight:30px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n", ""]);
+exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:auto;\n\t    height:28px;\n\t    border: 1px solid #ebebeb;\n\t    border-radius: 4px;\n}\n.img-barna-grande\n  \t{\n    \twidth:100%;\n    \theight:auto;\n    \tborder: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 10px;\n}\n.h-30\n\t{\n\t\theight:30px;\n}\n.imagen-cuadrada\n\t{\n\t    width:auto; \n\t    height:15px;\n\t    border: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n", ""]);
 
 // exports
 
@@ -102390,6 +102390,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(15);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
 //
 //
 //
@@ -102769,9 +102771,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				crear: function crear() {
 						this.limpiar();
 						this.banner.id = null;
+						this.banner.descripcion = '';
 						this.banner.valida = true;
-						this.banner.articulo.id = 1;
 						if (this.articulos.length > 0) {
+								this.banner.articulo.id = this.articulos[0].id; //selecciono el primer artículo
 								$('#crear').modal('show');
 						} else {
 								this.mensaje("error", "No hay artículos creados. No se pueden crear banner");

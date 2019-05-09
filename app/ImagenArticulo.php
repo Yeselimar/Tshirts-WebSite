@@ -18,6 +18,11 @@ class ImagenArticulo extends Model
     	return $this->belongsTo('App\Articulo');
     }
 
+    public function color()
+    {
+        return $this->belongsTo('App\Caracteristica','caracteristica_id');
+    }
+
     public static function carpeta()
     {
         return 'img/articulos/';

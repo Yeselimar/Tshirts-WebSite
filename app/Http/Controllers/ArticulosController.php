@@ -9,6 +9,7 @@ use App\TalleColor;
 use App\ArticuloRubro;
 use App\ArticuloCaracteristica;
 use App\ImagenArticulo;
+use App\Caracteristica;
 
 class ArticulosController extends Controller
 {
@@ -45,6 +46,26 @@ class ArticulosController extends Controller
     public function editnodisenable($id)
     {
         $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
+        $colores = [];
+        $talles = [];
+        foreach ($articulo->caracteristicas as $caracteristica)
+        {
+            if(strtolower($caracteristica->grupo->nombre)==strtolower("color"))
+            {
+                $auxiliar  = Caracteristica::find($caracteristica->id);
+                array_push($colores,$auxiliar);
+            }
+            else
+            {
+                if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
+                {
+                    $auxiliar  = Caracteristica::find($caracteristica->id);
+                    array_push($talles,$auxiliar);
+                }
+            }
+        }
+        $articulo["talles"] = $talles;
+        $articulo["colores"] = $colores;
         return response()->json(['articulo' => $articulo]);
     }
 
@@ -83,7 +104,7 @@ class ArticulosController extends Controller
         //Validando para devolver una respuesta al frontend 
         if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
         {
-            return response()->json(["res"=>2,"msg"=>"Disculpe selecciono una imagen con el mismo color"]);
+            return response()->json(["res"=>2,"msg"=>"Disculpe seleccionó una imagen con el mismo color"]);
         }
 
         //Artículo

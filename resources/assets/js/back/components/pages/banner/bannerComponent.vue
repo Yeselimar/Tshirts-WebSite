@@ -40,8 +40,10 @@
 	}
 	.imagen-cuadrada
 	{
-	    width:15px; 
+	    width:auto; 
 	    height:15px;
+	    border: 1px solid #ebebeb;
+    	border-radius: 4px;
 	}
 </style>
 
@@ -389,10 +391,11 @@ export default
 	    {
 	    	this.limpiar();
 	    	this.banner.id = null;
+	    	this.banner.descripcion = '';
 	        this.banner.valida = true;
-	        this.banner.articulo.id = 1;
 	        if(this.articulos.length>0)
 	        {
+	        	this.banner.articulo.id = this.articulos[0].id;//selecciono el primer artículo
 	        	$('#crear').modal('show');
 	        }
 	        else

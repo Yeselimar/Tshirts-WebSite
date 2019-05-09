@@ -14,6 +14,18 @@ class BannerController extends Controller
     	return response()->json(['banners' => $banners]); 
     }
 
+    public function todosdisenables()
+    {
+        $banners = Banner::all();
+        //fore
+        return response()->json(['banners' => $banners]); 
+    }
+
+    public function todosnodisenables()
+    {
+        //return response()->json(['banners' => $banners]); 
+    }
+
     public function store(Request $request)
     {
     	$banner = new Banner;
