@@ -3964,6 +3964,73 @@ var index_esm = {
 
 /***/ }),
 /* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(103);
+
+
+var CerService = {};
+
+CerService.setToken = function (token) {
+    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
+};
+
+CerService.get = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.delete = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error al Eliminar');
+    });
+};
+
+CerService.post = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.put = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
+        return res.data;
+    });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (CerService);
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4479,73 +4546,6 @@ Util_1.Collection.mapMethods(Shape);
 
 
 /***/ }),
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(103);
-
-
-var CerService = {};
-
-CerService.setToken = function (token) {
-    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
-};
-
-CerService.get = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.delete = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error al Eliminar');
-    });
-};
-
-CerService.post = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.put = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
-        return res.data;
-    });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (CerService);
-
-/***/ }),
 /* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -4809,17 +4809,6 @@ module.exports = g;
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-if (false) {
-  module.exports = require('./vue.common.prod.js')
-} else {
-  module.exports = __webpack_require__(92)
-}
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 var normalizeComponent = __webpack_require__(7)
 /* script */
@@ -4861,6 +4850,17 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+if (false) {
+  module.exports = require('./vue.common.prod.js')
+} else {
+  module.exports = __webpack_require__(92)
+}
 
 
 /***/ }),
@@ -19326,13 +19326,11 @@ exports.HitCanvas = HitCanvas;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost:8000/',
-        //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
+        base: 'http://localhost/barna/barna/public/',
+        token: document.head.querySelector('meta[name="csrf-token"]')
     },
     env: {
-        //base: '/afodi/barna/public'
-        base: '/'
+        base: '/barna/barna/public/'
     }
 });
 
@@ -70746,7 +70744,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Line = (function (_super) {
@@ -70895,7 +70893,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Global_1 = __webpack_require__(6);
 var Path = (function (_super) {
     __extends(Path, _super);
@@ -71513,7 +71511,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Rect = (function (_super) {
@@ -71573,7 +71571,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -71902,7 +71900,7 @@ Util_1.Collection.mapMethods(Text);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(257);
@@ -72064,7 +72062,7 @@ module.exports = __webpack_require__(208);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_sweetalert2__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_konva__ = __webpack_require__(216);
@@ -81122,7 +81120,7 @@ $(window).on('load', function () {
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(25), __webpack_require__(217));
+		module.exports = factory(__webpack_require__(26), __webpack_require__(217));
 	else if(typeof define === 'function' && define.amd)
 		define(["vue", "konva"], factory);
 	else if(typeof exports === 'object')
@@ -82081,7 +82079,7 @@ var Layer_1 = __webpack_require__(221);
 var FastLayer_1 = __webpack_require__(222);
 var Group_1 = __webpack_require__(100);
 var DragAndDrop_1 = __webpack_require__(57);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Animation_1 = __webpack_require__(58);
 var Tween_1 = __webpack_require__(223);
 var Context_1 = __webpack_require__(131);
@@ -82717,7 +82715,7 @@ var Container_1 = __webpack_require__(41);
 var Factory_1 = __webpack_require__(4);
 var BaseLayer_1 = __webpack_require__(132);
 var Canvas_1 = __webpack_require__(49);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var HASH = '#', BEFORE_DRAW = 'beforeDraw', DRAW = 'draw', INTERSECTION_OFFSETS = [
@@ -83475,7 +83473,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -83640,7 +83638,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Circle = (function (_super) {
@@ -83703,7 +83701,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Ellipse = (function (_super) {
@@ -83770,7 +83768,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Image = (function (_super) {
@@ -83877,7 +83875,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Group_1 = __webpack_require__(100);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
@@ -84086,7 +84084,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var RegularPolygon = (function (_super) {
@@ -84152,7 +84150,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var PIx2 = Math.PI * 2;
@@ -84215,7 +84213,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Animation_1 = __webpack_require__(58);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
@@ -84351,7 +84349,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var Star = (function (_super) {
@@ -84419,7 +84417,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Path_1 = __webpack_require__(134);
 var Text_1 = __webpack_require__(136);
 var Validators_1 = __webpack_require__(5);
@@ -84785,7 +84783,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
 var Node_1 = __webpack_require__(13);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Rect_1 = __webpack_require__(135);
 var Group_1 = __webpack_require__(100);
 var Global_1 = __webpack_require__(6);
@@ -85469,7 +85467,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Shape_1 = __webpack_require__(16);
+var Shape_1 = __webpack_require__(17);
 var Global_1 = __webpack_require__(6);
 var Validators_1 = __webpack_require__(5);
 var Global_2 = __webpack_require__(6);
@@ -87184,7 +87182,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'threshold', 0.5, Validators_1.ge
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /*
@@ -87490,10 +87488,10 @@ var getters = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(50);
 
@@ -87794,7 +87792,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* unused harmony export EventBus */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /*
   The event bus handles the communication between components.
@@ -87900,10 +87898,12 @@ exports.push([module.i, "\nli.logiform .droplogin:after {\n  position: absolute;
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loading_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
@@ -88582,43 +88582,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "headerComponent",
   components: {
-    loading: __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default.a
+    loading: __WEBPACK_IMPORTED_MODULE_1__loading_vue___default.a
   },
   data: function data() {
-    return {
+    return _defineProperty({
+      isLoading: false,
       collVal: false,
-      tipos_rubros: [{
-        "id": 1,
-        "nombre": 'Hombre'
-      }, {
-        "id": 2,
-        "nombre": 'Mujer'
-      }, {
-        "id": 3,
-        "nombre": 'Niño'
-      }, {
-        "id": 4,
-        "nombre": 'Niña'
-      }, {
-        "id": 5,
-        "nombre": 'Taza'
-      }, {
-        "id": 6,
-        "nombre": 'Buzo'
-      }],
-      tipos_rubros_fav: [{
-        "id": 1,
-        "nombre": 'Hombre'
-      }, {
-        "id": 2,
-        "nombre": 'Mujer'
-      }, {
-        "id": 3,
-        "nombre": 'Niño'
-      }, {
-        "id": 4,
-        "nombre": 'Niña'
-      }],
+      tipos_rubros: [],
+      tipos_rubros_fav: [],
       user: {
         name: "",
         last_name: ""
@@ -88630,22 +88601,43 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       search: this.getSearch,
       showLoginOut: false,
       showCartOut: false,
-      showBagOut: false,
-      isLoading: false
-    };
+      showBagOut: false
+    }, "isLoading", false);
   },
 
   methods: {
-    prueba: function prueba() {
+    todosrubros: function todosrubros() {
       var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
+        _this.tipos_rubros = response.rubros;
+        _this.isLoading = false;
+      }).catch(function (error) {
+        _this.isLoading = false;
+        console.log('Ha ocurrido un error inesperado');
+      });
+    },
+    rubrosfavoritos: function rubrosfavoritos() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/rubros/todos/favoritos").then(function (response) {
+        _this2.tipos_rubros_fav = response.rubros;
+        _this2.isLoading = false;
+      }).catch(function (error) {
+        _this2.isLoading = false;
+        console.log('Ha ocurrido un error inesperado');
+      });
+    },
+    prueba: function prueba() {
+      var _this3 = this;
 
       this.isLoading = true;
 
       __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/front/prueba").then(function (response) {
-        _this.isLoading = false;
+        _this3.isLoading = false;
         console.log(response);
       }).catch(function (error) {
-        _this.isLoading = false;
+        _this3.isLoading = false;
         console.log('Ha ocurrido un error inesperado');
       });
     },
@@ -88655,23 +88647,23 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     /*  initComponent() {
-        this.isLoading = true;
-          CerService.get("/login/auth")
-            .then(response => {
-              if (response.res) {
-                this.$store.dispatch('cambiarUser',{...response.user})
-                this.$store.dispatch('cambiarIsAuth',true)
-                this.user.name = response.user.name;
-                this.user.last_name = response.user.last_name;
-                this.isLoading = false;
-              } else {
-                this.isLoading = false;
-              }
-            })
-            .catch(err => {
-              console.log("Ha ocurrido un error inesperado");
-               this.isLoading = false;
-            });
+      this.isLoading = true;
+        CerService.get("/login/auth")
+          .then(response => {
+            if (response.res) {
+              this.$store.dispatch('cambiarUser',{...response.user})
+              this.$store.dispatch('cambiarIsAuth',true)
+              this.user.name = response.user.name;
+              this.user.last_name = response.user.last_name;
+              this.isLoading = false;
+            } else {
+              this.isLoading = false;
+            }
+          })
+          .catch(err => {
+            console.log("Ha ocurrido un error inesperado");
+             this.isLoading = false;
+          });
     },*/
     cambCollapse: function cambCollapse() {
       //var content = $("#content-barna");
@@ -88685,14 +88677,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
     },
     logout: function logout() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.closeAll(10);
       this.isLoading = true;
       this.$store.dispatch('logout').then(function (res) {
 
         if (res.res) {
-          _this2.$swal.mixin({
+          _this4.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88701,10 +88693,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             type: "success",
             title: res.msg
           });
-          _this2.$router.push({ name: 'home' });
-          _this2.isLoading = false;
+          _this4.$router.push({ name: 'home' });
+          _this4.isLoading = false;
         } else {
-          _this2.$swal.mixin({
+          _this4.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88713,10 +88705,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             type: "warning",
             title: res.msg
           });
-          _this2.isLoading = false;
+          _this4.isLoading = false;
         }
       }).catch(function (err) {
-        _this2.$swal.mixin({
+        _this4.$swal.mixin({
           toast: true,
           position: "top-end",
           showConfirmButton: false,
@@ -88725,7 +88717,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           type: "success",
           title: "Ha ocurrido un error inesperado"
         });
-        _this2.isLoading = false;
+        _this4.isLoading = false;
       });
     },
     seleted: function seleted(rubro) {
@@ -88741,7 +88733,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$router.push({ name: 'rubros' });
     },
     showBagM: function showBagM() {
-      var _this3 = this;
+      var _this5 = this;
 
       if (!this.showBag) {
         this.showBagOut = false;
@@ -88749,19 +88741,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showLoginOut = true;
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this3.showLogin = false;
-          _this3.showCart = false;
+          _this5.showLogin = false;
+          _this5.showCart = false;
         }, 500);
       } else {
         this.showBagOut = true;
         setTimeout(function (e) {
-          _this3.showBagOut = false;
-          _this3.showBag = false;
+          _this5.showBagOut = false;
+          _this5.showBag = false;
         }, 500);
       }
     },
     showCartM: function showCartM() {
-      var _this4 = this;
+      var _this6 = this;
 
       if (!this.showCart) {
         this.showCartOut = false;
@@ -88769,19 +88761,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showLoginOut = true;
         this.showBagOut = true;
         setTimeout(function (e) {
-          _this4.showLogin = false;
-          _this4.showBag = false;
+          _this6.showLogin = false;
+          _this6.showBag = false;
         }, 500);
       } else {
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this4.showCartOut = false;
-          _this4.showCart = false;
+          _this6.showCartOut = false;
+          _this6.showCart = false;
         }, 500);
       }
     },
     showLoginM: function showLoginM() {
-      var _this5 = this;
+      var _this7 = this;
 
       if (!this.showLogin) {
         this.showLoginOut = false;
@@ -88789,30 +88781,30 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.showBagOut = true;
         this.showCartOut = true;
         setTimeout(function (e) {
-          _this5.showBag = false;
-          _this5.showCart = false;
+          _this7.showBag = false;
+          _this7.showCart = false;
         }, 500);
       } else {
         this.showLoginOut = true;
         setTimeout(function (e) {
-          _this5.showLoginOut = false;
-          _this5.showLogin = false;
+          _this7.showLoginOut = false;
+          _this7.showLogin = false;
         }, 500);
       }
     },
     closeAll: function closeAll(val) {
-      var _this6 = this;
+      var _this8 = this;
 
       this.showLoginOut = true;
       this.showCartOut = true;
       this.showBagOut = true;
       setTimeout(function (e) {
-        _this6.showLoginOut = false;
-        _this6.showCartOut = false;
-        _this6.showBagOut = false;
-        _this6.showLogin = false;
-        _this6.showCart = false;
-        _this6.showBag = false;
+        _this8.showLoginOut = false;
+        _this8.showCartOut = false;
+        _this8.showBagOut = false;
+        _this8.showLogin = false;
+        _this8.showCart = false;
+        _this8.showBag = false;
       }, val);
     },
     designM: function designM(cent) {
@@ -88826,29 +88818,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$store.dispatch('cambiarIsDesign', cent);
     },
     loginM: function loginM() {
-      var _this7 = this;
+      var _this9 = this;
 
       this.$validator.validateAll("form-login").then(function (resp) {
         if (resp) {
-          _this7.isLoading = true;
+          _this9.isLoading = true;
           var dataform = new FormData();
-          dataform.append("password", _this7.user.password);
-          dataform.append("email", _this7.user.email);
+          dataform.append("password", _this9.user.password);
+          dataform.append("email", _this9.user.email);
           __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/login/post", dataform).then(function (response) {
             if (response.res) {
-              _this7.closeAll(1);
-              _this7.$store.dispatch('loadUser');
-              if (_this7.$route.name == 'register') {
-                _this7.$router.push({ name: 'home' });
+              _this9.closeAll(1);
+              _this9.$store.dispatch('loadUser');
+              if (_this9.$route.name == 'register') {
+                _this9.$router.push({ name: 'home' });
               }
               var element = document.getElementById("header-top");
               var options = {
                 offset: 0,
                 force: true
               };
-              _this7.$scrollTo(element, 0, options);
-              _this7.isLoading = false;
-              _this7.$swal.mixin({
+              _this9.$scrollTo(element, 0, options);
+              _this9.isLoading = false;
+              _this9.$swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
@@ -88858,8 +88850,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 title: response.msg
               });
             } else {
-              _this7.isLoading = false;
-              _this7.$swal.mixin({
+              _this9.isLoading = false;
+              _this9.$swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
@@ -88870,9 +88862,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
               });
             }
           }).catch(function (error) {
-            _this7.$store.dispatch('loadUser');
-            _this7.isLoading = false;
-            _this7.$swal.mixin({
+            _this9.$store.dispatch('loadUser');
+            _this9.isLoading = false;
+            _this9.$swal.mixin({
               toast: true,
               position: "top-end",
               showConfirmButton: false,
@@ -88883,7 +88875,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
           });
         } else {
-          _this7.$swal.mixin({
+          _this9.$swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -88916,7 +88908,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getBag', 'getCart', 'getUrl'])),
   mounted: function mounted() {
-    var _this8 = this;
+    var _this10 = this;
 
     //this.initComponent()
     if (document.body.clientWidth <= 768) {
@@ -88942,14 +88934,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         // $('#content-barna').css('min-height',parseInt(($('.header-barna-fixed').css('height')).split('px')[0]))
       }, 400);
       if (document.body.clientWidth <= 768) {
-        _this8.collapse = true;
+        _this10.collapse = true;
         $('#content-barna').css('min-height', 131);
       } else {
-        _this8.collapse = false;
-        _this8.collVal = false;
+        _this10.collapse = false;
+        _this10.collVal = false;
         $('#content-barna').css('min-height', 170);
       }
-      if (_this8.collapse) {
+      if (_this10.collapse) {
         $("#logo-barna").css("width", 45);
         $("#logo-barna").css("height", 85);
       } else {
@@ -88965,7 +88957,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       if (document.documentElement.scrollTop > t) {
         //$(content).css("transition", "all 0.5s ease 0.4s");
         $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
-        if (_this8.collapse) {
+        if (_this10.collapse) {
           $("#logo-barna").css("width", 40);
           $("#logo-barna").css("height", 60);
         } else {
@@ -88982,7 +88974,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       } else {
         $("#content-barna").css("transition", "all 0.2s ease 0.1s");
         $("#logo-barna").css("transition", "all 0.2s ease 0.1s");
-        if (_this8.collapse) {
+        if (_this10.collapse) {
           $("#logo-barna").css("width", 45);
           $("#logo-barna").css("height", 85);
         } else {
@@ -89004,11 +88996,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     });
   },
   created: function created() {
+
     if (document.body.clientWidth <= 768) {
       this.collapse = true;
     } else {
       this.collapse = false;
     }
+    this.todosrubros();
+    this.rubrosfavoritos();
   },
 
   watch: {
@@ -91226,7 +91221,7 @@ exports.push([module.i, "\n.filter {\n  font-family: arial;\n  padding: 6px 6px;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_loading_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_home_navComponent_vue__);
@@ -91235,6 +91230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -91377,6 +91373,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'homeComponent',
     components: {
@@ -91411,292 +91408,371 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             totalI: 0,
             max: 12,
             currentFilter: '',
-            tipos_rubros: [{
-                "id": 1,
-                "nombre": 'Hombre'
-            }, {
-                "id": 2,
-                "nombre": 'Mujer'
-            }, {
-                "id": 3,
-                "nombre": 'Niño'
-            }, {
-                "id": 4,
-                "nombre": 'Niña'
-            }, {
-                "id": 5,
-                "nombre": 'Taza'
-            }, {
-                "id": 6,
-                "nombre": 'Buzo'
-            }],
+            tipos_rubros: [
+                /*
+                    {
+                        "id": 1,
+                        "nombre": 'Hombre',
+                    },
+                    {
+                        "id": 2,
+                        "nombre": 'Mujer',
+                    },
+                    {
+                        "id": 3,
+                        "nombre": 'Niño',
+                    },
+                    {
+                        "id": 4,
+                        "nombre": 'Niña',
+                    },
+                    {
+                        "id": 5,
+                        "nombre": 'Taza',
+                    },
+                    {
+                        "id": 6,
+                        "nombre": 'Buzo',
+                    }*/
+            ],
             projects: [],
-            productDesigns: [{
-                id: 10020,
-                url: 'img/product/12.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Hombre',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1589,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 54632,
-                url: 'img/product/8.jpg',
-                categoria: 'Mujer',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 345645,
-                url: 'img/product/7.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Mujer',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 14562,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 2,
-                url: 'img/product/8.jpg',
-                categoria: 'Niño',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 31245,
-                url: 'img/product/7.jpg',
-                categoria: 'Niña',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 400,
-                url: 'img/product/6.jpg',
-                categoria: 'Hombre',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }, {
-                id: 10748,
-                url: 'img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Niña',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1999,
-                url: 'img/product/2.jpg',
-                categoria: 'Niña',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 102,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 513,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 45582,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 321,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 21112,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 22273,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 5564,
-                url: 'img/product/11.jpg',
-                titulo: 'Tienza jackets',
-                categoria: 'Buzo',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }],
-            products: [{
-                id: 4440,
-                url: 'img/product/12.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Hombre',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: false
-            }, {
-                id: 555411,
-                categoria: 'Hombre',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 2665,
-                url: 'img/product/8.jpg',
-                categoria: 'Mujer',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 105633,
-                url: 'img/product/7.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Niño',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 555451,
-                categoria: 'Niño',
-                url: 'img/product/9.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 5552,
-                url: 'img/product/8.jpg',
-                categoria: 'Niño',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 5553,
-                url: 'img/product/7.jpg',
-                categoria: 'Niña',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 4454,
-                url: 'img/product/6.jpg',
-                categoria: 'Hombre',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: false
-            }, {
-                id: 5550,
-                url: 'img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                categoria: 'Mujer',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: false
-            }, {
-                id: 5661,
-                url: 'img/product/2.jpg',
-                categoria: 'Niña',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: false
-            }, {
-                id: 542,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 45543,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Niña',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 2222,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 3,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }, {
-                id: 1111,
-                url: 'img/product/3.jpg',
-                categoria: 'Taza',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }, {
-                id: 223,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                categoria: 'Taza',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: false
-            }],
+            productDesigns: [
+                /*
+                {
+                    id: 10020,
+                    url: 'img/product/12.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Hombre',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: true
+                },
+                {
+                    id: 1589,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 54632,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Mujer',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 345645,
+                    url: 'img/product/7.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Mujer',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 14562,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 2,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Niño',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 31245,
+                    url: 'img/product/7.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Carniut jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 400,
+                    url: 'img/product/6.jpg',
+                    categoria: 'Hombre',
+                    titulo: 'Tienza jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: true
+                },
+                 {
+                    id: 10748,
+                    url: 'img/product/1.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Niña',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: true
+                },
+                {
+                    id: 1999,
+                    url: 'img/product/2.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: true
+                },
+                {
+                    id: 102,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 513,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 45582,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 321,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 21112,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: true
+                },
+                {
+                    id: 22273,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: true
+                },
+                {
+                    id: 5564,
+                    url: 'img/product/11.jpg',
+                    titulo: 'Tienza jackets',
+                    categoria: 'Buzo',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: true
+                },*/
+            ],
+            products: [
+                /*
+                {
+                    id: 4440,
+                    url: 'img/product/12.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Hombre',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: false
+                },
+                {
+                    id: 555411,
+                    categoria: 'Hombre',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 2665,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Mujer',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 105633,
+                    url: 'img/product/7.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Niño',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 555451,
+                    categoria: 'Niño',
+                    url: 'img/product/9.jpg',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 5552,
+                    url: 'img/product/8.jpg',
+                    categoria: 'Niño',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 5553,
+                    url: 'img/product/7.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Carniut jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 4454,
+                    url: 'img/product/6.jpg',
+                    categoria: 'Hombre',
+                    titulo: 'Tienza jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 19.2,
+                    isDesign: false
+                },
+                 {
+                    id: 5550,
+                    url: 'img/product/1.jpg',
+                    titulo: 'Blusa jackets',
+                    categoria: 'Mujer',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 29.2,
+                    isDesign: false
+                },
+                {
+                    id: 5661,
+                    url: 'img/product/2.jpg',
+                    categoria: 'Niña',
+                    titulo: 'Pantalon jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 12.2,
+                    isDesign: false
+                },
+                {
+                    id: 542,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 45543,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Niña',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 2222,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 3,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                },
+                {
+                    id: 1111,
+                    url: 'img/product/3.jpg',
+                    categoria: 'Taza',
+                    titulo: 'Franella jackets',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 129.2,
+                    isDesign: false
+                },
+                {
+                    id: 223,
+                    url: 'img/product/4.jpg',
+                    titulo: 'Carniut jackets',
+                    categoria: 'Taza',
+                    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                     +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
+                    precio: 99.2,
+                    isDesign: false
+                }
+                */
+            ],
             url: '',
             isLoading: false,
             showNav: true
@@ -91704,6 +91780,39 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     methods: {
+        articulosdisenables: function articulosdisenables() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/disenables/todos/api").then(function (response) {
+                _this.productDesigns = response.articulos;
+                _this.isLoading = false;
+            }).catch(function (error) {
+                _this.isLoading = false;
+                console.log('Ha ocurrido un error inesperado');
+            });
+        },
+        articulosnodisenables: function articulosnodisenables() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/no-disenables/todos/api").then(function (response) {
+                _this2.products = response.articulos;
+                _this2.isLoading = false;
+            }).catch(function (error) {
+                _this2.isLoading = false;
+                console.log('Ha ocurrido un error inesperado');
+            });
+        },
+        obtenerrubros: function obtenerrubros() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
+                _this3.tipos_rubros = response.rubros;
+                _this3.isLoading = false;
+            }).catch(function (error) {
+                _this3.isLoading = false;
+                console.log('Ha ocurrido un error inesperado');
+            });
+        },
         disenar: function disenar(idProd) {
             this.$router.push({ name: 'disenar', params: { id: idProd } });
             console.log('helloo ili');
@@ -91712,14 +91821,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
         },
         addCart: function addCart(product) {
-            var _this = this;
+            var _this4 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddCart', _extends({}, product)).then(function (res) {
-                    _this.isLoading = false;
+                    _this4.isLoading = false;
                     if (res === 1) {
-                        _this.$swal.mixin({
+                        _this4.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91729,7 +91838,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su carrito exitosamente"
                         });
                     } else {
-                        _this.$swal.mixin({
+                        _this4.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91753,14 +91862,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }
         },
         addBag: function addBag(product) {
-            var _this2 = this;
+            var _this5 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddBag', _extends({}, product)).then(function (res) {
-                    _this2.isLoading = false;
+                    _this5.isLoading = false;
                     if (res === 1) {
-                        _this2.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91770,7 +91879,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su cesta exitosamente"
                         });
                     } else {
-                        _this2.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91806,7 +91915,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     },
     mounted: function mounted() {
-        var _this3 = this;
+        var _this6 = this;
 
         var element = document.getElementById("header-top");
         var options = {
@@ -91816,10 +91925,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.$scrollTo(element, 0, options);
         $(window).resize(function (event) {
             event.preventDefault();
-            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this3.max = 6;else if (document.body.clientWidth < 460) _this3.max = 3;else _this3.max = 12;
+            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this6.max = 6;else if (document.body.clientWidth < 460) _this6.max = 3;else _this6.max = 12;
         });
     },
     created: function created() {
+        this.obtenerrubros();
+
+        this.articulosdisenables();
+        this.articulosnodisenables();
+
         if (this.getIsDesign) {
             this.projects = this.productDesigns;
         } else {
@@ -91900,6 +92014,9 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -91964,44 +92081,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "navComponent",
+  components: {
+    loading: __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue___default.a
+  },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth', 'getUrl'])),
   data: function data() {
     return {
-      barner: [{
-        id: 0,
-        url: "img/bg.jpg",
-        titulo: "Denim jackets",
-        isDesign: false,
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-        precio: 1229.2
-      }, {
-        id: 1,
-        url: "img/bg-2.jpg",
-        titulo: "Content Static",
-        isDesign: false,
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-        precio: 89.5
-      }],
-      barnerDesign: [{
-        id: 2,
-        url: "img/bg-3.jpg",
-        titulo: "Toommy jackets",
-        isDesign: true,
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-        precio: 19.2
-      }, {
-        id: 3,
-        url: "img/bg-4.jpg",
-        titulo: "Tonts Static",
-        isDesign: true,
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" + "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-        precio: 9.5
-      }],
+      isLoading: false,
       items: []
     };
   },
@@ -92016,63 +92111,68 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     verDetalle: function verDetalle(idProd) {
       this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
     },
+    carousel: function carousel() {
+      setTimeout(function (e) {
+        $(".hero-slider").owlCarousel({
+          loop: false,
+          rewind: true,
+          margin: 0,
+          nav: true,
+          items: 1,
+          dots: true,
+          animateOut: "fadeOut",
+          animateIn: "fadeIn",
+          navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
+          smartSpeed: 1200,
+          autoHeight: false,
+          autoplay: true,
+          onInitialized: function onInitialized() {
+            var a = this.items().length;
+            $("#snh-1").html("<span>1</span><span>" + a + "</span>");
+          }
+        }).on("changed.owl.carousel", function (a) {
+          var b = --a.item.index,
+              a = a.item.count;
+          $("#snh-1").html("<span> " + (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + a + "</span>");
+        });
+
+        $(".hero-slider").append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
+        $(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo(".slider-nav");
+      }, 10);
+    },
     obtenerdisenables: function obtenerdisenables() {
-      console.log("disenables");
-    },
-    obtenernodisenables: function obtenernodisenables() {
-      console.log("no disenables");
-      /*CerService.post("/grupos/talles/api")
-      .then(response => 
-      {
-          
-          this.isLoading = false
-          
-      })
-      .catch(error => {
-        console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
-      });*/
-    },
-    llenarItems: function llenarItems() {
       var _this = this;
 
-      this.items = [];
-      setTimeout(function (e) {
-        if (_this.getIsDesign) {
-          _this.obtenerdisenables();
-          _this.items = _this.barnerDesign;
-        } else {
-          _this.obtenernodisenables();
-          _this.items = _this.barner;
-        }
-        setTimeout(function (e) {
-          $(".hero-slider").owlCarousel({
-            loop: false,
-            rewind: true,
-            margin: 0,
-            nav: true,
-            items: 1,
-            dots: true,
-            animateOut: "fadeOut",
-            animateIn: "fadeIn",
-            navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow-1"></i>'],
-            smartSpeed: 1200,
-            autoHeight: false,
-            autoplay: true,
-            onInitialized: function onInitialized() {
-              var a = this.items().length;
-              $("#snh-1").html("<span>1</span><span>" + a + "</span>");
-            }
-          }).on("changed.owl.carousel", function (a) {
-            var b = --a.item.index,
-                a = a.item.count;
-            $("#snh-1").html("<span> " + (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + a + "</span>");
-          });
+      this.isLoading = true;
+      __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/banner/todos/disenables").then(function (response) {
+        _this.items = response.banners;
+        _this.carousel();
+        _this.isLoading = false;
+      }).catch(function (error) {
+        console.log('Ha ocurrido un error inesperado');
+        _this.isLoading = false;
+      });
+    },
+    obtenernodisenables: function obtenernodisenables() {
+      var _this2 = this;
 
-          $(".hero-slider").append('<div class="slider-nav-warp"><div class="slider-nav"></div></div>');
-          $(".hero-slider .owl-nav, .hero-slider .owl-dots").appendTo(".slider-nav");
-        }, 10);
-      }, 10);
+      this.isLoading = true;
+      __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__["a" /* default */].post("/banner/todos/no-disenables").then(function (response) {
+        _this2.items = response.banners;
+        _this2.carousel();
+        _this2.isLoading = false;
+      }).catch(function (error) {
+        console.log('Ha ocurrido un error inesperado');
+        _this2.isLoading = false;
+      });
+    },
+    llenarItems: function llenarItems() {
+      this.items = [];
+      if (this.getIsDesign) {
+        this.obtenerdisenables();
+      } else {
+        this.obtenernodisenables();
+      }
     }
   },
   watch: {
@@ -92091,90 +92191,101 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.items.length
-    ? _c("section", { staticClass: "hero-section" }, [
-        _c(
-          "div",
-          { staticClass: "hero-slider owl-carousel" },
-          _vm._l(_vm.items, function(item, i) {
-            return _c(
-              "div",
-              {
-                key: i,
-                staticClass: "hs-item",
-                style:
-                  "background-position:center center;background-size:container;background-image:" +
-                  "url(" +
-                  _vm.getUrl +
-                  item.url +
-                  ")"
-              },
-              [
-                _c("div", { staticClass: "container" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-xl-6 col-lg-7 text-white" }, [
-                      _c("h2", [_vm._v(_vm._s(item.titulo))]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(item.descripcion))]),
-                      _vm._v(" "),
-                      item.isDesign
-                        ? _c(
-                            "a",
-                            {
-                              staticClass: "site-btn sb-line cursor",
-                              on: {
-                                click: function($event) {
-                                  $event.stopPropagation()
-                                  $event.preventDefault()
-                                  return _vm.disenar(item.id)
-                                }
-                              }
-                            },
-                            [_vm._m(0, true)]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              staticClass: "site-btn sb-line cursor",
-                              on: {
-                                click: function($event) {
-                                  $event.stopPropagation()
-                                  $event.preventDefault()
-                                  return _vm.verDetalle(item.id)
-                                }
-                              }
-                            },
-                            [_vm._m(1, true)]
-                          )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "align-items-center d-flex justify-content-center offer-card text-white"
-                    },
-                    [
+    ? _c(
+        "section",
+        { staticClass: "hero-section" },
+        [
+          _c(
+            "div",
+            { staticClass: "hero-slider owl-carousel" },
+            _vm._l(_vm.items, function(item, i) {
+              return _c(
+                "div",
+                {
+                  key: i,
+                  staticClass: "hs-item",
+                  style:
+                    "background-position:center center;background-size:container;background-image:" +
+                    "url(" +
+                    _vm.getUrl +
+                    item.imagen +
+                    ")"
+                },
+                [
+                  _c("div", { staticClass: "container" }, [
+                    _c("div", { staticClass: "row" }, [
                       _c(
-                        "span",
-                        { staticClass: "pb-3 pr-1 font-nav-current" },
-                        [_vm._v("$")]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "pb-3 font-nav-price" }, [
-                        _vm._v(_vm._s(item.precio))
-                      ])
-                    ]
-                  )
-                ])
-              ]
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _vm._m(2)
-      ])
+                        "div",
+                        { staticClass: "col-xl-6 col-lg-7 text-white" },
+                        [
+                          _c("h2", [_vm._v(_vm._s(item.nombre))]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(item.descripcion_banner))]),
+                          _vm._v(" "),
+                          _vm.getIsDesign
+                            ? _c(
+                                "a",
+                                {
+                                  staticClass: "site-btn sb-line cursor",
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.disenar(item.id)
+                                    }
+                                  }
+                                },
+                                [_vm._m(0, true)]
+                              )
+                            : _c(
+                                "a",
+                                {
+                                  staticClass: "site-btn sb-line cursor",
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.verDetalle(item.id)
+                                    }
+                                  }
+                                },
+                                [_vm._m(1, true)]
+                              )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "align-items-center d-flex justify-content-center offer-card text-white"
+                      },
+                      [
+                        _c(
+                          "span",
+                          { staticClass: "pb-3 pr-1 font-nav-current" },
+                          [_vm._v("$")]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "pb-3 font-nav-price" }, [
+                          _vm._v(_vm._s(item.precio_general))
+                        ])
+                      ]
+                    )
+                  ])
+                ]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _vm.isLoading ? _c("loading") : _vm._e()
+        ],
+        1
+      )
     : _vm._e()
 }
 var staticRenderFns = [
@@ -93191,9 +93302,9 @@ exports.push([module.i, "\n.modal-body .ingresar .input-group {\n  position: rel
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(16);
 //
 //
 //
@@ -96542,7 +96653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html2canvas__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(16);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }

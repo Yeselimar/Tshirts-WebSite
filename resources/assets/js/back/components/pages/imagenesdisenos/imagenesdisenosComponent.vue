@@ -5,8 +5,10 @@
 	}
   .imagen-cuadrada
 	{
-	    width:15px; 
-	    height:15px;
+	    width:auto; 
+      height:15px;
+	    border: 1px solid #ebebeb;
+      border-radius: 4px;
 	}
 	.capsula-categoria
 	{
@@ -42,7 +44,7 @@
   .img-barna
   {
     width:auto;
-    height:28px;
+    height:27px;
     border: 1px solid #ebebeb;
     border-radius: 4px;
   }

@@ -12,7 +12,7 @@ class Banner extends Model
     {
         return $this->belongsTo('App\Articulo','articulo_id');
     }
-
+    
     public static function carpeta()
     {
         return 'img/banner/';

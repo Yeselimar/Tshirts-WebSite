@@ -6,14 +6,14 @@
         v-for="(item, i) in items"
         :key="i"
         class="hs-item"
-        :style="'background-position:center center;background-size:container;background-image:'+'url(' +getUrl+item.url + ')'"
+        :style="'background-position:center center;background-size:container;background-image:'+'url(' +getUrl+item.imagen + ')'"
       >
         <div class="container">
           <div class="row">
             <div class="col-xl-6 col-lg-7 text-white">
-              <h2>{{item.titulo}}</h2>
-              <p>{{item.descripcion}}</p>
-              <a  @click.stop.prevent="disenar(item.id)"  v-if="item.isDesign" class="site-btn sb-line cursor">
+              <h2>{{item.nombre}}</h2>
+              <p>{{item.descripcion_banner}}</p>
+              <a  @click.stop.prevent="disenar(item.id)"  v-if="getIsDesign" class="site-btn sb-line cursor">
                 <span class="font-xs-12">
                   <i class="fa fa-magic mr-2"></i>DISEÑAR
                 </span>
@@ -28,7 +28,7 @@
           </div>
           <div class="align-items-center d-flex justify-content-center offer-card text-white">
             <span class="pb-3 pr-1 font-nav-current">$</span>
-            <span class="pb-3 font-nav-price">{{item.precio}}</span>
+            <span class="pb-3 font-nav-price">{{item.precio_general}}</span>
           </div>
         </div>
       </div>
@@ -56,109 +56,50 @@
     <div class="container">
       <div class="slide-num-holder" id="snh-1"></div>
     </div>
+    <loading v-if="isLoading"></loading>
   </section>
   <!-- Hero section end -->
+
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import loading from "../../layouts/loading.vue";
+import CerService from "../../../plugins/CerService";
 
 export default {
   name: "navComponent",
-  computed: {
-            
+  components:
+  {
+    loading
+  },
+  computed:
+  {
       ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getUrl']),
   },
   data() {
     return {
-      barner: [
-        {
-          id: 0,
-          url: "img/bg.jpg",
-          titulo: "Denim jackets",
-          isDesign: false,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 1229.2
-        },
-        {
-          id: 1,
-          url: "img/bg-2.jpg",
-          titulo: "Content Static",
-          isDesign: false,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 89.5
-        }
-      ],
-      barnerDesign: [
-        {
-          id: 2,
-          url: "img/bg-3.jpg",
-          titulo: "Toommy jackets",
-          isDesign: true,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 19.2
-        },
-        {
-          id: 3,
-          url: "img/bg-4.jpg",
-          titulo: "Tonts Static",
-          isDesign: true,
-          descripcion:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" +
-            "Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
-          precio: 9.5
-        }
-      ],
-      items: [],
+      isLoading:false,
+      items: []
     };
   },
-  mounted() {
+  mounted()
+  {
     this.llenarItems();
   },
-  methods: {
-     disenar (idProd){
+  methods:
+  {
+    disenar (idProd)
+    {
         this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
-    verDetalle (idProd){
+    verDetalle (idProd)
+    {
         this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
     },
-    obtenerdisenables()
+    carousel()
     {
-      console.log("disenables");
-
-    },
-    obtenernodisenables()
-    {
-      console.log("no disenables");
-      /*CerService.post("/grupos/talles/api")
-      .then(response => 
-      {
-          
-          this.isLoading = false
-          
-      })
-      .catch(error => {
-        console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
-      });*/
-    },
-    llenarItems() {
-      this.items = [];
       setTimeout(e => {
-        if (this.getIsDesign) {
-          this.obtenerdisenables();
-          this.items = this.barnerDesign;
-        } else {
-          this.obtenernodisenables();
-          this.items = this.barner;
-        }
-        setTimeout(e => {
           $(".hero-slider")
             .owlCarousel({
               loop: false,
@@ -200,11 +141,54 @@ export default {
             ".slider-nav"
           );
         }, 10);
-      }, 10);
+    },
+    obtenerdisenables()
+    {
+      this.isLoading = true;
+      CerService.post("/banner/todos/disenables")
+      .then(response => 
+      {
+          this.items = response.banners;
+          this.carousel();
+          this.isLoading = false
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+    },
+    obtenernodisenables()
+    {
+      this.isLoading = true;
+      CerService.post("/banner/todos/no-disenables")
+      .then(response => 
+      {
+          this.items = response.banners;
+          this.carousel();
+          this.isLoading = false
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+    },
+    llenarItems()
+    {
+      this.items = [];
+      if (this.getIsDesign)
+      {
+        this.obtenerdisenables();
+      }
+      else
+      {
+        this.obtenernodisenables();
+      }
     }
   },
-  watch: {
-    getIsDesign: function(){
+  watch:
+  {
+    getIsDesign: function()
+    {
       this.llenarItems();
     }
   }

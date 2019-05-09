@@ -43,11 +43,54 @@ class ArticulosController extends Controller
     	return response()->json(['articulos' => $articulos]);
     }
 
+    public function disenables()
+    {
+        $articulos = Articulo::personalizable(1)->get();
+        return response()->json(['articulos' => $articulos]);
+    }
+
+    public function nodisenables()
+    {
+        $articulos = Articulo::personalizable(0)->get();
+        return response()->json(['articulos' => $articulos]);
+    }
+
+    public function destacados()
+    {
+        $articulos = Articulo::destacados(1)->get();
+        foreach ($articulos as $key => $articulo)
+        {
+            $encontrado = false;
+            $longitud = $articulo->imagenesarticulos->count();
+            if($longitud>0)
+            {
+                $i = 0;
+                $imagenes = $articulo->imagenesarticulos;
+                while(!$encontrado && $i<$longitud)
+                {
+                    if($imagenes[$i]->principal==1)
+                    {
+                        $imagen = $imagenes[$i];
+                        $encontrado = true;
+                    }
+                    $i++;
+                }
+                if($encontrado)
+                {
+                    $articulo['principal'] = $imagen;
+                }
+                //¿Qué pasa si no encuentro la imagen principal?
+            }
+        }
+        return response()->json(['articulos' => $articulos]);
+    }
+
     public function editnodisenable($id)
     {
         $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
         if($articulo)
         {
+            //talles y colores
             $colores = [];
             $talles = [];
             foreach ($articulo->caracteristicas as $caracteristica)
@@ -68,6 +111,18 @@ class ArticulosController extends Controller
             }
             $articulo["talles"] = $talles;
             $articulo["colores"] = $colores;
+
+            //imágenes colores
+            $imagenes_colores = [];
+            foreach($articulo->imagenesarticulos as $imagen)
+            {
+                if($imagen->caracteristica_id!=null)
+                {
+                    array_push($imagenes_colores, $imagen);
+                }
+            }
+            $articulo['imagenes_colores'] = $imagenes_colores;
+
             return response()->json(['res'=>1,'articulo' => $articulo]);
         }
         else
@@ -82,7 +137,7 @@ class ArticulosController extends Controller
         return response()->json(['articulos' => $articulos]);
     }
 
-    public function imagenprincipal($id)
+    public function imagenprincipal($id)//No usado
     {
         $imagen = null;
         $articulo = Articulo::find($id);
@@ -109,9 +164,12 @@ class ArticulosController extends Controller
         }
 
         //Validando para devolver una respuesta al frontend 
-        if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
+        if($temporal)
         {
-            return response()->json(["res"=>2,"msg"=>"Disculpe seleccionó una imagen con el mismo color"]);
+            if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
+            {
+                return response()->json(["res"=>2,"msg"=>"Disculpe seleccionó una imagen con el mismo color"]);
+            }
         }
 
         //Artículo
@@ -130,7 +188,9 @@ class ArticulosController extends Controller
             $articulo->tipo_cantidad = strtolower("por_variante");
         }
         $articulo->cantidad = (strtoupper($requests['tipo_cantidad'])==strtoupper("general")) ? $requests['cantidad'] : 0;
+        $articulo->mask_cantidad = (strtoupper($requests['tipo_cantidad'])==strtoupper("general")) ? $requests['mask_cantidad'] : '';
         $articulo->precio_general = $requests['precioGeneral'];
+        $articulo->mask_precio = $requests['F'];
         $articulo->personalizable = 0;
         $articulo->publicado = $requests['publicado'];
         $articulo->destacado = $requests['destacado'];

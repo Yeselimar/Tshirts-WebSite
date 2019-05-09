@@ -36,6 +36,16 @@ class Articulo extends Model
         return $this->hasMany('App\Banner','articulo_id');
     }
 
+    public function scopePersonalizable($query,$bandera)
+    {
+        return $query->where('personalizable','=',$bandera);
+    }
+
+    public function scopeDestacado($query,$bandera)
+    {
+        return $query->where('destacado','=',$bandera);
+    }
+
     public static function carpeta()
     {
         return 'img/articulos/';

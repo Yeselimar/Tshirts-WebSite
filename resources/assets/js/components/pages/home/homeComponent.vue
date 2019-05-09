@@ -137,13 +137,14 @@ import navComponent from "../../../components/pages/home/navComponent.vue"
 import itemsComponent from "../../../components/pages/home/itemsComponent.vue"
 import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 import { mapGetters } from 'vuex'
+import CerService from "../../../plugins/CerService";
 
 
 
 export default {
         name:'homeComponent',
 		components: {
-             navComponent,
+            navComponent,
             loading,
             itemsComponent,
             prodDestacadosComponent
@@ -178,6 +179,7 @@ export default {
                 currentFilter: '',
                 tipos_rubros:
                     [
+                    /*
                         {
                             "id": 1,
                             "nombre": 'Hombre',
@@ -201,10 +203,11 @@ export default {
                         {
                             "id": 6,
                             "nombre": 'Buzo',
-                        }
+                        }*/
                 ],
                 projects: [],
                  productDesigns: [
+                    /*
                     {
                         id: 10020,
                         url: 'img/product/12.jpg',
@@ -374,9 +377,10 @@ export default {
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 19.2,
                         isDesign: true
-                    },
+                    },*/
                 ],
                 products: [
+                    /*
                     {
                         id: 4440,
                         url: 'img/product/12.jpg',
@@ -537,18 +541,61 @@ export default {
                         precio: 99.2,
                         isDesign: false
                     }
+                    */
                 ],
                 url: '',
                 isLoading: false,
                 showNav: true,
 			}
 		},
-		methods: {
-            disenar (idProd){
+		methods:
+        {
+            articulosdisenables()
+            {
+                CerService.post("/articulos/disenables/todos/api")
+                .then(response => 
+                {
+                    this.productDesigns = response.articulos;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            articulosnodisenables()
+            {
+                CerService.post("/articulos/no-disenables/todos/api")
+                .then(response => 
+                {
+                    this.products = response.articulos;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            obtenerrubros()
+            {
+                CerService.post("/rubros/todos/api")
+                .then(response => 
+                {
+                    this.tipos_rubros = response.rubros;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            disenar (idProd)
+            {
                this.$router.push({ name: 'disenar', params: { id: idProd } })
                console.log('helloo ili')
             },
-            verDetalle (idProd){
+            verDetalle (idProd)
+            {
                 this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
             },
             addCart (product){
@@ -654,7 +701,8 @@ export default {
 
             },
         },
-        mounted: function(){
+        mounted: function()
+        {
              let element = document.getElementById("header-top");
               var options = {
                 offset: 0,
@@ -671,7 +719,13 @@ export default {
                                      this.max = 12
             });
         },
-        created() {
+        created()
+        {
+            this.obtenerrubros();
+
+            this.articulosdisenables();
+            this.articulosnodisenables();
+
             if(this.getIsDesign){
                 this.projects = this.productDesigns
             }else {
@@ -686,19 +740,22 @@ export default {
 
             this.isLoading = true
 		},
-		beforeMount() {
+		beforeMount()
+        {
 			this.isLoading = false
         },
-          watch: {
-            getIsDesign: function(){
+        watch:
+        {
+            getIsDesign: function()
+            {
                 if(this.getIsDesign){
                     this.projects = this.productDesigns
                 }else {
                     this.projects = this.products
                 }
-            //console.log('esto esta cambiando a ',this.getIsDesign)
-            //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
+                //console.log('esto esta cambiando a ',this.getIsDesign)
+                //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
             }
-    }
+        }
 }
 </script>
