@@ -105103,7 +105103,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
           } else {
             _this2.selectedTipo = 'Otros';
           }
-          _this2.articulo.precioGeneral = response.articulo.precioGeneral;
+          _this2.articulo.precioGeneral = response.articulo.precio_general;
           _this2.maskAmount = response.articulo.mask_precio;
           _this2.maskCantidad = response.articulo.mask_cantidad;
           _this2.articulo.otros = response.articulo.otros;
@@ -105319,10 +105319,6 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     deleteRelacion: function deleteRelacion(index) {
       //buscar la imagen para quitar el seleccionado 
 
-<<<<<<< HEAD
-=======
-      //si la imagen a eliminar esta guardadaa hacer validacion
->>>>>>> master
       var fileAux = this.filesImagesColor[index].file;
       var resultado = -1;
       //si la imagen a eliminar esta guardadaa hacer validacion
@@ -105462,6 +105458,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                   if (resD && _this11.validatorDisponibilidad()) {
                     if (_this11.validatorImagenRelacion()) {
                       if (_this11.validatorRelacion()) {
+                        console.log(_this11.articulo.precioGeneral);
                         _this11.articulo.imagenes = _this11.files;
                         _this11.articulo.rubros = _this11.selectedRubro;
                         _this11.articulo.tipo = _this11.selectedTipo;
@@ -105489,7 +105486,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         if (!_this11.isEdit) {
                           url = '/articulo/no-disenable/guardar';
                         } else {
-                          url = '/articulo/no-disenable/edit/' + _this11.$route.params.id + '/save';
+                          url = '/articulo/' + _this11.$route.params.id + '/no-disenable/actualizar';
                         }
                         __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform, {
                           headers: {
@@ -112755,6 +112752,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -112766,6 +112784,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       url: '',
       isLoading: false,
       filtro: null,
+      articulo: {
+        id: '',
+        nombre: ''
+      },
       articulos: [],
       articulos_filtro: [],
       fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' }, { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' }, { key: 'publicado', label: 'Estado', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
@@ -112835,18 +112857,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           _this2.totalRows = _this2.articulos_filtro.length; // total de filas es igual al array de artículos filtro
         }
       }).catch(function (error) {
-        _this2.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 4000
-        }).fire({
-          type: "error",
-          title: "Ha ocurrido un error inesperado"
-        });
+        _this2.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
-
     busqueda: function busqueda() {
       var resultado = [];
       if (this.articulos && this.articulos.length) {
@@ -112871,6 +112884,39 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
       this.articulos_filtro = resultado; //actualizo mis articulos
       this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
+    },
+    eliminarArticulo: function eliminarArticulo(articulo) {
+      console.log(articulo);
+      this.articulo.id = articulo.id;
+      this.articulo.nombre = articulo.nombre;
+      $('#eliminar').modal('show');
+    },
+    eliminar: function eliminar() {
+      var _this3 = this;
+
+      $('#eliminar').modal('hide');
+      var url = '/articulo/:id/eliminar';
+      url = url.replace(':id', this.articulo.id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        if (response.res == 1) {
+          _this3.mensaje("success", response.msg);
+        } else {
+          _this3.mensaje("warning", response.msg);
+        }
+      }).catch(function (error) {
+        _this3.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    mensaje: function mensaje(tipo, _mensaje) {
+      this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      }).fire({
+        type: tipo,
+        title: _mensaje
+      });
     }
   },
   watch: {
@@ -113254,9 +113300,18 @@ var render = function() {
                             [_vm._v("Editar")]
                           ),
                           _vm._v(" "),
-                          _c("a", { staticClass: "dropdown-item cursor" }, [
-                            _vm._v("Eliminar")
-                          ]),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item cursor",
+                              on: {
+                                click: function($event) {
+                                  return _vm.eliminarArticulo(row.item)
+                                }
+                              }
+                            },
+                            [_vm._v("Eliminar")]
+                          ),
                           _vm._v(" "),
                           _c("a", { staticClass: "dropdown-item cursor" }, [
                             _vm._v("Vista Previa")
@@ -113284,6 +113339,49 @@ var render = function() {
           1
         )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "eliminar" } }, [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("p", [
+                _vm._v("¿Está seguro que desea eliminar el artículo "),
+                _c("strong", [_vm._v(_vm._s(this.articulo.nombre))]),
+                _vm._v(" de forma permanente? ")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-inverse pull-right",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Cerrar")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-primary pull-right",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.eliminar()
+                  }
+                }
+              },
+              [_vm._v("Eliminar")]
+            )
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -113296,6 +113394,25 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-5 align-self-center" }, [
         _c("h3", { staticClass: "text-primary" }, [_vm._v("Panel de Control")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title pull-left" }, [
+        _c("strong", [_vm._v("Artículo")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "pull-right mr-1 cursor",
+          attrs: { "data-dismiss": "modal" }
+        },
+        [_c("i", { staticClass: "fa fa-remove" })]
+      )
     ])
   }
 ]

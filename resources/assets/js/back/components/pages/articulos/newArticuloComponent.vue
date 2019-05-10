@@ -1127,7 +1127,7 @@ export default {
           } else {
             this.selectedTipo = 'Otros'
           }
-          this.articulo.precioGeneral = response.articulo.precioGeneral
+          this.articulo.precioGeneral = response.articulo.precio_general
           this.maskAmount = response.articulo.mask_precio
           this.maskCantidad = response.articulo.mask_cantidad
           this.articulo.otros = response.articulo.otros
@@ -1484,6 +1484,7 @@ export default {
                         if (resD && this.validatorDisponibilidad()){
                             if (this.validatorImagenRelacion()){
                                 if (this.validatorRelacion()){
+                                  console.log(this.articulo.precioGeneral);
                                     this.articulo.imagenes = this.files
                                     this.articulo.rubros = this.selectedRubro
                                     this.articulo.tipo = this.selectedTipo
@@ -1511,7 +1512,7 @@ export default {
                                      if( !this.isEdit){
                                         url = '/articulo/no-disenable/guardar'
                                     }else {
-                                       url = '/articulo/no-disenable/edit/'+this.$route.params.id+'/save'
+                                       url = '/articulo/'+this.$route.params.id+'/no-disenable/actualizar'
                                     }
                                     CerService.post(url,dataform,{
                                     headers:

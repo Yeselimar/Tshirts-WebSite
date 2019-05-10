@@ -31,9 +31,14 @@ class Articulo extends Model
         return $this->hasMany('App\TalleColor','articulo_id')->with('color')->with('talle');
     }
 
-    public function banners()//verificar que funcione
+    public function banners()
     {
         return $this->hasMany('App\Banner','articulo_id');
+    }
+
+    public function detallesrecibos()
+    {
+        return $this->hasMany('App\DetalleRecibo','articulo_id');
     }
 
     public function scopePersonalizable($query,$bandera)
@@ -44,6 +49,11 @@ class Articulo extends Model
     public function scopeDestacado($query,$bandera)
     {
         return $query->where('destacado','=',$bandera);
+    }
+
+    public function esPersonalizable()
+    {
+        return $this->personalizable==1;
     }
 
     public static function carpeta()

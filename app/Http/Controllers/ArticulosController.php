@@ -10,7 +10,7 @@ use App\ArticuloRubro;
 use App\ArticuloCaracteristica;
 use App\ImagenArticulo;
 use App\Caracteristica;
-
+use File;
 
 use MP;
 
@@ -76,10 +76,7 @@ class ArticulosController extends Controller
         }
         return response()->json(['articulos' => $articulos]);
     }
-    public function updatenodisenable(Request $request, $id)
-    {
-        dd($request);
-    }
+    
     public function nodisenables()
     {
         $articulos = Articulo::personalizable(0)->with('rubros')->get();
@@ -356,7 +353,7 @@ class ArticulosController extends Controller
         return response()->json(['res'=> 1,'msg' => 'El artículo no diseñable fue creado exitosamente']);
     }
 
-    public function updatedisenable(Request $request, $id)
+    public function updatenodisenable(Request $request, $id)
     {
         //Convirtiendo mi string a json
         $aux = json_decode($request->articulo, true);
@@ -374,7 +371,7 @@ class ArticulosController extends Controller
         }
 
         //Validando para devolver una respuesta al frontend
-        if($temporal)
+        if(isset($temporal))
         {
             if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
             {
@@ -454,47 +451,54 @@ class ArticulosController extends Controller
         }
 
         //Imágenes Artículos
-        foreach($request->imagenes as $i=>$imagen)
+        if(isset($request->imagenes))
         {
-            $imagen_articulo = new ImagenArticulo;
-            if($request->imagenes[$i])
+            foreach($request->imagenes as $i=>$imagen)
             {
-                //Para guardar la imagen del artículo
-                $archivo= $request->imagenes[$i];
-                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-                $ruta = public_path().'/'.Articulo::carpeta();
-                $archivo->move($ruta, $nombre);
-            }
-            //Guardando datos de la imagen del artículo
-            if($request->imagenes[$i])
-            {
-                $imagen_articulo->articulo_id = $articulo->id;
-                $imagen_articulo->url = Articulo::carpeta().$nombre;
-                $imagen_articulo->principal = 0;
-                $imagen_articulo->save();
-                $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
+                $imagen_articulo = new ImagenArticulo;
+                if($request->imagenes[$i])
+                {
+                    //Para guardar la imagen del artículo
+                    $archivo= $request->imagenes[$i];
+                    $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                    $ruta = public_path().'/'.Articulo::carpeta();
+                    $archivo->move($ruta, $nombre);
+                }
+                //Guardando datos de la imagen del artículo
+                if($request->imagenes[$i])
+                {
+                    $imagen_articulo->articulo_id = $articulo->id;
+                    $imagen_articulo->url = Articulo::carpeta().$nombre;
+                    $imagen_articulo->principal = 0;
+                    $imagen_articulo->save();
+                    $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
+                }
             }
         }
-
+        
         //-----------------------------------------------------------
-        //Colocar las caracterísica (o color) y es principal en null
-        foreach($articulo->imagenesarticulos as $imagen)
+        //Colocar las caracterísica (o color) y  principal en null
+        foreach($articulo->imagenesarticulos as $imagen_articulo)
         {
-            $imagen->caracteristica_id = null;
-            $imagen->es_principal = 0;
-            $imagen->save();
+            $imagen_articulo->caracteristica_id = null;
+            $imagen_articulo->principal = 0;
+            $imagen_articulo->save();
+            $auxiliar[$imagen_articulo->id] = $imagen_articulo->id;//para llevar el control de las imágenes
         }
         //-----------------------------------------------------------
 
         //Imágenes Artículos actualizando los colores y si es principal
+        //dd($auxiliar);
         if(count($requests["imagenes_colores"])!=0)
         {
             foreach($requests["imagenes_colores"] as $imagen_color)
             {
-                $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
+                $tmp_id = $auxiliar[ $imagen_color['file']['id'] ];
                 
-                if($imagen_articulo)
+                //($imagen_color['file']['id']);
+                if(isset($tmp_id))
                 {
+                    $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
                     $imagen_articulo->caracteristica_id = $imagen_color["selectedColorRelacion"]['id'];
                     $imagen_articulo->principal  = $imagen_color['es_principal'];
                     $imagen_articulo->save();
@@ -502,7 +506,8 @@ class ArticulosController extends Controller
                 else
                 {
                     $imagen_articulo = ImagenArticulo::find($imagen_color['file']['id']);
-                    $imagen_articulo  ;
+                    $imagen_articulo->principal  = $imagen_color['es_principal'];
+                    $imagen_articulo->save();
                 }
             }
         }
@@ -562,9 +567,51 @@ class ArticulosController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $articulo = Articulo::find($id);
+        if($articulo)
+        {
+            if($articulo->detallesrecibos->count()==0)
+            {
+                if($articulo->banners->count()==0)
+                {
+                    //Eliminando los rubros
+                    $resultado = ArticuloRubro::paraArticulo($articulo->id)->delete();
 
+                    //Eliminando las características: Talles, Color y si tiene otra característica asociada
+                    $resultado = ArticuloCaracteristica::paraArticulo($articulo->id)->delete();
+
+                    //Eliminando las Talles Colores
+                    $resultado = TalleColor::paraArticulo($articulo->id)->delete();
+
+                    //Eliminando las imágenes artículos
+                    foreach($articulo->imagenesarticulos as $articulo_imagen)
+                    {
+                        File::delete($articulo_imagen->url);
+                        $articulo_imagen->delete();
+                    }
+
+                    //Eliminando el artículo
+                    $articulo->delete();
+
+                    return response()->json(['res' => 1, "msg" => "El artículo fue eliminado exitosamente"]);
+                }
+                else
+                {
+                    return response()->json(['res' => 2, "msg" => "Disculpe, no se puede eliminar el artículo. Está asociado a un banner"]);
+                }
+            }
+            else
+            {
+                return response()->json(['res' => 2, "msg" => "Disculpe, no se puede eliminar el artículo. Está asociado a un recibo"]);
+            }
+        }
+        else
+        {
+            return response()->json(['res' => 2, "msg" => "Disculpe, el artículo no existe"]);
+        }
+        
     }
     public function getarticulosdisenables(){
         $articulos_d = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
