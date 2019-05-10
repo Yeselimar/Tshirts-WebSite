@@ -95,7 +95,7 @@
                             <div class="project" v-bind:key="project.id" v-for="project in projectsC" >
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img :src="getUrl+project.imagen.url" alt="">
+                                        <img v-if="project.imagen" :src="getUrl+project.imagen.url" alt=""> 
                                         <div class="pi-links">
                                             <a  v-if="getIsDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card cursor" @click="verDetalle(project.id)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
@@ -156,8 +156,12 @@ export default {
                 if(this.projects  && this.projects.length)
                 {
                 this.projects.forEach(function(project,index){
-                        if((this.currentFilter === project.categoria || this.currentFilter === '') && projectAux.length < this.max){
-                            projectAux.push(project)
+                        if(projectAux.length < this.max)
+                        {
+                            let resultado = project.rubros.findIndex( rubro => rubro.nombre === this.currentFilter )
+                            if(resultado !== -1|| this.currentFilter === '' ){
+                                projectAux.push(project)
+                            }
                         }
                 },this);
                 }

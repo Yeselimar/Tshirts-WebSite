@@ -52,4 +52,7 @@ class MPagoController extends Controller
 
                 return response()->json(['hola' => $preference, 'pagar' => $pagar]);
     }
+    function respuestaMP(Request $request){
+        dd($request);
+    }
 }

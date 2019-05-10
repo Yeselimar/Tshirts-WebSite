@@ -338,13 +338,13 @@
                             <hr>
                           </div>
                           <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': imagenesarticulos.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
-                            <div class="project" v-for="(file) in imagenesarticulos" :key="file.id">
+                            <div class="project" v-for="(file,index) in imagenesarticulos" :key="index">
                                 <div class="pi-pic">
                                   <img v-if="file.url" :src="getUrl+file.url" width="125" height="125" />
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
                                     <a class="cursor mr-2" @click="openModalImg(file.url,true)"><i class="fa fa-eye"></i></a>
-                                    <a class="cursor" @click.prevent="removeImageServer(file)">
+                                    <a class="cursor" @click.prevent="removeImageServer(file,index)">
                                       <i class="fa fa-trash"></i>
                                     </a>
                                   </div>
@@ -815,7 +815,7 @@
                   </label>
                   
                   <label class="contenido basis-33">
-                     <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right">Guardar</button>
+                     <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right"><span v-if="!isEdit">Guardar Artículo</span><span v-else>Actualizar Artículo</span></button>
                    </label>
 
                 </div>
@@ -860,6 +860,15 @@
               </div>
               <div class="modal-body">
                   <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                          <div class="project" v-for="(file) in imagenesarticulos" :key="file.id" v-if="file.selectedImagen != true && isEdit">
+                                <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImg(file)">
+                                  <img v-if="file.thumb" :src="getUrl+file.thumb" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2"><i class="fa fa-check" :class="{'color-blue': file.selectedImagen}"></i></a>
+                                  </div>
+                                </div>
+                            </div>
                             <div class="project" v-for="(file) in files" :key="file.id" v-if="file.selectedImagen != true">
                                 <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImg(file)">
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
@@ -923,6 +932,7 @@ Validator.extend("cantidadvv", cantidadvv);
 export default {
   data() {
     return {
+      imagesRemoves: [],
       optionColors: [],
       optionTalles: [
       ],
@@ -970,6 +980,7 @@ export default {
       selectedTipoValidation: false,
       selectedRubro: [],
       selectedTipo: "",
+      personalizable: false,
       money: {
         decimal: ",",
         thousands: ".",
@@ -1063,6 +1074,15 @@ export default {
     } else {
       if(Object.keys(this.$route.params).length !== 0){
         this.isEdit = true
+          if(this.getFiltroArticulo !== -1 || this.isEdit ){
+            if(this.getFiltroArticulo == 1){
+              this.personalizable = true 
+            } else {
+                this.personalizable = false;
+              }
+            } else { 
+                this.$router.push({ name: 'articulos' });
+          }
         this.serviceArticulo(this.$route.params.id)
       }
     }
@@ -1184,8 +1204,26 @@ export default {
         this.isLoading = false
       });
     },
-    removeImageServer(file){
-
+    removeImageServer(file,index){
+      // se borra las imagenes que han sido borrada para la relación imagen-color
+      const resultado = this.filesImagesColor.findIndex( fileIC => fileIC.file.id === file.id );
+      if(resultado !== -1){
+        //si esta check como principal
+        let mainP = false
+        if(this.filesImagesColor[resultado].es_principal){
+          $("#radio_"+resultado).prop("checked", false);
+          mainP = true
+        }
+        this.filesImagesColor.splice(resultado,1)
+         if(mainP && this.filesImagesColor.length){
+            setTimeout(e => {
+              $("#radio_0").prop("checked", true);
+            },10) 
+            this.filesImagesColor[0].es_principal = true
+          }
+      }
+      this.imagesRemoves.push({...file})
+      this.imagenesarticulos.splice(index,1)
     },
     eventSelectColor(selectedOption, id){
       let aux = {
@@ -1311,14 +1349,25 @@ export default {
     deleteRelacion(index){
       //buscar la imagen para quitar el seleccionado 
 
-      //si la imagen a eliminar esta guardadaa hacer validacion
       let fileAux = this.filesImagesColor[index].file
-      const resultado = this.files.findIndex( file => file === fileAux );
-      if( resultado !== -1)
-      {
-        this.files[resultado].selectedImagen = false
+      let resultado  = -1
+      //si la imagen a eliminar esta guardadaa hacer validacion
+      if(fileAux.isSaved){
+          resultado = this.imagenesarticulos.findIndex( file => file.id === fileAux.id );
+        if( resultado !== -1)
+        {
+          this.imagenesarticulos[resultado].selectedImagen = false
 
+        }
+      } else {
+          resultado = this.files.findIndex( file => file === fileAux );
+        if( resultado !== -1)
+        {
+          this.files[resultado].selectedImagen = false
+
+        }
       }
+      
       //si esta check como principal
       let mainP = false
       if(this.filesImagesColor[index].es_principal){
@@ -1429,7 +1478,7 @@ export default {
              this.$validator.validateAll("form-ajustes").then(resA => 
               {
                     if (resA){
-                      if(this.files.length){
+                      if(this.files.length || this.imagenesarticulos.length){
                         this.$validator.validateAll("form-disponibilidad").then(resD => 
                       {
                         if (resD && this.validatorDisponibilidad()){
@@ -1445,6 +1494,8 @@ export default {
                                     this.articulo.imagenes_colores = this.filesImagesColor
                                     this.articulo.mask_precio = this.maskAmount
                                     this.articulo.mask_cantidad = this.maskCantidad
+                                    this.articulo.imagenes_eliminadas= this.imagesRemoves
+
                                     var dataform = new FormData();
                                     for( var i = 0; i < this.files.length; i++ ){
                                         let file = this.files[i].file;
@@ -1455,8 +1506,14 @@ export default {
                                         });
                                     dataform.append('articulo',data)
                                     console.log(dataform);
+                                    let url = ''
                                     this.isLoading=true
-                                    CerService.post("/articulo/no-disenable/guardar",dataform,{
+                                     if( !this.isEdit){
+                                        url = '/articulo/no-disenable/guardar'
+                                    }else {
+                                       url = '/articulo/no-disenable/edit/'+this.$route.params.id+'/save'
+                                    }
+                                    CerService.post(url,dataform,{
                                     headers:
                                       {
                                           'Content-Type': 'application/json',
