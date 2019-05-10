@@ -17737,6 +17737,7 @@ module.exports = Cancel;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+<<<<<<< HEAD
     api: {
         base: 'http://localhost:8000/',
         //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
@@ -17746,6 +17747,15 @@ module.exports = Cancel;
         //base: '/afodi/barna/public'
         base: '/'
     }
+=======
+  api: {
+    base: 'http://localhost/barna/barna/public/',
+    token: 'rafael1delgado'
+  },
+  env: {
+    base: '/barna/barna/public/'
+  }
+>>>>>>> master
 });
 
 /***/ }),
@@ -103944,7 +103954,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 50vh\n}\r\n", ""]);
+exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\r\n/*#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\r\n}*/\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 50vh\n}\n#nuevoArticulo #img-visualizacion.modal-dialog {\r\n    margin: auto;\r\n    position: relative;\r\n    top: auto;\r\n    transform: translateY(0%) !important;\r\n    width: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -103972,6 +103982,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -105106,7 +105121,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
           } else {
             _this2.selectedTipo = 'Otros';
           }
-          _this2.articulo.precioGeneral = response.articulo.precioGeneral;
+          _this2.articulo.precioGeneral = response.articulo.precio_general;
           _this2.maskAmount = response.articulo.mask_precio;
           _this2.maskCantidad = response.articulo.mask_cantidad;
           _this2.articulo.otros = response.articulo.otros;
@@ -105461,6 +105476,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                   if (resD && _this11.validatorDisponibilidad()) {
                     if (_this11.validatorImagenRelacion()) {
                       if (_this11.validatorRelacion()) {
+                        console.log(_this11.articulo.precioGeneral);
                         _this11.articulo.imagenes = _this11.files;
                         _this11.articulo.rubros = _this11.selectedRubro;
                         _this11.articulo.tipo = _this11.selectedTipo;
@@ -105488,7 +105504,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         if (!_this11.isEdit) {
                           url = '/articulo/no-disenable/guardar';
                         } else {
-                          url = '/articulo/no-disenable/edit/' + _this11.$route.params.id + '/save';
+                          url = '/articulo/' + _this11.$route.params.id + '/no-disenable/actualizar';
                         }
                         __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform, {
                           headers: {
@@ -112042,7 +112058,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "modal-dialog modal-lg",
+              staticClass: "modal-dialog",
+              attrs: { id: "img-visualizacion" },
               on: {
                 click: function($event) {
                   $event.stopPropagation()
@@ -112051,8 +112068,8 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "modal-content modal-content-barna" }, [
-                _c("div", { staticClass: "modal-header modal-header-barna" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
                   _vm._m(6),
                   _vm._v(" "),
                   _c(
@@ -112073,24 +112090,15 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex flex-wrap ingresar justify-content-center"
-                    },
-                    [
-                      !_vm.isSaved
-                        ? _c("img", {
-                            staticStyle: { width: "100%", height: "100%" },
-                            attrs: { src: _vm.selectedImg }
-                          })
-                        : _c("img", {
-                            staticStyle: { width: "100%", height: "100%" },
-                            attrs: { src: _vm.getUrl + _vm.selectedImg }
-                          })
-                    ]
-                  )
+                  !_vm.isSaved
+                    ? _c("img", {
+                        staticStyle: { width: "100%", height: "auto" },
+                        attrs: { src: _vm.selectedImg }
+                      })
+                    : _c("img", {
+                        staticStyle: { width: "100%", height: "auto" },
+                        attrs: { src: _vm.getUrl + _vm.selectedImg }
+                      })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
@@ -112754,6 +112762,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -112765,6 +112794,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       url: '',
       isLoading: false,
       filtro: null,
+      articulo: {
+        id: '',
+        nombre: ''
+      },
       articulos: [],
       articulos_filtro: [],
       fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' }, { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' }, { key: 'publicado', label: 'Estado', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
@@ -112834,18 +112867,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           _this2.totalRows = _this2.articulos_filtro.length; // total de filas es igual al array de artículos filtro
         }
       }).catch(function (error) {
-        _this2.$swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 4000
-        }).fire({
-          type: "error",
-          title: "Ha ocurrido un error inesperado"
-        });
+        _this2.mensaje("error", "Ha ocurrido un error inesperado");
       });
     },
-
     busqueda: function busqueda() {
       var resultado = [];
       if (this.articulos && this.articulos.length) {
@@ -112870,6 +112894,38 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
       this.articulos_filtro = resultado; //actualizo mis articulos
       this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
+    },
+    eliminarArticulo: function eliminarArticulo(articulo) {
+      this.articulo.id = articulo.id;
+      this.articulo.nombre = articulo.nombre;
+      $('#eliminar').modal('show');
+    },
+    eliminar: function eliminar() {
+      var _this3 = this;
+
+      $('#eliminar').modal('hide');
+      var url = '/articulo/:id/eliminar';
+      url = url.replace(':id', this.articulo.id);
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
+        if (response.res == 1) {
+          _this3.mensaje("success", response.msg);
+        } else {
+          _this3.mensaje("warning", response.msg);
+        }
+      }).catch(function (error) {
+        _this3.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    mensaje: function mensaje(tipo, _mensaje) {
+      this.$swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      }).fire({
+        type: tipo,
+        title: _mensaje
+      });
     }
   },
   watch: {
@@ -113253,9 +113309,18 @@ var render = function() {
                             [_vm._v("Editar")]
                           ),
                           _vm._v(" "),
-                          _c("a", { staticClass: "dropdown-item cursor" }, [
-                            _vm._v("Eliminar")
-                          ]),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item cursor",
+                              on: {
+                                click: function($event) {
+                                  return _vm.eliminarArticulo(row.item)
+                                }
+                              }
+                            },
+                            [_vm._v("Eliminar")]
+                          ),
                           _vm._v(" "),
                           _c("a", { staticClass: "dropdown-item cursor" }, [
                             _vm._v("Vista Previa")
@@ -113283,6 +113348,49 @@ var render = function() {
           1
         )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "eliminar" } }, [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "col-lg-12" }, [
+              _c("p", [
+                _vm._v("¿Está seguro que desea eliminar el artículo "),
+                _c("strong", [_vm._v(_vm._s(this.articulo.nombre))]),
+                _vm._v(" de forma permanente? ")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-inverse pull-right",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Cerrar")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-xs btn-primary pull-right",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.eliminar()
+                  }
+                }
+              },
+              [_vm._v("Eliminar")]
+            )
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -113295,6 +113403,25 @@ var staticRenderFns = [
       _c("div", { staticClass: "col-md-5 align-self-center" }, [
         _c("h3", { staticClass: "text-primary" }, [_vm._v("Panel de Control")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title pull-left" }, [
+        _c("strong", [_vm._v("Artículo")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "pull-right mr-1 cursor",
+          attrs: { "data-dismiss": "modal" }
+        },
+        [_c("i", { staticClass: "fa fa-remove" })]
+      )
     ])
   }
 ]

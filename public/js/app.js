@@ -19325,6 +19325,7 @@ exports.HitCanvas = HitCanvas;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+<<<<<<< HEAD
     api: {
         base: 'http://localhost:8000/',
         //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
@@ -19334,6 +19335,15 @@ exports.HitCanvas = HitCanvas;
         //base: '/afodi/barna/public'
         base: '/'
     }
+=======
+  api: {
+    base: 'http://localhost/barna/barna/public/',
+    token: 'rafael1delgado'
+  },
+  env: {
+    base: '/barna/barna/public/'
+  }
+>>>>>>> master
 });
 
 /***/ }),

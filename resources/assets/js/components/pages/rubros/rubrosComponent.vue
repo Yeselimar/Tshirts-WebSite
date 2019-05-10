@@ -1,4 +1,4 @@
-<style lang="scss" scope>
+<style>
     .texto-rosa-barna
     {
         color: #ef7a6e !important;

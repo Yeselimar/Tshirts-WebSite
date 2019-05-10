@@ -17,11 +17,11 @@
 .ppbb-2 {
   padding-bottom: 1rem;
 }
-#modalImg .modal-dialog {
+/*#modalImg .modal-dialog {
     transform: translateY(-50%) translateX(-50%) !important;
     left: 50% !important;
     margin: 0px !important;
-}
+}*/
 .color-blue {
   color: blue;
 }
@@ -63,6 +63,13 @@
 }
 #nuevoArticulo .tab-contentGlobal{
   min-height: 50vh
+}
+#nuevoArticulo #img-visualizacion.modal-dialog {
+    margin: auto;
+    position: relative;
+    top: auto;
+    transform: translateY(0%) !important;
+    width: 100%;
 }
 </style>
 <template>
@@ -826,32 +833,28 @@
       </div>
     </div>
 
-
+    <!-- Modal para ver las imágenes -->
     <div class="modal" id="modalImg" @click.stop.prevent="closeModalImg">
-      <div class="modal-dialog modal-lg"  @click.stop.prevent="">
-          <div class="modal-content modal-content-barna" >
-              <div class="modal-header modal-header-barna">
+      <div class="modal-dialog" id="img-visualizacion"  @click.stop.prevent="">
+          <div class="modal-content" >
+              <div class="modal-header">
                   <h5 class="modal-title pull-left"><strong>Visualización de Imagen</strong></h5>
                   <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" @click.stop.prevent="closeModalImg" ><i class="fa fa-remove"></i></a>
               </div>
               <div class="modal-body">
-                  <div class="d-flex flex-wrap ingresar justify-content-center">
-
-                      <img v-if="!isSaved" :src="selectedImg" style="width:100%;height:100%"/>  
-                      <img v-else :src="getUrl+selectedImg" style="width:100%;height:100%"/>  
-
-          
-                  </div>
-                  
+                  <img v-if="!isSaved" :src="selectedImg" style="width:100%;height:auto;"/>  
+                  <img v-else :src="getUrl+selectedImg" style="width:100%;height:auto;"/>  
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="closeModalImg">Cerrar</button>
               </div>
           </div>
       </div>
-  </div>
+    </div>
+    <!-- Modal para ver las imágenes -->
 
-     <div class="modal" id="modalImagenesCargadas" @click.stop.prevent="closeModalImagenesCargadas">
+    <!-- Modal para seleccionar imagen -->
+    <div class="modal" id="modalImagenesCargadas" @click.stop.prevent="closeModalImagenesCargadas">
       <div class="modal-dialog modal-lg"  @click.stop.prevent="">
           <div class="modal-content modal-content-barna" >
               <div class="modal-header modal-header-barna">
@@ -886,7 +889,9 @@
               </div>
           </div>
       </div>
-  </div>
+    </div>
+    <!-- Modal para seleccionar imagen -->
+
   <loading v-if="isLoading"></loading>
   </div>
 </template>
@@ -1127,7 +1132,7 @@ export default {
           } else {
             this.selectedTipo = 'Otros'
           }
-          this.articulo.precioGeneral = response.articulo.precioGeneral
+          this.articulo.precioGeneral = response.articulo.precio_general
           this.maskAmount = response.articulo.mask_precio
           this.maskCantidad = response.articulo.mask_cantidad
           this.articulo.otros = response.articulo.otros
@@ -1484,6 +1489,7 @@ export default {
                         if (resD && this.validatorDisponibilidad()){
                             if (this.validatorImagenRelacion()){
                                 if (this.validatorRelacion()){
+                                  console.log(this.articulo.precioGeneral);
                                     this.articulo.imagenes = this.files
                                     this.articulo.rubros = this.selectedRubro
                                     this.articulo.tipo = this.selectedTipo
@@ -1511,7 +1517,7 @@ export default {
                                      if( !this.isEdit){
                                         url = '/articulo/no-disenable/guardar'
                                     }else {
-                                       url = '/articulo/no-disenable/edit/'+this.$route.params.id+'/save'
+                                       url = '/articulo/'+this.$route.params.id+'/no-disenable/actualizar'
                                     }
                                     CerService.post(url,dataform,{
                                     headers:
