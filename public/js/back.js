@@ -103941,7 +103941,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\n#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\n}\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 50vh\n}\r\n", ""]);
+exports.push([module.i, "\n#nuevoArticulo  .btn {\r\n  color: #fff !important;\n}\n#nuevoArticulo  .profile-tab li a.nav-link.active {\r\n  background: #5c4ac7 none repeat scroll 0 0 !important;\r\n  border-color: #5c4ac7 !important;\r\n  color: white !important;\n}\n#nuevoArticulo  .tab-content {\r\n  border-radius: 1px;\r\n  box-shadow: 0 0 5px #ddd;\r\n  background: #fff;\r\n  padding: 15px;\n}\n.ppbb-2 {\r\n  padding-bottom: 1rem;\n}\r\n/*#modalImg .modal-dialog {\r\n    transform: translateY(-50%) translateX(-50%) !important;\r\n    left: 50% !important;\r\n    margin: 0px !important;\r\n}*/\n.color-blue {\r\n  color: blue;\n}\n#nuevoArticulo  .hover-pic:hover {\r\n  color: blue !important;\r\n  cursor: pointer !important;\n}\n#nuevoArticulo  .error-text {\r\n  right: 10px !important\n}\r\n/*.hover-pic:hover:after {\r\n  position: absolute;\r\n    content: \"\";\r\n    width: 100%;\r\n    height: 100%;\r\n    left: 0;\r\n    top: 0px;\r\n    background: rgba(0,0,0,.3)!important;\r\n    z-index: 9999999;\r\n}*/\n#nuevoArticulo  .checkmark {\r\n  left: 45%;\r\n  border: 1px solid #dadada;\n}\n#nuevoArticulo .min-w120,.mw-120{\r\n  min-width: 120px;\n}\n#nuevoArticulo  .mw-150{\r\n  min-width: 150px;\n}\n#nuevoArticulo .form-control {\r\n    height: 42px !important;\n}\n.error-input-multi{\r\n  border-radius: 7px\n}\n#nuevoArticulo .form-control{\r\n  height: auto !important\n}\n#nuevoArticulo .tab-contentGlobal{\r\n  min-height: 50vh\n}\n#nuevoArticulo #img-visualizacion.modal-dialog {\r\n    margin: auto;\r\n    position: relative;\r\n    top: auto;\r\n    transform: translateY(0%) !important;\r\n    width: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -103969,6 +103969,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__layouts_loadingComponent__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -112040,7 +112045,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "modal-dialog modal-lg",
+              staticClass: "modal-dialog",
+              attrs: { id: "img-visualizacion" },
               on: {
                 click: function($event) {
                   $event.stopPropagation()
@@ -112049,8 +112055,8 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "modal-content modal-content-barna" }, [
-                _c("div", { staticClass: "modal-header modal-header-barna" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
                   _vm._m(6),
                   _vm._v(" "),
                   _c(
@@ -112071,24 +112077,15 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex flex-wrap ingresar justify-content-center"
-                    },
-                    [
-                      !_vm.isSaved
-                        ? _c("img", {
-                            staticStyle: { width: "100%", height: "100%" },
-                            attrs: { src: _vm.selectedImg }
-                          })
-                        : _c("img", {
-                            staticStyle: { width: "100%", height: "100%" },
-                            attrs: { src: _vm.getUrl + _vm.selectedImg }
-                          })
-                    ]
-                  )
+                  !_vm.isSaved
+                    ? _c("img", {
+                        staticStyle: { width: "100%", height: "auto" },
+                        attrs: { src: _vm.selectedImg }
+                      })
+                    : _c("img", {
+                        staticStyle: { width: "100%", height: "auto" },
+                        attrs: { src: _vm.getUrl + _vm.selectedImg }
+                      })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
@@ -112886,7 +112883,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
     },
     eliminarArticulo: function eliminarArticulo(articulo) {
-      console.log(articulo);
       this.articulo.id = articulo.id;
       this.articulo.nombre = articulo.nombre;
       $('#eliminar').modal('show');

@@ -574,37 +574,37 @@ class ArticulosController extends Controller
         {
             if($articulo->detallesrecibos->count()==0)
             {
+                //Eliminando los rubros
+                $resultado = ArticuloRubro::paraArticulo($articulo->id)->delete();
+
+                //Eliminando las características: Talles, Color y si tiene otra característica asociada
+                $resultado = ArticuloCaracteristica::paraArticulo($articulo->id)->delete();
+
+                //Eliminando las Talles Colores
+                $resultado = TalleColor::paraArticulo($articulo->id)->delete();
+
+                //Eliminando las imágenes artículos
+                foreach($articulo->imagenesarticulos as $articulo_imagen)
+                {
+                    File::delete($articulo_imagen->url);
+                    $articulo_imagen->delete();
+                }
+
+                //Eliminando el artículo
+                $articulo->delete();
+
                 if($articulo->banners->count()==0)
                 {
-                    //Eliminando los rubros
-                    $resultado = ArticuloRubro::paraArticulo($articulo->id)->delete();
-
-                    //Eliminando las características: Talles, Color y si tiene otra característica asociada
-                    $resultado = ArticuloCaracteristica::paraArticulo($articulo->id)->delete();
-
-                    //Eliminando las Talles Colores
-                    $resultado = TalleColor::paraArticulo($articulo->id)->delete();
-
-                    //Eliminando las imágenes artículos
-                    foreach($articulo->imagenesarticulos as $articulo_imagen)
-                    {
-                        File::delete($articulo_imagen->url);
-                        $articulo_imagen->delete();
-                    }
-
-                    //Eliminando el artículo
-                    $articulo->delete();
-
                     return response()->json(['res' => 1, "msg" => "El artículo fue eliminado exitosamente"]);
                 }
                 else
                 {
-                    return response()->json(['res' => 2, "msg" => "Disculpe, no se puede eliminar el artículo. Está asociado a un banner"]);
+                    return response()->json(['res' => 1, "msg" => "El artículo y el banner fue eliminado exitosamente"]);
                 }
             }
             else
             {
-                return response()->json(['res' => 2, "msg" => "Disculpe, no se puede eliminar el artículo. Está asociado a un recibo"]);
+                return response()->json(['res' => 2, "msg" => "Error A-001"]);
             }
         }
         else
