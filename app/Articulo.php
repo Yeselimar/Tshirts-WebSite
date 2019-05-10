@@ -45,6 +45,10 @@ class Articulo extends Model
     {
         return $query->where('destacado','=',$bandera);
     }
+    public function scopePublicado($query,$bandera)
+    {
+        return $query->where('publicado','=',1);
+    }
 
     public static function carpeta()
     {

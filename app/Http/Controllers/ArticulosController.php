@@ -112,7 +112,7 @@ class ArticulosController extends Controller
 
     public function destacados()
     {
-        $articulos = Articulo::destacados(1)->with('rubros')->get();
+        $articulos = Articulo::destacados(1)->get();
         foreach ($articulos as $key => $articulo)
         {
             $encontrado = false;
