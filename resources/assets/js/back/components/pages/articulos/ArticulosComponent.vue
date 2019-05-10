@@ -72,9 +72,9 @@
       <div class="container-fluid">
 
         <div class="text-right">
-          <a class="btn btn-xs btn-danger" @click="filtro=-1">Todos</a>
-          <a class="btn btn-xs btn-danger" @click="filtro=1">Diseñables</a>
-          <a class="btn btn-xs btn-danger" @click="filtro=0">No Diseñables</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == -1}" @click="filtro=-1">Todos</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == 1}" @click="filtro=1">Diseñables</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == 0}" @click="filtro=0">No Diseñables</a>
         </div>
 
         <div class="card">
@@ -183,7 +183,7 @@
                     <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item cursor">Editar</a>
+                      <a class="dropdown-item cursor"  @click=" $router.push({ name: 'editArticulo',  params: { id: row.item.id }})">Editar</a>
                       <a class="dropdown-item cursor">Eliminar</a>
                       <a class="dropdown-item cursor">Vista Previa</a>
                   </div>

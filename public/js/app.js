@@ -91387,8 +91387,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             var projectAux = [];
             if (this.projects && this.projects.length) {
                 this.projects.forEach(function (project, index) {
-                    if ((this.currentFilter === project.categoria || this.currentFilter === '') && projectAux.length < this.max) {
-                        projectAux.push(project);
+                    var _this = this;
+
+                    if (projectAux.length < this.max) {
+                        var resultado = project.rubros.findIndex(function (rubro) {
+                            return rubro.nombre === _this.currentFilter;
+                        });
+                        if (resultado !== -1 || this.currentFilter === '') {
+                            projectAux.push(project);
+                        }
                     }
                 }, this);
             }
@@ -91781,39 +91788,39 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     methods: {
         articulosdisenables: function articulosdisenables() {
-            var _this = this;
+            var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/disenables/todos/api").then(function (response) {
-                _this.projects = response.articulos;
+                _this2.projects = response.articulos;
 
-                _this.isLoading = false;
+                _this2.isLoading = false;
             }).catch(function (error) {
-                _this.isLoading = false;
+                _this2.isLoading = false;
                 console.log('Ha ocurrido un error inesperado');
             });
         },
         articulosnodisenables: function articulosnodisenables() {
-            var _this2 = this;
+            var _this3 = this;
 
             this.isLoading = true;
 
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/articulos/no-disenables/todos/api").then(function (response) {
-                _this2.projects = response.articulos;
-                _this2.isLoading = false;
+                _this3.projects = response.articulos;
+                _this3.isLoading = false;
             }).catch(function (error) {
-                _this2.isLoading = false;
+                _this3.isLoading = false;
                 console.log('Ha ocurrido un error inesperado');
             });
         },
         obtenerrubros: function obtenerrubros() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.isLoading = true;
             __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
-                _this3.tipos_rubros = response.rubros;
-                _this3.isLoading = false;
+                _this4.tipos_rubros = response.rubros;
+                _this4.isLoading = false;
             }).catch(function (error) {
-                _this3.isLoading = false;
+                _this4.isLoading = false;
                 console.log('Ha ocurrido un error inesperado');
             });
         },
@@ -91824,14 +91831,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.$router.push({ name: 'detalleComprar', params: { id: idProd } });
         },
         addCart: function addCart(product) {
-            var _this4 = this;
+            var _this5 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddCart', _extends({}, product)).then(function (res) {
-                    _this4.isLoading = false;
+                    _this5.isLoading = false;
                     if (res === 1) {
-                        _this4.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91841,7 +91848,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su carrito exitosamente"
                         });
                     } else {
-                        _this4.$swal.mixin({
+                        _this5.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91865,14 +91872,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }
         },
         addBag: function addBag(product) {
-            var _this5 = this;
+            var _this6 = this;
 
             if (this.getIsAuth) {
                 this.isLoading = true;
                 this.$store.dispatch('actionAddBag', _extends({}, product)).then(function (res) {
-                    _this5.isLoading = false;
+                    _this6.isLoading = false;
                     if (res === 1) {
-                        _this5.$swal.mixin({
+                        _this6.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91882,7 +91889,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                             title: "El Producto fue agregado a su cesta exitosamente"
                         });
                     } else {
-                        _this5.$swal.mixin({
+                        _this6.$swal.mixin({
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
@@ -91918,7 +91925,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     },
     mounted: function mounted() {
-        var _this6 = this;
+        var _this7 = this;
 
         var element = document.getElementById("header-top");
         var options = {
@@ -91928,7 +91935,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.$scrollTo(element, 0, options);
         $(window).resize(function (event) {
             event.preventDefault();
-            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this6.max = 6;else if (document.body.clientWidth < 460) _this6.max = 3;else _this6.max = 12;
+            if (document.body.clientWidth <= 768 && document.body.clientWidth >= 460) _this7.max = 6;else if (document.body.clientWidth < 460) _this7.max = 3;else _this7.max = 12;
         });
     },
     created: function created() {
@@ -92919,12 +92926,14 @@ var render = function() {
                     [
                       _c("div", { staticClass: "product-item" }, [
                         _c("div", { staticClass: "pi-pic" }, [
-                          _c("img", {
-                            attrs: {
-                              src: _vm.getUrl + project.imagen.url,
-                              alt: ""
-                            }
-                          }),
+                          project.imagen
+                            ? _c("img", {
+                                attrs: {
+                                  src: _vm.getUrl + project.imagen.url,
+                                  alt: ""
+                                }
+                              })
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("div", { staticClass: "pi-links" }, [
                             _vm.getIsDesign

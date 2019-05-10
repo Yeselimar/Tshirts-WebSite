@@ -104853,6 +104853,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -104900,6 +104909,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      imagesRemoves: [],
       optionColors: [],
       optionTalles: [],
       optionsPosicion: [],
@@ -104945,6 +104955,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       selectedTipoValidation: false,
       selectedRubro: [],
       selectedTipo: "",
+      personalizable: false,
       money: {
         decimal: ",",
         thousands: ".",
@@ -105039,6 +105050,15 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     } else {
       if (Object.keys(this.$route.params).length !== 0) {
         this.isEdit = true;
+        if (this.getFiltroArticulo !== -1 || this.isEdit) {
+          if (this.getFiltroArticulo == 1) {
+            this.personalizable = true;
+          } else {
+            this.personalizable = false;
+          }
+        } else {
+          this.$router.push({ name: 'articulos' });
+        }
         this.serviceArticulo(this.$route.params.id);
       }
     }
@@ -105157,7 +105177,29 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         _this2.isLoading = false;
       });
     },
-    removeImageServer: function removeImageServer(file) {},
+    removeImageServer: function removeImageServer(file, index) {
+      // se borra las imagenes que han sido borrada para la relación imagen-color
+      var resultado = this.filesImagesColor.findIndex(function (fileIC) {
+        return fileIC.file.id === file.id;
+      });
+      if (resultado !== -1) {
+        //si esta check como principal
+        var mainP = false;
+        if (this.filesImagesColor[resultado].es_principal) {
+          $("#radio_" + resultado).prop("checked", false);
+          mainP = true;
+        }
+        this.filesImagesColor.splice(resultado, 1);
+        if (mainP && this.filesImagesColor.length) {
+          setTimeout(function (e) {
+            $("#radio_0").prop("checked", true);
+          }, 10);
+          this.filesImagesColor[0].es_principal = true;
+        }
+      }
+      this.imagesRemoves.push(_extends({}, file));
+      this.imagenesarticulos.splice(index, 1);
+    },
     eventSelectColor: function eventSelectColor(selectedOption, id) {
       var aux = {
         color: selectedOption,
@@ -105277,14 +105319,29 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     deleteRelacion: function deleteRelacion(index) {
       //buscar la imagen para quitar el seleccionado 
 
+<<<<<<< HEAD
+=======
       //si la imagen a eliminar esta guardadaa hacer validacion
+>>>>>>> master
       var fileAux = this.filesImagesColor[index].file;
-      var resultado = this.files.findIndex(function (file) {
-        return file === fileAux;
-      });
-      if (resultado !== -1) {
-        this.files[resultado].selectedImagen = false;
+      var resultado = -1;
+      //si la imagen a eliminar esta guardadaa hacer validacion
+      if (fileAux.isSaved) {
+        resultado = this.imagenesarticulos.findIndex(function (file) {
+          return file.id === fileAux.id;
+        });
+        if (resultado !== -1) {
+          this.imagenesarticulos[resultado].selectedImagen = false;
+        }
+      } else {
+        resultado = this.files.findIndex(function (file) {
+          return file === fileAux;
+        });
+        if (resultado !== -1) {
+          this.files[resultado].selectedImagen = false;
+        }
       }
+
       //si esta check como principal
       var mainP = false;
       if (this.filesImagesColor[index].es_principal) {
@@ -105400,7 +105457,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         if (resp) {
           _this11.$validator.validateAll("form-ajustes").then(function (resA) {
             if (resA) {
-              if (_this11.files.length) {
+              if (_this11.files.length || _this11.imagenesarticulos.length) {
                 _this11.$validator.validateAll("form-disponibilidad").then(function (resD) {
                   if (resD && _this11.validatorDisponibilidad()) {
                     if (_this11.validatorImagenRelacion()) {
@@ -105415,6 +105472,8 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         _this11.articulo.imagenes_colores = _this11.filesImagesColor;
                         _this11.articulo.mask_precio = _this11.maskAmount;
                         _this11.articulo.mask_cantidad = _this11.maskCantidad;
+                        _this11.articulo.imagenes_eliminadas = _this11.imagesRemoves;
+
                         var dataform = new FormData();
                         for (var i = 0; i < _this11.files.length; i++) {
                           var file = _this11.files[i].file;
@@ -105425,8 +105484,14 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         });
                         dataform.append('articulo', data);
                         console.log(dataform);
+                        var url = '';
                         _this11.isLoading = true;
-                        __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulo/no-disenable/guardar", dataform, {
+                        if (!_this11.isEdit) {
+                          url = '/articulo/no-disenable/guardar';
+                        } else {
+                          url = '/articulo/no-disenable/edit/' + _this11.$route.params.id + '/save';
+                        }
+                        __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url, dataform, {
                           headers: {
                             'Content-Type': 'application/json'
                           }
@@ -109638,12 +109703,13 @@ var render = function() {
                                           }
                                         },
                                         _vm._l(_vm.imagenesarticulos, function(
-                                          file
+                                          file,
+                                          index
                                         ) {
                                           return _c(
                                             "div",
                                             {
-                                              key: file.id,
+                                              key: index,
                                               staticClass: "project"
                                             },
                                             [
@@ -109703,7 +109769,8 @@ var render = function() {
                                                             ) {
                                                               $event.preventDefault()
                                                               return _vm.removeImageServer(
-                                                                file
+                                                                file,
+                                                                index
                                                               )
                                                             }
                                                           }
@@ -111942,7 +112009,11 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: { click: _vm.saveAll }
                               },
-                              [_vm._v("Guardar")]
+                              [
+                                !_vm.isEdit
+                                  ? _c("span", [_vm._v("Guardar Artículo")])
+                                  : _c("span", [_vm._v("Actualizar Artículo")])
+                              ]
                             )
                           ])
                         ]
@@ -112108,49 +112179,102 @@ var render = function() {
                         position: "relative"
                       }
                     },
-                    _vm._l(_vm.files, function(file) {
-                      return file.selectedImagen != true
-                        ? _c("div", { key: file.id, staticClass: "project" }, [
-                            _c(
+                    [
+                      _vm._l(_vm.imagenesarticulos, function(file) {
+                        return file.selectedImagen != true && _vm.isEdit
+                          ? _c(
                               "div",
-                              {
-                                staticClass:
-                                  "pi-pic position-relative hover-pic",
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    $event.preventDefault()
-                                    return _vm.seleccionarImg(file)
-                                  }
-                                }
-                              },
+                              { key: file.id, staticClass: "project" },
                               [
-                                file.thumb
-                                  ? _c("img", {
-                                      attrs: {
-                                        src: file.thumb,
-                                        width: "125",
-                                        height: "125"
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "pi-pic position-relative hover-pic",
+                                    on: {
+                                      click: function($event) {
+                                        $event.stopPropagation()
+                                        $event.preventDefault()
+                                        return _vm.seleccionarImg(file)
                                       }
-                                    })
-                                  : _c("span", [_vm._v("No Image")]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "pi-links" }, [
-                                  _c("a", { staticClass: "cursor mr-2" }, [
-                                    _c("i", {
-                                      staticClass: "fa fa-check",
-                                      class: {
-                                        "color-blue": file.selectedImagen
-                                      }
-                                    })
-                                  ])
-                                ])
+                                    }
+                                  },
+                                  [
+                                    file.thumb
+                                      ? _c("img", {
+                                          attrs: {
+                                            src: _vm.getUrl + file.thumb,
+                                            width: "125",
+                                            height: "125"
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("No Image")]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "pi-links" }, [
+                                      _c("a", { staticClass: "cursor mr-2" }, [
+                                        _c("i", {
+                                          staticClass: "fa fa-check",
+                                          class: {
+                                            "color-blue": file.selectedImagen
+                                          }
+                                        })
+                                      ])
+                                    ])
+                                  ]
+                                )
                               ]
                             )
-                          ])
-                        : _vm._e()
-                    }),
-                    0
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.files, function(file) {
+                        return file.selectedImagen != true
+                          ? _c(
+                              "div",
+                              { key: file.id, staticClass: "project" },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "pi-pic position-relative hover-pic",
+                                    on: {
+                                      click: function($event) {
+                                        $event.stopPropagation()
+                                        $event.preventDefault()
+                                        return _vm.seleccionarImg(file)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    file.thumb
+                                      ? _c("img", {
+                                          attrs: {
+                                            src: file.thumb,
+                                            width: "125",
+                                            height: "125"
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("No Image")]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "pi-links" }, [
+                                      _c("a", { staticClass: "cursor mr-2" }, [
+                                        _c("i", {
+                                          staticClass: "fa fa-check",
+                                          class: {
+                                            "color-blue": file.selectedImagen
+                                          }
+                                        })
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      })
+                    ],
+                    2
                   )
                 ]),
                 _vm._v(" "),
@@ -112774,6 +112898,7 @@ var render = function() {
           "a",
           {
             staticClass: "btn btn-xs btn-danger",
+            class: { "actived-button": _vm.filtro == -1 },
             on: {
               click: function($event) {
                 _vm.filtro = -1
@@ -112787,6 +112912,7 @@ var render = function() {
           "a",
           {
             staticClass: "btn btn-xs btn-danger",
+            class: { "actived-button": _vm.filtro == 1 },
             on: {
               click: function($event) {
                 _vm.filtro = 1
@@ -112800,6 +112926,7 @@ var render = function() {
           "a",
           {
             staticClass: "btn btn-xs btn-danger",
+            class: { "actived-button": _vm.filtro == 0 },
             on: {
               click: function($event) {
                 _vm.filtro = 0
@@ -113111,9 +113238,21 @@ var render = function() {
                         "div",
                         { staticClass: "dropdown-menu dropdown-menu-right" },
                         [
-                          _c("a", { staticClass: "dropdown-item cursor" }, [
-                            _vm._v("Editar")
-                          ]),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item cursor",
+                              on: {
+                                click: function($event) {
+                                  return _vm.$router.push({
+                                    name: "editArticulo",
+                                    params: { id: row.item.id }
+                                  })
+                                }
+                              }
+                            },
+                            [_vm._v("Editar")]
+                          ),
                           _vm._v(" "),
                           _c("a", { staticClass: "dropdown-item cursor" }, [
                             _vm._v("Eliminar")

@@ -49,7 +49,7 @@ class ArticulosController extends Controller
 
     public function disenables()
     {
-        $articulos = Articulo::personalizable(1)->get();
+        $articulos = Articulo::personalizable(1)->with('rubros')->get();
         foreach ($articulos as $key => $articulo)
         {
             $encontrado = false;
@@ -76,10 +76,13 @@ class ArticulosController extends Controller
         }
         return response()->json(['articulos' => $articulos]);
     }
-
+    public function updatenodisenable(Request $request, $id)
+    {
+        dd($request);
+    }
     public function nodisenables()
     {
-        $articulos = Articulo::personalizable(0)->get();
+        $articulos = Articulo::personalizable(0)->with('rubros')->get();
         foreach ($articulos as $key => $articulo)
         {
             $encontrado = false;
@@ -109,7 +112,7 @@ class ArticulosController extends Controller
 
     public function destacados()
     {
-        $articulos = Articulo::destacados(1)->get();
+        $articulos = Articulo::destacados(1)->with('rubros')->get();
         foreach ($articulos as $key => $articulo)
         {
             $encontrado = false;
@@ -214,7 +217,7 @@ class ArticulosController extends Controller
         }
 
         //Validando para devolver una respuesta al frontend
-        if($temporal)
+        if(isset($temporal))
         {
             if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
             {

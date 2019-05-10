@@ -15,6 +15,7 @@
     return view('index');
 });
 */
+Route::post('/recibirpago', 'MPagoController@respuestaMP')->name('respuesta.mp');
 
 Route::get('/admin/{vue_capture?}', function () {
     return view('back.index');
@@ -82,6 +83,8 @@ Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articul
 Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
 Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
 Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('articulo.eliminar');
+Route::post('/articulo/no-disenable/edit/{id}/save','ArticulosController@updatenodisenable')->name('articulo.update.nodisenable');
+
 
 //Imagenes Artículos
 Route::post('/imagenes-articulos/posicion-imagen','ImagenesArticulosController@posicionimagen')->name('imagenes.articulos.posicion.imagen');
