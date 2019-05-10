@@ -62,7 +62,7 @@
   height: auto !important
 }
 #nuevoArticulo .tab-contentGlobal{
-  min-height: 65vh
+  min-height: 50vh
 }
 </style>
 <template>
@@ -83,11 +83,12 @@
     </div>
     <!-- End Bread crumb -->
 
-    <div class="container-fluid">
+    <div class="container-fluid"  v-if="!isLoading">
       <div class="card">
         <div class="card-title">
           <h4>
-            <strong>Nuevo Artículo</strong>
+            <strong v-if="!isEdit">Nuevo Artículo</strong>
+            <strong v-else>Editar Artículo</strong>
           </h4>
           <div class="pull-right">
             <a class="btn btn-sm btn-danger" @click=" $router.push({ name: 'articulos' })">Ir a Listado de Artículos</a>
@@ -127,7 +128,7 @@
           <hr>
           <div class="row" id="tabcontent">
             <div class="col-lg-12">
-              <div class="card">
+              <div class="">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                   <li class="nav-item">
@@ -297,7 +298,7 @@
                             <p
                               class="error-text"
                               v-else-if="errors.firstByRule('amount', 'amountvv', 'form-ajustes')"
-                            >Monto Invalido</p>
+                            >Monto invalido</p>
                           </div>
                         </div>
                       </div>
@@ -329,9 +330,37 @@
                             </div>
                         </div>
                       <!--subir imagenes -->
-                      <div class="text-center">
-                        <h3>Subir Imagenes de Artículo</h3>
+                      <!-- agregar otras imagenes-->
+
+                      <div v-if="isEdit">
+                          <div class="text-center">
+                            <h4>Imagenes del articulo actualmente almacenadas</h4>
+                            <hr>
+                          </div>
+                          <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': imagenesarticulos.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                            <div class="project" v-for="(file) in imagenesarticulos" :key="file.id">
+                                <div class="pi-pic">
+                                  <img v-if="file.url" :src="getUrl+file.url" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2" @click="openModalImg(file.url,true)"><i class="fa fa-eye"></i></a>
+                                    <a class="cursor" @click.prevent="removeImageServer(file)">
+                                      <i class="fa fa-trash"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                            </div>
+                          </span>
+
+                      </div>
+                      <div class="text-center" v-if="!isEdit">
+                        <h3>Subir imagenes de artículo</h3>
                         <hr>
+                      </div>
+                      <div class="text-center  pt-3" v-else>
+                        <h3>Agregar otras imagenes al artículo</h3>
+                        <hr>
+
                       </div>
                           <span class="projects justify-content-start align-items-center" id="ajustesbasicosIMG" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
                             <div class="project" v-for="(file) in files" :key="file.id">
@@ -339,7 +368,7 @@
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
-                                    <a class="cursor mr-2" @click="openModalImg(file.blob)"><i class="fa fa-eye"></i></a>
+                                    <a class="cursor mr-2" @click="openModalImg(file.blob,false)"><i class="fa fa-eye"></i></a>
                                     <a class="cursor" @click.prevent="removeImg(file)">
                                       <i class="fa fa-trash"></i>
                                     </a>
@@ -393,7 +422,8 @@
                             :clearOnSelect="true"
                             :custom-label="customLabelTalla" 
                             :show-labels="false"
-                             label="valor" 
+                             label="valor"
+                             @remove="eventRemoveTalle" 
                              track-by="valor"
                              v-validate data-vv-rules="required" 
                              data-vv-scope="form-disponibilidad"
@@ -653,8 +683,19 @@
 
                                 <td class="text-center position-relative pb-3">
                                      <button class="cursor btn btn-inverse" @click="deleteVariante(index)"><i class="fa fa-trash cursor"></i></button>
-                                    <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
-                                    <button v-else-if="fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos','warning')"><i class="fa fa-plus cursor"></i></button>
+                                     <template v-if="(selectedTipo.toUpperCase() == 'ROPA')">
+                                        <button v-if="index == filesVariantes.length-1 && fileV.selectedTalleVariante!='' && fileV.selectedTalleVariante!=null && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                         <button v-else-if="index == filesVariantes.length-1 && (fileV.selectedTalleVariante=='' || fileV.selectedTalleVariante==null || fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null)" class="cursor btn btn-primary disabled" @click="msgAlert('Los campos color y talle son requeridos en la tabla','warning')"><i class="fa fa-plus cursor"></i></button>
+                                    </template>
+                                  
+                                      
+                                    <template v-else>
+                                       <button v-if="index == filesVariantes.length-1 && fileV.selectedColorVariante!='' && fileV.selectedColorVariante!=null" class="cursor btn btn-primary" @click="addVariante()"><i class="fa fa-plus cursor"></i></button>
+                                         <button v-else-if="index == filesVariantes.length-1 && (fileV.selectedColorVariante=='' || fileV.selectedColorVariante==null)" class="cursor btn btn-primary disabled" @click="msgAlert('El campo color es requrido en la tabla','warning')"><i class="fa fa-plus cursor"></i></button>
+                                    </template>
+                                      
+
+                                    
 
                                 </td>
                              
@@ -693,7 +734,8 @@
                               </tr>
                               <tr v-for="(fileIC,index) in filesImagesColor" :key="index">
                                  <td class="text-center position-relative pb-3">
-                                      <img v-if="filesImagesColor[index].file !== null && filesImagesColor[index].file !== {} && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                      <img v-if="filesImagesColor[index].file !== null &&  Object.keys(filesImagesColor[index].file).length !== 0 && filesImagesColor[index].file.thumb" :src="fileIC.file.isSaved? getUrl+filesImagesColor[index].file.thumb:filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                     
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
@@ -795,7 +837,9 @@
               <div class="modal-body">
                   <div class="d-flex flex-wrap ingresar justify-content-center">
 
-                      <img :src="selectedImg" style="width:100%;height:100%"/>  
+                      <img v-if="!isSaved" :src="selectedImg" style="width:100%;height:100%"/>  
+                      <img v-else :src="getUrl+selectedImg" style="width:100%;height:100%"/>  
+
           
                   </div>
                   
@@ -894,6 +938,7 @@ export default {
       isLoading: false,
       isDesign: false,
       selectedImg: '',
+      imagenesarticulos: [],
       selectedTallas: [],
       selectedColores: [],
       selectedCantidad: "",
@@ -906,6 +951,7 @@ export default {
         precioGeneral: 0.00,
         otros: '',
         imagenes: [],
+        mask_precio: '',
         rubros: [],
         talles: [],
         colores: [],
@@ -975,7 +1021,9 @@ export default {
       editFile: {
         show: false,
         name: ""
-      }
+      },
+      isEdit: false,
+      isSaved: false,
     };
   },
   components: {
@@ -998,11 +1046,27 @@ export default {
       });
 
   },
+  beforeMount(){
+    if(!this.isEdit){
+      this.isLoading = false
+    }
+  },
   created: function() {
+    this.isLoading = true
     this.getColores()
     this.getRubros()
     this.getTalles()
     this.getPosicion()
+    if(this.$route.name=='nuevoArticulo'){
+       
+      this.isEdit = false
+    } else {
+      if(Object.keys(this.$route.params).length !== 0){
+        this.isEdit = true
+        this.serviceArticulo(this.$route.params.id)
+      }
+    }
+    
     if (document.body.clientWidth <= 900){
           this.table_responsive = true;
       } else {
@@ -1015,6 +1079,114 @@ export default {
     }
   },
   methods: {
+    serviceArticulo(id){
+       this.isLoading = true
+      CerService.post("/articulo/no-disenable/"+id+"/editar")
+      .then(response => 
+      {
+        if(response.res == 1){
+          console.log(response.articulo)
+          response.articulo.imagenesarticulos.forEach(function(file,i){
+            let aux = {
+                      id: file.id,
+                      thumb: file.url,
+                      url: file.url,
+                      isSaved: true,
+                      selectedImagen:false
+                  }
+            this.imagenesarticulos.push({...aux})
+          },this)
+          this.articulo.nombre = response.articulo.nombre
+          this.articulo.marca = response.articulo.marca
+          this.articulo.descripcion = response.articulo.descripcion
+          this.selectedRubro = response.articulo.rubros
+          this.articulo.publicado = response.articulo.publicado
+          this.articulo.destacado = response.articulo.destacado
+          if(response.articulo.tipo == 'ropa') {
+            this.selectedTipo = 'Ropa'
+          } else {
+            this.selectedTipo = 'Otros'
+          }
+          this.articulo.precioGeneral = response.articulo.precioGeneral
+          this.maskAmount = response.articulo.mask_precio
+          this.maskCantidad = response.articulo.mask_cantidad
+          this.articulo.otros = response.articulo.otros
+          this.selectedTallas = response.articulo.talles
+          this.selectedColores = response.articulo.colores
+          this.articulo.cantidad = parseInt(response.articulo.cantidad)
+          if(response.articulo.tipo_cantidad == 'por_variante') {
+            this.selectedCantidad = 'Por Variante'
+          } else {
+            this.selectedCantidad = 'General'
+          }
+          console.log(response.articulo.tallescolores)
+         response.articulo.tallescolores.forEach(function(file,i){
+           console.log(file)
+            let aux = {
+                selectedColorVariante: file.color,
+                selectedTalleVariante: (this.selectedTipo === 'Ropa') ? file.talle: {},
+                colorVarianteAux: {
+                  colorOld: '',
+                  colorNew: '',
+                },
+                cantidadVariante: file.cantidad,
+                precioVariante: parseFloat(file.precio)
+
+              }
+              console.log(aux)
+              this.filesVariantes.push(
+              {...aux}
+              )
+              console.log(this.filesVariantes)
+          },this)
+          console.log(this.filesVariantes)
+          let idS = 0
+          response.articulo.imagenes_colores.forEach(function(file,i){
+            let aux = {
+                  selectedColorRelacion: file.color,
+                  file: {
+                      id: file.id,
+                      thumb: file.url,
+                      url: file.url,
+                      isSaved: true,
+                      selectedImagen:true
+                  },
+                  es_principal: file.principal,
+                  posicionRelacion: {
+                    id:'frontal',
+                    nombre: 'Frontal'
+                  }
+                }
+               const resultado = this.imagenesarticulos.findIndex( fileIC => fileIC.id === aux.file.id );
+               if(resultado !== -1){
+                 this.imagenesarticulos[resultado].selectedImagen = true
+               }
+              this.filesImagesColor.push(
+              {...aux}
+              )
+               if(file.principal){
+                 idS = i
+               }
+          },this)
+          if(response.articulo.imagenes_colores.length){
+            setTimeout(e => {
+              $("#radio_"+idS).prop("checked", true);
+            },10) 
+          }
+          this.isLoading = false
+        }else{
+          this.msgAlert(response.msg,'error')
+          this.$router.push({ name: 'no.encontrado' });
+        }
+      })
+      .catch(error => {
+        console.log('Ha ocurrido un error inesperado')
+        this.isLoading = false
+      });
+    },
+    removeImageServer(file){
+
+    },
     eventSelectColor(selectedOption, id){
       let aux = {
         color: selectedOption,
@@ -1026,10 +1198,26 @@ export default {
       this.posicionColor.push({...aux})
     },
     eventRemoveColor(removedOption, id){
+     this.filesImagesColor.forEach((file,id) =>{
+        if(removedOption == file.selectedColorRelacion){
+          this.filesImagesColor[id].selectedColorRelacion = ""
+        }
+      },this)
+     this.filesVariantes.forEach((file,id) =>{
+        if(removedOption == file.selectedColorVariante){
+          this.filesVariantes[id].selectedColorVariante = ""
+        }
+      },this)
       this.posicionColor.splice(id,1)
     },
+     eventRemoveTalle(removedOption, id){
+        this.filesVariantes.forEach((file,id) =>{
+          if(removedOption == file.selectedTalleVariante){
+            this.filesVariantes[id].selectedTalleVariante = ""
+          }
+        },this)
+     },
     getPosicion(){
-      this.isLoading = true
         CerService.post("/imagenes-articulos/posicion-imagen")
         .then(response => 
         {
@@ -1037,15 +1225,12 @@ export default {
             {
               this.optionsPosicion = response.posicion
             }
-            this.isLoading = false
         })
         .catch(error => {
           console.log('Ha ocurrido un error inesperado')
-          this.isLoading = false
         });
     },
     getColores(){
-      this.isLoading = true
         CerService.post("/grupos/colores/api")
         .then(response => 
         {
@@ -1053,15 +1238,12 @@ export default {
             {
               this.optionColors = response.colores
             }
-            this.isLoading = false
         })
         .catch(error => {
           console.log('Ha ocurrido un error inesperado')
-          this.isLoading = false
         });
     },
     getTalles(){
-      this.isLoading = true
       CerService.post("/grupos/talles/api")
       .then(response => 
       {
@@ -1069,16 +1251,13 @@ export default {
           {
            this.optionTalles = response.talles
           }
-          this.isLoading = false
           
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
       });
     },
     getRubros(){
-      this.isLoading = true
       CerService.post("/rubros/todos/api")
       .then(response => 
       {
@@ -1090,7 +1269,6 @@ export default {
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
       });
 
     },
@@ -1121,7 +1299,7 @@ export default {
          if(mainP && this.filesImagesColor.length){
             setTimeout(e => {
               $("#radio_0").prop("checked", true);
-            },100) 
+            },10) 
             this.filesImagesColor[0].es_principal = true
           }
       }
@@ -1132,6 +1310,8 @@ export default {
     },
     deleteRelacion(index){
       //buscar la imagen para quitar el seleccionado 
+
+      //si la imagen a eliminar esta guardadaa hacer validacion
       let fileAux = this.filesImagesColor[index].file
       const resultado = this.files.findIndex( file => file === fileAux );
       if( resultado !== -1)
@@ -1151,7 +1331,7 @@ export default {
       if(mainP && this.filesImagesColor.length){
         setTimeout(e => {
           $("#radio_0").prop("checked", true);
-        },100)         
+        },10)         
         this.filesImagesColor[0].es_principal = true
       }
     },
@@ -1160,6 +1340,10 @@ export default {
       let aux = {
           selectedColorVariante: "",
           selectedTalleVariante: "",
+          colorVarianteAux: {
+            colorOld: '',
+            colorNew: '',
+          },
           cantidadVariante: 0,
           precioVariante: this.articulo.precioGeneral
 
@@ -1211,16 +1395,21 @@ export default {
         if(Object.keys(e.file).length == 0){
           validator = false
         }
-      })
+      },this)
       return validator;
     },
     validatorDisponibilidad(){
       let validator = true
-      this.filesVariantes.forEach(e => {
-        if(e.selectedColorVariante == '' || e.selectedColorVariante == null || e.selectedTalleVariante == '' || e.selectedTalleVariante == null){
-          validator = false
-        }
-      })
+      if(this.selectedCantidad.toUpperCase() == 'POR VARIANTE'){
+        this.filesVariantes.forEach(e => {
+          if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
+            validator = false
+            if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+              validator = false
+            }
+          }
+        },this)
+      }
       return validator;
     },
     validatorRelacion(){
@@ -1229,7 +1418,7 @@ export default {
         if(e.selectedColorRelacion == '' || e.selectedColorRelacion == null || e.posicionRelacion == '' || e.posicionRelacion == null ){
           validator = false
         }
-      })
+      },this)
       return validator;
     },
     saveAll(){
@@ -1254,7 +1443,8 @@ export default {
                                     this.articulo.tipo_cantidad = this.selectedCantidad
                                     this.articulo.talles_colores = this.filesVariantes
                                     this.articulo.imagenes_colores = this.filesImagesColor
-
+                                    this.articulo.mask_precio = this.maskAmount
+                                    this.articulo.mask_cantidad = this.maskCantidad
                                     var dataform = new FormData();
                                     for( var i = 0; i < this.files.length; i++ ){
                                         let file = this.files[i].file;
@@ -1265,6 +1455,7 @@ export default {
                                         });
                                     dataform.append('articulo',data)
                                     console.log(dataform);
+                                    this.isLoading=true
                                     CerService.post("/articulo/no-disenable/guardar",dataform,{
                                     headers:
                                       {
@@ -1274,14 +1465,19 @@ export default {
                                     .then(response => 
                                     {
                                         console.log(response)
-                                        if(response.res){
+                                        if(response.res == 1){
                                           this.msgAlert(response.msg,'success')
+                                          this.$router.push({ name: 'articulos' });
+
                                         } else {
                                           this.msgAlert(response.msg,'warning')
                                         }
+                                        this.isLoading=false
                                     })
                                     .catch(error => {
                                       this.msgAlert('Ha ocurrido un error inesperado','error')
+                                        this.isLoading=false
+
                                     });
                                   } else {
                                     let element = document.getElementById("tabcontent");
@@ -1374,8 +1570,9 @@ export default {
         $('#modalImagenesCargadas').modal('hide')
 
     },
-    openModalImg(img){
+    openModalImg(img,isSaved){
         this.selectedImg=img;
+        this.isSaved = isSaved
         $('#modalImg').modal('show')
     },
      openModalImagenesCargadas(index){
@@ -1519,7 +1716,9 @@ export default {
   watch: {
     selectedTipo: function(){
         if(this.selectedTipo == null || this.selectedTipo.toUpperCase()!= 'OTROS'){
-          this.articulo.otros = ''
+               if(!this.isEdit){
+                  this.articulo.otros = ''
+              }
         }
         if(this.selectedTipo !== ""){
           this.selectedTipoValidation = false
@@ -1531,9 +1730,13 @@ export default {
       }
     },
     selectedCantidad: function(){
-      if(this.selectedCantidad == null || this.selectedTipo.toUpperCase()!= 'GENERAL'){
-          this.articulo.cantidad = 0
-          this.maskCantidad = ""
+      if(this.selectedCantidad == null || this.selectedCantidad.toUpperCase()!= 'GENERAL'){
+          if(!this.isEdit){
+            this.filesVariantes = []
+            this.articulo.cantidad = 0
+            this.maskCantidad = ""
+          }
+          
         }
     },
     filesImagesColor: function(){

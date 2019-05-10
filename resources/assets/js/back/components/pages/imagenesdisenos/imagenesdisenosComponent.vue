@@ -5,8 +5,10 @@
 	}
   .imagen-cuadrada
 	{
-	    width:15px; 
-	    height:15px;
+	    width:auto; 
+      height:15px;
+	    border: 1px solid #ebebeb;
+      border-radius: 4px;
 	}
 	.capsula-categoria
 	{
@@ -41,10 +43,16 @@
   }
   .img-barna
   {
+    width:auto;
+    height:27px;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+  }
+  .img-barna-grande
+  {
     width:100%;
     height:auto;
     border: 1px solid #ebebeb;
-    margin-bottom: 5px;
     border-radius: 4px;
   }
   .form-validation
@@ -112,7 +120,9 @@
               	</template>
 
               	<template slot="imagen" slot-scope="row">
-                	<a class="cursor" @click="ver(row.item)"><img :src="url+row.item.url" class="imagen-cuadrada"></a>
+                	<a class="cursor" @click="ver(row.item)">
+                    <img :src="url+row.item.url" class="imagen-cuadrada">
+                  </a>
               	</template>
 
               	<template slot="nombre" slot-scope="row">
@@ -125,7 +135,7 @@
               	</template>
 
               	<template slot="actions" slot-scope="row"> 
-              		<button @click="editar(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
+              		  <button @click="editar(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
                   	<button @click="eliminarImagen(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-trash"></i></button>
               	</template>
 
@@ -170,7 +180,6 @@
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="imagen">Imagen</label>
-                              <div style="">
                               
                               <button class="btn-cargar btn-block cursor" v-if="imagen.url == '' &&  imagen.src == ''" @click="openInputFile()" style="" :class="{'btn-error': !imagen.valida}">
                                 <i class="fa fa-picture-o" aria-hidden="true"></i> Examinar
@@ -178,14 +187,12 @@
 
                               <span v-if="!imagen.valida" class="error-text">Imagen debe ser menor o igual a 5MB</span> 
 
-                              <div class="text-center">
+                              <div class="h-30">
                                 <img class="img-fluid  img-responsive img-barna" v-if="imagen.url != null && imagen.url != '' && imagen.url!='image'" :src="imagen.src" >
 
-                              </div>
-                              
-                              <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
+                                <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
 
-                              <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-xs btn-danger" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
                               </div>
                           </div>
                       </div>
@@ -228,15 +235,14 @@
                                 <option  v-for="categoria in categorias" :value="categoria.id">{{categoria.nombre}}</option>
                               </select>
                           </div>
-                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" v-if="imagen.src==''">
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <label class="control-label h6" for="imagen">Imagen Actual</label>
-                            <div class="text-center">
+                            <div class="text-left">
                               <img :src="url+imagen.imagen" class="img-fluid img-responsive img-barna">
                             </div>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               <label class="control-label h6" for="imagen">Actualizar Imagen</label>
-                              <div style="">
                                 
                               <button class="btn-cargar btn-block cursor" v-if="imagen.url == '' &&  imagen.src == ''" @click="openInputFile()" style="" :class="{'btn-error': !imagen.valida}">
                                 <i class="fa fa-picture-o" aria-hidden="true"></i> Examinar
@@ -244,13 +250,14 @@
 
                               <span v-if="!imagen.valida" class="error-text">Imagen debe ser menor o igual a 5MB</span> 
 
-                              <div class="text-center">
+                              <div class="h-30">
                                 <img class="img-fluid  img-responsive img-barna" v-if="imagen.url != null && imagen.url != '' && imagen.url!='image'" :src="imagen.src" >
-                              </div>
                               
-                              <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
+                              
+                                <input accept="image/*" v-if="imagen.url == '' &&  imagen.src == ''" class="d-none" type="file" ref="imagenInput" @change="cargafoto($event)">
 
-                              <button class="btn btn-xs btn-danger pull-right" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-xs btn-danger" v-else @click="limpiar()"><i class="fa fa-trash"></i></button>
+
                               </div>
                           </div>
                       </div>
@@ -262,7 +269,7 @@
               </div>
           </div>
       </div>
-      <!-- Modal para crear imagen -->
+      <!-- Modal para editar imagen -->
 
       <!-- Modal para eliminar imagen -->
       <div class="modal" id="eliminar">
@@ -299,7 +306,7 @@
                   </div>
                   <div class="modal-body">
                       <div class="col-12">
-                        <img :src="url+imagen.imagen" class="img-responsive img-barna">
+                        <img :src="url+imagen.imagen" class="img-responsive img-barna-grande">
                       </div>
                   </div>
                   <div class="modal-footer">
@@ -384,7 +391,6 @@ export default
             return { text: f.label, value: f.key };
           });
       	},
-
     },
    	created: function()
    	{

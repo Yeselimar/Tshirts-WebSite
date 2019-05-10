@@ -95,15 +95,15 @@
                             <div class="project" v-bind:key="project.id" v-for="project in projectsC" >
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img :src="getUrl+project.url" alt="">
+                                        <img :src="getUrl+project.imagen.url" alt="">
                                         <div class="pi-links">
-                                            <a  v-if="project.isDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
+                                            <a  v-if="getIsDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card cursor" @click="verDetalle(project.id)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
-                                        <h6>${{project.precio}}</h6>
-                                        <p>{{project.titulo}} </p>
+                                        <h6>${{project.precio_general}}</h6>
+                                        <p>{{project.nombre}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -137,13 +137,14 @@ import navComponent from "../../../components/pages/home/navComponent.vue"
 import itemsComponent from "../../../components/pages/home/itemsComponent.vue"
 import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 import { mapGetters } from 'vuex'
+import CerService from "../../../plugins/CerService";
 
 
 
 export default {
         name:'homeComponent',
 		components: {
-             navComponent,
+            navComponent,
             loading,
             itemsComponent,
             prodDestacadosComponent
@@ -178,6 +179,7 @@ export default {
                 currentFilter: '',
                 tipos_rubros:
                     [
+                    /*
                         {
                             "id": 1,
                             "nombre": 'Hombre',
@@ -201,10 +203,11 @@ export default {
                         {
                             "id": 6,
                             "nombre": 'Buzo',
-                        }
+                        }*/
                 ],
                 projects: [],
                  productDesigns: [
+                    /*
                     {
                         id: 10020,
                         url: 'img/product/12.jpg',
@@ -374,9 +377,10 @@ export default {
                          +'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
                         precio: 19.2,
                         isDesign: true
-                    },
+                    },*/
                 ],
                 products: [
+                    /*
                     {
                         id: 4440,
                         url: 'img/product/12.jpg',
@@ -537,18 +541,65 @@ export default {
                         precio: 99.2,
                         isDesign: false
                     }
+                    */
                 ],
                 url: '',
                 isLoading: false,
                 showNav: true,
 			}
 		},
-		methods: {
-            disenar (idProd){
+		methods:
+        {
+            articulosdisenables()
+            {
+                CerService.post("/articulos/disenables/todos/api")
+                .then(response => 
+                {
+                    this.projects = response.articulos;
+
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            articulosnodisenables()
+            {
+                this.isLoading =true
+
+                CerService.post("/articulos/no-disenables/todos/api")
+                .then(response => 
+                {
+                    this.projects = response.articulos;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            obtenerrubros()
+            {
+                this.isLoading =true
+                CerService.post("/rubros/todos/api")
+                .then(response => 
+                {
+                    this.tipos_rubros = response.rubros;
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            disenar (idProd)
+            {
                this.$router.push({ name: 'disenar', params: { id: idProd } })
 
             },
-            verDetalle (idProd){
+            verDetalle (idProd)
+            {
                 this.$router.push({ name: 'detalleComprar', params: { id: idProd } })
             },
             addCart (product){
@@ -654,7 +705,8 @@ export default {
 
             },
         },
-        mounted: function(){
+        mounted: function()
+        {
              let element = document.getElementById("header-top");
               var options = {
                 offset: 0,
@@ -671,12 +723,23 @@ export default {
                                      this.max = 12
             });
         },
-        created() {
+        created()
+        {
+            this.obtenerrubros();
+
             if(this.getIsDesign){
-                this.projects = this.productDesigns
+                            this.articulosdisenables();
+
             }else {
-                this.projects = this.products
+                            this.articulosnodisenables();
+
             }
+
+
+            console.log(this.productDesigns);
+            console.log(this.products);
+
+           
             if(document.body.clientWidth<=768 && document.body.clientWidth >= 460)
 				this.max = 6
 			else if(document.body.clientWidth < 460)
@@ -686,19 +749,22 @@ export default {
 
             this.isLoading = true
 		},
-		beforeMount() {
+		beforeMount()
+        {
 			this.isLoading = false
         },
-          watch: {
-            getIsDesign: function(){
+        watch:
+        {
+            getIsDesign: function()
+            {
                 if(this.getIsDesign){
-                    this.projects = this.productDesigns
+                     this.articulosdisenables()
                 }else {
-                    this.projects = this.products
+                     this.articulosnodisenables();
                 }
-            //console.log('esto esta cambiando a ',this.getIsDesign)
-            //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
+                //console.log('esto esta cambiando a ',this.getIsDesign)
+                //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
             }
-    }
+        }
 }
 </script>

@@ -12,4 +12,9 @@ class Rubro extends Model
     {
         return $this->belongsToMany('App\Articulo','articulos_rubros');
     }
+
+    public function scopeFavoritos($query,$bandera)
+    {
+        return $query->where('principal','=',$bandera);
+    }
 }
