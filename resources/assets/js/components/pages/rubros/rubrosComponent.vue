@@ -67,6 +67,7 @@
     import migajasComponent from "../../../components/layouts/migajasComponent.vue";
     import misarticulosComponent from "../../../components/pages/share/misarticulosComponent.vue";
     import { mapGetters } from 'vuex'
+    import CerService from "../../../plugins/CerService";
 
     export default {
         name:'rubrosComponent',
@@ -85,6 +86,7 @@
                 isDesign: '',
                 tipos_rubros:
                 [
+                    /*
                     {
                         "id": 1,
                         "nombre": 'Hombre',
@@ -109,10 +111,12 @@
                         "id": 6,
                         "nombre": 'Buzo',
                     }
+                    */
                 ]
             }
         },
-        mounted(){
+        mounted()
+        {
              let element = document.getElementById("header-top");
               var options = {
                 offset: 0,
@@ -125,6 +129,8 @@
             this.isDesign = this.getIsDesign
             this.titulo = this.getSearch
             this.rubro = this.getRubro
+            this.obtenerrubros();
+
         },
         computed: 
         {
@@ -132,6 +138,17 @@
         },
         methods:
         {
+            obtenerrubros()
+            {
+                CerService.post("/rubros/todos/api")
+                .then(response => 
+                {
+                  this.tipos_rubros=response.rubros;
+                })
+                .catch(error => {
+                  this.mensaje("error","Ha ocurrido un error inesperado");
+                });
+            },
             cambialo(rubro)
             {
                 if(rubro === '')

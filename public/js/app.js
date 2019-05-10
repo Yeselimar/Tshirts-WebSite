@@ -1657,6 +1657,73 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(103);
+
+
+var CerService = {};
+
+CerService.setToken = function (token) {
+    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
+};
+
+CerService.get = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.delete = function (endpoint) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
+        if (res.status === 200) {
+            // console.log('200');
+        }
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error al Eliminar');
+    });
+};
+
+CerService.post = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
+        return res.data;
+    }).catch(function (err) {
+        console.log(err);
+        console.log('Error API');
+
+        if (err.response && err.response.status === 403) {
+            // location.reload()
+        }
+    });
+};
+
+CerService.put = function (endpoint, json) {
+
+    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
+        return res.data;
+    });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (CerService);
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2949,73 +3016,6 @@ Util_1.Collection.mapMethods(Node);
 
 
 /***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(103);
-
-
-var CerService = {};
-
-CerService.setToken = function (token) {
-    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
-};
-
-CerService.get = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.delete = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error al Eliminar');
-    });
-};
-
-CerService.post = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.put = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
-        return res.data;
-    });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (CerService);
-
-/***/ }),
 /* 15 */,
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4051,7 +4051,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 var Global_1 = __webpack_require__(6);
 var HAS_SHADOW = 'hasShadow';
@@ -18527,7 +18527,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var DragAndDrop_1 = __webpack_require__(57);
 var Validators_1 = __webpack_require__(5);
 var Container = (function (_super) {
@@ -70549,7 +70549,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Container_1 = __webpack_require__(41);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Factory_1 = __webpack_require__(4);
 var Canvas_1 = __webpack_require__(49);
 var BaseLayer = (function (_super) {
@@ -82072,7 +82072,7 @@ exports.Konva = _CoreInternals_1.Konva.Util._assign(_CoreInternals_1.Konva, {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Global_1 = __webpack_require__(6);
 var Util_1 = __webpack_require__(8);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Container_1 = __webpack_require__(41);
 var Stage_1 = __webpack_require__(220);
 var Layer_1 = __webpack_require__(221);
@@ -82938,7 +82938,7 @@ Util_1.Collection.mapMethods(FastLayer);
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Animation_1 = __webpack_require__(58);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Global_1 = __webpack_require__(6);
 var blacklist = {
     node: 1,
@@ -84782,7 +84782,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util_1 = __webpack_require__(8);
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Shape_1 = __webpack_require__(17);
 var Rect_1 = __webpack_require__(135);
 var Group_1 = __webpack_require__(100);
@@ -85521,7 +85521,7 @@ Util_1.Collection.mapMethods(Wedge);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 function BlurStack() {
     this.r = 0;
@@ -86227,7 +86227,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'blurRadius', 0, Validators_1.get
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Brighten = function (imageData) {
     var brightness = this.brightness() * 255, data = imageData.data, len = data.length, i;
@@ -86248,7 +86248,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'brightness', 0, Validators_1.get
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Contrast = function (imageData) {
     var adjust = Math.pow((parseInt(this.contrast()) + 100) / 100, 2);
@@ -86291,7 +86291,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'contrast', 0, Validators_1.getNu
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Util_1 = __webpack_require__(8);
 var Validators_1 = __webpack_require__(5);
 exports.Emboss = function (imageData) {
@@ -86402,7 +86402,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'embossBlend', false, null, Facto
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 function remap(fromValue, fromMin, fromMax, toMin, toMax) {
     var fromRange = fromMax - fromMin, toRange = toMax - toMin, toValue;
@@ -86512,7 +86512,7 @@ exports.Grayscale = function (imageData) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 Factory_1.Factory.addGetterSetter(Node_1.Node, 'hue', 0, Validators_1.getNumberValidator(), Factory_1.Factory.afterSetFilter);
 Factory_1.Factory.addGetterSetter(Node_1.Node, 'saturation', 0, Validators_1.getNumberValidator(), Factory_1.Factory.afterSetFilter);
@@ -86545,7 +86545,7 @@ exports.HSL = function (imageData) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.HSV = function (imageData) {
     var data = imageData.data, nPixels = data.length, v = Math.pow(2, this.value()), s = Math.pow(2, this.saturation()), h = Math.abs(this.hue() + 360) % 360, i;
@@ -86595,7 +86595,7 @@ exports.Invert = function (imageData) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Util_1 = __webpack_require__(8);
 var Validators_1 = __webpack_require__(5);
 var ToPolar = function (src, dst, opt) {
@@ -86736,7 +86736,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'kaleidoscopeAngle', 0, Validator
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 function pixelAt(idata, x, y) {
     var idx = (y * idata.width + x) * 4;
@@ -86885,7 +86885,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'threshold', 0, Validators_1.getN
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Noise = function (imageData) {
     var amount = this.noise() * 255, data = imageData.data, nPixels = data.length, half = amount / 2, i;
@@ -86907,7 +86907,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'noise', 0.2, Validators_1.getNum
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
 var Util_1 = __webpack_require__(8);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Pixelate = function (imageData) {
     var pixelSize = Math.ceil(this.pixelSize()), width = imageData.width, height = imageData.height, x, y, i, red, green, blue, alpha, nBinsX = Math.ceil(width / pixelSize), nBinsY = Math.ceil(height / pixelSize), xBinStart, xBinEnd, yBinStart, yBinEnd, xBin, yBin, pixelsInBin;
@@ -86976,7 +86976,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'pixelSize', 8, Validators_1.getN
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Posterize = function (imageData) {
     var levels = Math.round(this.levels() * 254) + 1, data = imageData.data, len = data.length, scale = 255 / levels, i;
@@ -86995,7 +86995,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'levels', 0.5, Validators_1.getNu
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.RGB = function (imageData) {
     var data = imageData.data, nPixels = data.length, red = this.red(), green = this.green(), blue = this.blue(), i, brightness;
@@ -87043,7 +87043,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'blue', 0, Validators_1.RGBCompon
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.RGBA = function (imageData) {
     var data = imageData.data, nPixels = data.length, red = this.red(), green = this.green(), blue = this.blue(), alpha = this.alpha(), i, ia;
@@ -87155,7 +87155,7 @@ exports.Solarize = function (imageData) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Factory_1 = __webpack_require__(4);
-var Node_1 = __webpack_require__(13);
+var Node_1 = __webpack_require__(14);
 var Validators_1 = __webpack_require__(5);
 exports.Threshold = function (imageData) {
     var level = this.threshold() * 255, data = imageData.data, len = data.length, i;
@@ -87182,7 +87182,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'threshold', 0.5, Validators_1.ge
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /*
@@ -87491,7 +87491,7 @@ var getters = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(50);
 
@@ -87900,7 +87900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -91230,7 +91230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -92027,7 +92027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -93322,7 +93322,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
 //
 //
 //
@@ -94404,13 +94404,13 @@ var content = __webpack_require__(299);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(19)("3ea8d0e5", content, false, {});
+var update = __webpack_require__(19)("13664850", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -94428,7 +94428,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.texto-rosa-barna {\n  color: #ef7a6e !important;\n}\n.lista-activa a:after {\n  position: absolute;\n  content: \"\";\n  width: 9px;\n  height: 9px;\n  left: 0;\n  top: 13px;\n  border: 1px solid #ef7a6e;\n  border-radius: 50%;\n  background: #ef7a6e;\n}\n", ""]);
+exports.push([module.i, "\n.texto-rosa-barna\n{\n    color: #ef7a6e !important;\n}\n.lista-activa a:after\n{\n    position: absolute;\n    content: \"\";\n    width: 9px;\n    height: 9px;\n    left: 0;\n    top: 13px;\n    border: 1px solid #ef7a6e;\n    border-radius: 50%;\n    background: #ef7a6e;\n}\n", ""]);
 
 // exports
 
@@ -94444,6 +94444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -94516,6 +94517,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'rubrosComponent',
     components: {
@@ -94530,25 +94532,34 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             rubro: '',
             titulo: '',
             isDesign: '',
-            tipos_rubros: [{
-                "id": 1,
-                "nombre": 'Hombre'
-            }, {
-                "id": 2,
-                "nombre": 'Mujer'
-            }, {
-                "id": 3,
-                "nombre": 'Niño'
-            }, {
-                "id": 4,
-                "nombre": 'Niña'
-            }, {
-                "id": 5,
-                "nombre": 'Taza'
-            }, {
-                "id": 6,
-                "nombre": 'Buzo'
-            }]
+            tipos_rubros: [
+                /*
+                {
+                    "id": 1,
+                    "nombre": 'Hombre',
+                },
+                {
+                    "id": 2,
+                    "nombre": 'Mujer',
+                },
+                {
+                    "id": 3,
+                    "nombre": 'Niño',
+                },
+                {
+                    "id": 4,
+                    "nombre": 'Niña',
+                },
+                {
+                    "id": 5,
+                    "nombre": 'Taza',
+                },
+                {
+                    "id": 6,
+                    "nombre": 'Buzo',
+                }
+                */
+            ]
         };
     },
     mounted: function mounted() {
@@ -94563,10 +94574,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.isDesign = this.getIsDesign;
         this.titulo = this.getSearch;
         this.rubro = this.getRubro;
+        this.obtenerrubros();
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])(['getIsDesign', 'getRubro', 'getSearch', 'getUser', 'getIsAuth'])),
     methods: {
+        obtenerrubros: function obtenerrubros() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
+                _this.tipos_rubros = response.rubros;
+            }).catch(function (error) {
+                _this.mensaje("error", "Ha ocurrido un error inesperado");
+            });
+        },
         cambialo: function cambialo(rubro) {
             if (rubro === '') {
                 this.rubro = ''; //reasigno para actualizar el componente header
@@ -96671,7 +96692,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html2canvas__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -100018,7 +100039,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
