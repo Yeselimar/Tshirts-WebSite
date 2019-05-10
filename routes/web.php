@@ -73,8 +73,6 @@ Route::post('/caracteristicas/{id}/detalles','CaracteristicasController@show')->
 //Artículos
 Route::post('/articulos/todos','ArticulosController@index')->name('articulos.todos');
 Route::post('/articulos/disenables/todos','ArticulosController@getarticulosdisenables')->name('articulos.disenables.todos');
-Route::post('/articulos/disenables/todos/api','ArticulosController@disenables')->name('articulos.disenables.todos.api');//Creado por Rafael
-Route::post('/articulos/no-disenables/todos/api','ArticulosController@nodisenables')->name('articulos.nodisenables.todos.api');//Creado por Rafael
 Route::post('/articulos/todos/para-banner','ArticulosController@todosparabanner')->name('articulos.todos.para.banner');
 Route::post('/articulo/no-disenable/guardar','ArticulosController@storenodisenable')->name('articulo.guardar.nodisenable');
 Route::post('/articulo/disenable/guardar','ArticulosController@storedisenable')->name('articulo.guardar.disenable');
@@ -87,7 +85,8 @@ Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('arti
 //Front Articulos
 Route::post('/articulos/destacados/todos/no-personalizables','FrontArticulosController@destacadosnopersonalizables')->name('articulos.destacados.todos.nopersonalizables');
 Route::post('/articulos/destacados/todos/personalizables','FrontArticulosController@destacadospersonalizables')->name('articulos.destacados.todos.personalizables');
-
+Route::post('/articulos/disenables/todos/api','FrontArticulosController@disenables')->name('articulos.disenables.todos.api');//Creado por Rafael
+Route::post('/articulos/no-disenables/todos/api','FrontArticulosController@nodisenables')->name('articulos.nodisenables.todos.api');//Creado por Rafael
 
 //Imagenes Artículos
 Route::post('/imagenes-articulos/posicion-imagen','ImagenesArticulosController@posicionimagen')->name('imagenes.articulos.posicion.imagen');

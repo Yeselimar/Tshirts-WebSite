@@ -19325,7 +19325,6 @@ exports.HitCanvas = HitCanvas;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-<<<<<<< HEAD
     api: {
         base: 'http://localhost:8000/',
         //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
@@ -19335,15 +19334,6 @@ exports.HitCanvas = HitCanvas;
         //base: '/afodi/barna/public'
         base: '/'
     }
-=======
-  api: {
-    base: 'http://localhost/barna/barna/public/',
-    token: 'rafael1delgado'
-  },
-  env: {
-    base: '/barna/barna/public/'
-  }
->>>>>>> master
 });
 
 /***/ }),
@@ -93014,78 +93004,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     data: function data() {
         return {
-            productDesigns: [{
-                id: 0,
-                url: 'img/product/1.jpg',
-                titulo: 'Blusa jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 29.2,
-                isDesign: true
-            }, {
-                id: 1,
-                url: 'img/product/2.jpg',
-                titulo: 'Pantalon jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 12.2,
-                isDesign: true
-            }, {
-                id: 2,
-                url: 'img/product/3.jpg',
-                titulo: 'Franella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: true
-            }, {
-                id: 3,
-                url: 'img/product/4.jpg',
-                titulo: 'Carniut jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 99.2,
-                isDesign: true
-            }, {
-                id: 4,
-                url: 'img/product/5.jpg',
-                titulo: 'Tienza jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: true
-            }],
-            products: [{
-                id: 0,
-                url: 'img/product/6.jpg',
-                titulo: 'Changes jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 2.2,
-                isDesign: false
-            }, {
-                id: 1,
-                url: 'img/product/7.jpg',
-                titulo: 'Pages jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 2.2,
-                isDesign: false
-            }, {
-                id: 2,
-                url: 'img/product/8.jpg',
-                titulo: 'Nenella jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 19.2,
-                isDesign: false
-            }, {
-                id: 3,
-                url: 'img/product/9.jpg',
-                titulo: 'Vitorius jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 9.2,
-                isDesign: false
-            }, {
-                id: 4,
-                url: 'img/product/10.jpg',
-                titulo: 'Lorem jackets',
-                descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua' + 'Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.',
-                precio: 129.2,
-                isDesign: false
-            }],
+            productDesigns: [],
+            products: [],
             items: []
         };
     },
@@ -94868,13 +94788,13 @@ var content = __webpack_require__(300);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(19)("3ea8d0e5", content, false, {});
+var update = __webpack_require__(19)("13664850", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4097e270\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./rubrosComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -94892,7 +94812,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.texto-rosa-barna {\n  color: #ef7a6e !important;\n}\n.lista-activa a:after {\n  position: absolute;\n  content: \"\";\n  width: 9px;\n  height: 9px;\n  left: 0;\n  top: 13px;\n  border: 1px solid #ef7a6e;\n  border-radius: 50%;\n  background: #ef7a6e;\n}\n", ""]);
+exports.push([module.i, "\n.texto-rosa-barna\n{\n    color: #ef7a6e !important;\n}\n.lista-activa a:after\n{\n    position: absolute;\n    content: \"\";\n    width: 9px;\n    height: 9px;\n    left: 0;\n    top: 13px;\n    border: 1px solid #ef7a6e;\n    border-radius: 50%;\n    background: #ef7a6e;\n}\n", ""]);
 
 // exports
 

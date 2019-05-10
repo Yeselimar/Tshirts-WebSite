@@ -17737,7 +17737,6 @@ module.exports = Cancel;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-<<<<<<< HEAD
     api: {
         base: 'http://localhost:8000/',
         //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
@@ -17747,15 +17746,6 @@ module.exports = Cancel;
         //base: '/afodi/barna/public'
         base: '/'
     }
-=======
-  api: {
-    base: 'http://localhost/barna/barna/public/',
-    token: 'rafael1delgado'
-  },
-  env: {
-    base: '/barna/barna/public/'
-  }
->>>>>>> master
 });
 
 /***/ }),
