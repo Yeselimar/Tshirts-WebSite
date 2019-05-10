@@ -17737,15 +17737,14 @@ module.exports = Cancel;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-    api: {
-        base: 'http://localhost:8000/',
-        //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        //base: '/afodi/barna/public'
-        base: '/'
-    }
+  api: {
+    base: 'http://localhost/barna/barna/public',
+    token: 'rafael1delgado'
+
+  },
+  env: {
+    base: '/barna/barna/public'
+  }
 });
 
 /***/ }),
@@ -105321,6 +105320,10 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     deleteRelacion: function deleteRelacion(index) {
       //buscar la imagen para quitar el seleccionado 
 
+<<<<<<< HEAD
+=======
+      //si la imagen a eliminar esta guardadaa hacer validacion
+>>>>>>> master
       var fileAux = this.filesImagesColor[index].file;
       var resultado = -1;
       //si la imagen a eliminar esta guardadaa hacer validacion
