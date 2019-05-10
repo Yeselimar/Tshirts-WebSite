@@ -238,7 +238,7 @@ class ArticulosController extends Controller
         $articulo->cantidad = (strtoupper($requests['tipo_cantidad'])==strtoupper("general")) ? $requests['cantidad'] : 0;
         $articulo->mask_cantidad = (strtoupper($requests['tipo_cantidad'])==strtoupper("general")) ? $requests['mask_cantidad'] : '';
         $articulo->precio_general = $requests['precioGeneral'];
-        $articulo->mask_precio = $requests['F'];
+        $articulo->mask_precio = $requests['mask_precio'];
         $articulo->personalizable = 0;
         $articulo->publicado = $requests['publicado'];
         $articulo->destacado = $requests['destacado'];

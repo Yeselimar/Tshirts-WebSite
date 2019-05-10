@@ -17738,11 +17738,13 @@ module.exports = Cancel;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     api: {
-        base: 'http://localhost/barna/barna/public/',
-        token: document.head.querySelector('meta[name="csrf-token"]')
+        base: 'http://localhost:8000/',
+        //base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
+        token: 'ebf8ebbc77b700ed77d14afc03467335'
     },
     env: {
-        base: '/barna/barna/public/'
+        //base: '/afodi/barna/public'
+        base: '/'
     }
 });
 
@@ -104850,6 +104852,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
@@ -104923,6 +104928,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         precioGeneral: 0.00,
         otros: '',
         imagenes: [],
+        mask_precio: '',
         rubros: [],
         talles: [],
         colores: [],
@@ -104993,7 +104999,8 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         show: false,
         name: ""
       },
-      isEdit: false
+      isEdit: false,
+      isSaved: false
     };
   },
 
@@ -105016,30 +105023,26 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
       }
     });
   },
+  beforeMount: function beforeMount() {
+    if (!this.isEdit) {
+      this.isLoading = false;
+    }
+  },
 
   created: function created() {
-<<<<<<< HEAD
+    this.isLoading = true;
+    this.getColores();
+    this.getRubros();
+    this.getTalles();
+    this.getPosicion();
     if (this.$route.name == 'nuevoArticulo') {
 
-=======
-    if (Object.keys(this.$route.params.length !== 0)) {
-      this.isEdit = true;
-      this.serviceArticulo(this.$route.params.id);
-    } else {
->>>>>>> master
       this.isEdit = false;
-      this.getColores();
-      this.getRubros();
-      this.getTalles();
-      this.getPosicion();
-<<<<<<< HEAD
     } else {
       if (Object.keys(this.$route.params).length !== 0) {
         this.isEdit = true;
         this.serviceArticulo(this.$route.params.id);
       }
-=======
->>>>>>> master
     }
 
     if (document.body.clientWidth <= 900) {
@@ -105059,17 +105062,94 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
 
       this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulo/no-disenable/" + id + "/editar").then(function (response) {
-<<<<<<< HEAD
         if (response.res == 1) {
-          _this2.imagenesarticulos = response.articulo.imagenesarticulos;
-=======
-        console.log(response);
-        if (response.res) {
->>>>>>> master
-          _this2.getColores();
-          _this2.getRubros();
-          _this2.getTalles();
-          _this2.getPosicion();
+          console.log(response.articulo);
+          response.articulo.imagenesarticulos.forEach(function (file, i) {
+            var aux = {
+              id: file.id,
+              thumb: file.url,
+              url: file.url,
+              isSaved: true,
+              selectedImagen: false
+            };
+            this.imagenesarticulos.push(_extends({}, aux));
+          }, _this2);
+          _this2.articulo.nombre = response.articulo.nombre;
+          _this2.articulo.marca = response.articulo.marca;
+          _this2.articulo.descripcion = response.articulo.descripcion;
+          _this2.selectedRubro = response.articulo.rubros;
+          _this2.articulo.publicado = response.articulo.publicado;
+          _this2.articulo.destacado = response.articulo.destacado;
+          if (response.articulo.tipo == 'ropa') {
+            _this2.selectedTipo = 'Ropa';
+          } else {
+            _this2.selectedTipo = 'Otros';
+          }
+          _this2.articulo.precioGeneral = response.articulo.precioGeneral;
+          _this2.maskAmount = response.articulo.mask_precio;
+          _this2.maskCantidad = response.articulo.mask_cantidad;
+          _this2.articulo.otros = response.articulo.otros;
+          _this2.selectedTallas = response.articulo.talles;
+          _this2.selectedColores = response.articulo.colores;
+          _this2.articulo.cantidad = parseInt(response.articulo.cantidad);
+          if (response.articulo.tipo_cantidad == 'por_variante') {
+            _this2.selectedCantidad = 'Por Variante';
+          } else {
+            _this2.selectedCantidad = 'General';
+          }
+          console.log(response.articulo.tallescolores);
+          response.articulo.tallescolores.forEach(function (file, i) {
+            console.log(file);
+            var aux = {
+              selectedColorVariante: file.color,
+              selectedTalleVariante: this.selectedTipo === 'Ropa' ? file.talle : {},
+              colorVarianteAux: {
+                colorOld: '',
+                colorNew: ''
+              },
+              cantidadVariante: file.cantidad,
+              precioVariante: parseFloat(file.precio)
+
+            };
+            console.log(aux);
+            this.filesVariantes.push(_extends({}, aux));
+            console.log(this.filesVariantes);
+          }, _this2);
+          console.log(_this2.filesVariantes);
+          var idS = 0;
+          response.articulo.imagenes_colores.forEach(function (file, i) {
+            var aux = {
+              selectedColorRelacion: file.color,
+              file: {
+                id: file.id,
+                thumb: file.url,
+                url: file.url,
+                isSaved: true,
+                selectedImagen: true
+              },
+              es_principal: file.principal,
+              posicionRelacion: {
+                id: 'frontal',
+                nombre: 'Frontal'
+              }
+            };
+            var resultado = this.imagenesarticulos.findIndex(function (fileIC) {
+              return fileIC.id === aux.file.id;
+            });
+            if (resultado !== -1) {
+              this.imagenesarticulos[resultado].selectedImagen = true;
+            }
+            this.filesImagesColor.push(_extends({}, aux));
+            if (file.principal) {
+              idS = i;
+            }
+          }, _this2);
+          if (response.articulo.imagenes_colores.length) {
+            setTimeout(function (e) {
+              $("#radio_" + idS).prop("checked", true);
+            }, 10);
+          }
+          _this2.isLoading = false;
         } else {
           _this2.msgAlert(response.msg, 'error');
           _this2.$router.push({ name: 'no.encontrado' });
@@ -105117,56 +105197,45 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     getPosicion: function getPosicion() {
       var _this5 = this;
 
-      this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/imagenes-articulos/posicion-imagen").then(function (response) {
         if (response.posicion) {
           _this5.optionsPosicion = response.posicion;
         }
-        _this5.isLoading = false;
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
-        _this5.isLoading = false;
       });
     },
     getColores: function getColores() {
       var _this6 = this;
 
-      this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/colores/api").then(function (response) {
         if (response.colores) {
           _this6.optionColors = response.colores;
         }
-        _this6.isLoading = false;
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
-        _this6.isLoading = false;
       });
     },
     getTalles: function getTalles() {
       var _this7 = this;
 
-      this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/grupos/talles/api").then(function (response) {
         if (response.talles) {
           _this7.optionTalles = response.talles;
         }
-        _this7.isLoading = false;
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
-        _this7.isLoading = false;
       });
     },
     getRubros: function getRubros() {
       var _this8 = this;
 
-      this.isLoading = true;
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/rubros/todos/api").then(function (response) {
         if (response.rubros) {
           _this8.optionRubros = response.rubros;
         }
       }).catch(function (error) {
         console.log('Ha ocurrido un error inesperado');
-        _this8.isLoading = false;
       });
     },
     cambiarEsPrincipal: function cambiarEsPrincipal(index) {
@@ -105296,21 +105365,23 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         if (Object.keys(e.file).length == 0) {
           validator = false;
         }
-      });
+      }, this);
       return validator;
     },
     validatorDisponibilidad: function validatorDisponibilidad() {
       var _this10 = this;
 
       var validator = true;
-      this.filesVariantes.forEach(function (e) {
-        if (e.selectedColorVariante == '' || e.selectedColorVariante == null) {
-          validator = false;
-          if (_this10.selectedTipo.toUpperCase() == 'ROPA' && (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)) {
+      if (this.selectedCantidad.toUpperCase() == 'POR VARIANTE') {
+        this.filesVariantes.forEach(function (e) {
+          if (e.selectedColorVariante == '' || e.selectedColorVariante == null) {
             validator = false;
+            if (_this10.selectedTipo.toUpperCase() == 'ROPA' && (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)) {
+              validator = false;
+            }
           }
-        }
-      });
+        }, this);
+      }
       return validator;
     },
     validatorRelacion: function validatorRelacion() {
@@ -105319,7 +105390,7 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
         if (e.selectedColorRelacion == '' || e.selectedColorRelacion == null || e.posicionRelacion == '' || e.posicionRelacion == null) {
           validator = false;
         }
-      });
+      }, this);
       return validator;
     },
     saveAll: function saveAll() {
@@ -105342,7 +105413,8 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                         _this11.articulo.tipo_cantidad = _this11.selectedCantidad;
                         _this11.articulo.talles_colores = _this11.filesVariantes;
                         _this11.articulo.imagenes_colores = _this11.filesImagesColor;
-
+                        _this11.articulo.mask_precio = _this11.maskAmount;
+                        _this11.articulo.mask_cantidad = _this11.maskCantidad;
                         var dataform = new FormData();
                         for (var i = 0; i < _this11.files.length; i++) {
                           var file = _this11.files[i].file;
@@ -105360,24 +105432,16 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
                           }
                         }).then(function (response) {
                           console.log(response);
-<<<<<<< HEAD
                           if (response.res == 1) {
                             _this11.msgAlert(response.msg, 'success');
                             _this11.$router.push({ name: 'articulos' });
-=======
-                          if (response.res) {
-                            _this11.msgAlert(response.msg, 'success');
->>>>>>> master
                           } else {
                             _this11.msgAlert(response.msg, 'warning');
                           }
                           _this11.isLoading = false;
                         }).catch(function (error) {
                           _this11.msgAlert('Ha ocurrido un error inesperado', 'error');
-<<<<<<< HEAD
                           _this11.isLoading = false;
-=======
->>>>>>> master
                         });
                       } else {
                         var element = document.getElementById("tabcontent");
@@ -105459,8 +105523,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     closeModalImagenesCargadas: function closeModalImagenesCargadas() {
       $('#modalImagenesCargadas').modal('hide');
     },
-    openModalImg: function openModalImg(img) {
+    openModalImg: function openModalImg(img, isSaved) {
       this.selectedImg = img;
+      this.isSaved = isSaved;
       $('#modalImg').modal('show');
     },
     openModalImagenesCargadas: function openModalImagenesCargadas(index) {
@@ -105592,7 +105657,9 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
   watch: {
     selectedTipo: function selectedTipo() {
       if (this.selectedTipo == null || this.selectedTipo.toUpperCase() != 'OTROS') {
-        this.articulo.otros = '';
+        if (!this.isEdit) {
+          this.articulo.otros = '';
+        }
       }
       if (this.selectedTipo !== "") {
         this.selectedTipoValidation = false;
@@ -105605,9 +105672,11 @@ __WEBPACK_IMPORTED_MODULE_5_vee_validate__["a" /* Validator */].extend("cantidad
     },
     selectedCantidad: function selectedCantidad() {
       if (this.selectedCantidad == null || this.selectedCantidad.toUpperCase() != 'GENERAL') {
-        this.filesVariantes = [];
-        this.articulo.cantidad = 0;
-        this.maskCantidad = "";
+        if (!this.isEdit) {
+          this.filesVariantes = [];
+          this.articulo.cantidad = 0;
+          this.maskCantidad = "";
+        }
       }
     },
     filesImagesColor: function filesImagesColor() {
@@ -108880,7 +108949,6 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-<<<<<<< HEAD
       !_vm.isLoading
         ? _c("div", { staticClass: "container-fluid" }, [
             _c("div", { staticClass: "card" }, [
@@ -108894,38 +108962,6 @@ var render = function() {
                 _c("div", { staticClass: "pull-right" }, [
                   _c(
                     "a",
-=======
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-title" }, [
-            _c("h4", [
-              !_vm.isEdit
-                ? _c("strong", [_vm._v("Nuevo Artículo")])
-                : _c("strong", [_vm._v("Editar Artículo")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "pull-right" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-sm btn-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.$router.push({ name: "articulos" })
-                    }
-                  }
-                },
-                [_vm._v("Ir a Listado de Artículos")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", { staticClass: "position-relative basis-33 pb-3" }, [
-                _c("input", {
-                  directives: [
->>>>>>> master
                     {
                       staticClass: "btn btn-sm btn-danger",
                       on: {
@@ -109003,48 +109039,17 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-<<<<<<< HEAD
                 _c("hr"),
                 _vm._v(" "),
                 _c("div", { staticClass: "row", attrs: { id: "tabcontent" } }, [
                   _c("div", { staticClass: "col-lg-12" }, [
-                    _c("div", { staticClass: "card" }, [
+                    _c("div", {}, [
                       _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "tab-content tab-contentGlobal" },
                         [
-=======
-                _vm.errors.firstByRule("nombre", "required", "form-create")
-                  ? _c("span", { staticClass: "error-text" }, [
-                      _vm._v("Campo requerido.")
-                    ])
-                  : _vm.errors.firstByRule("nombre", "min", "form-create")
-                  ? _c("span", { staticClass: "error-text" }, [
-                      _vm._v("Mínimo 3 caracteres.")
-                    ])
-                  : _vm._e()
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row", attrs: { id: "tabcontent" } }, [
-              _c("div", { staticClass: "col-lg-12" }, [
-                _c("div", { staticClass: "card" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tab-content tab-contentGlobal" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane active show",
-                        attrs: { id: "ajustesbasicos", role: "tabpanel" }
-                      },
-                      [
-                        _c("div", { staticClass: "card-body mt-4" }, [
->>>>>>> master
                           _c(
                             "div",
                             {
@@ -109255,264 +109260,8 @@ var render = function() {
                                             _vm.selectedTipo.toUpperCase() ==
                                               "OTROS"
                                         }
-<<<<<<< HEAD
                                       },
                                       [
-=======
-                                      }),
-                                      _vm._v(" "),
-                                      _vm.errors.firstByRule(
-                                        "amount",
-                                        "required",
-                                        "form-ajustes"
-                                      )
-                                        ? _c(
-                                            "p",
-                                            { staticClass: "error-text" },
-                                            [_vm._v("Requerido")]
-                                          )
-                                        : _vm.errors.firstByRule(
-                                            "amount",
-                                            "amountvv",
-                                            "form-ajustes"
-                                          )
-                                        ? _c(
-                                            "p",
-                                            { staticClass: "error-text" },
-                                            [_vm._v("Monto invalido")]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "align-items-center form-body d-flex justify-content-between flex-column flex-md-row mt-3 pb-2 div-price"
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "w-100 position-relative ppbb-2"
-                                },
-                                [
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.articulo.descripcion,
-                                        expression: "articulo.descripcion"
-                                      },
-                                      {
-                                        name: "validate",
-                                        rawName: "v-validate"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "form-control input-rounded h-auto",
-                                    class: {
-                                      "error-input": _vm.errors.first(
-                                        "descripcion",
-                                        "form-ajustes"
-                                      )
-                                    },
-                                    attrs: {
-                                      name: "descripcion",
-                                      id: "descripcion",
-                                      row: "5",
-                                      autocomplete: "off",
-                                      "data-vv-scope": "form-ajustes",
-                                      "data-vv-rules": "required:true|min:3",
-                                      placeholder: "Ingrese Descripción"
-                                    },
-                                    domProps: {
-                                      value: _vm.articulo.descripcion
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.articulo,
-                                          "descripcion",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.errors.firstByRule(
-                                    "descripcion",
-                                    "required",
-                                    "form-ajustes"
-                                  )
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Campo requerido.")]
-                                      )
-                                    : _vm.errors.firstByRule(
-                                        "descripcion",
-                                        "min",
-                                        "form-ajustes"
-                                      )
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "error-text" },
-                                        [_vm._v("Mínimo 3 caracteres.")]
-                                      )
-                                    : _vm._e()
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          !_vm.isEdit
-                            ? _c("div", [
-                                _vm._m(2),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "projects justify-content-start align-items-center",
-                                    class: {
-                                      "justify-content-center":
-                                        _vm.imagenesarticulos.length == 0
-                                    },
-                                    staticStyle: {
-                                      padding: "10px",
-                                      "min-height": "30vh",
-                                      position: "relative"
-                                    }
-                                  },
-                                  _vm._l(_vm.imagenesarticulos, function(file) {
-                                    return _c(
-                                      "div",
-                                      { key: file.id, staticClass: "project" },
-                                      [
-                                        _c("div", { staticClass: "pi-pic" }, [
-                                          file.url
-                                            ? _c("img", {
-                                                attrs: {
-                                                  src: _vm.getUrl + file.url,
-                                                  width: "125",
-                                                  height: "125"
-                                                }
-                                              })
-                                            : _c("span", [_vm._v("No Image")]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "pi-links" },
-                                            [
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass: "cursor mr-2",
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.openModalImg(
-                                                        file.url
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass: "fa fa-eye"
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "a",
-                                                {
-                                                  staticClass: "cursor",
-                                                  on: {
-                                                    click: function($event) {
-                                                      $event.preventDefault()
-                                                      return _vm.removeImageServer(
-                                                        file
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass: "fa fa-trash"
-                                                  })
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
-                                  }),
-                                  0
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          !_vm.isEdit
-                            ? _c("div", { staticClass: "text-center" }, [
-                                _c("h3", [
-                                  _vm._v("Subir imagenes de artículo")
-                                ]),
-                                _vm._v(" "),
-                                _c("hr")
-                              ])
-                            : _c("div", { staticClass: "text-center" }, [
-                                _c("h3", [
-                                  _vm._v("Agregar otras imagenes al artículo")
-                                ]),
-                                _vm._v(" "),
-                                _c("hr")
-                              ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              staticClass:
-                                "projects justify-content-start align-items-center",
-                              class: {
-                                "justify-content-center": _vm.files.length == 0
-                              },
-                              staticStyle: {
-                                padding: "10px",
-                                "min-height": "30vh",
-                                position: "relative"
-                              },
-                              attrs: { id: "ajustesbasicosIMG" }
-                            },
-                            [
-                              _vm._l(_vm.files, function(file) {
-                                return _c(
-                                  "div",
-                                  { key: file.id, staticClass: "project" },
-                                  [
-                                    _c("div", { staticClass: "pi-pic" }, [
-                                      file.thumb
-                                        ? _c("img", {
-                                            attrs: {
-                                              src: file.thumb,
-                                              width: "125",
-                                              height: "125"
-                                            }
-                                          })
-                                        : _c("span", [_vm._v("No Image")]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "pi-links" }, [
->>>>>>> master
                                         _c(
                                           "multiselect",
                                           {
@@ -109930,7 +109679,8 @@ var render = function() {
                                                               $event
                                                             ) {
                                                               return _vm.openModalImg(
-                                                                file.url
+                                                                file.url,
+                                                                true
                                                               )
                                                             }
                                                           }
@@ -109985,15 +109735,19 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("hr")
                                     ])
-                                  : _c("div", { staticClass: "text-center" }, [
-                                      _c("h3", [
-                                        _vm._v(
-                                          "Agregar otras imagenes al artículo"
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("hr")
-                                    ]),
+                                  : _c(
+                                      "div",
+                                      { staticClass: "text-center  pt-3" },
+                                      [
+                                        _c("h3", [
+                                          _vm._v(
+                                            "Agregar otras imagenes al artículo"
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("hr")
+                                      ]
+                                    ),
                                 _vm._v(" "),
                                 _c(
                                   "span",
@@ -110044,7 +109798,8 @@ var render = function() {
                                                     on: {
                                                       click: function($event) {
                                                         return _vm.openModalImg(
-                                                          file.blob
+                                                          file.blob,
+                                                          false
                                                         )
                                                       }
                                                     }
@@ -110348,117 +110103,11 @@ var render = function() {
                                               "data-vv-value-path": "colores"
                                             },
                                             on: {
-<<<<<<< HEAD
                                               select: _vm.eventSelectColor,
                                               remove: _vm.eventRemoveColor
                                             },
                                             scopedSlots: _vm._u(
                                               [
-=======
-                                              keyup: function($event) {
-                                                return _vm.setCantidad()
-                                              },
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.maskCantidad =
-                                                  $event.target.value
-                                              }
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _vm.errors.firstByRule(
-                                            "cantidad",
-                                            "required",
-                                            "form-disponibilidad"
-                                          )
-                                            ? _c(
-                                                "span",
-                                                { staticClass: "error-text" },
-                                                [_vm._v("Requerido")]
-                                              )
-                                            : _vm.errors.firstByRule(
-                                                "cantidad",
-                                                "cantidadvv",
-                                                "form-disponibilidad"
-                                              )
-                                            ? _c(
-                                                "span",
-                                                { staticClass: "error-text" },
-                                                [_vm._v("Cantidad Invalida")]
-                                              )
-                                            : _vm._e()
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.selectedCantidad !== null &&
-                        _vm.selectedCantidad.toUpperCase() == "POR VARIANTE"
-                          ? _c(
-                              "div",
-                              {
-                                class: {
-                                  "table-responsive": _vm.table_responsive
-                                }
-                              },
-                              [
-                                _vm._m(3),
-                                _vm._v(" "),
-                                _c(
-                                  "table",
-                                  { staticClass: "table table-hover" },
-                                  [
-                                    _c("thead", [
-                                      _c("tr", [
-                                        _c(
-                                          "th",
-                                          { staticClass: "text-center" },
-                                          [_vm._v("Color")]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.selectedTipo !== null &&
-                                        _vm.selectedTipo.toUpperCase() == "ROPA"
-                                          ? _c(
-                                              "th",
-                                              { staticClass: "text-center" },
-                                              [_vm._v("Talle")]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _c(
-                                          "th",
-                                          { staticClass: "text-center" },
-                                          [_vm._v("Cantidad")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "th",
-                                          { staticClass: "text-center" },
-                                          [_vm._v("Precio")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "th",
-                                          { staticClass: "text-center" },
-                                          [_vm._v("Acciones")]
-                                        )
-                                      ])
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "tbody",
-                                      [
-                                        !_vm.filesVariantes.length
-                                          ? _c("tr", [
-                                              _c(
-                                                "td",
->>>>>>> master
                                                 {
                                                   key: "option",
                                                   fn: function(props) {
@@ -111504,7 +111153,6 @@ var render = function() {
                                                                   "fa fa-trash cursor"
                                                               })
                                                             ]
-<<<<<<< HEAD
                                                           ),
                                                           _vm._v(" "),
                                                           _vm.selectedTipo.toUpperCase() ==
@@ -111659,66 +111307,6 @@ var render = function() {
                                                               ]
                                                         ],
                                                         2
-=======
-                                                          )
-                                                        : _vm._e()
-                                                    ]
-                                              ],
-                                              2
-                                            )
-                                          ])
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "tab-pane",
-                        attrs: { id: "relacion", role: "tabpanel" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            class: { "table-responsive": _vm.table_responsive }
-                          },
-                          [
-                            _vm._m(4),
-                            _vm._v(" "),
-                            _c("table", { staticClass: "table table-hover" }, [
-                              _vm._m(5),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                [
-                                  !_vm.filesImagesColor.length
-                                    ? _c("tr", [
-                                        _c("td", { attrs: { colspan: "4" } }, [
-                                          _c(
-                                            "div",
-                                            { staticClass: "text-center p-5" },
-                                            [
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "cursor btn btn-primary",
-                                                  on: {
-                                                    click: function($event) {
-                                                      $event.stopPropagation()
-                                                      $event.preventDefault()
-                                                      return _vm.addRelacion(
-                                                        $event
->>>>>>> master
                                                       )
                                                     ]
                                                   )
@@ -111834,11 +111422,17 @@ var render = function() {
                                                           height: "50px"
                                                         },
                                                         attrs: {
-                                                          src:
-                                                            _vm
-                                                              .filesImagesColor[
-                                                              index
-                                                            ].file.thumb
+                                                          src: fileIC.file
+                                                            .isSaved
+                                                            ? _vm.getUrl +
+                                                              _vm
+                                                                .filesImagesColor[
+                                                                index
+                                                              ].file.thumb
+                                                            : _vm
+                                                                .filesImagesColor[
+                                                                index
+                                                              ].file.thumb
                                                         }
                                                       })
                                                     : _c(
@@ -112416,10 +112010,15 @@ var render = function() {
                         "d-flex flex-wrap ingresar justify-content-center"
                     },
                     [
-                      _c("img", {
-                        staticStyle: { width: "100%", height: "100%" },
-                        attrs: { src: _vm.selectedImg }
-                      })
+                      !_vm.isSaved
+                        ? _c("img", {
+                            staticStyle: { width: "100%", height: "100%" },
+                            attrs: { src: _vm.selectedImg }
+                          })
+                        : _c("img", {
+                            staticStyle: { width: "100%", height: "100%" },
+                            attrs: { src: _vm.getUrl + _vm.selectedImg }
+                          })
                     ]
                   )
                 ]),

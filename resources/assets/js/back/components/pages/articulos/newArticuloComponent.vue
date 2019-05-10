@@ -128,7 +128,7 @@
           <hr>
           <div class="row" id="tabcontent">
             <div class="col-lg-12">
-              <div class="card">
+              <div class="">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                   <li class="nav-item">
@@ -343,7 +343,7 @@
                                   <img v-if="file.url" :src="getUrl+file.url" width="125" height="125" />
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
-                                    <a class="cursor mr-2" @click="openModalImg(file.url)"><i class="fa fa-eye"></i></a>
+                                    <a class="cursor mr-2" @click="openModalImg(file.url,true)"><i class="fa fa-eye"></i></a>
                                     <a class="cursor" @click.prevent="removeImageServer(file)">
                                       <i class="fa fa-trash"></i>
                                     </a>
@@ -357,7 +357,7 @@
                         <h3>Subir imagenes de artículo</h3>
                         <hr>
                       </div>
-                      <div class="text-center" v-else>
+                      <div class="text-center  pt-3" v-else>
                         <h3>Agregar otras imagenes al artículo</h3>
                         <hr>
 
@@ -368,7 +368,7 @@
                                   <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
                                   <span v-else>No Image</span>
                                   <div class="pi-links">
-                                    <a class="cursor mr-2" @click="openModalImg(file.blob)"><i class="fa fa-eye"></i></a>
+                                    <a class="cursor mr-2" @click="openModalImg(file.blob,false)"><i class="fa fa-eye"></i></a>
                                     <a class="cursor" @click.prevent="removeImg(file)">
                                       <i class="fa fa-trash"></i>
                                     </a>
@@ -734,7 +734,8 @@
                               </tr>
                               <tr v-for="(fileIC,index) in filesImagesColor" :key="index">
                                  <td class="text-center position-relative pb-3">
-                                      <img v-if="filesImagesColor[index].file !== null &&  Object.keys(filesImagesColor[index].file).length !== 0 && filesImagesColor[index].file.thumb" :src="filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                      <img v-if="filesImagesColor[index].file !== null &&  Object.keys(filesImagesColor[index].file).length !== 0 && filesImagesColor[index].file.thumb" :src="fileIC.file.isSaved? getUrl+filesImagesColor[index].file.thumb:filesImagesColor[index].file.thumb" style="width:50px;height:50px"/>  
+                                     
                                      <button v-else  class="cursor btn btn-danger" data-dismiss="modal" @click.stop.prevent="openModalImagenesCargadas(index)"><i class="fa fa-image cursor pr-1"></i>Seleccionar</button>
                                     
                                 </td>
@@ -836,7 +837,7 @@
               <div class="modal-body">
                   <div class="d-flex flex-wrap ingresar justify-content-center">
 
-                      <img v-if="isEdit" :src="selectedImg" style="width:100%;height:100%"/>  
+                      <img v-if="!isSaved" :src="selectedImg" style="width:100%;height:100%"/>  
                       <img v-else :src="getUrl+selectedImg" style="width:100%;height:100%"/>  
 
           
@@ -1021,7 +1022,8 @@ export default {
         show: false,
         name: ""
       },
-      isEdit: false
+      isEdit: false,
+      isSaved: false,
     };
   },
   components: {
@@ -1044,14 +1046,20 @@ export default {
       });
 
   },
+  beforeMount(){
+    if(!this.isEdit){
+      this.isLoading = false
+    }
+  },
   created: function() {
+    this.isLoading = true
+    this.getColores()
+    this.getRubros()
+    this.getTalles()
+    this.getPosicion()
     if(this.$route.name=='nuevoArticulo'){
        
       this.isEdit = false
-      this.getColores()
-      this.getRubros()
-      this.getTalles()
-      this.getPosicion()
     } else {
       if(Object.keys(this.$route.params).length !== 0){
         this.isEdit = true
@@ -1077,17 +1085,27 @@ export default {
       .then(response => 
       {
         if(response.res == 1){
-          this.imagenesarticulos = response.articulo.imagenesarticulos
+          console.log(response.articulo)
+          response.articulo.imagenesarticulos.forEach(function(file,i){
+            let aux = {
+                      id: file.id,
+                      thumb: file.url,
+                      url: file.url,
+                      isSaved: true,
+                      selectedImagen:false
+                  }
+            this.imagenesarticulos.push({...aux})
+          },this)
           this.articulo.nombre = response.articulo.nombre
           this.articulo.marca = response.articulo.marca
           this.articulo.descripcion = response.articulo.descripcion
-          this.selectedRubros = response.articulo.rubros
+          this.selectedRubro = response.articulo.rubros
           this.articulo.publicado = response.articulo.publicado
           this.articulo.destacado = response.articulo.destacado
           if(response.articulo.tipo == 'ropa') {
             this.selectedTipo = 'Ropa'
           } else {
-            this.selectedTio = 'Otros'
+            this.selectedTipo = 'Otros'
           }
           this.articulo.precioGeneral = response.articulo.precioGeneral
           this.maskAmount = response.articulo.mask_precio
@@ -1101,7 +1119,9 @@ export default {
           } else {
             this.selectedCantidad = 'General'
           }
-          response.articulo.tallescolores.forEach(function(file,i){
+          console.log(response.articulo.tallescolores)
+         response.articulo.tallescolores.forEach(function(file,i){
+           console.log(file)
             let aux = {
                 selectedColorVariante: file.color,
                 selectedTalleVariante: (this.selectedTipo === 'Ropa') ? file.talle: {},
@@ -1113,17 +1133,23 @@ export default {
                 precioVariante: parseFloat(file.precio)
 
               }
+              console.log(aux)
               this.filesVariantes.push(
               {...aux}
               )
+              console.log(this.filesVariantes)
           },this)
-          response.articulo.imagenes_colores.foreach(function(file,i){
+          console.log(this.filesVariantes)
+          let idS = 0
+          response.articulo.imagenes_colores.forEach(function(file,i){
             let aux = {
                   selectedColorRelacion: file.color,
                   file: {
                       id: file.id,
-                      thumb: '',
-                      url: file.url
+                      thumb: file.url,
+                      url: file.url,
+                      isSaved: true,
+                      selectedImagen:true
                   },
                   es_principal: file.principal,
                   posicionRelacion: {
@@ -1131,14 +1157,23 @@ export default {
                     nombre: 'Frontal'
                   }
                 }
+               const resultado = this.imagenesarticulos.findIndex( fileIC => fileIC.id === aux.file.id );
+               if(resultado !== -1){
+                 this.imagenesarticulos[resultado].selectedImagen = true
+               }
               this.filesImagesColor.push(
               {...aux}
               )
+               if(file.principal){
+                 idS = i
+               }
           },this)
-          this.getColores()
-          this.getRubros()
-          this.getTalles()
-          this.getPosicion()
+          if(response.articulo.imagenes_colores.length){
+            setTimeout(e => {
+              $("#radio_"+idS).prop("checked", true);
+            },10) 
+          }
+          this.isLoading = false
         }else{
           this.msgAlert(response.msg,'error')
           this.$router.push({ name: 'no.encontrado' });
@@ -1183,7 +1218,6 @@ export default {
         },this)
      },
     getPosicion(){
-      this.isLoading = true
         CerService.post("/imagenes-articulos/posicion-imagen")
         .then(response => 
         {
@@ -1191,15 +1225,12 @@ export default {
             {
               this.optionsPosicion = response.posicion
             }
-            this.isLoading = false
         })
         .catch(error => {
           console.log('Ha ocurrido un error inesperado')
-          this.isLoading = false
         });
     },
     getColores(){
-      this.isLoading = true
         CerService.post("/grupos/colores/api")
         .then(response => 
         {
@@ -1207,15 +1238,12 @@ export default {
             {
               this.optionColors = response.colores
             }
-            this.isLoading = false
         })
         .catch(error => {
           console.log('Ha ocurrido un error inesperado')
-          this.isLoading = false
         });
     },
     getTalles(){
-      this.isLoading = true
       CerService.post("/grupos/talles/api")
       .then(response => 
       {
@@ -1223,16 +1251,13 @@ export default {
           {
            this.optionTalles = response.talles
           }
-          this.isLoading = false
           
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
       });
     },
     getRubros(){
-      this.isLoading = true
       CerService.post("/rubros/todos/api")
       .then(response => 
       {
@@ -1244,7 +1269,6 @@ export default {
       })
       .catch(error => {
         console.log('Ha ocurrido un error inesperado')
-        this.isLoading = false
       });
 
     },
@@ -1286,6 +1310,8 @@ export default {
     },
     deleteRelacion(index){
       //buscar la imagen para quitar el seleccionado 
+
+      //si la imagen a eliminar esta guardadaa hacer validacion
       let fileAux = this.filesImagesColor[index].file
       const resultado = this.files.findIndex( file => file === fileAux );
       if( resultado !== -1)
@@ -1369,19 +1395,21 @@ export default {
         if(Object.keys(e.file).length == 0){
           validator = false
         }
-      })
+      },this)
       return validator;
     },
     validatorDisponibilidad(){
       let validator = true
-      this.filesVariantes.forEach(e => {
-        if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
-          validator = false
-          if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+      if(this.selectedCantidad.toUpperCase() == 'POR VARIANTE'){
+        this.filesVariantes.forEach(e => {
+          if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
             validator = false
+            if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+              validator = false
+            }
           }
-        }
-      })
+        },this)
+      }
       return validator;
     },
     validatorRelacion(){
@@ -1390,7 +1418,7 @@ export default {
         if(e.selectedColorRelacion == '' || e.selectedColorRelacion == null || e.posicionRelacion == '' || e.posicionRelacion == null ){
           validator = false
         }
-      })
+      },this)
       return validator;
     },
     saveAll(){
@@ -1542,8 +1570,9 @@ export default {
         $('#modalImagenesCargadas').modal('hide')
 
     },
-    openModalImg(img){
+    openModalImg(img,isSaved){
         this.selectedImg=img;
+        this.isSaved = isSaved
         $('#modalImg').modal('show')
     },
      openModalImagenesCargadas(index){
@@ -1687,7 +1716,9 @@ export default {
   watch: {
     selectedTipo: function(){
         if(this.selectedTipo == null || this.selectedTipo.toUpperCase()!= 'OTROS'){
-          this.articulo.otros = ''
+               if(!this.isEdit){
+                  this.articulo.otros = ''
+              }
         }
         if(this.selectedTipo !== ""){
           this.selectedTipoValidation = false
@@ -1700,9 +1731,12 @@ export default {
     },
     selectedCantidad: function(){
       if(this.selectedCantidad == null || this.selectedCantidad.toUpperCase()!= 'GENERAL'){
-          this.filesVariantes = []
-          this.articulo.cantidad = 0
-          this.maskCantidad = ""
+          if(!this.isEdit){
+            this.filesVariantes = []
+            this.articulo.cantidad = 0
+            this.maskCantidad = ""
+          }
+          
         }
     },
     filesImagesColor: function(){
