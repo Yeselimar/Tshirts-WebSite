@@ -920,6 +920,9 @@ export default {
     designM(cent)
     {
       //this.$emit("designM", cent);
+      if(this.$route.name!=='rubros'){
+         this.$router.push({ name: 'home' })
+      }
       let element = document.getElementById("header-top");
        var options = {
         offset: 0,

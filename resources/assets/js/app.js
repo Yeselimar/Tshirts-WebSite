@@ -15,6 +15,7 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap');
+    require('jquery-match-height');
     require('slicknav/dist/jquery.slicknav');
     require('owl.carousel');
     require('jquery.nicescroll');
