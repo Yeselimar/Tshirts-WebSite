@@ -17,15 +17,15 @@
 
                     <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Imagen'}]" @click="showImagePanel('Imagen')"> <i class="fa fa-file-image-o">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Imágen</div></div>
 
-                    <div class="panel-btn d-flex":class="[{'panel-btn-active pulse animated': activo === 'Info'}]" @click="showInfoPanel('Info')"> <i class="fa fa-info-circle">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Instrucciones</div></div>
+                    <div class="panel-btn d-flex" :class="[{'panel-btn-active pulse animated': activo === 'Info'}]" @click="showInfoPanel('Info')"> <i class="fa fa-info-circle">&nbsp;</i><div class="sm-none-barna align-content-center d-flex flex-wrap letras-panel">Instrucciones</div></div>
                 </div>
                 <!--Contenedor del Lado 1 -->
                 <div class="container-disenar justify-content-center d-flex flex-wrap scroll-barna" >
                         <!--Contenedor Productos del Lado 1 -->
                     <div class="justify-content-center d-flex flex-wrap" v-if="showProducts">
-                        <div v-for="imagenProducto in imagenes_productos2" class="productos-disenar">
-                            <div class="product-item">
-                                <div class="pi-pic"><img :src="getUrl+imagenProducto" alt="">
+                        <div v-for="imagenProducto in articulos" class="productos-disenar">
+                            <div class="product-item cursor" @click="showCambioArticulo(imagenProducto.id)">
+                                <div class="pi-pic"><img :src="getUrl+imagenProducto.principal" alt="">
                                 </div>
                                 <div class="pd-text"><p>Blusa jackets </p>
                                 </div>
@@ -37,7 +37,7 @@
                             <div class="d-flex justify-content-center align-items-center m-3">
                             <h5 class="text-center">Imagen Seleccionada:  </h5>
                             <button class="btn-upload" v-if="newImagenUrl == '' &&  newImagen == ''" @click="openInputFile()">Subir</button>
-                            <img class="img-fluid py-2" v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl" width="100" height="100">
+                            <img class="img-fluid py-2" v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="getUrl+newImagenUrl" width="100" height="100">
                             <input accept="image/*" v-if="newImagenUrl == '' &&  newImagen == ''" class="d-none" type="file" ref="imagenInput" @change="AdjuntarImagenFrontal($event)">
                             <button class="btn-delete" v-else @click="newImagenUrl='';newImagen=''"><i class="fa fa-trash"></i></button>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="d-flex justify-content-center align-items-center m-3">
                             <h5 class="text-center">Imagen Seleccionada:  </h5>
                             <button class="btn-upload" v-if="newImagenUrlRV == '' &&  newImagenRV == ''" @click="openInputFile()">Subir</button>
-                            <img class="img-fluid py-2" v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV" width="100" height="100">
+                            <img class="img-fluid py-2" v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="getUrl+newImagenUrlRV" width="100" height="100">
                             <input accept="image/*" v-if="newImagenUrlRV == '' &&  newImagenRV == ''" class="d-none" type="file" ref="imagenInput" @change="AdjuntarImagenReverso($event)">
                             <button class="btn-delete" v-else @click="newImagenUrlRV='';newImagenRV=''"><i class="fa fa-trash"></i></button>
                             </div>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="container-imagen-a-disenar" id="contenedor-frontal" v-show="showFrontal">
-                <img style="width:100%; height:100%" src="http://localhost:8000/img/product/frontal.png">
+                <img style="width:100%; height:100%" :src="getUrl+imgFrontal">
                     <div class="container-area-de-diseno" :style="'width:'+w_result_container+'px;'+'top:'+top_result+'%;'+'height:'+h_result_container+'px;'+'left:'+left_result+'%;'">
 
                             <VueDragResize id="frontal" style="border: 0px"
@@ -133,7 +133,7 @@
                             :x="0"
                             :y="0"
                             >
-                                <img style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
+                                <img style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="getUrl+newImagenUrl">
                             </VueDragResize>
                     </div>
                 <!--   <p>Frente:Top:{{top}} Left:{{left}}</p>
@@ -142,7 +142,7 @@
                     <p>Reverso:width:{{widthrv}} heigh:{{heightrv}}</p> -->
                 </div>
                 <div class="container-imagen-a-disenar-rv" id="contenedor-reverso" v-show="showReverse">
-                <img style="width:100%; height:100%" src="http://localhost:8000/img/product/reverso.png">
+                <img style="width:100%; height:100%" :src="getUrl+imgReverso">
                     <div class="container-area-de-diseno-rv" :style="'width:'+w_result_container_rv+'px;'+'top:'+top_result_rv+'%;'+'height:'+h_result_container_rv+'px;'+'left:'+left_result_rv+'%;'">
                             <VueDragResize2 id="reverso" style="border: 0px"
                             @clicked="onActivatedRV"
@@ -159,7 +159,7 @@
                             :h="30"
                             :x="0"
                             :y="0">
-                                <img style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
+                                <img style="width: -webkit-fill-available; height: -webkit-fill-available;" class="img-fluid" v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="getUrl+newImagenUrlRV">
                             </VueDragResize2>
                     </div>
                     <!-- <p>Frente:Top:{{top}} Left:{{left}}</p>
@@ -244,10 +244,30 @@
                             </div>
                             <div class="d-flex justify-content-center m-2 p-1">
                                     <button class="btn-upload" @click="showConfirmacion()"> Enviar Pedido</button>
+
                             </div>
                     </div>
                 </div>
             <!-- end section disenar --->
+            <!-- Modal VistaPrevia -->
+            <div class="modal fade" id="ModalCambioArticulo">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title pull-left"><strong>Cambio de Articulo</strong></h5>
+                            <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="d-flex justify-content-center pt-3 text-center"><h5>¿Esta Seguro que desea cambiar el articulo? Los cambios realizados serán borrados.</h5></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-upload pull-right" style="background: grey !important" data-dismiss="modal" >No</button>
+                            <button type="submit" class="btn btn-upload pull-right" data-dismiss="modal" @click="setId()">Si</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Modal VistaPrevia -->
                 <div class="modal fade" id="ModalVistaPrevia">
                     <div class="modal-dialog">
@@ -258,15 +278,15 @@
                             </div>
                             <div class="modal-body">
                                 <div  class="container-imagen-a-disenar"  id="contenedor-preview-frontal" v-show="showFrontal">
-                                <img style="width: -webkit-fill-available" src="http://localhost:8000/img/product/frontal.png">
+                                <img style="width: -webkit-fill-available" :src="getUrl+imgFrontal">
                                     <div class="container-area-de-diseno" style="border:0px !important" :style="'width:'+w_result_preview+'px;'+'top:'+top_result_preview+'%;'+'height:'+h_result_preview+'px;'+'left:'+left_result_preview+'%;'">
-                                        <img :style="'width:'+width_preview+'%;'+'top:'+top_preview+'%;'+'height:'+height_preview+'%;'+'left:'+left_preview+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
+                                        <img :style="'width:'+width_preview+'%;'+'top:'+top_preview+'%;'+'height:'+height_preview+'%;'+'left:'+left_preview+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="getUrl+newImagenUrl">
                                     </div>
                                 </div>
                                 <div class="container-imagen-a-disenar-rv"  id="contenedor-preview-reverso" v-show="showReverse">
-                                <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/reverso.png">
+                                <img style="width: -webkit-fill-available;" :src="getUrl+imgReverso">
                                     <div class="container-area-de-diseno-rv" style="border:0px !important" :style="'width:'+w_result_preview_rv+'px;'+'top:'+top_result_preview_rv+'%;'+'height:'+h_result_preview_rv+'px;'+'left:'+left_result_preview_rv+'%;'">
-                                        <img :style="'width:'+width_preview_rv+'%;'+'top:'+top_preview_rv+'%;'+'height:'+height_preview_rv+'%;'+'left:'+left_preview_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
+                                        <img :style="'width:'+width_preview_rv+'%;'+'top:'+top_preview_rv+'%;'+'height:'+height_preview_rv+'%;'+'left:'+left_preview_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="getUrl+newImagenUrlRV">
                                     </div>
                                 </div>
                             </div>
@@ -288,15 +308,15 @@
                                 <div class="d-flex justify-content-center pt-3 text-center"><h5>Por favor revise su pedido, ya que una vez enviado este no podrá ser modificado.</h5></div>
                                 <div class="modal-body d-flex" id="disenosDelUsuario">
                                     <div  class="container-imagen-confirmacion" id="contenedor-confirmacion-frontal">
-                                    <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/frontal.png">
+                                    <img style="width: -webkit-fill-available;" :src="getUrl+imgFrontal">
                                         <div class="container-area-de-diseno" style="border:0px !important" :style="'width:'+w_result_confirmacion+'px;'+'top:'+top_result_confirmacion+'%;'+'height:'+h_result_confirmacion+'px;'+'left:'+left_result_confirmacion+'%;'">
-                                            <img :style="'width:'+width_confirmacion+'%;'+'top:'+top_confirmacion+'%;'+'height:'+height_confirmacion+'%;'+'left:'+left_confirmacion+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="newImagenUrl">
+                                            <img :style="'width:'+width_confirmacion+'%;'+'top:'+top_confirmacion+'%;'+'height:'+height_confirmacion+'%;'+'left:'+left_confirmacion+'%;'+'position:absolute'" class="img-fluid"   v-if="newImagenUrl != null && newImagenUrl != '' && newImagenUrl!='image'" :src="getUrl+newImagenUrl">
                                         </div>
                                     </div>
                                     <div class="container-imagen-confirmacion-rv" id="contenedor-confirmacion-reverso">
-                                    <img style="width: -webkit-fill-available;" src="http://localhost:8000/img/product/reverso.png">
+                                    <img style="width: -webkit-fill-available;" :src="getUrl+imgReverso">
                                         <div class="container-area-de-diseno-rv" style="border:0px !important" :style="'width:'+w_result_confirmacion_rv+'px;'+'top:'+top_result_confirmacion_rv+'%;'+'height:'+h_result_confirmacion_rv+'px;'+'left:'+left_result_confirmacion_rv+'%;'">
-                                            <img :style="'width:'+width_confirmacion_rv+'%;'+'top:'+top_confirmacion_rv+'%;'+'height:'+height_confirmacion_rv+'%;'+'left:'+left_confirmacion_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="newImagenUrlRV">
+                                            <img :style="'width:'+width_confirmacion_rv+'%;'+'top:'+top_confirmacion_rv+'%;'+'height:'+height_confirmacion_rv+'%;'+'left:'+left_confirmacion_rv+'%;'+'position:absolute'" class="img-fluid"  v-if="newImagenUrlRV != null && newImagenUrlRV != '' && newImagenUrlRV!='image'" :src="getUrl+newImagenUrlRV">
                                         </div>
                                     </div>
                                 </div>
@@ -352,7 +372,10 @@
                     ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
                 },
                 created(){
+                    this.articuloId=this.$route.params.id,
                     this.articulos_info()
+                    this.articulo_actual()
+
                 },
                 mounted(){
                 this.dimensionesFrontal()
@@ -385,6 +408,9 @@
 
                 data() {
                     return {
+
+                        tempId:'',
+                        articuloId: '',
                         output: null,
                         imagenes_predisenadas:['img/predisenadas/1.jpg', 'img/predisenadas/2.png', 'img/predisenadas/3.jpg', 'img/predisenadas/6.jpg', 'img/predisenadas/7.png', 'img/predisenadas/8.png', 'img/predisenadas/9.png', 'img/predisenadas/10.png', 'img/predisenadas/11.png', 'img/predisenadas/12.png', 'img/predisenadas/13.png', 'img/predisenadas/4.jpg', 'img/predisenadas/5.png', 'img/predisenadas/14.png'],
                         imagenes_productos2:['img/product/1.jpg','img/product/2.jpg','img/product/3.jpg','img/product/4.jpg','img/product/5.jpg','img/product/6.jpg','img/product/7.jpg','img/product/8.jpg','img/product/10.jpg', 'img/product/11.jpg', 'img/product/12.jpg'],
@@ -417,14 +443,14 @@
                         /* Variables para definir el contenedor frontal*/
                         top_px:95,//top en px que definio el admin
                         left_px:150,//left en px que definio el admin
+                        w_admin:200, //width del area de diseno q definio el admin
+                        h_admin:200, //height del area de diseno q definio el admin
+                        w_content_admin: 500, //width del container donde diseno el admin
+                        h_content_admin: 500, //height del container donde diseno el admin
                         top_result:0,
                         left_result:0,
                         w_content_actual: 0, //width del container a usar
                         h_content_actual: 0, //height del container a usar
-                        w_content_admin: 500, //width del container donde diseno el admin
-                        h_content_admin: 500, //height del container donde diseno el admin
-                        w_admin:200, //width del area de diseno q definio el admin
-                        h_admin:200, //height del area de diseno q definio el admin
                         w_content_actual_int: 0, //width del container a usar
                         h_content_actual_int: 0, //height del container a usar
                         w_result:0, //width final que tendra el area de diseno
@@ -437,14 +463,14 @@
                 /* Variables para definir el contenedor Reverso*/
                         top_px_rv:95,//top en px que definio el admin
                         left_px_rv:170,//left en px que definio el admin
+                        w_admin_rv:150, //width del area de diseno q definio el admin
+                        h_admin_rv:300, //height del area de diseno q definio el admin
+                        w_content_admin_rv: 500, //width del container donde diseno el admin
+                        h_content_admin_rv: 500, //height del container donde diseno el admin
                         top_result_rv:0,
                         left_result_rv:0,
                         w_content_actual_rv: 0, //width del container a usar
                         h_content_actual_rv: 0, //height del container a usar
-                        w_content_admin_rv: 500, //width del container donde diseno el admin
-                        h_content_admin_rv: 500, //height del container donde diseno el admin
-                        w_admin_rv:150, //width del area de diseno q definio el admin
-                        h_admin_rv:300, //height del area de diseno q definio el admin
                         w_content_actual_int_rv: 0, //width del container a usar
                         h_content_actual_int_rv: 0, //height del container a usar
                         w_result_rv:0, //width final que tendra el area de diseno
@@ -523,6 +549,8 @@
                         showReverseOut: true,
                         showImageReverse: false,
                         showImageReverseOut: true,
+                        imgReverso: '',
+                        imgFrontal: '',
                         newImagenUrlRV: '',
                         newImagenRV:'' ,
                         //Borrar
@@ -574,18 +602,48 @@
 
                 methods:
                 {
+                    setId(){
+                        this.articuloId=this.tempId
+                        this.$router.push({ name: 'disenar', params: { id: this.articuloId } })
+                       this.articulo_actual()
+
+                    },
+                    articulo_actual(){
+                        setTimeout(e =>{
+                            this.articulos.forEach(function(articulo, indexi)
+                            {
+                                //Buscando la Imagen a disenar del articulo seleccionado
+                                articulo.imagenesarticulos.forEach(function(imagenarticulo, indexj)
+                                {
+                                    if(imagenarticulo.articulo_id==this.articuloId){
+
+                                        if(imagenarticulo.posicion=='frontal'){
+                                        this.imgFrontal=imagenarticulo.url
+                                        }
+                                        else{
+                                        this.imgReverso=imagenarticulo.url
+                                        }
+                                    }
+                                },this);
+                            },this);
+                        },1500)
+                    },
+
                     articulos_info(){
+                        console.log('ID info:',this.articuloId)
                         CerService.post("/articulos/disenables/todos")
                         .then(response => {
-                            if(response.articulos_nd)
+                            if(response.articulos_d)
                             {
-                                this.articulos = response.articulos_nd;
+                                this.articulos = response.articulos_d;
                                 console.log(this.articulos)
                             }
                         })
                         .catch(error => {
                             this.mensaje("error","Ha ocurrido un error inesperado");
                         });
+                        //console.log('HOLA Articulos es aqui:', this.articulos)
+                    console.log('ArticuloID:',  this.articuloId)
                     },
                     //return a promise that resolves with a File instance
                     dataURLtoFile(imagen, filename) {
@@ -793,10 +851,16 @@
 
                             },600)
                     },
+                    /*Modal de cambio de Articulo*/
+                    showCambioArticulo(id)
+                    {
+                        this.tempId=id
+                        $('#ModalCambioArticulo').modal('show');
+                    },
                     /*Modal de vista previa*/
                     showVistaPrevia()
                     {
-                        console.log('hola mundo')
+
                         $('#ModalVistaPrevia').modal('show');
                         this.dimensionesPreviewFrontal()
                         this.dimensionesPreviewReverso()

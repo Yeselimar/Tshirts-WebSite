@@ -546,7 +546,7 @@ export default {
 		methods: {
             disenar (idProd){
                this.$router.push({ name: 'disenar', params: { id: idProd } })
-               console.log('helloo ili')
+
             },
             verDetalle (idProd){
                 this.$router.push({ name: 'detalleComprar', params: { id: idProd } })

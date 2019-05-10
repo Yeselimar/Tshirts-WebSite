@@ -10,6 +10,10 @@ use App\ArticuloRubro;
 use App\ArticuloCaracteristica;
 use App\ImagenArticulo;
 
+
+use MP;
+
+use App\Http\Controllers\Controller;
 class ArticulosController extends Controller
 {
     public function index()
@@ -74,7 +78,7 @@ class ArticulosController extends Controller
             $temporal[ $imagen["selectedColorRelacion"]['id'] ]++;
         }
 
-        //Validando para devolver una respuesta al frontend 
+        //Validando para devolver una respuesta al frontend
         if(count($temporal)!=count($requests["imagenes_colores"]))//Los colores
         {
             return response()->json(["res"=>2,"msg"=>"Disculpe selecciono una imagen con el mismo color"]);
@@ -83,7 +87,7 @@ class ArticulosController extends Controller
         //Artículo
         $articulo = new Articulo;
         $articulo->tipo = strtolower($requests['tipo']);
-        $articulo->otros = (strtoupper($requests['tipo'])==strtoupper("otros")) ? $requests['otros'] : null; 
+        $articulo->otros = (strtoupper($requests['tipo'])==strtoupper("otros")) ? $requests['otros'] : null;
         $articulo->nombre = $requests['nombre'];
         $articulo->marca = $requests['marca'];
         $articulo->descripcion = $requests['descripcion'];
@@ -122,7 +126,7 @@ class ArticulosController extends Controller
                 $articulo_caracteristica->save();
             }
         }
-        
+
         //Características Colores
         foreach ($requests['colores'] as $color)
         {
@@ -158,7 +162,7 @@ class ArticulosController extends Controller
             $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
             if($imagen_articulo)
             {
-                //verificar que no exista para ese color 
+                //verificar que no exista para ese color
                 $imagen_articulo->caracteristica_id = $imagen_color["selectedColorRelacion"]['id'];
                 $imagen_articulo->principal  = $imagen_color['es_principal'];
                 $imagen_articulo->save();
@@ -214,8 +218,37 @@ class ArticulosController extends Controller
 
     }
     public function getarticulosdisenables(){
-        $articulos_nd = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
-        return response()->json(['articulos_nd' => $articulos_nd]);
+        $articulos_d = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
+        foreach ($articulos_d as $key => $articulo)
+        {
+            $encontrado = false;
+
+            $longitud = $articulo->imagenesarticulos->count();
+            if($longitud>0)
+            {
+                $i = 0;
+                $imagenes = $articulo->imagenesarticulos;
+                while(!$encontrado && $i<$longitud)
+                {
+                    if($imagenes[$i]->principal==1)
+                    {
+                        $imagen = $imagenes[$i]->url;
+                        $encontrado = true;
+                    }
+                    $i++;
+                }
+                if($encontrado)
+                {
+                    $articulo['principal'] = $imagen;
+                }
+                //¿Qué pasa si no encuentro la imagen principal?
+            }
+        }
+        return response()->json(['articulos_d' => $articulos_d]);
     }
+   /*  public function pagar()
+    {
+
+    } */
 
 }

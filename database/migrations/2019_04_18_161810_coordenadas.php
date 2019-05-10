@@ -12,10 +12,12 @@ class Coordenadas extends Migration
         {
             $table->increments('id');
 
-            $table->float('w');
-            $table->float('h');
-            $table->float('x');
-            $table->float('y');
+            $table->float('top');
+            $table->float('left');
+            $table->float('width');
+            $table->float('height');
+            $table->float('w_content_admin');
+            $table->float('h_content_admin');
 
             $table->timestamps();
         });

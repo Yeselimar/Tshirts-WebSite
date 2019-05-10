@@ -1,10 +1,10 @@
 <style lang="scss" scope>
-	
+
 </style>
 <template>
 	<div>
 		<migajas-component titulo="Comprar"></migajas-component>
-		
+
 		<!-- Comprar  -->
 			<section class="product-section">
 				<div class="container">
@@ -72,7 +72,7 @@
 								<p>Quantity</p>
 			                    <div class="pro-qty"><input type="text" value="1"></div>
 			                </div>
-							<a href="#" class="site-btn">SHOP NOW</a>
+							<button class="btn-upload" @click="procesar_pago()"> Pagar</button>
 							<div id="accordion" class="accordion-area">
 								<div class="panel">
 									<div class="panel-header" id="headingOne">
@@ -138,6 +138,7 @@
 	import migajasComponent from "../../../components/layouts/migajasComponent.vue";
 	import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 	import { mapGetters } from 'vuex'
+	import CerService from "../../../plugins/CerService";
 
 	export default {
         name:'procesarcarritoComponent',
@@ -150,11 +151,22 @@
 			return {
 				isLoading: false,
 				articuloId: this.$route.params.id,
+				url_pago:'',
             }
         },
         methods:
         {
+			procesar_pago(){
 
+				CerService.post("/pagar")
+				.then(response => {
+				this.url_pago=response.pagar
+					window.open(this.url_pago , "_blank");
+				})
+				.catch(error => {
+					this.mensaje("error","Ha ocurrido un error inesperado");
+				});
+			},
 		},
 		created() {
 		let element = document.getElementById("header-top");
