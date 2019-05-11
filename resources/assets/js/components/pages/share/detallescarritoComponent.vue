@@ -23,7 +23,7 @@
 					<li>Total<span>${{formatearmoneda(sumar(articulos))}}</span></li>
 					<li>Total de Productos<span>{{totalproductos(articulos)}}</span></li>
 					<li>Envío <span>Gratis</span></li>
-					<li class="total">Total<span>${{sumar(articulos)}}</span></li>
+					<li class="total">Total<span>${{formatearmoneda(sumar(articulos))}}</span></li>
 				</ul>
 			</div>
 		
