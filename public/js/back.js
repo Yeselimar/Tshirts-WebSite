@@ -2994,11 +2994,26 @@ function install (_Vue) {
   applyMixin(Vue);
 }
 
+<<<<<<< HEAD
 /**
  * Reduce the code which written in Vue.js for getting the state.
  * @param {String} [namespace] - Module's namespace
  * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
  * @param {Object}
+=======
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * jQuery JavaScript Library v3.3.1
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2018-01-20T17:24Z
+>>>>>>> master
  */
 var mapState = normalizeNamespace(function (namespace, states) {
   var res = {};
@@ -3209,6 +3224,7 @@ var _identity = _interopRequireDefault(__webpack_require__(101));
 
 var _inspect = __webpack_require__(1);
 
+<<<<<<< HEAD
 var _object = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3237,6 +3253,30 @@ exports.default = _default;
 /***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+	var preservedScriptAttributes = {
+		type: true,
+		src: true,
+		noModule: true
+	};
+
+	function DOMEval( code, doc, node ) {
+		doc = doc || document;
+
+		var i,
+			script = doc.createElement( "script" );
+
+		script.text = code;
+		if ( node ) {
+			for ( i in preservedScriptAttributes ) {
+				if ( node[ i ] ) {
+					script[ i ] = node[ i ];
+				}
+			}
+		}
+		doc.head.appendChild( script ).parentNode.removeChild( script );
+	}
+>>>>>>> master
 
 "use strict";
 
@@ -3274,10 +3314,15 @@ var _default = {
         return false;
       }
 
+<<<<<<< HEAD
       return null;
     },
     stateClass: function stateClass() {
       var state = this.computedState;
+=======
+var
+	version = "3.3.1",
+>>>>>>> master
 
       if (state === true) {
         return 'is-valid';
@@ -3415,6 +3460,7 @@ var looseEqual = function looseEqual(a, b) {
   return String(a) === String(b);
 };
 
+<<<<<<< HEAD
 var _default = looseEqual;
 exports.default = _default;
 
@@ -3424,6 +3470,29 @@ exports.default = _default;
 
 "use strict";
 
+=======
+			// Extend the base object
+			for ( name in options ) {
+				src = target[ name ];
+				copy = options[ name ];
+
+				// Prevent never-ending loop
+				if ( target === copy ) {
+					continue;
+				}
+
+				// Recurse if we're merging plain objects or arrays
+				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
+					( copyIsArray = Array.isArray( copy ) ) ) ) {
+
+					if ( copyIsArray ) {
+						copyIsArray = false;
+						clone = src && Array.isArray( src ) ? src : [];
+
+					} else {
+						clone = src && jQuery.isPlainObject( src ) ? src : {};
+					}
+>>>>>>> master
 
 exports.__esModule = true;
 exports.default = void 0;
@@ -3504,14 +3573,29 @@ var noop = function () {}
 var options = null
 var ssrIdKey = 'data-vue-ssr-id'
 
+<<<<<<< HEAD
 // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 // tags it will allow on a page
 var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+=======
+	isEmptyObject: function( obj ) {
+
+		/* eslint-disable no-unused-vars */
+		// See https://github.com/eslint/eslint/issues/6125
+		var name;
+>>>>>>> master
 
 module.exports = function (parentId, list, _isProduction, _options) {
   isProduction = _isProduction
 
+<<<<<<< HEAD
   options = _options || {}
+=======
+	// Evaluates a script in a global context
+	globalEval: function( code ) {
+		DOMEval( code );
+	},
+>>>>>>> master
 
   var styles = listToStyles(parentId, list)
   addStylesToDom(styles)
@@ -3712,6 +3796,24 @@ $exports.store = store;
 
 "use strict";
 
+<<<<<<< HEAD
+=======
+	return type === "array" || length === 0 ||
+		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+}
+var Sizzle =
+/*!
+ * Sizzle CSS Selector Engine v2.3.3
+ * https://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2016-08-08
+ */
+(function( window ) {
+>>>>>>> master
 
 exports.__esModule = true;
 exports.default = void 0;
@@ -3740,7 +3842,24 @@ exports.default = _default;
 /* 33 */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 var g;
+=======
+	// Instance-specific data
+	expando = "sizzle" + 1 * new Date(),
+	preferredDoc = window.document,
+	dirruns = 0,
+	done = 0,
+	classCache = createCache(),
+	tokenCache = createCache(),
+	compilerCache = createCache(),
+	sortOrder = function( a, b ) {
+		if ( a === b ) {
+			hasDuplicate = true;
+		}
+		return 0;
+	},
+>>>>>>> master
 
 // This works in non-strict mode
 g = (function() {
@@ -3774,9 +3893,16 @@ if (false) {
 }
 
 
+<<<<<<< HEAD
 /***/ }),
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
+=======
+	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
+	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+
+	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+>>>>>>> master
 
 var disposed = false
 var normalizeComponent = __webpack_require__(11)
@@ -3818,7 +3944,12 @@ if (false) {(function () {
   })
 })()}
 
+<<<<<<< HEAD
 module.exports = Component.exports
+=======
+	rinputs = /^(?:input|select|textarea|button)$/i,
+	rheader = /^h\d$/i,
+>>>>>>> master
 
 
 /***/ }),
@@ -3889,7 +4020,16 @@ function taskDebounce(fn) {
   };
 }
 
+<<<<<<< HEAD
 var supportsMicroTasks = isBrowser && window.Promise;
+=======
+	disabledAncestor = addCombinator(
+		function( elem ) {
+			return elem.disabled === true && ("form" in elem || "label" in elem);
+		},
+		{ dir: "parentNode", next: "legend" }
+	);
+>>>>>>> master
 
 /**
 * Create a debounced version of a method, that's asynchronously deferred
@@ -4045,6 +4185,7 @@ function isOffsetContainer(element) {
   return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
 }
 
+<<<<<<< HEAD
 /**
  * Finds the root node (document, shadowDOM root) of the given element
  * @method
@@ -4078,6 +4219,22 @@ function findCommonOffsetParent(element1, element2) {
   var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
   var start = order ? element1 : element2;
   var end = order ? element2 : element1;
+=======
+			// Take advantage of querySelectorAll
+			if ( support.qsa &&
+				!compilerCache[ selector + " " ] &&
+				(!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+
+				if ( nodeType !== 1 ) {
+					newContext = context;
+					newSelector = selector;
+
+				// qSA looks outside Element context, which is not what we want
+				// Thanks to Andrew Dupont for this workaround technique
+				// Support: IE <=8
+				// Exclude object elements
+				} else if ( context.nodeName.toLowerCase() !== "object" ) {
+>>>>>>> master
 
   // Get common ancestor container
   var range = document.createRange();
@@ -4092,8 +4249,27 @@ function findCommonOffsetParent(element1, element2) {
       return commonAncestorContainer;
     }
 
+<<<<<<< HEAD
     return getOffsetParent(commonAncestorContainer);
   }
+=======
+				if ( newSelector ) {
+					try {
+						push.apply( results,
+							newContext.querySelectorAll( newSelector )
+						);
+						return results;
+					} catch ( qsaError ) {
+					} finally {
+						if ( nid === expando ) {
+							context.removeAttribute( "id" );
+						}
+					}
+				}
+			}
+		}
+	}
+>>>>>>> master
 
   // one of the nodes is inside shadowDOM, find which one
   var element1root = getRoot(element1);
@@ -4209,6 +4385,7 @@ var createClass = function () {
 
 
 
+<<<<<<< HEAD
 var defineProperty = function (obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -4220,6 +4397,13 @@ var defineProperty = function (obj, key, value) {
   } else {
     obj[key] = value;
   }
+=======
+					// Where there is no isDisabled, check manually
+					/* jshint -W018 */
+					elem.isDisabled !== !disabled &&
+						disabledAncestor( elem ) === disabled;
+			}
+>>>>>>> master
 
   return obj;
 };
@@ -4279,6 +4463,7 @@ function getBoundingClientRect(element) {
     }
   } catch (e) {}
 
+<<<<<<< HEAD
   var result = {
     left: rect.left,
     top: rect.top,
@@ -4290,6 +4475,19 @@ function getBoundingClientRect(element) {
   var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
   var width = sizes.width || element.clientWidth || result.right - result.left;
   var height = sizes.height || element.clientHeight || result.bottom - result.top;
+=======
+/**
+ * Detects XML nodes
+ * @param {Element|Object} elem An element or a document
+ * @returns {Boolean} True iff elem is a non-HTML XML node
+ */
+isXML = Sizzle.isXML = function( elem ) {
+	// documentElement is verified for cases where it doesn't yet exist
+	// (such as loading iframes in IE - #4833)
+	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
+	return documentElement ? documentElement.nodeName !== "HTML" : false;
+};
+>>>>>>> master
 
   var horizScrollbar = element.offsetWidth - width;
   var vertScrollbar = element.offsetHeight - height;
@@ -4734,6 +4932,7 @@ function update() {
     return;
   }
 
+<<<<<<< HEAD
   var data = {
     instance: this,
     styles: {},
@@ -4742,14 +4941,35 @@ function update() {
     flipped: false,
     offsets: {}
   };
+=======
+	// Make sure that attribute selectors are quoted
+	expr = expr.replace( rattributeQuotes, "='$1']" );
+
+	if ( support.matchesSelector && documentIsHTML &&
+		!compilerCache[ expr + " " ] &&
+		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
+		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+>>>>>>> master
 
   // compute reference element offsets
   data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
 
+<<<<<<< HEAD
   // compute auto placement, store placement inside the data object,
   // modifiers will be able to edit `placement` if needed
   // and refer to originalPlacement to know the original value
   data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+=======
+			// IE 9's matchesSelector returns false on disconnected nodes
+			if ( ret || support.disconnectedMatch ||
+					// As well, disconnected nodes are said to be in a document
+					// fragment in IE 9
+					elem.document && elem.document.nodeType !== 11 ) {
+				return ret;
+			}
+		} catch (e) {}
+	}
+>>>>>>> master
 
   // store the computed placement inside `originalPlacement`
   data.originalPlacement = data.placement;
@@ -5277,12 +5497,21 @@ function arrow(data, options) {
   // compute center of the popper
   var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
 
+<<<<<<< HEAD
   // Compute the sideValue using the updated popper offsets
   // take popper margin in account because we don't have this info available
   var css = getStyleComputedProperty(data.instance.popper);
   var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
   var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
   var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+=======
+		"contains": markFunction(function( text ) {
+			text = text.replace( runescape, funescape );
+			return function( elem ) {
+				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+			};
+		}),
+>>>>>>> master
 
   // prevent arrowElement from being placed not contiguously to its popper
   sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
@@ -5431,8 +5660,18 @@ function flip(data, options) {
 
     var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
 
+<<<<<<< HEAD
     // flip the variation if required
     var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+=======
+		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; --i >= 0; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+>>>>>>> master
 
     // flips variation if reference element overflows boundaries
     var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
@@ -6804,6 +7043,7 @@ var observeDom = function observeDom(el, callback, opts)
     }
   }); // Have the observer observe foo for changes in children, etc
 
+<<<<<<< HEAD
   obs.observe(el, _objectSpread({
     childList: true,
     subtree: true
@@ -6816,6 +7056,60 @@ var observeDom = function observeDom(el, callback, opts)
 
 var _default = observeDom;
 exports.default = _default;
+=======
+jQuery.each( {
+	parent: function( elem ) {
+		var parent = elem.parentNode;
+		return parent && parent.nodeType !== 11 ? parent : null;
+	},
+	parents: function( elem ) {
+		return dir( elem, "parentNode" );
+	},
+	parentsUntil: function( elem, i, until ) {
+		return dir( elem, "parentNode", until );
+	},
+	next: function( elem ) {
+		return sibling( elem, "nextSibling" );
+	},
+	prev: function( elem ) {
+		return sibling( elem, "previousSibling" );
+	},
+	nextAll: function( elem ) {
+		return dir( elem, "nextSibling" );
+	},
+	prevAll: function( elem ) {
+		return dir( elem, "previousSibling" );
+	},
+	nextUntil: function( elem, i, until ) {
+		return dir( elem, "nextSibling", until );
+	},
+	prevUntil: function( elem, i, until ) {
+		return dir( elem, "previousSibling", until );
+	},
+	siblings: function( elem ) {
+		return siblings( ( elem.parentNode || {} ).firstChild, elem );
+	},
+	children: function( elem ) {
+		return siblings( elem.firstChild );
+	},
+	contents: function( elem ) {
+        if ( nodeName( elem, "iframe" ) ) {
+            return elem.contentDocument;
+        }
+
+        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+        // Treat the template element as a regular one in browsers that
+        // don't support it.
+        if ( nodeName( elem, "template" ) ) {
+            elem = elem.content || elem;
+        }
+
+        return jQuery.merge( [], elem.childNodes );
+	}
+}, function( name, fn ) {
+	jQuery.fn[ name ] = function( until, selector ) {
+		var matched = jQuery.map( this, fn, until );
+>>>>>>> master
 
 /***/ }),
 /* 42 */
@@ -8107,6 +8401,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 				if ( elem ) {
 
+<<<<<<< HEAD
 					// Verify the id attribute
 					node = elem.getAttributeNode("id");
 					if ( node && node.value === id ) {
@@ -8128,6 +8423,9 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 		};
 	}
+=======
+var isHiddenWithinTree = function( elem, el ) {
+>>>>>>> master
 
 	// Tag
 	Expr.find["TAG"] = support.getElementsByTagName ?
@@ -8135,11 +8433,19 @@ setDocument = Sizzle.setDocument = function( node ) {
 			if ( typeof context.getElementsByTagName !== "undefined" ) {
 				return context.getElementsByTagName( tag );
 
+<<<<<<< HEAD
 			// DocumentFragment nodes don't have gEBTN
 			} else if ( support.qsa ) {
 				return context.querySelectorAll( tag );
 			}
 		} :
+=======
+			// Otherwise, check computed style
+			// Support: Firefox <=43 - 45
+			// Disconnected elements can have computed display: none, so first confirm that elem is
+			// in the document.
+			jQuery.contains( elem.ownerDocument, elem ) &&
+>>>>>>> master
 
 		function( tag, context ) {
 			var elem,
@@ -8204,11 +8510,17 @@ setDocument = Sizzle.setDocument = function( node ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
 			}
 
+<<<<<<< HEAD
 			// Support: IE8
 			// Boolean attributes and "value" are not treated correctly
 			if ( !el.querySelectorAll("[selected]").length ) {
 				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
 			}
+=======
+		// Starting value computation is required for potential unit mismatches
+		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssNum.exec( jQuery.css( elem, prop ) );
+>>>>>>> master
 
 			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
 			if ( !el.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
@@ -8367,12 +8679,27 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return 0;
 		}
 
+<<<<<<< HEAD
 		var cur,
 			i = 0,
 			aup = a.parentNode,
 			bup = b.parentNode,
 			ap = [ a ],
 			bp = [ b ];
+=======
+		return this.each( function() {
+			if ( isHiddenWithinTree( this ) ) {
+				jQuery( this ).show();
+			} else {
+				jQuery( this ).hide();
+			}
+		} );
+	}
+} );
+var rcheckableType = ( /^(?:checkbox|radio)$/i );
+
+var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
+>>>>>>> master
 
 		// Parentless nodes are either documents or disconnected
 		if ( !aup || !bup ) {
@@ -8498,10 +8825,57 @@ Sizzle.uniqueSort = function( results ) {
 		j = 0,
 		i = 0;
 
+<<<<<<< HEAD
 	// Unless we *know* we can detect duplicates, assume their presence
 	hasDuplicate = !support.detectDuplicates;
 	sortInput = !support.sortStable && results.slice( 0 );
 	results.sort( sortOrder );
+=======
+function buildFragment( elems, context, scripts, selection, ignored ) {
+	var elem, tmp, tag, wrap, contains, j,
+		fragment = context.createDocumentFragment(),
+		nodes = [],
+		i = 0,
+		l = elems.length;
+
+	for ( ; i < l; i++ ) {
+		elem = elems[ i ];
+
+		if ( elem || elem === 0 ) {
+
+			// Add nodes directly
+			if ( toType( elem ) === "object" ) {
+
+				// Support: Android <=4.0 only, PhantomJS 1 only
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
+
+			// Convert non-html into a text node
+			} else if ( !rhtml.test( elem ) ) {
+				nodes.push( context.createTextNode( elem ) );
+
+			// Convert html into DOM nodes
+			} else {
+				tmp = tmp || fragment.appendChild( context.createElement( "div" ) );
+
+				// Deserialize a standard representation
+				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
+				wrap = wrapMap[ tag ] || wrapMap._default;
+				tmp.innerHTML = wrap[ 1 ] + jQuery.htmlPrefilter( elem ) + wrap[ 2 ];
+
+				// Descend through wrappers to the right content
+				j = wrap[ 0 ];
+				while ( j-- ) {
+					tmp = tmp.lastChild;
+				}
+
+				// Support: Android <=4.0 only, PhantomJS 1 only
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, tmp.childNodes );
+
+				// Remember the top-level container
+				tmp = fragment.firstChild;
+>>>>>>> master
 
 	if ( hasDuplicate ) {
 		while ( (elem = results[i++]) ) {
@@ -8518,8 +8892,12 @@ Sizzle.uniqueSort = function( results ) {
 	// See https://github.com/jquery/sizzle/pull/225
 	sortInput = null;
 
+<<<<<<< HEAD
 	return results;
 };
+=======
+		contains = jQuery.contains( elem.ownerDocument, elem );
+>>>>>>> master
 
 /**
  * Utility function for retrieving the text value of an array of DOM nodes
@@ -8531,11 +8909,17 @@ getText = Sizzle.getText = function( elem ) {
 		i = 0,
 		nodeType = elem.nodeType;
 
+<<<<<<< HEAD
 	if ( !nodeType ) {
 		// If no nodeType, this is expected to be an array
 		while ( (node = elem[i++]) ) {
 			// Do not traverse comment nodes
 			ret += getText( node );
+=======
+		// Preserve script evaluation history
+		if ( contains ) {
+			setGlobalEval( tmp );
+>>>>>>> master
 		}
 	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
 		// Use textContent for elements
@@ -8567,7 +8951,17 @@ Expr = Sizzle.selectors = {
 
 	attrHandle: {},
 
+<<<<<<< HEAD
 	find: {},
+=======
+	// Support: IE <=11 only
+	// Make sure textarea (and checkbox) defaultValue is properly cloned
+	div.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
+} )();
+var documentElement = document.documentElement;
+
+>>>>>>> master
 
 	relative: {
 		">": { dir: "parentNode", first: true },
@@ -8587,6 +8981,7 @@ Expr = Sizzle.selectors = {
 				match[3] = " " + match[3] + " ";
 			}
 
+<<<<<<< HEAD
 			return match.slice( 0, 4 );
 		},
 
@@ -8602,6 +8997,15 @@ Expr = Sizzle.selectors = {
 				8 y of y-component
 			*/
 			match[1] = match[1].toLowerCase();
+=======
+// Support: IE <=9 only
+// See #13393 for more info
+function safeActiveElement() {
+	try {
+		return document.activeElement;
+	} catch ( err ) { }
+}
+>>>>>>> master
 
 			if ( match[1].slice( 0, 3 ) === "nth" ) {
 				// nth-* requires argument
@@ -8863,6 +9267,7 @@ Expr = Sizzle.selectors = {
 		}
 	},
 
+<<<<<<< HEAD
 	pseudos: {
 		// Potentially complex pseudos
 		"not": markFunction(function( selector ) {
@@ -8872,6 +9277,50 @@ Expr = Sizzle.selectors = {
 			var input = [],
 				results = [],
 				matcher = compile( selector.replace( rtrim, "$1" ) );
+=======
+	dispatch: function( nativeEvent ) {
+
+		// Make a writable jQuery.Event from the native event object
+		var event = jQuery.event.fix( nativeEvent );
+
+		var i, j, ret, matched, handleObj, handlerQueue,
+			args = new Array( arguments.length ),
+			handlers = ( dataPriv.get( this, "events" ) || {} )[ event.type ] || [],
+			special = jQuery.event.special[ event.type ] || {};
+
+		// Use the fix-ed jQuery.Event rather than the (read-only) native event
+		args[ 0 ] = event;
+
+		for ( i = 1; i < arguments.length; i++ ) {
+			args[ i ] = arguments[ i ];
+		}
+
+		event.delegateTarget = this;
+
+		// Call the preDispatch hook for the mapped type, and let it bail if desired
+		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
+			return;
+		}
+
+		// Determine handlers
+		handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+
+		// Run delegates first; they may want to stop propagation beneath us
+		i = 0;
+		while ( ( matched = handlerQueue[ i++ ] ) && !event.isPropagationStopped() ) {
+			event.currentTarget = matched.elem;
+
+			j = 0;
+			while ( ( handleObj = matched.handlers[ j++ ] ) &&
+				!event.isImmediatePropagationStopped() ) {
+
+				// Triggered event must either 1) have no namespace, or 2) have namespace(s)
+				// a subset or equal to those in the bound event (both can have no namespace).
+				if ( !event.rnamespace || event.rnamespace.test( handleObj.namespace ) ) {
+
+					event.handleObj = handleObj;
+					event.data = handleObj.data;
+>>>>>>> master
 
 			return matcher[ expando ] ?
 				markFunction(function( seed, matches, context, xml ) {
@@ -8988,6 +9437,7 @@ Expr = Sizzle.selectors = {
 		"parent": function( elem ) {
 			return !Expr.pseudos["empty"]( elem );
 		},
+<<<<<<< HEAD
 
 		// Element/input types
 		"header": function( elem ) {
@@ -9038,6 +9488,41 @@ Expr = Sizzle.selectors = {
 			var i = 1;
 			for ( ; i < length; i += 2 ) {
 				matchIndexes.push( i );
+=======
+		focus: {
+
+			// Fire native event if possible so blur/focus sequence is correct
+			trigger: function() {
+				if ( this !== safeActiveElement() && this.focus ) {
+					this.focus();
+					return false;
+				}
+			},
+			delegateType: "focusin"
+		},
+		blur: {
+			trigger: function() {
+				if ( this === safeActiveElement() && this.blur ) {
+					this.blur();
+					return false;
+				}
+			},
+			delegateType: "focusout"
+		},
+		click: {
+
+			// For checkbox, fire native event so checked state will be right
+			trigger: function() {
+				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
+					this.click();
+					return false;
+				}
+			},
+
+			// For cross-browser consistency, don't fire native .click() on links
+			_default: function( event ) {
+				return nodeName( event.target, "a" );
+>>>>>>> master
 			}
 			return matchIndexes;
 		}),
@@ -9060,6 +9545,7 @@ Expr = Sizzle.selectors = {
 	}
 };
 
+<<<<<<< HEAD
 Expr.pseudos["nth"] = Expr.pseudos["eq"];
 
 // Add button/input type pseudos
@@ -9100,6 +9586,9 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 		}
 
 		matched = false;
+=======
+jQuery.removeEvent = function( elem, type, handle ) {
+>>>>>>> master
 
 		// Combinators
 		if ( (match = rcombinators.exec( soFar )) ) {
@@ -9264,6 +9753,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 	if ( postFilter && !postFilter[ expando ] ) {
 		postFilter = setMatcher( postFilter );
 	}
+<<<<<<< HEAD
 	if ( postFinder && !postFinder[ expando ] ) {
 		postFinder = setMatcher( postFinder, postSelector );
 	}
@@ -9272,6 +9762,41 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			preMap = [],
 			postMap = [],
 			preexisting = results.length,
+=======
+};
+
+// Includes all common event props including KeyEvent and MouseEvent specific props
+jQuery.each( {
+	altKey: true,
+	bubbles: true,
+	cancelable: true,
+	changedTouches: true,
+	ctrlKey: true,
+	detail: true,
+	eventPhase: true,
+	metaKey: true,
+	pageX: true,
+	pageY: true,
+	shiftKey: true,
+	view: true,
+	"char": true,
+	charCode: true,
+	key: true,
+	keyCode: true,
+	button: true,
+	buttons: true,
+	clientX: true,
+	clientY: true,
+	offsetX: true,
+	offsetY: true,
+	pointerId: true,
+	pointerType: true,
+	screenX: true,
+	screenY: true,
+	targetTouches: true,
+	toElement: true,
+	touches: true,
+>>>>>>> master
 
 			// Get initial elements from seed or context
 			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
@@ -9297,6 +9822,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			matcher( matcherIn, matcherOut, context, xml );
 		}
 
+<<<<<<< HEAD
 		// Apply postFilter
 		if ( postFilter ) {
 			temp = condense( matcherOut, postMap );
@@ -9376,6 +9902,29 @@ function matcherFromTokens( tokens ) {
 			checkContext = null;
 			return ret;
 		} ];
+=======
+		return event.which;
+	}
+}, jQuery.event.addProp );
+
+// Create mouseenter/leave events using mouseover/out and event-time checks
+// so that event delegation works in jQuery.
+// Do the same for pointerenter/pointerleave and pointerover/pointerout
+//
+// Support: Safari 7 only
+// Safari sends mouseenter too often; see:
+// https://bugs.chromium.org/p/chromium/issues/detail?id=470258
+// for the description of the bug (it existed in older Chrome versions as well).
+jQuery.each( {
+	mouseenter: "mouseover",
+	mouseleave: "mouseout",
+	pointerenter: "pointerover",
+	pointerleave: "pointerout"
+}, function( orig, fix ) {
+	jQuery.event.special[ orig ] = {
+		delegateType: fix,
+		bindType: fix,
+>>>>>>> master
 
 	for ( ; i < len; i++ ) {
 		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
@@ -9636,9 +10185,24 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 // Sort stability
 support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
 
+<<<<<<< HEAD
 // Support: Chrome 14-35+
 // Always assume duplicates if they aren't passed to the comparison function
 support.detectDuplicates = !!hasDuplicate;
+=======
+							// Optional AJAX dependency, but won't run scripts if not present
+							if ( jQuery._evalUrl ) {
+								jQuery._evalUrl( node.src );
+							}
+						} else {
+							DOMEval( node.textContent.replace( rcleanScript, "" ), doc, node );
+						}
+					}
+				}
+			}
+		}
+	}
+>>>>>>> master
 
 // Initialize against the default document
 setDocument();
@@ -9664,6 +10228,7 @@ if ( !assert(function( el ) {
 	});
 }
 
+<<<<<<< HEAD
 // Support: IE<9
 // Use defaultValue in place of getAttribute("value")
 if ( !support.attributes || !assert(function( el ) {
@@ -9674,10 +10239,18 @@ if ( !support.attributes || !assert(function( el ) {
 	addHandle( "value", function( elem, name, isXML ) {
 		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
 			return elem.defaultValue;
+=======
+		if ( node.parentNode ) {
+			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+				setGlobalEval( getAll( node, "script" ) );
+			}
+			node.parentNode.removeChild( node );
+>>>>>>> master
 		}
 	});
 }
 
+<<<<<<< HEAD
 // Support: IE<9
 // Use getAttributeNode to fetch booleans when getAttribute lies
 if ( !assert(function( el ) {
@@ -9693,6 +10266,21 @@ if ( !assert(function( el ) {
 		}
 	});
 }
+=======
+jQuery.extend( {
+	htmlPrefilter: function( html ) {
+		return html.replace( rxhtmlTag, "<$1></$2>" );
+	},
+
+	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
+		var i, l, srcElements, destElements,
+			clone = elem.cloneNode( true ),
+			inPage = jQuery.contains( elem.ownerDocument, elem );
+
+		// Fix IE cloning issues
+		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
+				!jQuery.isXMLDoc( elem ) ) {
+>>>>>>> master
 
 return Sizzle;
 
@@ -9912,9 +10500,16 @@ var rootjQuery,
 
 					return this;
 
+<<<<<<< HEAD
 				// HANDLE: $(#id)
 				} else {
 					elem = document.getElementById( match[ 2 ] );
+=======
+		// Support: IE 9 only
+		// Detect overflow:scroll screwiness (gh-3699)
+		div.style.position = "absolute";
+		scrollboxSizeVal = div.offsetWidth === 36 || "absolute";
+>>>>>>> master
 
 					if ( elem ) {
 
@@ -9957,8 +10552,14 @@ var rootjQuery,
 // Give the init function the jQuery prototype for later instantiation
 init.prototype = jQuery.fn;
 
+<<<<<<< HEAD
 // Initialize central reference
 rootjQuery = jQuery( document );
+=======
+		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = jQuery.style( elem, name );
+		}
+>>>>>>> master
 
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
@@ -10013,16 +10614,47 @@ jQuery.fn.extend( {
 			}
 		}
 
+<<<<<<< HEAD
 		return this.pushStack( matched.length > 1 ? jQuery.uniqueSort( matched ) : matched );
 	},
 
 	// Determine the position of an element within the set
 	index: function( elem ) {
+=======
+var
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rcustomProp = /^--/,
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	},
+
+	cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style;
+
+// Return a css property mapped to a potentially vendor prefixed property
+function vendorPropName( name ) {
+
+	// Shortcut for names that are not vendor prefixed
+	if ( name in emptyStyle ) {
+		return name;
+	}
+
+	// Check for vendor prefixed names
+	var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
+		i = cssPrefixes.length;
+>>>>>>> master
 
 		// No argument, return index in parent
 		if ( !elem ) {
 			return ( this[ 0 ] && this[ 0 ].parentNode ) ? this.first().prevAll().length : -1;
 		}
+<<<<<<< HEAD
 
 		// Index in selector
 		if ( typeof elem === "string" ) {
@@ -10044,6 +10676,22 @@ jQuery.fn.extend( {
 			)
 		);
 	},
+=======
+	}
+}
+
+// Return a property mapped along what jQuery.cssProps suggests or to
+// a vendor prefixed property.
+function finalPropName( name ) {
+	var ret = jQuery.cssProps[ name ];
+	if ( !ret ) {
+		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+	}
+	return ret;
+}
+
+function setPositiveNumber( elem, value, subtract ) {
+>>>>>>> master
 
 	addBack: function( selector ) {
 		return this.add( selector == null ?
@@ -10136,7 +10784,20 @@ jQuery.each( {
 } );
 var rnothtmlwhite = ( /[^\x20\t\r\n\f]+/g );
 
+<<<<<<< HEAD
 
+=======
+		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// Assuming integer scroll gutter, subtract the rest and round down
+		delta += Math.max( 0, Math.ceil(
+			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+			computedVal -
+			delta -
+			extra -
+			0.5
+		) );
+	}
+>>>>>>> master
 
 // Convert String-formatted options into Object-formatted ones
 function createOptions( options ) {
@@ -10147,6 +10808,7 @@ function createOptions( options ) {
 	return object;
 }
 
+<<<<<<< HEAD
 /*
  * Create a callback list using the following parameters:
  *
@@ -10170,6 +10832,60 @@ function createOptions( options ) {
  *
  */
 jQuery.Callbacks = function( options ) {
+=======
+function getWidthOrHeight( elem, dimension, extra ) {
+
+	// Start with computed style
+	var styles = getStyles( elem ),
+		val = curCSS( elem, dimension, styles ),
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox;
+
+	// Support: Firefox <=54
+	// Return a confounding non-pixel value or feign ignorance, as appropriate.
+	if ( rnumnonpx.test( val ) ) {
+		if ( !extra ) {
+			return val;
+		}
+		val = "auto";
+	}
+
+	// Check for style in case a browser which returns unreliable values
+	// for getComputedStyle silently falls back to the reliable elem.style
+	valueIsBorderBox = valueIsBorderBox &&
+		( support.boxSizingReliable() || val === elem.style[ dimension ] );
+
+	// Fall back to offsetWidth/offsetHeight when value is "auto"
+	// This happens for inline elements with no explicit setting (gh-3571)
+	// Support: Android <=4.1 - 4.3 only
+	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+	if ( val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) {
+
+		val = elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ];
+
+		// offsetWidth/offsetHeight provide border-box values
+		valueIsBorderBox = true;
+	}
+
+	// Normalize "" and auto
+	val = parseFloat( val ) || 0;
+
+	// Adjust for the element's box model
+	return ( val +
+		boxModelAdjustment(
+			elem,
+			dimension,
+			extra || ( isBorderBox ? "border" : "content" ),
+			valueIsBorderBox,
+			styles,
+
+			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			val
+		)
+	) + "px";
+}
+>>>>>>> master
 
 	// Convert options from String-formatted to Object-formatted if needed
 	// (we check in cache first)
@@ -10183,8 +10899,27 @@ jQuery.Callbacks = function( options ) {
 		// Last fire value for non-forgettable lists
 		memory,
 
+<<<<<<< HEAD
 		// Flag to know if list was already fired
 		fired,
+=======
+	// Don't automatically add "px" to these possibly-unitless properties
+	cssNumber: {
+		"animationIterationCount": true,
+		"columnCount": true,
+		"fillOpacity": true,
+		"flexGrow": true,
+		"flexShrink": true,
+		"fontWeight": true,
+		"lineHeight": true,
+		"opacity": true,
+		"order": true,
+		"orphans": true,
+		"widows": true,
+		"zIndex": true,
+		"zoom": true
+	},
+>>>>>>> master
 
 		// Flag to prevent firing
 		locked,
@@ -10227,7 +10962,14 @@ jQuery.Callbacks = function( options ) {
 				memory = false;
 			}
 
+<<<<<<< HEAD
 			firing = false;
+=======
+			// If a number was passed in, add the unit (except for certain CSS properties)
+			if ( type === "number" ) {
+				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
+			}
+>>>>>>> master
 
 			// Clean up if we're done firing for good
 			if ( locked ) {
@@ -10358,10 +11100,37 @@ jQuery.Callbacks = function( options ) {
 			fired: function() {
 				return !!fired;
 			}
+<<<<<<< HEAD
 		};
 
 	return self;
 };
+=======
+		},
+
+		set: function( elem, value, extra ) {
+			var matches,
+				styles = getStyles( elem ),
+				isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+				subtract = extra && boxModelAdjustment(
+					elem,
+					dimension,
+					extra,
+					isBorderBox,
+					styles
+				);
+
+			// Account for unreliable border-box dimensions by comparing offset* to computed and
+			// faking a content-box to get border and padding (gh-3699)
+			if ( isBorderBox && support.scrollboxSize() === styles.position ) {
+				subtract -= Math.ceil(
+					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+					parseFloat( styles[ dimension ] ) -
+					boxModelAdjustment( elem, dimension, "border", false, styles ) -
+					0.5
+				);
+			}
+>>>>>>> master
 
 
 function Identity( v ) {
@@ -10513,8 +11282,26 @@ jQuery.extend( {
 										// Normal processors (resolve) also hook into progress
 										} else {
 
+<<<<<<< HEAD
 											// ...and disregard older resolution values
 											maxDepth++;
+=======
+			// Use step hook for back compat.
+			// Use cssHook if its there.
+			// Use .style if available and use plain properties where available.
+			if ( jQuery.fx.step[ tween.prop ] ) {
+				jQuery.fx.step[ tween.prop ]( tween );
+			} else if ( tween.elem.nodeType === 1 &&
+				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
+					jQuery.cssHooks[ tween.prop ] ) ) {
+				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
+			} else {
+				tween.elem[ tween.prop ] = tween.now;
+			}
+		}
+	}
+};
+>>>>>>> master
 
 											then.call(
 												returned,
@@ -12083,10 +12870,15 @@ jQuery.event = {
 		}
 	},
 
+<<<<<<< HEAD
 	dispatch: function( nativeEvent ) {
 
 		// Make a writable jQuery.Event from the native event object
 		var event = jQuery.event.fix( nativeEvent );
+=======
+	// If an array was passed in, assume that it is an array of form elements.
+	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+>>>>>>> master
 
 		var i, j, ret, matched, handleObj, handlerQueue,
 			args = new Array( arguments.length ),
@@ -12674,6 +13466,7 @@ function domManip( collection, args, callback, ignored ) {
 				if ( i !== iNoClone ) {
 					node = jQuery.clone( node, true, true );
 
+<<<<<<< HEAD
 					// Keep references to cloned scripts for later restoration
 					if ( hasScripts ) {
 
@@ -12682,6 +13475,22 @@ function domManip( collection, args, callback, ignored ) {
 						jQuery.merge( scripts, getAll( node, "script" ) );
 					}
 				}
+=======
+				// Builds headers hashtable if needed
+				getResponseHeader: function( key ) {
+					var match;
+					if ( completed ) {
+						if ( !responseHeaders ) {
+							responseHeaders = {};
+							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
+								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
+							}
+						}
+						match = responseHeaders[ key.toLowerCase() ];
+					}
+					return match == null ? null : match;
+				},
+>>>>>>> master
 
 				callback.call( collection[ i ], node, i );
 			}
@@ -12990,6 +13799,7 @@ var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
 var getStyles = function( elem ) {
 
+<<<<<<< HEAD
 		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
 		// IE throws on elements created in popups
 		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
@@ -12998,6 +13808,21 @@ var getStyles = function( elem ) {
 		if ( !view || !view.opener ) {
 			view = window;
 		}
+=======
+jQuery._evalUrl = function( url ) {
+	return jQuery.ajax( {
+		url: url,
+
+		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		type: "GET",
+		dataType: "script",
+		cache: true,
+		async: false,
+		global: false,
+		"throws": true
+	} );
+};
+>>>>>>> master
 
 		return view.getComputedStyle( elem );
 	};
@@ -13204,7 +14029,43 @@ function vendorPropName( name ) {
 			return name;
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+} );
+
+// Handle cache's special case and crossDomain
+jQuery.ajaxPrefilter( "script", function( s ) {
+	if ( s.cache === undefined ) {
+		s.cache = false;
+	}
+	if ( s.crossDomain ) {
+		s.type = "GET";
+	}
+} );
+
+// Bind script tag hack transport
+jQuery.ajaxTransport( "script", function( s ) {
+
+	// This transport only deals with cross domain requests
+	if ( s.crossDomain ) {
+		var script, callback;
+		return {
+			send: function( _, complete ) {
+				script = jQuery( "<script>" ).prop( {
+					charset: s.scriptCharset,
+					src: s.url
+				} ).on(
+					"load error",
+					callback = function( evt ) {
+						script.remove();
+						callback = null;
+						if ( evt ) {
+							complete( evt.type === "error" ? 404 : 200, evt.type );
+						}
+					}
+				);
+>>>>>>> master
 
 // Return a property mapped along what jQuery.cssProps suggests or to
 // a vendor prefixed property.
@@ -16875,6 +17736,19 @@ jQuery.each( [
 	};
 } );
 
+<<<<<<< HEAD
+=======
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  api: {
+    base: 'http://localhost/barna/barna/public/',
+    token: 'rafael1delgado'
+  },
+  env: {
+    base: '/barna/barna/public/'
+  }
+});
+>>>>>>> master
 
 
 
@@ -60838,9 +61712,19 @@ module.exports = function(module) {
         return;
       }
 
+<<<<<<< HEAD
       if (selector) {
         target = document.querySelector(selector);
       }
+=======
+"use strict";
+/*!
+  * vue-router v3.0.2
+  * (c) 2018 Evan You
+  * @license MIT
+  */
+/*  */
+>>>>>>> master
 
       this._activate(this._element, listElement);
 
@@ -61637,6 +62521,7 @@ module.exports = function parseHeaders(headers) {
 "use strict";
 
 
+<<<<<<< HEAD
 var utils = __webpack_require__(17);
 
 module.exports = (
@@ -61648,6 +62533,25 @@ module.exports = (
     var msie = /(msie|trident)/i.test(navigator.userAgent);
     var urlParsingNode = document.createElement('a');
     var originURL;
+=======
+function fillParams (
+  path,
+  params,
+  routeMsg
+) {
+  try {
+    var filler =
+      regexpCompileCache[path] ||
+      (regexpCompileCache[path] = pathToRegexp_1.compile(path));
+    return filler(params || {}, { pretty: true })
+  } catch (e) {
+    if (true) {
+      warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
+    }
+    return ''
+  }
+}
+>>>>>>> master
 
     /**
     * Parse a URL to discover it's components
@@ -61747,6 +62651,20 @@ function btoa(input) {
 
 module.exports = btoa;
 
+<<<<<<< HEAD
+=======
+function normalizeLocation (
+  raw,
+  current,
+  append,
+  router
+) {
+  var next = typeof raw === 'string' ? { path: raw } : raw;
+  // named target
+  if (next.name || next._normalized) {
+    return next
+  }
+>>>>>>> master
 
 /***/ }),
 /* 168 */
@@ -62483,7 +63401,13 @@ function once (fn) {
   }
 }
 
+<<<<<<< HEAD
 var SSR_ATTR = 'data-server-rendered';
+=======
+var HTML5History = (function (History$$1) {
+  function HTML5History (router, base) {
+    var this$1 = this;
+>>>>>>> master
 
 var ASSET_TYPES = [
   'component',
@@ -62576,10 +63500,22 @@ var config = ({
    */
   isUnknownElement: no,
 
+<<<<<<< HEAD
   /**
    * Get the namespace of an element
    */
   getTagNamespace: noop,
+=======
+var HashHistory = (function (History$$1) {
+  function HashHistory (router, base, fallback) {
+    History$$1.call(this, router, base);
+    // check history fallback deeplinking
+    if (fallback && checkFallback(this.base)) {
+      return
+    }
+    ensureSlash();
+  }
+>>>>>>> master
 
   /**
    * Parse the real tag name for the specific platform.
@@ -62704,12 +63640,21 @@ var isServerRendering = function () {
   return _isServer
 };
 
+<<<<<<< HEAD
 // detect devtools
 var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 /* istanbul ignore next */
 function isNative (Ctor) {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+=======
+function getHash () {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  var href = window.location.href;
+  var index = href.indexOf('#');
+  return index === -1 ? '' : decodeURI(href.slice(index + 1))
+>>>>>>> master
 }
 
 var hasSymbol =
@@ -62743,10 +63688,19 @@ if (typeof Set !== 'undefined' && isNative(Set)) {
 
 /*  */
 
+<<<<<<< HEAD
 var warn = noop;
 var tip = noop;
 var generateComponentTrace = (noop); // work around flow check
 var formatComponentName = (noop);
+=======
+var AbstractHistory = (function (History$$1) {
+  function AbstractHistory (router, base) {
+    History$$1.call(this, router, base);
+    this.stack = [];
+    this.index = -1;
+  }
+>>>>>>> master
 
 {
   var hasConsole = typeof console !== 'undefined';
@@ -63010,6 +63964,7 @@ methodsToPatch.forEach(function (method) {
     var args = [], len = arguments.length;
     while ( len-- ) args[ len ] = arguments[ len ];
 
+<<<<<<< HEAD
     var result = original.apply(this, args);
     var ob = this.__ob__;
     var inserted;
@@ -63030,6 +63985,12 @@ methodsToPatch.forEach(function (method) {
 });
 
 /*  */
+=======
+  // main app already initialized.
+  if (this.app) {
+    return
+  }
+>>>>>>> master
 
 var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
 
@@ -63221,6 +64182,7 @@ function set (target, key, val) {
     target[key] = val;
     return val
   }
+<<<<<<< HEAD
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
     warn(
@@ -63228,6 +64190,37 @@ function set (target, key, val) {
       'at runtime - declare it upfront in the data option.'
     );
     return val
+=======
+  return [].concat.apply([], route.matched.map(function (m) {
+    return Object.keys(m.components).map(function (key) {
+      return m.components[key]
+    })
+  }))
+};
+
+VueRouter.prototype.resolve = function resolve (
+  to,
+  current,
+  append
+) {
+  var location = normalizeLocation(
+    to,
+    current || this.history.current,
+    append,
+    this
+  );
+  var route = this.match(location, current);
+  var fullPath = route.redirectedFrom || route.fullPath;
+  var base = this.history.base;
+  var href = createHref(base, fullPath, this.mode);
+  return {
+    location: location,
+    route: route,
+    href: href,
+    // for backwards compat
+    normalizedTo: location,
+    resolved: route
+>>>>>>> master
   }
   if (!ob) {
     target[key] = val;
@@ -63282,7 +64275,12 @@ function dependArray (value) {
   }
 }
 
+<<<<<<< HEAD
 /*  */
+=======
+VueRouter.install = install;
+VueRouter.version = '3.0.2';
+>>>>>>> master
 
 /**
  * Option overwriting strategies are functions that handle
@@ -95703,7 +96701,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(2.25rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:auto; \n      height:15px;\n\t    border: 1px solid #ebebeb;\n      border-radius: 4px;\n}\n.capsula-categoria\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n.sin-categoria\n  {\n    height: 15px;\n    font-size: 11px;\n    background-color: #dc3545;\n    font-weight: bold;\n    text-transform: uppercase;\n    color: #fff !important;\n}\n.btn-cargar\n  {\n    border: 1px solid #e7e7e7;\n    border-radius: 25px;\n    height: 30px;\n    background-color: #fbfbfb;\n    color: #424242;\n}\n.btn-error\n  {\n    border: 1px solid red !important;\n}\n  /* para las imagenes con contenedores*/\n.img-barna\n  {\n    width:auto;\n    height:27px;\n    border: 1px solid #ebebeb;\n    border-radius: 4px;\n}\n.img-barna-grande\n  {\n    width:100%;\n    height:auto;\n    border: 1px solid #ebebeb;\n    border-radius: 4px;\n}\n.form-validation\n  {\n    padding-bottom: 18px !important;\n}\n", ""]);
+exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(2.25rem + 1.15px);\n}\n.imagen-cuadrada\n\t{\n\t    width:auto; \n      height:15px;\n\t    border: 1px solid #ebebeb;\n      border-radius: 3px;\n}\n.capsula-categoria\n\t{\n\t    height: 15px;\n\t    font-size: 11px;\n\t    background-color: #ef7a6e;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n\t    margin-right: 4px;\n}\n.sin-categoria\n  {\n    height: 15px;\n    font-size: 11px;\n    background-color: #dc3545;\n    font-weight: bold;\n    text-transform: uppercase;\n    color: #fff !important;\n}\n.btn-cargar\n  {\n    border: 1px solid #e7e7e7;\n    border-radius: 25px;\n    height: 30px;\n    background-color: #fbfbfb;\n    color: #424242;\n}\n.btn-error\n  {\n    border: 1px solid red !important;\n}\n  /* para las imagenes con contenedores*/\n.img-barna\n  {\n    width:auto;\n    height:27px;\n    border: 1px solid #ebebeb;\n    border-radius: 4px;\n}\n.img-barna-grande\n  {\n    width:100%;\n    height:auto;\n    border: 1px solid #ebebeb;\n    border-radius: 4px;\n}\n.form-validation\n  {\n    padding-bottom: 18px !important;\n}\n", ""]);
 
 // exports
 
@@ -102435,7 +103433,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:auto;\n\t    height:27px;\n\t    border: 1px solid #ebebeb;\n\t    border-radius: 4px;\n}\n.img-barna-grande\n  \t{\n    \twidth:100%;\n    \theight:auto;\n    \tborder: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n.imagen-cuadrada\n\t{\n\t    width:15px; \n\t    height:15px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 5px;\n}\n.h-30\n\t{\n\t\theight:30px;\n}\n.imagen-cuadrada\n\t{\n\t    width:auto; \n\t    height:15px;\n\t    border: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n", ""]);
+exports.push([module.i, "\nselect.form-control:not([size]):not([multiple])\n\t{\n    \theight: calc(1.75rem + 1.15px);\n}\n.btn-cargar\n \t{\n\t    border: 1px solid #e7e7e7;\n\t    border-radius: 25px;\n\t    height: 30px;\n\t    background-color: #fbfbfb;\n\t    color: #424242;\n}\n.img-barna\n  \t{\n\t    width:auto;\n\t    height:27px;\n\t    border: 1px solid #ebebeb;\n\t    border-radius: 4px;\n}\n.img-barna-grande\n  \t{\n    \twidth:100%;\n    \theight:auto;\n    \tborder: 1px solid #ebebeb;\n    \tborder-radius: 4px;\n}\n.textarea-barna\n\t{\n\t\tborder-radius: 5px;\n}\n.h-30\n\t{\n\t\theight:30px;\n}\n.imagen-cuadrada\n\t{\n\t    width:auto; \n\t    height:15px;\n\t    border: 1px solid #ebebeb;\n    \tborder-radius: 3px;\n}\n.disenable\n\t{\n\t\theight: 15px;\n\t    font-size: 11px;\n\t    background-color: #56bb6f;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n}\n.no-disenable\n\t{\n\t\theight: 15px;\n\t    font-size: 11px;\n\t    background-color: #fa5151;\n\t    font-weight: bold;\n\t    text-transform: uppercase;\n\t    color: #fff !important;\n}\n", ""]);
 
 // exports
 
@@ -102452,6 +103450,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(22);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -102782,12 +103798,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 								tamanho: '',
 								articulo: {
 										id: '',
-										nombre: ''
+										nombre: '',
+										tipo: ''
 								}
 						},
 						banners: [],
 						articulos: [],
-						fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'articulo', label: 'Artículo', sortable: true, 'class': 'text-left' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+						fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'articulo', label: 'Artículo', sortable: true, 'class': 'text-left' }, { key: 'tipo', label: 'Tipo', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
 						currentPage: 1,
 						perPage: 10,
 						totalRows: 0,
@@ -103115,6 +104132,24 @@ var render = function() {
                   }
                 },
                 {
+                  key: "tipo",
+                  fn: function(row) {
+                    return [
+                      row.item.articulo.personalizable
+                        ? _c(
+                            "span",
+                            { staticClass: "badge badge-pill disenable" },
+                            [_vm._v("Diseñable")]
+                          )
+                        : _c(
+                            "span",
+                            { staticClass: "badge badge-pill no-disenable" },
+                            [_vm._v("No Diseñable")]
+                          )
+                    ]
+                  }
+                },
+                {
                   key: "actions",
                   fn: function(row) {
                     return [
@@ -103225,7 +104260,17 @@ var render = function() {
                       return _c(
                         "option",
                         { domProps: { value: articulo.id } },
-                        [_vm._v(_vm._s(articulo.nombre))]
+                        [
+                          _vm._v(
+                            _vm._s(articulo.nombre) +
+                              " - " +
+                              _vm._s(
+                                articulo.personalizable
+                                  ? "Diseñable"
+                                  : "No Diseñable"
+                              )
+                          )
+                        ]
                       )
                     }),
                     0
@@ -103486,7 +104531,17 @@ var render = function() {
                       return _c(
                         "option",
                         { domProps: { value: articulo.id } },
-                        [_vm._v(_vm._s(articulo.nombre))]
+                        [
+                          _vm._v(
+                            _vm._s(articulo.nombre) +
+                              " - " +
+                              _vm._s(
+                                articulo.personalizable
+                                  ? "Diseñable"
+                                  : "No Diseñable"
+                              )
+                          )
+                        ]
                       )
                     }),
                     0
@@ -112802,7 +113857,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:15px;\n  height:15px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.sin-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #dc3545;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n}\n.publicado\n{\n  color: #43A047 !important;\n}\n.no-publicado\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn\n{\n  color:#fff !important;\n}\n.cuadro-negro\n{\n  width:15px;\n  height:15px;\n  background-color:#000;\n  margin-left: auto;\n  margin-right: auto;\n}\n.imagen-cuadrada\n{\n  width:auto;\n  height:15px;\n  border: 1px solid #ebebeb;\n  border-radius: 3px;\n}\n.img-barna-grande\n{\n  width:100%;\n  height:auto;\n  border: 1px solid #ebebeb;\n  border-radius: 4px;\n}\n.capsula-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #ef7a6e;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n  margin-right: 4px;\n}\n.sin-rubros\n{\n  height: 15px;\n  font-size: 11px;\n  background-color: #dc3545;\n  font-weight: bold;\n  text-transform: uppercase;\n  color: #fff !important;\n}\n.icono-verde\n{\n  color: #43A047 !important;\n}\n.icono-rojo\n{\n  color: #E53935 !important;\n}\n.dropdown-item\n{\n  padding: 0px 10px !important;\n  font-size: 14px !important;\n  text-align: right !important;\n}\n", ""]);
 
 // exports
 
@@ -113045,6 +114100,43 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -113058,11 +114150,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       filtro: null,
       articulo: {
         id: '',
-        nombre: ''
+        nombre: '',
+        imagen: ''
       },
       articulos: [],
       articulos_filtro: [],
-      fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' }, { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' }, { key: 'publicado', label: 'Estado', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
+      fields: [{ key: 'id', label: 'ID', sortable: true, 'class': 'text-center' }, { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' }, { key: 'nombre', label: 'Nombre', sortable: true, 'class': 'text-left' }, { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' }, { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' }, { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' }, { key: 'publicado', label: 'Publicado', sortable: true, 'class': 'text-center' }, { key: 'destacado', label: 'Destacado', sortable: true, 'class': 'text-center' }, { key: 'actions', label: 'Acciones', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 10,
       totalRows: 0,
@@ -113156,6 +114249,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
       this.articulos_filtro = resultado; //actualizo mis articulos
       this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
+    },
+    ver: function ver(articulo) {
+      this.articulo.imagen = articulo.principal.url;
+      this.articulo.nombre = articulo.nombre;
+      $('#ver').modal('show');
     },
     eliminarArticulo: function eliminarArticulo(articulo) {
       this.articulo.id = articulo.id;
@@ -113439,10 +114537,25 @@ var render = function() {
                     return [
                       row.item.principal
                         ? [
-                            _c("img", {
-                              staticClass: "imagen-cuadrada",
-                              attrs: { src: _vm.url + row.item.principal.url }
-                            })
+                            _c(
+                              "a",
+                              {
+                                staticClass: "cursor",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.ver(row.item)
+                                  }
+                                }
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "imagen-cuadrada",
+                                  attrs: {
+                                    src: _vm.url + row.item.principal.url
+                                  }
+                                })
+                              ]
+                            )
                           ]
                         : [_c("div", { staticClass: "cuadro-negro" })]
                     ]
@@ -113519,11 +114632,27 @@ var render = function() {
                     return [
                       row.item.publicado
                         ? _c("i", {
-                            staticClass: "fa fa-check publicado",
+                            staticClass: "fa fa-check icono-verde",
                             attrs: { "aria-hidden": "true" }
                           })
                         : _c("i", {
-                            staticClass: "fa fa-remove no-publicado",
+                            staticClass: "fa fa-remove icono-rojo",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                    ]
+                  }
+                },
+                {
+                  key: "destacado",
+                  fn: function(row) {
+                    return [
+                      row.item.destacado
+                        ? _c("i", {
+                            staticClass: "fa fa-check icono-verde",
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        : _c("i", {
+                            staticClass: "fa fa-remove icono-rojo",
                             attrs: { "aria-hidden": "true" }
                           })
                     ]
@@ -113653,6 +114782,33 @@ var render = function() {
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "ver" } }, [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h5", { staticClass: "modal-title pull-left" }, [
+              _c("strong", [
+                _vm._v("Artículo: " + _vm._s(this.articulo.nombre))
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(2)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("img", {
+                staticClass: "img-responsive img-barna-grande",
+                attrs: { src: _vm.url + _vm.articulo.imagen }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
+      ])
     ])
   ])
 }
@@ -113683,6 +114839,34 @@ var staticRenderFns = [
           attrs: { "data-dismiss": "modal" }
         },
         [_c("i", { staticClass: "fa fa-remove" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "pull-right mr-1 cursor",
+        attrs: { "data-dismiss": "modal" }
+      },
+      [_c("i", { staticClass: "fa fa-remove" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-xs btn-inverse pull-right",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cerrar")]
       )
     ])
   }

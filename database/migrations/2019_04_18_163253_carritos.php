@@ -17,6 +17,14 @@ class Carritos extends Migration
             $table->boolean('disponible');
             $table->enum('tipo',['compra','pedido']);
 
+            $table->unsignedInteger('color_id');//color
+            $table->foreign('color_id')->references('id')->on('articulos')->onDelete('cascade');
+
+            $table->unsignedInteger('talle_id')->nullable();//talle
+            $table->foreign('talle_id')->references('id')->on('articulos')->onDelete('cascade');
+
+            //¿qué pasa si el artículo tiene muchas característica? Es decir además de talle y color
+
             $table->unsignedInteger('articulo_id');
             $table->foreign('articulo_id')->references('id')->on('articulos')->onDelete('cascade');
 

@@ -25,11 +25,6 @@
     	border: 1px solid #ebebeb;
     	border-radius: 4px;
   	}
-  	.imagen-cuadrada
-	{
-	    width:15px; 
-	    height:15px;
-	}
 	.textarea-barna
 	{
 		border-radius: 5px;
@@ -43,7 +38,25 @@
 	    width:auto; 
 	    height:15px;
 	    border: 1px solid #ebebeb;
-    	border-radius: 4px;
+    	border-radius: 3px;
+	}
+	.disenable
+	{
+		height: 15px;
+	    font-size: 11px;
+	    background-color: #56bb6f;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	    color: #fff !important;
+	}
+	.no-disenable
+	{
+		height: 15px;
+	    font-size: 11px;
+	    background-color: #fa5151;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	    color: #fff !important;
 	}
 </style>
 
@@ -116,6 +129,11 @@
 	                	{{row.item.articulo.nombre}}
 	              	</template>
 
+	              	<template slot="tipo" slot-scope="row">
+	              		<span v-if="row.item.articulo.personalizable" class="badge badge-pill disenable">Diseñable</span>
+	                	<span v-else class="badge badge-pill no-disenable">No Diseñable</span>
+	              	</template>
+
 	              	<template slot="actions" slot-scope="row">
 	                	 <button @click="editar(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button>
                   		<button @click="eliminarBanner(row.item)" class="btn btn-xs btn-primary"><i class="fa fa-trash"></i></button>
@@ -142,7 +160,7 @@
                           	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
                               	<label class="control-label h6" for="nombre">Artículos</label>
                               	<select class="form-control input-sm input-rounded" v-model="banner.articulo.id">
-                                	<option  v-for="articulo in articulos" :value="articulo.id">{{articulo.nombre}}</option>
+                                	<option  v-for="articulo in articulos" :value="articulo.id">{{articulo.nombre}} - {{(articulo.personalizable) ? "Diseñable":"No Diseñable"}}</option>
                               	</select>
                           	</div>
                           	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-validation">
@@ -204,7 +222,7 @@
                           	<div class="col-lg-12 col-md-6 col-sm-12 col-xs-12 form-validation">
                               	<label class="control-label h6" for="nombre">Artículos</label>
                               	<select class="form-control input-sm input-rounded" v-model="banner.articulo.id">
-                                	<option  v-for="articulo in articulos" :value="articulo.id">{{articulo.nombre}}</option>
+                                	<option  v-for="articulo in articulos" :value="articulo.id">{{articulo.nombre}} - {{(articulo.personalizable) ? "Diseñable":"No Diseñable"}}</option>
                               	</select>
                           	</div>
                           	<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -331,7 +349,8 @@ export default
 	        	articulo:
 	        	{
 	        		id:'',
-	        		nombre:''
+	        		nombre:'',
+	        		tipo:'',
 	        	}
 	        },
 	        banners:[],
@@ -341,6 +360,7 @@ export default
 	           { key: 'id', label: 'ID', sortable: true, 'class': 'text-center' },
 	           { key: 'imagen', label: 'Imagen', sortable: true, 'class': 'text-center' },
 	           { key: 'articulo', label: 'Artículo', sortable: true, 'class': 'text-left' },
+	           { key: 'tipo', label: 'Tipo', sortable: true, 'class': 'text-center' },
 	           { key: 'actions', label: 'Acciones', 'class': 'text-center' }
 	        ],
 	        currentPage: 1,

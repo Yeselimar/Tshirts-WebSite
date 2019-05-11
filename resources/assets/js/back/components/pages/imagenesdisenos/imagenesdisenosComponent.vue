@@ -8,7 +8,7 @@
 	    width:auto; 
       height:15px;
 	    border: 1px solid #ebebeb;
-      border-radius: 4px;
+      border-radius: 3px;
 	}
 	.capsula-categoria
 	{
