@@ -81,6 +81,8 @@ Route::post('/articulo/{id}/detalles','ArticulosController@show')->name('articul
 Route::post('/articulo/{id}/no-disenable/actualizar','ArticulosController@updatenodisenable')->name('articulo.actualizar.nodisenable');
 Route::post('/articulo/{id}/disenable/actualizar','ArticulosController@updatedisenable')->name('articulo.actualizar.disenable');
 Route::post('/articulo/{id}/eliminar','ArticulosController@destroy')->name('articulo.eliminar');
+Route::post('/articulo/{id}/seleccionado','ArticulosController@articuloseleccionado')->name('articulo.seleccionado');
+
 
 //Front Articulos
 Route::post('/articulos/destacados/todos/no-personalizables','FrontArticulosController@destacadosnopersonalizables')->name('articulos.destacados.todos.nopersonalizables');
