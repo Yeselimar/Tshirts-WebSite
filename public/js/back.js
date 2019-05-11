@@ -113214,19 +113214,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     formatearmoneda: function formatearmoneda(monto) {
       return monto.toFixed(2);
     },
-    todos: function todos() {
-      var _this2 = this;
-
-      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulos/todos").then(function (response) {
-        if (response.articulos) {
-          _this2.articulos = response.articulos;
-          _this2.articulos_filtro = _this2.articulos; //inicialmente cargo todos los artículos
-          _this2.totalRows = _this2.articulos_filtro.length; // total de filas es igual al array de artículos filtro
-        }
-      }).catch(function (error) {
-        _this2.mensaje("error", "Ha ocurrido un error inesperado");
-      });
-    },
     busqueda: function busqueda() {
       var resultado = [];
       if (this.articulos && this.articulos.length) {
@@ -113263,17 +113250,30 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       $('#eliminar').modal('show');
     },
     eliminar: function eliminar() {
-      var _this3 = this;
+      var _this2 = this;
 
       $('#eliminar').modal('hide');
       var url = '/articulo/:id/eliminar';
       url = url.replace(':id', this.articulo.id);
       __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post(url).then(function (response) {
         if (response.res == 1) {
-          _this3.todos();
-          _this3.mensaje("success", response.msg);
+          _this2.todos();
+          _this2.mensaje("success", response.msg);
         } else {
-          _this3.mensaje("warning", response.msg);
+          _this2.mensaje("warning", response.msg);
+        }
+      }).catch(function (error) {
+        _this2.mensaje("error", "Ha ocurrido un error inesperado");
+      });
+    },
+    todos: function todos() {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__["a" /* default */].post("/articulos/todos").then(function (response) {
+        if (response.articulos) {
+          _this3.articulos = response.articulos;
+          _this3.articulos_filtro = _this3.articulos; //inicialmente cargo todos los artículos
+          _this3.totalRows = _this3.articulos_filtro.length; // total de filas es igual al array de artículos filtro
         }
       }).catch(function (error) {
         _this3.mensaje("error", "Ha ocurrido un error inesperado");

@@ -355,21 +355,6 @@
       {
           return monto.toFixed(2);
       },
-      todos()
-      {
-        CerService.post("/articulos/todos")
-        .then(response => {
-          if(response.articulos)
-          {
-            this.articulos = response.articulos;
-            this.articulos_filtro = this.articulos;//inicialmente cargo todos los artículos
-            this.totalRows = this.articulos_filtro.length;// total de filas es igual al array de artículos filtro
-          }
-        })
-        .catch(error => {
-          this.mensaje("error","Ha ocurrido un error inesperado");
-        });
-      },
       busqueda()
       {
         let resultado = [];
@@ -431,6 +416,21 @@
           else
           {
             this.mensaje("warning",response.msg);
+          }
+        })
+        .catch(error => {
+          this.mensaje("error","Ha ocurrido un error inesperado");
+        });
+      },
+      todos()
+      {
+        CerService.post("/articulos/todos")
+        .then(response => {
+          if(response.articulos)
+          {
+            this.articulos = response.articulos;
+            this.articulos_filtro = this.articulos;//inicialmente cargo todos los artículos
+            this.totalRows = this.articulos_filtro.length;// total de filas es igual al array de artículos filtro
           }
         })
         .catch(error => {
