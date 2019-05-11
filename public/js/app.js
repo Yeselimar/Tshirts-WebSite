@@ -3016,76 +3016,6 @@ Util_1.Collection.mapMethods(Node);
 
 
 /***/ }),
-<<<<<<< HEAD
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RestService__ = __webpack_require__(103);
-
-
-var CerService = {};
-
-CerService.setToken = function (token) {
-    __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].defaults.headers['session'] = token;
-};
-
-CerService.get = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].get(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.delete = function (endpoint) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].delete(endpoint).then(function (res) {
-        if (res.status === 200) {
-            // console.log('200');
-        }
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error al Eliminar');
-    });
-};
-
-CerService.post = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].post(endpoint, json).then(function (res) {
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        console.log('Error API');
-
-        if (err.response && err.response.status === 403) {
-            // location.reload()
-        }
-    });
-};
-
-CerService.put = function (endpoint, json) {
-
-    return __WEBPACK_IMPORTED_MODULE_0__RestService__["a" /* default */].put(endpoint, json).then(function (res) {
-        return res.data;
-    });
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (CerService);
-
-/***/ }),
-=======
->>>>>>> master
 /* 15 */,
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -19395,7 +19325,6 @@ exports.HitCanvas = HitCanvas;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-<<<<<<< HEAD
   api: {
     base: 'http://localhost/barna/barna/public/',
     token: 'rafael1delgado'
@@ -19403,23 +19332,6 @@ exports.HitCanvas = HitCanvas;
   env: {
     base: '/barna/barna/public/'
   }
-=======
-    /* api: {
-          base: 'http://www.proexcelenciaavaa.org/afodi/barna/public/',
-          token: 'ebf8ebbc77b700ed77d14afc03467335'
-      },
-      env: {
-      	base: '/afodi/barna/public/'
-      }*/
-
-    api: {
-        base: 'http://localhost:8000/',
-        token: 'ebf8ebbc77b700ed77d14afc03467335'
-    },
-    env: {
-        base: '/'
-    }
->>>>>>> master
 });
 
 /***/ }),
@@ -71991,11 +71903,7 @@ Util_1.Collection.mapMethods(Text);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(257);
-=======
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_js__ = __webpack_require__(258);
->>>>>>> master
 /*
 	Initializes Vuex on Vue.
 */
@@ -87672,15 +87580,7 @@ Factory_1.Factory.addGetterSetter(Node_1.Node, 'threshold', 0.5, Validators_1.ge
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 /*
@@ -87989,15 +87889,7 @@ var getters = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(104);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__indexStore__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(50);
 
@@ -88406,15 +88298,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__loading_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -91727,7 +91611,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n.filter {\n  font-family: arial;\n  padding: 6px 6px;\n  cursor: pointer;\n  border-radius: 6px;\n  transition: all 0.35s;\n}\n.filter.active {\n  box-shadow: 0px 1px 3px 0px #00000026;\n  background: lightgray !important;\n}\n.filter:hover {\n  background: lightgray;\n}\n.projects {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.projects-enter {\n  transform: scale(0.5) translatey(-80px);\n  opacity: 0;\n}\n.projects-leave-to {\n  transform: translatey(30px);\n  opacity: 0;\n}\n.projects-leave-active {\n  position: absolute;\n  z-index: -1;\n}\n.project {\n  transition: all .35s ease-in-out;\n  padding: 10px;\n  margin: 5px;\n  flex-basis: 24%;\n  box-shadow: 0px 2px 8px lightgrey;\n}\n@media (max-width: 980px) {\n.project {\n    flex-basis: 31%;\n}\n}\n@media (max-width: 750px) {\n.project {\n    flex-basis: 47%;\n}\n}\n@media (max-width: 450px) {\n.project {\n    flex-basis: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.filter {\n  font-family: arial;\n  padding: 6px 6px;\n  cursor: pointer;\n  border-radius: 6px;\n  transition: all 0.35s;\n}\n.filter.active {\n  box-shadow: 0px 1px 3px 0px #00000026;\n  background: lightgray !important;\n}\n.filter:hover {\n  background: lightgray;\n}\n.projects {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.projects-enter {\n  transform: scale(0.5) translatey(-80px);\n  opacity: 0;\n}\n.projects-leave-to {\n  transform: translatey(30px);\n  opacity: 0;\n}\n.projects-leave-active {\n  position: absolute;\n  z-index: -1;\n}\n.project {\n  transition: all .35s ease-in-out;\n  padding: 10px;\n  margin: 5px;\n  flex-basis: 30%;\n  box-shadow: 0px 2px 8px lightgrey;\n}\n@media (max-width: 980px) {\n.project {\n    flex-basis: 31%;\n}\n}\n@media (max-width: 750px) {\n.project {\n    flex-basis: 47%;\n}\n}\n@media (max-width: 450px) {\n.project {\n    flex-basis: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -91747,15 +91631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_share_prodDestacadosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -92554,15 +92430,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__layouts_loading_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -93085,16 +92953,9 @@ if (false) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
-=======
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(12);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -93844,15 +93705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_layouts_migajasComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_layouts_loading_vue__);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 //
 //
 //
@@ -94974,14 +94827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_misarticulosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -97229,15 +97075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_html2canvas___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_html2canvas__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -100584,15 +100422,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_share_prodDestacadosComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(16);
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(12);
-=======
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(14);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plugins_CerService__ = __webpack_require__(13);
->>>>>>> master
->>>>>>> master
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }

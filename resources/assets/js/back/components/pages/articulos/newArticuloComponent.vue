@@ -822,7 +822,7 @@
                   </label>
                   
                   <label class="contenido basis-33">
-                     <button type="button" @click="saveAll" class="btn btn-primary  m-b-10 pull-right"><span v-if="!isEdit">Guardar Artículo</span><span v-else>Actualizar Artículo</span></button>
+                     <button type="button" @click="validatorSave" class="btn btn-primary  m-b-10 pull-right"><span v-if="!isEdit">Guardar Artículo</span><span v-else>Actualizar Artículo</span></button>
                    </label>
 
                 </div>
@@ -886,6 +886,45 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="closeModalImagenesCargadas">Cerrar</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- Modal para seleccionar imagen -->
+
+     <!-- Modal para seleccionar imagen Principal-->
+    <div class="modal" id="modalImagenesCargadasPrincipal" @click.stop.prevent="closeModalImagenesCargadasPrincipal">
+      <div class="modal-dialog modal-lg"  @click.stop.prevent="">
+          <div class="modal-content modal-content-barna" >
+              <div class="modal-header modal-header-barna">
+                  <h5 class="modal-title pull-left"><strong>Seleccione Imagen como principal</strong></h5>
+                  <a class="pull-right mr-1" href="javascript(0)" data-dismiss="modal" @click.stop.prevent="closeModalImagenesCargadasPrincipal" ><i class="fa fa-remove"></i></a>
+              </div>
+              <div class="modal-body">
+                  <span class="projects justify-content-start align-items-center" :class="{'justify-content-center': files.length == 0}" style="padding:10px;min-height: 30vh; position: relative;">
+                          <div class="project" v-for="(file) in imagenesarticulos" :key="file.id" v-if="isEdit">
+                                <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImgPrincipal(file.id)">
+                                  <img v-if="file.thumb" :src="getUrl+file.thumb" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2"><i class="fa fa-check"></i></a>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="project" v-for="(file) in files" :key="file.id">
+                                <div class="pi-pic position-relative hover-pic" @click.stop.prevent="seleccionarImgPrincipal(file.id)">
+                                  <img v-if="file.thumb" :src="file.thumb" width="125" height="125" />
+                                  <span v-else>No Image</span>
+                                  <div class="pi-links">
+                                    <a class="cursor mr-2"><i class="fa fa-check"></i></a>
+                                  </div>
+                                </div>
+                            </div>
+                  </span>
+                  
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-inverse  m-b-10 pull-right" data-dismiss="modal" @click.stop.prevent="closeModalImagenesCargadasPrincipal">Cerrar</button>
               </div>
           </div>
       </div>
@@ -977,7 +1016,8 @@ export default {
         cantidad: 0,
         descripcion: '',
         destacado: false,
-        publicado:false
+        publicado:false,
+        id_img_principal: -1
       },
       posicionColor: [],
       table_responsive: false,
@@ -1104,6 +1144,20 @@ export default {
     }
   },
   methods: {
+    seleccionarImgPrincipal(id){
+      this.articulo.id_img_principal = id
+      $('#modalImagenesCargadasPrincipal').modal('hide')
+      this.saveAll()
+    },
+    existImgPrincipal(){
+      let existImgP = false
+      this.filesImagesColor.forEach((file,id) =>{
+        if(file.es_principal){
+          existImgP = true
+        }
+      },this)
+      return existImgP
+    },
     serviceArticulo(id){
        this.isLoading = true
       CerService.post("/articulo/no-disenable/"+id+"/editar")
@@ -1242,12 +1296,12 @@ export default {
     },
     eventRemoveColor(removedOption, id){
      this.filesImagesColor.forEach((file,id) =>{
-        if(removedOption == file.selectedColorRelacion){
+        if(removedOption.id == file.selectedColorRelacion.id){
           this.filesImagesColor[id].selectedColorRelacion = ""
         }
       },this)
      this.filesVariantes.forEach((file,id) =>{
-        if(removedOption == file.selectedColorVariante){
+        if(removedOption.id == file.selectedColorVariante.id){
           this.filesVariantes[id].selectedColorVariante = ""
         }
       },this)
@@ -1255,7 +1309,7 @@ export default {
     },
      eventRemoveTalle(removedOption, id){
         this.filesVariantes.forEach((file,id) =>{
-          if(removedOption == file.selectedTalleVariante){
+          if(removedOption.id == file.selectedTalleVariante.id){
             this.filesVariantes[id].selectedTalleVariante = ""
           }
         },this)
@@ -1455,14 +1509,19 @@ export default {
     validatorDisponibilidad(){
       let validator = true
       if(this.selectedCantidad.toUpperCase() == 'POR VARIANTE'){
-        this.filesVariantes.forEach(e => {
-          if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
-            validator = false
-            if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+        if(this.filesVariantes.length){
+           this.filesVariantes.forEach(e => {
+            if((e.selectedColorVariante == '' || e.selectedColorVariante == null)){
               validator = false
+              if(this.selectedTipo.toUpperCase() == 'ROPA' &&  (e.selectedTalleVariante == '' || e.selectedTalleVariante == null)){
+                validator = false
+              }
             }
-          }
-        },this)
+          },this)
+         }else{
+           validator = false
+         }
+       
       }
       return validator;
     },
@@ -1476,6 +1535,60 @@ export default {
       return validator;
     },
     saveAll(){
+      this.articulo.imagenes = this.files
+      this.articulo.rubros = this.selectedRubro
+      this.articulo.tipo = this.selectedTipo
+      this.articulo.talles = this.selectedTallas
+      this.articulo.colores = this.selectedColores
+      this.articulo.tipo_cantidad = this.selectedCantidad
+      this.articulo.talles_colores = this.filesVariantes
+      this.articulo.imagenes_colores = this.filesImagesColor
+      this.articulo.mask_precio = this.maskAmount
+      this.articulo.mask_cantidad = this.maskCantidad
+      this.articulo.imagenes_eliminadas= this.imagesRemoves
+
+      var dataform = new FormData();
+      for( var i = 0; i < this.files.length; i++ ){
+          let file = this.files[i].file;
+          dataform.append('imagenes[' + i + ']', file);
+      }
+      let data = JSON.stringify({
+              articulo: this.articulo,
+          });
+      dataform.append('articulo',data)
+      console.log(dataform);
+      let url = ''
+      this.isLoading=true
+       if( !this.isEdit){
+          url = '/articulo/no-disenable/guardar'
+      }else {
+         url = '/articulo/'+this.$route.params.id+'/no-disenable/actualizar'
+      }
+      CerService.post(url,dataform,{
+      headers:
+        {
+            'Content-Type': 'application/json',
+        }
+      })
+      .then(response => 
+      {
+          console.log(response)
+          if(response.res == 1){
+            this.msgAlert(response.msg,'success')
+            this.$router.push({ name: 'articulos' });
+
+          } else {
+            this.msgAlert(response.msg,'warning')
+          }
+          this.isLoading=false
+      })
+      .catch(error => {
+        this.msgAlert('Ha ocurrido un error inesperado','error')
+          this.isLoading=false
+
+      });
+    },
+    validatorSave(){
        this.$validator.validateAll("form-create").then(resp => 
         {
           if (resp)
@@ -1489,59 +1602,11 @@ export default {
                         if (resD && this.validatorDisponibilidad()){
                             if (this.validatorImagenRelacion()){
                                 if (this.validatorRelacion()){
-                                  console.log(this.articulo.precioGeneral);
-                                    this.articulo.imagenes = this.files
-                                    this.articulo.rubros = this.selectedRubro
-                                    this.articulo.tipo = this.selectedTipo
-                                    this.articulo.talles = this.selectedTallas
-                                    this.articulo.colores = this.selectedColores
-                                    this.articulo.tipo_cantidad = this.selectedCantidad
-                                    this.articulo.talles_colores = this.filesVariantes
-                                    this.articulo.imagenes_colores = this.filesImagesColor
-                                    this.articulo.mask_precio = this.maskAmount
-                                    this.articulo.mask_cantidad = this.maskCantidad
-                                    this.articulo.imagenes_eliminadas= this.imagesRemoves
-
-                                    var dataform = new FormData();
-                                    for( var i = 0; i < this.files.length; i++ ){
-                                        let file = this.files[i].file;
-                                        dataform.append('imagenes[' + i + ']', file);
-                                    }
-                                    let data = JSON.stringify({
-                                            articulo: this.articulo,
-                                        });
-                                    dataform.append('articulo',data)
-                                    console.log(dataform);
-                                    let url = ''
-                                    this.isLoading=true
-                                     if( !this.isEdit){
-                                        url = '/articulo/no-disenable/guardar'
+                                    if(this.existImgPrincipal()){
+                                      this.saveAll()
                                     }else {
-                                       url = '/articulo/'+this.$route.params.id+'/no-disenable/actualizar'
+                                      this.openModalImagenesCargadasPrincipal()
                                     }
-                                    CerService.post(url,dataform,{
-                                    headers:
-                                      {
-                                          'Content-Type': 'application/json',
-                                      }
-                                    })
-                                    .then(response => 
-                                    {
-                                        console.log(response)
-                                        if(response.res == 1){
-                                          this.msgAlert(response.msg,'success')
-                                          this.$router.push({ name: 'articulos' });
-
-                                        } else {
-                                          this.msgAlert(response.msg,'warning')
-                                        }
-                                        this.isLoading=false
-                                    })
-                                    .catch(error => {
-                                      this.msgAlert('Ha ocurrido un error inesperado','error')
-                                        this.isLoading=false
-
-                                    });
                                   } else {
                                     let element = document.getElementById("tabcontent");
                                       var options = {
@@ -1633,6 +1698,15 @@ export default {
         $('#modalImagenesCargadas').modal('hide')
 
     },
+    closeModalImagenesCargadasPrincipal(){
+        $('#modalImagenesCargadasPrincipal').modal('hide')
+        if(this.isEdit){
+          this.msgAlert('Debe seleccionar una imagen como principal al actualizar artículo','warning')
+
+        } else {
+          this.msgAlert('Debe seleccionar una imagen como principal al guardar artículo','warning')
+        }
+    },
     openModalImg(img,isSaved){
         this.selectedImg=img;
         this.isSaved = isSaved
@@ -1641,6 +1715,9 @@ export default {
      openModalImagenesCargadas(index){
         this.indexRelacion = index
         $('#modalImagenesCargadas').modal('show')
+    },
+    openModalImagenesCargadasPrincipal(){
+        $('#modalImagenesCargadasPrincipal').modal('show')
     },
     setPaymentAmount() {
       let amount = this.maskAmount;
