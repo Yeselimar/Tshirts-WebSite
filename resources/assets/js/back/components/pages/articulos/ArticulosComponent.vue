@@ -72,9 +72,9 @@
       <div class="container-fluid">
 
         <div class="text-right">
-          <a class="btn btn-xs btn-danger" @click="filtro=-1">Todos</a>
-          <a class="btn btn-xs btn-danger" @click="filtro=1">Diseñables</a>
-          <a class="btn btn-xs btn-danger" @click="filtro=0">No Diseñables</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == -1}" @click="filtro=-1">Todos</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == 1}" @click="filtro=1">Diseñables</a>
+          <a class="btn btn-xs btn-danger" :class="{'actived-button': filtro == 0}" @click="filtro=0">No Diseñables</a>
         </div>
 
         <div class="card">
@@ -183,8 +183,8 @@
                     <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item cursor">Editar</a>
-                      <a class="dropdown-item cursor">Eliminar</a>
+                      <a class="dropdown-item cursor" @click=" $router.push({ name: 'editArticulo',  params: { id: row.item.id }})">Editar</a>
+                      <a class="dropdown-item cursor" @click="eliminarArticulo(row.item)">Eliminar</a>
                       <a class="dropdown-item cursor">Vista Previa</a>
                   </div>
               </template>
@@ -197,9 +197,30 @@
         </div>
 
       </div>
+
+      <!-- Modal para eliminar imagen -->
+      <div class="modal" id="eliminar">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title pull-left"><strong>Artículo</strong></h5>
+                      <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  </div>
+                  <div class="modal-body">
+                      <div class="col-lg-12">
+                          <p>¿Está seguro que desea eliminar el artículo <strong>{{this.articulo.nombre}}</strong> de forma permanente? </p>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminar()">Eliminar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Modal para eliminar imagen -->
+
     </div>
-
-
 
 </template>
 
@@ -215,6 +236,11 @@
         url:'',
         isLoading: false,
         filtro:null,
+        articulo:
+        {
+          id:'',
+          nombre:''
+        },
         articulos:[],
         articulos_filtro:[],
         fields:
@@ -302,20 +328,10 @@
           }
         })
         .catch(error => {
-          this.$swal
-          .mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 4000
-          })
-          .fire({
-            type: "error",
-            title: "Ha ocurrido un error inesperado"
-          });
+          this.mensaje("error","Ha ocurrido un error inesperado");
         });
       },
-      busqueda: function()
+      busqueda()
       {
         let resultado = [];
         if(this.articulos  && this.articulos.length)
@@ -348,6 +364,46 @@
         }
         this.articulos_filtro = resultado;//actualizo mis articulos
         this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
+      },
+      eliminarArticulo(articulo)
+      {
+        this.articulo.id = articulo.id;
+        this.articulo.nombre = articulo.nombre;
+        $('#eliminar').modal('show');
+      },
+      eliminar()
+      {
+        $('#eliminar').modal('hide');
+        var url = '/articulo/:id/eliminar';
+        url = url.replace(':id', this.articulo.id);
+        CerService.post(url)
+        .then(response => {
+          if(response.res==1)
+          {
+            this.mensaje("success",response.msg);
+          }
+          else
+          {
+            this.mensaje("warning",response.msg);
+          }
+        })
+        .catch(error => {
+          this.mensaje("error","Ha ocurrido un error inesperado");
+        });
+      },
+      mensaje(tipo,mensaje)
+      {
+        this.$swal
+          .mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 4000
+          })
+          .fire({
+            type: tipo,
+            title: mensaje
+          });
       }
     },
     watch:

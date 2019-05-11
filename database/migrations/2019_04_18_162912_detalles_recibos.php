@@ -18,7 +18,7 @@ class DetallesRecibos extends Migration
             $table->unsignedInteger('articulo_id');
             $table->foreign('articulo_id')->references('id')->on('articulos')->onDelete('cascade');
 
-            $table->unsignedInteger('diseno_id');
+            $table->unsignedInteger('diseno_id')->nullable();
             $table->foreign('diseno_id')->references('id')->on('disenos')->onDelete('cascade');
 
             $table->unsignedInteger('recibo_id');             
