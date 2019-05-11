@@ -96,7 +96,7 @@ public function destacadospersonalizables()
                 }
                 if($encontrado)
                 {
-                    $articulo['imagen'] = $imagen;
+                    $articulo['principal'] = $imagen;
                 }
                 //¿Qué pasa si no encuentro la imagen principal?
             }
@@ -126,7 +126,7 @@ public function destacadospersonalizables()
                 }
                 if($encontrado)
                 {
-                    $articulo['imagen'] = $imagen;
+                    $articulo['principal'] = $imagen;
                 }
                 //¿Qué pasa si no encuentro la imagen principal?
             }

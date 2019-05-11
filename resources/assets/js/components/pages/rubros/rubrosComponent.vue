@@ -33,19 +33,6 @@
                                 <li v-for="(rubro,i) in tipos_rubros" :key="i" :class="[{'lista-activa': (getRubro === rubro.nombre)}]">
                                     <a @click.prevent="cambialo(rubro)" :class="[{'texto-rosa-barna': getRubro === rubro.nombre}]" class="cursor"><strong>{{rubro.nombre}}</strong></a>
                                 </li>
-                               <!-- <template >
-                                    <template v-if="rubro.nombre == getRubro">
-                                        <li class="lista-activa">
-                                            <a class="texto-rosa-barna" @click.prevent="cambialo(rubro)"><strong>{{rubro.nombre}}</strong></a>
-                                        </li>
-                                    </template>
-                                    <template v-else>
-                                        <li>
-                                            <a @click.prevent="cambialo(rubro)">{{rubro.nombre}}</a>
-                                        </li>
-                                    </template>
-                                </template>
-                                -->
                             </ul>
                         </div>
                     </div>
@@ -83,35 +70,8 @@
                 search: '',
                 rubro: '',
                 titulo: '',
-                isDesign: '',
                 tipos_rubros:
                 [
-                    /*
-                    {
-                        "id": 1,
-                        "nombre": 'Hombre',
-                    },
-                    {
-                        "id": 2,
-                        "nombre": 'Mujer',
-                    },
-                    {
-                        "id": 3,
-                        "nombre": 'Niño',
-                    },
-                    {
-                        "id": 4,
-                        "nombre": 'Niña',
-                    },
-                    {
-                        "id": 5,
-                        "nombre": 'Taza',
-                    },
-                    {
-                        "id": 6,
-                        "nombre": 'Buzo',
-                    }
-                    */
                 ]
             }
         },
@@ -126,7 +86,6 @@
         },
         created()
         {
-            this.isDesign = this.getIsDesign
             this.titulo = this.getSearch
             this.rubro = this.getRubro
             this.obtenerrubros();
@@ -163,27 +122,6 @@
                     this.$store.dispatch('cambiarRubro',this.rubro)
 
                 }
-                /*esto es codigo repetido
-                for (var i in this.tipos_rubros)
-                {
-                    this.tipos_rubros[i].seleccionable = false;
-                }
-                if(this.rubro.toLowerCase()==''.toLowerCase())
-                {
-                    this.tipos_rubros[0].seleccionable = true;
-                }
-                else
-                {
-                    for (var i in this.tipos_rubros)
-                    {
-                        if (this.tipos_rubros[i].nombre.toLowerCase() == this.rubro.toLowerCase())
-                        {
-                            this.tipos_rubros[i].seleccionable = true;
-                            break; 
-                        }
-                    }
-                }
-                /*esto es codigo repetido*/
             }
         },
         watch:
@@ -192,36 +130,9 @@
               this.rubro=this.$store.getters.getRubro
               //aqui llamamos a los pertinentes servicios que se llaman cuando cambia isDesign
             },
-            getIsDesign: function(){
-              this.isDesign = this.$store.getters.getIsDesign
-            },
             getSearch: function(){
               this.titulo = this.$store.getters.getSearch
             }
-            /*rubro: function()
-            {
-                ///esto es codigo repetido
-                for (var i in this.tipos_rubros)
-                {
-                    this.tipos_rubros[i].seleccionable = false;
-                }
-                if(this.rubro.toLowerCase()==''.toLowerCase())
-                {
-                    this.tipos_rubros[0].seleccionable = true;
-                }
-                else
-                {
-                    for (var i in this.tipos_rubros)
-                    {
-                        if (this.tipos_rubros[i].nombre.toLowerCase() == this.rubro.toLowerCase())
-                        {
-                            this.tipos_rubros[i].seleccionable = true;
-                            break; 
-                        }
-                    }
-                }
-                ///esto es codigo repetido
-            },*/
 
         }
     }

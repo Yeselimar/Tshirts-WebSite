@@ -52,6 +52,8 @@ if (token) {
 import Vue            from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueKonva from 'vue-konva';
+import BootstrapVue from 'bootstrap-vue';
+
 
 Vue.use(VueKonva)
 
@@ -68,6 +70,7 @@ Vue.use(VueScrollTo);
 import VueCarousel from 'vue-carousel';
 
 Vue.use(VueCarousel);
+Vue.use(BootstrapVue)
 
 
 /*
@@ -90,7 +93,9 @@ const app = new Vue({
   VeeValidate,
   VueScrollTo,
   VueKonva,
-  VueCarousel
+  VueCarousel,
+  BootstrapVue,
+
 });
 
 export default app;

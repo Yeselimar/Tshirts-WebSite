@@ -5,7 +5,9 @@
     		<div class="pi-pic">
                 <!---->
     			<!--<div class="tag-sale">ON SALE</div>---><!--Fue comentado por si llegara a utilizar-->
-    			<img :src="getUrl+image" alt="">
+                <div class="box-barna">
+                        <img :src="getUrl+image" alt="">
+                </div>
     			<div class="pi-links">
                     <a  v-if="getIsDesign" @click="disenar(id)" class="add-card add-bag cursor">
                         <i class="fa fa-magic"></i><span>Diseñar</span>

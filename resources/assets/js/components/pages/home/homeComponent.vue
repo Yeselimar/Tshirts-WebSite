@@ -96,7 +96,7 @@
                                 <div class="product-item">
                                     <div class="pi-pic">
                                         <div class="box-barna">
-                                            <img v-if="project.imagen" :src="getUrl+project.imagen.url" class="w-300" alt=""> 
+                                            <img v-if="project.principal" :src="getUrl+project.principal.url" class="w-300" alt=""> 
                                         </div>
                                         <div class="pi-links">
                                             <a  v-if="getIsDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
@@ -558,6 +558,7 @@ export default {
         {
             articulosdisenables()
             {
+                this.isLoading = true
                 CerService.post("/articulos/disenables/todos/api")
                 .then(response => 
                 {
