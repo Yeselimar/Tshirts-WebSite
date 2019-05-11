@@ -2404,6 +2404,27 @@ ol {
 	height: 100%;
 }
 
+.box-barna{
+  width: 100%;
+  height: 300px;
+  background: #CCC;
+  overflow: hidden;
+}
+
+.w-300{
+	width: 300px !important;
+}
+.box-barna img{
+  width: 100%;
+  height: auto;
+}
+@supports(object-fit: cover){
+    .box-barna img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
 /* ----------------
   Responsive
 ---------------------*/

@@ -95,7 +95,9 @@
                             <div class="project" v-bind:key="project.id" v-for="project in projectsC" >
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img v-if="project.imagen" :src="getUrl+project.imagen.url" alt=""> 
+                                        <div class="box-barna">
+                                            <img v-if="project.imagen" :src="getUrl+project.imagen.url" class="w-300" alt=""> 
+                                        </div>
                                         <div class="pi-links">
                                             <a  v-if="getIsDesign" @click="disenar(project.id)" class="add-card add-bag cursor"><i class="fa fa-magic"></i><span>Diseñar</span></a>
                                     <a  v-else class="add-card cursor" @click="verDetalle(project.id)"><i class="fa fa-eye"></i><span>Ver Detalle</span></a>

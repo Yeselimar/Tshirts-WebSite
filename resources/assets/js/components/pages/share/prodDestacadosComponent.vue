@@ -8,8 +8,8 @@
                     </div>
                     <div  class="product-slider owl-carousel">
                         <div  v-for="(item, i) in items" :key="i"  class="product-item border-items">
-                            <div class="pi-pic" data-mh="images">
-                                <div data-mh="image">
+                            <div class="pi-pic">
+                                <div class="box-barna">
                                     <img v-if="item.principal" :src="getUrl+item.principal.url" alt="">
                                 </div>
                                 <div class="pi-links" v-if="getIsDesign" >

@@ -41,6 +41,7 @@
   {
     border: 1px solid red !important;
   }
+  /* para las imagenes con contenedores*/
   .img-barna
   {
     width:auto;
