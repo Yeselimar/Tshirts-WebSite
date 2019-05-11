@@ -219,6 +219,7 @@ class ArticulosController extends Controller
         }
 
         //Imágenes Artículos
+        $eliminar_imagenes = collect();
         foreach($request->imagenes as $i=>$imagen)
         {
             //Atrapando los errores
@@ -232,6 +233,8 @@ class ArticulosController extends Controller
                     $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
                     $ruta = public_path().'/'.Articulo::carpeta();
                     $archivo->move($ruta, $nombre);
+
+                    $eliminar_imagenes->push(Articulo::carpeta().$nombre);
                 }
             }
             catch (\Exception $e)
@@ -245,6 +248,11 @@ class ArticulosController extends Controller
                 //Eliminando el artículo
                 $articulo->delete();
                 
+                //Eliminando imágenes subidas
+                foreach ($eliminar_imagenes as $imagen)
+                {
+                    File::delete($imagen);
+                }
                 return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
             }
             
@@ -363,10 +371,11 @@ class ArticulosController extends Controller
         $articulo->personalizable = 0;
         $articulo->publicado = $requests['publicado'];
         $articulo->destacado = $requests['destacado'];
-        
+
         //Imágenes Artículos
         if(isset($request->imagenes))
         {
+            $eliminar_imagenes = collect();
             foreach($request->imagenes as $i=>$imagen)
             {
                 //Atrapando los errores
@@ -374,16 +383,23 @@ class ArticulosController extends Controller
                 {
                     if($request->imagenes[$i])
                     {
-                        $imagen_articulo = new ImagenArticulo;
                         //Para guardar la imagen del artículo
+                        $imagen_articulo = new ImagenArticulo;
                         $archivo= $request->imagenes[$i];
                         $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
                         $ruta = public_path().'/'.Articulo::carpeta();
                         $archivo->move($ruta, $nombre);
+
+                        $eliminar_imagenes->push(Articulo::carpeta().$nombre);
                     }
                 }
                 catch (\Exception $e)
                 {
+                    //Eliminando imágenes subidas
+                    foreach($eliminar_imagenes as $imagen)
+                    {
+                        File::delete($imagen);
+                    }
                     return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
                 }
 
