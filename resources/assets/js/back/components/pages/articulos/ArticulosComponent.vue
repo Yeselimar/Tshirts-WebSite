@@ -13,8 +13,17 @@
   }
   .imagen-cuadrada
   {
-    width:15px;
+    width:auto;
     height:15px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+  }
+  .img-barna-grande
+  {
+    width:100%;
+    height:auto;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
   }
   .capsula-rubros
   {
@@ -35,11 +44,11 @@
     text-transform: uppercase;
     color: #fff !important;
   }
-  .publicado
+  .icono-verde
   {
     color: #43A047 !important;
   }
-  .no-publicado
+  .icono-rojo
   {
     color: #E53935 !important;
   }
@@ -142,7 +151,9 @@
 
               <template slot="imagen" slot-scope="row">
                 <template v-if="row.item.principal">
-                  <img :src="url+row.item.principal.url" class="imagen-cuadrada">
+                  <a class="cursor" @click="ver(row.item)">
+                    <img :src="url+row.item.principal.url" class="imagen-cuadrada">
+                  </a>
                 </template>
                 <template v-else>
                   <div class="cuadro-negro">
@@ -174,8 +185,13 @@
               </template>
 
               <template slot="publicado" slot-scope="row">
-                <i v-if="row.item.publicado" class="fa fa-check publicado" aria-hidden="true"></i>
-                <i v-else class="fa fa-remove no-publicado" aria-hidden="true"></i>
+                <i v-if="row.item.publicado" class="fa fa-check icono-verde" aria-hidden="true"></i>
+                <i v-else class="fa fa-remove icono-rojo" aria-hidden="true"></i>
+              </template>
+
+              <template slot="destacado" slot-scope="row">
+                <i v-if="row.item.destacado" class="fa fa-check icono-verde" aria-hidden="true"></i>
+                <i v-else class="fa fa-remove icono-rojo" aria-hidden="true"></i>
               </template>
 
               <template slot="actions" slot-scope="row">
@@ -198,7 +214,7 @@
 
       </div>
 
-      <!-- Modal para eliminar imagen -->
+      <!-- Modal para eliminar artículo -->
       <div class="modal" id="eliminar">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -218,7 +234,28 @@
               </div>
           </div>
       </div>
-      <!-- Modal para eliminar imagen -->
+      <!-- Modal para eliminar artículo -->
+
+      <!-- Modal para ver la imagen -->
+      <div class="modal" id="ver">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title pull-left"><strong>Artículo: {{this.articulo.nombre}}</strong></h5>
+                      <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+                  </div>
+                  <div class="modal-body">
+                      <div class="col-12">
+                        <img :src="url+articulo.imagen" class="img-responsive img-barna-grande">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">Cerrar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Modal para ver la imagen -->
 
     </div>
 
@@ -239,7 +276,8 @@
         articulo:
         {
           id:'',
-          nombre:''
+          nombre:'',
+          imagen:''
         },
         articulos:[],
         articulos_filtro:[],
@@ -251,7 +289,8 @@
           { key: 'rubros', label: 'Rubros', sortable: true, 'class': 'text-left' },
           { key: 'precio', label: 'Precio', sortable: true, 'class': 'text-center' },
           { key: 'cantidad', label: 'Cantidad', sortable: true, 'class': 'text-center' },
-          { key: 'publicado', label: 'Estado', sortable: true, 'class': 'text-center' },
+          { key: 'publicado', label: 'Publicado', sortable: true, 'class': 'text-center' },
+          { key: 'destacado', label: 'Destacado', sortable: true, 'class': 'text-center' },
           { key: 'actions', label: 'Acciones', 'class': 'text-center' }
         ],
         currentPage: 1,
@@ -365,6 +404,12 @@
         this.articulos_filtro = resultado;//actualizo mis articulos
         this.totalRows = this.articulos_filtro.length; //actulizo la longitud de mis artículos filtrados
       },
+      ver(articulo)
+      {
+        this.articulo.imagen = articulo.principal.url;
+        this.articulo.nombre = articulo.nombre;
+        $('#ver').modal('show');
+      },
       eliminarArticulo(articulo)
       {
         this.articulo.id = articulo.id;
@@ -380,6 +425,7 @@
         .then(response => {
           if(response.res==1)
           {
+            this.todos();
             this.mensaje("success",response.msg);
           }
           else

@@ -139,6 +139,7 @@ class ArticulosController extends Controller
 
     public function storenodisenable(Request $request)
     {
+
         //Convirtiendo mi string a json
         $aux = json_decode($request->articulo, true);
         $requests = $aux["articulo"];
@@ -247,7 +248,6 @@ class ArticulosController extends Controller
             foreach($requests["imagenes_colores"] as $imagen_color)
             {
                 $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
-                
                 if($imagen_articulo)
                 {
                     $imagen_articulo->caracteristica_id = $imagen_color["selectedColorRelacion"]['id'];
@@ -257,12 +257,15 @@ class ArticulosController extends Controller
             }
         }
 
-        //Si no hay nada en imágenes colores coloco la primera imagen como principal
-        if(count($requests["imagenes_colores"])==0)
+        //Colocando la imagen principal en caso de que no haya nada en imagenes_colores
+        if($requests["id_img_principal"]!=-1)
         {
-            $imagen_articulo = ImagenArticulo::paraArticulo($articulo->id)->first();
-            $imagen_articulo->principal = 1;
-            $imagen_articulo->save();
+            $imagen = ImagenArticulo::find($auxiliar[ $requests["id_img_principal"] ]);
+            if($imagen)
+            {
+                $imagen->principal = 1;
+                $imagen->save();
+            }
         }
 
         //Guardando las Talles y Colores
@@ -299,7 +302,7 @@ class ArticulosController extends Controller
         //Convirtiendo mi string a json
         $aux = json_decode($request->articulo, true);
         $requests = $aux["articulo"];
-
+        //dd($requests);
         //Validando los colores con las imágenes
         foreach($requests["imagenes_colores"] as $imagen)
         {
@@ -429,14 +432,12 @@ class ArticulosController extends Controller
         //-----------------------------------------------------------
 
         //Imágenes Artículos actualizando los colores y si es principal
-        //dd($auxiliar);
         if(count($requests["imagenes_colores"])!=0)
         {
             foreach($requests["imagenes_colores"] as $imagen_color)
             {
                 $tmp_id = $auxiliar[ $imagen_color['file']['id'] ];
                 
-                //($imagen_color['file']['id']);
                 if(isset($tmp_id))
                 {
                     $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
@@ -453,14 +454,17 @@ class ArticulosController extends Controller
             }
         }
         
-        //Si no hay nada en imágenes colores coloco la primera imagen como principal
-        if(count($requests["imagenes_colores"])==0)
+        //Colocando la imagen principal en caso de que no haya nada en imagenes_colores
+        if($requests["id_img_principal"]!=-1)
         {
-            $imagen_articulo = ImagenArticulo::paraArticulo($articulo->id)->first();
-            $imagen_articulo->principal = 1;
-            $imagen_articulo->save();
+            $imagen = ImagenArticulo::find($auxiliar[ $requests["id_img_principal"] ]);
+            if($imagen)
+            {
+                $imagen->principal = 1;
+                $imagen->save();
+            }
         }
-
+        
         //Eliminando los Talles Colores
         $resultado = TalleColor::paraArticulo($articulo->id)->delete();
 

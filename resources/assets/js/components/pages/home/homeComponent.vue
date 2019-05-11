@@ -43,7 +43,7 @@
     transition: all .35s ease-in-out;
     padding: 10px;
     margin: 5px;
-    flex-basis: 30%;
+    flex-basis: 24%;
 	box-shadow:0px 2px 8px lightgrey;
 
 }
