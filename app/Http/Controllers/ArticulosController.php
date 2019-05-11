@@ -221,15 +221,33 @@ class ArticulosController extends Controller
         //Imágenes Artículos
         foreach($request->imagenes as $i=>$imagen)
         {
-            $imagen_articulo = new ImagenArticulo;
-            if($request->imagenes[$i])
+            //Atrapando los errores
+            try 
             {
                 //Para guardar la imagen del artículo
-                $archivo= $request->imagenes[$i];
-                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-                $ruta = public_path().'/'.Articulo::carpeta();
-                $archivo->move($ruta, $nombre);
+                if($request->imagenes[$i])
+                {
+                    $imagen_articulo = new ImagenArticulo;
+                    $archivo= $request->imagenes[$i];
+                    $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                    $ruta = public_path().'/'.Articulo::carpeta();
+                    $archivo->move($ruta, $nombre);
+                }
             }
+            catch (\Exception $e)
+            {
+                //Eliminando los rubros
+                $resultado = ArticuloRubro::paraArticulo($articulo->id)->delete();
+
+                //Eliminando las características: Talles, Color y si tiene otra característica asociada
+                $resultado = ArticuloCaracteristica::paraArticulo($articulo->id)->delete();
+
+                //Eliminando el artículo
+                $articulo->delete();
+                
+                return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+            }
+            
             //Guardando datos de la imagen del artículo
             if($request->imagenes[$i])
             {
@@ -345,6 +363,43 @@ class ArticulosController extends Controller
         $articulo->personalizable = 0;
         $articulo->publicado = $requests['publicado'];
         $articulo->destacado = $requests['destacado'];
+        
+        //Imágenes Artículos
+        if(isset($request->imagenes))
+        {
+            foreach($request->imagenes as $i=>$imagen)
+            {
+                //Atrapando los errores
+                try 
+                {
+                    if($request->imagenes[$i])
+                    {
+                        $imagen_articulo = new ImagenArticulo;
+                        //Para guardar la imagen del artículo
+                        $archivo= $request->imagenes[$i];
+                        $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                        $ruta = public_path().'/'.Articulo::carpeta();
+                        $archivo->move($ruta, $nombre);
+                    }
+                }
+                catch (\Exception $e)
+                {
+                    return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+                }
+
+                //Guardando datos de la imagen del artículo
+                if($request->imagenes[$i])
+                {
+                    $imagen_articulo->articulo_id = $articulo->id;
+                    $imagen_articulo->url = Articulo::carpeta().$nombre;
+                    $imagen_articulo->principal = 0;
+                    $imagen_articulo->save();
+                    $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
+                }
+            }
+        }
+        
+        
         $articulo->save();
 
         //Eliminando todos los Rubros
@@ -394,32 +449,6 @@ class ArticulosController extends Controller
             }
         }
 
-        //Imágenes Artículos
-        if(isset($request->imagenes))
-        {
-            foreach($request->imagenes as $i=>$imagen)
-            {
-                $imagen_articulo = new ImagenArticulo;
-                if($request->imagenes[$i])
-                {
-                    //Para guardar la imagen del artículo
-                    $archivo= $request->imagenes[$i];
-                    $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-                    $ruta = public_path().'/'.Articulo::carpeta();
-                    $archivo->move($ruta, $nombre);
-                }
-                //Guardando datos de la imagen del artículo
-                if($request->imagenes[$i])
-                {
-                    $imagen_articulo->articulo_id = $articulo->id;
-                    $imagen_articulo->url = Articulo::carpeta().$nombre;
-                    $imagen_articulo->principal = 0;
-                    $imagen_articulo->save();
-                    $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
-                }
-            }
-        }
-        
         //-----------------------------------------------------------
         //Colocar las caracterísica (o color) y  principal en null
         foreach($articulo->imagenesarticulos as $imagen_articulo)
