@@ -360,7 +360,7 @@ class ArticulosController extends Controller
 
     }
     public function getarticulosdisenables(){
-        $articulos_d = Articulo::where('personalizable', '=', true)->with('imagenesarticulos')->with('rubros')->get();
+        $articulos_d = Articulo::personalizable(1)->with('imagenesarticulos')->with('rubros')->get();
         foreach ($articulos_d as $key => $articulo)
         {
             $encontrado = false;
@@ -388,9 +388,52 @@ class ArticulosController extends Controller
         }
         return response()->json(['articulos_d' => $articulos_d]);
     }
-   /*  public function pagar()
+    public function articuloseleccionado($id)
     {
+    $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
 
-    } */
+         if($articulo)
+        {
+            //talles y colores
+            $colores = [];
+            $talles = [];
+            foreach ($articulo->caracteristicas as $caracteristica)
+            {
+                if(strtolower($caracteristica->grupo->nombre)==strtolower("color"))
+                {
+                    $auxiliar  = Caracteristica::find($caracteristica->id);
+                    array_push($colores,$auxiliar);
+                }
+                else
+                {
+                    if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
+                    {
+                        $auxiliar  = Caracteristica::find($caracteristica->id);
+                        array_push($talles,$auxiliar);
+                    }
+                }
+            }
+            $articulo["talles"] = $talles;
+            $articulo["colores"] = $colores;
+
+            //imágenes colores
+            $imagenes_colores = [];
+            foreach($articulo->imagenesarticulos as $imagen)
+            {
+                if($imagen->caracteristica_id!=null)
+                {
+                    array_push($imagenes_colores, $imagen);
+                }
+            }
+            $articulo['imagenes_colores'] = $imagenes_colores;
+
+            return response()->json(['res'=>1,'articulo' => $articulo]);
+        }
+        else
+        {
+            return response()->json(['res'=>2,'msg' => "Artículo no encontrado"]);
+        }
+
+    }
 
 }

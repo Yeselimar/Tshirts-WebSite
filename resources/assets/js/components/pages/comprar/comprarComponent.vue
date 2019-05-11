@@ -28,7 +28,7 @@
 							</div>
 						</div>
 						<div class="col-lg-6 product-details">
-							<h2 class="p-title">White peplum top</h2>
+							<h2 class="p-title">{{articulo.nombre}}</h2>
 							<h3 class="p-price">$39.90</h3>
 							<h4 class="p-stock">Available: <span>In Stock</span></h4>
 							<div class="p-rating">
@@ -72,7 +72,8 @@
 								<p>Quantity</p>
 			                    <div class="pro-qty"><input type="text" value="1"></div>
 			                </div>
-							<button class="btn-upload" @click="procesar_pago()"> Pagar</button>
+						<button class="btn-upload" @click=addCart(articuloId)> Añadir al carrito</button>
+						<!-- 	<button class="btn-upload" @click="procesar_pago()"> Pagar</button> -->
 							<div id="accordion" class="accordion-area">
 								<div class="panel">
 									<div class="panel-header" id="headingOne">
@@ -147,11 +148,51 @@
         	migajasComponent,
         	prodDestacadosComponent
 		},
+		created() {
+		console.log('hello ili created')
+		let element = document.getElementById("header-top");
+			var options = {
+			offset: 0,
+			force: true
+			};
+		this.$scrollTo(element, 0, options);
+		this.articuloId=this.$route.params.id
+		this.info_articulo(this.$route.params.id)
+
+		},
+		computed: {
+			...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
+		},
+
         data() {
 			return {
 				isLoading: false,
-				articuloId: this.$route.params.id,
+				articuloId: '',
 				url_pago:'',
+				isLoading: false,
+				showNav: true,
+				selectedTipo: "",
+				maskCantidad: "",
+				maskAmount: '',
+				articulo: {
+					nombre: "",
+					marca: "",
+					precioGeneral: 0.00,
+					otros: '',
+					imagenes: [],
+					mask_precio: '',
+					rubros: [],
+					talles: [],
+					colores: [],
+					talles_colores: [],
+					imagenes_colores: [],
+					tipo: '',
+					tipo_cantidad: '',
+					cantidad: 0,
+					descripcion: '',
+					destacado: false,
+					publicado:false
+				},
             }
         },
         methods:
@@ -167,19 +208,157 @@
 					this.mensaje("error","Ha ocurrido un error inesperado");
 				});
 			},
+			info_articulo(id){
+				CerService.post("/articulo/"+id+"/seleccionado")
+				.then(response =>
+				{
+					if(response.res == 1){
+					console.log(response.articulo)
+					response.articulo.imagenesarticulos.forEach(function(file,i){
+						let aux = {
+								id: file.id,
+								thumb: file.url,
+								url: file.url,
+								isSaved: true,
+								selectedImagen:false
+							}
+						this.imagenesarticulos.push({...aux})
+					},this)
+					this.articulo.nombre = response.articulo.nombre
+					this.articulo.marca = response.articulo.marca
+					this.articulo.descripcion = response.articulo.descripcion
+
+					this.articulo.publicado = response.articulo.publicado
+
+					if(response.articulo.tipo == 'ropa') {
+						this.selectedTipo = 'Ropa'
+					} else {
+						this.selectedTipo = 'Otros'
+					}
+					this.articulo.precioGeneral = response.articulo.precioGeneral
+					this.maskAmount = response.articulo.mask_precio
+					this.maskCantidad = response.articulo.mask_cantidad
+					this.articulo.otros = response.articulo.otros
+					this.selectedTallas = response.articulo.talles
+					this.selectedColores = response.articulo.colores
+					this.articulo.cantidad = parseInt(response.articulo.cantidad)
+					if(response.articulo.tipo_cantidad == 'por_variante') {
+						this.selectedCantidad = 'Por Variante'
+					} else {
+						this.selectedCantidad = 'General'
+					}
+					console.log(response.articulo.tallescolores)
+					response.articulo.tallescolores.forEach(function(file,i){
+					console.log(file)
+						let aux = {
+							selectedColorVariante: file.color,
+							selectedTalleVariante: (this.selectedTipo === 'Ropa') ? file.talle: {},
+							/* colorVarianteAux: {
+							colorOld: '',
+							colorNew: '',
+							}, */
+							cantidadVariante: file.cantidad,
+							precioVariante: parseFloat(file.precio)
+
+						}
+						console.log(aux)
+						this.filesVariantes.push(
+						{...aux}
+						)
+						console.log(this.filesVariantes)
+					},this)
+					console.log(this.filesVariantes)
+					let idS = 0
+					response.articulo.imagenes_colores.forEach(function(file,i){
+						let aux = {
+							selectedColorRelacion: file.color,
+							file: {
+								id: file.id,
+								thumb: file.url,
+								url: file.url,
+								isSaved: true,
+								selectedImagen:true
+							},
+							es_principal: file.principal,
+							posicionRelacion: {
+								id:'frontal',
+								nombre: 'Frontal'
+							}
+							}
+						const resultado = this.imagenesarticulos.findIndex( fileIC => fileIC.id === aux.file.id );
+						if(resultado !== -1){
+							this.imagenesarticulos[resultado].selectedImagen = true
+						}
+						this.filesImagesColor.push(
+						{...aux}
+						)
+						if(file.principal){
+							idS = i
+						}
+					},this)
+					if(response.articulo.imagenes_colores.length){
+						setTimeout(e => {
+						$("#radio_"+idS).prop("checked", true);
+						},10)
+					}
+					this.isLoading = false
+					}else{
+					this.msgAlert(response.msg,'error')
+					this.$router.push({ name: 'no.encontrado' });
+					}
+				})
+				.catch(error => {
+					console.log('Ha ocurrido un error inesperado')
+					this.isLoading = false
+				});
+
+			},
+			addCart (product){
+				if(this.getIsAuth){
+					this.isLoading = true
+						this.$store.dispatch('actionAddCart',{...product}).then((res)=>{
+						this.isLoading = false
+							if (res === 1) {
+								this.$swal
+								.mixin({
+								toast: true,
+								position: "top-end",
+								showConfirmButton: false,
+								timer: 4000
+								})
+								.fire({
+								type: "success",
+								title: "El Producto fue agregado a su carrito exitosamente"
+								});
+							} else {
+							this.$swal
+								.mixin({
+								toast: true,
+								position: "top-end",
+								showConfirmButton: false,
+								timer: 4000
+								})
+								.fire({
+								type: "error",
+								title: "Ha ocurrido un error al añadir al carrito"
+								});
+							}
+						})
+				} else {
+						this.$swal
+						.mixin({
+						toast: true,
+						position: "top-end",
+						showConfirmButton: false,
+						timer: 4000
+						})
+						.fire({
+						type: "warning",
+						title: "Debe estar autentificado para agregar al carrito"
+						});
+				}
+			},
 		},
-		created() {
-		let element = document.getElementById("header-top");
-			var options = {
-			offset: 0,
-			force: true
-			};
-			this.$scrollTo(element, 0, options);
-		   this.articuloId=this.$route.params.id
-		   console.log(this.articuloId)
-		},
-		 computed: {
-            ...mapGetters(['getIsDesign', 'getRubro', 'getSearch','getUser','getIsAuth','getCart','getBag','getUrl']),
-        }
+
     }
 </script>
