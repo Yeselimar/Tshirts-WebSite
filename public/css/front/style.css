@@ -7,6 +7,23 @@
 /*----------------------------------------*/
 /* Personal CSS
 /*----------------------------------------*/
+.btn-carrito{
+	display: inline-block;
+
+	font-size: 20px;
+	font-weight: 600;
+	/* min-width: 119px; */
+	padding: 6px 12px 6px;
+	border-radius: 15px;
+	/* margin-top: 21px; */
+border:none;
+	background: #ef7a6e;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+	margin-top:15px;
+}
 .panel-detalles{
 	margin: 15px;
 	border-radius: 5px;
@@ -1731,7 +1748,19 @@ ol {
 
 .product-pic-zoom {
 	margin-bottom: 35px;
+	border: 1px solid rgb(156, 156, 156);
+	border-radius: 15px;
 }
+.product-big-img{
+	/* height: 100%;
+	width: 100%; */
+	object-fit: cover;
+	object-position: center center;
+	border-radius: 15px;
+	display: block;
+	margin: auto;
+}
+
 
 .product-thumbs-track {
 	width: 1200px;

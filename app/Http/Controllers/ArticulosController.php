@@ -238,7 +238,7 @@ class ArticulosController extends Controller
                 $imagen_articulo->save();
                 $auxiliar[$requests["imagenes"][$i]['id']] = $imagen_articulo->id;//para llevar el control de las imágenes
             }
-            
+
         }
 
         //Imágenes Artículos actualizando los colores y si es principal
@@ -247,7 +247,7 @@ class ArticulosController extends Controller
             foreach($requests["imagenes_colores"] as $imagen_color)
             {
                 $imagen_articulo = ImagenArticulo::find($auxiliar[ $imagen_color['file']['id'] ]);
-                
+
                 if($imagen_articulo)
                 {
                     $imagen_articulo->caracteristica_id = $imagen_color["selectedColorRelacion"]['id'];
@@ -416,7 +416,7 @@ class ArticulosController extends Controller
                 }
             }
         }
-        
+
         //-----------------------------------------------------------
         //Colocar las caracterísica (o color) y  principal en null
         foreach($articulo->imagenesarticulos as $imagen_articulo)
@@ -435,7 +435,7 @@ class ArticulosController extends Controller
             foreach($requests["imagenes_colores"] as $imagen_color)
             {
                 $tmp_id = $auxiliar[ $imagen_color['file']['id'] ];
-                
+
                 //($imagen_color['file']['id']);
                 if(isset($tmp_id))
                 {
@@ -452,7 +452,7 @@ class ArticulosController extends Controller
                 }
             }
         }
-        
+
         //Si no hay nada en imágenes colores coloco la primera imagen como principal
         if(count($requests["imagenes_colores"])==0)
         {
@@ -489,7 +489,7 @@ class ArticulosController extends Controller
             $articulo->cantidad  = $total_cantidad;
             $articulo->save();
         }
-        
+
         return response()->json(['res'=> 1,'msg' => 'El artículo no disenable fue actualizado exitosamente']);
     }
 
@@ -552,7 +552,7 @@ class ArticulosController extends Controller
         {
             return response()->json(['res' => 2, "msg" => "Disculpe, el artículo no existe"]);
         }
-        
+
     }
     public function getarticulosdisenables(){
         $articulos_d = Articulo::personalizable(1)->with('imagenesarticulos')->with('rubros')->get();
@@ -604,7 +604,7 @@ class ArticulosController extends Controller
                     if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
                     {
                         $auxiliar  = Caracteristica::find($caracteristica->id);
-                        array_push($talles,$auxiliar);
+                        array_push($talles,$auxiliar->valor);
                     }
                 }
             }
