@@ -17,4 +17,18 @@ class Carrito extends Model
     {
         return $this->belongsTo('App\User','user_id');
     }
+
+    public function color()
+    {
+        return $this->belongsTo('App\Caracteristica','color_id');
+    }
+    public function talle()
+    {
+        return $this->belongsTo('App\Caracteristica','talle_id');
+    }
+
+    public function scopeParaUsuario($query,$id)
+    {
+        return $query->where('user_id','=',$id);
+    }
 }

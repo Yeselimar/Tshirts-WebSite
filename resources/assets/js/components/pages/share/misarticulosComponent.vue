@@ -5,17 +5,79 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+
+
+    #pagination .page-link:focus {
+        box-shadow: inherit !important;
+    }
+    #pagination .page-item:first-child .page-link {
+        margin-left: 0;
+        background-color: #ebebeb !important;
+        border-top-left-radius: 100% !important;
+        border-bottom-left-radius: 100% !important;
+        color: #495057 !important
+
+    }
+
+    #pagination .page-item:last-child .page-link {
+        margin-left: 0 !important;
+        background-color: #ebebeb !important;
+        border-top-left-radius: 100% !important;
+        border-bottom-left-radius: 100% !important;
+        color: #495057 !important
+
+    }
+    #pagination .page-item:nth-child(2) .page-link{
+            min-width: 35px !important;
+            color: #495057 !important
+    }
+    #pagination .page-item:nth-last-child(2) .page-link
+    {
+            min-width: 33px !important;
+            color: #495057 !important
+
+    }
+    
+    #pagination .page-link {
+        position: relative !important;
+        display: block !important;
+        padding: .5rem .75rem !important;
+        margin-left: -1px !important;
+        line-height: 1.25 !important;
+        color: #495057 !important;
+        background-color: #fff !important;
+        border: 1px solid #dee2e6 !important;
+        border-radius: 100% !important;
+        margin: 0px 5px !important;
+    }
+        #pagination .page-item.active a{
+        color: #fff !important;
+        background-color: #ef7a6e !important;
+        border-color: #ef7a6e !important;
+        border-radius: 100% !important;
+        margin: 0px 5px !important;
+    }
+    #pagination .page-item.disabled {
+        cursor: not-allowed !important;
+
+    }
+    #pagination .page-item.disabled .page-link {
+        color: #cccccc !important;
+
+    }
+
 </style>
 
 <template>
     <div>
         <template v-if="busqueda.length!=0">
             <div class="row">
-                <template v-for="(articulo,i) in busqueda">
-                    <articulo-component :title="articulo.nombre" :id="articulo.id" :price="articulo.precio" :image="articulo.image"></articulo-component>
+                <template v-for="(articulo,i) in busqueda" v-if="(i<currentPage*perPage) &&(i>=(currentPage-1)*perPage)">
+                    <articulo-component :title="articulo.nombre" :id="articulo.id" :price="articulo.precio_general" :image="articulo.principal ? articulo.principal.url:''"></articulo-component>
                 </template>
-                <div class="text-center w-100 pt-3">
-                    <button class="site-btn sb-line sb-dark">VER MÁS...</button>
+                <div class="pull-right w-100 pt-3">
+                    <b-pagination id="pagination" :totalRows="totalRows" :per-page="perPage" v-model="currentPage" class="pt-3 pull-right"/>
                 </div>
             </div>
         </template>
@@ -34,6 +96,7 @@
 <script>
 	import articuloComponent from "../../../components/pages/share/articuloComponent.vue";
     import { mapGetters } from 'vuex'
+    import CerService from "../../../plugins/CerService";
 
     export default
     {
@@ -45,91 +108,23 @@
         data()
         {
             return {
-                titulo: this.titulop,
-                isDesign: this.isdesignp,
-                rubrox: this.rubro,
+                currentPage: 1,
+                perPage: 6,
+                totalRows: 0,
+                pageOptions: [5, 10, 15, 20, 50],
                 articulos:
                 [
-                    {
-                        "id": 1,
-                        "nombre": 'Black and White Stripes Dress',
-                        "precio": 1.00,
-                        "image":'img/product/1.jpg',
-                        "isDesign": false,
-                        "rubros": ["hombre","mujer","niño"],
-                    },
-                    {
-                        "id": 2,
-                        "nombre": 'Flamboyant Pink Top',
-                        "precio": 2.00,
-                        "image":'img/product/2.jpg',
-                        "isDesign": true,
-                        "rubros": ["hombre","niño"],
-                    },
-                    {
-                        "id": 3,
-                        "nombre": 'Black and White Stripes Dress',
-                        "precio": 3.00,
-                        "image":'img/product/3.jpg',
-                        "isDesign": true,
-                        "rubros": ["hombre"],
-                    },
-                    {
-                        "id": 4,
-                        "nombre": 'Flamboyant Pink Top',
-                        "precio": 4.00,
-                        "image":'img/product/4.jpg',
-                        "isDesign": true,
-                        "rubros": ["mujer"],
-                    },
-                    {
-                        "id": 5,
-                        "nombre": 'Black and White Stripes Dress',
-                        "precio": 5.00,
-                        "image":'img/product/5.jpg',
-                        "isDesign": true,
-                        "rubros": ["mujer","niña"],
-                    },
-                    {
-                        "id": 6,
-                        "nombre": 'Flamboyant Pink Top',
-                        "precio": 6.00,
-                        "image":'img/product/6.jpg',
-                        "isDesign": true,
-                        "rubros": ["niño"],
-                    },
-                    {
-                        "id": 7,
-                        "nombre": 'Black and White Stripes',
-                        "precio": 7.00,
-                        "image":'img/product/7.jpg',
-                        "isDesign": true,
-                        "rubros": ["niño"],
-                    },
-                    {
-                        "id": 8,
-                        "nombre": 'Flamboyant Pink Top',
-                        "precio": 8.00,
-                        "image":'img/product/8.jpg',
-                        "isDesign": true,
-                        "rubros": ["niña"],
-                    },
-                    {
-                        "id": 9,
-                        "nombre": 'Black and White Stripes Dress',
-                        "precio": 9.00,
-                        "image":'img/product/9.jpg',
-                        "isDesign": true,
-                        "rubros": ["hombre"],
-                    }
                 ]
             }
         },
         created()
         {
-            this.isDesign = this.getIsDesign
-            this.titulo = this.getSearch
-            this.rubrox = this.getRubro
+            if(this.getIsDesign){
+                this.articulosdisenables()
+            }else {
+                this.articulosnodisenables()
+            }
+
         },
         computed: 
         {
@@ -141,14 +136,12 @@
                 {
                     this.articulos.forEach(function(articulo,index)
                     {
-                        if(this.isDesign==articulo.isDesign)//Si es diseñable
-                        {
-                            if((typeof(this.titulo) === 'string') && this.titulo.trim()!="" )
+                            if((typeof(this.getSearch) === 'string') && this.getSearch.trim()!="" )
                             {
                                 //todas las categorias y con algo en el buscador
-                                if((typeof(this.rubrox) === 'string') && this.rubrox.trim()=='')
+                                if((typeof(this.getRubro) === 'string') && this.getRubro.trim()=='')
                                 {
-                                    if((articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                    if((articulo.nombre.toLowerCase().indexOf(this.getSearch.toLowerCase())>=0) )
                                     {
                                         auxiliar.push(articulo);
                                     }
@@ -156,7 +149,7 @@
                                 else
                                 {
                                     //selecciona una categoria y con algo en el buscador
-                                    if(this.buscarcategoria(articulo,this.rubrox) && (articulo.nombre.toLowerCase().indexOf(this.titulo.toLowerCase())>=0) )
+                                    if(this.buscarcategoria(articulo,this.getRubro) && (articulo.nombre.toLowerCase().indexOf(this.getSearch.toLowerCase())>=0) )
                                     {
                                         auxiliar.push(articulo);
                                     }
@@ -164,7 +157,7 @@
                             }
                             else
                             {
-                                if((typeof(this.rubrox) === 'string') && this.rubrox.trim()=='')
+                                if((typeof(this.getRubro) === 'string') && this.getRubro.trim()=='')
                                 {
                                     //todas las categorias y sin nada en el buscador
                                     auxiliar.push(articulo);
@@ -172,34 +165,61 @@
                                 else
                                 {
                                     //selecciona una categoria y sin nada en el buscador
-                                    if(this.buscarcategoria(articulo,this.rubrox) )
+                                    if(this.buscarcategoria(articulo,this.getRubro) )
                                     {
                                         auxiliar.push(articulo);
                                     }
                                 }
                             }
-                        }
                     },this);
                 }
-                //this.totalRowsMovil = auxiliar.length;
+                this.totalRows = auxiliar.length;
                 return auxiliar;
             }
         },
         watch:
         {
             getIsDesign: function(){
-                console.log("es diseñable: "+this.isDesign );
-              this.isDesign = this.$store.getters.getIsDesign
-            },
-            getRubro: function(){
-              this.rubrox = this.$store.getters.getRubro
-            },
-            getSearch: function(){
-              this.titulo = this.$store.getters.getSearch
+                if(this.getIsDesign){
+                    this.articulosdisenables()
+                }else {
+                    this.articulosnodisenables()
+                }
             }
         },
         methods:
         {
+            articulosdisenables()
+            {
+                this.isLoading = true
+                CerService.post("/articulos/disenables/todos/api")
+                .then(response => 
+                {
+                    this.articulos = response.articulos;
+                    this.totalRows = this.articulos.length
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
+            articulosnodisenables()
+            {
+                this.isLoading =true
+
+                CerService.post("/articulos/no-disenables/todos/api")
+                .then(response => 
+                {
+                    this.articulos = response.articulos;
+                    this.totalRows = this.articulos.length
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    this.isLoading = false;
+                    console.log('Ha ocurrido un error inesperado');
+                });
+            },
             buscarcategoria(articulo, rubro)
             {
                 //función para determinar si un artículo pertenece a una determinada categoría
@@ -207,7 +227,7 @@
                 var i = 0;
                 for (var i = 0; i < articulo.rubros.length; i++)
                 {
-                    if(articulo.rubros[i].toLowerCase()==rubro.toLowerCase())
+                    if(articulo.rubros[i].nombre.toLowerCase()==rubro.toLowerCase())
                     {
                         encontrado = true;
                     }

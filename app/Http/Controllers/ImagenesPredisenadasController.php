@@ -39,10 +39,17 @@ class ImagenesPredisenadasController extends Controller
         $nombre = null;
         if($request->imagen)
         {
-            $archivo= $request->imagen;
-            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-            $ruta = public_path().'/'.ImagenPredisenada::carpeta();
-            $archivo->move($ruta, $nombre);
+            try
+            {
+                $archivo= $request->imagen;
+                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                $ruta = public_path().'/'.ImagenPredisenada::carpeta();
+                $archivo->move($ruta, $nombre);
+            }
+            catch (\Exception $e)
+            {
+                return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+            }
         }
         
         $imagen->url = ImagenPredisenada::carpeta().$nombre;
@@ -61,14 +68,21 @@ class ImagenesPredisenadasController extends Controller
         $nombre = null;
         if($request->imagen)
         {
-            File::delete($imagen->url);
+            try
+            {
+                $archivo= $request->imagen;
+                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                $ruta = public_path().'/'.ImagenPredisenada::carpeta();
+                $archivo->move($ruta, $nombre);
 
-            $archivo= $request->imagen;
-            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-            $ruta = public_path().'/'.ImagenPredisenada::carpeta();
-            $archivo->move($ruta, $nombre);
-
-            $imagen->url = ImagenPredisenada::carpeta().$nombre;
+                File::delete($imagen->url);
+                
+                $imagen->url = ImagenPredisenada::carpeta().$nombre;
+            }
+            catch (\Exception $e)
+            {
+                return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+            }
         }
         
         $imagen->user_id = Auth::user()->id;

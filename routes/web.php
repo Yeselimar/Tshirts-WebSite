@@ -62,7 +62,7 @@ Route::post('/grupos/{id}/detalles','GruposController@show')->name('grupos.detal
 Route::post('/grupos/colores/api','GruposController@colores')->name('grupos.colores');
 Route::post('/grupos/talles/api','GruposController@talles')->name('grupos.talles');
 
-//Caracteristicas
+//Características
 Route::post('/caracteristicas/todos','CaracteristicasController@index')->name('caracteristicas.todos');
 Route::post('/grupo/{grupo_id}/caracteristicas','CaracteristicasController@caracteristicaporgrupo')->name('caracteristicas.porgrupo');
 Route::post('/caracteristicas/guardar','CaracteristicasController@store')->name('caracteristicas.guardar');
@@ -115,6 +115,17 @@ Route::post('/banner/guardar','BannerController@store')->name('banner.guardar');
 Route::post('/banner/{id}/actualizar','BannerController@update')->name('banner.actualizar');
 Route::post('/banner/{id}/detalles','BannerController@show')->name('banner.detalles');
 Route::post('/banner/{id}/eliminar','BannerController@destroy')->name('banner.eliminar');
+
+
+//Carrito
+Route::post('/carrito/todos','CarritoController@index')->name('carrito.todos');
+Route::post('/carrito/anadir','CarritoController@anadircarrito')->name('carrito.anadir');
+Route::post('/carrito/{id}/eliminar','CarritoController@eliminarcarrito')->name('carrito.eliminar');
+
+//Cesta
+Route::post('/cesta/todos','CestaController@index')->name('cesta.todos');
+Route::post('/cesta/anadir','CestaController@anadircarrito')->name('cesta.anadir');
+Route::post('/cesta/{id}/eliminar','CestaController@eliminarcarrito')->name('cesta.eliminar');
 
 Route::post('/pagar','MPagoController@pagar')->name('pagar');
 //Prueba

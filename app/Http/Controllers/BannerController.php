@@ -43,10 +43,18 @@ class BannerController extends Controller
     	$nombre = null;
         if($request->imagen)
         {
-            $archivo= $request->imagen;
-            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-            $ruta = public_path().'/'.Banner::carpeta();
-            $archivo->move($ruta, $nombre);
+            try 
+            {
+                $archivo= $request->imagen;
+                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                $ruta = public_path().'/'.Banner::carpeta();
+                $archivo->move($ruta, $nombre);
+            }
+            catch (\Exception $e)
+            {
+                return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+            }
+            
         }
         
         $banner->imagen = Banner::carpeta().$nombre;
@@ -65,14 +73,21 @@ class BannerController extends Controller
 
         if($request->imagen)
         {
-            File::delete($banner->imagen);
+            try
+            {
+                File::delete($banner->imagen);
 
-            $archivo= $request->imagen;
-            $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
-            $ruta = public_path().'/'.Banner::carpeta();
-            $archivo->move($ruta, $nombre);
+                $archivo= $request->imagen;
+                $nombre = str_random(50).'.'.$archivo->getClientOriginalExtension();
+                $ruta = public_path().'/'.Banner::carpeta();
+                $archivo->move($ruta, $nombre);
 
-            $banner->imagen = Banner::carpeta().$nombre;
+                $banner->imagen = Banner::carpeta().$nombre;
+            }
+            catch (\Exception $e)
+            {
+                return response()->json(['res'=> 0,'msg' => 'Ha ocurrido un error en el servidor: '.$e->getMessage()]);
+            }
         }
         
         $banner->save();
