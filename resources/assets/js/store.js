@@ -132,16 +132,16 @@ const actions = {
       return new Promise((resolve, reject) => {
 
         CerService.post('/add/cart', cart)
-            .then(resp => {
+        .then(resp => {
 
-                if (resp.res===1) {
-                  commit('addCart', cart);
-                } 
-                resolve(resp.res)
-            })
-            .catch(err => {
-                reject(err)
-            })
+            if (resp.res===1) {
+              commit('addCart', cart);
+            } 
+            resolve(resp.res)
+        })
+        .catch(err => {
+            reject(err)
+        })
     })
   },
   actionAddBag({commit},bag){

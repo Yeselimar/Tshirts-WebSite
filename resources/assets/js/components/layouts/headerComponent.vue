@@ -479,6 +479,7 @@ li.bagform .dropbag:after {
                               </tr>
                             </tfoot>
                             <tbody>
+
                               <tr>
                                 <td class="text-center">
                                   <img :src="getUrl+'img/cart/1.jpg'" class="w-30" alt>
@@ -498,6 +499,8 @@ li.bagform .dropbag:after {
                                   </h5>
                                 </td>
                               </tr>
+
+                              <!--
                               <tr>
                                 <td class="text-center">
                                   <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
@@ -517,6 +520,7 @@ li.bagform .dropbag:after {
                                   </h5>
                                 </td>
                               </tr>
+                            -->
                             </tbody>
                           </table>
                           <div class="d-flex justify-content-end" v-if="getCart.length > 0">

@@ -662,7 +662,7 @@ class ArticulosController extends Controller
     {
     $articulo = Articulo::with("imagenesarticulos")->with("rubros")->with("caracteristicas")->with("tallescolores")->find($id);
 
-         if($articulo)
+        if($articulo)
         {
             //talles y colores
             $colores = [];
@@ -679,7 +679,7 @@ class ArticulosController extends Controller
                     if(strtolower($caracteristica->grupo->nombre)==strtolower("talle"))
                     {
                         $auxiliar  = Caracteristica::find($caracteristica->id);
-                        array_push($talles,$auxiliar->valor);
+                        array_push($talles,$auxiliar);//$auxiliar->valor
                     }
                 }
             }

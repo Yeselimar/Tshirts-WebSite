@@ -80,6 +80,13 @@ const router = new VueRouter({
 					component: Vue.component( 'DetalleComprar', require( './components/pages/comprar/comprarComponent.vue' ) ),
 					meta: { requiresAuth: false }
 				},
+				//Se crea esta ruta por si hay conflicto.
+				{
+					path: 'detalle/prodComprar/:id/otro',
+					name: 'detalleComprar',
+					component: Vue.component( 'DetalleComprar2', require( './components/pages/comprar/comprarComponent2.vue' ) ),
+					meta: { requiresAuth: false }
+				},
 				/*
 					Catch Alls
 				*/

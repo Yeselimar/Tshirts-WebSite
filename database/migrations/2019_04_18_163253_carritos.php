@@ -18,10 +18,10 @@ class Carritos extends Migration
             $table->enum('tipo',['compra','pedido']);
 
             $table->unsignedInteger('color_id');//color
-            $table->foreign('color_id')->references('id')->on('articulos')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('caracteristicas')->onDelete('cascade');
 
             $table->unsignedInteger('talle_id')->nullable();//talle
-            $table->foreign('talle_id')->references('id')->on('articulos')->onDelete('cascade');
+            $table->foreign('talle_id')->references('id')->on('caracteristicas')->onDelete('cascade');
 
             //¿qué pasa si el artículo tiene muchas característica? Es decir además de talle y color
 

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\TalleColor;
+use App\Articulo;
 use App\Carrito;
 use Illuminate\Http\Request;
 use Auth;
 
-class CartController extends Controller
+class CarritoController extends Controller
 {
     public function __construct()
     {
@@ -52,8 +54,8 @@ class CartController extends Controller
                         $carrito->tipo = 'compra';
                         $carrito->color_id = $request->color_id;
                         $carrito->talle_id = $request->talle_id;
-                        $carrito->articulo_id = $articulo->id;
-                        $carrito->usuario_id = $usuario->id;
+                        $carrito->articulo_id = 1;
+                        $carrito->user_id = 1;
                         $carrito->save();
 
                         return response()->json(['res' => 1,'msg' => 'Artículo añadido al carrito']);
@@ -91,7 +93,7 @@ class CartController extends Controller
                             $carrito->color_id = $request->color_id;
                             $carrito->talle_id = $request->talle_id;
                             $carrito->articulo_id = $articulo->id;
-                            $carrito->usuario_id = $usuario->id;
+                            $carrito->user_id = $usuario->id;
                             $carrito->save();
 
                             return response()->json(['res' => 1,'msg' => 'Artículo añadido al carrito']);

@@ -258,7 +258,6 @@
 	import "vue-swatches/dist/vue-swatches.min.css"
 
 	export default {
-        name:'procesarcarritoComponent',
         components:
         {
         	migajasComponent,
