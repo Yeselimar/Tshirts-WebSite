@@ -203,7 +203,7 @@
 					</div>
 
 					<div class="d-flex justify-content-center">
-						<button class="btn-carrito" @click=confirmarcarrito(articuloId)> Añadir al carrito</button>
+						<button class="btn-carrito" @click="confirmarcarrito()"> Añadir al carrito</button>
 					</div>
 				</div>
 			</div>
@@ -216,6 +216,7 @@
 		<!-- Productos destacados-->
 
 		<!-- Modal para agregar al carrito -->
+
       	<div class="modal" id="confirmacion">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -622,7 +623,7 @@
 				});
 
 			},
-			confirmarcarrito(product)
+			confirmarcarrito()
 			{
 				if(this.getIsAuth)
 				{
@@ -649,19 +650,6 @@
 					{
 						this.mensaje('warning',"Disculpe, la cantidad debe ser mayor o igual a 1");
 					}
-					
-					/*this.$store.dispatch('actionanadircarrito',{...product}).then((res)=>
-					{
-						this.isLoading = false
-						if (res === 1)
-						{
-							this.mensaje('success',"El Producto fue agregado a su carrito exitosamente");
-						}
-						else
-						{
-							this.mensaje('error',"Ha ocurrido un error al añadir al carrito");
-						}
-					});*/
 				}
 				else
 				{
@@ -690,6 +678,8 @@
 		          		//Actualizando los bordes de talle y color
 		          		$('.btn-circular-barna-color').removeClass('border-barna-color');
 		          		$('.btn-circular-barna-talle').removeClass('border-barna-talle');
+		          		//Haciendo el dispacth para actualizar lo que hay en el carrito
+		          		this.$store.dispatch('actionAddCart');
 		          		this.mensaje("success",response.msg);
 		          	}
 		          	else

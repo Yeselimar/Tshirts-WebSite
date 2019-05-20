@@ -16,12 +16,55 @@ class CarritoController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
         if(Auth::check())
         {
             $usuario = Auth::user();
             $carrito = Carrito::paraUsuario($usuario->id)->with("articulo")->with("color")->with("talle")->get();
+            foreach ($carrito as $item)
+            {
+                $encontrado = false;
+                $encontrado2 = false;
+                $longitud = $item->articulo->imagenesarticulos->count();
+                if($longitud>0)
+                {
+                    //----------------------------------------------------
+                    //Buscando la imagen correspondiente al color comprado
+                    $i = 0;
+                    $imagenes = $item->articulo->imagenesarticulos;
+                    while(!$encontrado && $i<$longitud)
+                    {
+                        if($imagenes[$i]->caracteristica_id==$item->color_id)
+                        {
+                            $imagen = $imagenes[$i];
+                            $encontrado = true;
+                        }
+                        $i++;
+                    }
+                    if($encontrado)
+                    {
+                        $item['imagen'] = $imagen;
+                    }
+                    //---------------------------------------------------
+                    //Buscando la imagen principal
+                    $j = 0;
+                    $imagenes2 = $item->articulo->imagenesarticulos;
+                    while(!$encontrado2 && $j<$longitud)
+                    {
+                        if($imagenes2[$j]->principal==1)
+                        {
+                            $imagen2 = $imagenes2[$j];
+                            $encontrado2 = true;
+                        }
+                        $j++;
+                    }
+                    if($encontrado2)
+                    {
+                        $item['principal'] = $imagen2;
+                    }
+                }
+            }
             return response()->json(['res' => 1,'carrito' => $carrito]);
         }
         else
@@ -47,16 +90,26 @@ class CarritoController extends Controller
                         $articulo->save();
 
                         //Añado a mi carrito
-                        $carrito = new Carrito;
-                        $carrito->cantidad = $request->cantidad;
-                        $carrito->precio = $request->precio;
-                        $carrito->disponible = true;
-                        $carrito->tipo = 'compra';
-                        $carrito->color_id = $request->color_id;
-                        $carrito->talle_id = $request->talle_id;
-                        $carrito->articulo_id = 1;
-                        $carrito->user_id = 1;
-                        $carrito->save();
+                        $carrito = Carrito::paraUsuario($usuario->id)->paraArticulo($articulo->id)->paraColor($request->color_id)->paraTalle($request->talle_id)->first();
+                        
+                        if($carrito)
+                        {
+                            $carrito->cantidad = $carrito->cantidad + $request->cantidad;
+                            $carrito->save();
+                        }
+                        else
+                        {
+                            $carrito = new Carrito;
+                            $carrito->cantidad = $request->cantidad;
+                            $carrito->precio = $request->precio;
+                            $carrito->disponible = true;
+                            $carrito->tipo = 'compra';
+                            $carrito->color_id = $request->color_id;
+                            $carrito->talle_id = $request->talle_id;
+                            $carrito->articulo_id = 1;
+                            $carrito->user_id = 1;
+                            $carrito->save();
+                        }
 
                         return response()->json(['res' => 1,'msg' => 'Artículo añadido al carrito']);
                     }
@@ -85,16 +138,26 @@ class CarritoController extends Controller
                             $talle_color->save();
 
                             //Añado a mi carrito
-                            $carrito = new Carrito;
-                            $carrito->cantidad = $request->cantidad;
-                            $carrito->precio = $request->precio;
-                            $carrito->disponible = true;
-                            $carrito->tipo = 'compra';
-                            $carrito->color_id = $request->color_id;
-                            $carrito->talle_id = $request->talle_id;
-                            $carrito->articulo_id = $articulo->id;
-                            $carrito->user_id = $usuario->id;
-                            $carrito->save();
+                            $carrito = Carrito::paraUsuario($usuario->id)->paraArticulo($articulo->id)->paraColor($request->color_id)->paraTalle($request->talle_id)->first();
+                            
+                            if($carrito)
+                            {
+                                $carrito->cantidad = $carrito->cantidad + $request->cantidad;
+                                $carrito->save();
+                            }
+                            else
+                            {
+                                $carrito = new Carrito;
+                                $carrito->cantidad = $request->cantidad;
+                                $carrito->precio = $request->precio;
+                                $carrito->disponible = true;
+                                $carrito->tipo = 'compra';
+                                $carrito->color_id = $request->color_id;
+                                $carrito->talle_id = $request->talle_id;
+                                $carrito->articulo_id = $articulo->id;
+                                $carrito->user_id = $usuario->id;
+                                $carrito->save();
+                            }
 
                             return response()->json(['res' => 1,'msg' => 'Artículo añadido al carrito']);
                         }
