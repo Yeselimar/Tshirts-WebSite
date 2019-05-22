@@ -19,19 +19,11 @@
 								<img class="product-big-img" :src="getUrl+imagenActual" alt="">
 							</div>
 							<div class="product-thumbs" tabindex="1" style=" margin-bottom: 10% ; overflow: hidden; outline: none;">
-								<div class="product-thumbs-track">
-									<div class="pt active" :data-imgbigurl="getUrl+'img/single-product/1.jpg'">
-										<img :src="getUrl+'img/single-product/thumb-1.jpg'" alt="">
+								<div class="product-thumbs-track" v-for="miniatura in imagenesarticulos">
+									<div class="pt" :class="[{'pt active': miniatura.url === imagenActual}]" @click="info_por_img(miniatura.url)">
+										<img :src="getUrl+ miniatura.url" alt="" >
 									</div>
-									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/2.jpg'">
-										<img :src="getUrl+'img/single-product/thumb-2.jpg'" alt="">
-									</div>
-									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/3.jpg'">
-										<img :src="getUrl+'img/single-product/thumb-3.jpg'" alt="">
-									</div>
-									<div class="pt" :data-imgbigurl="getUrl+'img/single-product/4.jpg'">
-										<img :src="getUrl+'img/single-product/thumb-4.jpg'" alt="">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -41,30 +33,57 @@
 							<div v-if="(articulo.cantidad>0)">
 							<h4 class="p-stock"><span>Disponible</span></h4></div>
 							<div v-else><h4 class="p-stock"> <span>No Disponible</span></h4></div>
-							<div class="align-items-center d-flex form__field">
-								<div class="align-items-center d-flex"><p>Color:</p></div>
+							<div class="align-items-center d-flex form__field ">
+								<div class="align-items-center d-flex quantity"><p>Colores:</p>
+								</div>
 								<swatches
 								:swatch-style="{width: '27px', height: '27px'}"
-								:trigger-style="{width: '27px', height: '27px', margin: '5px', border: '2px solid #414141'}"
+								:trigger-style="{width: '27px', height: '27px', bottom: '5px' ,border: '2px solid #414141'}"
 								v-model="colorActual"
 								:colors="coloresGenerales"
 								row-length="4"
 								shapes="circles"
-								show-border popover-to="left"
+								show-border popover-to="center"
 								@input="info_actual">
 								</swatches>
 							</div>
 							<div class="fw-size-choose">
-								<p>Talles</p>
-								<div v-for="(talle, i) in tallesActuales" class="sc-item">
+								<p>Talle:</p>
+								<multiselect
+									v-model="talleActual"
+									:options="tallesActuales"
+									selectLabel =""
+									:hideSelected = "true"
+									selectedLabel = ""
+									placeholder="Seleccione talle"
+									deselectLabel = ""
+									open-direction="bottom"
+									:multiple="false"
+									>
+										<span slot="noResult">
+										No disponible</span>
+											<span slot="noOptions">
+										No disponible</span>
+								</multiselect>
+								<!-- <div v-for="(talle, i) in tallesActuales" class="sc-item">
 									<input type="radio" name="sc" id="xs-size">
 									<label for="xs-size">{{talle}}</label>
-								</div>
+								</div> -->
 
 							</div>
 							<div class="quantity">
-								<p>Cantidad</p>
-			                    <div class="pro-qty"><input type="text" value="1"></div>
+								<p>Cantidad:</p>
+			                    <div class="cantidad"><input
+									name="nombre"
+									id="nombre"
+									type="text"
+									placeholder="0"
+									class="form-control input-rounded input-sm"
+									v-model="cantidadActual"
+									autocomplete="off"
+									:class="{'error-input': errors.first('nombre','form-create')}"
+
+								></div>
 			                </div>
 
 						<!-- 	<button class="btn-upload" @click="procesar_pago()"> Pagar</button> -->
@@ -114,6 +133,9 @@
 	import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 	import { mapGetters } from 'vuex'
 	import CerService from "../../../plugins/CerService";
+	import Multiselect from 'vue-multiselect'
+	import "vue-select/dist/vue-select.css";
+	import "vue-multiselect/dist/vue-multiselect.min.css"
 	import Swatches from 'vue-swatches'
 	import "vue-swatches/dist/vue-swatches.min.css"
 
@@ -124,6 +146,7 @@
         	migajasComponent,
 			prodDestacadosComponent,
 			Swatches,
+			Multiselect
 		},
 		created() {
 		console.log('hello ili created')
@@ -181,13 +204,16 @@
 				cantidadUsada: '',
 				tallesColores:[],
 				imagenColor:[],
-				colorActual: '',
 				imagenActual:'',
 				tallesActuales:[],
-				precioActual:'',
 				preciosActuales:[],
-				talleActual:'',
 				auxTalles: false,
+				img_principal:'',
+				/*Datos a guardar en la BD*/
+				colorActual: '',
+				precioActual:'',
+				talleActual:'',
+				cantidadActual:'',
 			/* 	varianteDeColorAux: [], */
             }
         },
@@ -204,22 +230,43 @@
 					this.mensaje("error","Ha ocurrido un error inesperado");
 				});
 			},
+			info_por_img($miniatura){
+				let encontrado=0
+				this.imagenColor.forEach(function(file,i){
+						console.log('Comparando:', file.file.url ,'con', $miniatura)
+						if(file.file.url===$miniatura){
+							this.colorActual=file.color.color
+							encontrado=1
+							console.log('Entre y el color de la foto seleccionada es:', file.color.color)
+						}
+
+				},this)
+
+				if(encontrado!=1){
+					this.colorActual=''
+					this.imagenActual=$miniatura
+				}
+				this.info_actual()
+			},
 			info_actual(){
 
 				this.tallesActuales=[]
+				this.talleActual=''
 				this.preciosActuales=[]
 				this.auxTalles=false
 
-				//Buscar relacion Imagen-color
+				//Buscar relacion color-imagen
+				console.log('Imagen-Color', this.imagenColor)
 				this.imagenColor.forEach(function(file,i){
-					if(file.color.color==this.colorActual){
+					if(file.color.color===this.colorActual){
 						this.imagenActual=file.file.url
 					//	auxImagen=true
 					}
 				},this)
 				//buscar relacion talle-color
+//console.log('ESTOY RECORRIENDO:', this.tallesColores)
 				this.tallesColores.forEach(function(file,i){
-					console.log('Comparando: ', file.colorDeVariante.color, 'con', this.colorActual)
+					//console.log('Comparando: ', file.colorDeVariante.color, 'con', this.colorActual)
 					 if(file.colorDeVariante.color==this.colorActual){
 						this.preciosActuales.push(file.precioDeVariante)
 						this.precioActual=this.articulo.precioGeneral
@@ -230,11 +277,13 @@
 				},this)
 
 				if(this.auxTalles===false){
-					//console.log('ajaa', this.tallesGenerales)
+					console.log('ajaa', this.img_principal)
+					this.talleActual=''
 					this.tallesActuales=this.tallesGenerales
+					//this.imagenActual=this.img_principal
 				}
 
-				console.log('se esta guardando:', this.tallesActuales)
+
 			},
 			info_articulo(id){
 
@@ -246,11 +295,12 @@
 					response.articulo.imagenesarticulos.forEach(function(file,i){
 						let aux = {
 								id: file.id,
-								thumb: file.url,
+								//thumb: file.url,
 								url: file.url,
 							}
 						this.imagenesarticulos.push({...aux})
 					},this)
+					console.log('LAS IMAGENES SON:' , this.imagenesarticulos)
 					this.articulo.nombre = response.articulo.nombre
 					this.articulo.marca = response.articulo.marca
 					this.articulo.descripcion = response.articulo.descripcion
@@ -294,10 +344,10 @@
 							cantidadDeVariante: file.cantidad,
 							precioDeVariante: parseFloat(file.precio)
 						}
-						this.tallesColores.push(
-						{...aux}
-						)
+						this.tallesColores.push({...aux})
+
 					},this)
+					console.log('ESTOY GUARDANDO:', this.tallesColores)
 					let idS = 0
 					//Imagenes-Colores:
 					response.articulo.imagenes_colores.forEach(function(file,i){
@@ -322,6 +372,7 @@
 
 							idS = i
 							this.imagenActual=file.url
+							this.img_principal=file.url
 							this.colorActual=file.color.color
 							console.log('si es principal:',this.imagenActual)
 						}

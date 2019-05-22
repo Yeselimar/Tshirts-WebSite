@@ -60,71 +60,40 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-<<<<<<< HEAD
-/******/ 	return __webpack_require__(__webpack_require__.s = 205);
-=======
-/******/ 	return __webpack_require__(__webpack_require__.s = 367);
->>>>>>> master
+/******/ 	return __webpack_require__(__webpack_require__.s = 374);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-<<<<<<< HEAD
-/***/ 205:
+/***/ 374:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(206);
-=======
-/***/ 367:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(368);
->>>>>>> master
+module.exports = __webpack_require__(375);
 
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 206:
-=======
-/***/ 368:
->>>>>>> master
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< HEAD
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__images_index_js__ = __webpack_require__(207);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__images_index_js__ = __webpack_require__(369);
->>>>>>> master
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__images_index_js__ = __webpack_require__(376);
 
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 207:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__ = __webpack_require__(208);
-=======
-/***/ 369:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__ = __webpack_require__(370);
->>>>>>> master
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__);
 
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 208:
-=======
-/***/ 370:
->>>>>>> master
+/***/ 377:
 /***/ (function(module, exports) {
 
 module.exports = "/images/barna.jpg?8d90a7d7f3f18b481eb62accd4383bac";
