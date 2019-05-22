@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-
+use App\Carrito;
 
 class LoginController extends Controller
 {
@@ -95,10 +95,54 @@ class LoginController extends Controller
         $msg = "Su sesión fue cerrada exitosamente.";
         return response()->json(['res' => 1,'msg'=>$msg]);
     }
-    public function isLoged(){
+    public function isLoged()
+    {
         if(Auth::check()){
             $user=Auth::user();
-            $cart = [];
+            $cart = Carrito::paraUsuario($user->id)->with("articulo")->with("color")->with("talle")->get();
+            foreach ($cart as $item)
+            {
+                $encontrado = false;
+                $encontrado2 = false;
+                $longitud = $item->articulo->imagenesarticulos->count();
+                if($longitud>0)
+                {
+                    //----------------------------------------------------
+                    //Buscando la imagen correspondiente al color comprado
+                    $i = 0;
+                    $imagenes = $item->articulo->imagenesarticulos;
+                    while(!$encontrado && $i<$longitud)
+                    {
+                        if($imagenes[$i]->caracteristica_id==$item->color_id)
+                        {
+                            $imagen = $imagenes[$i];
+                            $encontrado = true;
+                        }
+                        $i++;
+                    }
+                    if($encontrado)
+                    {
+                        $item['imagen'] = $imagen;
+                    }
+                    //---------------------------------------------------
+                    //Buscando la imagen principal
+                    $j = 0;
+                    $imagenes2 = $item->articulo->imagenesarticulos;
+                    while(!$encontrado2 && $j<$longitud)
+                    {
+                        if($imagenes2[$j]->principal==1)
+                        {
+                            $imagen2 = $imagenes2[$j];
+                            $encontrado2 = true;
+                        }
+                        $j++;
+                    }
+                    if($encontrado2)
+                    {
+                        $item['principal'] = $imagen2;
+                    }
+                }
+            }
             $bag = [];
             return response()->json(['res' => 1,'user'=> $user,'cart'=>$cart,'bag'=>$bag]);
         } else {

@@ -453,7 +453,7 @@ li.bagform .dropbag:after {
                           style="overflow: auto;max-height: 65vh;padding:17px"
                         >
                           <h5 class="pb-2">
-                            <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra
+                            <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra: {{cart.length}}
                           </h5>
 
                           <div v-if="getCart.length == 0" class="content-no-found">
@@ -471,26 +471,30 @@ li.bagform .dropbag:after {
                             </thead>
                             <tfoot>
                               <tr class="bg-gray">
-                                <td colspan="2"></td>
+                                <td colspan="2" class="total-col text-right"><strong>TOTAL:</strong></td>
                                 <td class="total-col text-right">
-                                  <h5>TOTAL: $83</h5>
+                                  <strong>$ {{formatearmoneda(sumar(cart))}}</strong>
                                 </td>
                                 <td></td>
                               </tr>
                             </tfoot>
                             <tbody>
-                              <tr>
+
+                              <tr v-for="item in cart">
                                 <td class="text-center">
-                                  <img :src="getUrl+'img/cart/1.jpg'" class="w-30" alt>
+                                  <!-- Si la imagen del color que compró no la encuentro -->
+                                  <img v-if="item.imagen" :src="getUrl+item.imagen.url" style="height:25px;width:auto">
+                                  <!-- Muestro la imagen principal -->
+                                  <img v-else :src="getUrl+item.principal.url" style="height:25px;width:auto">
                                   <div class="pc-title">
-                                    <h6>Animal Print Dress</h6>
+                                    <h6>{{item.articulo.nombre}}, Color: {{item.color.valor}}, Talle: {{item.talle.valor}}</h6>
                                   </div>
                                 </td>
                                 <td class="text-center">
-                                  <h6 class="inc qtybtn">x 1</h6>
+                                  <h6 class="inc qtybtn">x {{item.cantidad}}</h6>
                                 </td>
                                 <td class="text-right">
-                                  <h6>$75.90</h6>
+                                  <h6>$ {{formatearmoneda(item.precio)}}</h6>
                                 </td>
                                 <td class="text-center">
                                   <h5>
@@ -498,6 +502,8 @@ li.bagform .dropbag:after {
                                   </h5>
                                 </td>
                               </tr>
+
+                              <!--
                               <tr>
                                 <td class="text-center">
                                   <img :src="getUrl+'img/cart/2.jpg'" class="w-30" alt>
@@ -517,6 +523,7 @@ li.bagform .dropbag:after {
                                   </h5>
                                 </td>
                               </tr>
+                            -->
                             </tbody>
                           </table>
                           <div class="d-flex justify-content-end" v-if="getCart.length > 0">
@@ -695,11 +702,26 @@ export default {
       showLoginOut: false,
       showCartOut: false,
       showBagOut: false,
-      isLoading: false
+      isLoading: false,
+      cart: this.getCart,
     };
   },
   methods:
   {
+    sumar(articulos)
+    {
+      var i;
+      var total = 0;
+      for (i = 0; i < articulos.length; i++)
+      { 
+          total = total + (articulos[i].cantidad*articulos[i].precio);
+      }
+      return total;
+    },
+    formatearmoneda(monto)
+    {
+      return monto.toFixed(2);
+    },
     todosrubros()
     {
       CerService.post("/rubros/todos/api")
@@ -1154,6 +1176,10 @@ export default {
     },
     getSearch: function(){
       this.search= this.$store.getters.getSearch
+    },
+    getCart: function()
+    {
+      this.cart = this.$store.getters.getCart
     }
   }
 };

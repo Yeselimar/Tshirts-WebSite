@@ -97,7 +97,7 @@ const actions = {
           commit('setUser', response.user);
           commit('setUserLoadStatus', 1);
           commit('setIsAuth', true);
-          commit('setCart',response.cart);;
+          commit('setCart',response.cart);
           commit('setBag',response.bag);
 
         } else {
@@ -127,22 +127,19 @@ const actions = {
     commit('setCart',[]);
     commit('setBag',[]);
   },
-  actionAddCart({commit},cart){
-    
-      return new Promise((resolve, reject) => {
-
-        CerService.post('/add/cart', cart)
-            .then(resp => {
-
-                if (resp.res===1) {
-                  commit('addCart', cart);
-                } 
-                resolve(resp.res)
-            })
-            .catch(err => {
-                reject(err)
-            })
+  actionAddCart({commit})
+  {
+    //Añado al carrito lo que me devuelva el servicio
+    CerService.post('/carrito/todos')
+    .then(resp => {
+      if(resp.res===1)
+      {
+        commit('setCart', resp.carrito);
+      }
     })
+    .catch(error => {
+       
+    });
   },
   actionAddBag({commit},bag){
     return new Promise((resolve, reject) => {
