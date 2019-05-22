@@ -60,71 +60,40 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-<<<<<<< HEAD
 /******/ 	return __webpack_require__(__webpack_require__.s = 374);
-=======
-/******/ 	return __webpack_require__(__webpack_require__.s = 369);
->>>>>>> master
 /******/ })
 /************************************************************************/
 /******/ ({
 
-<<<<<<< HEAD
 /***/ 374:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(375);
-=======
-/***/ 369:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(370);
->>>>>>> master
 
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ 375:
-=======
-/***/ 370:
->>>>>>> master
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__images_index_js__ = __webpack_require__(376);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__images_index_js__ = __webpack_require__(371);
->>>>>>> master
 
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__ = __webpack_require__(377);
-=======
-/***/ 371:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__ = __webpack_require__(372);
->>>>>>> master
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__jpg_barna_jpg__);
 
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ 377:
-=======
-/***/ 372:
->>>>>>> master
 /***/ (function(module, exports) {
 
 module.exports = "/images/barna.jpg?8d90a7d7f3f18b481eb62accd4383bac";
