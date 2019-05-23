@@ -58,6 +58,17 @@
 	    padding-right: 1px;
 	    border: 1px solid #E5E5E5;
 	}
+	.accordion-area
+	{
+		margin-top: 25px !important;
+		margin-bottom: 15px !important;
+	}
+	.badge-barna
+	{
+		border:1px solid #9E9E9E !important;
+		background-color: #e5e5e5 !important;
+		color: #424242 !important;
+	}
 </style>
 <template>
 	<div>
@@ -139,7 +150,11 @@
 					</div>
 
 					<div>
-						<span class="badge badge-pill badge-warning">Precio varía según talle y color</span>
+						<button class="btn-carrito" @click="confirmarcarrito()"> Añadir al carrito</button>
+					</div>
+
+					<div>
+						<span class="badge badge-pill badge-barna">Precio varía según talle y color</span>
 					</div>
 
 					<!--Talle Seleccionado: {{talle_seleccionada}}-->
@@ -180,7 +195,7 @@
 					<div id="accordion" class="accordion-area">
 						<div class="panel">
 							<div class="panel-header" id="headingOne">
-								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Información</button>
+								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Descripción</button>
 							</div>
 							<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 								<div class="panel-body">
@@ -202,9 +217,7 @@
 						</div> -->
 					</div>
 
-					<div class="d-flex justify-content-center">
-						<button class="btn-carrito" @click="confirmarcarrito()"> Añadir al carrito</button>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -216,7 +229,6 @@
 		<!-- Productos destacados-->
 
 		<!-- Modal para agregar al carrito -->
-
       	<div class="modal" id="confirmacion">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -226,27 +238,48 @@
                   </div>
                   <div class="modal-body">
                       <div class="col-lg-12">
-                          <p>¿Está seguro que desea agregar el artículo <strong>{{this.articulo.nombre}}</strong> a mi carrito? </p>
+                          <p>¿Está seguro que desea <strong>agregar</strong> el siguiente artículo a mi carrito?</p>
                           <p></p>
-                          <p><strong>Cantidad:</strong> {{cantidad_articulo}}</p>
-                          
-                          <p>
-                          	<strong>Color:</strong> 
-                          	{{color_seleccionado.valor}} 
-                          	<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}">xxx</span>
-                          </p>
 
-                          <p><strong>Talle:</strong> {{talle_seleccionada.valor}}  </p>
+                          <div class="table-responsive">
+	                        <table class="table table-bordered">
+	                          <thead>
+	                            <tr>
+	                              <th class="text-center">Cant.</th>
+	                              <th>Artículo</th>
+	                              <th class="text-center">Color</th>
+	                              <th class="text-center">Talle</th>
+	                              <th class="text-center">Precio</th>
+	                            </tr>
+	                          </thead>
+	                          <tbody>
+	                            <tr>
+	                              <td class="text-center">{{cantidad_articulo}}</td>
+	                              <td>
+	                                {{articulo.nombre}} 
+	                              </td>
+	                              <td class="text-center">
+	                              	{{color_seleccionado.valor}} 
+	                              	<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}">xxx</span></td>
+	                              <td class="text-center">{{talle_seleccionada.valor}}</td>
+	                              <td class="text-center">{{formatearmoneda(precio_articulo)}}</td>
+	                            </tr>
+	                          </tbody>
+	                        </table>
+	                      </div>
+                          
                       </div>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">No</button>
-                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="anadircarrito()">Six</button>
+                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="anadircarrito()">Sí</button>
                   </div>
               </div>
           </div>
       	</div>
       	<!-- Modal para agregar al carrito -->
+
+      	 <loading v-if="isLoading"></loading>
 	</div>
 </template>
 
@@ -255,8 +288,9 @@
 	import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 	import { mapGetters } from 'vuex'
 	import CerService from "../../../plugins/CerService";
-	import Swatches from 'vue-swatches'
-	import "vue-swatches/dist/vue-swatches.min.css"
+	import Swatches from 'vue-swatches';
+	import "vue-swatches/dist/vue-swatches.min.css";
+	import loading from "../../layouts/loading.vue";
 
 	export default {
         components:
@@ -264,6 +298,7 @@
         	migajasComponent,
 			prodDestacadosComponent,
 			Swatches,
+			loading
 		},
 		created()
 		{
@@ -625,39 +660,47 @@
 			},
 			confirmarcarrito()
 			{
+				console.log("Confirmando carrito");
+				this.isLoading = true;
 				if(this.getIsAuth)
 				{
-					this.isLoading = true;
+					
 					if(this.cantidad_articulo>=1 )
 					{
 						if(this.color_seleccionado!='')
 						{
 							if(this.talle_seleccionada!='')
 							{
+								this.isLoading = false;
 								$('#confirmacion').modal('show');
 							}
 							else
 							{
+								this.isLoading = false;
 								this.mensaje('warning',"Disculpe, debe seleccionar una talle");
 							}
 						}
 						else
 						{
+							this.isLoading = false;
 							this.mensaje('warning',"Disculpe, debe seleccionar un color");
 						}
 					}
 					else
 					{
+						this.isLoading = false;
 						this.mensaje('warning',"Disculpe, la cantidad debe ser mayor o igual a 1");
 					}
 				}
 				else
 				{
+					this.isLoading = false;
 					this.mensaje('warning',"Debe estar autentificado para agregar al carrito");
 				}
 			},
 			anadircarrito()
 			{
+				console.log("Entrando a añadiendo carrito");
 				$('#confirmacion').modal('hide');
 				this.isLoading = true;
 				var dataform = new FormData();
@@ -670,6 +713,8 @@
 		        .then(response => {
 		          	if(response.res==1)
 		          	{
+		          		console.log("Exito");
+		          		
 		          		this.isLoading = false;
 		          		//Limpiando variables 
 		          		this.cantidad_articulo = 1;
@@ -689,6 +734,7 @@
 		          	}
 		        })
 		        .catch(error => {
+		        	this.isLoading = false;
 		          	this.mensaje("error","Ha ocurrido un error inesperado");
 		        });
 			},

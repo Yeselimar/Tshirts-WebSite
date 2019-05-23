@@ -183,7 +183,7 @@ class CarritoController extends Controller
         }
     }
 
-    public function eliminarcarrito(Request $request,$id)
+    public function eliminarcarrito($id)
     {
         if(Auth::check())
         {
@@ -217,7 +217,7 @@ class CarritoController extends Controller
                     if($talle_color)
                     {
                         //Revierto a mi stock a talle color (mi variante)
-                        $talle_color->cantidad = $talle_color->cantidad = $carrito->cantidad;
+                        $talle_color->cantidad = $talle_color->cantidad + $carrito->cantidad;
                         $talle_color->save();
 
                         //Elimino del carrito
