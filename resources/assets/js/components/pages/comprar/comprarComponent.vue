@@ -18,7 +18,7 @@
 							<div class="product-pic-zoom">
 								<img class="product-big-img" :src="getUrl+imagenActual" alt="">
 							</div>
-							<div class="product-thumbs" tabindex="1" style=" margin-bottom: 10% ; overflow: hidden; outline: none;">
+							<div class="product-thumbs scroll-barna" tabindex="1" style=" margin-bottom: 10% ; overflow: auto; outline: none;">
 								<div class="product-thumbs-track" v-for="miniatura in imagenesarticulos">
 									<div class="pt" :class="[{'pt active': miniatura.url === imagenActual}]" @click="info_por_img(miniatura.url)">
 										<img :src="getUrl+ miniatura.url" alt="" >

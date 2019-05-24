@@ -656,7 +656,7 @@ li.bagform .dropbag:after {
             class="container scroll-barna overflow-auto main-menu d-flex align-items-center w-auto"
           >
             <li  v-for="(rubro,i) in tipos_rubros_fav" :key="i">
-                <a class="color-white cursor hover-barna"
+                <a class="color-white cursor hover-barna text-uppercase"
                   @click.stop.prevent="seletedRoute(rubro.nombre)"
                 >{{rubro.nombre}}</a>
             </li>
@@ -713,7 +713,7 @@ export default {
       var i;
       var total = 0;
       for (i = 0; i < articulos.length; i++)
-      { 
+      {
           total = total + (articulos[i].cantidad*articulos[i].precio);
       }
       return total;
@@ -725,7 +725,7 @@ export default {
     todosrubros()
     {
       CerService.post("/rubros/todos/api")
-      .then(response => 
+      .then(response =>
       {
         this.tipos_rubros = response.rubros;
         this.isLoading = false;
@@ -738,7 +738,7 @@ export default {
     rubrosfavoritos()
     {
       CerService.post("/rubros/todos/favoritos")
-      .then(response => 
+      .then(response =>
       {
         this.tipos_rubros_fav = response.rubros;
         this.isLoading = false;
@@ -753,7 +753,7 @@ export default {
       this.isLoading = true;
 
       CerService.post("/front/prueba")
-      .then(response => 
+      .then(response =>
       {
           this.isLoading = false;
           console.log(response);
@@ -852,7 +852,7 @@ export default {
            this.isLoading = false;
         });
 	 },
-    seleted(rubro) 
+    seleted(rubro)
     {
       //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
       this.$store.dispatch('cambiarRubro',rubro)

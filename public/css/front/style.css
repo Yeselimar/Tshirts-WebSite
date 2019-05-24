@@ -7,6 +7,19 @@
 /*----------------------------------------*/
 /* Personal CSS
 /*----------------------------------------*/
+.modal-header-confirmacion{
+	background-color: #ef7a6e;
+	color: white;
+	box-shadow: 1px 1px 5px grey;
+	padding: 12px;
+}
+.modal-title-confirmacion{
+	color: white;
+}
+
+.confirmacion p{
+	font-size: 20px;
+}
 .multiselect {
 	box-sizing: content-box;
 	display: block;
@@ -31,15 +44,13 @@
 	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: 600;
-	padding: 6px 12px 6px;
-	border-radius: 15px;
-	border:none;
+	padding: 10px 50px 10px;
+	border-radius: 4px;
+	border: none;
 	background: #ef7a6e;
 	color: #fff;
-	line-height: normal;
 	cursor: pointer;
-	text-align: center;
-	margin-top:15px;
+	margin-top: 15px;
 }
 .panel-detalles{
 	margin: 15px;
@@ -60,19 +71,38 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+.btn-modal-si{
+	display: inline-block;
+	border: 2px solid #ef7a6e;
+	font-size: 14px;
+	padding: 8px 14px 8px;
+	border-radius: 2px;
+	margin-left: 10px;
+	background: #ef7a6e;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+}
+.btn-modal-no{
+	display: inline-block;
+	border: 2px solid #ef7a6e;
+	font-size: 14px;
+	padding: 8px 14px 8px;
+	border-radius: 2px;
+	margin-left: 10px;
+	color: #ef796e;
+	cursor: pointer;
+	text-align: center;
+}
 .btn-upload{
 	display: inline-block;
 	border: none;
 	font-size: 14px;
-	font-weight: 600;
-	/* min-width: 119px; */
 	padding: 6px 12px 6px;
-	border-radius: 20px;
-	/* margin-top: 21px; */
+	border-radius: 2px;
 	margin-left: 10px;
 	background: #ef7a6e;
 	color: #fff;
-	line-height: normal;
 	cursor: pointer;
 	text-align: center;
 }
@@ -503,7 +533,7 @@ ol {
 /* Accordion */
 
 .accordion-area {
-	margin-top: 50px;
+	margin-top: 25px;
 	border-top: 2px solid #e1e1e1;
 }
 
@@ -1465,6 +1495,8 @@ ol {
 	background: #e0e0e0;
 	padding: 17px 0 1px 0;
 	text-transform: uppercase;
+	box-shadow: 0px 1px 5px grey !important;
+
 }
 
 .page-top-info h4, .page-top-info h2 {
@@ -1767,13 +1799,14 @@ ol {
 }
 
 .product-pic-zoom {
-	border:2px solid rgb(239, 121, 110);
+
 	width: 100%;
 	height: 400px;
 	background: #fff;
 	overflow: hidden;
-	border-radius: 10px;
+	border-radius: 3px;
 	margin-bottom: 20px;
+	box-shadow: 0px 1px 4px grey !important
 }
 .product-big-img{
 	border-radius: 15px;
@@ -1797,6 +1830,15 @@ ol {
 	overflow: hidden;
 	cursor: pointer;
 	position: relative;
+	margin-bottom: 5px;
+}
+
+.pt img{
+	height: 100%;
+	width: fit-content;
+	object-fit: cover;
+	object-position: center center;
+	border: 1px solid #cacaca;
 }
 
 .product-thumbs .pt:last-child {
@@ -1882,7 +1924,7 @@ ol {
 	color: #414141;
 	padding-top: 10px;
 	margin-bottom: 0;
-	
+
 }
 
 .product-details .fw-size-choose label {

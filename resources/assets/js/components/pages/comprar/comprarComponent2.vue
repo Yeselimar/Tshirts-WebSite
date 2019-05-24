@@ -27,7 +27,7 @@
 	.border-barna-color
 	{
 		border: 2px solid #414141 !important;
-	} 
+	}
 	.border-barna-talle
 	{
 		border: 2px solid #414141 !important;
@@ -61,7 +61,6 @@
 </style>
 <template>
 	<div>
-		<migajas-component titulo="Comprar"></migajas-component>
 
 		<!-- Comprar  -->
 		<div class="container pt-4">
@@ -75,7 +74,7 @@
 					<div class="product-pic-zoom">
 						<img class="product-big-img" :src="getUrl+imagenActual" alt="">
 					</div>
-					<div class="product-thumbs" tabindex="1" style=" margin-bottom: 10% ; overflow: hidden; outline: none;">
+						<div class="product-thumbs scroll-barna" tabindex="1" style=" margin-bottom: 10% ; overflow: auto; outline: none;">
 						<div class="product-thumbs-track">
 
 							<template v-for="imagen in articulo.imagenes_colores">
@@ -83,8 +82,8 @@
 									<img :src="getUrl+imagen.url" :alt="articulo.nombre">
 								</div>
 							</template>
-							
-							<!-- 
+
+							<!--
 							:class="{ active: imagen.caracteristica_id === color_seleccionado.id }"
 							-->
 
@@ -103,8 +102,8 @@
 
 				<div class="col-lg-6 product-details">
 					<h2 class="p-title">{{articulo.nombre}}</h2>
-					<h3 class="p-price">{{formatearmoneda(precio_articulo)}}$</h3> 
-					
+					<h3 class="p-price">{{formatearmoneda(precio_articulo)}}$</h3>
+
 					<br>
 
 					<div v-if="(articulo.cantidad>0)">
@@ -123,13 +122,13 @@
 							</button type="button">
 						</template>
 					</div>
-					
+
 					<!--Color Seleccionado: {{color_seleccionado}}-->
 
 					<div class="fw-size-choose">
 						<p>Talles</p>
 						<template v-for="talle in talles" >
-							<button class="btn-circular-barna-talle" @click="cambiaTalle(talle)" :id="talle.id">
+							<button class="btn-circular-barna-talle text-uppercase" @click="cambiaTalle(talle)" :id="talle.id">
 								{{talle.valor}}
 							</button type="button">
 						</template>
@@ -139,7 +138,7 @@
 					</div>
 
 					<div>
-						<span class="badge badge-pill badge-warning">Precio varía según talle y color</span>
+						<span style="color:gray">PRECIO VARÍA SEGÚN TALLE Y COLOR</span>
 					</div>
 
 					<!--Talle Seleccionado: {{talle_seleccionada}}-->
@@ -172,7 +171,7 @@
 						<label for="talle" >{{talle.valor}}</label>
 					</div>
 					Talle seleccionada:{{talle_seleccionada}}
-					
+
 					-->
 
 					<!-- 	<button class="btn-upload" @click="procesar_pago()"> Pagar</button> -->
@@ -203,7 +202,7 @@
 					</div>
 
 					<div class="d-flex justify-content-center">
-						<button class="btn-carrito" @click="confirmarcarrito()"> Añadir al carrito</button>
+						<button class="btn-carrito" @click="confirmarcarrito()"><i class="fa fa-shopping-cart"></i> Añadir al Carrito</button>
 					</div>
 				</div>
 			</div>
@@ -217,31 +216,31 @@
 
 		<!-- Modal para agregar al carrito -->
 
-      	<div class="modal" id="confirmacion">
+      	<div class="modal fade show" id="confirmacion">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title pull-left"><strong>Barna</strong></h5>
+                  <div class="modal-header-confirmacion">
+                      <h5 class="modal-title-confirmacion pull-left"><strong>Confirmación</strong></h5>
                       <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
                   </div>
                   <div class="modal-body">
-                      <div class="col-lg-12">
-                          <p>¿Está seguro que desea agregar el artículo <strong>{{this.articulo.nombre}}</strong> a mi carrito? </p>
-                          <p></p>
-                          <p><strong>Cantidad:</strong> {{cantidad_articulo}}</p>
-                          
-                          <p>
-                          	<strong>Color:</strong> 
-                          	{{color_seleccionado.valor}} 
-                          	<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}">xxx</span>
-                          </p>
+                    <div class="col-lg-12 confirmacion">
+						<h5 class="d-flex flex-wrap justify-content-center">¿Está seguro que desea agregar el artículo <strong>{{this.articulo.nombre}}</strong>&nbsp; al carrito de compra? </h5>
+						<hr>
+						<div class="d-flex justify-content-around">
+							<p><strong>Cantidad:</strong> {{cantidad_articulo}}</p>
+							<div class="d-flex"><p><strong>Color:&nbsp;</strong></p>
+							<!-- <p class="text-uppercase">{{color_seleccionado.valor}}&nbsp;</p> -->
+							<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}"></span>
+							</div>
+							<div class="d-flex"><p><strong>Talle:&nbsp; </strong></p><p class="text-uppercase">{{talle_seleccionada.valor}}  </p></div>
+						</div>
 
-                          <p><strong>Talle:</strong> {{talle_seleccionada.valor}}  </p>
-                      </div>
+                    </div>
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">No</button>
-                      <button type="button" class="btn btn-xs btn-primary pull-right" @click="anadircarrito()">Six</button>
+                      <button type="button" class="btn btn-modal-no pull-right" data-dismiss="modal">No</button>
+                      <button type="button" class="btn btn-modal-si pull-right" @click="anadircarrito()">Si</button>
                   </div>
               </div>
           </div>
@@ -331,7 +330,7 @@
 				talleActual:'',
 				auxTalles: false,
 
-				
+
 				/* 	varianteDeColorAux: [], */
 
 				//Agregados recientemente
@@ -350,7 +349,7 @@
         		this.talle_seleccionada = talle;
         		this.actualizarPrecio();
         		$('.btn-circular-barna-talle').removeClass('border-barna-talle');
-        		$("#"+talle.id).addClass("border-barna-talle");    
+        		$("#"+talle.id).addClass("border-barna-talle");
         	},
         	cambiaColor(color)
         	{
@@ -365,7 +364,7 @@
         		this.actualizarPrecio();
         		//Actualizo el Borde del color seleccionado
         		$('.btn-circular-barna-color').removeClass('border-barna-color');
-        		$("#"+color.id).addClass("border-barna-color");    
+        		$("#"+color.id).addClass("border-barna-color");
         		this.buscarTalles();//Busco las talles según el color
         		this.buscarImagenes();//Busco las imágenes según el color
         	},
@@ -426,7 +425,7 @@
         		this.talle_seleccionada = [];
         		$('.btn-circular-barna-talle').removeClass('border-barna-talle');
 
-        		//Actualizo la imagen principal 
+        		//Actualizo la imagen principal
         		this.imagenActual = imagen.url;
 
         		//Asigno al color seleccionado el color al cual hizo click
@@ -438,7 +437,7 @@
 
         		//Busco las talles para el color determinado
         		this.buscarTalles();
-        		//Cambio el precio 
+        		//Cambio el precio
         		this.actualizarPrecio();
         	},
 			procesar_pago()
@@ -555,7 +554,7 @@
 						{
 							this.cantidadUsada = 'Por Variante'
 						}
-						else 
+						else
 						{
 							this.cantidadUsada = 'General'
 						}
@@ -671,7 +670,7 @@
 		          	if(response.res==1)
 		          	{
 		          		this.isLoading = false;
-		          		//Limpiando variables 
+		          		//Limpiando variables
 		          		this.cantidad_articulo = 1;
 		          		this.color_seleccionado = '';
 		          		this.talle_seleccionada = '';
