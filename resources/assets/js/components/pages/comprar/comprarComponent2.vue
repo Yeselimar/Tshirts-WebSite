@@ -149,10 +149,6 @@
 					</div>
 
 					<div>
-						<span style="color:gray">PRECIO VARÍA SEGÚN TALLE Y COLOR</span>
-					</div>
-
-					<div>
 						<span class="badge badge-pill badge-barna">Precio varía según talle y color</span>
 					</div>
 
@@ -239,19 +235,53 @@
                       <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
                   </div>
                   <div class="modal-body">
-                    <div class="col-lg-12 confirmacion">
+                    <!-- <div class="col-lg-12 confirmacion">
 						<h5 class="d-flex flex-wrap justify-content-center">¿Está seguro que desea agregar el artículo <strong>{{this.articulo.nombre}}</strong>&nbsp; al carrito de compra? </h5>
 						<hr>
 						<div class="d-flex justify-content-around">
 							<p><strong>Cantidad:</strong> {{cantidad_articulo}}</p>
 							<div class="d-flex"><p><strong>Color:&nbsp;</strong></p>
-							<!-- <p class="text-uppercase">{{color_seleccionado.valor}}&nbsp;</p> -->
 							<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}"></span>
 							</div>
 							<div class="d-flex"><p><strong>Talle:&nbsp; </strong></p><p class="text-uppercase">{{talle_seleccionada.valor}}  </p></div>
+							<p><strong>Precio:</strong> {{formatearmoneda(precio_articulo)}} $</p>
+						</div>
+                    </div> -->
+
+					<div class="col-lg-12">
+						<h5 class="d-flex flex-wrap justify-content-center">¿Está seguro que desea agregar el artículo <strong>{{this.articulo.nombre}}</strong>&nbsp; al carrito de compra? </h5>
+						<hr>
+
+						<div class="table-responsive">
+							<table class="table table-bordered">
+							<thead>
+								<tr>
+								<th class="text-center">Cant.</th>
+								<th>Artículo</th>
+								<th class="text-center">Color</th>
+								<th class="text-center">Talle</th>
+								<th class="text-center">Precio</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								<td class="text-center">{{cantidad_articulo}}</td>
+								<td>
+									{{articulo.nombre}}
+								</td>
+								<td class="text-center">
+								<span class="color-indicador" :style="{ 'background-color':color_seleccionado.color,'color':color_seleccionado.color}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+								</td>
+								<td class="text-center text-uppercase">{{talle_seleccionada.valor}}</td>
+								<td class="text-center">{{formatearmoneda(precio_articulo)}}$</td>
+								</tr>
+							</tbody>
+							</table>
 						</div>
 
-                    </div>
+					</div>
+
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-modal-no pull-right" data-dismiss="modal">No</button>
@@ -647,7 +677,7 @@
 				this.isLoading = true;
 				if(this.getIsAuth)
 				{
-					
+
 					if(this.cantidad_articulo>=1 )
 					{
 						if(this.color_seleccionado!='')
@@ -697,7 +727,7 @@
 		          	if(response.res==1)
 		          	{
 		          		console.log("Exito");
-		          		
+
 		          		this.isLoading = false;
 		          		//Limpiando variables
 		          		this.cantidad_articulo = 1;
