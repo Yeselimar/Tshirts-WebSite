@@ -58,6 +58,17 @@
 	    padding-right: 1px;
 	    border: 1px solid #E5E5E5;
 	}
+	.accordion-area
+	{
+		margin-top: 25px !important;
+		margin-bottom: 15px !important;
+	}
+	.badge-barna
+	{
+		border:1px solid #9E9E9E !important;
+		background-color: #e5e5e5 !important;
+		color: #424242 !important;
+	}
 </style>
 <template>
 	<div>
@@ -141,6 +152,10 @@
 						<span style="color:gray">PRECIO VARÍA SEGÚN TALLE Y COLOR</span>
 					</div>
 
+					<div>
+						<span class="badge badge-pill badge-barna">Precio varía según talle y color</span>
+					</div>
+
 					<!--Talle Seleccionado: {{talle_seleccionada}}-->
 
 					<!--
@@ -179,7 +194,7 @@
 					<div id="accordion" class="accordion-area">
 						<div class="panel">
 							<div class="panel-header" id="headingOne">
-								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Información</button>
+								<button class="panel-link active" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">Descripción</button>
 							</div>
 							<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 								<div class="panel-body">
@@ -246,6 +261,8 @@
           </div>
       	</div>
       	<!-- Modal para agregar al carrito -->
+
+      	 <loading v-if="isLoading"></loading>
 	</div>
 </template>
 
@@ -254,8 +271,9 @@
 	import prodDestacadosComponent from "../../../components/pages/share/prodDestacadosComponent.vue"
 	import { mapGetters } from 'vuex'
 	import CerService from "../../../plugins/CerService";
-	import Swatches from 'vue-swatches'
-	import "vue-swatches/dist/vue-swatches.min.css"
+	import Swatches from 'vue-swatches';
+	import "vue-swatches/dist/vue-swatches.min.css";
+	import loading from "../../layouts/loading.vue";
 
 	export default {
         components:
@@ -263,6 +281,7 @@
         	migajasComponent,
 			prodDestacadosComponent,
 			Swatches,
+			loading
 		},
 		created()
 		{
@@ -624,39 +643,47 @@
 			},
 			confirmarcarrito()
 			{
+				console.log("Confirmando carrito");
+				this.isLoading = true;
 				if(this.getIsAuth)
 				{
-					this.isLoading = true;
+					
 					if(this.cantidad_articulo>=1 )
 					{
 						if(this.color_seleccionado!='')
 						{
 							if(this.talle_seleccionada!='')
 							{
+								this.isLoading = false;
 								$('#confirmacion').modal('show');
 							}
 							else
 							{
+								this.isLoading = false;
 								this.mensaje('warning',"Disculpe, debe seleccionar una talle");
 							}
 						}
 						else
 						{
+							this.isLoading = false;
 							this.mensaje('warning',"Disculpe, debe seleccionar un color");
 						}
 					}
 					else
 					{
+						this.isLoading = false;
 						this.mensaje('warning',"Disculpe, la cantidad debe ser mayor o igual a 1");
 					}
 				}
 				else
 				{
+					this.isLoading = false;
 					this.mensaje('warning',"Debe estar autentificado para agregar al carrito");
 				}
 			},
 			anadircarrito()
 			{
+				console.log("Entrando a añadiendo carrito");
 				$('#confirmacion').modal('hide');
 				this.isLoading = true;
 				var dataform = new FormData();
@@ -669,6 +696,8 @@
 		        .then(response => {
 		          	if(response.res==1)
 		          	{
+		          		console.log("Exito");
+		          		
 		          		this.isLoading = false;
 		          		//Limpiando variables
 		          		this.cantidad_articulo = 1;
@@ -688,6 +717,7 @@
 		          	}
 		        })
 		        .catch(error => {
+		        	this.isLoading = false;
 		          	this.mensaje("error","Ha ocurrido un error inesperado");
 		        });
 			},

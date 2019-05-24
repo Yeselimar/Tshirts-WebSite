@@ -453,7 +453,7 @@ li.bagform .dropbag:after {
                           style="overflow: auto;max-height: 65vh;padding:17px"
                         >
                           <h5 class="pb-2">
-                            <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra: {{cart.length}}
+                            <i class="fa fa-shopping-cart pr-2"></i>Carrito de Compra: 
                           </h5>
 
                           <div v-if="getCart.length == 0" class="content-no-found">
@@ -498,7 +498,7 @@ li.bagform .dropbag:after {
                                 </td>
                                 <td class="text-center">
                                   <h5>
-                                    <i class="fa fa-trash cursor"></i>
+                                    <a class="cursor" @click="eliminar(item)"><i class="fa fa-trash"></i></a>
                                   </h5>
                                 </td>
                               </tr>
@@ -671,6 +671,58 @@ li.bagform .dropbag:after {
     background-repeat: no-repeat;
     "></div>
     <loading v-if="isLoading"></loading>
+
+    <!-- Modal para eliminar del carrito -->
+    <div class="modal" id="eliminar">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title pull-left"><strong>Barna</strong></h5>
+                  <a class="pull-right mr-1 cursor" data-dismiss="modal" ><i class="fa fa-remove"></i></a>
+              </div>
+              <div class="modal-body">
+                  <div class="col-lg-12">
+                      <p>¿Está seguro que desea <strong>eliminar</strong> el siguiente artículo  de mi carrito? </p>
+                      <p></p>
+                      
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="text-center">Cant.</th>
+                              <th>Artículo</th>
+                              <th class="text-center">Color</th>
+                              <th class="text-center">Talle</th>
+                              <th class="text-center">Precio</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center">{{item.cantidad}}</td>
+                              <td>
+                                {{item.articulo.nombre}} 
+                              </td>
+                              <td class="text-center">
+                                {{item.color.valor}}
+                                <span class="color-indicador" :style="{ 'background-color':item.color.color,'color':item.color.color}">xxx</span></td>
+                              </td>
+                              <td class="text-center">{{item.talle.valor}}</td>
+                              <td class="text-center">{{formatearmoneda(item.precio)}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-xs btn-inverse pull-right" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-xs btn-primary pull-right" @click="eliminarCarrito()">Sí</button>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- Modal para eliminar del carrito -->
+
   </div>
 </template>
 
@@ -704,10 +756,53 @@ export default {
       showBagOut: false,
       isLoading: false,
       cart: this.getCart,
+      item:{
+        id:0,
+        cantidad:0,
+        precio:0,
+        articulo:{},
+        color:{},
+        talle:{}
+      },
     };
   },
   methods:
   {
+    eliminar(item)
+    {
+      this.item.id = item.id;
+      this.item.cantidad = item.cantidad;
+      this.item.precio = item.precio;
+      this.item.articulo = item.articulo;
+      this.item.color = item.color;
+      this.item.talle = item.talle;
+      $('#eliminar').modal('show');
+    },
+    eliminarCarrito()
+    {
+      $('#eliminar').modal('hide');
+      this.isLoading = true;
+      var url = 'carrito/:id/eliminar'
+      url = url.replace(':id',this.item.id);
+      CerService.post(url)
+      .then(resp => {
+        if(resp.res===1)
+        {
+          this.isLoading = false;
+          this.mensaje("success", resp.msg);
+          this.$store.dispatch('actionAddCart');//Para actualizar lo que tenía el usuario en el carrito
+        }
+        else
+        {
+          this.isLoading = false;
+          this.mensaje("warning", resp.msg);
+        }
+      })
+      .catch(error => {
+        this.isLoading = false;
+        console.log("Ha ocurrido un error inesperado");
+      });
+    },
     sumar(articulos)
     {
       var i;
@@ -789,70 +884,70 @@ export default {
              this.isLoading = false;
           });
     },*/
-  cambCollapse()
-  {
-    //var content = $("#content-barna");
-    //console.log('holaa')
-      //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
-      this.collVal = !this.collVal
-      if(this.collVal){
-        $('#content-barna').css('min-height',220)
-      } else {
-        $('#content-barna').css('min-height',131)
-      }
+    cambCollapse()
+    {
+      //var content = $("#content-barna");
+      //console.log('holaa')
+        //$('#content-barna').css("transition", "all 0.2s ease 0.1s");
+        this.collVal = !this.collVal
+        if(this.collVal){
+          $('#content-barna').css('min-height',220)
+        } else {
+          $('#content-barna').css('min-height',131)
+        }
 
-  },
-	logout()
-  {
-	  this.closeAll(10)
-	  this.isLoading = true;
-      this.$store.dispatch('logout').then((res)=>{
+    },
+  	logout()
+    {
+  	  this.closeAll(10)
+  	  this.isLoading = true;
+        this.$store.dispatch('logout').then((res)=>{
 
-          if (res.res) {
+            if (res.res) {
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "success",
+                title: res.msg
+              });
+              this.$router.push({ name: 'home' })
+              this.isLoading = false;
+            } else {
+              this.$swal
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "warning",
+                title: res.msg
+              });
+              this.isLoading = false;
+            }
+          })
+          .catch(err => {
             this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "success",
-              title: res.msg
-            });
-            this.$router.push({ name: 'home' })
-            this.isLoading = false;
-          } else {
-            this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "warning",
-              title: res.msg
-            });
-            this.isLoading = false;
-          }
-        })
-        .catch(err => {
-          this.$swal
-            .mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 4000
-            })
-            .fire({
-              type: "success",
-              title: "Ha ocurrido un error inesperado"
-            });
-           this.isLoading = false;
-        });
-	 },
-    seleted(rubro)
+              .mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000
+              })
+              .fire({
+                type: "success",
+                title: "Ha ocurrido un error inesperado"
+              });
+             this.isLoading = false;
+          });
+  	},
+    seleted(rubro) 
     {
       //this.$store.dispatch('cambiarRubro',String(event.target.innerText))
       this.$store.dispatch('cambiarRubro',rubro)
@@ -966,6 +1061,7 @@ export default {
               .then(response => {
                 if (response.res) {
                   this.closeAll(1)
+                  this.$store.dispatch('actionAddCart');//Para añadir lo que tenía el usuario en el carrito
                   this.$store.dispatch( 'loadUser');
                   if (this.$route.name == 'register'){
                     this.$router.push({ name: 'home' })
@@ -1058,6 +1154,20 @@ export default {
             .toLowerCase()
             .indexOf(value) > -1
         );
+      });
+    },
+    mensaje(tipo,mensaje)
+    {
+      this.$swal
+      .mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 4000
+      })
+      .fire({
+        type: tipo,
+        title: mensaje
       });
     }
   },
